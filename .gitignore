@@ -3,3 +3,4 @@
 
 # Project exclude paths
 /tools/node_modules/
+/tools/composer.lock
