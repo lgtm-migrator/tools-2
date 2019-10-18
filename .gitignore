@@ -2,5 +2,7 @@
 .idea
 
 # Project exclude paths
+/static/
 /tools/node_modules/
+/tools/vendor/
 /tools/composer.lock
