@@ -6,7 +6,9 @@
   },
   "scripts": {
     "copy": "gulp copy_fonts copy_jq copy_popper copy_bs copy_bmj copy_fundebug",
-    "add": "gulp add_footer"
+    "add": "gulp add_footer",
+    "terser": "gulp terser_js",
+    "all": "@ copy add terser"
   },
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.11.2",

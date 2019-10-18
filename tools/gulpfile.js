@@ -78,6 +78,12 @@ const bowser_bundled_js_path = "./node_modules/bowser/bundled.js";
 const lax_js_path = "./node_modules/lax.js/lib/lax.js";
 const lax_min_js_path = "./node_modules/lax.js/lib/lax.min.js";
 
+//phone_number.js
+const phone_number_js_path = "./js/phone_number.js";
+const static_js_path = "./js";
+
+gulp.task("terser_js", terser_js);
+
 gulp.task("copy_fonts", copy_fonts);
 gulp.task("copy_jq", copy_jq);
 gulp.task("copy_popper", copy_popper);
@@ -97,6 +103,13 @@ gulp.task("copy_fundebug", copy_fundebug);
 // gulp.task("add_header", add_fundebug_api);
 gulp.task("add_footer", add_fundebug_api);
 
+function terser_js(done) {
+    gulp.src([phone_number_js_path])
+        .pipe(terser())
+        .pipe(rename("phone_number.min.js"))
+        .pipe(gulp.dest(static_js_path));
+    done();
+}
 
 function copy_fonts(done) {
     gulp.src([font_css_path, font_min_css_path]).pipe(gulp.dest(static_path + "/font/css"));
