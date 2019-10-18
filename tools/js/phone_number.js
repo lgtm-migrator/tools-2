@@ -5,10 +5,8 @@ let phone_name = document.querySelector("#phone_name");
 let tel_number = document.querySelector("#tel_number");
 let mobile_number = document.querySelector("#mobile_number");
 
-let phone_name_all = document.querySelectorAll(".phone_name");
-let tel_number_all = document.querySelectorAll(".tel_number");
-let mobile_number_all = document.querySelectorAll(".mobile_number");
-
+let add_phone_number_form = document.querySelector("#add_phone_number_form");
+let number_submit = document.querySelector("#number_submit");
 let phone_number_add = document.querySelector("#phone_number_add");
 
 let add_phone_number_url = "./phoneNumber.php";
@@ -19,12 +17,16 @@ let RegExp_rules = {
     "mobile_number": new RegExp(/^(?:(?:\+|00)86)?1(?:(?:3[\d])|(?:4[5-7|9])|(?:5[0-3|5-9])|(?:6[5-7])|(?:7[0-8])|(?:8[\d])|(?:9[1|8|9]))\d{8}$/),
 };
 
-phone_number_add.addEventListener("click", phone_number_form_clone);
+// phone_number_add.addEventListener("click", phone_number_form_clone);
+phone_number_add.addEventListener("click", create_phone_form);
 
 phone_number_submit.addEventListener("click", add_phone_number);
 
-check_phone_input();
 function check_phone_input() {
+    let phone_name_all = document.querySelectorAll(".phone_name");
+    let tel_number_all = document.querySelectorAll(".tel_number");
+    let mobile_number_all = document.querySelectorAll(".mobile_number");
+
     for (let x = phone_name_all.length, i = 0; i < x; i++) {
         phone_name_all[i].addEventListener("blur", function (e) {
             phone_input_check(RegExp_rules.chinese_name, "请输入单位的中文名称 例如：\n掘进一队", e)
@@ -43,6 +45,103 @@ function check_phone_input() {
         });
         mobile_number_all[i].addEventListener("focusin", remove_error_span);
     }
+}
+
+function create_phone_form() {
+    create_form_div();
+    create_phone_name();
+    create_tel_number();
+    create_mobile_number();
+}
+
+function create_form_div() {
+    let div = document.createElement("div");
+    div.className = "my-2 form-row add_phone_number_form";
+    add_phone_number_form.insertBefore(div, number_submit);
+}
+
+function create_phone_name() {
+    let div = document.createElement("div");
+    let label = document.createElement("label");
+    let input = document.createElement("input");
+    let i = document.createElement("i");
+
+    div.className = "form-group col-12 col-sm-12 col-md-3";
+
+    label.className = "sr-only";
+    // label.for = "phone_name";
+    label.setAttribute("for", "phone_name");
+    label.innerText = "单位名称&nbsp;";
+
+    i.className = "fa fa-home";
+
+    input.className = "form-control fa text-success text-center phone_name";
+    input.id = "phone_name";
+    input.type = "text";
+    input.minlength = "4";
+    input.maxlength = "9";
+    input.placeholder = "单位名称&nbsp;&#xf015;";
+
+    label.appendChild(i);
+    div.appendChild(label);
+    div.appendChild(input);
+    add_phone_number_form.children[add_phone_number_form.childElementCount - 2].appendChild(div);
+}
+
+function create_tel_number() {
+    let div = document.createElement("div");
+    let label = document.createElement("label");
+    let input = document.createElement("input");
+    let i = document.createElement("i");
+
+    div.className = "form-group col-12 col-sm-6 col-md-4";
+
+    label.className = "sr-only";
+    // label.for = "tel_number";
+    label.setAttribute("for", "tel_number");
+    label.innerText = "座机电话号码&nbsp;";
+
+    i.className = "fa fa-phone";
+
+    input.className = "form-control fa text-success text-center tel_number";
+    input.id = "tel_number";
+    input.type = "tel";
+    input.minlength = "12";
+    input.maxlength = "12";
+    input.placeholder = "座机电话号码&nbsp;&#xf095;";
+
+    label.appendChild(i);
+    div.appendChild(label);
+    div.appendChild(input);
+    add_phone_number_form.children[add_phone_number_form.childElementCount - 2].appendChild(div);
+}
+
+function create_mobile_number() {
+    let div = document.createElement("div");
+    let label = document.createElement("label");
+    let input = document.createElement("input");
+    let i = document.createElement("i");
+
+    div.className = "form-group col-12 col-sm-6 col-md-5";
+
+    label.className = "sr-only";
+    // label.for = "mobile_number";
+    label.setAttribute("for", "mobile_number");
+    label.innerText = "手机电话号码&nbsp;";
+
+    i.className = "fa fa-mobile-alt";
+
+    input.className = "form-control fa text-success text-center mobile_number";
+    input.id = "mobile_number";
+    input.type = "tel";
+    input.minlength = "11";
+    input.maxlength = "15";
+    input.placeholder = "手机电话号码&nbsp;&#xf3cd;";
+
+    label.appendChild(i);
+    div.appendChild(label);
+    div.appendChild(input);
+    add_phone_number_form.children[add_phone_number_form.childElementCount - 2].appendChild(div);
 }
 
 function phone_input_check(RegExp_rules_name, error_text, e) {
@@ -106,11 +205,17 @@ function remove_spinner_icon(e) {
 function phone_number_form_clone() {
     let add_phone_number_form = document.querySelector(".add_phone_number_form");
     let clone__add_phone_number_form = add_phone_number_form.cloneNode(true);
-    insertAfter(clone__add_phone_number_form, add_phone_number_form);
+    insertAfter_nextElementSibling(clone__add_phone_number_form, add_phone_number_form);
+    check_phone_input();
+
+}
+
+function insertAfter_nextElementSibling(newNode, curNode) {
+    curNode.parentNode.insertBefore(newNode, curNode.nextElementSibling);
 }
 
 function insertAfter(newNode, curNode) {
-    curNode.parentNode.insertBefore(newNode, curNode.nextElementSibling);
+    curNode.parentNode.insertBefore(newNode, curNode);
 }
 
 function add_phone_number() {
