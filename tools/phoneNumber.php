@@ -37,28 +37,27 @@ require_once 'header.php';
         <div class="container mt-3">
 
             <div class="p-3 border border-info rounded">
-                <div class="my-2 form-row">
+                <div class="my-2 form-row add_phone_number_form">
                     <div class="form-group col-12 col-sm-12 col-md-3">
                         <label class="sr-only" for="phone_name">名称&nbsp;<i class="fa fa-home"></i></label>
-                        <input class="form-control fa text-success text-center" type="text" id="phone_name"
+                        <input class="form-control fa text-success text-center phone_name" type="text" id="phone_name"
                                minlength="4" maxlength="9" placeholder="单位名称&nbsp;&#xf015;">
                     </div>
 
                     <div class="form-group col-12 col-sm-6 col-md-4">
                         <label class="sr-only" for="tel_number">座机号码&nbsp;<i class="fa fa-phone"></i></label>
-                        <input class="form-control fa text-success text-center" type="tel" id="tel_number"
+                        <input class="form-control fa text-success text-center tel_number" type="tel" id="tel_number"
                                minlength="12" maxlength="12" placeholder="座机电话号码&nbsp;&#xf095;">
                     </div>
                     <div class="form-group col-12 col-sm-6 col-md-5">
                         <label class="sr-only" for="mobile_number">手机号码&nbsp;<i class="fa fa-mobile-alt"></i></label>
-                        <input class="form-control fa text-success text-center" type="tel" id="mobile_number"
+                        <input class="form-control fa text-success text-center mobile_number" type="tel" id="mobile_number"
                                minlength="11" maxlength="15" placeholder="手机电话号码&nbsp;&#xf3cd;">
                     </div>
-
                 </div>
 
                 <div class="my-2 d-flex justify-content-center">
-                    <button class="mx-2 btn btn-primary rounded-circle d-none" type="button" id="phone_number_add"
+                    <button class="mx-2 btn btn-primary rounded-circle" type="button" id="phone_number_add"
                             title="添加一行"><i class="fa fa-plus-circle"></i></button>
                     <button class="btn btn-lg btn-primary" id="phone_number_submit">提交新号码</button>
                 </div>

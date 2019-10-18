@@ -1,9 +1,16 @@
-
 /** 增加号码 **/
 let phone_number_submit = document.querySelector("#phone_number_submit");
+
 let phone_name = document.querySelector("#phone_name");
 let tel_number = document.querySelector("#tel_number");
 let mobile_number = document.querySelector("#mobile_number");
+
+let phone_name_all = document.querySelectorAll(".phone_name");
+let tel_number_all = document.querySelectorAll(".tel_number");
+let mobile_number_all = document.querySelectorAll(".mobile_number");
+
+let phone_number_add = document.querySelector("#phone_number_add");
+
 let add_phone_number_url = "./phoneNumber.php";
 
 let RegExp_rules = {
@@ -12,43 +19,37 @@ let RegExp_rules = {
     "mobile_number": new RegExp(/^(?:(?:\+|00)86)?1(?:(?:3[\d])|(?:4[5-7|9])|(?:5[0-3|5-9])|(?:6[5-7])|(?:7[0-8])|(?:8[\d])|(?:9[1|8|9]))\d{8}$/),
 };
 
-phone_name.addEventListener("blur", phone_name_check);
-tel_number.addEventListener("blur", tel_number_check);
-mobile_number.addEventListener("blur", mobile_number_check);
-
-phone_name.addEventListener("focusin", remove_error_span);
-tel_number.addEventListener("focusin", remove_error_span);
-mobile_number.addEventListener("focusin", remove_error_span);
+phone_number_add.addEventListener("click", phone_number_form_clone);
 
 phone_number_submit.addEventListener("click", add_phone_number);
 
-function phone_name_check(e) {
-    let RegExp_result = RegExp_rules.chinese_name.test(phone_name.value);
-    if (!RegExp_result) {
-        input_error(e);
-        error_span(e, "请输入单位的中文名称 例如：\n掘进一队");
-    } else {
-        remove_input_error(e);
-        input_success(e);
+check_phone_input();
+function check_phone_input() {
+    for (let x = phone_name_all.length, i = 0; i < x; i++) {
+        phone_name_all[i].addEventListener("blur", function (e) {
+            phone_input_check(RegExp_rules.chinese_name, "请输入单位的中文名称 例如：\n掘进一队", e)
+        });
+        phone_name_all[i].addEventListener("focusin", remove_error_span);
+    }
+    for (let x = tel_number_all.length, i = 0; i < x; i++) {
+        tel_number_all[i].addEventListener("blur", function (e) {
+            phone_input_check(RegExp_rules.tel_number, "请输入正确格式的座机号码 例如：\n0319-1234567", e)
+        });
+        tel_number_all[i].addEventListener("focusin", remove_error_span);
+    }
+    for (let x = mobile_number_all.length, i = 0; i < x; i++) {
+        mobile_number_all[i].addEventListener("blur", function (e) {
+            phone_input_check(RegExp_rules.mobile_number, "请输入正确格式的手机号 例如：\n13812345678\n+8613812345678\n008613812345678", e)
+        });
+        mobile_number_all[i].addEventListener("focusin", remove_error_span);
     }
 }
 
-function tel_number_check(e) {
-    let RegExp_result = RegExp_rules.tel_number.test(tel_number.value);
+function phone_input_check(RegExp_rules_name, error_text, e) {
+    let RegExp_result = RegExp_rules_name.test(e.target.value);
     if (!RegExp_result) {
         input_error(e);
-        error_span(e, "请输入正确格式的座机号码 例如：\n0319-1234567");
-    } else {
-        remove_input_error(e);
-        input_success(e);
-    }
-}
-
-function mobile_number_check(e) {
-    let RegExp_result = RegExp_rules.mobile_number.test(mobile_number.value);
-    if (!RegExp_result) {
-        input_error(e);
-        error_span(e, "请输入正确格式的手机号 例如：\n13812345678\n+8613812345678\n008613812345678");
+        error_span(e, error_text);
     } else {
         remove_input_error(e);
         input_success(e);
@@ -74,6 +75,7 @@ function input_error(e) {
     let e_target = e.target;
     e_target.classList.add("border", "border-danger");
 }
+
 function input_success(e) {
     let e_target = e.target;
     e_target.classList.add("border", "border-success");
@@ -99,6 +101,16 @@ function add_spinner_icon(e, spinner_type = "border", icon_size = "sm") {
 
 function remove_spinner_icon(e) {
     e.removeChild(e.lastChild);
+}
+
+function phone_number_form_clone() {
+    let add_phone_number_form = document.querySelector(".add_phone_number_form");
+    let clone__add_phone_number_form = add_phone_number_form.cloneNode(true);
+    insertAfter(clone__add_phone_number_form, add_phone_number_form);
+}
+
+function insertAfter(newNode, curNode) {
+    curNode.parentNode.insertBefore(newNode, curNode.nextElementSibling);
 }
 
 function add_phone_number() {
