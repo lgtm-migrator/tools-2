@@ -80,7 +80,7 @@ function create_phone_name() {
     input.type = "text";
     input.minlength = "4";
     input.maxlength = "9";
-    input.placeholder = "单位名称&nbsp;&#xf015;";
+    input.placeholder = "单位名称 ";
 
     label.appendChild(i);
     div.appendChild(label);
@@ -108,7 +108,7 @@ function create_tel_number() {
     input.type = "tel";
     input.minlength = "12";
     input.maxlength = "12";
-    input.placeholder = "座机电话号码&nbsp;&#xf095;";
+    input.placeholder = "座机电话号码 ";
 
     label.appendChild(i);
     div.appendChild(label);
@@ -136,7 +136,7 @@ function create_mobile_number() {
     input.type = "tel";
     input.minlength = "11";
     input.maxlength = "15";
-    input.placeholder = "手机电话号码&nbsp;&#xf3cd;";
+    input.placeholder = "手机电话号码 ";
 
     label.appendChild(i);
     div.appendChild(label);
