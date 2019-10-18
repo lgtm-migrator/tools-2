@@ -1,0 +1,22 @@
+{
+  "devDependencies": {
+    "gulp": "^4.0.2",
+    "gulp-rename": "^1.4.0",
+    "gulp-terser": "^1.2.0"
+  },
+  "scripts": {
+    "copy": "gulp copy_fonts copy_jq copy_popper copy_bs copy_bmj copy_fundebug",
+    "add": "gulp add_footer"
+  },
+  "dependencies": {
+    "@fortawesome/fontawesome-free": "^5.11.2",
+    "bootstrap": "^4.3.1",
+    "bootstrap-modal-js": "^1.0.0",
+    "fundebug-javascript": "^2.0.0",
+    "gulp-footer": "^2.0.2",
+    "gulp-header": "^2.0.9",
+    "gulp-rename": "^1.4.0",
+    "jquery": "^3.4.1",
+    "popper.js": "^1.15.0"
+  }
+}
