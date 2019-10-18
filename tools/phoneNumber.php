@@ -14,8 +14,8 @@ require_once 'header.php';
             <div class="form-row justify-content-center">
                 <div class="form-group col-12 col-sm-6">
                     <label class="sr-only" for="phone_number_input">单位名称、简称或者号码</label>
-                    <input class="form-control" type="search" id="phone_number_input" minlength="2" maxlength="15"
-                           placeholder="单位名称、简称或者号码">
+                    <input class="form-control fa text-center" type="search" id="phone_number_input" minlength="2"
+                           maxlength="15" placeholder="单位名称、简称或者号码&nbsp;&#xf015;&nbsp;&#xf095;&nbsp;&#xf3cd;">
                 </div>
             </div>
             <div class="d-flex justify-content-center">
@@ -31,25 +31,25 @@ require_once 'header.php';
         </div>
 
 
-        <div class="container sr-only">
+        <div class="container mt-3">
 
             <div class="p-3 border border-info rounded">
                 <div class="my-2 form-row">
-                    <div class="form-group col-3">
+                    <div class="form-group col-12 col-sm-12 col-md-3">
                         <label class="sr-only" for="phone_name">名称</label>
-                        <input class="form-control" type="text" id="phone_name" minlength="4" maxlength="9"
-                               placeholder="单位名称">
+                        <input class="form-control fa text-success text-center" type="text" id="phone_name"
+                               minlength="4" maxlength="9" placeholder="单位名称&nbsp;&#xf015;">
                     </div>
 
-                    <div class="form-group col-4">
+                    <div class="form-group col-12 col-sm-6 col-md-4">
                         <label class="sr-only" for="tel_number">座机号码&nbsp;<i class="fa fa-phone"></i></label>
-                        <input class="form-control" type="tel" id="tel_number" minlength="12" maxlength="12"
-                               placeholder="座机电话号码">
+                        <input class="form-control fa text-success text-center" type="tel" id="tel_number"
+                               minlength="12" maxlength="12" placeholder="座机电话号码&nbsp;&#xf095;">
                     </div>
-                    <div class="form-group col-5">
+                    <div class="form-group col-12 col-sm-6 col-md-5">
                         <label class="sr-only" for="mobile_number">手机号码&nbsp;<i class="fa fa-mobile-alt"></i></label>
-                        <input class="form-control" type="tel" id="mobile_number" minlength="11" maxlength="15"
-                               placeholder="手机电话号码">
+                        <input class="form-control fa text-success text-center" type="tel" id="mobile_number"
+                               minlength="11" maxlength="15" placeholder="手机电话号码&nbsp;&#xf3cd;">
                     </div>
 
                 </div>
