@@ -71,7 +71,7 @@ function create_phone_name() {
     label.className = "sr-only";
     // label.for = "phone_name";
     label.setAttribute("for", "phone_name");
-    label.innerText = "单位名称&nbsp;";
+    label.innerHTML = "单位名称&nbsp;";
 
     i.className = "fa fa-home";
 
@@ -99,7 +99,7 @@ function create_tel_number() {
     label.className = "sr-only";
     // label.for = "tel_number";
     label.setAttribute("for", "tel_number");
-    label.innerText = "座机电话号码&nbsp;";
+    label.innerHTML = "座机电话号码&nbsp;";
 
     i.className = "fa fa-phone";
 
@@ -127,7 +127,7 @@ function create_mobile_number() {
     label.className = "sr-only";
     // label.for = "mobile_number";
     label.setAttribute("for", "mobile_number");
-    label.innerText = "手机电话号码&nbsp;";
+    label.innerHTML = "手机电话号码&nbsp;";
 
     i.className = "fa fa-mobile-alt";
 
@@ -185,7 +185,7 @@ function remove_input_error(e) {
     e_target.classList.remove("border", "border-danger");
 }
 
-function add_spinner_icon(e, spinner_type = "border", icon_size = "sm") {
+function add_spinner_icon(e, spinner_type = "border") {
     let load_icon = document.createElement("span");
     switch (spinner_type) {
         case "grow":
