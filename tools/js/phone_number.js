@@ -9,17 +9,6 @@ let add_phone_number_form = document.querySelector("#add_phone_number_form");
 let number_submit = document.querySelector("#number_submit");
 let phone_number_add = document.querySelector("#phone_number_add");
 
-
-function del_phone_number() {
-    let phone_number_del = document.querySelectorAll(".phone_number_del");
-    for (let x = phone_number_del.length, i = 0; i < x; i++) {
-        phone_number_del[i].addEventListener("click", function (e) {
-            e.target.parentElement.parentElement.parentElement.removeChild(e.target.parentElement.parentElement);
-            e.currentTarget.parentElement.classList.toggle("text-muted");
-        })
-    }
-}
-
 let add_phone_number_url = "./phoneNumber.php";
 
 let RegExp_rules = {
