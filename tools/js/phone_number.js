@@ -9,6 +9,17 @@ let add_phone_number_form = document.querySelector("#add_phone_number_form");
 let number_submit = document.querySelector("#number_submit");
 let phone_number_add = document.querySelector("#phone_number_add");
 
+
+function del_phone_number() {
+    let phone_number_del = document.querySelectorAll(".phone_number_del");
+    for (let x = phone_number_del.length, i = 0; i < x; i++) {
+        phone_number_del[i].addEventListener("click", function (e) {
+            e.target.parentElement.parentElement.parentElement.removeChild(e.target.parentElement.parentElement);
+            e.currentTarget.parentElement.classList.toggle("text-muted");
+        })
+    }
+}
+
 let add_phone_number_url = "./phoneNumber.php";
 
 let RegExp_rules = {
@@ -52,11 +63,12 @@ function create_phone_form() {
     create_phone_name();
     create_tel_number();
     create_mobile_number();
+    create_btn_del();
 }
 
 function create_form_div() {
     let div = document.createElement("div");
-    div.className = "my-2 form-row add_phone_number_form";
+    div.className = "mb-5 mb-sm-4 mb-md-3 form-row add_phone_number_form";
     add_phone_number_form.insertBefore(div, number_submit);
 }
 
@@ -78,8 +90,8 @@ function create_phone_name() {
     input.className = "form-control fa text-success text-center phone_name";
     input.id = "phone_name";
     input.type = "text";
-    input.minlength = "4";
-    input.maxlength = "9";
+    input.setAttribute("minlength", "4");
+    input.setAttribute("maxlength", "9");
     input.placeholder = "单位名称 ";
 
     label.appendChild(i);
@@ -106,8 +118,8 @@ function create_tel_number() {
     input.className = "form-control fa text-success text-center tel_number";
     input.id = "tel_number";
     input.type = "tel";
-    input.minlength = "12";
-    input.maxlength = "12";
+    input.setAttribute("minlength", "12");
+    input.setAttribute("maxlength", "12");
     input.placeholder = "座机电话号码 ";
 
     label.appendChild(i);
@@ -134,14 +146,33 @@ function create_mobile_number() {
     input.className = "form-control fa text-success text-center mobile_number";
     input.id = "mobile_number";
     input.type = "tel";
-    input.minlength = "11";
-    input.maxlength = "15";
+    input.setAttribute("minlength", "11");
+    input.setAttribute("maxlength", "15");
     input.placeholder = "手机电话号码 ";
 
     label.appendChild(i);
     div.appendChild(label);
     div.appendChild(input);
     add_phone_number_form.children[add_phone_number_form.childElementCount - 2].appendChild(div);
+}
+
+function create_btn_del() {
+    let a = document.createElement("a");
+    let i = document.createElement("i");
+
+    a.className = "position-relative text-danger";
+    a.href = "javascript:";
+    a.title = "删除当前行";
+
+    i.className = "position-absolute fa fa-minus-circle phone_number_del";
+    i.style.right = "-11px";
+    i.style.top = "11px";
+    a.appendChild(i);
+    add_phone_number_form.children[add_phone_number_form.childElementCount - 2].appendChild(a);
+    a.addEventListener("click", function (e) {
+        e.target.parentElement.parentElement.parentElement.removeChild(e.target.parentElement.parentElement);
+        e.currentTarget.parentElement.classList.toggle("text-muted");
+    })
 }
 
 function phone_input_check(RegExp_rules_name, error_text, e) {
@@ -200,22 +231,6 @@ function add_spinner_icon(e, spinner_type = "border") {
 
 function remove_spinner_icon(e) {
     e.removeChild(e.lastChild);
-}
-
-function phone_number_form_clone() {
-    let add_phone_number_form = document.querySelector(".add_phone_number_form");
-    let clone__add_phone_number_form = add_phone_number_form.cloneNode(true);
-    insertAfter_nextElementSibling(clone__add_phone_number_form, add_phone_number_form);
-    check_phone_input();
-
-}
-
-function insertAfter_nextElementSibling(newNode, curNode) {
-    curNode.parentNode.insertBefore(newNode, curNode.nextElementSibling);
-}
-
-function insertAfter(newNode, curNode) {
-    curNode.parentNode.insertBefore(newNode, curNode);
 }
 
 function add_phone_number() {
