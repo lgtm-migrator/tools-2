@@ -165,7 +165,6 @@ function create_btn_del() {
     a.title = "删除当前行";
 
     i.className = "position-absolute fa fa-minus-circle phone_number_del";
-    i.style.right = "-11px";
     i.style.top = "11px";
     a.appendChild(i);
     add_phone_number_form.children[add_phone_number_form.childElementCount - 2].appendChild(a);
@@ -340,4 +339,16 @@ function shadow_sm(e) {
 
 function shadow_lg(e) {
     e.target.classList.toggle("shadow-lg");
+}
+
+
+(function () {
+    let floatToolBackTop = document.querySelector("#to_top");
+    floatToolBackTop ? floatToolBackTop.addEventListener('click', topControl) : "";
+})();
+
+
+function topControl(e) {
+    e.preventDefault();
+    $("html,body").animate({scrollTop: "0px"}, 1000);
 }

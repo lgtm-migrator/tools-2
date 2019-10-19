@@ -35,7 +35,7 @@ require_once 'header.php';
 
         <div class="container mt-3">
 
-            <div class="p-3 border border-info rounded" id="add_phone_number_form">
+            <div class="p-4 border border-info rounded" id="add_phone_number_form">
                 <div class="mb-5 mb-sm-4 mb-md-3 form-row add_phone_number_form">
                     <div class="form-group col-12 col-sm-12 col-md-3">
                         <label class="sr-only" for="phone_name">名称&nbsp;<i class="fa fa-home"></i></label>
@@ -54,7 +54,7 @@ require_once 'header.php';
                                id="mobile_number" minlength="11" maxlength="15" placeholder="手机电话号码&nbsp;&#xf3cd;">
                     </div>
                     <a class="position-relative text-success" href="javascript:" title="添加新的一行" id="phone_number_add">
-                        <i class="position-absolute fa fa-plus-circle" style="right: -11px;top: 11px"></i>
+                        <i class="position-absolute fa fa-plus-circle" style="top: 11px"></i>
                     </a>
                 </div>
 
@@ -63,11 +63,6 @@ require_once 'header.php';
                 </div>
 
             </div>
-        </div>
-
-
-        <div class="fixed-bottom container text-center">
-            <a class="text-danger font-weight-bold" href="javascript:">我要填写新号码</a>
         </div>
 
     </div>
