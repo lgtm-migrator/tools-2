@@ -15,7 +15,7 @@ require_once 'header.php';
                 <div class="form-group col-12 col-sm-6">
                     <label class="sr-only" for="phone_number_input">单位名称、简称或者号码</label>
                     <input class="form-control fa text-center" type="search" id="phone_number_input" minlength="2"
-                           maxlength="15"
+                           maxlength="15" autofocus="autofocus"
                            placeholder="单位名称、简称或者号码&nbsp;&nbsp;&#xf015;&nbsp;&nbsp;&#xf095;&nbsp;&nbsp;&#xf3cd;">
                 </div>
             </div>

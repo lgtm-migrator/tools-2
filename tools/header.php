@@ -17,8 +17,6 @@
     <link rel="stylesheet" href="../static/font/css/all.min.css">
     <title><?php echo title; ?></title>
 
-    <!--    <script src="https://js.fundebug.cn/fundebug.2.0.0.min.js"-->
-    <!--            apikey="3d4b48db363609255fd0abb3cfa559ca84a7a4ca4ca8922fbd42d8d38e2c36a4" crossorigin="anonymous"></script>-->
     <script src="../static/js/fundebug.min.js"></script>
 
 
