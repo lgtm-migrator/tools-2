@@ -28,31 +28,16 @@ function phone_number_data() {
     let tel_number_all = document.querySelectorAll(".tel_number");
     let mobile_number_all = document.querySelectorAll(".mobile_number");
 
-    let result = {};
-
-    let phone_name_result = [];
-    let tel_number_result = [];
-    let mobile_number_result = [];
-
-    result["phone_name_result"] = phone_name_result;
-    result["tel_number_result"] = tel_number_result;
-    result["mobile_number_result"] = mobile_number_result;
-
+    let result = [];
 
     for (let x = phone_name_all.length, i = 0; i < x; i++) {
-        phone_name_result[i] = phone_name_all[i].value;
+        result.push ({
+            "phone_name_all": phone_name_all[i].value,
+            "tel_number_all": tel_number_all[i].value,
+            "mobile_number_all": mobile_number_all[i].value,
+        });
     }
-    for (let x = tel_number_all.length, i = 0; i < x; i++) {
-        tel_number_result[i] = tel_number_all[i].value;
-    }
-    for (let x = mobile_number_all.length, i = 0; i < x; i++) {
-        mobile_number_result[i] = mobile_number_all[i].value;
-    }
-
     console.log(result);
-    console.log(phone_name_result);
-    console.log(tel_number_result);
-    console.log(mobile_number_result);
 }
 
 function check_phone_input() {
