@@ -291,18 +291,15 @@ function add_phone_number() {
 /** 搜索 **/
 
 let phone_number_input = document.querySelector("#phone_number_input");
-let phone_name_search = document.querySelector("#phone_name_search");
-let phone_number_search = document.querySelector("#phone_number_search");
+let phone_name_search_btn = document.querySelector("#phone_name_search_btn");
+let phone_number_search_btn = document.querySelector("#phone_number_search_btn");
 let search_url = "./phone_number_search.php";
 
-phone_number_input.addEventListener('keyup', function () {
-    show_value();
-});
-phone_name_search.addEventListener('click', function () {
+phone_name_search_btn.addEventListener('click', function () {
     show_value();
     search_name();
 });
-phone_number_search.addEventListener('click', function () {
+phone_number_search_btn.addEventListener('click', function () {
     show_value();
     search_number();
 });

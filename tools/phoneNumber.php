@@ -20,9 +20,9 @@ require_once 'header.php';
                 </div>
             </div>
             <div class="d-flex justify-content-center">
-                <a href="javascript:" class="mx-2 btn btn-success" id="phone_name_search">
+                <a href="javascript:" class="mx-2 btn btn-success" id="phone_name_search_btn">
                     <i class="fa fa-home">&nbsp;&nbsp;</i>按名称搜索</a>
-                <a href="javascript:" class="mx-2 btn btn-danger" id="phone_number_search">
+                <a href="javascript:" class="mx-2 btn btn-danger" id="phone_number_search_btn">
                     <i class="fa fa-phone">&nbsp;&nbsp;</i>
                     <i class="fa fa-mobile-alt">&nbsp;&nbsp;</i>按号码搜索</a>
             </div>
