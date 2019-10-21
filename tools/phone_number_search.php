@@ -5,30 +5,32 @@ if (isset($_POST['phone_number_search']['search_type'])) {
 }
 
 
-$name = array(
-    "name_1" => "aaa",
-    "name_2" => "bbb",
-    "name_3" => "ccc",
-    "name_4" => "ddd",
-    "name_5" => "eee",
-);
-$number = array(
-    "number_1" => "aaa",
-    "number_2" => "bbb",
-    "number_3" => "ccc",
-    "number_4" => "ddd",
-    "number_5" => "eee",
-);
+switch ($_POST['phone_number_search']['search_type']) {
+    case "number":
+        $result_columns = ["phone_name", "tel_number", "mobile_number"];
+        $query_key = $_POST['phone_number_search']['search_value'];
+//        $columns = ["tel_number", "mobile_number"];
+        $columns = ["tel_number"];
 
+//        foreach ($columns as $item => $key) {
+//            $db->where($item, $query_key);
+//        }
+        $db->where("tel_number", $query_key);
+        $db->orWhere("mobile_number", $query_key);
 
-//switch ($_POST['phone_number_search']['search_type']) {
-//    case "name":
-//        echo json_encode($name);
-//        break;
-//    case "number":
-//        echo json_encode($number);
-//        break;
-//}
+        $query = $db->get("phone_number", null, $result_columns);
+        break;
+    case "name":
+    default:
+        $result_columns = ["phone_name", "tel_number", "mobile_number"];
+        $query_key = $_POST['phone_number_search']['search_value'];
+        $columns = ["phone_name"];
 
-$query = $db->get("phone_number", $_POST['phone_number_search']['search_value'], 'id,phone_name,tel_number,mobile_number');
+        $db->where("phone_name", $query_key);
+        $db->orWhere("phone_nick_name", $query_key);
+
+        $query = $db->get("phone_number", null, $result_columns);
+        break;
+}
+
 echo json_encode($query);

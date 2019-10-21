@@ -6,8 +6,6 @@ let tel_number = document.querySelector("#tel_number");
 let mobile_number = document.querySelector("#mobile_number");
 
 let add_phone_number_form = document.querySelector("#add_phone_number_form");
-let number_submit = document.querySelector("#number_submit");
-let phone_number_add = document.querySelector("#phone_number_add");
 
 let add_phone_number_url = "./phoneNumber.php";
 
@@ -17,11 +15,9 @@ let RegExp_rules = {
     "mobile_number": new RegExp(/^(?:(?:\+|00)86)?1(?:(?:3[\d])|(?:4[5-7|9])|(?:5[0-3|5-9])|(?:6[5-7])|(?:7[0-8])|(?:8[\d])|(?:9[1|8|9]))\d{8}$/),
 };
 
-// phone_number_add.addEventListener("click", phone_number_form_clone);
-phone_number_add.addEventListener("click", create_phone_form);
 
 phone_number_submit.addEventListener("click", add_phone_number);
-phone_number_submit.addEventListener("click", phone_number_data);
+
 
 function phone_number_data() {
     let phone_name_all = document.querySelectorAll(".phone_name");
@@ -40,43 +36,29 @@ function phone_number_data() {
     return JSON.stringify(result);
 }
 
-function check_phone_input() {
-    let phone_name_all = document.querySelectorAll(".phone_name");
-    let tel_number_all = document.querySelectorAll(".tel_number");
-    let mobile_number_all = document.querySelectorAll(".mobile_number");
+create_phone_form_init();
 
-    for (let x = phone_name_all.length, i = 0; i < x; i++) {
-        phone_name_all[i].addEventListener("blur", function (e) {
-            phone_input_check(RegExp_rules.chinese_name, "请输入单位的中文名称 例如：\n掘进一队", e)
-        });
-        phone_name_all[i].addEventListener("focusin", remove_error_span);
-    }
-    for (let x = tel_number_all.length, i = 0; i < x; i++) {
-        tel_number_all[i].addEventListener("blur", function (e) {
-            phone_input_check(RegExp_rules.tel_number, "请输入正确格式的座机号码 例如：\n0319-1234567", e)
-        });
-        tel_number_all[i].addEventListener("focusin", remove_error_span);
-    }
-    for (let x = mobile_number_all.length, i = 0; i < x; i++) {
-        mobile_number_all[i].addEventListener("blur", function (e) {
-            phone_input_check(RegExp_rules.mobile_number, "请输入正确格式的手机号 例如：\n13812345678\n+8613812345678\n008613812345678", e)
-        });
-        mobile_number_all[i].addEventListener("focusin", remove_error_span);
-    }
+function create_phone_form_init() {
+    create_form_add();
+    create_btn_add();
 }
 
 function create_phone_form() {
+    create_form_add();
+    create_btn_del();
+}
+
+function create_form_add() {
     create_form_div();
     create_phone_name();
     create_tel_number();
     create_mobile_number();
-    create_btn_del();
 }
 
 function create_form_div() {
     let div = document.createElement("div");
     div.className = "mb-5 mb-sm-4 mb-md-3 form-row add_phone_number_form";
-    add_phone_number_form.insertBefore(div, number_submit);
+    add_phone_number_form.insertBefore(div, phone_number_submit.parentElement);
 }
 
 function create_phone_name() {
@@ -100,10 +82,17 @@ function create_phone_name() {
     input.setAttribute("minlength", "4");
     input.setAttribute("maxlength", "9");
     input.placeholder = "单位名称 ";
+    input.addEventListener("blur", function (e) {
+        phone_input_check(RegExp_rules.chinese_name, "请输入单位的中文名称 例如：\n掘进一队", e)
+    });
+    input.addEventListener("focusin", function (e) {
+        remove_error(e);
+    });
 
     label.appendChild(i);
     div.appendChild(label);
     div.appendChild(input);
+
     add_phone_number_form.children[add_phone_number_form.childElementCount - 2].appendChild(div);
 }
 
@@ -128,6 +117,12 @@ function create_tel_number() {
     input.setAttribute("minlength", "12");
     input.setAttribute("maxlength", "12");
     input.placeholder = "座机电话号码 ";
+    input.addEventListener("blur", function (e) {
+        phone_input_check(RegExp_rules.tel_number, "请输入正确格式的座机号码 例如：\n0319-1234567", e);
+    });
+    input.addEventListener("focusin", function (e) {
+        remove_error(e);
+    });
 
     label.appendChild(i);
     div.appendChild(label);
@@ -156,11 +151,34 @@ function create_mobile_number() {
     input.setAttribute("minlength", "11");
     input.setAttribute("maxlength", "15");
     input.placeholder = "手机电话号码 ";
+    input.addEventListener("blur", function (e) {
+        phone_input_check(RegExp_rules.mobile_number, "请输入正确格式的手机号 例如：\n13812345678\n+8613812345678\n008613812345678", e);
+    });
+    input.addEventListener("focusin", function (e) {
+        remove_error(e);
+    });
 
     label.appendChild(i);
     div.appendChild(label);
     div.appendChild(input);
     add_phone_number_form.children[add_phone_number_form.childElementCount - 2].appendChild(div);
+}
+
+function create_btn_add() {
+    let a = document.createElement("a");
+    let i = document.createElement("i");
+
+    a.className = "position-relative text-success";
+    a.href = "javascript:";
+    a.title = "添加新的一行";
+    a.id = "phone_number_add";
+
+    i.className = "position-absolute fa fa-plus-circle phone_number_del";
+    i.style.top = "11px";
+    a.appendChild(i);
+    add_phone_number_form.children[add_phone_number_form.childElementCount - 2].appendChild(a);
+    a.addEventListener("click", create_phone_form);
+
 }
 
 function create_btn_del() {
@@ -177,19 +195,23 @@ function create_btn_del() {
     add_phone_number_form.children[add_phone_number_form.childElementCount - 2].appendChild(a);
     a.addEventListener("click", function (e) {
         e.target.parentElement.parentElement.parentElement.removeChild(e.target.parentElement.parentElement);
-        e.currentTarget.parentElement.classList.toggle("text-muted");
     })
 }
 
 function phone_input_check(RegExp_rules_name, error_text, e) {
     let RegExp_result = RegExp_rules_name.test(e.target.value);
     if (!RegExp_result) {
-        input_error(e);
+        error_input(e);
         error_span(e, error_text);
     } else {
-        remove_input_error(e);
+        remove_error_input(e);
         input_success(e);
     }
+}
+
+function remove_error(e) {
+    remove_error_span(e);
+    remove_error_input(e);
 }
 
 function error_span(e, text) {
@@ -207,7 +229,7 @@ function remove_error_span(e) {
     }
 }
 
-function input_error(e) {
+function error_input(e) {
     let e_target = e.target;
     e_target.classList.add("border", "border-danger");
 }
@@ -217,7 +239,7 @@ function input_success(e) {
     e_target.classList.add("border", "border-success");
 }
 
-function remove_input_error(e) {
+function remove_error_input(e) {
     let e_target = e.target;
     e_target.classList.remove("border", "border-danger");
 }
@@ -232,10 +254,12 @@ function add_spinner_icon(e, spinner_type = "border") {
         default:
             load_icon.className = "ml-1 spinner-border spinner-border-sm";
     }
+    e.setAttribute("disabled", "disabled");
     e.appendChild(load_icon);
 }
 
 function remove_spinner_icon(e) {
+    e.removeAttribute("disabled");
     e.removeChild(e.lastChild);
 }
 
@@ -280,7 +304,7 @@ phone_name_search.addEventListener('click', function () {
 });
 phone_number_search.addEventListener('click', function () {
     show_value();
-    // search_number();
+    search_number();
 });
 
 function show_value() {
@@ -295,7 +319,21 @@ function search_name() {
             "search_value": search_value,
         },
     };
+    ajax_query(data);
+}
 
+function search_number() {
+    let search_value = phone_number_input.value;
+    let data = {
+        phone_number_search: {
+            "search_type": "number",
+            "search_value": search_value,
+        },
+    };
+    ajax_query(data);
+}
+
+function ajax_query(data) {
     $.ajax({
         type: "post",
         url: search_url,
@@ -314,9 +352,6 @@ function search_name() {
     });
 }
 
-function search_number() {
-
-}
 
 /** 增加阴影 **/
 
