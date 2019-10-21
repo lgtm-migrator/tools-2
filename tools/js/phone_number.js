@@ -66,18 +66,18 @@ function create_phone_name() {
     let label = document.createElement("label");
     let input = document.createElement("input");
     let i = document.createElement("i");
+    let id_timestamp = new Date().getTime();
 
     div.className = "form-group col-12 col-sm-12 col-md-3";
 
     label.className = "sr-only";
-    // label.for = "phone_name";
-    label.setAttribute("for", "phone_name");
+    label.setAttribute("for", "phone_name_" + id_timestamp);
     label.innerHTML = "单位名称&nbsp;";
 
     i.className = "fa fa-home";
 
     input.className = "form-control fa text-success text-center phone_name";
-    input.id = "phone_name";
+    input.id = "phone_name_" + id_timestamp;
     input.type = "text";
     input.setAttribute("minlength", "4");
     input.setAttribute("maxlength", "9");
@@ -101,18 +101,18 @@ function create_tel_number() {
     let label = document.createElement("label");
     let input = document.createElement("input");
     let i = document.createElement("i");
+    let id_timestamp = new Date().getTime();
 
     div.className = "form-group col-12 col-sm-6 col-md-4";
 
     label.className = "sr-only";
-    // label.for = "tel_number";
-    label.setAttribute("for", "tel_number");
+    label.setAttribute("for", "tel_number_" + id_timestamp);
     label.innerHTML = "座机电话号码&nbsp;";
 
     i.className = "fa fa-phone";
 
     input.className = "form-control fa text-success text-center tel_number";
-    input.id = "tel_number";
+    input.id = "tel_number_" + id_timestamp;
     input.type = "tel";
     input.setAttribute("minlength", "12");
     input.setAttribute("maxlength", "12");
@@ -135,18 +135,18 @@ function create_mobile_number() {
     let label = document.createElement("label");
     let input = document.createElement("input");
     let i = document.createElement("i");
+    let id_timestamp = new Date().getTime();
 
     div.className = "form-group col-12 col-sm-6 col-md-5";
 
     label.className = "sr-only";
-    // label.for = "mobile_number";
-    label.setAttribute("for", "mobile_number");
+    label.setAttribute("for", "mobile_number_" + id_timestamp);
     label.innerHTML = "手机电话号码&nbsp;";
 
     i.className = "fa fa-mobile-alt";
 
     input.className = "form-control fa text-success text-center mobile_number";
-    input.id = "mobile_number";
+    input.id = "mobile_number_" + id_timestamp;
     input.type = "tel";
     input.setAttribute("minlength", "11");
     input.setAttribute("maxlength", "15");
@@ -388,4 +388,31 @@ function shadow_lg(e) {
 function topControl(e) {
     e.preventDefault();
     $("html,body").animate({scrollTop: "0px"}, 1000);
+}
+
+get_number_stored();
+
+function get_number_stored() {
+    let number_stored = document.querySelector("#number_stored");
+    $.ajax({
+        type: "post",
+        url: "./number_stored.php",
+        dataType: "json",
+        timeout:5000,
+        data: {
+            number_stored: "11",
+        },
+        beforeSend: function (data) {
+            number_stored.innerHTML = "正在获取数据";
+        },
+        success: function (data) {
+            console.log(data);
+            number_stored.innerHTML = "当前号码存储数量" + data + "条";
+        },
+        error: function (data) {
+            console.log(data);
+            number_stored.innerHTML = "当前号码存储数量" + "100" + "条";
+        }
+    });
+
 }

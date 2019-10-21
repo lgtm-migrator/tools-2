@@ -9,7 +9,7 @@ $result_columns = ["phone_name", "tel_number", "mobile_number"];
 
 switch ($_POST['phone_number_search']['search_type']) {
     case "number":
-        $db->Where("tel_number", $query_key);
+        $db->orWhere("tel_number", $query_key);
         $db->orWhere("mobile_number", $query_key);
 
         $query = $db->get("phone_number", null, $result_columns);

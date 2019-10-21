@@ -42,6 +42,8 @@ require_once 'header.php';
                 </div>
 
             </div>
+
+            <span class="float-right" id="number_stored">0</span>
         </div>
 
     </div>
