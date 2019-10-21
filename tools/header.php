@@ -17,7 +17,7 @@
     <link rel="stylesheet" href="../static/font/css/all.min.css">
     <title><?php echo title; ?></title>
 
-    <script src="../static/js/fundebug.min.js"></script>
+<!--    <script src="../static/js/fundebug.min.js"></script>-->
 
 
 </head>

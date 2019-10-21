@@ -20,7 +20,7 @@ let RegExp_rules = {
 // phone_number_add.addEventListener("click", phone_number_form_clone);
 phone_number_add.addEventListener("click", create_phone_form);
 
-// phone_number_submit.addEventListener("click", add_phone_number);
+phone_number_submit.addEventListener("click", add_phone_number);
 phone_number_submit.addEventListener("click", phone_number_data);
 
 function phone_number_data() {
@@ -31,13 +31,13 @@ function phone_number_data() {
     let result = [];
 
     for (let x = phone_name_all.length, i = 0; i < x; i++) {
-        result.push ({
+        result.push({
             "phone_name": phone_name_all[i].value,
             "tel_number": tel_number_all[i].value,
             "mobile_number": mobile_number_all[i].value,
         });
     }
-    console.log(result);
+    return JSON.stringify(result);
 }
 
 function check_phone_input() {
@@ -240,23 +240,18 @@ function remove_spinner_icon(e) {
 }
 
 function add_phone_number() {
-    let phone_name_value = phone_name.value;
-    let tel_number_value = tel_number.value;
-    let mobile_number_value = mobile_number.value;
+    let data = phone_number_data();
 
-    let data = {
-        "phone_name": phone_name_value,
-        "tel_number": tel_number_value,
-        "mobile_number": mobile_number_value,
-    };
     $.ajax({
         type: "post",
         url: add_phone_number_url,
-        data: data,
         dataType: "json",
         beforeSend: add_spinner_icon(phone_number_submit),
+        always: remove_spinner_icon(phone_number_submit),
+        data: {
+            data: data,
+        },
         success: function (data) {
-            remove_spinner_icon(phone_number_submit);
             let result = data.result;
             bootstrapModalJs('提示', result, '', '', true);
             console.log(data);
