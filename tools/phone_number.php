@@ -1,6 +1,5 @@
 <?php
 if ($_POST) {
-//    $phone_number_data_post = [];
     $phone_number_data_post = $_POST["data"];
 }
 
@@ -17,6 +16,12 @@ $udate = null;
 $ip = $_SERVER['REMOTE_ADDR'];
 $ip_v4 = $_SERVER['REMOTE_ADDR'];
 $ip_v6 = "test";
+$static = array(
+    'n' => 'no',
+    'y' => 'yes',
+    'v' => 'Verify',
+    'vd' => 'Verified',
+);
 $regional = array(
     'xm' => 'xingmei',
     'gq' => 'gequan',
@@ -25,7 +30,7 @@ $regional = array(
 );
 $user_agent = $_SERVER['HTTP_USER_AGENT'];
 
-$data_post_array = json_decode($phone_number_data_post,true);
+$data_post_array = json_decode($phone_number_data_post, true);
 
 $data_count = count(json_decode($phone_number_data_post));
 for ($i = 0; $i < $data_count; $i++) {
@@ -34,7 +39,7 @@ for ($i = 0; $i < $data_count; $i++) {
         "phone_nick_name" => $data_post_array[$i]['phone_name'],
         "tel_number" => $data_post_array[$i]['tel_number'],
         "mobile_number" => $data_post_array[$i]['mobile_number'],
-        "static" => "yes",
+        "static" => $static['n'],
         "regional" => $regional['xm'],
         "create_data" => $create_data,
         "modify_data" => $modify_data,

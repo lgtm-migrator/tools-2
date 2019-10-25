@@ -4,13 +4,20 @@ if (isset($_POST['phone_number_search']['search_type'])) {
     $db = new MysqliDb($db_host, $db_user, $db_pwd, $db_database);
 }
 
+
 $query_key = $_POST['phone_number_search']['search_value'];
 $result_columns = ["id", "phone_name", "tel_number", "mobile_number"];
 
+$static = "yes";
+$regional = "xingmei";
+
+$db->Where("static", $static);
+$db->Where("regional", $regional);
+
 switch ($_POST['phone_number_search']['search_type']) {
     case "number":
-        $db->orWhere("tel_number", "%$query_key%", 'LIKE');
-        $db->orWhere("mobile_number", "%$query_key%", 'LIKE');
+        $db->orHaving("tel_number", "%$query_key%", 'LIKE');
+        $db->orHaving("mobile_number", "%$query_key%", 'LIKE');
 
         $query = $db->get("phone_number", null, $result_columns);
         break;
