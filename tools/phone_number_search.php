@@ -8,7 +8,7 @@ if (isset($_POST['phone_number_search']['search_type'])) {
 $query_key = $_POST['phone_number_search']['search_value'];
 $result_columns = ["id", "phone_name", "tel_number", "mobile_number"];
 
-$static = "yes";
+$static = "no";
 $regional = "xingmei";
 
 $db->Where("static", $static);
