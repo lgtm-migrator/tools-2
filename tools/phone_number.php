@@ -20,9 +20,9 @@ $RegExp_rules = array(
 );
 
 //$ip = $_SERVER['SERVER_ADDR'];
-$ip = $_SERVER['REMOTE_ADDR'];
+$ip = "";
 $ip_v4 = $_SERVER['REMOTE_ADDR'];
-$ip_v6 = "test";
+$ip_v6 = "";
 $static = array(
     'n' => 'no',
     'y' => 'yes',

@@ -88,7 +88,7 @@ function create_phone_name() {
         phone_input_check(RegExp_rules.chinese_name, "请输入单位的中文名称 例如：\n掘进一队", e)
     });
     input.addEventListener("focusin", function (e) {
-        remove_error(e);
+        remove_invalid_feedback_div(e);
     });
 
     label.appendChild(i);
@@ -123,7 +123,7 @@ function create_tel_number() {
         phone_input_check(RegExp_rules.tel_number, "请输入正确格式的座机号码 例如：\n0319-1234567", e);
     });
     input.addEventListener("focusin", function (e) {
-        remove_error(e);
+        remove_invalid_feedback_div(e);
     });
 
     label.appendChild(i);
@@ -157,7 +157,7 @@ function create_mobile_number() {
         phone_input_check(RegExp_rules.mobile_number, "请输入正确格式的手机号 例如：\n13812345678\n+8613812345678\n008613812345678", e);
     });
     input.addEventListener("focusin", function (e) {
-        remove_error(e);
+        remove_invalid_feedback_div(e);
     });
 
     label.appendChild(i);
@@ -203,47 +203,46 @@ function create_btn_del() {
 function phone_input_check(RegExp_rules_name, error_text, e) {
     let RegExp_result = RegExp_rules_name.test(e.target.value);
     if (!RegExp_result) {
-        error_input(e);
-        error_span(e, error_text);
+        input_error(e);
+        invalid_feedback_div(e, error_text);
     } else {
-        remove_error_input(e);
         input_success(e);
     }
 }
 
-function remove_error(e) {
-    remove_error_span(e);
-    remove_error_input(e);
-}
-
-function error_span(e, text) {
+function invalid_feedback_div(e, text) {
     let e_target = e.target;
-    let e_target_span = document.createElement("span");
-    e_target_span.className = "mt-1 d-block text-danger";
-    e_target_span.innerText = text;
-    e_target.parentNode.appendChild(e_target_span);
+    let e_target_div = document.createElement("div");
+    e_target_div.className = "invalid-feedback";
+    e_target_div.innerText = text;
+    e_target.parentNode.appendChild(e_target_div);
 }
 
-function remove_error_span(e) {
+function valid_feedback_div(e, text) {
+    let e_target = e.target;
+    let e_target_div = document.createElement("div");
+    e_target_div.className = "valid-feedback";
+    e_target_div.innerText = text;
+    e_target.parentNode.appendChild(e_target_div);
+}
+
+function remove_invalid_feedback_div(e) {
     let e_target = e.target;
     if (e_target.nextElementSibling) {
         e_target.nextElementSibling.remove();
     }
 }
 
-function error_input(e) {
+function input_error(e) {
     let e_target = e.target;
-    e_target.classList.add("border", "border-danger");
+    e_target.classList.remove("is-valid");
+    e_target.classList.add("is-invalid");
 }
 
 function input_success(e) {
     let e_target = e.target;
-    e_target.classList.add("border", "border-success");
-}
-
-function remove_error_input(e) {
-    let e_target = e.target;
-    e_target.classList.remove("border", "border-danger");
+    e_target.classList.remove("is-invalid");
+    e_target.classList.add("is-valid");
 }
 
 function add_spinner_icon(e, spinner_type = "border") {
@@ -400,7 +399,7 @@ function get_number_stored() {
         type: "post",
         url: "./number_stored.php",
         dataType: "json",
-        timeout:5000,
+        timeout: 5000,
         data: {
             number_stored: "11",
         },
