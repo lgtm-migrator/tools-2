@@ -29,11 +29,11 @@ function phone_number_data() {
     let result = [];
 
     for (let x = phone_name_all.length, i = 0; i < x; i++) {
-        result.push({
+        result[i] = {
             "phone_name": phone_name_all[i].value,
             "tel_number": tel_number_all[i].value,
             "mobile_number": mobile_number_all[i].value,
-        });
+        };
     }
     return JSON.stringify(result);
 }
@@ -84,7 +84,7 @@ function create_phone_name() {
     input.setAttribute("minlength", "4");
     input.setAttribute("maxlength", "9");
     input.placeholder = "单位名称 ";
-    input.addEventListener("blur", function (e) {
+    input.addEventListener("input", function (e) {
         phone_input_check(RegExp_rules.chinese_name, "请输入单位的中文名称 例如：\n掘进一队", e)
     });
     input.addEventListener("focusin", function (e) {
@@ -119,7 +119,7 @@ function create_tel_number() {
     input.setAttribute("minlength", "12");
     input.setAttribute("maxlength", "12");
     input.placeholder = "座机电话号码 ";
-    input.addEventListener("blur", function (e) {
+    input.addEventListener("input", function (e) {
         phone_input_check(RegExp_rules.tel_number, "请输入正确格式的座机号码 例如：\n0319-1234567", e);
     });
     input.addEventListener("focusin", function (e) {
@@ -153,7 +153,7 @@ function create_mobile_number() {
     input.setAttribute("minlength", "11");
     input.setAttribute("maxlength", "15");
     input.placeholder = "手机电话号码 ";
-    input.addEventListener("blur", function (e) {
+    input.addEventListener("input", function (e) {
         phone_input_check(RegExp_rules.mobile_number, "请输入正确格式的手机号 例如：\n13812345678\n+8613812345678\n008613812345678", e);
     });
     input.addEventListener("focusin", function (e) {
