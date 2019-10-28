@@ -271,20 +271,24 @@ function add_phone_number() {
         type: "post",
         url: add_phone_number_url,
         dataType: "json",
+        timeout: 3000,
         beforeSend: add_spinner_icon(phone_number_submit),
-        always: remove_spinner_icon(phone_number_submit),
+        complete: remove_spinner_icon(phone_number_submit),
         data: {
             data: data,
         },
         success: function (data) {
             let result = data.result;
-            bootstrapModalJs('提示', result, '', '', true);
+            result ? bootstrapModalJs('', result, '', '', true) : "";
             console.log(data);
         },
         error: function (data) {
-            console.log("失败");
-            bootstrapModalJs('提示', '失败', '', '', true);
-            console.log(data);
+            if (data.statusText === "timeout") {
+                bootstrapModalJs('', '连接服务器超时，请尝试重新提交。', '', '', true);
+            } else {
+                bootstrapModalJs('', '失败', '', '', true);
+                console.log(data);
+            }
         }
     });
 }
@@ -317,7 +321,7 @@ function search_name() {
             "search_value": search_value,
         },
     };
-    ajax_query(data);
+    ajax_search(data);
 }
 
 function search_number() {
@@ -328,10 +332,10 @@ function search_number() {
             "search_value": search_value,
         },
     };
-    ajax_query(data);
+    ajax_search(data);
 }
 
-function ajax_query(data) {
+function ajax_search(data) {
     $.ajax({
         type: "post",
         url: search_url,
@@ -339,12 +343,13 @@ function ajax_query(data) {
         dataType: "json",
         success: function (data) {
             console.log('成功');
-            bootstrapModalJs('提示', '成功', '', '', true);
+            bootstrapModalJs('', '成功', '', '', true);
             console.log(data);
         },
         error: function (data) {
+            let responseText = data.responseText;
+            responseText ? bootstrapModalJs('', responseText, '', '', true) : "";
             console.log("失败");
-            bootstrapModalJs('提示', '失败', '', '', true);
             console.log(data);
         }
     });
@@ -391,15 +396,17 @@ function topControl(e) {
     $("html,body").animate({scrollTop: "0px"}, 1000);
 }
 
+
+let number_stored = document.querySelector("#number_stored");
 get_number_stored();
+number_stored.addEventListener("click", get_number_stored);
 
 function get_number_stored() {
-    let number_stored = document.querySelector("#number_stored");
     $.ajax({
         type: "post",
         url: "./number_stored.php",
         dataType: "json",
-        timeout: 5000,
+        timeout: 3e3,
         data: {
             number_stored: "11",
         },
@@ -407,12 +414,10 @@ function get_number_stored() {
             number_stored.innerHTML = "正在获取数据";
         },
         success: function (data) {
-            console.log(data);
             number_stored.innerHTML = "当前号码存储数量" + data + "条";
         },
         error: function (data) {
-            console.log(data);
-            number_stored.innerHTML = "当前号码存储数量" + "100" + "条";
+            number_stored.innerHTML = "";
         }
     });
 

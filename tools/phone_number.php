@@ -5,6 +5,12 @@ if ($_POST) {
 
 require_once "mysqli.php";
 $db = new MysqliDb($db_host, $db_user, $db_pwd, $db_database);
+if ($db->getLastErrno()) {
+    $message = array(
+        'result' => "数据库连接出错。"
+    );
+    die(json_encode($message));
+};
 
 $udate = new DateTime();
 $create_data = $udate->format("Y-m-d H:i:s.u");
@@ -39,7 +45,7 @@ $user_agent = $_SERVER['HTTP_USER_AGENT'];
 
 $data_post_array = json_decode($phone_number_data_post, true);
 
-$data_count = count(json_decode($phone_number_data_post));
+$data_count = count($data_post_array);
 for ($i = 0; $i < $data_count; $i++) {
     $phone_number_data[$i] = array(
         "phone_name" => $data_post_array["$i"]["phone_name"],
@@ -65,13 +71,9 @@ if (!$id) {
         'Errno' => $db->getLastErrno(),
         'Error' => $db->getLastError(),
     );
-//    die('无法插入数据: ' . $db->getLastErrno() . "&nbsp;&nbsp;&nbsp;&nbsp;" . $db->getLastError());
 } else {
     $message = array(
-        'count' => $data_count,
-        'result' => "您提交的号码已经成功被收录",
-        'data' => $phone_number_data,
-        'data_post' => $data_post_array,
+        'result' => "您提交的" . $data_count . "个号码已经成功被收录",
     );
 }
 echo json_encode($message);

@@ -43,7 +43,7 @@ require_once 'header.php';
 
             </div>
 
-            <span class="float-right" id="number_stored">0</span>
+            <span class="float-right" id="number_stored"></span>
         </div>
 
     </div>
