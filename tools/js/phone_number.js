@@ -87,9 +87,6 @@ function create_phone_name() {
     input.addEventListener("input", function (e) {
         phone_input_check(RegExp_rules.chinese_name, "请输入单位的中文名称 例如：\n掘进一队", e)
     });
-    input.addEventListener("focusin", function (e) {
-        remove_invalid_feedback_div(e);
-    });
 
     label.appendChild(i);
     div.appendChild(label);
@@ -122,9 +119,6 @@ function create_tel_number() {
     input.addEventListener("input", function (e) {
         phone_input_check(RegExp_rules.tel_number, "请输入正确格式的座机号码 例如：\n0319-1234567", e);
     });
-    input.addEventListener("focusin", function (e) {
-        remove_invalid_feedback_div(e);
-    });
 
     label.appendChild(i);
     div.appendChild(label);
@@ -155,9 +149,6 @@ function create_mobile_number() {
     input.placeholder = "手机电话号码 ";
     input.addEventListener("input", function (e) {
         phone_input_check(RegExp_rules.mobile_number, "请输入正确格式的手机号 例如：\n13812345678\n+8613812345678\n008613812345678", e);
-    });
-    input.addEventListener("focusin", function (e) {
-        remove_invalid_feedback_div(e);
     });
 
     label.appendChild(i);
@@ -196,6 +187,7 @@ function create_btn_del() {
     a.appendChild(i);
     add_phone_number_form.children[add_phone_number_form.childElementCount - 2].appendChild(a);
     a.addEventListener("click", function (e) {
+        console.log(e);
         e.target.parentElement.parentElement.parentElement.removeChild(e.target.parentElement.parentElement);
     })
 }
@@ -203,32 +195,37 @@ function create_btn_del() {
 function phone_input_check(RegExp_rules_name, error_text, e) {
     let RegExp_result = RegExp_rules_name.test(e.target.value);
     if (!RegExp_result) {
-        input_error(e);
         invalid_feedback_div(e, error_text);
+        input_error(e);
     } else {
         input_success(e);
+        remove_invalid_feedback_div(e);
     }
 }
 
 function invalid_feedback_div(e, text) {
     let e_target = e.target;
-    let e_target_div = document.createElement("div");
-    e_target_div.className = "invalid-feedback";
-    e_target_div.innerText = text;
-    e_target.parentNode.appendChild(e_target_div);
+    if (!e_target.nextElementSibling) {
+        let div = document.createElement("div");
+        div.className = "invalid-feedback";
+        div.innerText = text;
+        e_target.parentNode.appendChild(div);
+    }
 }
 
 function valid_feedback_div(e, text) {
     let e_target = e.target;
-    let e_target_div = document.createElement("div");
-    e_target_div.className = "valid-feedback";
-    e_target_div.innerText = text;
-    e_target.parentNode.appendChild(e_target_div);
+    if (!e_target.nextElementSibling) {
+        let div = document.createElement("div");
+        div.className = "valid-feedback";
+        div.innerText = text;
+        e_target.parentNode.appendChild(div);
+    }
 }
 
 function remove_invalid_feedback_div(e) {
     let e_target = e.target;
-    if (e_target.nextElementSibling) {
+    while (e_target.nextElementSibling) {
         e_target.nextElementSibling.remove();
     }
 }
