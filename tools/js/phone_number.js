@@ -187,7 +187,6 @@ function create_btn_del() {
     a.appendChild(i);
     add_phone_number_form.children[add_phone_number_form.childElementCount - 2].appendChild(a);
     a.addEventListener("click", function (e) {
-        console.log(e);
         e.target.parentElement.parentElement.parentElement.removeChild(e.target.parentElement.parentElement);
     })
 }
@@ -405,16 +404,16 @@ function get_number_stored() {
         dataType: "json",
         timeout: 3e3,
         data: {
-            number_stored: "11",
+            number_stored: "",
         },
-        beforeSend: function (data) {
+        beforeSend: function () {
             number_stored.innerHTML = "正在获取数据";
         },
         success: function (data) {
             number_stored.innerHTML = "当前号码存储数量" + data + "条";
         },
         error: function (data) {
-            number_stored.innerHTML = "";
+            number_stored.innerHTML = data.responseText;
         }
     });
 

@@ -11,5 +11,5 @@ function table_num_rows($database_table, $db = "information_schema")
     $db = new MysqliDb($db_host, $db_user, $db_pwd, $db);
     $db->where("NAME", $database_table);
     $query = $db->get("INNODB_TABLESTATS", null, "NUM_ROWS");
-    return $query[0]["NUM_ROWS"];
+    return $query[0]["NUM_ROWS"] ? $query[0]["NUM_ROWS"] : '数据获取失败';
 }

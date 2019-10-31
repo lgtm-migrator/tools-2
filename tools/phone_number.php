@@ -50,6 +50,7 @@ for ($i = 0; $i < $data_count; $i++) {
     $phone_number_data[$i] = array(
         "phone_name" => $data_post_array["$i"]["phone_name"],
         "phone_nick_name" => $data_post_array[$i]['phone_name'],
+        "note" => "",
         "tel_number" => $data_post_array[$i]['tel_number'],
         "mobile_number" => $data_post_array[$i]['mobile_number'],
         "static" => $static['n'],
