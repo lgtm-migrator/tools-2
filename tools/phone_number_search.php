@@ -19,7 +19,7 @@ if ($db->getLastErrno()) {
 $query_key = $_POST['phone_number_search']['search_value'];
 $result_columns = ["id", "phone_name", "tel_number", "mobile_number"];
 
-$static = "no";
+$static = "yes";
 $regional = "xingmei";
 
 $db->Where("static", $static);
