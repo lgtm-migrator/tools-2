@@ -194,35 +194,45 @@ function create_btn_del() {
 function phone_input_check(RegExp_rules_name, error_text, e) {
     let RegExp_result = RegExp_rules_name.test(e.target.value);
     if (!RegExp_result) {
-        invalid_feedback_div(e, error_text);
+        validation_invalid_div(e, error_text);
         input_error(e);
     } else {
         input_success(e);
-        remove_invalid_feedback_div(e);
+        remove_validation_div(e);
     }
 }
 
-function invalid_feedback_div(e, text) {
+function validation_invalid_div(e, text, type = "tooltip") {
     let e_target = e.target;
     if (!e_target.nextElementSibling) {
         let div = document.createElement("div");
-        div.className = "invalid-feedback";
+        if (type === "tooltip") {
+            div.className = "invalid-tooltip";
+            div.style.position = "unset";
+        } else {
+            div.className = "invalid-feedback";
+        }
         div.innerText = text;
         e_target.parentNode.appendChild(div);
     }
 }
 
-function valid_feedback_div(e, text) {
+function validation_valid_div(e, text, type = "tooltip") {
     let e_target = e.target;
     if (!e_target.nextElementSibling) {
         let div = document.createElement("div");
-        div.className = "valid-feedback";
+        if (type === "tooltip") {
+            div.className = "valid-tooltip";
+            div.style.position = "unset";
+        } else {
+            div.className = "valid-feedback";
+        }
         div.innerText = text;
         e_target.parentNode.appendChild(div);
     }
 }
 
-function remove_invalid_feedback_div(e) {
+function remove_validation_div(e) {
     let e_target = e.target;
     while (e_target.nextElementSibling) {
         e_target.nextElementSibling.remove();
@@ -351,6 +361,8 @@ function ajax_search(data) {
     });
 }
 
+function daf() {
+}
 
 /** 增加阴影 **/
 
@@ -392,7 +404,7 @@ function topControl(e) {
     $("html,body").animate({scrollTop: "0px"}, 1000);
 }
 
-
+/** 获取存储数量 **/
 let number_stored = document.querySelector("#number_stored");
 get_number_stored();
 number_stored.addEventListener("click", get_number_stored);

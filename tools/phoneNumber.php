@@ -30,7 +30,9 @@ require_once 'header.php';
 
         <div class="container mt-4" id="phone_search_result">
             <span class="font-weight-bold text-success">查询结果</span>
-            <div class="mt-1 p-4 border border-info rounded"></div>
+            <div class="mt-1 p-4 border border-info rounded">
+
+            </div>
         </div>
 
         <div class="container mt-3">
