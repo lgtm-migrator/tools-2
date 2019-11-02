@@ -26,6 +26,7 @@ $RegExp_rules = array(
 );
 
 //$ip = $_SERVER['SERVER_ADDR'];
+//$ip = inet_pton('127.0.0.1');
 $ip = "";
 $ip_v4 = $_SERVER['REMOTE_ADDR'];
 $ip_v6 = "";
