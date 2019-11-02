@@ -1,9 +1,6 @@
 /** 增加号码 **/
+let add_new_number = document.querySelector("#add_new_number");
 let phone_number_submit = document.querySelector("#phone_number_submit");
-
-let phone_name = document.querySelector("#phone_name");
-let tel_number = document.querySelector("#tel_number");
-let mobile_number = document.querySelector("#mobile_number");
 
 let add_phone_number_form = document.querySelector("#add_phone_number_form");
 
@@ -18,7 +15,13 @@ let RegExp_rules = {
 };
 
 
-phone_number_submit.addEventListener("click", add_phone_number);
+if (add_new_number) add_new_number.addEventListener("click", function (e) {
+    create_form_add_init();
+    e.target.parentNode.removeChild(e.target);
+    add_phone_number_form.classList.remove("d-none");
+    add_phone_number_form.classList.toggle("show");
+});
+if (phone_number_submit) phone_number_submit.addEventListener("click", add_phone_number);
 
 
 function phone_number_data() {
@@ -38,7 +41,6 @@ function phone_number_data() {
     return JSON.stringify(result);
 }
 
-create_form_add_init();
 
 function create_form_add_init() {
     create_form_div();
@@ -307,14 +309,18 @@ let phone_name_search_btn = document.querySelector("#phone_name_search_btn");
 let phone_number_search_btn = document.querySelector("#phone_number_search_btn");
 let search_url = "./phone_number_search.php";
 
-phone_name_search_btn.addEventListener('click', function () {
-    show_value();
-    search_name();
-});
-phone_number_search_btn.addEventListener('click', function () {
-    show_value();
-    search_number();
-});
+if (phone_name_search_btn) {
+    phone_name_search_btn.addEventListener('click', function () {
+        show_value();
+        search_name();
+    });
+}
+if (phone_number_search_btn) {
+    phone_number_search_btn.addEventListener('click', function () {
+        show_value();
+        search_number();
+    });
+}
 
 function show_value() {
     console.log(phone_number_input.value);
@@ -407,8 +413,8 @@ function topControl(e) {
 
 /** 获取存储数量 **/
 let number_stored = document.querySelector("#number_stored");
-get_number_stored();
-number_stored.addEventListener("click", get_number_stored);
+if (number_stored) get_number_stored();
+if (number_stored) number_stored.addEventListener("click", get_number_stored);
 
 function get_number_stored() {
     $.ajax({

@@ -33,10 +33,11 @@ require_once 'header.php';
             <div class="mt-1 p-4 border border-info rounded">
 
             </div>
+            <a href="javascript:" class="my-2 btn btn-sm btn-outline-primary" id="add_new_number">我要添加新号码</a>
         </div>
 
         <div class="container mt-3">
-            <div class="p-4 border border-info rounded" id="add_phone_number_form">
+            <div class="p-4 border border-info rounded fade d-none" id="add_phone_number_form">
                 <div class="my-2 d-flex justify-content-center" id="number_submit">
                     <button class="btn btn-lg btn-primary" id="phone_number_submit">提交新号码</button>
                 </div>
