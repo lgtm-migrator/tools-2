@@ -38,20 +38,19 @@ function phone_number_data() {
     return JSON.stringify(result);
 }
 
-create_phone_form_init();
+create_form_add_init();
 
-function create_phone_form_init() {
-    create_form_add();
+function create_form_add_init() {
+    create_form_div();
     create_btn_add();
-}
-
-function create_phone_form() {
-    create_form_add();
-    create_btn_del();
+    create_phone_name();
+    create_tel_number();
+    create_mobile_number();
 }
 
 function create_form_add() {
     create_form_div();
+    create_btn_del();
     create_phone_name();
     create_tel_number();
     create_mobile_number();
@@ -168,9 +167,10 @@ function create_btn_add() {
 
     i.className = "position-absolute fa fa-plus-circle phone_number_del";
     i.style.top = "11px";
+    i.style.right = "0px";
     a.appendChild(i);
     add_phone_number_form.children[add_phone_number_form.childElementCount - 2].appendChild(a);
-    a.addEventListener("click", create_phone_form);
+    a.addEventListener("click", create_form_add);
 
 }
 
@@ -184,6 +184,7 @@ function create_btn_del() {
 
     i.className = "position-absolute fa fa-minus-circle phone_number_del";
     i.style.top = "11px";
+    i.style.right = "0px";
     a.appendChild(i);
     add_phone_number_form.children[add_phone_number_form.childElementCount - 2].appendChild(a);
     a.addEventListener("click", function (e) {
