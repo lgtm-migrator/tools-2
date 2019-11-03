@@ -12,6 +12,7 @@ let RegExp_rules = {
     "mobile_number": new RegExp(/^(?:(?:\+|00)86)?1(?:(?:3[\d])|(?:4[5-7|9])|(?:5[0-3|5-9])|(?:6[5-7])|(?:7[0-8])|(?:8[\d])|(?:9[1|8|9]))\d{8}$/),
     "ip_v4": new RegExp(/^(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/),
     "ip_v6": new RegExp(/^((([0-9A-Fa-f]{1,4}:){7}[0-9A-Fa-f]{1,4})|(([0-9A-Fa-f]{1,4}:){6}:[0-9A-Fa-f]{1,4})|(([0-9A-Fa-f]{1,4}:){5}:([0-9A-Fa-f]{1,4}:)?[0-9A-Fa-f]{1,4})|(([0-9A-Fa-f]{1,4}:){4}:([0-9A-Fa-f]{1,4}:){0,2}[0-9A-Fa-f]{1,4})|(([0-9A-Fa-f]{1,4}:){3}:([0-9A-Fa-f]{1,4}:){0,3}[0-9A-Fa-f]{1,4})|(([0-9A-Fa-f]{1,4}:){2}:([0-9A-Fa-f]{1,4}:){0,4}[0-9A-Fa-f]{1,4})|(([0-9A-Fa-f]{1,4}:){6}((\b((25[0-5])|(1\d{2})|(2[0-4]\d)|(\d{1,2}))\b)\.){3}(\b((25[0-5])|(1\d{2})|(2[0-4]\d)|(\d{1,2}))\b))|(([0-9A-Fa-f]{1,4}:){0,5}:((\b((25[0-5])|(1\d{2})|(2[0-4]\d)|(\d{1,2}))\b)\.){3}(\b((25[0-5])|(1\d{2})|(2[0-4]\d)|(\d{1,2}))\b))|(::([0-9A-Fa-f]{1,4}:){0,5}((\b((25[0-5])|(1\d{2})|(2[0-4]\d)|(\d{1,2}))\b)\.){3}(\b((25[0-5])|(1\d{2})|(2[0-4]\d)|(\d{1,2}))\b))|([0-9A-Fa-f]{1,4}::([0-9A-Fa-f]{1,4}:){0,5}[0-9A-Fa-f]{1,4})|(::([0-9A-Fa-f]{1,4}:){0,6}[0-9A-Fa-f]{1,4})|(([0-9A-Fa-f]{1,4}:){1,7}:))$/i),
+    "zh_cn_number": new RegExp(/^((?:[\u3400-\u4DB5\u4E00-\u9FEA\uFA0E\uFA0F\uFA11\uFA13\uFA14\uFA1F\uFA21\uFA23\uFA24\uFA27-\uFA29]|[\uD840-\uD868\uD86A-\uD86C\uD86F-\uD872\uD874-\uD879][\uDC00-\uDFFF]|\uD869[\uDC00-\uDED6\uDF00-\uDFFF]|\uD86D[\uDC00-\uDF34\uDF40-\uDFFF]|\uD86E[\uDC00-\uDC1D\uDC20-\uDFFF]|\uD873[\uDC00-\uDEA1\uDEB0-\uDFFF]|\uD87A[\uDC00-\uDFE0])|(\d))+$/),
 };
 
 
@@ -83,7 +84,7 @@ function create_phone_name() {
     input.id = "phone_name_" + id_timestamp;
     input.type = "text";
     input.setAttribute("minlength", "4");
-    input.setAttribute("maxlength", "9");
+    input.setAttribute("maxlength", "15");
     input.placeholder = "单位名称 ";
     input.addEventListener("input", function (e) {
         phone_input_check(RegExp_rules.chinese_name, "请输入单位的中文名称 例如：\n掘进一队", e)
@@ -280,7 +281,7 @@ function add_phone_number() {
         type: "post",
         url: add_phone_number_url,
         dataType: "json",
-        timeout: 3000,
+        timeout: 5000,
         beforeSend: add_spinner_icon(phone_number_submit),
         complete: remove_spinner_icon(phone_number_submit),
         data: {
@@ -325,6 +326,12 @@ if (phone_number_search_btn) {
 
 function check_search_value() {
     let search_value = phone_number_input.value;
+    let search_value_rule = RegExp_rules.zh_cn_number.test(search_value);
+    if (search_value.length === 0) {
+        bootstrapModalJs('', '请输入您要查询的单位名称或号码', '', '', true);
+    } else if (!search_value_rule) {
+        bootstrapModalJs('', '请输入单独的单位名称或者号码', '', '', true);
+    }
     console.log(phone_number_input.value);
 }
 
@@ -374,6 +381,8 @@ function processing_search_result(data) {
     for (i in data) {
         create_number_list(data[i]);
     }
+    number_list_child();
+
 }
 
 function create_number_list(data) {
@@ -399,7 +408,7 @@ function create_number_list_name(name) {
     let li = document.createElement("li");
     let i = document.createElement("i");
 
-    span.className = "col-12 col-md-2";
+    span.className = "col-12 col-lg-4";
     ul.className = "mb-0 list-unstyled";
 
     li.className = "mb-2";
@@ -421,10 +430,11 @@ function create_number_list_number(number, number_type) {
     let li = document.createElement("li");
     let i = document.createElement("i");
 
-    span.className = "col-12 col-md";
+    span.className = "col-12 col-sm-5 col-md-4 col-lg-3";
     ul.className = "mb-0 list-unstyled";
 
-    li.className = "mb-2";
+    // li.className = "mb-2";
+    number_type === "tel" ? li.className = "mb-2" : li.className = "mb-2 text-none text-sm-right";
     li.innerHTML = number;
 
     number_type === "tel" ? i.className = "ml-2 fa fa-phone-alt text-success" : i.className = "ml-2 fa fa-mobile-alt text-success";
@@ -440,6 +450,18 @@ function create_number_list_number(number, number_type) {
     return span;
 }
 
+function number_list_child() {
+    let number_list_child_odd = document.querySelectorAll("#number_list div:nth-child(odd)");
+    let number_list_child_even = document.querySelectorAll("#number_list div:nth-child(even)");
+    console.log(number_list_child_odd);
+    console.log(number_list_child_even);
+    for (let x = number_list_child_odd.length, i = 0; i < x; i++) {
+        number_list_child_odd[i].style.background = "whitesmoke";
+    }
+    for (let x = number_list_child_even.length, i = 0; i < x; i++) {
+        number_list_child_even[i].style.background = "aliceblue";
+    }
+}
 
 /** 增加阴影 **/
 
@@ -507,5 +529,15 @@ function get_number_stored() {
             number_stored.innerHTML = data.responseText;
         }
     });
-
 }
+
+// div#number_list div:nth-child(odd)
+// {
+//     background: beige;
+// }
+
+// div#number_list div:nth-child(even) {
+//     background: whitesmoke;
+// }
+/** CSS **/
+
