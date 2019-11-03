@@ -36,11 +36,16 @@ $static = array(
     'v' => 'Verify',
     'vd' => 'Verified',
 );
+//矿区
 $regional = array(
     'xm' => 'xingmei',
     'gq' => 'gequan',
     'dp' => 'dongpang',
     'xdw' => 'xiandewang',
+);
+//区队、科室
+$department = array(
+    'bwk' => 'baoweike',
 );
 $user_agent = $_SERVER['HTTP_USER_AGENT'];
 
@@ -56,6 +61,7 @@ for ($i = 0; $i < $data_count; $i++) {
         "mobile_number" => $data_post_array[$i]['mobile_number'],
         "static" => $static['n'],
         "regional" => $regional['xm'],
+        "department" => $department['bwk'],
         "create_data" => $create_data,
         "modify_data" => $modify_data,
         "ip" => $ip,
