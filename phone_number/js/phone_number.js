@@ -356,19 +356,32 @@ function ajax_search(data) {
         dataType: "json",
         success: function (data) {
             console.log('成功');
-            bootstrapModalJs('', '成功', '', '', true);
-            console.log(data);
+            get_search_result(data);
         },
         error: function (data) {
             let responseText = data.responseText;
-            responseText ? bootstrapModalJs('', responseText, '', '', true) : "";
             console.log("失败");
             console.log(data);
+            console.log(responseText);
         }
     });
 }
 
-function daf() {
+function get_search_result(data) {
+    let data_length = data.length;
+    if (data_length) {
+        zhengli_data(data);
+    } else {
+        bootstrapModalJs('', "暂时没有找到您要查找的号码", '', '', true)    }
+}
+
+function zhengli_data(data){
+    let i;
+    for (i in data) {
+        console.log(data[i]["phone_name"]);
+        console.log(data[i]["tel_number"]);
+        console.log(data[i]["mobile_number"]);
+    }
 }
 
 /** 增加阴影 **/
@@ -413,8 +426,10 @@ function topControl(e) {
 
 /** 获取存储数量 **/
 let number_stored = document.querySelector("#number_stored");
-if (number_stored) get_number_stored();
+// if (number_stored) get_number_stored();
 if (number_stored) number_stored.addEventListener("click", get_number_stored);
+if (phone_number_submit) phone_number_submit.addEventListener("click", get_number_stored);
+
 
 function get_number_stored() {
     $.ajax({
