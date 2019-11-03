@@ -17,7 +17,7 @@ if ($db->getLastErrno()) {
 };
 
 $query_key = $_POST['phone_number_search']['search_value'];
-$result_columns = ["phone_name", "tel_number", "mobile_number", "phone_nick_name", "note"];
+$result_columns = ["phone_name", "tel_number", "mobile_number","department", "phone_nick_name", "note"];
 
 $static = "yes";
 $regional = "xingmei";

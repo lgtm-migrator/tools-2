@@ -383,7 +383,7 @@ function create_number_list(data) {
     let tel_number = data["tel_number"];
     let mobile_number = data["mobile_number"];
 
-    div.className = "mb-3 py-1 py-md-2 row border rounded number_list";
+    div.className = "mb-3 py-1 py-md-2 row  border rounded align-items-center number_list";
 
     div.appendChild(create_number_list_name(name));
     div.appendChild(create_number_list_number(tel_number, "tel"));
@@ -394,8 +394,23 @@ function create_number_list(data) {
 
 function create_number_list_name(name) {
     let span = document.createElement("span");
-    span.className = "mb-1 col-12 col-md-2";
-    span.innerHTML = name;
+    let ul = document.createElement("ul");
+
+    let li = document.createElement("li");
+    let i = document.createElement("i");
+
+    span.className = "col-12 col-md-2";
+    ul.className = "mb-0 list-unstyled";
+
+    li.className = "mb-2";
+    li.innerHTML = name;
+
+    i.className = "mr-2 fa fa-home text-info";
+    i.style.cursor = "pointer";
+
+    span.appendChild(ul);
+    ul.appendChild(li);
+    li.insertBefore(i, li.firstChild);
 
     return span;
 }
@@ -407,13 +422,16 @@ function create_number_list_number(number, number_type) {
     let i = document.createElement("i");
 
     span.className = "col-12 col-md";
-    ul.className = "list-unstyled";
+    ul.className = "mb-0 list-unstyled";
 
     li.className = "mb-2";
     li.innerHTML = number;
 
     number_type === "tel" ? i.className = "ml-2 fa fa-phone-alt text-success" : i.className = "ml-2 fa fa-mobile-alt text-success";
     i.style.cursor = "pointer";
+    i.addEventListener("click", function (e) {
+        window.location.href = "tel://" + number;
+    });
 
     span.appendChild(ul);
     ul.appendChild(li);
