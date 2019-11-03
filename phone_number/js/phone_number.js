@@ -312,37 +312,27 @@ let search_url = "./phone_number_search.php";
 
 if (phone_name_search_btn) {
     phone_name_search_btn.addEventListener('click', function () {
-        show_value();
-        search_name();
+        check_search_value();
+        search_query();
     });
 }
 if (phone_number_search_btn) {
     phone_number_search_btn.addEventListener('click', function () {
-        show_value();
-        search_number();
+        check_search_value();
+        search_query("number");
     });
 }
 
-function show_value() {
+function check_search_value() {
+    let search_value = phone_number_input.value;
     console.log(phone_number_input.value);
 }
 
-function search_name() {
+function search_query(search_type = "name") {
     let search_value = phone_number_input.value;
     let data = {
         phone_number_search: {
-            "search_type": "name",
-            "search_value": search_value,
-        },
-    };
-    ajax_search(data);
-}
-
-function search_number() {
-    let search_value = phone_number_input.value;
-    let data = {
-        phone_number_search: {
-            "search_type": "number",
+            "search_type": search_type,
             "search_value": search_value,
         },
     };
@@ -423,7 +413,7 @@ function create_number_list_number(number, number_type) {
     li.innerHTML = number;
 
     number_type === "tel" ? i.className = "ml-2 fa fa-phone-alt text-success" : i.className = "ml-2 fa fa-mobile-alt text-success";
-    i.style.cursor="pointer";
+    i.style.cursor = "pointer";
 
     span.appendChild(ul);
     ul.appendChild(li);
