@@ -418,10 +418,12 @@ function create_number_list_number(number, number_type) {
 
     span.className = "col-12 col-md";
     ul.className = "list-unstyled";
-    li.className = "mb-2";
-    number_type === "tel" ? i.className = "ml-2 fa fa-phone-alt text-success" : i.className = "ml-2 fa fa-mobile-alt text-success";
 
+    li.className = "mb-2";
     li.innerHTML = number;
+
+    number_type === "tel" ? i.className = "ml-2 fa fa-phone-alt text-success" : i.className = "ml-2 fa fa-mobile-alt text-success";
+    i.style.cursor="pointer";
 
     span.appendChild(ul);
     ul.appendChild(li);
