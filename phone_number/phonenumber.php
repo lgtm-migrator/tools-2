@@ -30,23 +30,7 @@ require_once 'header.php';
 
         <div class="container mt-4" id="phone_search_result">
             <span class="font-weight-bold text-success">查询结果</span>
-            <div class="mt-1 p-4 border border-info rounded">
-                <div class="mb-3 py-1 py-md-2 row border rounded number_list">
-                    <span class="mb-1 col-12 col-md-2">单位名称</span>
-                    <span class="col-12 col-md">
-                        <ul class="list-unstyled">
-                            <li class="mb-2">0319-2060123<i class="ml-2 fa fa-phone-alt text-success"></i></li>
-                            <li class="mb-2">0319-2060123<i class="ml-2 fa fa-phone-alt text-success"></i></li>
-                        </ul>
-                    </span>
-                    <span class="col-12 col-md">
-                        <ul class="list-unstyled">
-                            <li class="mb-2">13812341234<i class="ml-2 fa fa-mobile-alt text-success"></i></li>
-                            <li class="mb-2">13812341234<i class="ml-2 fa fa-mobile-alt text-success"></i></li>
-                        </ul>
-                    </span>
-                </div>
-            </div>
+            <div class="mt-1 p-4 border border-info rounded" id="number_list"></div>
             <a href="javascript:" class="my-2 btn btn-sm btn-outline-primary" id="add_new_number">我要添加新号码</a>
         </div>
 

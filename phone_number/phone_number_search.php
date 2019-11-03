@@ -17,7 +17,7 @@ if ($db->getLastErrno()) {
 };
 
 $query_key = $_POST['phone_number_search']['search_value'];
-$result_columns = ["id", "phone_name", "tel_number", "mobile_number"];
+$result_columns = ["phone_name", "tel_number", "mobile_number"];
 
 $static = "yes";
 $regional = "xingmei";
@@ -35,7 +35,7 @@ switch ($_POST['phone_number_search']['search_type']) {
     case "name":
         $db->Where("phone_name", "%$query_key%", 'LIKE');
         $db->Where("phone_nick_name", "%$query_key%", 'LIKE');
-        $db->Where("note", "%$query_key%", 'LIKE');
+        $db->orWhere("note", "%$query_key%", 'LIKE');
 
         $query = $db->get("phone_number", null, $result_columns);
 

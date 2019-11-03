@@ -307,6 +307,7 @@ function add_phone_number() {
 let phone_number_input = document.querySelector("#phone_number_input");
 let phone_name_search_btn = document.querySelector("#phone_name_search_btn");
 let phone_number_search_btn = document.querySelector("#phone_number_search_btn");
+let number_list = document.querySelector("#number_list");
 let search_url = "./phone_number_search.php";
 
 if (phone_name_search_btn) {
@@ -357,6 +358,7 @@ function ajax_search(data) {
         success: function (data) {
             console.log('成功');
             get_search_result(data);
+            console.log(data);
         },
         error: function (data) {
             let responseText = data.responseText;
@@ -370,31 +372,76 @@ function ajax_search(data) {
 function get_search_result(data) {
     let data_length = data.length;
     if (data_length) {
-        zhengli_data(data);
+        processing_search_result(data);
     } else {
-        bootstrapModalJs('', "暂时没有找到您要查找的号码", '', '', true)    }
-}
-
-function zhengli_data(data){
-    let i;
-    for (i in data) {
-        console.log(data[i]["phone_name"]);
-        console.log(data[i]["tel_number"]);
-        console.log(data[i]["mobile_number"]);
+        bootstrapModalJs('', "暂时没有找到您要查找的号码", '', '', true)
     }
 }
+
+function processing_search_result(data) {
+    let i;
+    number_list.innerHTML = "";
+    for (i in data) {
+        create_number_list(data[i]);
+    }
+}
+
+function create_number_list(data) {
+    let div = document.createElement("div");
+
+    let name = data["phone_name"];
+    let tel_number = data["tel_number"];
+    let mobile_number = data["mobile_number"];
+
+    div.className = "mb-3 py-1 py-md-2 row border rounded number_list";
+
+    div.appendChild(create_number_list_name(name));
+    div.appendChild(create_number_list_number(tel_number, "tel"));
+    div.appendChild(create_number_list_number(mobile_number, "mobile"));
+
+    number_list.appendChild(div);
+}
+
+function create_number_list_name(name) {
+    let span = document.createElement("span");
+    span.className = "mb-1 col-12 col-md-2";
+    span.innerHTML = name;
+
+    return span;
+}
+
+function create_number_list_number(number, number_type) {
+    let span = document.createElement("span");
+    let ul = document.createElement("ul");
+    let li = document.createElement("li");
+    let i = document.createElement("i");
+
+    span.className = "col-12 col-md";
+    ul.className = "list-unstyled";
+    li.className = "mb-2";
+    number_type === "tel" ? i.className = "ml-2 fa fa-phone-alt text-success" : i.className = "ml-2 fa fa-mobile-alt text-success";
+
+    li.innerHTML = number;
+
+    span.appendChild(ul);
+    ul.appendChild(li);
+    li.appendChild(i);
+
+    return span;
+}
+
 
 /** 增加阴影 **/
 
 let btn_all = document.querySelectorAll("[class*='btn']");
 let input_all = document.querySelectorAll("input[class*='form-control']");
 
-for (let i = 0; i < btn_all.length; i++) {
+for (let btn_all_length = btn_all.length, i = 0; i < btn_all_length; i++) {
     btn_all[i].addEventListener('mouseover', shadow);
     btn_all[i].addEventListener('mouseout', shadow);
 }
 
-for (let i = 0; i < input_all.length; i++) {
+for (let input_all_length = input_all.length, i = 0; i < input_all_length; i++) {
     input_all[i].addEventListener("focusin", shadow_sm);
     input_all[i].addEventListener("focusout", shadow_sm);
 }
