@@ -6,7 +6,7 @@ if ($_POST) {
 }
 
 define('title', '电话号码查询');
-require_once 'header.php';
+require_once '../header.php';
 ?>
     <div id="jt_content">
 
@@ -47,5 +47,5 @@ require_once 'header.php';
 
 
 <?php
-require_once 'footer.php';
+require_once '../footer.php';
 ?>

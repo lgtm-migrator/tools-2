@@ -12,7 +12,7 @@
     <script src="../static/js/popper.min.js"></script>
     <script src="../static/js/bootstrap.min.js"></script>
     <script src="../static/js/bootstrap-modal-js.min.js"></script>
-    <script src="./js/phone_number.js"></script>
+    <script src="../phone_number/js/phone_number.js"></script>
 </div>
 </body>
 </html>

@@ -13,11 +13,11 @@
     <noscript>
         <p class="font-weight-bold">未开启JavaScript</p>
     </noscript>
-    <link rel="stylesheet" href="../static/css/bootstrap.min.css">
+        <link rel="stylesheet" href="../static/css/bootstrap.min.css">
     <link rel="stylesheet" href="../static/font/css/all.min.css">
     <title><?php echo title; ?></title>
 
-<!--    <script src="../static/js/fundebug.min.js"></script>-->
+    <script src="../static/js/fundebug.min.js"></script>
 
 
 </head>
@@ -25,7 +25,7 @@
 
 <div id="jt_header">
     <div class="container mt-1" id="logo">
-        <a href="index.php">
+        <a href="../index.php">
             <span class="logo-img">
                 <!--<img src="" alt="">-->
             </span>
