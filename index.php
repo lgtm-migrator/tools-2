@@ -9,7 +9,7 @@ require_once './header.php';
             <div class="d-flex flex-wrap" id="jt_list">
                 <div class="card mr-2 mb-2">
                     <div class="d-flex justify-content-between card-header px-4 py-2">
-                        <a class="text-success font-weight-bold" id="phoneNumber" href="./phone_number/phonenumber.php"
+                        <a class="text-success font-weight-bold" id="phoneNumber" href="/tools/phone_number/phonenumber.php"
                            title="电话本">电话本</a>
                         <div class="category text-muted">[&nbsp;查询&nbsp;]</div>
                     </div>
