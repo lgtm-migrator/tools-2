@@ -34,9 +34,9 @@ function phone_number_data() {
 
     for (let x = phone_name_all.length, i = 0; i < x; i++) {
         result[i] = {
-            "phone_name": phone_name_all[i].value,
-            "tel_number": tel_number_all[i].value,
-            "mobile_number": mobile_number_all[i].value,
+            phone_name: phone_name_all[i].value,
+            tel_number: tel_number_all[i].value,
+            mobile_number: mobile_number_all[i].value,
         };
     }
     return JSON.stringify(result);
