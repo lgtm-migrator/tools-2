@@ -1,6 +1,8 @@
 <?php
-if ($_POST) {
-    $phone_number_data_post = $_POST["data"];
+if (filter_has_var(INPUT_POST, "data")) {
+    $phone_number_data_post = filter_input(INPUT_POST, 'data');
+} else {
+    die("访问受限");
 }
 
 require_once "mysqli.php";

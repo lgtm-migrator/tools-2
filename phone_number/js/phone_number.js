@@ -295,6 +295,8 @@ function add_phone_number() {
         error: function (data) {
             if (data.statusText === "timeout") {
                 bootstrapModalJs('', '连接服务器超时，请尝试重新提交。', '', '', true);
+            } else if (data.statusText === "OK" && data.responseText !== "") {
+                bootstrapModalJs('', data.responseText, '', '', true);
             } else {
                 bootstrapModalJs('', '失败', '', '', true);
                 console.log(data);
@@ -337,20 +339,18 @@ function check_search_value() {
 
 function search_query(search_type = "name") {
     let search_value = phone_number_input.value;
-    let data = {
-        phone_number_search: {
-            "search_type": search_type,
-            "search_value": search_value,
-        },
+    let search_data = {
+        search_type: search_type,
+        search_value: search_value,
     };
-    ajax_search(data);
+    ajax_search(search_data);
 }
 
-function ajax_search(data) {
+function ajax_search(search_data) {
     $.ajax({
         type: "post",
         url: search_url,
-        data: data,
+        data: search_data,
         dataType: "json",
         success: function (data) {
             console.log('成功');
