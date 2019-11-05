@@ -1,10 +1,4 @@
 <?php
-//if (isset($_POST['phone_number_search']['search_type'])) {
-//    require_once "mysqli.php";
-//    $db = new MysqliDb($db_host, $db_user, $db_pwd, $db_database);
-//} else {
-//    die("访问11受限");
-//}
 if (filter_has_var(INPUT_POST, 'search_type')) {
     require_once "mysqli.php";
     $db = new MysqliDb($db_host, $db_user, $db_pwd, $db_database);
