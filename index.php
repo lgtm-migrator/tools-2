@@ -25,5 +25,5 @@ require_once './header.php';
         <div class="container"></div>
     </div>
 <?php
-require_once './phone_number/footer.php';
+require_once './footer.php';
 ?>

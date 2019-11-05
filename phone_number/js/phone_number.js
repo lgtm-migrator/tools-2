@@ -453,8 +453,6 @@ function create_number_list_number(number, number_type) {
 function number_list_child() {
     let number_list_child_odd = document.querySelectorAll("#number_list div:nth-child(odd)");
     let number_list_child_even = document.querySelectorAll("#number_list div:nth-child(even)");
-    console.log(number_list_child_odd);
-    console.log(number_list_child_even);
     for (let x = number_list_child_odd.length, i = 0; i < x; i++) {
         number_list_child_odd[i].style.background = "whitesmoke";
     }
