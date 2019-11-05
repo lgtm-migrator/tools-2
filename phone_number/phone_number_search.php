@@ -38,6 +38,8 @@ switch ($_POST['phone_number_search']['search_type']) {
         $db->orHaving("note", "%$query_key%", 'LIKE');
 
         $query = $db->get("phone_number", null, $result_columns);
+//        $query = $db->SubQuery();
+//        $query->get($result_columns);
 
         break;
     default:

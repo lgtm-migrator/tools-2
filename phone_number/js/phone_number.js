@@ -314,7 +314,7 @@ let search_url = "./phone_number_search.php";
 if (phone_name_search_btn) {
     phone_name_search_btn.addEventListener('click', function () {
         check_search_value();
-        search_query();
+        search_query("name");
     });
 }
 if (phone_number_search_btn) {
