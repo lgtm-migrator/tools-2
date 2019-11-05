@@ -4,7 +4,7 @@ let phone_number_submit = document.querySelector("#phone_number_submit");
 
 let add_phone_number_form = document.querySelector("#add_phone_number_form");
 
-let add_phone_number_url = "./phoneNumber.php";
+let add_phone_number_url = "/tools/phone_number/phonenumber.php";
 
 let RegExp_rules = {
     "chinese_name": new RegExp(/^([\u4e00-\u9fa5·]{2,16})$/),
@@ -15,7 +15,6 @@ let RegExp_rules = {
     "zh_cn_number": new RegExp(/^((?:[\u3400-\u4DB5\u4E00-\u9FEA\uFA0E\uFA0F\uFA11\uFA13\uFA14\uFA1F\uFA21\uFA23\uFA24\uFA27-\uFA29]|[\uD840-\uD868\uD86A-\uD86C\uD86F-\uD872\uD874-\uD879][\uDC00-\uDFFF]|\uD869[\uDC00-\uDED6\uDF00-\uDFFF]|\uD86D[\uDC00-\uDF34\uDF40-\uDFFF]|\uD86E[\uDC00-\uDC1D\uDC20-\uDFFF]|\uD873[\uDC00-\uDEA1\uDEB0-\uDFFF]|\uD87A[\uDC00-\uDFE0])|(\d))+$/),
 };
 
-
 if (add_new_number) add_new_number.addEventListener("click", function (e) {
     create_form_add_init();
     e.target.parentNode.removeChild(e.target);
@@ -23,7 +22,6 @@ if (add_new_number) add_new_number.addEventListener("click", function (e) {
     add_phone_number_form.classList.toggle("show");
 });
 if (phone_number_submit) phone_number_submit.addEventListener("click", add_phone_number);
-
 
 function phone_number_data() {
     let phone_name_all = document.querySelectorAll(".phone_name");
@@ -41,7 +39,6 @@ function phone_number_data() {
     }
     return JSON.stringify(result);
 }
-
 
 function create_form_add_init() {
     create_form_div();
@@ -311,7 +308,7 @@ let phone_number_input = document.querySelector("#phone_number_input");
 let phone_name_search_btn = document.querySelector("#phone_name_search_btn");
 let phone_number_search_btn = document.querySelector("#phone_number_search_btn");
 let number_list = document.querySelector("#number_list");
-let search_url = "./phone_number_search.php";
+let search_url = "/tools/phone_number/phone_number_search.php";
 
 if (phone_name_search_btn) {
     phone_name_search_btn.addEventListener('click', function () {
@@ -495,7 +492,6 @@ function shadow_lg(e) {
     floatToolBackTop ? floatToolBackTop.addEventListener('click', topControl) : "";
 })();
 
-
 function topControl(e) {
     e.preventDefault();
     $("html,body").animate({scrollTop: "0px"}, 1000);
@@ -507,13 +503,12 @@ let number_stored = document.querySelector("#number_stored");
 if (number_stored) number_stored.addEventListener("click", get_number_stored);
 if (phone_number_submit) phone_number_submit.addEventListener("click", get_number_stored);
 
-
 function get_number_stored() {
     $.ajax({
         type: "post",
-        url: "./number_stored.php",
+        url: "/tools/phone_number/number_stored.php",
         dataType: "json",
-        timeout: 3e3,
+        timeout: 3000,
         data: {
             number_stored: "",
         },
