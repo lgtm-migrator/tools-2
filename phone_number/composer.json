@@ -1,6 +1,7 @@
 {
     "require": {
         "thingengineer/mysqli-database-class": "dev-master",
-        "google/recaptcha": "^1.2"
+        "google/recaptcha": "^1.2",
+      "ext-json": "*"
     }
 }
