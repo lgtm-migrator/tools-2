@@ -8,7 +8,7 @@ if ($_POST) {
 define('title', '电话号码查询');
 require_once '../header.php';
 ?>
-    <div id="jt_content">
+    <div id="jt_content" style="min-height: 100vh;">
 
         <div class="container mt-5" id="jt_container">
             <div class="form-row justify-content-center">
