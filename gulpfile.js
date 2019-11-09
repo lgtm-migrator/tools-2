@@ -6,12 +6,9 @@ const footer = require('gulp-footer');
 
 
 //Static Files Path
-const static_path = "../static";
-const static_js = static_path + "/js/";
-const static_css = static_path + "/css/";
-
-//FunDebug
-const fundebug_js_path = "./node_modules/fundebug-javascript/release/fundebug.2.0.0.min.js";
+const static_path = "./static/";
+const static_js = static_path + "js/";
+const static_css = static_path + "css/";
 
 //bootstrap-toasts
 const bootstrap_toasts_js_path = "./node_modules/bootstrap-toasts/dist/bootstrap-toasts.js";
@@ -78,9 +75,12 @@ const bowser_bundled_js_path = "./node_modules/bowser/bundled.js";
 const lax_js_path = "./node_modules/lax.js/lib/lax.js";
 const lax_min_js_path = "./node_modules/lax.js/lib/lax.min.js";
 
+//FunDebug
+const fundebug_js_path = "./node_modules/fundebug-javascript/release/fundebug." + "*.*.*" + ".min.js";
+
 //phone_number.js
-const phone_number_js_path = "./js/phone_number.js";
-const static_js_path = "./js";
+const phone_number_js_path = "phone_number/js/phone_number.js";
+const static_js_path = "phone_number/js";
 
 gulp.task("terser_js", terser_js);
 
@@ -89,6 +89,8 @@ gulp.task("copy_jq", copy_jq);
 gulp.task("copy_popper", copy_popper);
 gulp.task("copy_bs", copy_bs);
 gulp.task("copy_bmj", copy_bmj);
+
+gulp.task("copy_fundebug", copy_fundebug);
 gulp.task("copy_lazyload", copy_lazyload);
 gulp.task("copy_bt", copy_bt);
 gulp.task("copy_vue", copy_vue);
@@ -97,7 +99,6 @@ gulp.task("copy_viewerjs", copy_viewerjs);
 gulp.task("copy_canvas_nest", copy_canvas_nest);
 gulp.task("copy_bowser", copy_bowser);
 gulp.task("copy_lax", copy_lax);
-gulp.task("copy_fundebug", copy_fundebug);
 
 
 // gulp.task("add_header", add_fundebug_api);
@@ -195,7 +196,8 @@ function copy_lax(done) {
 
 function add_fundebug_api(done) {
     const add_text = '\nfundebug.apikey = "3d4b48db363609255fd0abb3cfa559ca84a7a4ca4ca8922fbd42d8d38e2c36a4";\n';
-    gulp.src(static_js + 'fundebug.2.0.0.min.js')
+
+    gulp.src([fundebug_js_path])
         .pipe(footer(add_text))
         .pipe(rename('fundebug.min.js'))
         .pipe(gulp.dest(static_js));
