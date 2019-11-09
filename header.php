@@ -13,8 +13,9 @@
     <noscript>
         <p class="font-weight-bold">未开启JavaScript</p>
     </noscript>
-        <link rel="stylesheet" href="/tools/static/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/tools/static/css/bootstrap.min.css">
     <link rel="stylesheet" href="/tools/static/font/css/all.min.css">
+    <link rel="stylesheet" href="/tools/phone_number/css/css.css">
     <title><?php echo title; ?></title>
 
     <script src="/tools/static/js/fundebug.min.js"></script>
