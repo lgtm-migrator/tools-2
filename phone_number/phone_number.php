@@ -5,7 +5,7 @@ if (filter_has_var(INPUT_POST, "data")) {
     die("访问受限");
 }
 
-require_once "mysqli.php";
+require_once "../mysqli/mysqli.php";
 $db = new MysqliDb($db_host, $db_user, $db_pwd, $db_database);
 if ($db->getLastErrno()) {
     $message = array(

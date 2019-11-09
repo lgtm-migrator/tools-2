@@ -37,3 +37,4 @@
         </a>
     </div>
 </div>
+<div id="jt_content" style="min-height: 85vh;">

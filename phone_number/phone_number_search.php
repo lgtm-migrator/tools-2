@@ -1,6 +1,6 @@
 <?php
 if (filter_has_var(INPUT_POST, 'search_type')) {
-    require_once "mysqli.php";
+    require_once "../mysqli/mysqli.php";
     $db = new MysqliDb($db_host, $db_user, $db_pwd, $db_database);
     $search_type=filter_input(INPUT_POST, 'search_type');
 } else {
