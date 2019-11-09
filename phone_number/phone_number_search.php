@@ -2,7 +2,7 @@
 if (filter_has_var(INPUT_POST, 'search_type')) {
     require_once "../mysqli/mysqli.php";
     $db = new MysqliDb($db_host, $db_user, $db_pwd, $db_database);
-    $search_type=filter_input(INPUT_POST, 'search_type');
+    $search_type = filter_input(INPUT_POST, 'search_type');
 } else {
     die("访问受限");
 }
@@ -14,9 +14,9 @@ if ($db->getLastErrno()) {
     die(json_encode($message));
 };
 
-$query_key = filter_input(INPUT_POST,'search_value');
+$query_key = filter_input(INPUT_POST, 'search_value');
 
-$result_columns = ["phone_name", "tel_number", "mobile_number","department", "phone_nick_name", "note"];
+$result_columns = ["phone_name", "tel_number", "mobile_number", "department", "phone_nick_name", "note"];
 
 $static = "yes";
 $regional = "xingmei";

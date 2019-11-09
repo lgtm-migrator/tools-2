@@ -1,5 +1,0 @@
-{
-    "require": {
-        "thingengineer/mysqli-database-class": "^2.9"
-    }
-}
