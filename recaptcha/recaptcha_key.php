@@ -17,3 +17,6 @@ $recaptcha_key = array(
         "secret" => "6LcvIcEUAAAAAOY8_yO8euzdodKxuN2w5BalA69K",
     ),
 );
+
+$recaptcha_v3_secret_key = $recaptcha_key["v3"]["secret"];
+$siteVerifyUrl = "https://www.recaptcha.net/recaptcha/api/siteverify";

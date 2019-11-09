@@ -1,4 +1,6 @@
 <?php
+require_once "../recaptcha/recaptcha_key.php";
+$recaptcha_v3_site_key = $recaptcha_key["v3"]["site"];
 ?>
 </div>
 <div class="mt-5 mb-2" id="jt_footer">
@@ -18,6 +20,7 @@
     </div>
 </div>
 <div>
+    <script src="https://www.recaptcha.net/recaptcha/api.js?render=<?php echo $recaptcha_v3_site_key; ?>"></script>
     <script src="/tools/static/js/jquery.min.js"></script>
     <script src="/tools/static/js/popper.min.js"></script>
     <script src="/tools/static/js/bootstrap.min.js"></script>
