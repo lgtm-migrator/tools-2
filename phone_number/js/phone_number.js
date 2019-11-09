@@ -328,12 +328,17 @@ function recaptcha_verify(pageAction) {
 
 function get_recaptcha_token(pageAction) {
     let site_key = "6LcvIcEUAAAAAEUgtbN0VFiH_n2VHw-luW3rdZFv";
-    grecaptcha.ready(function () {
-        grecaptcha.execute(site_key, {action: pageAction}).then(function (token) {
-            console.log(token);
-            return token;
+    let url = "https://www.recaptcha.net/recaptcha/api.js?render=";
+
+    $.getScript(url + site_key, function () {
+        grecaptcha.ready(function () {
+            grecaptcha.execute(site_key, {action: pageAction}).then(function (token) {
+                console.log(token);
+                // return token;
+            });
         });
     });
+
 }
 
 
@@ -376,7 +381,6 @@ function search_query(search_type = "name") {
         search_value: search_value,
     };
     ajax_search(search_data);
-    recaptcha_verify("search_data");
 }
 
 function ajax_search(search_data) {
