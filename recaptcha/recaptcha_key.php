@@ -18,5 +18,9 @@ $recaptcha_key = array(
     ),
 );
 
+$recaptcha_v2_standard_secret_key = $recaptcha_key["v2-standard"]["secret"];
+$recaptcha_v2_invisible_secret_key = $recaptcha_key["v2-invisible"]["secret"];
+$recaptcha_v2_android_secret_key = $recaptcha_key["v2-android"]["secret"];
 $recaptcha_v3_secret_key = $recaptcha_key["v3"]["secret"];
+
 $siteVerifyUrl = "https://www.recaptcha.net/recaptcha/api/siteverify";
