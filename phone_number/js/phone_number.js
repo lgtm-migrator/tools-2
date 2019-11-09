@@ -302,6 +302,41 @@ function add_phone_number() {
     });
 }
 
+/** ReCAPTCHA **/
+function recaptcha_verify(pageAction) {
+    let url = "/tools/recaptcha/recaptcha_verify_v3.php";
+    let token_key = get_recaptcha_token(pageAction);
+    let data = {
+        token: token_key,
+        action: pageAction,
+    };
+
+    $.ajax({
+        type: "post",
+        url: url,
+        data: data,
+        dataType: "json",
+        success: function (data) {
+            console.log(data);
+        },
+        error: function (data) {
+            console.log(data);
+            console.log("data");
+        }
+    })
+}
+
+function get_recaptcha_token(pageAction) {
+    let site_key = "6LcvIcEUAAAAAEUgtbN0VFiH_n2VHw-luW3rdZFv";
+    grecaptcha.ready(function () {
+        grecaptcha.execute(site_key, {action: pageAction}).then(function (token) {
+            console.log(token);
+            return token;
+        });
+    });
+}
+
+
 /** 搜索 **/
 
 let phone_number_input = document.querySelector("#phone_number_input");
@@ -341,6 +376,7 @@ function search_query(search_type = "name") {
         search_value: search_value,
     };
     ajax_search(search_data);
+    recaptcha_verify("search_data");
 }
 
 function ajax_search(search_data) {
