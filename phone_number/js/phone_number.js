@@ -289,7 +289,7 @@ function add_phone_number() {
             result ? bootstrapModalJs('', result, '', '', true) : "";
             console.log(data);
             if (data["data"]) {
-                alert(JSON.stringify(data["data"]));
+                bootstrapModalJs('', JSON.stringify(data["data"]), '', '', true)
             }
         },
         error: function (data) {
