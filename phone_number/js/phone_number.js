@@ -256,11 +256,11 @@ function add_spinner_icon(e, spinner_type = "border") {
     let load_icon = document.createElement("span");
     switch (spinner_type) {
         case "grow":
-            load_icon.className = "ml-1 spinner-grow spinner-grow-sm";
+            load_icon.className = "ml-1 spinner-grow spinner-grow-sm align-self-center";
             break;
         case "border":
         default:
-            load_icon.className = "ml-1 spinner-border spinner-border-sm";
+            load_icon.className = "ml-1 spinner-border spinner-border-sm align-self-center";
     }
     e.setAttribute("disabled", "disabled");
     e.appendChild(load_icon);
