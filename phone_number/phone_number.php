@@ -78,10 +78,25 @@ for ($i = 0; $i < $data_count; $i++) {
 $id = $db->insertMulti("phone_number", $phone_number_data);
 
 if (!$id) {
+    $phone_number_error_data = $phone_number_data;
+    foreach ($phone_number_error_data as $k => $v) {
+        unset($phone_number_error_data[$k]["phone_nick_name"]);
+        unset($phone_number_error_data[$k]["note"]);
+        unset($phone_number_error_data[$k]["static"]);
+        unset($phone_number_error_data[$k]["regional"]);
+        unset($phone_number_error_data[$k]["department"]);
+        unset($phone_number_error_data[$k]["create_data"]);
+        unset($phone_number_error_data[$k]["modify_data"]);
+        unset($phone_number_error_data[$k]["ip"]);
+        unset($phone_number_error_data[$k]["ip_v4"]);
+        unset($phone_number_error_data[$k]["ip_v6"]);
+        unset($phone_number_error_data[$k]["user_agent"]);
+    }
     $message = array(
         'result' => "提交失败",
         'Errno' => $db->getLastErrno(),
         'Error' => $db->getLastError(),
+        'data' => $phone_number_error_data,
     );
 } else {
     $message = array(

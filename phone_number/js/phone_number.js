@@ -288,12 +288,16 @@ function add_phone_number() {
             let result = data.result;
             result ? bootstrapModalJs('', result, '', '', true) : "";
             console.log(data);
+            if (data["data"]) {
+                alert(JSON.stringify(data["data"]));
+            }
         },
         error: function (data) {
             if (data.statusText === "timeout") {
                 bootstrapModalJs('', '连接服务器超时，请尝试重新提交。', '', '', true);
             } else if (data.statusText === "OK" && data.responseText !== "") {
                 bootstrapModalJs('', data.responseText, '', '', true);
+                console.log(data);
             } else {
                 bootstrapModalJs('', '失败', '', '', true);
                 console.log(data);
