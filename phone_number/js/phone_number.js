@@ -307,9 +307,36 @@ function add_phone_number() {
 }
 
 /** ReCAPTCHA **/
-function recaptcha_verify(pageAction) {
+if (phone_number_submit) phone_number_submit.addEventListener("click", function () {
+    set_recaptcha_action("test11");
+});
+
+
+set_recaptcha_action("page");
+
+function set_recaptcha_action(Action = null) {
+    let v3_site_key = "6LcvIcEUAAAAAEUgtbN0VFiH_n2VHw-luW3rdZFv";
+    let url = "https://www.recaptcha.net/recaptcha/api.js?render=";
+
+    Action = Action ? Action : "unset";
+
+    $.getScript(url + v3_site_key, function () {
+        set_recaptcha_token(v3_site_key, Action);
+    });
+}
+
+function set_recaptcha_token(site_key, action) {
+    grecaptcha.ready(function () {
+        grecaptcha.execute(site_key, {action: action})
+            .then(function (token) {
+                // console.log(token);
+                get_recaptcha_verify(token, action);
+            });
+    });
+}
+
+function get_recaptcha_verify(token_key, pageAction) {
     let url = "/tools/recaptcha/recaptcha_verify_v3.php";
-    let token_key = get_recaptcha_token(pageAction);
     let data = {
         token: token_key,
         action: pageAction,
@@ -319,32 +346,18 @@ function recaptcha_verify(pageAction) {
         type: "post",
         url: url,
         data: data,
+        timeout: 5000,
         dataType: "json",
         success: function (data) {
+            console.log("提交验证成功");
             console.log(data);
         },
         error: function (data) {
+            console.log("提交验证失败");
             console.log(data);
-            console.log("data");
         }
     })
 }
-
-function get_recaptcha_token(pageAction) {
-    let site_key = "6LcvIcEUAAAAAEUgtbN0VFiH_n2VHw-luW3rdZFv";
-    let url = "https://www.recaptcha.net/recaptcha/api.js?render=";
-
-    $.getScript(url + site_key, function () {
-        grecaptcha.ready(function () {
-            grecaptcha.execute(site_key, {action: pageAction}).then(function (token) {
-                console.log(token);
-                // return token;
-            });
-        });
-    });
-
-}
-
 
 /** 搜索 **/
 

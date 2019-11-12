@@ -9,19 +9,20 @@ $hostname = filter_input(INPUT_POST, $_SERVER['SERVER_NAME']);
 $threshold = 0.8;
 $remoteIp = $_SERVER["REMOTE_ADDR"];
 $timeoutSeconds = 4000;
-
+verify_result();
 function verify_result()
 {
     $resp = ReCaptcha_verify();
 
     if ($resp->isSuccess()) {
-//        die(json_encode($resp->toArray()));
-        return true;
+        die(json_encode($resp->toArray()));
+//        return true;
     } else {
 //        $errors = $resp->getErrorCodes();
-//        die(json_encode($errors));
-//        die(json_encode($resp->toArray()));
-        return false;
+//        echo json_encode($errors);
+//        json_encode($resp->toArray());
+        die(json_encode($resp->toArray()));
+//        return false;
     }
 }
 

@@ -6,3 +6,4 @@
 **/node_modules/
 **/vendor/
 **/composer.lock
+/phone_number/js/phone_number.min.js
