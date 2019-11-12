@@ -28,7 +28,28 @@ function verify_result()
         require_once "../mysqli/config.php";
         global $db_host, $db_user, $db_pwd, $db_database;
         global $threshold, $remoteIp, $timeoutSeconds;
-        $db = new MysqliDb($db_host, $db_user, $db_pwd, $db_database);
+        $db = new MysqliDb(Array(
+                'host' => $db_host,
+                'username' => "root",
+                'password' => "1",
+                'db' => $db_database,
+//                'port' => 3306,
+//                'prefix' => 'my_',
+//                'charset' => 'utf8',
+                'socket' => 't121223432',
+            )
+        );
+//        $db = new MysqliDb(Array(
+//                'host' => $db_host,
+//                'username' => $db_user,
+//                'password' => $db_pwd,
+//                'db' => $db_database,
+////                'port' => 3306,
+////                'prefix' => 'my_',
+////                'charset' => 'utf8',
+//                'socket' => 't121223432',
+//                )
+//        );
 
 
         $udate = new DateTime();
@@ -49,9 +70,9 @@ function verify_result()
         );
 
         try {
-            $id = $db->insert("google_recaptcha_data", $google_recaptcha_data);
+            $id = $db->insert("jzeg_tools.google_recaptcha_data", $google_recaptcha_data);
         } catch (Exception $e) {
-            die($e);
+            die($e->getMessage());
         }
 
 
