@@ -48,15 +48,23 @@ function verify_result()
             "category" => "",
         );
 
-        $id = $db->insert("google_recaptcha_data", $google_recaptcha_data);
+        try {
+            $id = $db->insert("google_recaptcha_data", $google_recaptcha_data);
+        } catch (Exception $e) {
+            die($e);
+        }
 
 
         if (!$id) {
-            $message = array(
-                'result' => "提交失败",
-                'last_errno' => $db->getLastErrno(),
-                'last_error' => $db->getLastError(),
-            );
+            try {
+                $message = array(
+                    'result' => "提交失败",
+                    'last_errno' => $db->getLastErrno(),
+                    'last_error' => $db->getLastError(),
+                );
+            } catch (Exception $e) {
+                die($e);
+            }
             die(json_encode($message));
         }
 
