@@ -314,7 +314,7 @@ if (phone_number_submit) phone_number_submit.addEventListener("click", function 
 
 set_recaptcha_action("page");
 
-function set_recaptcha_action(Action = null) {
+function set_recaptcha_action(Action = "unset") {
     let v3_site_key = "6LcvIcEUAAAAAEUgtbN0VFiH_n2VHw-luW3rdZFv";
     let url = "https://www.recaptcha.net/recaptcha/api.js?render=";
 

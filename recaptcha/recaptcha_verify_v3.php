@@ -6,22 +6,61 @@ require_once "../vendor/autoload.php";
 $action = filter_input(INPUT_POST, "action");
 $response = filter_input(INPUT_POST, "token");
 $hostname = filter_input(INPUT_POST, $_SERVER['SERVER_NAME']);
-$threshold = 0.8;
+$threshold = 10.8;
 $remoteIp = $_SERVER["REMOTE_ADDR"];
-$timeoutSeconds = 4000;
+$timeoutSeconds = 3000;
+
 verify_result();
+
 function verify_result()
 {
     $resp = ReCaptcha_verify();
+    $resp_array = $resp->toArray();
+    $resp_json = json_encode($resp->toArray());
 
     if ($resp->isSuccess()) {
-        die(json_encode($resp->toArray()));
+        die($resp_json);
 //        return true;
     } else {
 //        $errors = $resp->getErrorCodes();
 //        echo json_encode($errors);
-//        json_encode($resp->toArray());
-        die(json_encode($resp->toArray()));
+
+        require_once "../mysqli/config.php";
+        global $db_host, $db_user, $db_pwd, $db_database;
+        global $threshold, $remoteIp, $timeoutSeconds;
+        $db = new MysqliDb($db_host, $db_user, $db_pwd, $db_database);
+
+
+        $udate = new DateTime();
+        $created_time = $udate->format("Y-m-d H:i:s.u");
+
+        $google_recaptcha_data = array(
+            "action" => $resp_array['action'],
+            "hostname" => $resp_array['hostname'],
+            "challenge_ts" => $resp_array['challenge_ts'],
+            "score" => $resp_array['score'],
+            "error_codes" => json_encode($resp_array['error-codes']),
+            "apk_package_name" => $resp_array['apk_package_name'],
+            "threshold" => $threshold,
+            "remote_ip" => $remoteIp,
+            "timeout_seconds" => $timeoutSeconds,
+            "created_time" => $created_time,
+            "category" => "",
+        );
+
+        $id = $db->insert("google_recaptcha_data", $google_recaptcha_data);
+
+
+        if (!$id) {
+            $message = array(
+                'result' => "提交失败",
+                'last_errno' => $db->getLastErrno(),
+                'last_error' => $db->getLastError(),
+            );
+            die(json_encode($message));
+        }
+
+        die($resp_json);
 //        return false;
     }
 }
