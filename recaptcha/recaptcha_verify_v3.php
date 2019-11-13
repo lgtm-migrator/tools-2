@@ -53,6 +53,7 @@ function ReCaptcha_verify($Response = null, $Action = null, $HostName = null, $T
     return $resp;
 }
 
+
 function recaptcha_data_to_database($resp_array)
 {
 
@@ -64,6 +65,7 @@ function recaptcha_data_to_database($resp_array)
 
     $udate = new DateTime();
     $created_time = $udate->format("Y-m-d H:i:s.u");
+    $user_agent = $_SERVER["HTTP_USER_AGENT"];
 
     $google_recaptcha_data = array(
         "action" => $resp_array['action'],
@@ -75,6 +77,7 @@ function recaptcha_data_to_database($resp_array)
         "threshold" => $threshold,
         "remote_ip" => $remoteIp,
         "timeout_seconds" => $timeoutSeconds,
+        "user_agent" => $user_agent,
         "created_time" => $created_time,
         "category" => "",
     );
