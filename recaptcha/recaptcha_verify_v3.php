@@ -6,7 +6,7 @@ require_once "../vendor/autoload.php";
 $action = filter_input(INPUT_POST, "action");
 $response = filter_input(INPUT_POST, "token");
 $hostname = filter_input(INPUT_POST, $_SERVER['SERVER_NAME']);
-$threshold = 10.8;
+$threshold = 0.8;
 $remoteIp = $_SERVER["REMOTE_ADDR"];
 $timeoutSeconds = 3000;
 
@@ -28,28 +28,7 @@ function verify_result()
         require_once "../mysqli/config.php";
         global $db_host, $db_user, $db_pwd, $db_database;
         global $threshold, $remoteIp, $timeoutSeconds;
-        $db = new MysqliDb(Array(
-                'host' => $db_host,
-                'username' => "root",
-                'password' => "1",
-                'db' => $db_database,
-//                'port' => 3306,
-//                'prefix' => 'my_',
-//                'charset' => 'utf8',
-                'socket' => 't121223432',
-            )
-        );
-//        $db = new MysqliDb(Array(
-//                'host' => $db_host,
-//                'username' => $db_user,
-//                'password' => $db_pwd,
-//                'db' => $db_database,
-////                'port' => 3306,
-////                'prefix' => 'my_',
-////                'charset' => 'utf8',
-//                'socket' => 't121223432',
-//                )
-//        );
+        $db = new MysqliDb("127.0.0.1", "root", "GPcgmHJH", $db_database);
 
 
         $udate = new DateTime();

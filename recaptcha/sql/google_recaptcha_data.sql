@@ -11,7 +11,7 @@
  Target Server Version : 80018
  File Encoding         : 65001
 
- Date: 13/11/2019 01:05:54
+ Date: 13/11/2019 10:28:12
 */
 
 SET NAMES utf8mb4;
@@ -25,10 +25,10 @@ CREATE TABLE `google_recaptcha_data`  (
   `id` int(15) NOT NULL AUTO_INCREMENT COMMENT '主键',
   `action` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '动作',
   `hostname` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '主机名',
-  `score` varchar(3) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '评分值',
+  `score` decimal(2, 1) NOT NULL COMMENT '评分值',
   `error_codes` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '错误代码',
   `challenge_ts` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '时间',
-  `threshold` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '预设threshold值',
+  `threshold` decimal(1, 1) NOT NULL COMMENT '预设threshold值',
   `remote_ip` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'IP值',
   `timeout_seconds` int(4) NOT NULL COMMENT '超时时间值',
   `apk_package_name` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '安卓包名',
