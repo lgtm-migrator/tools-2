@@ -1,8 +1,4 @@
 <?php
-require_once "recaptcha_key.php";
-require_once "../vendor/autoload.php";
-
-
 $action = filter_input(INPUT_POST, "action");
 $response = filter_input(INPUT_POST, "token");
 $hostname = filter_input(INPUT_POST, $_SERVER['SERVER_NAME']);
@@ -10,8 +6,7 @@ $threshold = 1.0;
 $remoteIp = $_SERVER["REMOTE_ADDR"];
 $timeoutSeconds = 4500;
 
-
-if ($action && $response && $hostname) {
+if ($action && $response) {
     verify_result();
 } else {
     die();
@@ -40,6 +35,8 @@ function verify_result()
 function ReCaptcha_verify($Response = null, $Action = null, $HostName = null, $Threshold = null, $TimeOutSeconds = null, $RemoteIp = null)
 {
     global $recaptcha_v3_secret_key, $siteVerifyUrl, $response, $action, $hostname, $threshold, $timeoutSeconds, $remoteIp;
+    require_once "recaptcha_key.php";
+    require_once "../vendor/autoload.php";
 
     $Response = (is_null($Response)) ? $response : $Response;
     $Action = (is_null($Action)) ? $action : $Action;
