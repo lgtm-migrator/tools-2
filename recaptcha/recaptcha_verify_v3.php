@@ -57,11 +57,7 @@ function ReCaptcha_verify($Response = null, $Action = null, $HostName = null, $T
 function recaptcha_data_to_database($resp_array)
 {
 
-    global $db_host, $db_user, $db_pwd, $db_database;
     global $threshold, $remoteIp, $timeoutSeconds;
-//    $db = new MysqliDb("127.0.0.1", "root", "GPcgmHJH");
-//    $db = new MysqliDb("127.0.0.1", "root", "GPcgmHJH");
-
 
     $udate = new DateTime();
     $created_time = $udate->format("Y-m-d H:i:s.u");
@@ -83,6 +79,7 @@ function recaptcha_data_to_database($resp_array)
     );
 
     require_once "../mysqli/config.php";
+    global $db_host, $db_user, $db_pwd, $db_database;
 
     $db = new MysqliDb();
     $db->addConnection("google_recaptcha_data", array(

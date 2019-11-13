@@ -12,21 +12,7 @@ $result_columns = ["phone_name", "tel_number", "mobile_number", "department", "p
 $static = "yes";
 $regional = "xingmei";
 
-
 require_once "../mysqli/mysqli.php";
-//$db = new MysqliDb($db_host, $db_user, $db_pwd, $db_database);
-
-
-$db = new MysqliDb();
-$db->addConnection("phone_number_search", array(
-    'host' => $db_host,
-    'username' => $db_user,
-    'password' => $db_pwd,
-    'db' => $db_database,
-//        'port' => 3306,
-//        'prefix' => '',
-//        'charset' => 'utf8'
-));
 
 $db->connection("phone_number_search");
 $db->Where("static", $static);
