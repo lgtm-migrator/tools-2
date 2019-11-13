@@ -11,7 +11,7 @@
  Target Server Version : 80018
  File Encoding         : 65001
 
- Date: 13/11/2019 19:20:12
+ Date: 14/11/2019 00:00:00
 */
 
 SET NAMES utf8mb4;
@@ -28,7 +28,7 @@ CREATE TABLE `google_recaptcha_data`  (
   `score` decimal(2, 1) NOT NULL COMMENT '评分值',
   `threshold` decimal(2, 1) NOT NULL COMMENT '预设threshold值',
   `remote_ip` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'IP值',
-  `error_codes` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '错误代码',
+  `error_codes` json NOT NULL COMMENT '错误代码',
   `timeout_seconds` int(4) NOT NULL COMMENT '超时时间值',
   `challenge_ts` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '时间',
   `created_time` datetime(6) NOT NULL COMMENT '创建记录时间',
