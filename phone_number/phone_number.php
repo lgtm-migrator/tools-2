@@ -82,10 +82,22 @@ for ($i = 0; $i < $data_count; $i++) {
 
 
 require_once "../mysqli/mysqli.php";
-$db = new MysqliDb($db_host, $db_user, $db_pwd, $db_database);
+//$db = new MysqliDb($db_host, $db_user, $db_pwd, $db_database);
+
+$db = new MysqliDb();
+$db->addConnection("add_phone_number", array(
+    'host' => $db_host,
+    'username' => $db_user,
+    'password' => $db_pwd,
+    'db' => $db_database,
+//        'port' => 3306,
+//        'prefix' => '',
+//        'charset' => 'utf8'
+));
+
 
 try {
-    $id = $db->insertMulti("phone_number", $phone_number_data);
+    $id = $db->connection("add_phone_number")->insertMulti("phone_number", $phone_number_data);
 } catch (Exception $e) {
     die($e->getMessage());
 }

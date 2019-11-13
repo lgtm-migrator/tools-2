@@ -57,10 +57,10 @@ function ReCaptcha_verify($Response = null, $Action = null, $HostName = null, $T
 function recaptcha_data_to_database($resp_array)
 {
 
-    require_once "../mysqli/config.php";
     global $db_host, $db_user, $db_pwd, $db_database;
     global $threshold, $remoteIp, $timeoutSeconds;
-    $db = new MysqliDb($db_host, "root", "GPcgmHJH");
+//    $db = new MysqliDb("127.0.0.1", "root", "GPcgmHJH");
+//    $db = new MysqliDb("127.0.0.1", "root", "GPcgmHJH");
 
 
     $udate = new DateTime();
@@ -82,8 +82,22 @@ function recaptcha_data_to_database($resp_array)
         "category" => "",
     );
 
+    require_once "../mysqli/config.php";
+
+    $db = new MysqliDb();
+    $db->addConnection("google_recaptcha_data", array(
+        'host' => $db_host,
+        'username' => $db_user,
+        'password' => $db_pwd,
+        'db' => $db_database,
+//        'port' => 3306,
+//        'prefix' => '',
+//        'charset' => 'utf8'
+    ));
+
+
     try {
-        $id = $db->insert("jzeg_tools.google_recaptcha_data", $google_recaptcha_data);
+        $id = $db->connection("google_recaptcha_data")->insert("jzeg_tools.google_recaptcha_data", $google_recaptcha_data);
     } catch (Exception $e) {
         die($e->getMessage());
     }

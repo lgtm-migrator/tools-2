@@ -1,18 +1,9 @@
 <?php
 if (filter_has_var(INPUT_POST, 'search_type')) {
-    require_once "../mysqli/mysqli.php";
-    $db = new MysqliDb($db_host, $db_user, $db_pwd, $db_database);
     $search_type = filter_input(INPUT_POST, 'search_type');
 } else {
     die("访问受限");
 }
-
-if ($db->getLastErrno()) {
-    $message = array(
-        'result' => "数据库连接出错。",
-    );
-    die(json_encode($message));
-};
 
 $query_key = filter_input(INPUT_POST, 'search_value');
 
@@ -21,6 +12,23 @@ $result_columns = ["phone_name", "tel_number", "mobile_number", "department", "p
 $static = "yes";
 $regional = "xingmei";
 
+
+require_once "../mysqli/mysqli.php";
+//$db = new MysqliDb($db_host, $db_user, $db_pwd, $db_database);
+
+
+$db = new MysqliDb();
+$db->addConnection("phone_number_search", array(
+    'host' => $db_host,
+    'username' => $db_user,
+    'password' => $db_pwd,
+    'db' => $db_database,
+//        'port' => 3306,
+//        'prefix' => '',
+//        'charset' => 'utf8'
+));
+
+$db->connection("phone_number_search");
 $db->Where("static", $static);
 $db->Where("regional", $regional);
 
