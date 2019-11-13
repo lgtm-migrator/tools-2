@@ -6,9 +6,9 @@ require_once "../vendor/autoload.php";
 $action = filter_input(INPUT_POST, "action");
 $response = filter_input(INPUT_POST, "token");
 $hostname = filter_input(INPUT_POST, $_SERVER['SERVER_NAME']);
-$threshold = 1.9;
+$threshold = 1.0;
 $remoteIp = $_SERVER["REMOTE_ADDR"];
-$timeoutSeconds = 3000;
+$timeoutSeconds = 4500;
 
 verify_result();
 
