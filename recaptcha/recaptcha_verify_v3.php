@@ -6,7 +6,7 @@ require_once "../vendor/autoload.php";
 $action = filter_input(INPUT_POST, "action");
 $response = filter_input(INPUT_POST, "token");
 $hostname = filter_input(INPUT_POST, $_SERVER['SERVER_NAME']);
-$threshold = 1.0;
+$threshold = 1.9;
 $remoteIp = $_SERVER["REMOTE_ADDR"];
 $timeoutSeconds = 3000;
 
@@ -24,49 +24,7 @@ function verify_result()
     } else {
 //        $errors = $resp->getErrorCodes();
 //        echo json_encode($errors);
-
-        require_once "../mysqli/config.php";
-        global $db_host, $db_user, $db_pwd, $db_database;
-        global $threshold, $remoteIp, $timeoutSeconds;
-        $db = new MysqliDb("127.0.0.1", "root", "GPcgmHJH", $db_database);
-
-
-        $udate = new DateTime();
-        $created_time = $udate->format("Y-m-d H:i:s.u");
-
-        $google_recaptcha_data = array(
-            "action" => $resp_array['action'],
-            "hostname" => $resp_array['hostname'],
-            "challenge_ts" => $resp_array['challenge_ts'],
-            "score" => $resp_array['score'],
-            "error_codes" => json_encode($resp_array['error-codes']),
-            "apk_package_name" => $resp_array['apk_package_name'],
-            "threshold" => $threshold,
-            "remote_ip" => $remoteIp,
-            "timeout_seconds" => $timeoutSeconds,
-            "created_time" => $created_time,
-            "category" => "",
-        );
-
-        try {
-            $id = $db->insert("jzeg_tools.google_recaptcha_data", $google_recaptcha_data);
-        } catch (Exception $e) {
-            die($e->getMessage());
-        }
-
-
-        if (!$id) {
-            try {
-                $message = array(
-                    'result' => "提交失败",
-                    'last_errno' => $db->getLastErrno(),
-                    'last_error' => $db->getLastError(),
-                );
-            } catch (Exception $e) {
-                die($e);
-            }
-            die(json_encode($message));
-        }
+        recaptcha_data_to_database($resp_array);
 
         die($resp_json);
 //        return false;
@@ -93,4 +51,49 @@ function ReCaptcha_verify($Response = null, $Action = null, $HostName = null, $T
         ->setChallengeTimeout($TimeOutSeconds)
         ->verify($Response, $RemoteIp);
     return $resp;
+}
+
+function recaptcha_data_to_database($resp_array)
+{
+
+    require_once "../mysqli/config.php";
+    global $db_host, $db_user, $db_pwd, $db_database;
+    global $threshold, $remoteIp, $timeoutSeconds;
+    $db = new MysqliDb("127.0.0.1", "root", "GPcgmHJH");
+
+
+    $udate = new DateTime();
+    $created_time = $udate->format("Y-m-d H:i:s.u");
+
+    $google_recaptcha_data = array(
+        "action" => $resp_array['action'],
+        "hostname" => $resp_array['hostname'],
+        "challenge_ts" => $resp_array['challenge_ts'],
+        "score" => $resp_array['score'],
+        "error_codes" => json_encode($resp_array['error-codes']),
+        "apk_package_name" => $resp_array['apk_package_name'],
+        "threshold" => $threshold,
+        "remote_ip" => $remoteIp,
+        "timeout_seconds" => $timeoutSeconds,
+        "created_time" => $created_time,
+        "category" => "",
+    );
+
+    try {
+        $id = $db->insert("jzeg_tools.google_recaptcha_data", $google_recaptcha_data);
+    } catch (Exception $e) {
+        die($e->getMessage());
+    }
+
+
+    if (!$id) {
+        $message = array(
+            'result' => "提交失败",
+            'last_errno' => $db->getLastErrno(),
+            'last_error' => $db->getLastError(),
+//                'data' => $google_recaptcha_data,
+        );
+
+        die(json_encode($message));
+    }
 }

@@ -81,17 +81,14 @@ for ($i = 0; $i < $data_count; $i++) {
 }
 
 
-
 require_once "../mysqli/mysqli.php";
 $db = new MysqliDb($db_host, $db_user, $db_pwd, $db_database);
-if ($db->getLastErrno()) {
-    $message = array(
-        'result' => "数据库连接出错。"
-    );
-    die(json_encode($message));
-};
 
-$id = $db->insertMulti("phone_number", $phone_number_data);
+try {
+    $id = $db->insertMulti("phone_number", $phone_number_data);
+} catch (Exception $e) {
+    die($e->getMessage());
+}
 
 if (!$id) {
     $phone_number_error_data = $phone_number_data;
