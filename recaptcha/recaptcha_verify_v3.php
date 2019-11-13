@@ -60,7 +60,7 @@ function recaptcha_data_to_database($resp_array)
     require_once "../mysqli/config.php";
     global $db_host, $db_user, $db_pwd, $db_database;
     global $threshold, $remoteIp, $timeoutSeconds;
-    $db = new MysqliDb("127.0.0.1", "root", "GPcgmHJH");
+    $db = new MysqliDb($db_host, "root", "GPcgmHJH");
 
 
     $udate = new DateTime();
