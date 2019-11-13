@@ -10,7 +10,12 @@ $threshold = 1.0;
 $remoteIp = $_SERVER["REMOTE_ADDR"];
 $timeoutSeconds = 4500;
 
-verify_result();
+
+if ($action && $response && $hostname) {
+    verify_result();
+} else {
+    die();
+}
 
 function verify_result()
 {
