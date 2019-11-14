@@ -280,12 +280,12 @@ function add_phone_number() {
         dataType: "json",
         timeout: 5000,
         beforeSend: add_spinner_icon(phone_number_submit),
-        complete: remove_spinner_icon(phone_number_submit),
         data: {
             data: data,
         },
         success: function (data) {
             let result = data.result;
+            remove_spinner_icon(phone_number_submit);
             result ? bootstrapModalJs('', result, '', '', true) : "";
             console.log(data);
             if (data["data"]) {
@@ -311,8 +311,6 @@ if (phone_number_submit) phone_number_submit.addEventListener("click", function 
     set_recaptcha_action("test11");
 });
 
-
-set_recaptcha_action("page");
 
 function set_recaptcha_action(Action = "unset") {
     let v3_site_key = "6LcvIcEUAAAAAEUgtbN0VFiH_n2VHw-luW3rdZFv";
