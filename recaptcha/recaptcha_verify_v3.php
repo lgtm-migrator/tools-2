@@ -2,10 +2,10 @@
 $action = filter_input(INPUT_POST, 'action');
 $response = filter_input(INPUT_POST, 'token');
 $hostname = filter_input(INPUT_SERVER, 'SERVER_NAME');
-//$hostname = $_SERVER['SERVER_NAME'];
 $remoteIp = filter_input(INPUT_SERVER, 'REMOTE_ADDR', FILTER_VALIDATE_IP);
 $timeoutSeconds = 4500;
 $threshold = 1.0;
+
 if ($action && $response && $response && $hostname) {
     verify_result();
 } else {

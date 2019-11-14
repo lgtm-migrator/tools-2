@@ -252,7 +252,7 @@ function input_success(e) {
     e_target.classList.add("is-valid");
 }
 
-function add_spinner_icon(e, spinner_type = "border") {
+function add_spinner_icon(e, spinner_type = null, color = null, position = null) {
     let load_icon = document.createElement("span");
     switch (spinner_type) {
         case "grow":
@@ -262,13 +262,53 @@ function add_spinner_icon(e, spinner_type = "border") {
         default:
             load_icon.className = "ml-1 spinner-border spinner-border-sm align-self-center";
     }
+    switch (color) {
+        case "primary":
+            load_icon.classList.add("text-primary");
+            break;
+        case "secondary":
+            load_icon.classList.add("text-secondary");
+            break;
+        case "success":
+            load_icon.classList.add("text-success");
+            break;
+        case "danger":
+            load_icon.classList.add("text-danger");
+            break;
+        case "warning":
+            load_icon.classList.add("text-warning");
+            break;
+        case "info":
+            load_icon.classList.add("text-info");
+            break;
+        case "light":
+            load_icon.classList.add("text-light");
+            break;
+        case "dark":
+            load_icon.classList.add("text-dark");
+            break;
+        default:
+            return false;
+
+    }
     e.setAttribute("disabled", "disabled");
-    e.appendChild(load_icon);
+
+    switch (position) {
+        case "before":
+        case "left":
+            e.insertBefore(load_icon, e.firstChild);
+            break;
+        case "after":
+        case "right":
+        default:
+            e.appendChild(load_icon);
+    }
+
 }
 
 function remove_spinner_icon(e) {
     e.removeAttribute("disabled");
-    e.removeChild(e.lastChild);
+    e.removeChild(e.lastElementChild);
 }
 
 function add_phone_number() {
@@ -286,6 +326,7 @@ function add_phone_number() {
         success: function (data) {
             let result = data.result;
             remove_spinner_icon(phone_number_submit);
+            get_number_stored();
             result ? bootstrapModalJs('', result, '', '', true) : "";
             console.log(data);
             if (data["data"]) {
@@ -306,13 +347,41 @@ function add_phone_number() {
     });
 }
 
+
+/** 获取存储数量 **/
+let number_stored = document.querySelector("#number_stored");
+// if (number_stored) get_number_stored();
+if (number_stored) number_stored.addEventListener("click", get_number_stored);
+
+function get_number_stored() {
+    $.ajax({
+        type: "post",
+        url: "/tools/phone_number/number_stored.php",
+        dataType: "json",
+        timeout: 3000,
+        data: {
+            number_stored: "1",
+        },
+        beforeSend: function () {
+            add_spinner_icon(number_stored, "border", "primary", "left");
+        },
+        success: function (data) {
+            remove_spinner_icon(number_stored);
+            number_stored.innerHTML = "当前号码存储数量" + data + "条";
+        },
+        error: function (data) {
+            number_stored.innerHTML = data.responseText;
+        }
+    });
+}
+
+
 /** ReCAPTCHA **/
 if (phone_number_submit) phone_number_submit.addEventListener("click", function () {
     set_recaptcha_action("test11");
 });
 
-
-function set_recaptcha_action(Action = "unset") {
+function set_recaptcha_action(Action = null) {
     let v3_site_key = "6LcvIcEUAAAAAEUgtbN0VFiH_n2VHw-luW3rdZFv";
     let url = "https://www.recaptcha.net/recaptcha/api.js?render=";
 
@@ -357,8 +426,8 @@ function get_recaptcha_verify(token_key, pageAction) {
     })
 }
 
-/** 搜索 **/
 
+/** 搜索 **/
 let phone_number_input = document.querySelector("#phone_number_input");
 let phone_name_search_btn = document.querySelector("#phone_name_search_btn");
 let phone_number_search_btn = document.querySelector("#phone_number_search_btn");
@@ -513,8 +582,8 @@ function number_list_child() {
     }
 }
 
-/** 增加阴影 **/
 
+/** 增加阴影 **/
 let btn_all = document.querySelectorAll("[class*='btn']");
 let input_all = document.querySelectorAll("input[class*='form-control']");
 
@@ -540,8 +609,8 @@ function shadow_lg(e) {
     e.target.classList.toggle("shadow-lg");
 }
 
-/** 返回顶部 **/
 
+/** 返回顶部 **/
 (function () {
     let floatToolBackTop = document.querySelector("#to_top");
     floatToolBackTop ? floatToolBackTop.addEventListener('click', topControl) : "";
@@ -551,41 +620,3 @@ function topControl(e) {
     e.preventDefault();
     $("html,body").animate({scrollTop: "0px"}, 1000);
 }
-
-/** 获取存储数量 **/
-let number_stored = document.querySelector("#number_stored");
-// if (number_stored) get_number_stored();
-if (number_stored) number_stored.addEventListener("click", get_number_stored);
-if (phone_number_submit) phone_number_submit.addEventListener("click", get_number_stored);
-
-function get_number_stored() {
-    $.ajax({
-        type: "post",
-        url: "/tools/phone_number/number_stored.php",
-        dataType: "json",
-        timeout: 3000,
-        data: {
-            number_stored: "1",
-        },
-        beforeSend: function () {
-            number_stored.innerHTML = "正在获取数据";
-        },
-        success: function (data) {
-            number_stored.innerHTML = "当前号码存储数量" + data + "条";
-        },
-        error: function (data) {
-            number_stored.innerHTML = data.responseText;
-        }
-    });
-}
-
-// div#number_list div:nth-child(odd)
-// {
-//     background: beige;
-// }
-
-// div#number_list div:nth-child(even) {
-//     background: whitesmoke;
-// }
-/** CSS **/
-
