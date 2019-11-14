@@ -262,8 +262,9 @@ function add_spinner_icon(e, spinner_type = null, color = null, position = null)
         default:
             load_icon.className = "ml-1 spinner-border spinner-border-sm align-self-center";
     }
+
     switch (color) {
-        case "primary":
+        case 'primary':
             load_icon.classList.add("text-primary");
             break;
         case "secondary":
@@ -288,9 +289,9 @@ function add_spinner_icon(e, spinner_type = null, color = null, position = null)
             load_icon.classList.add("text-dark");
             break;
         default:
-            return false;
-
+            break;
     }
+
     e.setAttribute("disabled", "disabled");
 
     switch (position) {
@@ -303,12 +304,11 @@ function add_spinner_icon(e, spinner_type = null, color = null, position = null)
         default:
             e.appendChild(load_icon);
     }
-
 }
 
 function remove_spinner_icon(e) {
     e.removeAttribute("disabled");
-    e.removeChild(e.lastElementChild);
+    e.firstElementChild ? e.removeChild(e.firstElementChild) : "";
 }
 
 function add_phone_number() {
@@ -362,9 +362,7 @@ function get_number_stored() {
         data: {
             number_stored: "1",
         },
-        beforeSend: function () {
-            add_spinner_icon(number_stored, "border", "primary", "left");
-        },
+        beforeSend: add_spinner_icon(number_stored, "border", "primary", "left"),
         success: function (data) {
             remove_spinner_icon(number_stored);
             number_stored.innerHTML = "当前号码存储数量" + data + "条";
@@ -382,8 +380,8 @@ if (phone_number_submit) phone_number_submit.addEventListener("click", function 
 });
 
 function set_recaptcha_action(Action = null) {
-    let v3_site_key = "6LcvIcEUAAAAAEUgtbN0VFiH_n2VHw-luW3rdZFv";
-    let url = "https://www.recaptcha.net/recaptcha/api.js?render=";
+    const v3_site_key = "6LcvIcEUAAAAAEUgtbN0VFiH_n2VHw-luW3rdZFv";
+    const url = "https://www.recaptcha.net/recaptcha/api.js?render=";
 
     Action = Action ? Action : "unset";
 
