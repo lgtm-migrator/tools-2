@@ -567,7 +567,7 @@ function get_number_stored() {
         dataType: "json",
         timeout: 3000,
         data: {
-            number_stored: "",
+            number_stored: "1",
         },
         beforeSend: function () {
             number_stored.innerHTML = "正在获取数据";

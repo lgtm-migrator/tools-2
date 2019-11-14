@@ -1,12 +1,12 @@
 <?php
 $action = filter_input(INPUT_POST, "action");
 $response = filter_input(INPUT_POST, "token");
-$hostname = filter_input(INPUT_POST, $_SERVER['SERVER_NAME']);
-$threshold = 1.0;
-$remoteIp = $_SERVER["REMOTE_ADDR"];
+$hostname = filter_input(INPUT_SERVER, 'SERVER_NAME');
+$remoteIp = filter_input(INPUT_SERVER, "REMOTE_ADDR", FILTER_VALIDATE_IP);
 $timeoutSeconds = 4500;
+$threshold = 1.0;
 
-if ($action && $response) {
+if ($action && $response && $response) {
     verify_result();
 } else {
     die();
@@ -65,7 +65,7 @@ function recaptcha_data_to_database($resp_array)
 
     $udate = new DateTime();
     $created_time = $udate->format("Y-m-d H:i:s.u");
-    $user_agent = $_SERVER["HTTP_USER_AGENT"];
+    $user_agent = filter_input(INPUT_SERVER, "HTTP_USER_AGENT");
 
     $google_recaptcha_data = array(
         "action" => $resp_array['action'],

@@ -15,25 +15,23 @@ $PREG_rules = array(
     "chinese_name" => "/^([\u4e00-\u9fa5·]{2,16})$/",
     "tel_number" => "/\d{3}-\d{8}|\d{4}-\d{7}/",
     "mobile_number" => "/^(?:(?:\+|00)86)?1(?:(?:3[\d])|(?:4[5-7|9])|(?:5[0-3|5-9])|(?:6[5-7])|(?:7[0-8])|(?:8[\d])|(?:9[1|8|9]))\d{8}$/",
-    "ip_v4" => "/^(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/",
-    "ip_v6" => "/^((([0-9A-Fa-f]{1,4}:){7}[0-9A-Fa-f]{1,4})|(([0-9A-Fa-f]{1,4}:){6}:[0-9A-Fa-f]{1,4})|(([0-9A-Fa-f]{1,4}:){5}:([0-9A-Fa-f]{1,4}:)?[0-9A-Fa-f]{1,4})|(([0-9A-Fa-f]{1,4}:){4}:([0-9A-Fa-f]{1,4}:){0,2}[0-9A-Fa-f]{1,4})|(([0-9A-Fa-f]{1,4}:){3}:([0-9A-Fa-f]{1,4}:){0,3}[0-9A-Fa-f]{1,4})|(([0-9A-Fa-f]{1,4}:){2}:([0-9A-Fa-f]{1,4}:){0,4}[0-9A-Fa-f]{1,4})|(([0-9A-Fa-f]{1,4}:){6}((\b((25[0-5])|(1\d{2})|(2[0-4]\d)|(\d{1,2}))\b)\.){3}(\b((25[0-5])|(1\d{2})|(2[0-4]\d)|(\d{1,2}))\b))|(([0-9A-Fa-f]{1,4}:){0,5}:((\b((25[0-5])|(1\d{2})|(2[0-4]\d)|(\d{1,2}))\b)\.){3}(\b((25[0-5])|(1\d{2})|(2[0-4]\d)|(\d{1,2}))\b))|(::([0-9A-Fa-f]{1,4}:){0,5}((\b((25[0-5])|(1\d{2})|(2[0-4]\d)|(\d{1,2}))\b)\.){3}(\b((25[0-5])|(1\d{2})|(2[0-4]\d)|(\d{1,2}))\b))|([0-9A-Fa-f]{1,4}::([0-9A-Fa-f]{1,4}:){0,5}[0-9A-Fa-f]{1,4})|(::([0-9A-Fa-f]{1,4}:){0,6}[0-9A-Fa-f]{1,4})|(([0-9A-Fa-f]{1,4}:){1,7}:))$/i",
 );
-$ip = "unset";
-$server_remote_addr = $_SERVER["REMOTE_ADDR"];
 
-$ip_v4_preg = preg_match($PREG_rules["ip_v4"], $server_remote_addr);
-$ip_v6_preg = preg_match($PREG_rules["ip_v6"], $server_remote_addr);
 
-if ($ip_v4_preg) {
+$server_remote_addr = filter_input(INPUT_SERVER,"REMOTE_ADDR",FILTER_VALIDATE_IP);
+
+$validate_ip_v4 = filter_var($server_remote_addr, FILTER_VALIDATE_IP, FILTER_FLAG_IPV4);
+$validate_ip_v6 = filter_var($server_remote_addr, FILTER_VALIDATE_IP, FILTER_FLAG_IPV6);
+
+$ip = "";
+$ip_v4 = "";
+$ip_v6 = "";
+if ($validate_ip_v4) {
     $ip_v4 = $server_remote_addr;
-    $ip_v6 = "";
-} elseif ($ip_v6_preg) {
+} elseif ($validate_ip_v6) {
     $ip_v6 = $server_remote_addr;
-    $ip_v4 = "";
 } else {
     $ip = "unset";
-    $ip_v4 = "";
-    $ip_v6 = "";
 }
 
 
@@ -56,7 +54,7 @@ $department = array(
     'un' => 'unset',
     'bwk' => 'baoweike',
 );
-$user_agent = $_SERVER['HTTP_USER_AGENT'];
+$user_agent = filter_input(INPUT_SERVER, "HTTP_USER_AGENT");
 
 $data_post_array = json_decode($phone_number_data_post, true);
 
