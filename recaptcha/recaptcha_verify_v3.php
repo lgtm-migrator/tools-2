@@ -65,6 +65,7 @@ function recaptcha_data_to_database($resp_array)
 
     $udate = new DateTime();
     $created_time = $udate->format("Y-m-d H:i:s.u");
+
     $user_agent = filter_input(INPUT_SERVER, "HTTP_USER_AGENT");
 
     $google_recaptcha_data = array(
@@ -102,7 +103,7 @@ function recaptcha_data_to_database($resp_array)
 
     if (!$id) {
         $message = array(
-            'result' => "提交失败",
+            'result' => "reCAPTCHA保存失败",
             'last_errno' => $db->getLastErrno(),
             'last_error' => $db->getLastError(),
 //                'data' => $google_recaptcha_data,
@@ -110,4 +111,13 @@ function recaptcha_data_to_database($resp_array)
 
         die(json_encode($message));
     }
+}
+
+//获取UTC格式的时间
+function utc_time()
+{
+    date_default_timezone_set('UTC');
+    $timestamp = new DateTime();
+    $timeStr = $timestamp->format("Y-m-d\TH:i:s\Z");
+    return $timeStr;
 }
