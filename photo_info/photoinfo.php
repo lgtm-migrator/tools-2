@@ -11,8 +11,8 @@ require_once '../header.php';
     <div class="container mt-5" id="jt_container">
         <div class="mb-3 d-flex justify-content-center">
             <div class="custom-file col-11 col-sm-8">
-                <label class="custom-file-label" for="photo_input" data-browse="提交照片">上传您的照片</label>
-                <input class="custom-file-input" type="file" id="photo_input" accept="image/jpeg,image/tiff"">
+                <input class="custom-file-input" type="file" id="photo_input" accept="image/jpeg,image/tiff" multiple>
+                <label class="custom-file-label" for="photo_input" data-browse="浏览">上传您的照片</label>
             </div>
         </div>
         <div class="d-flex justify-content-center">
@@ -20,7 +20,6 @@ require_once '../header.php';
                 <i class="fas fa-image">&nbsp;&nbsp;</i>提交</a>
         </div>
     </div>
-
 
     <div>
         <script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>

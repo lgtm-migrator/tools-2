@@ -316,7 +316,7 @@ function add_phone_number() {
     let data = phone_number_data();
 
     $.ajax({
-        type: "post",
+        method: "post",
         url: add_phone_number_url,
         dataType: "json",
         timeout: 5000,
