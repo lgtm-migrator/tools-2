@@ -1,0 +1,3 @@
+$().ready(function () {
+    bsCustomFileInput.init()
+});
