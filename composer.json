@@ -1,6 +1,7 @@
 {
     "require": {
         "thingengineer/mysqli-database-class": "^2.9",
-        "google/recaptcha": "^1.2"
+        "google/recaptcha": "^1.2",
+        "miljar/php-exif": "^0.6.5"
     }
 }
