@@ -15,6 +15,15 @@ require_once './header.php';
                 <p class="card-desc card-text p-2">记录电话号码。</p>
             </div>
 
+            <div class="card mr-2 mb-2">
+                <div class="d-flex justify-content-between card-header px-4 py-2">
+                    <a class="text-success font-weight-bold" id="phoneNumber" href="/tools/photo_info/photoinfo.php"
+                       title="照片信息">照片信息</a>
+                    <div class="category text-muted">[&nbsp;查询&nbsp;]</div>
+                </div>
+                <p class="card-desc card-text p-2">查看照片EXIF信息。</p>
+            </div>
+
         </div>
 
     </div>
