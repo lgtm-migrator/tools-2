@@ -106,7 +106,8 @@ function add_spinner_icon(e, spinner_type = null, color = null, position = null)
 
 function remove_spinner_icon(e) {
     e.removeAttribute("disabled");
-    e.firstElementChild ? e.removeChild(e.firstElementChild) : "";
+    // e.firstElementChild ? e.removeChild(e.firstElementChild) : "";
+    e.lastElementChild ? e.removeChild(e.lastElementChild) : "";
 }
 
 
