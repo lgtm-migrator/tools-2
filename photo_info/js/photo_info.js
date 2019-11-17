@@ -9,6 +9,9 @@ let photo_input = document.querySelector("#photo_input");
 let photo_url = "/tools/photo_info/photoinfo.php";
 
 photo_submit.addEventListener("click", submit_images);
+photo_submit.addEventListener("click", function () {
+    set_recaptcha_action("photo_info");
+});
 
 function get_images() {
     const images = photo_input.files;
