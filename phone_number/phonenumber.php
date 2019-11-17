@@ -8,6 +8,8 @@ if ($_POST) {
 define('title', '电话号码查询');
 require_once '../header.php';
 ?>
+    <link rel="stylesheet" href="/tools/phone_number/css/phone_number.css">
+
     <div class="container mt-5" id="jt_container">
         <div class="form-row justify-content-center">
             <div class="form-group col-11 col-sm-8">
