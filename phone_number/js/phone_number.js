@@ -1,4 +1,3 @@
-
 /** 增加号码 **/
 let add_new_number = document.querySelector("#add_new_number");
 let phone_number_submit = document.querySelector("#phone_number_submit");
@@ -28,8 +27,15 @@ function phone_number_data() {
     let phone_name_all = document.querySelectorAll(".phone_name");
     let tel_number_all = document.querySelectorAll(".tel_number");
     let mobile_number_all = document.querySelectorAll(".mobile_number");
+    let regional = document.querySelectorAll("input[name=regional]");
 
-    let result = [];
+    let result = {};
+
+    for (let x = regional.length, i = 0; i < x; i++) {
+        if (true === regional[i].checked) {
+            result["info"] = {regional: regional[i].value};
+        }
+    }
 
     for (let x = phone_name_all.length, i = 0; i < x; i++) {
         result[i] = {
@@ -206,6 +212,7 @@ function phone_input_check(RegExp_rules_name, error_text, e) {
 
 function add_phone_number() {
     let data = phone_number_data();
+    console.log(data);
 
     $.ajax({
         method: "post",

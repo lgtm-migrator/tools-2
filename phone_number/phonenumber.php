@@ -36,6 +36,24 @@ require_once '../header.php';
 
     <div class="container mt-3">
         <div class="p-4 border border-info rounded fade d-none" id="add_phone_number_form">
+            <div class="mb-5 mb-sm-4 mb-md-3 sr-only" id="regional">
+                <div class="custom-control custom-radio custom-control-inline">
+                    <input type="radio" id="regional_xm" name="regional" value="xm" class="custom-control-input" checked>
+                    <label class="custom-control-label" for="regional_xm">邢煤</label>
+                </div>
+                <div class="custom-control custom-radio custom-control-inline">
+                    <input type="radio" id="regional_gq" name="regional" value="gq" class="custom-control-input" disabled>
+                    <label class="custom-control-label" for="regional_gq">葛泉</label>
+                </div>
+                <div class="custom-control custom-radio custom-control-inline">
+                    <input type="radio" id="regional_dp" name="regional" value="dp" class="custom-control-input" disabled>
+                    <label class="custom-control-label" for="regional_dp">东庞</label>
+                </div>
+                <div class="custom-control custom-radio custom-control-inline">
+                    <input type="radio" id="regional_xdw" name="regional" value="xdw" class="custom-control-input" disabled>
+                    <label class="custom-control-label" for="regional_xdw">显德旺</label>
+                </div>
+            </div>
             <div class="my-2 d-flex justify-content-center" id="number_submit">
                 <button class="btn btn-lg btn-primary d-flex" id="phone_number_submit">提交新号码</button>
             </div>
