@@ -26,7 +26,7 @@ require_once '../header.php';
     </div>
 
     <div>
-        <?php require_once "javascript.php"; ?>
+        <?php require_once dirname(dirname(__FILE__)) . "/javascript.php"; ?>
         <script src="/tools/photo_info/js/photo_info.js"></script>
     </div>
 
