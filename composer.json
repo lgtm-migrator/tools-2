@@ -3,5 +3,9 @@
         "thingengineer/mysqli-database-class": "^2.9",
         "google/recaptcha": "^1.2",
         "miljar/php-exif": "^0.6.5"
+    },
+    "require-dev": {
+        "friendsofphp/php-cs-fixer": "^2.16",
+        "phpunit/phpunit": "^8.4"
     }
 }
