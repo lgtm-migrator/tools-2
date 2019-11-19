@@ -9,12 +9,12 @@ let photo_input = document.querySelector("#photo_input");
 let photo_label = document.querySelector("#photo_label");
 let photo_url = "/tools/photo_info/photoinfo.php";
 
-photo_input.addEventListener("change", function (e) {
-    validation_invalid_div(e, "通过");
-    input_success(e);
+photo_input.addEventListener("change", function () {
+    validation_valid_div(this, "通过");
+    input_success(this);
 });
-photo_submit.addEventListener("click", function (e) {
-    submit_images(e);
+photo_submit.addEventListener("click", function () {
+    submit_images(photo_input);
     set_recaptcha_action("photo_info");
 });
 
@@ -36,11 +36,11 @@ function get_images() {
     }
 }
 
-function submit_images(e) {
+function submit_images(element) {
     let data = get_images();
     let validation_result = validation_files_type(photo_input);
     if (validation_result) {
-        validation_valid_div(e, "通过");
+        // validation_valid_div(element, "通过");
         $.ajax({
             url: photo_url,
             method: "post",
@@ -64,7 +64,7 @@ function submit_images(e) {
             }
         });
     } else {
-        validation_invalid_div(e, "通过");
+        // validation_invalid_div(element, "通过");
     }
 
 }

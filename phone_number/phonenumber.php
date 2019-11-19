@@ -12,7 +12,7 @@ require_once '../header.php';
 
     <div class="container mt-5" id="jt_container">
         <div class="form-row justify-content-center">
-            <div class="form-group col-11 col-sm-8">
+            <div class="form-group col-11 col-sm-10 col-md-8 col-lg-6">
                 <label class="sr-only" for="phone_number_input">单位名称、简称或者号码</label>
                 <input class="form-control fa text-center" type="search" id="phone_number_input" minlength="2"
                        maxlength="15" autofocus="autofocus"

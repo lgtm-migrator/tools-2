@@ -6,14 +6,6 @@ let add_phone_number_form = document.querySelector("#add_phone_number_form");
 
 let add_phone_number_url = "/tools/phone_number/phonenumber.php";
 
-let RegExp_rules = {
-    "chinese_name": new RegExp(/^([\u4e00-\u9fa5·]{2,16})$/),
-    "tel_number": new RegExp(/\d{3}-\d{8}|\d{4}-\d{7}/),
-    "mobile_number": new RegExp(/^(?:(?:\+|00)86)?1(?:(?:3[\d])|(?:4[5-7|9])|(?:5[0-3|5-9])|(?:6[5-7])|(?:7[0-8])|(?:8[\d])|(?:9[1|8|9]))\d{8}$/),
-    "ip_v4": new RegExp(/^(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/),
-    "ip_v6": new RegExp(/^((([0-9A-Fa-f]{1,4}:){7}[0-9A-Fa-f]{1,4})|(([0-9A-Fa-f]{1,4}:){6}:[0-9A-Fa-f]{1,4})|(([0-9A-Fa-f]{1,4}:){5}:([0-9A-Fa-f]{1,4}:)?[0-9A-Fa-f]{1,4})|(([0-9A-Fa-f]{1,4}:){4}:([0-9A-Fa-f]{1,4}:){0,2}[0-9A-Fa-f]{1,4})|(([0-9A-Fa-f]{1,4}:){3}:([0-9A-Fa-f]{1,4}:){0,3}[0-9A-Fa-f]{1,4})|(([0-9A-Fa-f]{1,4}:){2}:([0-9A-Fa-f]{1,4}:){0,4}[0-9A-Fa-f]{1,4})|(([0-9A-Fa-f]{1,4}:){6}((\b((25[0-5])|(1\d{2})|(2[0-4]\d)|(\d{1,2}))\b)\.){3}(\b((25[0-5])|(1\d{2})|(2[0-4]\d)|(\d{1,2}))\b))|(([0-9A-Fa-f]{1,4}:){0,5}:((\b((25[0-5])|(1\d{2})|(2[0-4]\d)|(\d{1,2}))\b)\.){3}(\b((25[0-5])|(1\d{2})|(2[0-4]\d)|(\d{1,2}))\b))|(::([0-9A-Fa-f]{1,4}:){0,5}((\b((25[0-5])|(1\d{2})|(2[0-4]\d)|(\d{1,2}))\b)\.){3}(\b((25[0-5])|(1\d{2})|(2[0-4]\d)|(\d{1,2}))\b))|([0-9A-Fa-f]{1,4}::([0-9A-Fa-f]{1,4}:){0,5}[0-9A-Fa-f]{1,4})|(::([0-9A-Fa-f]{1,4}:){0,6}[0-9A-Fa-f]{1,4})|(([0-9A-Fa-f]{1,4}:){1,7}:))$/i),
-    "zh_cn_number": new RegExp(/^((?:[\u3400-\u4DB5\u4E00-\u9FEA\uFA0E\uFA0F\uFA11\uFA13\uFA14\uFA1F\uFA21\uFA23\uFA24\uFA27-\uFA29]|[\uD840-\uD868\uD86A-\uD86C\uD86F-\uD872\uD874-\uD879][\uDC00-\uDFFF]|\uD869[\uDC00-\uDED6\uDF00-\uDFFF]|\uD86D[\uDC00-\uDF34\uDF40-\uDFFF]|\uD86E[\uDC00-\uDC1D\uDC20-\uDFFF]|\uD873[\uDC00-\uDEA1\uDEB0-\uDFFF]|\uD87A[\uDC00-\uDFE0])|(\d))+$/),
-};
 
 if (add_new_number) add_new_number.addEventListener("click", function (e) {
     create_form_add_init();
@@ -90,8 +82,8 @@ function create_phone_name() {
     input.setAttribute("minlength", "4");
     input.setAttribute("maxlength", "15");
     input.placeholder = "单位名称 ";
-    input.addEventListener("input", function (e) {
-        phone_input_check(RegExp_rules.chinese_name, "请输入单位的中文名称 例如：\n掘进一队", e)
+    input.addEventListener("input", function () {
+        custom_input_check(RegExp_rules.chinese_name, "请输入单位的中文名称 例如：\n掘进一队", this)
     });
 
     label.appendChild(i);
@@ -122,8 +114,8 @@ function create_tel_number() {
     input.setAttribute("minlength", "12");
     input.setAttribute("maxlength", "12");
     input.placeholder = "座机电话号码 ";
-    input.addEventListener("input", function (e) {
-        phone_input_check(RegExp_rules.tel_number, "请输入正确格式的座机号码 例如：\n0319-1234567", e);
+    input.addEventListener("input", function () {
+        custom_input_check(RegExp_rules.tel_number, "请输入正确格式的座机号码 例如：\n0319-1234567", this);
     });
 
     label.appendChild(i);
@@ -153,8 +145,8 @@ function create_mobile_number() {
     input.setAttribute("minlength", "11");
     input.setAttribute("maxlength", "15");
     input.placeholder = "手机电话号码 ";
-    input.addEventListener("input", function (e) {
-        phone_input_check(RegExp_rules.mobile_number, "请输入正确格式的手机号 例如：\n13812345678\n+8613812345678\n008613812345678", e);
+    input.addEventListener("input", function () {
+        custom_input_check(RegExp_rules.mobile_number, "请输入正确格式的手机号 例如：\n13812345678\n+8613812345678\n008613812345678", this);
     });
 
     label.appendChild(i);
@@ -197,17 +189,6 @@ function create_btn_del() {
     a.addEventListener("click", function (e) {
         e.target.parentElement.parentElement.parentElement.removeChild(e.target.parentElement.parentElement);
     })
-}
-
-function phone_input_check(RegExp_rules_name, error_text, e) {
-    let RegExp_result = RegExp_rules_name.test(e.target.value);
-    if (!RegExp_result) {
-        validation_invalid_div(e, error_text);
-        input_error(e);
-    } else {
-        input_success(e);
-        remove_validation_div(e);
-    }
 }
 
 function add_phone_number() {

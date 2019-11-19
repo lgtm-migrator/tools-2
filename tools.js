@@ -1,14 +1,28 @@
-
 /** 公用 **/
 
-function validation_invalid_div(e, text, type = "tooltip") {
-    console.log(e);
-    console.log(typeof e);
-    console.log(e.target);
-    console.log(e.target);
-    console.log(typeof e.target);
-    let e_target = e.target;
-    if (!e_target.nextElementSibling) {
+let RegExp_rules = {
+    "chinese_name": new RegExp(/^([\u4e00-\u9fa5·]{2,16})$/),
+    "tel_number": new RegExp(/\d{3}-\d{8}|\d{4}-\d{7}/),
+    "mobile_number": new RegExp(/^(?:(?:\+|00)86)?1(?:(?:3[\d])|(?:4[5-7|9])|(?:5[0-3|5-9])|(?:6[5-7])|(?:7[0-8])|(?:8[\d])|(?:9[1|8|9]))\d{8}$/),
+    "ip_v4": new RegExp(/^(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/),
+    "ip_v6": new RegExp(/^((([0-9A-Fa-f]{1,4}:){7}[0-9A-Fa-f]{1,4})|(([0-9A-Fa-f]{1,4}:){6}:[0-9A-Fa-f]{1,4})|(([0-9A-Fa-f]{1,4}:){5}:([0-9A-Fa-f]{1,4}:)?[0-9A-Fa-f]{1,4})|(([0-9A-Fa-f]{1,4}:){4}:([0-9A-Fa-f]{1,4}:){0,2}[0-9A-Fa-f]{1,4})|(([0-9A-Fa-f]{1,4}:){3}:([0-9A-Fa-f]{1,4}:){0,3}[0-9A-Fa-f]{1,4})|(([0-9A-Fa-f]{1,4}:){2}:([0-9A-Fa-f]{1,4}:){0,4}[0-9A-Fa-f]{1,4})|(([0-9A-Fa-f]{1,4}:){6}((\b((25[0-5])|(1\d{2})|(2[0-4]\d)|(\d{1,2}))\b)\.){3}(\b((25[0-5])|(1\d{2})|(2[0-4]\d)|(\d{1,2}))\b))|(([0-9A-Fa-f]{1,4}:){0,5}:((\b((25[0-5])|(1\d{2})|(2[0-4]\d)|(\d{1,2}))\b)\.){3}(\b((25[0-5])|(1\d{2})|(2[0-4]\d)|(\d{1,2}))\b))|(::([0-9A-Fa-f]{1,4}:){0,5}((\b((25[0-5])|(1\d{2})|(2[0-4]\d)|(\d{1,2}))\b)\.){3}(\b((25[0-5])|(1\d{2})|(2[0-4]\d)|(\d{1,2}))\b))|([0-9A-Fa-f]{1,4}::([0-9A-Fa-f]{1,4}:){0,5}[0-9A-Fa-f]{1,4})|(::([0-9A-Fa-f]{1,4}:){0,6}[0-9A-Fa-f]{1,4})|(([0-9A-Fa-f]{1,4}:){1,7}:))$/i),
+    "zh_cn_number": new RegExp(/^((?:[\u3400-\u4DB5\u4E00-\u9FEA\uFA0E\uFA0F\uFA11\uFA13\uFA14\uFA1F\uFA21\uFA23\uFA24\uFA27-\uFA29]|[\uD840-\uD868\uD86A-\uD86C\uD86F-\uD872\uD874-\uD879][\uDC00-\uDFFF]|\uD869[\uDC00-\uDED6\uDF00-\uDFFF]|\uD86D[\uDC00-\uDF34\uDF40-\uDFFF]|\uD86E[\uDC00-\uDC1D\uDC20-\uDFFF]|\uD873[\uDC00-\uDEA1\uDEB0-\uDFFF]|\uD87A[\uDC00-\uDFE0])|(\d))+$/),
+};
+
+
+function custom_input_check(RegExp_rules_name, error_text, element) {
+    let RegExp_result = RegExp_rules_name.test(element.value);
+    if (!RegExp_result) {
+        validation_invalid_div(element, error_text);
+        input_error(element);
+    } else {
+        input_success(element);
+        remove_validation_div(element);
+    }
+}
+
+function validation_invalid_div(element, text, type = "tooltip") {
+    if (!element.nextElementSibling) {
         let div = document.createElement("div");
         if (type === "tooltip") {
             div.className = "invalid-tooltip";
@@ -17,44 +31,38 @@ function validation_invalid_div(e, text, type = "tooltip") {
             div.className = "invalid-feedback";
         }
         div.innerText = text;
-        e_target.parentNode.appendChild(div);
+        element.parentNode.appendChild(div);
     }
 }
 
-function validation_valid_div(e, text, type = "tooltip") {
-    console.log(e);
-    console.log(e.target);
-    let e_target = e.target;
-    if (!e_target.nextElementSibling) {
+function validation_valid_div(element, text, type = "tooltip") {
+    if (element.nextElementSibling) {
         let div = document.createElement("div");
         if (type === "tooltip") {
             div.className = "valid-tooltip";
-            div.style.position = "unset";
+            // div.style.position = "unset";
         } else {
             div.className = "valid-feedback";
         }
         div.innerText = text;
-        e_target.parentNode.appendChild(div);
+        element.parentNode.appendChild(div);
     }
 }
 
-function remove_validation_div(e) {
-    let e_target = e.target;
-    while (e_target.nextElementSibling) {
-        e_target.nextElementSibling.remove();
+function remove_validation_div(element) {
+    while (element.nextElementSibling) {
+        element.nextElementSibling.remove();
     }
 }
 
-function input_error(e) {
-    let e_target = e.target;
-    e_target.classList.remove("is-valid");
-    e_target.classList.add("is-invalid");
+function input_error(element) {
+    element.classList.remove("is-valid");
+    element.classList.add("is-invalid");
 }
 
-function input_success(e) {
-    let e_target = e.target;
-    e_target.classList.remove("is-invalid");
-    e_target.classList.add("is-valid");
+function input_success(element) {
+    element.classList.remove("is-invalid");
+    element.classList.add("is-valid");
 }
 
 function add_spinner_icon(e, spinner_type = null, color = null, position = null) {
