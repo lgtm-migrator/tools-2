@@ -2,6 +2,11 @@
 /** 公用 **/
 
 function validation_invalid_div(e, text, type = "tooltip") {
+    console.log(e);
+    console.log(typeof e);
+    console.log(e.target);
+    console.log(e.target);
+    console.log(typeof e.target);
     let e_target = e.target;
     if (!e_target.nextElementSibling) {
         let div = document.createElement("div");
@@ -17,6 +22,8 @@ function validation_invalid_div(e, text, type = "tooltip") {
 }
 
 function validation_valid_div(e, text, type = "tooltip") {
+    console.log(e);
+    console.log(e.target);
     let e_target = e.target;
     if (!e_target.nextElementSibling) {
         let div = document.createElement("div");

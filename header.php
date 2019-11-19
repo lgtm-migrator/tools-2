@@ -18,6 +18,7 @@
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.11.2/css/all.min.css">
+    <link rel="stylesheet" href="/tools/tools.css">
     <title><?php echo title; ?></title>
 
     <script src="/tools/static/js/fundebug.min.js"></script>
