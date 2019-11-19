@@ -18,6 +18,11 @@ const bootstrap_toasts_min_js_path = "./node_modules/bootstrap-toasts/dist/boots
 const bootstrap_modal_js_js_path = "./node_modules/bootstrap-modal-js/dist/bootstrap-modal-js.js";
 const bootstrap_modal_js_min_js_path = "./node_modules/bootstrap-modal-js/dist/bootstrap-modal-js.min.js";
 
+
+//bs-custom-file-input
+const bs_custom_file_input_js_path = "./node_modules/bs-custom-file-input/dist/bs-custom-file-input.js";
+const bs_custom_file_input_min_js_path = "./node_modules/bs-custom-file-input/dist/bs-custom-file-input.min.js";
+
 //lazyload
 const lazyload_js_path = "./node_modules/vanilla-lazyload/dist/lazyload.js";
 const lazyload_min_js_path = "./node_modules/vanilla-lazyload/dist/lazyload.min.js";
@@ -80,15 +85,22 @@ const fundebug_js_path = "./node_modules/fundebug-javascript/release/fundebug." 
 
 //phone_number.js
 const phone_number_js_path = "phone_number/js/phone_number.js";
-const static_js_path = "phone_number/js";
+const phone_number_static_js_path = "phone_number/js";
 
-gulp.task("terser_js", terser_js);
+//photo_info.js
+const photo_info_js_path = "photo_info/js/photo_info.js";
+const photo_info_static_js_path = "photo_info/js";
+
+
+gulp.task("terser_phone_number_js", terser_phone_number_js);
+gulp.task("terser_photo_info_js", terser_photo_info_js);
 
 gulp.task("copy_fonts", copy_fonts);
 gulp.task("copy_jq", copy_jq);
 gulp.task("copy_popper", copy_popper);
 gulp.task("copy_bs", copy_bs);
 gulp.task("copy_bmj", copy_bmj);
+gulp.task("copy_bs_custom_file_input", copy_bs_custom_file_input);
 
 gulp.task("copy_fundebug", copy_fundebug);
 gulp.task("copy_lazyload", copy_lazyload);
@@ -104,11 +116,18 @@ gulp.task("copy_lax", copy_lax);
 // gulp.task("add_header", add_fundebug_api);
 gulp.task("add_footer", add_fundebug_api);
 
-function terser_js(done) {
+function terser_phone_number_js(done) {
     gulp.src([phone_number_js_path])
         .pipe(terser())
         .pipe(rename("phone_number.min.js"))
-        .pipe(gulp.dest(static_js_path));
+        .pipe(gulp.dest(phone_number_static_js_path));
+    done();
+}
+function terser_photo_info_js(done) {
+    gulp.src([photo_info_js_path])
+        .pipe(terser())
+        .pipe(rename("photo_info.min.js"))
+        .pipe(gulp.dest(photo_info_static_js_path));
     done();
 }
 
@@ -130,6 +149,11 @@ function copy_fundebug(done) {
 
 function copy_bmj(done) {
     gulp.src([bootstrap_modal_js_js_path, bootstrap_modal_js_min_js_path]).pipe(gulp.dest(static_js));
+    done();
+}
+
+function copy_bs_custom_file_input(done) {
+    gulp.src([bs_custom_file_input_js_path, bs_custom_file_input_min_js_path]).pipe(gulp.dest(static_js));
     done();
 }
 
