@@ -5,4 +5,3 @@
 /static/
 **/node_modules/
 **/vendor/
-**/composer.lock
