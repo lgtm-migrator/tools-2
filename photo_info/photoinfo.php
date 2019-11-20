@@ -8,7 +8,7 @@ if ($_POST) {
 define('title', '照片信息解析');
 require_once '../header.php';
 ?>
-    <link rel="stylesheet" href="/tools/photo_info/css/photo_info.css">
+    <link rel="stylesheet" href="/photo_info/css/photo_info.css">
 
     <div class="container mt-5" id="jt_container">
         <div class="mb-3 d-flex justify-content-center">
@@ -27,7 +27,7 @@ require_once '../header.php';
 
     <div>
         <?php require_once dirname(dirname(__FILE__)) . "/javascript.php"; ?>
-        <script src="/tools/photo_info/js/photo_info.js"></script>
+        <script src="/photo_info/js/photo_info.js"></script>
     </div>
 
 <?php

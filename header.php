@@ -18,10 +18,10 @@
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.11.2/css/all.min.css">
-    <link rel="stylesheet" href="/tools/tools.css">
+    <link rel="stylesheet" href="/tools.css">
     <title><?php echo title; ?></title>
 
-    <script src="/tools/static/js/fundebug.min.js"></script>
+    <script src="/static/js/fundebug.min.js"></script>
 
 
 </head>
@@ -29,7 +29,7 @@
 
 <div id="jt_header">
     <div class="container mt-1" id="logo">
-        <a href="/tools/index.php">
+        <a href="/index.php">
             <span class="logo-img">
                 <!--<img src="" alt="">-->
             </span>

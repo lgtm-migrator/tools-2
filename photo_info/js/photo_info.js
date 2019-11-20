@@ -7,7 +7,7 @@ $().ready(function () {
 let photo_submit = document.querySelector("#photo_submit");
 let photo_input = document.querySelector("#photo_input");
 let photo_label = document.querySelector("#photo_label");
-let photo_url = "/tools/photo_info/photoinfo.php";
+let photo_url = "/photo_info/photoinfo.php";
 
 photo_input.addEventListener("change", function () {
     validation_valid_div(this, "通过");

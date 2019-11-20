@@ -149,7 +149,7 @@ function set_recaptcha_token(site_key, action) {
 }
 
 function get_recaptcha_verify(token_key, pageAction) {
-    let url = "/tools/recaptcha/recaptcha_verify_v3.php";
+    let url = "/recaptcha/recaptcha_verify_v3.php";
     let data = {
         token: token_key,
         action: pageAction,

@@ -18,7 +18,7 @@
     </div>
 </div>
 <div>
-    <script src="/tools/tools.js"></script>
+    <script src="/tools.js"></script>
 </div>
 </body>
 </html>

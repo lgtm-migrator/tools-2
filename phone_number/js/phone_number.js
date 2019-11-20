@@ -4,7 +4,7 @@ let phone_number_submit = document.querySelector("#phone_number_submit");
 
 let add_phone_number_form = document.querySelector("#add_phone_number_form");
 
-let add_phone_number_url = "/tools/phone_number/phonenumber.php";
+let add_phone_number_url = "/phone_number/phonenumber.php";
 
 
 if (add_new_number) add_new_number.addEventListener("click", function (e) {
@@ -237,7 +237,7 @@ if (number_stored) number_stored.addEventListener("click", get_number_stored);
 function get_number_stored() {
     $.ajax({
         type: "post",
-        url: "/tools/phone_number/number_stored.php",
+        url: "/phone_number/number_stored.php",
         dataType: "json",
         timeout: 3000,
         data: {
@@ -266,7 +266,7 @@ let phone_number_input = document.querySelector("#phone_number_input");
 let phone_name_search_btn = document.querySelector("#phone_name_search_btn");
 let phone_number_search_btn = document.querySelector("#phone_number_search_btn");
 let number_list = document.querySelector("#number_list");
-let search_url = "/tools/phone_number/phone_number_search.php";
+let search_url = "/phone_number/phone_number_search.php";
 
 if (phone_name_search_btn) {
     phone_name_search_btn.addEventListener('click', function () {
