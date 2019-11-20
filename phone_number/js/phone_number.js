@@ -4,7 +4,7 @@ let phone_number_submit = document.querySelector("#phone_number_submit");
 
 let add_phone_number_form = document.querySelector("#add_phone_number_form");
 
-let add_phone_number_url = "/phone_number/phonenumber.php";
+let add_phone_number_url = "/phone_number/index.php";
 
 
 if (add_new_number) add_new_number.addEventListener("click", function (e) {

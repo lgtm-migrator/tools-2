@@ -65,7 +65,7 @@ function input_success(element) {
     element.classList.add("is-valid");
 }
 
-function add_spinner_icon(e, spinner_type = null, color = null, position = null) {
+function add_spinner_icon(element, spinner_type = null, color = null, position = null) {
     let load_icon = document.createElement("span");
     switch (spinner_type) {
         case "grow":
@@ -105,24 +105,24 @@ function add_spinner_icon(e, spinner_type = null, color = null, position = null)
             break;
     }
 
-    e.setAttribute("disabled", "disabled");
+    element.setAttribute("disabled", "disabled");
 
     switch (position) {
         case "before":
         case "left":
-            e.insertBefore(load_icon, e.firstChild);
+            element.insertBefore(load_icon, element.firstChild);
             break;
         case "after":
         case "right":
         default:
-            e.appendChild(load_icon);
+            element.appendChild(load_icon);
     }
 }
 
-function remove_spinner_icon(e) {
-    e.removeAttribute("disabled");
-    // e.firstElementChild ? e.removeChild(e.firstElementChild) : "";
-    e.lastElementChild ? e.removeChild(e.lastElementChild) : "";
+function remove_spinner_icon(element) {
+    element.removeAttribute("disabled");
+    // element.firstElementChild ? element.removeChild(element.firstElementChild) : "";
+    element.lastElementChild ? element.removeChild(element.lastElementChild) : "";
 }
 
 

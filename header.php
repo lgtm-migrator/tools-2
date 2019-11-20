@@ -34,11 +34,10 @@
                 <!--<img src="" alt="">-->
             </span>
             <span class="logo-name" title="在线小工具">
-                <h1 class="h4 text-decoration-none text-info" style="display: unset;">在线小工具</h1>
-                <span class="position-relative badge badge-pill badge-danger"
-                      style="bottom:10px;font-size: 0.8rem;">测试版</span>
+                <h1 class="d-inline h5 text-decoration-none text-info">在线小工具</h1>
             </span>
         </a>
+        <span class="position-relative badge badge-pill badge-danger" style="z-index:-1;bottom:10px;font-size: 75%;">测试版</span>
     </div>
 </div>
 <div id="jt_content" style="min-height: 85vh;">
