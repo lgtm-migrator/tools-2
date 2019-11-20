@@ -3,5 +3,5 @@
 
 # Project exclude paths
 /static/
-**/node_modules/
-**/vendor/
+/node_modules/
+/vendor/
