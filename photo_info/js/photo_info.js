@@ -65,9 +65,9 @@ function ajax_images(files) {
             add_spinner_icon(photo_submit);
         },
         success: function (data) {
-            setInterval(function () {
+            setTimeout(function () {
                 remove_spinner_icon(photo_submit);
-            }, 3000);
+            }, 4000);
             console.log("成功");
             console.log(data.result);
         },

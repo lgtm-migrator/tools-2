@@ -51,7 +51,8 @@ function recaptcha_data_to_database($resp_array)
     ));
 
     try {
-        $id = $db->connection("google_recaptcha_data")->insert("jzeg_tools.google_recaptcha_data", $google_recaptcha_data);
+        $db->connection("google_recaptcha_data");
+        $id = $db->insert("jzeg_tools.google_recaptcha_data", $google_recaptcha_data);
     } catch (Exception $e) {
         die($e->getMessage());
     }

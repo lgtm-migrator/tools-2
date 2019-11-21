@@ -13,8 +13,7 @@ require_once '../header.php';
     <div class="container mt-5" id="jt_container">
         <div class="mb-3 d-flex justify-content-center">
             <div class="custom-file col-11 col-sm-8">
-                <input class="custom-file-input" type="file" id="photo_input"
-                       accept="image/jpeg,image/tiff" multiple>
+                <input class="custom-file-input" type="file" name="photo_input" id="photo_input" accept="image/jpeg,image/tiff" multiple>
                 <label class="custom-file-label text-truncate text-info border border-info" for="photo_input"
                        id="photo_label" data-browse="浏览">上传您的照片</label>
             </div>

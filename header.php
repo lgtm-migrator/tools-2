@@ -10,9 +10,6 @@
     <meta name="referrer" content="always">
     <meta http-equiv="Cache-Control" content="no-siteapp">
     <meta http-equiv="Cache-Control" content="no-transform">
-    <noscript>
-        <p class="font-weight-bold">未开启JavaScript</p>
-    </noscript>
 
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
     <!--    <link rel="stylesheet" href="/tools/static/css/bootstrap.min.css">-->
@@ -21,6 +18,18 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.11.2/css/all.min.css">
     <link rel="stylesheet" href="/tools.css">
+
+    <noscript>
+        <div class="container">
+            <div class="my-3 shadow btn-outline-dark border rounded-lg border-success text-center text-danger font-weight-bold h4">
+                <p></p>
+                <p>您当前的浏览器没有开启 JavaScript 功能</p>
+                <p>将会影响您正常使用本网站提供的工具</p>
+                <p>如您需要正常访问本站，请开启 JavaScript 功能</p>
+            </div>
+        </div>
+    </noscript>
+
     <title><?php echo title; ?></title>
 
     <script src="/static/js/fundebug.min.js"></script>
@@ -39,7 +48,8 @@
                 <h1 class="d-inline h5 text-decoration-none text-info">在线小工具</h1>
             </span>
         </a>
-        <span class="position-relative badge badge-pill badge-danger" style="z-index:-1;bottom:10px;font-size: 75%;">测试版</span>
+        <span class="position-relative badge badge-pill badge-danger"
+              style="z-index:-1;bottom:10px;font-size: 75%;">测试版</span>
     </div>
 </div>
 <div id="jt_content" style="min-height: 85vh;">
