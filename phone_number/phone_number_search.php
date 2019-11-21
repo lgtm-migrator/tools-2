@@ -6,6 +6,7 @@ if (filter_has_var(INPUT_POST, 'search_type')) {
 }
 
 $query_key = filter_input(INPUT_POST, 'search_value');
+if ($query_key === "") die("请输入要查询的内容");
 
 $result_columns = ["phone_name", "tel_number", "mobile_number", "department", "phone_nick_name", "note"];
 

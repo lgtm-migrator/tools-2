@@ -97,7 +97,8 @@ for ($i = 0; $i < $data_count; $i++) {
 require_once "../mysqli/mysqli.php";
 
 try {
-    $id = $db->connection("add_phone_number")->insertMulti("phone_number", $phone_number_data);
+    $db->connection("add_phone_number");
+    $id = $db->insertMulti("phone_number", $phone_number_data);
 } catch (Exception $e) {
     die($e->getMessage());
 }

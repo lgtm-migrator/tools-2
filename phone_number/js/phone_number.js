@@ -83,7 +83,7 @@ function create_phone_name() {
     input.setAttribute("maxlength", "15");
     input.placeholder = "单位名称 ";
     input.addEventListener("input", function () {
-        custom_input_check(RegExp_rules.chinese_name, "请输入单位的中文名称 例如：\n掘进一队", this)
+        custom_input_check(RegExp_rules.chinese_name, "请输入单位的中文名称 例如：\n掘进一队", this);
     });
 
     label.appendChild(i);
@@ -188,7 +188,7 @@ function create_btn_del() {
     add_phone_number_form.children[add_phone_number_form.childElementCount - 2].appendChild(a);
     a.addEventListener("click", function (e) {
         e.target.parentElement.parentElement.parentElement.removeChild(e.target.parentElement.parentElement);
-    })
+    });
 }
 
 function add_phone_number() {
@@ -211,7 +211,7 @@ function add_phone_number() {
             result ? bootstrapModalJs('', result, '', '', true) : "";
             console.log(data);
             if (data["data"]) {
-                bootstrapModalJs('', JSON.stringify(data["data"]), '', '', true)
+                bootstrapModalJs('', JSON.stringify(data["data"]), '', '', true);
             }
         },
         error: function (data) {
@@ -270,26 +270,23 @@ let search_url = "/phone_number/phone_number_search.php";
 
 if (phone_name_search_btn) {
     phone_name_search_btn.addEventListener('click', function () {
-        check_search_value();
-        search_query("name");
+        check_search_value("name");
     });
 }
 if (phone_number_search_btn) {
     phone_number_search_btn.addEventListener('click', function () {
-        check_search_value();
-        search_query("number");
+        check_search_value("number");
     });
 }
 
-function check_search_value() {
+function check_search_value(check_type) {
     let search_value = phone_number_input.value;
-    let search_value_rule = RegExp_rules.zh_cn_number.test(search_value);
     if (search_value.length === 0) {
         bootstrapModalJs('', '请输入您要查询的单位名称或号码', '', '', true);
-    } else if (!search_value_rule) {
-        bootstrapModalJs('', '请输入单独的单位名称或者号码', '', '', true);
+        return false;
+    } else {
+        search_query(check_type);
     }
-    console.log(phone_number_input.value);
 }
 
 function search_query(search_type = "name") {
@@ -308,15 +305,19 @@ function ajax_search(search_data) {
         data: search_data,
         dataType: "json",
         success: function (data) {
-            console.log('成功');
             get_search_result(data);
-            console.log(data);
         },
         error: function (data) {
             let responseText = data.responseText;
-            console.log("失败");
+            let status = data.status;
+            if (status === 500 && responseText === "") {
+                bootstrapModalJs('', "查询失败，网络连接出错", '', '', true);
+            } else if (status <= 500 && responseText !== "") {
+                bootstrapModalJs('', responseText, '', '', true);
+            } else {
+                bootstrapModalJs('', "未知查询错误", '', '', true);
+            }
             console.log(data);
-            console.log(responseText);
         }
     });
 }
@@ -326,7 +327,7 @@ function get_search_result(data) {
     if (data_length) {
         processing_search_result(data);
     } else {
-        bootstrapModalJs('', "暂时没有找到您要查找的号码", '', '', true)
+        bootstrapModalJs('', "暂时没有找到您要查找的号码", '', '', true);
     }
 }
 
@@ -337,7 +338,6 @@ function processing_search_result(data) {
         create_number_list(data[i]);
     }
     number_list_child();
-
 }
 
 function create_number_list(data) {
