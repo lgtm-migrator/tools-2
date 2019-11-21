@@ -14,7 +14,7 @@ let photo_url = "/photo_info/photo_info.php";
 //     input_success(this);
 // });
 photo_submit.addEventListener("click", function () {
-    submit_images(photo_input);
+    ajax_images(photo_input);
     set_recaptcha_action("photo_info");
 });
 
@@ -28,12 +28,11 @@ function validation_files_type(element) {
 
 function get_images(element) {
     let images = element.files;
+    let formData = new FormData(element);
+    formData.append("MAX_FILE_SIZE", 100000);
     if (1 + 1) {
         console.table(images);
-        // return images;
-        return JSON.stringify({
-            "111": "222",// d1111111111111111
-        });
+        return formData;
     } else {
         return false;
     }
@@ -51,18 +50,17 @@ function submit_images(element) {
 }
 
 function ajax_images(files) {
-    let data = {
-        "MAX_FILE_SIZE": 100000,
-        "photo_files": files,
-    };
+    // console.log(files);
+    // console.log(files.files);
     $.ajax({
         url: photo_url,
         method: "post",
         cache: false,
-        timeout: 100000,
+        processData: false,
         contentType: "multipart/form-data",
+        timeout: 100000,
         dataType: "json",
-        data: data,
+        data: files.files,
         beforeSend: function () {
             add_spinner_icon(photo_submit);
         },

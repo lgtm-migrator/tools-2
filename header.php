@@ -13,6 +13,8 @@
     <noscript>
         <p class="font-weight-bold">未开启JavaScript</p>
     </noscript>
+
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
     <!--    <link rel="stylesheet" href="/tools/static/css/bootstrap.min.css">-->
     <!--    <link rel="stylesheet" href="/tools/static/font/css/all.min.css">-->
 
