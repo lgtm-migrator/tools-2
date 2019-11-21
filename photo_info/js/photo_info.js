@@ -21,7 +21,7 @@ photo_submit.addEventListener("click", ajax_images);
 
 
 function ajax_images() {
-    // set_recaptcha_action("info_test");
+    set_recaptcha_action("photo_info");
     let form_data = new FormData(photo_form);
     console.log(photo_input.files);
 
