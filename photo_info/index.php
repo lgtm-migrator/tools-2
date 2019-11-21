@@ -11,13 +11,15 @@ require_once '../header.php';
     <link rel="stylesheet" href="/photo_info/css/photo_info.css">
 
     <div class="container mt-5" id="jt_container">
-        <div class="mb-3 d-flex justify-content-center">
+        <form method="post" action="/photo_info/photo_info.php" class="mb-3 form-row justify-content-center">
             <div class="custom-file col-11 col-sm-8">
-                <input class="custom-file-input" type="file" name="photo_input" id="photo_input" accept="image/jpeg,image/tiff" multiple>
+                <input type="hidden" name="MAX_FILE_SIZE" value="3000000000000">
+                <input class="custom-file-input" type="file" id="photo_input" name="photo_input[]" multiple="multiple"
+                       accept="image/jpeg,image/tiff,image/png">
                 <label class="custom-file-label text-truncate text-info border border-info" for="photo_input"
                        id="photo_label" data-browse="浏览">上传您的照片</label>
             </div>
-        </div>
+        </form>
         <div class="d-flex justify-content-center">
             <a href="javascript:" class="mx-2 btn btn-outline-success" id="photo_submit" style="z-index: 1;">
                 <i class="fas fa-image">&nbsp;&nbsp;</i>提交</a>

@@ -23,8 +23,6 @@ require_once dirname(dirname(__FILE__)) . "/defined.php";
 $allowed_extension_name = array("jfif", "pjpeg", "jpeg", "pjp", "jpg", "tiff", "tif");
 $disallow_extension_name = array("exe", "bat", "sh", "d");
 
-$uploads_dir = "D:/wwwroot/tools/upload/";
-
 foreach ($image_files["error"] as $k => $error) {
     if ($error === 0) {
         $tmp_file = $image_files['tmp_name'][$k];
@@ -32,9 +30,10 @@ foreach ($image_files["error"] as $k => $error) {
         if (is_uploaded_file($tmp_file)) {
             if (!file_exists(UPLOAD_DIR_YMD . $name_file)) {
                 if (!file_exists(UPLOAD_DIR_YMD)) mk_dir(UPLOAD_DIR_YMD);
-                move_uploaded_file($tmp_file, UPLOAD_DIR_YMD . $name_file);
+                $move_file_result = move_uploaded_file($tmp_file, UPLOAD_DIR_YMD . $name_file);
+                echo "<span class='text-success'>" . $name_file . "</span>" . ($move_file_result ? "上传成功<br>\n" : "上传失败，请重试一次。<br>\n");
             } else {
-                echo '您上传的文件 ' . $name_file . ' 已经存在' . "\n";
+                echo "您的文件<span class='text-success'>" . $name_file . "</span>已经上传完成。<br>\n";
             }
         }
     }
