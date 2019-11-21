@@ -31,9 +31,9 @@ foreach ($image_files["error"] as $k => $error) {
             if (!file_exists(UPLOAD_DIR_YMD . $name_file)) {
                 if (!file_exists(UPLOAD_DIR_YMD)) mk_dir(UPLOAD_DIR_YMD);
                 $move_file_result = move_uploaded_file($tmp_file, UPLOAD_DIR_YMD . $name_file);
-                echo "<span class='text-success'>" . $name_file . "</span>" . ($move_file_result ? "上传成功<br>\n" : "上传失败，请重试一次。<br>\n");
+                echo "<span class='text-success'>" . $name_file . "</span>" . ($move_file_result ? "上传成功了<br>\n" : "上传失败，请重试一次。<br>\n");
             } else {
-                echo "您的文件<span class='text-success'>" . $name_file . "</span>已经上传完成。<br>\n";
+                echo "您的文件<span class='text-success'>" . $name_file . "</span>以前已经上传过了。<br>\n";
             }
         }
     }
