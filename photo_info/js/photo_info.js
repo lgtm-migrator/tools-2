@@ -57,6 +57,7 @@ function upload_files_check(input) {
 
     let files_length_text = "请上传您要查看信息的照片。<br>" +
         "<span class='text-danger'><b>本站不存储您上传的照片，请您保存好您自己的照片。</b></span><br>" +
+        "<span class='text-danger'><b>本站不接受重复监测同一张照片的信息。</b></span><br>" +
         "上传文件数量上限：<span class='text-success'><b>4</b></span><br>" +
         "文件尺寸上限：<span class='text-success'><b>10MB</b></span><br>" +
         "每个人每天上传上限：<span class='text-success'><b>1</b> </span>次<br>";
