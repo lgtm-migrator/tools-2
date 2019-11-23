@@ -14,7 +14,9 @@ let photo_url = "/photo_info/photo_info.php";
 //     e.preventDefault();
 // });
 
-photo_submit.addEventListener("click", upload_files_check);
+photo_submit.addEventListener("click", function () {
+    upload_files_check(photo_input);
+});
 
 function ajax_images() {
     set_recaptcha_action("photo_info");
@@ -48,12 +50,18 @@ function ajax_images() {
 }
 
 function upload_files_check(input) {
-    let files = photo_input.files;
+    let files = input.files;
     let files_length = photo_input.files.length;
     let max_file_size_value = document.body.querySelector("input[name=MAX_FILE_SIZE]").value;
     let tip = "";
 
-    if (files_length === 0) bootstrapModalJs("", "上传文件数量上限是4个<br>文件尺寸上限是10MB<br>", "", "", true);
+    let files_length_text = "请上传您要查看信息的照片。<br>" +
+        "<span class='text-danger'><b>本站不存储您上传的照片，请您保存好您自己的照片。</b></span><br>" +
+        "上传文件数量上限：<span class='text-success'><b>4</b></span><br>" +
+        "文件尺寸上限：<span class='text-success'><b>10MB</b></span><br>" +
+        "每个人每天上传上限：<span class='text-success'><b>1</b> </span>次<br>";
+
+    if (files_length === 0) bootstrapModalJs("", files_length_text, "", "", true);
     if (files_length > 4) bootstrapModalJs("", "上传文件数量请不要超过4个", "", "", true);
     console.log(files);
 
