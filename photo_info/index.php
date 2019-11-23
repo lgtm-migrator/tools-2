@@ -13,7 +13,7 @@ require_once '../header.php';
     <div class="container mt-5" id="jt_container">
         <form method="post" action="/photo_info/photo_info.php" class="mb-3 form-row justify-content-center">
             <div class="custom-file col-11 col-sm-8">
-                <input type="hidden" name="MAX_FILE_SIZE" value="3000000000000">
+                <input type="hidden" name="MAX_FILE_SIZE" value="10000000">
                 <input class="custom-file-input" type="file" id="photo_input" name="photo_input[]" multiple="multiple"
                        accept="image/jpeg,image/tiff,image/png">
                 <label class="custom-file-label text-truncate text-info border border-info" for="photo_input"

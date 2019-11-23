@@ -4,7 +4,7 @@ require_once "../vendor/autoload.php";
 
 
 $db = new MysqliDb();
-$db->addConnection("number_stored", array(
+$db_addConnection_params = array(
     'host' => $db_host,
     'username' => $db_user,
     'password' => $db_pwd,
@@ -12,28 +12,11 @@ $db->addConnection("number_stored", array(
 //        'port' => 3306,
 //        'prefix' => '',
 //        'charset' => 'utf8'
-));
-
-$db->addConnection("add_phone_number", array(
-    'host' => $db_host,
-    'username' => $db_user,
-    'password' => $db_pwd,
-    'db' => $db_database,
-//        'port' => 3306,
-//        'prefix' => '',
-//        'charset' => 'utf8'
-));
-
-$db->addConnection("phone_number_search", array(
-    'host' => $db_host,
-    'username' => $db_user,
-    'password' => $db_pwd,
-    'db' => $db_database,
-//        'port' => 3306,
-//        'prefix' => '',
-//        'charset' => 'utf8'
-));
-
+);
+$db->addConnection("number_stored", $db_addConnection_params);
+$db->addConnection("add_phone_number", $db_addConnection_params);
+$db->addConnection("phone_number_search", $db_addConnection_params);
+$db->addConnection("photo_info", $db_addConnection_params);
 
 
 function table_num_rows($database_table)
