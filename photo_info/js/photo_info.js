@@ -14,6 +14,7 @@ let photo_url = "/photo_info/photo_info.php";
 let files_upload_rule_btn = document.body.querySelector("#files_upload_rule_btn");
 
 let files_upload_rule_text = "<div style='font-size: 80%;'>" +
+    "<span class='text-danger'><b>如若您不同意以下规则任意一条，请不要上传照片即可。</b></span><br>" +
     "<span class='text-danger'><b>本站不存储您上传的照片，请您保存好您自己的照片。</b></span><br>" +
     "<span class='text-danger'><b><del>不接受重复监测同一张照片的信息。</del></b></span><br>" +
     `<span class='text-dark'><b>3个/次/${get_file_size(max_file_size_value)}/日/IP</b></span><br>` +
