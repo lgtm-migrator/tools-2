@@ -29,10 +29,10 @@ if (files_upload_rule_btn) {
     });
 }
 
-photo_submit.addEventListener("click", ajax_images);
-// photo_submit.addEventListener("click", function () {
-//     upload_files_check(photo_input);
-// });
+// photo_submit.addEventListener("click", ajax_images);
+photo_submit.addEventListener("click", function () {
+    upload_files_check(photo_input);
+});
 
 function ajax_images() {
     // set_recaptcha_action("photo_info");

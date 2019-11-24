@@ -20,7 +20,7 @@ require_once '../header.php';
                        id="photo_label" data-browse="浏览">上传您的照片</label>
             </div>
         </form>
-        <div class="mb-3 d-flex justify-content-center custom-control custom-checkbox" id="rule">
+        <div class="mb-3 d-flex justify-content-center custom-control custom-checkbox sr-only" id="rule">
             <input class="custom-control-input is-invalid" type="checkbox" id="files_upload_rule_input">
             <label class="custom-control-label" for="files_upload_rule_input">
                 勾选左侧选框视为同意
@@ -33,7 +33,7 @@ require_once '../header.php';
         </div>
     </div>
 
-    <div class="container mt-5 d-flex no-gutters justify-content-center">
+    <div class="container mt-5 d-flex no-gutters justify-content-center sr-only">
         <div class="col-8">
             <div class="progress" id="upload_file_progress">
                 <div class="progress-bar progress-bar-striped progress-bar-animated" style="width: 80%">80%</div>
