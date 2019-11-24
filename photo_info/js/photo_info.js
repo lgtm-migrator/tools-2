@@ -1,10 +1,10 @@
+/** bsCustomFileInput **/
 $().ready(function () {
     bsCustomFileInput.init()
 });
 
 
 /** 提交图片 **/
-
 let photo_input = document.body.querySelector("#photo_input");
 let photo_submit = document.body.querySelector("#photo_submit");
 let photo_form = document.body.querySelector("form");
@@ -29,10 +29,10 @@ if (files_upload_rule_btn) {
     });
 }
 
-// photo_submit.addEventListener("click", ajax_images);
-photo_submit.addEventListener("click", function () {
-    upload_files_check(photo_input);
-});
+photo_submit.addEventListener("click", ajax_images);
+// photo_submit.addEventListener("click", function () {
+//     upload_files_check(photo_input);
+// });
 
 function ajax_images() {
     // set_recaptcha_action("photo_info");
@@ -171,3 +171,6 @@ function get_file_size(file_size) {
     return file_size;
 }
 
+
+/** 进度条 **/
+let upload_file_progress = document.body.querySelector("#upload_file_progress");

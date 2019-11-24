@@ -40,14 +40,25 @@ foreach ($image_files["error"] as $k => $error) {
     $file_size = $image_files['size'][$k];
 
     if (in_array($ext_name, $allowed_extension_name)) {
-        if ($error === 0 && is_uploaded_file($tmp_file_name)) {
-            //todo:改为数据库匹配图像识别字符串来判断文件是否上传过，用来达到不保存用户图片文件的目的。
-            if (!file_exists(UPLOAD_DIR_YMD . $file_name)) {
-                if (!file_exists(UPLOAD_DIR_YMD)) mk_dir(UPLOAD_DIR_YMD);
-                $move_file_result = move_uploaded_file($tmp_file_name, UPLOAD_DIR_YMD . $file_name);
-                $result['message']['success'][] = "<span class='text-success'>" . $file_name . "</span>" . ($move_file_result ? "上传成功了" : "上传失败，请重试一次。");
+        if ($error === 0) {
+            if (is_uploaded_file($tmp_file_name)) {
+                //todo:改为数据库匹配图像识别字符串来判断文件是否上传过，用来达到不保存用户图片文件的目的。
+                if (!file_exists(UPLOAD_DIR_YMD . $file_name)) {
+                    if (!file_exists(UPLOAD_DIR_YMD)) mk_dir(UPLOAD_DIR_YMD);
+                    $move_file_result = move_uploaded_file($tmp_file_name, UPLOAD_DIR_YMD . $file_name);
+
+                    if ($move_file_result) {
+                        $result['message']['success'][] = "<span class='text-success'>" . $file_name . "</span>" . ("上传成功了");
+                    } else {
+                        $result['message']['success'][] = "<span class='text-success'>" . $file_name . "</span>" . ("上传失败，请重试一次。");
+                        $result['message']['failed'][] = $file_name;
+                    }
+
+                } else {
+                    $result['message']['failed'][] = "您的文件<span class='text-success'>" . $file_name . "</span>以前已经上传过了。";
+                }
             } else {
-                $result['message']['failed'][] = "您的文件<span class='text-success'>" . $file_name . "</span>以前已经上传过了。";
+                $result['error']['invalid'][] = $file_name;
             }
         } else {
             switch ($error) {

@@ -33,13 +33,24 @@ require_once '../header.php';
         </div>
     </div>
 
-    <div class="upload_preview sr-only" id="preview">
-        <div id="upload_list_0" class="upload_list">
-            <a href="javascript:" class="upload_img">
-                <img id="uploadImage_0" class="upload_image" src="">
-            </a>
+    <div class="container mt-5 d-flex no-gutters justify-content-center">
+        <div class="col-8">
+            <div class="progress" id="upload_file_progress">
+                <div class="progress-bar progress-bar-striped progress-bar-animated" style="width: 80%">80%</div>
+            </div>
         </div>
     </div>
+
+    <div class="container mt-5 sr-only">
+        <div class="upload_preview" id="preview">
+            <div id="upload_list_0" class="upload_list">
+                <a href="javascript:" class="upload_img">
+                    <img id="uploadImage_0" class="upload_image" src="">
+                </a>
+            </div>
+        </div>
+    </div>
+
 
     <div>
         <?php require_once dirname(dirname(__FILE__)) . "/javascript.php"; ?>
