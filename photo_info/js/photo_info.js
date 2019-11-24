@@ -19,7 +19,7 @@ photo_submit.addEventListener("click", function () {
 });
 
 function ajax_images() {
-    set_recaptcha_action("photo_info");
+    // set_recaptcha_action("photo_info");
 
     let form_data = new FormData(photo_form);
 
@@ -29,8 +29,7 @@ function ajax_images() {
         cache: false,
         processData: false,
         contentType: false,
-        // contentType: "multipart/form-data",
-        timeout: 100000000,
+        timeout: 20000,
         // dataType: "json",
         data: form_data,
         beforeSend: function () {
@@ -51,32 +50,39 @@ function ajax_images() {
 
 function upload_files_check(input) {
     let files = input.files;
-    let files_length = photo_input.files.length;
-    let max_file_size_value = document.body.querySelector("input[name=MAX_FILE_SIZE]").value;
-    let tip = "";
+    let files_length = input.files.length;
+    let max_file_size_value = parseInt(document.body.querySelector("input[name=MAX_FILE_SIZE]").value);
+    let files_size_tips = "";
 
     let files_length_text = "请上传您要查看信息的照片。<br>" +
         "<span class='text-danger'><b>本站不存储您上传的照片，请您保存好您自己的照片。</b></span><br>" +
-        "<span class='text-danger'><b>本站不接受重复监测同一张照片的信息。</b></span><br>" +
-        "上传文件数量上限：<span class='text-success'><b>4</b></span><br>" +
-        "文件尺寸上限：<span class='text-success'><b>20MB</b></span><br>" +
-        "每个人每天上传上限：<span class='text-success'><b>1</b> </span>次<br>";
+        "<span class='text-danger'><b>不接受重复监测同一张照片的信息。</b></span><br>" +
+        `<span class='text-dark'><b>3个/次/${get_file_size(max_file_size_value)}/日/IP</b></span><br>` +
+        "上传文件数量上限：<span class='text-success'><b>3</b></span><br>" +
+        `文件尺寸上限：<span class='text-success'><b>${get_file_size(max_file_size_value)}</b></span><br>` +
+        "上传上限：<span class='text-success'><b>1次/日/IP</b> </span><br>";
 
     if (files_length === 0) bootstrapModalJs("", files_length_text, "", "", true);
-    if (files_length > 4) bootstrapModalJs("", "上传文件数量请不要超过4个", "", "", true);
-    console.log(files);
 
-    for (let i = 0; i < files_length; i++) {
-        if (files[i]["size"] > max_file_size_value) {
-            tip += files[i]["name"] + "<br>";
+    if (files_length > 3) {
+        bootstrapModalJs("", "上传文件数量请不要超过3个", "", "", true);
+    } else {
+        for (let i = 0; i < files_length; i++) {
+            if (files[i]["size"] > max_file_size_value) {
+                files_size_tips += files[i]["name"] + "<br>";
+            }
         }
+
+        if (files_size_tips.length > 0) {
+            let xx = "以下文件尺寸超过 " + get_file_size(max_file_size_value) + "：<br>" + files_size_tips;
+            bootstrapModalJs("", xx, "", "", true);
+        } else if (files_size_tips.length === 0 && files_length > 0) {
+            ajax_images();
+        }
+
     }
 
-    if (tip.length > 0) {
-        bootstrapModalJs("", "以下文件尺寸超过10MB：<br>" + tip, "", "", true);
-    } else if (tip.length === 0 && files_length > 0) {
-        ajax_images();
-    }
+
 
 }
 
@@ -128,3 +134,18 @@ function for_i_result(length, array, result) {
         }
     }
 }
+
+function get_file_size(file_size) {
+    file_size = typeof file_size === "number" ? file_size : parseInt(file_size);
+    if (file_size >= 1073741824) {
+        file_size = ((file_size / 1073741824 * 100) / 100).toFixed(2) + " GB";
+    } else if (file_size >= 1048576) {
+        file_size = ((file_size / 1048576 * 100) / 100).toFixed(2) + " MB";
+    } else if (file_size >= 1024) {
+        file_size = ((file_size / 1024 * 100) / 100).toFixed(2) + " KB";
+    } else {
+        file_size = file_size + " byte";
+    }
+    return file_size;
+}
+

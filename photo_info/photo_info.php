@@ -1,8 +1,8 @@
 <?php
 if ($_POST) {
     if (isset($_POST['MAX_FILE_SIZE']) && $_FILES !== null) {
+        if (count($_FILES['name']) > 3) die("最多上传3个文件");
         $image_files = $_FILES['photo_input'];
-        if (count($image_files['name']) > 4) die("请上传少于4个文件");
     } else {
         die("数据错误");
     }
@@ -15,7 +15,6 @@ require_once dirname(dirname(__FILE__)) . "/config/defined.php";
 require_once "photo_info_fun.php";
 
 $allowed_extension_name = array("jfif", "pjpeg", "jpeg", "pjp", "jpg", "tiff", "tif");
-$disallow_extension_name = array("exe", "bat", "sh", "d");
 
 
 $result = array(
