@@ -21,8 +21,8 @@ require_once '../header.php';
             </div>
         </form>
         <div class="mb-3 d-flex justify-content-center custom-control custom-checkbox" id="rule">
-            <input class="custom-control-input is-invalid" type="checkbox" id="files_upload_rule">
-            <label class="custom-control-label" for="files_upload_rule">
+            <input class="custom-control-input is-invalid" type="checkbox" id="files_upload_rule_input">
+            <label class="custom-control-label" for="files_upload_rule_input">
                 勾选左侧选框视为同意
                 <a href="javascript:" class="text-danger" id="files_upload_rule_btn" title="查看规则">《照片上传规则》</a>
             </label>

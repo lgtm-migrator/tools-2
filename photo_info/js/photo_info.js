@@ -10,7 +10,6 @@ let photo_submit = document.body.querySelector("#photo_submit");
 let photo_form = document.body.querySelector("form");
 let max_file_size_value = parseInt(document.body.querySelector("input[name=MAX_FILE_SIZE]").value);
 let photo_url = "/photo_info/photo_info.php";
-
 let files_upload_rule_btn = document.body.querySelector("#files_upload_rule_btn");
 
 let files_upload_rule_text = "<div style='font-size: 80%;'>" +
@@ -30,10 +29,10 @@ if (files_upload_rule_btn) {
     });
 }
 
-photo_submit.addEventListener("click", ajax_images);
-// photo_submit.addEventListener("click", function () {
-//     upload_files_check(photo_input);
-// });
+// photo_submit.addEventListener("click", ajax_images);
+photo_submit.addEventListener("click", function () {
+    upload_files_check(photo_input);
+});
 
 function ajax_images() {
     // set_recaptcha_action("photo_info");
