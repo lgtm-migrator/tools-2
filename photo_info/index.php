@@ -20,10 +20,11 @@ require_once '../header.php';
                        id="photo_label" data-browse="浏览">上传您的照片</label>
             </div>
         </form>
-        <div class="d-flex justify-content-center custom-control" style="font-size: 75%;">
-            <input class="custom-control-input" type="checkbox" name="" id="rule">
-            <label class="custom-control-label" for="rule">勾选左侧选框视为同意
-                <span id="files_upload_rule_btn">《照片上传规则》</span>
+        <div class="mb-3 d-flex justify-content-center custom-control custom-checkbox" id="rule">
+            <input class="custom-control-input is-invalid" type="checkbox" id="files_upload_rule">
+            <label class="custom-control-label" for="files_upload_rule">
+                勾选左侧选框视为同意
+                <a href="javascript:" class="text-danger" id="files_upload_rule_btn" title="查看规则">《照片上传规则》</a>
             </label>
         </div>
         <div class="d-flex justify-content-center">

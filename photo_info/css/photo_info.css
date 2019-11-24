@@ -8,12 +8,21 @@
     content: attr(data-browse);
 }
 
-.custom-control-label::after {
+#rule {
+    font-size: 75%;
 }
 
-.custom-control-label::before {
+.custom-control-label::before,
+.custom-control-label::after {
     top: 0.2rem;
     left: -1.2rem;
     width: 0.8rem;
     height: 0.8rem;
 }
+
+/*.custom-control-label::after {*/
+/*    top: .25rem;*/
+/*    left: -1.5rem;*/
+/*    width: 1rem;*/
+/*    height: 1rem;*/
+/*}*/
