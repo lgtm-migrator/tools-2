@@ -15,7 +15,7 @@ let files_upload_rule_btn = document.body.querySelector("#files_upload_rule_btn"
 
 let files_upload_rule_text = "<div style='font-size: 80%;'>" +
     "<span class='text-danger'><b>本站不存储您上传的照片，请您保存好您自己的照片。</b></span><br>" +
-    "<span class='text-danger'><b>不接受重复监测同一张照片的信息。</b></span><br>" +
+    "<span class='text-danger'><b><del>不接受重复监测同一张照片的信息。</del></b></span><br>" +
     `<span class='text-dark'><b>3个/次/${get_file_size(max_file_size_value)}/日/IP</b></span><br>` +
     "文件数量上限：<span class='text-success'><b>3</b></span><br>" +
     `文件尺寸上限：<span class='text-success'><b>${get_file_size(max_file_size_value)}</b></span><br>` +
@@ -29,9 +29,10 @@ if (files_upload_rule_btn) {
     });
 }
 
-photo_submit.addEventListener("click", function () {
-    upload_files_check(photo_input);
-});
+photo_submit.addEventListener("click", ajax_images);
+// photo_submit.addEventListener("click", function () {
+//     upload_files_check(photo_input);
+// });
 
 function ajax_images() {
     // set_recaptcha_action("photo_info");
@@ -52,10 +53,10 @@ function ajax_images() {
         },
         success: function (data) {
             remove_spinner_icon(photo_submit);
-            // console.log(JSON.parse(data));
             ajax_result_success(data);
         },
         error: function (error) {
+            ajax_result_failed(error);
             if (error.length) bootstrapModalJs('', error, '', '', true);
             console.log("失败");
             console.log(error);
@@ -101,6 +102,12 @@ function upload_files_check(input) {
 
 }
 
+function ajax_result_failed(data) {
+}
+
+function ajax_result_error(data) {
+}
+
 function ajax_result_success(data) {
     let result = JSON.parse(data);
     console.log(JSON.parse(data));
@@ -109,9 +116,9 @@ function ajax_result_success(data) {
     let result_message_success = "";
     let result_message_failed = "";
 
-    let result_error_length = result["error"].length;
-    let result_success_length = result["message"]["success"].length;
-    let result_failed_length = result["message"]["failed"].length;
+    let result_error_length = result["error"] ? result["error"].length : "";
+    let result_success_length = result["message"]["success"] ? result["message"]["success"].length : "";
+    let result_failed_length = result["message"]["failed"] ? result["message"]["failed"].length : "";
 
     if (result_error_length > 0) {
         for (let x = result_error_length, i = 0; i < x; i++) {

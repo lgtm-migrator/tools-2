@@ -7,3 +7,13 @@
 .custom-file-label[data-browse]::after {
     content: attr(data-browse);
 }
+
+.custom-control-label::after {
+}
+
+.custom-control-label::before {
+    top: 0.2rem;
+    left: -1.2rem;
+    width: 0.8rem;
+    height: 0.8rem;
+}
