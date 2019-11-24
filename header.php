@@ -12,11 +12,12 @@
     <meta http-equiv="Cache-Control" content="no-transform">
 
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
-    <!--    <link rel="stylesheet" href="/tools/static/css/bootstrap.min.css">-->
-    <!--    <link rel="stylesheet" href="/tools/static/font/css/all.min.css">-->
+    <link rel="stylesheet" href="/static/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/font/css/all.min.css">
 
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.11.2/css/all.min.css">
+    <!--    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css">-->
+    <!--    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.11.2/css/all.min.css">-->
+
     <link rel="stylesheet" href="/tools.css">
 
     <noscript>

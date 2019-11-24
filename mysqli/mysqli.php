@@ -8,16 +8,24 @@ $db_addConnection_params = array(
     'host' => $db_host,
     'username' => $db_user,
     'password' => $db_pwd,
-    'db' => "information_schema",
+    'db' => $db_database,
 //        'port' => 3306,
 //        'prefix' => '',
 //        'charset' => 'utf8'
 );
-$db->addConnection("number_stored", $db_addConnection_params);
 $db->addConnection("add_phone_number", $db_addConnection_params);
 $db->addConnection("phone_number_search", $db_addConnection_params);
 $db->addConnection("photo_info", $db_addConnection_params);
 
+$db->addConnection("number_stored", array(
+    'host' => $db_host,
+    'username' => $db_user,
+    'password' => $db_pwd,
+    'db' => "information_schema",
+//        'port' => 3306,
+//        'prefix' => '',
+//        'charset' => 'utf8'
+));
 
 function table_num_rows($database_table)
 {
