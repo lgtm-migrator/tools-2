@@ -33,37 +33,47 @@ $allowed_extension_name = array("jfif", "pjpeg", "jpeg", "pjp", "jpg", "tiff", "
 
 
 foreach ($image_files["error"] as $k => $error) {
-    $tmp_file = $image_files['tmp_name'][$k];
-    $name_file = $image_files['name'][$k];
-    if ($error === 0) {
-        if (is_uploaded_file($tmp_file)) {
-            if (!file_exists(UPLOAD_DIR_YMD . $name_file)) {
+    $tmp_file_name = $image_files['tmp_name'][$k];
+    $file_name = $image_files['name'][$k];
+    $ext_name = get_file_ext_name($file_name);
+    $file_type = $image_files['type'][$k];
+    $file_size = $image_files['size'][$k];
+
+    if (in_array($ext_name, $allowed_extension_name)) {
+        if ($error === 0 && is_uploaded_file($tmp_file_name)) {
+            //todo:改为数据库匹配图像识别字符串来判断文件是否上传过，用来达到不保存用户图片文件的目的。
+            if (!file_exists(UPLOAD_DIR_YMD . $file_name)) {
                 if (!file_exists(UPLOAD_DIR_YMD)) mk_dir(UPLOAD_DIR_YMD);
-                $move_file_result = move_uploaded_file($tmp_file, UPLOAD_DIR_YMD . $name_file);
-                $result['message']['success'][] = "<span class='text-success'>" . $name_file . "</span>" . ($move_file_result ? "上传成功了" : "上传失败，请重试一次。");
+                $move_file_result = move_uploaded_file($tmp_file_name, UPLOAD_DIR_YMD . $file_name);
+                $result['message']['success'][] = "<span class='text-success'>" . $file_name . "</span>" . ($move_file_result ? "上传成功了" : "上传失败，请重试一次。");
             } else {
-                $result['message']['failed'][] = "您的文件<span class='text-success'>" . $name_file . "</span>以前已经上传过了。";
+                $result['message']['failed'][] = "您的文件<span class='text-success'>" . $file_name . "</span>以前已经上传过了。";
+            }
+        } else {
+            switch ($error) {
+                case 1:
+                case 2:
+                case 3:
+                case 5:
+                case 6:
+                case 7:
+                case 8:
+                    $result['error'][$error][] = $file_name;
+                    break;
+                case 4:
+                    //todo:待调试文件上传状态
+                    $result['error'][$error][] = !$file_name ? "未上传文件" : $file_name . "文件上传不完整。";
+                    break;
+                default:
+                    $result['error'][$error][] = "未知错误";
             }
         }
     } else {
-        switch ($error) {
-            case 1:
-            case 2:
-            case 3:
-            case 5:
-            case 6:
-            case 7:
-            case 8:
-                $result['error'][$error][] = $name_file;
-                break;
-            case 4:
-                //todo:待调试
-                $result['error'][$error][] = !$name_file ? "未上传文件" : $name_file . "文件上传不完整。";
-                break;
-            default:
-                $result['error'][$error][] = "未知错误";
-        }
+        if (file_exists($tmp_file_name)) unlink($tmp_file_name);
+        $result['error']['ext_name'][] = $file_name;
     }
+
+
 }
 
 die(json_encode($result));
