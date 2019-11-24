@@ -23,6 +23,9 @@ require_once '../header.php';
         <div class="d-flex justify-content-center">
             <a href="javascript:" class="mx-2 btn btn-outline-success" id="photo_submit" style="z-index: 1;">
                 <i class="fas fa-image">&nbsp;&nbsp;</i>提交</a>
+            <a href="javascript:" class='ml-2 bg-danger' id='files_upload_rule_btn' title="规则" style="width: 0;height: 0;">
+                <i class='text-muted     far fa-question-circle'></i>
+            </a>
         </div>
     </div>
 

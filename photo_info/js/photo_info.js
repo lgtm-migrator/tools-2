@@ -8,11 +8,26 @@ $().ready(function () {
 let photo_input = document.body.querySelector("#photo_input");
 let photo_submit = document.body.querySelector("#photo_submit");
 let photo_form = document.body.querySelector("form");
+let max_file_size_value = parseInt(document.body.querySelector("input[name=MAX_FILE_SIZE]").value);
 let photo_url = "/photo_info/photo_info.php";
 
-// photo_form.addEventListener("submit", function (e) {
-//     e.preventDefault();
-// });
+let files_upload_rule_btn = document.body.querySelector("#files_upload_rule_btn");
+
+let files_upload_rule_text = "<div style='font-size: 80%;'>" +
+    "<span class='text-danger'><b>本站不存储您上传的照片，请您保存好您自己的照片。</b></span><br>" +
+    "<span class='text-danger'><b>不接受重复监测同一张照片的信息。</b></span><br>" +
+    `<span class='text-dark'><b>3个/次/${get_file_size(max_file_size_value)}/日/IP</b></span><br>` +
+    "文件数量上限：<span class='text-success'><b>3</b></span><br>" +
+    `文件尺寸上限：<span class='text-success'><b>${get_file_size(max_file_size_value)}</b></span><br>` +
+    "每日上传次数上限：<span class='text-success'><b>1次/日/IP</b></span><br>" +
+    "</div>";
+
+
+if (files_upload_rule_btn) {
+    files_upload_rule_btn.addEventListener("click", function () {
+        bootstrapModalJs("", files_upload_rule_text, "", "", true);
+    });
+}
 
 photo_submit.addEventListener("click", function () {
     upload_files_check(photo_input);
@@ -51,16 +66,11 @@ function ajax_images() {
 function upload_files_check(input) {
     let files = input.files;
     let files_length = input.files.length;
-    let max_file_size_value = parseInt(document.body.querySelector("input[name=MAX_FILE_SIZE]").value);
     let files_size_tips = "";
 
-    let files_length_text = "请上传您要查看信息的照片。<br>" +
-        "<span class='text-danger'><b>本站不存储您上传的照片，请您保存好您自己的照片。</b></span><br>" +
-        "<span class='text-danger'><b>不接受重复监测同一张照片的信息。</b></span><br>" +
-        `<span class='text-dark'><b>3个/次/${get_file_size(max_file_size_value)}/日/IP</b></span><br>` +
-        "上传文件数量上限：<span class='text-success'><b>3</b></span><br>" +
-        `文件尺寸上限：<span class='text-success'><b>${get_file_size(max_file_size_value)}</b></span><br>` +
-        "上传上限：<span class='text-success'><b>1次/日/IP</b> </span><br>";
+    let files_length_text = "<div style='font-size: 90%;'>" +
+        "请上传您要查看信息的照片。<br>" +
+        "</div>";
 
     if (files_length === 0) bootstrapModalJs("", files_length_text, "", "", true);
 
@@ -74,14 +84,19 @@ function upload_files_check(input) {
         }
 
         if (files_size_tips.length > 0) {
-            let xx = "以下文件尺寸超过 " + get_file_size(max_file_size_value) + "：<br>" + files_size_tips;
+            let xx = "以下文件尺寸超过 " +
+                `<span class='text-dark'>` +
+                `${get_file_size(max_file_size_value)}` +
+                `</span> ：<br>` +
+                `<span class='text-danger'>` +
+                `${files_size_tips}` +
+                `</span>`;
             bootstrapModalJs("", xx, "", "", true);
         } else if (files_size_tips.length === 0 && files_length > 0) {
             ajax_images();
         }
 
     }
-
 
 
 }
