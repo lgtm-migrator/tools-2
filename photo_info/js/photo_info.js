@@ -35,7 +35,7 @@ photo_submit.addEventListener("click", function () {
 });
 
 function ajax_images() {
-    // set_recaptcha_action("photo_info");
+    set_recaptcha_action("photo_info");
 
     let form_data = new FormData(photo_form);
 
