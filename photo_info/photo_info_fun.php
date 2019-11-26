@@ -1,9 +1,9 @@
 <?php
 
 //
-function mk_dir($pathname)
+function mk_dir($pathname, $mode = 0744, $recursive = true)
 {
-    mkdir($pathname, 0644, true);
+    mkdir($pathname, $mode, $recursive);
 }
 
 function get_file_ext_name($file_name)
@@ -13,7 +13,6 @@ function get_file_ext_name($file_name)
 
     return $file_ext_name;
 }
-
 
 //https://www.php.net/manual/zh/features.file-upload.errors.php
 function file_error_status()
