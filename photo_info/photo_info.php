@@ -2,10 +2,7 @@
 if ($_POST) {
     if (isset($_POST['MAX_FILE_SIZE']) && $_FILES !== null) {
         $result = array(
-            "message" => array(
-                "success" => array(),
-                "failure" => array(),
-            ),
+            "message" => array(),
             "error" => array(),
         );
 
@@ -39,8 +36,8 @@ foreach ($image_files["error"] as $k => $error) {
     $file_type = $image_files['type'][$k];
     $file_size = $image_files['size'][$k];
 
-//    $php_created_image = PHP_TMP_DIR . $file_name;
-    $php_created_image = UPLOAD_DIR_YMD.'0/' . $file_name;
+    $php_created_image = PHP_TMP_DIR . $file_name;
+//    $php_created_image = UPLOAD_DIR_YMD . '0/' . $file_name;
 
     if (in_array($file_ext_name, $allowed_extension_name)) {
         if ($error === 0) {
@@ -51,10 +48,10 @@ foreach ($image_files["error"] as $k => $error) {
                     $image_create_result = imagejpeg($image_tmp, $php_created_image, 100);
                 } elseif ($file_ext_name === 'tiff' || $file_ext_name === 'tif') {
                     //todo:处理tiff格式
-                    $image_tmp = imagecreatefromtiff($tmp_file_name);
+                    $image_tmp = imagecreatefromjpeg($tmp_file_name);
                     $image_create_result = imagejpeg($image_tmp, $php_created_image, 100);
                 } else {
-                    $result['error']['image_create_result'] = array("failure" => $file_name);
+                    $result['error']['image_create_result']['failure'][] = $file_name;
                     $image_create_result = false;
                 }
                 imagedestroy($image_tmp);
@@ -62,23 +59,25 @@ foreach ($image_files["error"] as $k => $error) {
                 if ($image_create_result === true) {
                     //todo:改为数据库匹配图像识别字符串来判断文件是否上传过，用来达到不保存用户图片文件的目的。
                     if (!file_exists(UPLOAD_DIR_YMD . $file_name)) {
-                        $move_file_result = move_uploaded_file($php_created_image, UPLOAD_DIR_YMD . $file_name);
+                        $move_file_result = rename($php_created_image, UPLOAD_DIR_YMD . $file_name);
 
                         if ($move_file_result === true) {
-                            $result['message']['success'][] = "<span class='text-success'>" . $file_name . "</span>" . ("上传成功了");
+                            $result['message']['upload']['success'][] = $file_name;
                         } else {
-                            $result['message']['failure'][] = "<span class='text-success'>" . $file_name . "</span>" . ("上传失败，请重试一次。");
+                            $result['message']['upload']['failure'][] = $file_name;
                         }
 
                     } else {
-                        $result['message']['failure'][] = "您的文件<span class='text-success'>" . $file_name . "</span>以前已经上传过了。";
+                        $result['message']['upload']['repeat'][] = $file_name;
                     }
                 } else {
                     die(json_encode($result));
                 }
+
             } else {
                 $result['error']['invalid'][] = $file_name;
             }
+
         } else {
             switch ($error) {
                 case 1:
@@ -98,6 +97,7 @@ foreach ($image_files["error"] as $k => $error) {
                     $result['error'][$error][] = "未知错误";
             }
         }
+
     } else {
         if (file_exists($tmp_file_name)) unlink($tmp_file_name);
         $result['error']['ext_name'][] = $file_name;

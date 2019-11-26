@@ -1,5 +1,5 @@
 <?php
-$php_tmp_dir = ((ini_get('upload_tmp_dir') == '') ? (sys_get_temp_dir()) : (ini_get('upload_tmp_dir')));
+$php_tmp_dir = sys_get_temp_dir();
 $upload_tmp_dir = dirname(dirname(dirname(__FILE__))) . "/upload_tmp_dir/";
 $upload_dir = dirname(dirname(dirname(__FILE__))) . "/upload/";
 $yyyy_mm_dd = date("Y/m/d/");
