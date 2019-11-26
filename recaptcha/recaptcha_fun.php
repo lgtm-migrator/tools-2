@@ -105,6 +105,20 @@ function return_YmdHisu($dataTime)
     return $dataTime->format("Y-m-d H:i:s.u");
 }
 
-function custom_file_exists()
+function imagecreatefromtiff($tiff_file)
 {
+    $info = pathinfo($tiff_file);
+    $filename = $info['filename'];
+    $base_dir = $info['dirname']."/";
+
+    $jpeg_file = $base_dir.$filename.".jpg";
+
+    // comando para conversão de tiff para jpeg
+    // necessita do imagemagick num servidor unix
+    $command = "convert $tiff_file $jpeg_file";
+
+    // executa o comando
+    exec($command, $result);
+
+    return imagecreatefromjpeg($jpeg_file);
 }
