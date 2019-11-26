@@ -104,3 +104,7 @@ function return_YmdHisu($dataTime)
 {
     return $dataTime->format("Y-m-d H:i:s.u");
 }
+
+function custom_file_exists()
+{
+}
