@@ -4,7 +4,7 @@ if ($_POST) {
         $result = array(
             "message" => array(
                 "success" => array(),
-                "failed" => array(),
+                "failure" => array(),
             ),
             "error" => array(),
         );
@@ -39,23 +39,42 @@ foreach ($image_files["error"] as $k => $error) {
     $file_type = $image_files['type'][$k];
     $file_size = $image_files['size'][$k];
 
+    $php_created_image = UPLOAD_DIR_YMD . $file_name;
+
     if (in_array($ext_name, $allowed_extension_name)) {
         if ($error === 0) {
             if (is_uploaded_file($tmp_file_name)) {
-                //todo:改为数据库匹配图像识别字符串来判断文件是否上传过，用来达到不保存用户图片文件的目的。
-                if (!file_exists(UPLOAD_DIR_YMD . $file_name)) {
-                    if (!file_exists(UPLOAD_DIR_YMD)) mk_dir(UPLOAD_DIR_YMD);
-                    $move_file_result = move_uploaded_file($tmp_file_name, UPLOAD_DIR_YMD . $file_name);
-
-                    if ($move_file_result) {
-                        $result['message']['success'][] = "<span class='text-success'>" . $file_name . "</span>" . ("上传成功了");
-                    } else {
-                        $result['message']['success'][] = "<span class='text-success'>" . $file_name . "</span>" . ("上传失败，请重试一次。");
-                        $result['message']['failed'][] = $file_name;
-                    }
-
+                if (!file_exists(UPLOAD_DIR_YMD)) mk_dir(UPLOAD_DIR_YMD);
+                if ($ext_name === 'jpg' || $ext_name === 'jpeg') {
+                    $image_tmp = imagecreatefromjpeg($tmp_file_name);
+                    $image_create_result = imagejpeg($image_tmp, $php_created_image, 100);
+                } elseif ($ext_name === 'tiff' || $ext_name === 'tif') {
+                    //todo:处理tiff格式
+                    $image_tmp = imagecreatefromjpeg($tmp_file_name);
+                    $image_create_result = imagejpeg($image_tmp, $php_created_image, 100);
                 } else {
-                    $result['message']['failed'][] = "您的文件<span class='text-success'>" . $file_name . "</span>以前已经上传过了。";
+                    $result['error']['image_create_result'] = array("failure" => $file_name);
+                    $image_create_result = false;
+                }
+                imagedestroy($image_tmp);
+
+                if ($image_create_result === true) {
+                    //todo:改为数据库匹配图像识别字符串来判断文件是否上传过，用来达到不保存用户图片文件的目的。
+                    if (!file_exists(UPLOAD_DIR_YMD . $file_name)) {
+                        $move_file_result = move_uploaded_file($tmp_file_name, UPLOAD_DIR_YMD . $file_name);
+
+                        if ($move_file_result === true) {
+                            $result['message']['success'][] = "<span class='text-success'>" . $file_name . "</span>" . ("上传成功了");
+                        } else {
+                            $result['message']['success'][] = "<span class='text-success'>" . $file_name . "</span>" . ("上传失败，请重试一次。");
+                            $result['message']['failure'][] = $file_name;
+                        }
+
+                    } else {
+                        $result['message']['failure'][] = "您的文件<span class='text-success'>" . $file_name . "</span>以前已经上传过了。";
+                    }
+                } else {
+                    die(json_encode($result));
                 }
             } else {
                 $result['error']['invalid'][] = $file_name;
@@ -84,7 +103,7 @@ foreach ($image_files["error"] as $k => $error) {
         $result['error']['ext_name'][] = $file_name;
     }
 
-
 }
+
 
 die(json_encode($result));

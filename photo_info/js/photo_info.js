@@ -96,10 +96,7 @@ function upload_files_check(input) {
         } else if (files_size_tips.length === 0 && files_length > 0) {
             ajax_images();
         }
-
     }
-
-
 }
 
 function ajax_result_failed(data) {
@@ -114,11 +111,11 @@ function ajax_result_success(data) {
     let result_ = "";
     let result_error = "";
     let result_message_success = "";
-    let result_message_failed = "";
+    let result_message_failure = "";
 
     let result_error_length = result["error"] ? result["error"].length : "";
     let result_success_length = result["message"]["success"] ? result["message"]["success"].length : "";
-    let result_failed_length = result["message"]["failed"] ? result["message"]["failed"].length : "";
+    let result_failure_length = result["message"]["failure"] ? result["message"]["failure"].length : "";
 
     if (result_error_length > 0) {
         for (let x = result_error_length, i = 0; i < x; i++) {
@@ -132,19 +129,19 @@ function ajax_result_success(data) {
         }
     }
 
-    if (result_failed_length > 0) {
-        for (let x = result_failed_length, i = 0; i < x; i++) {
-            result_message_failed += result["message"]["failed"][i] + "<br>";
+    if (result_failure_length > 0) {
+        for (let x = result_failure_length, i = 0; i < x; i++) {
+            result_message_failure += result["message"]["failure"][i] + "<br>";
         }
     }
 
     // for_i_result(result_error_length, result["error"], result_error);
     // for_i_result(result_success_length, result["message"]["success"], result_message_success);
-    // for_i_result(result_failed_length, result["message"]["failed"], result_message_failed);
+    // for_i_result(result_failure_length, result["message"]["failure"], result_message_failure);
 
-    result_ = result_error + result_message_failed + result_message_success;
+    result_ = result_error + result_message_failure + result_message_success;
 
-    if (result_error_length + result_success_length + result_failed_length > 0) {
+    if (result_error_length + result_success_length + result_failure_length > 0) {
         bootstrapModalJs("", result_, "", "", true);
     }
 }
@@ -166,7 +163,7 @@ function get_file_size(file_size) {
     } else if (file_size >= 1024) {
         file_size = ((file_size / 1024 * 100) / 100).toFixed(2) + " KB";
     } else {
-        file_size = file_size + " byte";
+        file_size = file_size + " bytes";
     }
     return file_size;
 }
