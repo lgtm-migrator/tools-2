@@ -7,15 +7,15 @@
         <i class="fa fa-2x fa-arrow-up"></i>
     </a>
     <div class="container" style="font-size: 75%;">
-        <p class="text-nowrap text-center text-muted" id="recaptcha_text_badge">
+        <span class="my-1 d-block text-nowrap text-center text-muted" id="recaptcha_text_badge">
             <span>本站由 reCAPTCHA 提供保护，并适用Google</span>
             <a class="text-reset text-decoration-none" href="https://www.google.cn/intl/zh-CN/policies/privacy/"
                target="_blank">隐私权</a>
             <span>和</span>
             <a class="text-reset text-decoration-none" href="https://www.google.cn/intl/zh-CN/policies/terms/"
                target="_blank">使用条款</a>
-        </p>
-        <p class="text-nowrap text-center text-muted" id="moment_time"></p>
+        </span>
+        <span class="my-1 d-block text-nowrap text-center text-muted" id="moment_time"></span>
     </div>
 </div>
 <div>

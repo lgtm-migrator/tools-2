@@ -165,7 +165,7 @@ function copy_bs_custom_file_input(done) {
 }
 
 function copy_moment(done) {
-    gulp.src([moment_js_path, moment_min_js_path, moment_with_locales_js_path, moment_with_locales_min_js_path])
+    gulp.src([moment_with_locales_js_path, moment_with_locales_min_js_path])
         .pipe(gulp.dest(static_js));
     done();
 }
