@@ -211,6 +211,13 @@ function topControl(e) {
 }
 
 
+/** moment.js **/
+let moment_time = document.body.querySelector("#moment_time");
+moment.locale("zh-cn");
+setInterval(function () {
+    moment_time.innerHTML = moment().format('llll:S');
+}, 1000);
+
 /** localStorage **/
 if (localStorage &&
     (localStorage.setItem("localStorage_status", "yes") || localStorage.getItem("localStorage_status") === "yes" || localStorage.length >= 1)) {
