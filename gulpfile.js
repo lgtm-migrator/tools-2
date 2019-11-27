@@ -82,6 +82,12 @@ const lax_min_js_path = "./node_modules/lax.js/lib/lax.min.js";
 //FunDebug
 const fundebug_js_path = "./node_modules/fundebug-javascript/release/fundebug." + "*.*.*" + ".min.js";
 
+//moment.js
+const moment_js_path = "./node_modules/moment/src/moment.js";
+const moment_min_js_path = "./node_modules/moment/min/moment.min.js";
+const moment_with_locales_js_path = "./node_modules/moment/min/moment-with-locales.js";
+const moment_with_locales_min_js_path = "./node_modules/moment/min/moment-with-locales.min.js";
+
 //phone_number.js
 const phone_number_js_path = "phone_number/js/phone_number.js";
 const phone_number_static_js_path = "phone_number/js";
@@ -100,8 +106,8 @@ gulp.task("copy_popper", copy_popper);
 gulp.task("copy_bs", copy_bs);
 gulp.task("copy_bmj", copy_bmj);
 gulp.task("copy_bs_custom_file_input", copy_bs_custom_file_input);
+gulp.task("copy_moment", copy_moment);
 
-gulp.task("copy_fundebug", copy_fundebug);
 gulp.task("copy_lazyload", copy_lazyload);
 gulp.task("copy_bt", copy_bt);
 gulp.task("copy_vue", copy_vue);
@@ -122,6 +128,7 @@ function terser_phone_number_js(done) {
         .pipe(gulp.dest(phone_number_static_js_path));
     done();
 }
+
 function terser_photo_info_js(done) {
     gulp.src([photo_info_js_path])
         .pipe(terser())
@@ -141,11 +148,6 @@ function copy_lazyload(done) {
     done();
 }
 
-function copy_fundebug(done) {
-    gulp.src([fundebug_js_path]).pipe(gulp.dest(static_js));
-    done();
-}
-
 function copy_bmj(done) {
     gulp.src([bootstrap_modal_js_js_path, bootstrap_modal_js_min_js_path]).pipe(gulp.dest(static_js));
     done();
@@ -153,6 +155,12 @@ function copy_bmj(done) {
 
 function copy_bs_custom_file_input(done) {
     gulp.src([bs_custom_file_input_js_path, bs_custom_file_input_min_js_path]).pipe(gulp.dest(static_js));
+    done();
+}
+
+function copy_moment(done) {
+    gulp.src([moment_with_locales_js_path, moment_with_locales_min_js_path])
+        .pipe(gulp.dest(static_js));
     done();
 }
 

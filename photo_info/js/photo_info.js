@@ -8,7 +8,8 @@ $().ready(function () {
 let photo_input = document.body.querySelector("#photo_input");
 let photo_submit = document.body.querySelector("#photo_submit");
 let photo_form = document.body.querySelector("form");
-let max_file_size_value = parseInt(document.body.querySelector("input[name=MAX_FILE_SIZE]").value);
+// let max_file_size_value = parseInt(document.body.querySelector("input[name=MAX_FILE_SIZE]").value);
+let max_file_size_value = 15728640;
 let photo_url = "/photo_info/photo_info.php";
 let files_upload_rule_btn = document.body.querySelector("#files_upload_rule_btn");
 
@@ -37,7 +38,12 @@ photo_submit.addEventListener("click", function () {
 function ajax_images() {
     set_recaptcha_action("photo_info");
 
-    let form_data = new FormData(photo_form);
+    let form_data = new FormData();
+
+    for (let i = 0; i < photo_input.files.length; i++) {
+        form_data.append("photo_input[]", photo_input.files[i]);
+    }
+    form_data.append("MAX_FILE_SIZE", max_file_size_value.toString());
 
     $.ajax({
         url: photo_url,
@@ -65,38 +71,71 @@ function ajax_images() {
 }
 
 function upload_files_check(input) {
+    let upload_check_result = "";
     let files = input.files;
+    // let allowed_extension_name = ["jfif", "pjpeg", "jpeg", "pjp", "jpg", "tiff", "tif"];
+    let allowed_extension_name = ["jpeg", "jpg", "tiff", "tif"];
     let files_length = input.files.length;
-    let files_size_tips = "";
 
-    let files_length_text = "<div style='font-size: 90%;'>" +
-        "请上传您要查看信息的照片。<br>" +
+    let files_size_tips = [];
+    let disallow_files = [];
+
+    let no_upload_files__text = "<div style='font-size: 90%;'>" +
+        "请先选择您要查看信息的照片，<br>然后后点击提交按钮上传图片。<br>" +
         "</div>";
 
-    if (files_length === 0) bootstrapModalJs("", files_length_text, "", "", true);
+    let files_length_text = "<div style='font-size: 90%;'>" +
+        "上传文件数量请不要超过3个。<br>" +
+        "</div>";
+
+    if (files_length === 0) upload_check_result += no_upload_files__text;
+
+    for (let i = 0; i < files_length; i++) {
+        if (!allowed_extension_name.includes(get_file_ext_name(files[i]["name"]))) {
+            disallow_files.push(files[i]["name"]);
+            // files.splice(i, 1);
+        }
+    }
 
     if (files_length > 3) {
-        bootstrapModalJs("", "上传文件数量请不要超过3个", "", "", true);
+        upload_check_result += files_length_text;
     } else {
         for (let i = 0; i < files_length; i++) {
             if (files[i]["size"] > max_file_size_value) {
-                files_size_tips += files[i]["name"] + "<br>";
+                files_size_tips.push(files[i]["name"]);
             }
         }
-
-        if (files_size_tips.length > 0) {
-            let xx = "以下文件尺寸超过 " +
-                `<span class='text-dark'>` +
-                `${get_file_size(max_file_size_value)}` +
-                `</span> ：<br>` +
-                `<span class='text-danger'>` +
-                `${files_size_tips}` +
-                `</span>`;
-            bootstrapModalJs("", xx, "", "", true);
-        } else if (files_size_tips.length === 0 && files_length > 0) {
-            ajax_images();
-        }
     }
+
+    if (disallow_files.length > 0) {
+        upload_check_result += "<div style='font-size: 90%;'>" +
+            "以下文件格式不符&nbsp;" +
+            `<span class='text-dark'>` +
+            `${allowed_extension_name.join(" ")}` +
+            `</span> ：<br>` +
+            `<span class='text-danger'>` +
+            `${disallow_files.join("<br>")}` +
+            `</span>` +
+            "</div>";
+    }
+    if (files_size_tips.length > 0) {
+        upload_check_result += "<div style='font-size: 90%;'>" +
+            "以下文件尺寸超过&nbsp;" +
+            `<span class='text-dark'>` +
+            `${get_file_size(max_file_size_value)}` +
+            `</span> ：<br>` +
+            `<span class='text-danger'>` +
+            `${files_size_tips.join("<br>")}` +
+            `</span>` +
+            `</div>`;
+    }
+
+    if (upload_check_result) {
+        bootstrapModalJs("", upload_check_result, "", "", true);
+    } else {
+        ajax_images();
+    }
+
 }
 
 function ajax_result_failed(data) {
@@ -108,7 +147,7 @@ function ajax_result_error(data) {
 function ajax_result_success(data) {
     let result = JSON.parse(data);
     console.log(JSON.parse(data));
-    let result_ = "";
+    let result_text = "";
     let result_error = "";
     let result_upload_message_success = "";
     let result_upload_message_failure = "";
@@ -142,23 +181,24 @@ function ajax_result_success(data) {
         }
     }
 
-    // for_i_result(result_error_length, result["error"], result_error);
-    // for_i_result(result_success_length, result["message"]["success"], result_message_success);
-    // for_i_result(result_failure_length, result["message"]["failure"], result_message_failure);
-
-    result_ = result_error + result_upload_message_success + result_upload_message_failure + result_upload_message_repeat;
+    result_text = result_error + result_upload_message_success + result_upload_message_failure + result_upload_message_repeat;
 
     if (result_error_length + result_upload_success_length + result_upload_failure_length + result_upload_repeat_length > 0) {
-        bootstrapModalJs("", result_, "", "", true);
+        bootstrapModalJs("", result_text, "", "", true);
     }
 }
 
-function for_i_result(length, array, result) {
-    if (length > 0) {
-        for (let x = length, i = 0; i < x; i++) {
-            result += array + [i] + "<br>";
+
+function is_Array(any) {
+    if (Array.isArray(any)) {
+        for (let x = any.length, i = 0; i < x; i++) {
+
         }
     }
+}
+
+function get_file_ext_name(file_name, index_of = ".") {
+    return file_name.substring(file_name.lastIndexOf(index_of) + 1).toLowerCase();
 }
 
 function get_file_size(file_size) {
