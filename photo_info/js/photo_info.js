@@ -67,16 +67,16 @@ function ajax_images() {
 function upload_files_check(input) {
     let upload_check_result = "";
     let files = input.files;
-    let files_length = input.files.length;
-    let files_size_tips = "";
-    let files_type_tips = [];
     // let allowed_extension_name = ["jfif", "pjpeg", "jpeg", "pjp", "jpg", "tiff", "tif"];
     let allowed_extension_name = ["jpeg", "jpg", "tiff", "tif"];
+    let files_length = input.files.length;
 
+    let files_size_tips = "";
+    let files_type_tips = [];
     let disallow_files = [];
 
     let no_upload_files__text = "<div style='font-size: 90%;'>" +
-        "请上传您要查看信息的照片。<br>" +
+        "请选择您要查看信息的照片后点击提交按钮。<br>" +
         "</div>";
 
     let files_length_text = "<div style='font-size: 90%;'>" +
@@ -100,26 +100,31 @@ function upload_files_check(input) {
             }
         }
     }
+
     if (disallow_files.length > 0) {
-        upload_check_result += "以下文件格式不符&nbsp;" +
+        upload_check_result += "<div style='font-size: 90%;'>" +
+            "以下文件格式不符&nbsp;" +
             `<span class='text-dark'>` +
             `${allowed_extension_name.toString()}` +
             `</span> ：<br>` +
             `<span class='text-danger'>` +
             `${disallow_files}` +
-            `</span>`;
+            `</span>` +
+            "</div>";
         for (let x = disallow_files.length, i = 0; i <= x; i++) {
 
         }
     }
     if (files_size_tips.length > 0) {
-        upload_check_result += "以下文件尺寸超过&nbsp;" +
+        upload_check_result += "<div style='font-size: 90%;'>" +
+            "以下文件尺寸超过&nbsp;" +
             `<span class='text-dark'>` +
             `${get_file_size(max_file_size_value)}` +
             `</span> ：<br>` +
             `<span class='text-danger'>` +
             `${files_size_tips}` +
-            `</span>`;
+            `</span>` +
+            `</div>`;
     }
 
     if (upload_check_result) {
