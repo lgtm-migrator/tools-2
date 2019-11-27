@@ -111,9 +111,6 @@ function upload_files_check(input) {
             `${disallow_files.join("<br>")}` +
             `</span>` +
             "</div>";
-        for (let x = disallow_files.length, i = 0; i <= x; i++) {
-
-        }
     }
     if (files_size_tips.length > 0) {
         upload_check_result += "<div style='font-size: 90%;'>" +

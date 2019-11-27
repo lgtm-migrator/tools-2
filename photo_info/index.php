@@ -11,7 +11,7 @@ require_once '../header.php';
 <link rel="stylesheet" href="/photo_info/css/photo_info.css">
 
 <div class="container mt-5" id="jt_container">
-    <form method="post" action="/photo_info/photo_info.php" enctype="multipart/form-data" class="mb-3 form-row justify-content-center">
+    <form method="post" action="/photo_info/photo_info.php" class="mb-3 form-row justify-content-center">
         <div class="custom-file col-11 col-sm-8">
             <input type="hidden" name="MAX_FILE_SIZE" value="15728640">
             <input class="custom-file-input" type="file" id="photo_input" name="photo_input[]" multiple="multiple"
