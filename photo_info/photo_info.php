@@ -44,18 +44,16 @@ foreach ($image_files["error"] as $k => $error) {
             if (is_uploaded_file($tmp_file_name)) {
                 if (!file_exists(UPLOAD_DIR_YMD)) mk_dir(UPLOAD_DIR_YMD);
                 $image_create_result = filters_image_types($file_name, $file_ext_name, $tmp_file_name);
-
                 if ($image_create_result === true) {
                     //todo:改为数据库匹配图像识别字符串来判断文件是否上传过，用来达到不保存用户图片文件的目的。
                     if (!file_exists(UPLOAD_DIR_YMD . $file_name)) {
-                        $move_file_result = rename($php_created_image, UPLOAD_DIR_YMD . $file_name);
+                        $rename_file_result = rename($php_created_image, UPLOAD_DIR_YMD . $file_name);
 
-                        if ($move_file_result === true) {
+                        if ($rename_file_result === true) {
                             $result['message']['upload']['success'][] = $file_name;
                         } else {
                             $result['message']['upload']['failure'][] = $file_name;
                         }
-
                     } else {
                         $result['message']['upload']['repeat'][] = $file_name;
                     }
@@ -63,11 +61,9 @@ foreach ($image_files["error"] as $k => $error) {
                     $result['error']['image_create_result']['failure'][] = $file_name;
 //                    die(json_encode($result));
                 }
-
             } else {
                 $result['error']['invalid'][] = $file_name;
             }
-
         } else {
             switch ($error) {
                 case 1:
@@ -87,13 +83,10 @@ foreach ($image_files["error"] as $k => $error) {
                     $result['error'][$error][] = "未知错误";
             }
         }
-
     } else {
         if (file_exists($tmp_file_name)) unlink($tmp_file_name);
         $result['error']['ext_name'][] = $file_name;
     }
-
 }
-
 
 die(json_encode($result));
