@@ -110,12 +110,14 @@ function ajax_result_success(data) {
     console.log(JSON.parse(data));
     let result_ = "";
     let result_error = "";
-    let result_message_success = "";
-    let result_message_failure = "";
+    let result_upload_message_success = "";
+    let result_upload_message_failure = "";
+    let result_upload_message_repeat = "";
 
     let result_error_length = result["error"] ? result["error"].length : "";
-    let result_success_length = result["message"]["success"] ? result["message"]["success"].length : "";
-    let result_failure_length = result["message"]["failure"] ? result["message"]["failure"].length : "";
+    let result_upload_success_length = result["message"]["upload"]["success"] ? result["message"]["upload"]["success"].length : "";
+    let result_upload_failure_length = result["message"]["upload"]["failure"] ? result["message"]["upload"]["failure"].length : "";
+    let result_upload_repeat_length = result["message"]["upload"]["repeat"] ? result["message"]["upload"]["repeat"].length : "";
 
     if (result_error_length > 0) {
         for (let x = result_error_length, i = 0; i < x; i++) {
@@ -123,15 +125,20 @@ function ajax_result_success(data) {
         }
     }
 
-    if (result_success_length > 0) {
-        for (let x = result_success_length, i = 0; i < x; i++) {
-            result_message_success += result["message"]["success"][i] + "<br>";
+    if (result_upload_success_length > 0) {
+        for (let x = result_upload_success_length, i = 0; i < x; i++) {
+            result_upload_message_success += result["message"]["upload"]["success"][i] + "<br>";
         }
     }
 
-    if (result_failure_length > 0) {
-        for (let x = result_failure_length, i = 0; i < x; i++) {
-            result_message_failure += result["message"]["failure"][i] + "<br>";
+    if (result_upload_failure_length > 0) {
+        for (let x = result_upload_failure_length, i = 0; i < x; i++) {
+            result_upload_message_failure += result["message"]["upload"]["failure"][i] + "<br>";
+        }
+    }
+    if (result_upload_repeat_length > 0) {
+        for (let x = result_upload_repeat_length, i = 0; i < x; i++) {
+            result_upload_message_repeat += result["message"]["upload"]["repeat"][i] + "<br>";
         }
     }
 
@@ -139,9 +146,9 @@ function ajax_result_success(data) {
     // for_i_result(result_success_length, result["message"]["success"], result_message_success);
     // for_i_result(result_failure_length, result["message"]["failure"], result_message_failure);
 
-    result_ = result_error + result_message_failure + result_message_success;
+    result_ = result_error + result_upload_message_success + result_upload_message_failure + result_upload_message_repeat;
 
-    if (result_error_length + result_success_length + result_failure_length > 0) {
+    if (result_error_length + result_upload_success_length + result_upload_failure_length + result_upload_repeat_length > 0) {
         bootstrapModalJs("", result_, "", "", true);
     }
 }
