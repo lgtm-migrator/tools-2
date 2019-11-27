@@ -209,3 +209,20 @@ function topControl(e) {
     e.preventDefault();
     $("html,body").animate({scrollTop: "0px"}, 1000);
 }
+
+
+/** localStorage **/
+if (localStorage &&
+    (localStorage.setItem("localStorage_status", "yes") || localStorage.getItem("localStorage_status") === "yes" || localStorage.length >= 1)) {
+    if (!localStorage.getItem("localStorage_init_date_time")) {
+        let current_time = new Date();
+        current_time = current_time.getFullYear() + "-" +
+            (current_time.getMonth() + 1) + "-" +
+            current_time.getDate() + " " +
+            current_time.getHours() + ":" +
+            current_time.getMinutes() + ":" +
+            current_time.getSeconds();
+
+        localStorage.setItem("localStorage_init_date_time", current_time.toString());
+    }
+}
