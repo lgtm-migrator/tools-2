@@ -65,38 +65,71 @@ function ajax_images() {
 }
 
 function upload_files_check(input) {
+    let upload_check_result = "";
     let files = input.files;
     let files_length = input.files.length;
     let files_size_tips = "";
+    let files_type_tips = [];
+    // let allowed_extension_name = ["jfif", "pjpeg", "jpeg", "pjp", "jpg", "tiff", "tif"];
+    let allowed_extension_name = ["jpeg", "jpg", "tiff", "tif"];
 
-    let files_length_text = "<div style='font-size: 90%;'>" +
+    let disallow_files = [];
+
+    let no_upload_files__text = "<div style='font-size: 90%;'>" +
         "请上传您要查看信息的照片。<br>" +
         "</div>";
 
-    if (files_length === 0) bootstrapModalJs("", files_length_text, "", "", true);
+    let files_length_text = "<div style='font-size: 90%;'>" +
+        "上传文件数量请不要超过3个。<br>" +
+        "</div>";
+
+    if (files_length === 0) upload_check_result += no_upload_files__text;
+
+    for (let i = 0; i < files_length; i++) {
+        if (!allowed_extension_name.includes(get_file_ext_name(files[i]["name"]))) {
+            disallow_files.push(files[i]["name"]);
+        }
+    }
 
     if (files_length > 3) {
-        bootstrapModalJs("", "上传文件数量请不要超过3个", "", "", true);
+        upload_check_result += files_length_text;
     } else {
         for (let i = 0; i < files_length; i++) {
             if (files[i]["size"] > max_file_size_value) {
                 files_size_tips += files[i]["name"] + "<br>";
             }
         }
+    }
+    if (disallow_files.length > 0) {
+        upload_check_result += "以下文件格式不符&nbsp;" +
+            `<span class='text-dark'>` +
+            `${allowed_extension_name.toString()}` +
+            `</span> ：<br>` +
+            `<span class='text-danger'>` +
+            `${disallow_files}` +
+            `</span>`;
+        for (let x = disallow_files.length, i = 0; i <= x; i++) {
 
-        if (files_size_tips.length > 0) {
-            let xx = "以下文件尺寸超过 " +
-                `<span class='text-dark'>` +
-                `${get_file_size(max_file_size_value)}` +
-                `</span> ：<br>` +
-                `<span class='text-danger'>` +
-                `${files_size_tips}` +
-                `</span>`;
-            bootstrapModalJs("", xx, "", "", true);
-        } else if (files_size_tips.length === 0 && files_length > 0) {
-            ajax_images();
         }
     }
+    if (files_size_tips.length > 0) {
+        upload_check_result += "以下文件尺寸超过&nbsp;" +
+            `<span class='text-dark'>` +
+            `${get_file_size(max_file_size_value)}` +
+            `</span> ：<br>` +
+            `<span class='text-danger'>` +
+            `${files_size_tips}` +
+            `</span>`;
+    }
+
+    if (upload_check_result) {
+        bootstrapModalJs("", upload_check_result, "", "", true);
+    }
+
+    if (files_size_tips.length === 0 && disallow_files.length === 0) {
+        ajax_images();
+    }
+
 }
 
 function ajax_result_failed(data) {
@@ -159,6 +192,10 @@ function for_i_result(length, array, result) {
             result += array + [i] + "<br>";
         }
     }
+}
+
+function get_file_ext_name(file_name, index_of = ".") {
+    return file_name.substring(file_name.lastIndexOf(index_of) + 1).toLowerCase();
 }
 
 function get_file_size(file_size) {
