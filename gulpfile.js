@@ -108,7 +108,6 @@ gulp.task("copy_bmj", copy_bmj);
 gulp.task("copy_bs_custom_file_input", copy_bs_custom_file_input);
 gulp.task("copy_moment", copy_moment);
 
-gulp.task("copy_fundebug", copy_fundebug);
 gulp.task("copy_lazyload", copy_lazyload);
 gulp.task("copy_bt", copy_bt);
 gulp.task("copy_vue", copy_vue);
@@ -146,11 +145,6 @@ function copy_fonts(done) {
 
 function copy_lazyload(done) {
     gulp.src([lazyload_js_path, lazyload_min_js_path, lazyload_min_js_map_path]).pipe(gulp.dest(static_js));
-    done();
-}
-
-function copy_fundebug(done) {
-    gulp.src([fundebug_js_path]).pipe(gulp.dest(static_js));
     done();
 }
 

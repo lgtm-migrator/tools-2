@@ -71,12 +71,11 @@ function upload_files_check(input) {
     let allowed_extension_name = ["jpeg", "jpg", "tiff", "tif"];
     let files_length = input.files.length;
 
-    let files_size_tips = "";
-    let files_type_tips = [];
+    let files_size_tips = [];
     let disallow_files = [];
 
     let no_upload_files__text = "<div style='font-size: 90%;'>" +
-        "请选择您要查看信息的照片后点击提交按钮。<br>" +
+        "请先选择您要查看信息的照片，<br>然后后点击提交按钮上传图片。<br>" +
         "</div>";
 
     let files_length_text = "<div style='font-size: 90%;'>" +
@@ -88,6 +87,7 @@ function upload_files_check(input) {
     for (let i = 0; i < files_length; i++) {
         if (!allowed_extension_name.includes(get_file_ext_name(files[i]["name"]))) {
             disallow_files.push(files[i]["name"]);
+            // files.splice(i, 1);
         }
     }
 
@@ -96,7 +96,7 @@ function upload_files_check(input) {
     } else {
         for (let i = 0; i < files_length; i++) {
             if (files[i]["size"] > max_file_size_value) {
-                files_size_tips += files[i]["name"] + "<br>";
+                files_size_tips.push(files[i]["name"]);
             }
         }
     }
@@ -105,10 +105,10 @@ function upload_files_check(input) {
         upload_check_result += "<div style='font-size: 90%;'>" +
             "以下文件格式不符&nbsp;" +
             `<span class='text-dark'>` +
-            `${allowed_extension_name.toString()}` +
+            `${allowed_extension_name.join(" ")}` +
             `</span> ：<br>` +
             `<span class='text-danger'>` +
-            `${disallow_files}` +
+            `${disallow_files.join("<br>")}` +
             `</span>` +
             "</div>";
         for (let x = disallow_files.length, i = 0; i <= x; i++) {
@@ -122,7 +122,7 @@ function upload_files_check(input) {
             `${get_file_size(max_file_size_value)}` +
             `</span> ：<br>` +
             `<span class='text-danger'>` +
-            `${files_size_tips}` +
+            `${files_size_tips.join("<br>")}` +
             `</span>` +
             `</div>`;
     }
@@ -144,7 +144,7 @@ function ajax_result_error(data) {
 function ajax_result_success(data) {
     let result = JSON.parse(data);
     console.log(JSON.parse(data));
-    let result_ = "";
+    let result_text = "";
     let result_error = "";
     let result_upload_message_success = "";
     let result_upload_message_failure = "";
@@ -178,21 +178,18 @@ function ajax_result_success(data) {
         }
     }
 
-    // for_i_result(result_error_length, result["error"], result_error);
-    // for_i_result(result_success_length, result["message"]["success"], result_message_success);
-    // for_i_result(result_failure_length, result["message"]["failure"], result_message_failure);
-
-    result_ = result_error + result_upload_message_success + result_upload_message_failure + result_upload_message_repeat;
+    result_text = result_error + result_upload_message_success + result_upload_message_failure + result_upload_message_repeat;
 
     if (result_error_length + result_upload_success_length + result_upload_failure_length + result_upload_repeat_length > 0) {
-        bootstrapModalJs("", result_, "", "", true);
+        bootstrapModalJs("", result_text, "", "", true);
     }
 }
 
-function for_i_result(length, array, result) {
-    if (length > 0) {
-        for (let x = length, i = 0; i < x; i++) {
-            result += array + [i] + "<br>";
+
+function is_Array(any) {
+    if (Array.isArray(any)) {
+        for (let x = any.length, i = 0; i < x; i++) {
+
         }
     }
 }
