@@ -131,7 +131,7 @@ function upload_files_check(input) {
         bootstrapModalJs("", upload_check_result, "", "", true);
     }
 
-    if (files_size_tips.length === 0 && disallow_files.length === 0) {
+    if (files_size_tips.length === 0 && disallow_files.length === 0 && files_length > 0) {
         ajax_images();
     }
 
