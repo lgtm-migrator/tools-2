@@ -8,7 +8,8 @@ $().ready(function () {
 let photo_input = document.body.querySelector("#photo_input");
 let photo_submit = document.body.querySelector("#photo_submit");
 let photo_form = document.body.querySelector("form");
-let max_file_size_value = parseInt(document.body.querySelector("input[name=MAX_FILE_SIZE]").value);
+// let max_file_size_value = parseInt(document.body.querySelector("input[name=MAX_FILE_SIZE]").value);
+let max_file_size_value = 15728640;
 let photo_url = "/photo_info/photo_info.php";
 let files_upload_rule_btn = document.body.querySelector("#files_upload_rule_btn");
 
@@ -37,7 +38,12 @@ photo_submit.addEventListener("click", function () {
 function ajax_images() {
     set_recaptcha_action("photo_info");
 
-    let form_data = new FormData(photo_form);
+    let form_data = new FormData();
+
+    for (let i = 0; i < photo_input.files.length; i++) {
+        form_data.append("photo_input[]", photo_input.files[i]);
+    }
+    form_data.append("MAX_FILE_SIZE", max_file_size_value.toString());
 
     $.ajax({
         url: photo_url,
