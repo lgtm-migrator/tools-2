@@ -88,6 +88,9 @@ const moment_min_js_path = "./node_modules/moment/min/moment.min.js";
 const moment_with_locales_js_path = "./node_modules/moment/min/moment-with-locales.js";
 const moment_with_locales_min_js_path = "./node_modules/moment/min/moment-with-locales.min.js";
 
+//clipboard.js
+const clipboard_min_js_path = "./node_modules/clipboard/dist/clipboard.min.js";
+
 //phone_number.js
 const phone_number_js_path = "phone_number/js/phone_number.js";
 const phone_number_static_js_path = "phone_number/js";
@@ -107,6 +110,7 @@ gulp.task("copy_bs", copy_bs);
 gulp.task("copy_bmj", copy_bmj);
 gulp.task("copy_bs_custom_file_input", copy_bs_custom_file_input);
 gulp.task("copy_moment", copy_moment);
+gulp.task("copy_clipboard", copy_clipboard);
 
 gulp.task("copy_lazyload", copy_lazyload);
 gulp.task("copy_bt", copy_bt);
@@ -160,6 +164,12 @@ function copy_bs_custom_file_input(done) {
 
 function copy_moment(done) {
     gulp.src([moment_with_locales_js_path, moment_with_locales_min_js_path])
+        .pipe(gulp.dest(static_js));
+    done();
+}
+
+function copy_clipboard(done) {
+    gulp.src([clipboard_min_js_path])
         .pipe(gulp.dest(static_js));
     done();
 }

@@ -7,7 +7,7 @@
     "gulp-terser": "^1.2.0"
   },
   "scripts": {
-    "copy": "gulp add_footer copy_fonts copy_jq copy_popper copy_bs copy_bmj copy_bs_custom_file_input copy_moment",
+    "copy": "gulp add_footer copy_fonts copy_jq copy_popper copy_bs copy_bmj copy_bs_custom_file_input copy_moment copy_clipboard",
     "add": "gulp add_footer",
     "terser_js": "gulp terser_phone_number_js terser_photo_info_js"
   },
@@ -15,6 +15,7 @@
     "@fortawesome/fontawesome-free": "^5.11.2",
     "bootstrap-modal-js": "^1.0.1",
     "bs-custom-file-input": "^1.3.2",
+    "clipboard": "^2.0.4",
     "fundebug-javascript": "^2.0.0",
     "jquery": "^3.4.1",
     "moment": "^2.24.0",
