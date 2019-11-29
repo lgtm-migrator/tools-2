@@ -32,7 +32,7 @@ if (files_upload_rule_btn) {
 }
 
 if (files_upload_rule_input) {
-    files_upload_rule_input.addEventListener("input", function (e) {
+    files_upload_rule_input.addEventListener("change", function (e) {
         upload_files_rules_style(e.target);
     });
 }
@@ -70,12 +70,11 @@ function upload_files_rules() {
 }
 
 function files_upload_rule_text_footer() {
-    let footer_btn = "<div>" +
+    return "<div>" +
         "<span class='mr-3'><input type='button' class='btn btn-sm btn-outline-success' data-dismiss='modal' id='rules_agree' value='同意'></span>" +
         "<span class='mr-3'><input type='button' class='btn btn-sm btn-outline-danger' data-dismiss='modal' id='rules_disagree' value='拒绝'></span>" +
         "<span class='mr-3'><input type='button' class='btn btn-sm btn-outline-secondary' data-dismiss='modal' id='rules_cancel' value='取消'></span>" +
         "</div>";
-    return footer_btn;
 }
 
 function rules_status() {
@@ -98,10 +97,11 @@ function agree_rules(e) {
 }
 
 function disagree_rules(e) {
-    e.setAttribute("checked", "");
+    if (e.hasAttribute("checked")) e.removeAttribute("checked");
+    upload_files_rules_style(files_upload_rule_input);
 }
 
-function cancel_rules(e) {
+function cancel_rules() {
 }
 
 function ajax_images() {
