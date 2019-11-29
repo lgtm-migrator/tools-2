@@ -12,6 +12,7 @@ let photo_form = document.body.querySelector("form");
 let max_file_size_value = 15728640;
 let photo_url = "/photo_info/photo_info.php";
 let files_upload_rule_btn = document.body.querySelector("#files_upload_rule_btn");
+let files_upload_rule_input = document.body.querySelector("#files_upload_rule_input");
 
 let files_upload_rule_text = "<div style='font-size: 80%;'>" +
     "<span class='text-danger'><b>如若您不同意以下规则任意一条，请不要上传照片即可。</b></span><br>" +
@@ -30,10 +31,78 @@ if (files_upload_rule_btn) {
     });
 }
 
+if (files_upload_rule_input) {
+    files_upload_rule_input.addEventListener("input", function (e) {
+        upload_files_rules_style(e.target);
+    });
+}
+
 // photo_submit.addEventListener("click", ajax_images);
 photo_submit.addEventListener("click", function () {
-    upload_files_check(photo_input);
+    upload_files_rules();
 });
+
+function upload_files_rules_style(e) {
+    let rule = document.body.querySelector("#rule");
+
+    if (e.checked === true) {
+        rule.classList.add("was-validated");
+        files_upload_rule_btn.classList.add("text-success");
+        files_upload_rule_btn.classList.remove("text-danger");
+        e.classList.add("is-valid");
+        e.classList.remove("is-invalid");
+    } else {
+        rule.classList.remove("was-validated");
+        files_upload_rule_btn.classList.remove("text-success");
+        files_upload_rule_btn.classList.add("text-danger");
+        e.classList.add("is-invalid");
+        e.classList.remove("is-valid");
+    }
+}
+
+function upload_files_rules() {
+    if (files_upload_rule_input.checked === true) {
+        upload_files_check(photo_input);
+    } else {
+        let options = [{"backdrop": "static"}];
+        bootstrapModalJs("", files_upload_rule_text, files_upload_rule_text_footer, "", true, false, "shown", rules_status, options);
+    }
+}
+
+function files_upload_rule_text_footer() {
+    let footer_btn = "<div>" +
+        "<span class='mr-3'><input type='button' class='btn btn-sm btn-outline-success' data-dismiss='modal' id='rules_agree' value='同意'></span>" +
+        "<span class='mr-3'><input type='button' class='btn btn-sm btn-outline-danger' data-dismiss='modal' id='rules_disagree' value='拒绝'></span>" +
+        "<span class='mr-3'><input type='button' class='btn btn-sm btn-outline-secondary' data-dismiss='modal' id='rules_cancel' value='取消'></span>" +
+        "</div>";
+    return footer_btn;
+}
+
+function rules_status() {
+    let rules_agree = document.body.querySelector("#rules_agree");
+    let rules_disagree = document.body.querySelector("#rules_disagree");
+    let rules_cancel = document.body.querySelector("#rules_cancel");
+    rules_agree.addEventListener("click", function () {
+        agree_rules(files_upload_rule_input);
+    });
+    rules_disagree.addEventListener("click", function () {
+        disagree_rules(files_upload_rule_input);
+    });
+    rules_cancel.addEventListener("click", cancel_rules);
+}
+
+function agree_rules(e) {
+    console.log(e);
+    e.setAttribute("checked", "checked");
+    upload_files_rules_style(files_upload_rule_input);
+}
+
+function disagree_rules(e) {
+    e.setAttribute("checked", "");
+}
+
+function cancel_rules(e) {
+}
 
 function ajax_images() {
     set_recaptcha_action("photo_info");

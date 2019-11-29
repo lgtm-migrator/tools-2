@@ -13,16 +13,15 @@ require_once '../header.php';
 <div class="container mt-5" id="jt_container">
     <div class="mb-3 form-row justify-content-center">
         <div class="custom-file col-11 col-sm-8">
-<!--            <input type="hidden" name="MAX_FILE_SIZE" value="15728640">-->
             <input class="custom-file-input" type="file" id="photo_input" name="photo_input[]" multiple="multiple"
                    accept="image/jpeg,image/tiff,image/png" style="cursor: pointer;">
             <label class="custom-file-label text-truncate text-info border border-info" for="photo_input"
                    id="photo_label" data-browse="浏览">上传您的照片</label>
         </div>
     </div>
-    <div class="mb-3 d-flex justify-content-center custom-control custom-checkbox sr-only" id="rule">
+    <div class="mb-3 d-flex justify-content-center custom-control custom-checkbox" id="rule">
         <input class="custom-control-input is-invalid" type="checkbox" id="files_upload_rule_input">
-        <label class="custom-control-label" for="files_upload_rule_input">
+        <label class="custom-control-label" for="files_upload_rule_input" style="cursor: pointer;">
             勾选左侧选框视为同意
             <a href="javascript:" class="text-danger" id="files_upload_rule_btn" title="查看规则">《照片上传规则》</a>
         </label>
