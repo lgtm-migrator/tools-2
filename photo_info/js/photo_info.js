@@ -32,7 +32,7 @@ if (files_upload_rule_btn) {
 }
 
 if (files_upload_rule_input) {
-    files_upload_rule_input.addEventListener("change", function (e) {
+    files_upload_rule_input.addEventListener("input", function (e) {
         upload_files_rules_style(e.target);
     });
 }
@@ -64,7 +64,7 @@ function upload_files_rules() {
     if (files_upload_rule_input.checked === true) {
         upload_files_check(photo_input);
     } else {
-        let options = [{"backdrop": "static"}];
+        let options = {"backdrop": "static", "keyboard": false};
         bootstrapModalJs("", files_upload_rule_text, files_upload_rule_text_footer, "", true, false, "shown", rules_status, options);
     }
 }
