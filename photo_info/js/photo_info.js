@@ -8,23 +8,27 @@ $().ready(function () {
 let photo_input = document.body.querySelector("#photo_input");
 let photo_submit = document.body.querySelector("#photo_submit");
 let max_file_size_value = 15728640;
+let allowed_extension_name = ["jpeg", "jpg", "tiff", "tif"];
+
 let photo_url = "/photo_info/photo_info.php";
-let files_upload_rule_btn = document.body.querySelector("#files_upload_rule_btn");
+let rule = document.body.querySelector("#rule");
+let files_upload_rule_link = document.body.querySelector("#files_upload_rule_link");
 let files_upload_rule_input = document.body.querySelector("#files_upload_rule_input");
 let bootstrapModalJs_options = {"backdrop": "static", "keyboard": false};
 
-let files_upload_rule_text = "<div style='font-size: 80%;'>" +
+let files_upload_rule_text = "<div class='small'>" +
     "<span class='text-danger'><b>如若您不同意以下规则任意一条，请不要上传照片即可。</b></span><br>" +
     "<span class='text-danger'><b>本站不存储您上传的照片，请您保存好您自己的照片。</b></span><br>" +
     "<span class='text-danger'><b><del>不接受重复监测同一张照片的信息。</del></b></span><br>" +
     `<span class='text-dark'><b>3个/次/${get_file_size(max_file_size_value)}/日/IP</b></span><br>` +
+    `文件格式类型：<span class='text-success'><b>${allowed_extension_name.join("&nbsp;&nbsp;")}</b></span><br>` +
     "文件数量上限：<span class='text-success'><b>3</b></span><br>" +
     `文件尺寸上限：<span class='text-success'><b>${get_file_size(max_file_size_value)}</b></span><br>` +
     "每日上传次数上限：<span class='text-success'><b>1次/日/IP</b></span><br>" +
     "</div>";
 
-if (files_upload_rule_btn) {
-    files_upload_rule_btn.addEventListener("click", function () {
+if (files_upload_rule_link) {
+    files_upload_rule_link.addEventListener("click", function () {
         bootstrapModalJs("", files_upload_rule_text, files_upload_rule_text_footer, "", true, false, "shown", rules_status, bootstrapModalJs_options);
     });
 }
@@ -41,18 +45,16 @@ photo_submit.addEventListener("click", function () {
 });
 
 function upload_files_rules_style(e) {
-    let rule = document.body.querySelector("#rule");
-
     if (e.checked === true) {
         rule.classList.add("was-validated");
-        files_upload_rule_btn.classList.remove("text-danger");
-        files_upload_rule_btn.classList.add("text-success");
+        files_upload_rule_link.classList.remove("text-danger");
+        files_upload_rule_link.classList.add("text-success");
         e.classList.remove("is-invalid");
         e.classList.add("is-valid");
     } else {
         rule.classList.remove("was-validated");
-        files_upload_rule_btn.classList.remove("text-success");
-        files_upload_rule_btn.classList.add("text-danger");
+        files_upload_rule_link.classList.remove("text-success");
+        files_upload_rule_link.classList.add("text-danger");
         e.classList.remove("is-valid");
         e.classList.add("is-invalid");
     }
@@ -138,18 +140,16 @@ function ajax_images() {
 function upload_files_check(input) {
     let upload_check_result = "";
     let files = input.files;
-    // let allowed_extension_name = ["jfif", "pjpeg", "jpeg", "pjp", "jpg", "tiff", "tif"];
-    let allowed_extension_name = ["jpeg", "jpg", "tiff", "tif"];
     let files_length = input.files.length;
 
     let files_size_tips = [];
     let disallow_files = [];
 
-    let no_upload_files__text = "<div style='font-size: 90%;'>" +
+    let no_upload_files__text = "<div class='small'>" +
         "请先选择您要查看信息的照片，<br>然后后点击提交按钮上传图片。<br>" +
         "</div>";
 
-    let files_length_text = "<div style='font-size: 90%;'>" +
+    let files_length_text = "<div class='small'>" +
         "上传文件数量请不要超过3个。<br>" +
         "</div>";
 
@@ -173,9 +173,9 @@ function upload_files_check(input) {
     }
 
     if (disallow_files.length > 0) {
-        upload_check_result += "<div style='font-size: 90%;'>" +
+        upload_check_result += "<div class='small'>" +
             "以下文件格式不符&nbsp;" +
-            `<span class='text-dark'>` +
+            `<span class='text-success'>` +
             `${allowed_extension_name.join(" ")}` +
             `</span> ：<br>` +
             `<span class='text-danger'>` +
@@ -184,9 +184,9 @@ function upload_files_check(input) {
             "</div>";
     }
     if (files_size_tips.length > 0) {
-        upload_check_result += "<div style='font-size: 90%;'>" +
+        upload_check_result += "<div class='small'>" +
             "以下文件尺寸超过&nbsp;" +
-            `<span class='text-dark'>` +
+            `<span class='text-success'>` +
             `${get_file_size(max_file_size_value)}` +
             `</span> ：<br>` +
             `<span class='text-danger'>` +
