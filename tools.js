@@ -222,10 +222,7 @@ setInterval(function () {
 /** localStorage **/
 if (localStorage &&
     (localStorage.setItem("localStorage_status", "yes") || localStorage.getItem("localStorage_status") === "yes" || localStorage.length >= 1)) {
-    if (!localStorage.getItem("localStorage_init_date_time")) {
-        moment.locale();
-        localStorage.setItem("localStorage_init_date_time", moment().format());
-    }
+    if (!localStorage.getItem("localStorage_init_date_time")) localStorage.setItem("localStorage_init_date_time", moment().format());
 } else {
     throw new Error("不支持LocalStorage。");
 }
