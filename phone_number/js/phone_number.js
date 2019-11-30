@@ -164,7 +164,7 @@ function create_btn_add() {
     a.title = "添加新的一行";
     a.id = "phone_number_add";
 
-    i.className = "position-absolute fa fa-plus-circle phone_number_del";
+    i.className = "position-absolute fa fa-plus-circle phone_number_add";
     i.style.top = "11px";
     i.style.right = "0px";
     a.appendChild(i);

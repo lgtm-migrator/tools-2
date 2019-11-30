@@ -226,4 +226,6 @@ if (localStorage &&
         moment.locale();
         localStorage.setItem("localStorage_init_date_time", moment().format());
     }
+} else {
+    throw new Error("不支持LocalStorage。");
 }

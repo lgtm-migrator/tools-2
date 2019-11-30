@@ -7,33 +7,105 @@ $().ready(function () {
 /** 提交图片 **/
 let photo_input = document.body.querySelector("#photo_input");
 let photo_submit = document.body.querySelector("#photo_submit");
-let photo_form = document.body.querySelector("form");
-// let max_file_size_value = parseInt(document.body.querySelector("input[name=MAX_FILE_SIZE]").value);
 let max_file_size_value = 15728640;
-let photo_url = "/photo_info/photo_info.php";
-let files_upload_rule_btn = document.body.querySelector("#files_upload_rule_btn");
+let allowed_extension_name = ["jpeg", "jpg", "tiff", "tif"];
 
-let files_upload_rule_text = "<div style='font-size: 80%;'>" +
+let photo_url = "/photo_info/photo_info.php";
+let rule = document.body.querySelector("#rule");
+let files_upload_rule_link = document.body.querySelector("#files_upload_rule_link");
+let files_upload_rule_input = document.body.querySelector("#files_upload_rule_input");
+let bootstrapModalJs_options = {"backdrop": "static", "keyboard": false};
+
+let files_upload_rule_text = "<div class='small'>" +
     "<span class='text-danger'><b>如若您不同意以下规则任意一条，请不要上传照片即可。</b></span><br>" +
     "<span class='text-danger'><b>本站不存储您上传的照片，请您保存好您自己的照片。</b></span><br>" +
     "<span class='text-danger'><b><del>不接受重复监测同一张照片的信息。</del></b></span><br>" +
     `<span class='text-dark'><b>3个/次/${get_file_size(max_file_size_value)}/日/IP</b></span><br>` +
+    `文件格式类型：<span class='text-success'><b>${allowed_extension_name.join("&nbsp;&nbsp;")}</b></span><br>` +
     "文件数量上限：<span class='text-success'><b>3</b></span><br>" +
     `文件尺寸上限：<span class='text-success'><b>${get_file_size(max_file_size_value)}</b></span><br>` +
     "每日上传次数上限：<span class='text-success'><b>1次/日/IP</b></span><br>" +
     "</div>";
 
-
-if (files_upload_rule_btn) {
-    files_upload_rule_btn.addEventListener("click", function () {
-        bootstrapModalJs("", files_upload_rule_text, "", "", true);
+if (files_upload_rule_link) {
+    files_upload_rule_link.addEventListener("click", function () {
+        bootstrapModalJs("", files_upload_rule_text, files_upload_rule_text_footer, "", true, false, "shown", rules_status, bootstrapModalJs_options);
+    });
+}
+if (files_upload_rule_input) {
+    if (Cookies.get("upload_rule") === "yes") {
+        files_upload_rule_input.checked = true;
+        upload_files_rules_style(files_upload_rule_input);
+    }
+    files_upload_rule_input.addEventListener("input", function (e) {
+        upload_files_rules_style(e.target);
     });
 }
 
 // photo_submit.addEventListener("click", ajax_images);
 photo_submit.addEventListener("click", function () {
-    upload_files_check(photo_input);
+    upload_files_rules();
 });
+
+function upload_files_rules_style(e) {
+    if (e.checked === true) {
+        rule.classList.add("was-validated");
+        files_upload_rule_link.classList.remove("text-danger");
+        files_upload_rule_link.classList.add("text-success");
+        e.classList.remove("is-invalid");
+        e.classList.add("is-valid");
+    } else {
+        rule.classList.remove("was-validated");
+        files_upload_rule_link.classList.remove("text-success");
+        files_upload_rule_link.classList.add("text-danger");
+        e.classList.remove("is-valid");
+        e.classList.add("is-invalid");
+    }
+}
+
+function upload_files_rules() {
+    if (files_upload_rule_input.checked === true) {
+        upload_files_check(photo_input);
+    } else {
+        bootstrapModalJs("", files_upload_rule_text, files_upload_rule_text_footer, "", true, false, "shown", rules_status, bootstrapModalJs_options);
+    }
+}
+
+function files_upload_rule_text_footer() {
+    return "<div>" +
+        "<span class='mr-3'><input type='button' class='btn btn-sm btn-outline-success' data-dismiss='modal' id='rules_agree' value='同意'></span>" +
+        "<span class='mr-3'><input type='button' class='btn btn-sm btn-outline-danger' data-dismiss='modal' id='rules_disagree' value='拒绝'></span>" +
+        "<span class='mr-3'><input type='button' class='btn btn-sm btn-outline-secondary' data-dismiss='modal' id='rules_cancel' value='取消'></span>" +
+        "</div>";
+}
+
+function rules_status() {
+    let rules_agree = document.body.querySelector("#rules_agree");
+    let rules_disagree = document.body.querySelector("#rules_disagree");
+    let rules_cancel = document.body.querySelector("#rules_cancel");
+    rules_agree.addEventListener("click", function () {
+        agree_rules(files_upload_rule_input);
+    });
+    rules_disagree.addEventListener("click", function () {
+        disagree_rules(files_upload_rule_input);
+    });
+    rules_cancel.addEventListener("click", cancel_rules);
+}
+
+function agree_rules(e) {
+    if (!e.hasAttribute("checked")) e.checked = true;
+    Cookies.set("upload_rule", "yes");
+    upload_files_rules_style(e);
+}
+
+function disagree_rules(e) {
+    if (e.hasAttribute("checked")) e.checked = false;
+    Cookies.set("upload_rule", "no");
+    upload_files_rules_style(e);
+}
+
+function cancel_rules() {
+}
 
 function ajax_images() {
     set_recaptcha_action("photo_info");
@@ -73,18 +145,16 @@ function ajax_images() {
 function upload_files_check(input) {
     let upload_check_result = "";
     let files = input.files;
-    // let allowed_extension_name = ["jfif", "pjpeg", "jpeg", "pjp", "jpg", "tiff", "tif"];
-    let allowed_extension_name = ["jpeg", "jpg", "tiff", "tif"];
     let files_length = input.files.length;
 
     let files_size_tips = [];
     let disallow_files = [];
 
-    let no_upload_files__text = "<div style='font-size: 90%;'>" +
+    let no_upload_files__text = "<div class='small'>" +
         "请先选择您要查看信息的照片，<br>然后后点击提交按钮上传图片。<br>" +
         "</div>";
 
-    let files_length_text = "<div style='font-size: 90%;'>" +
+    let files_length_text = "<div class='small'>" +
         "上传文件数量请不要超过3个。<br>" +
         "</div>";
 
@@ -108,9 +178,9 @@ function upload_files_check(input) {
     }
 
     if (disallow_files.length > 0) {
-        upload_check_result += "<div style='font-size: 90%;'>" +
+        upload_check_result += "<div class='small'>" +
             "以下文件格式不符&nbsp;" +
-            `<span class='text-dark'>` +
+            `<span class='text-success'>` +
             `${allowed_extension_name.join(" ")}` +
             `</span> ：<br>` +
             `<span class='text-danger'>` +
@@ -119,9 +189,9 @@ function upload_files_check(input) {
             "</div>";
     }
     if (files_size_tips.length > 0) {
-        upload_check_result += "<div style='font-size: 90%;'>" +
+        upload_check_result += "<div class='small'>" +
             "以下文件尺寸超过&nbsp;" +
-            `<span class='text-dark'>` +
+            `<span class='text-success'>` +
             `${get_file_size(max_file_size_value)}` +
             `</span> ：<br>` +
             `<span class='text-danger'>` +

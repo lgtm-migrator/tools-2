@@ -27,6 +27,10 @@ const lazyload_js_path = "./node_modules/vanilla-lazyload/dist/lazyload.js";
 const lazyload_min_js_path = "./node_modules/vanilla-lazyload/dist/lazyload.min.js";
 const lazyload_min_js_map_path = "./node_modules/vanilla-lazyload/dist/lazyload.min.js.map";
 
+//js.cookie.js
+const js_cookie_min_js_path = "./node_modules/js-cookie/dist/js.cookie.min.js";
+const js_cookie_min_mjs_path = "./node_modules/js-cookie/dist/js.cookie.min.mjs";
+
 //jquery
 const jquery_js_path = "./node_modules/jquery/dist/jquery.js";
 const jquery_min_js_path = "./node_modules/jquery/dist/jquery.min.js";
@@ -88,6 +92,9 @@ const moment_min_js_path = "./node_modules/moment/min/moment.min.js";
 const moment_with_locales_js_path = "./node_modules/moment/min/moment-with-locales.js";
 const moment_with_locales_min_js_path = "./node_modules/moment/min/moment-with-locales.min.js";
 
+//clipboard.js
+const clipboard_min_js_path = "./node_modules/clipboard/dist/clipboard.min.js";
+
 //phone_number.js
 const phone_number_js_path = "phone_number/js/phone_number.js";
 const phone_number_static_js_path = "phone_number/js";
@@ -101,12 +108,14 @@ gulp.task("terser_phone_number_js", terser_phone_number_js);
 gulp.task("terser_photo_info_js", terser_photo_info_js);
 
 gulp.task("copy_fonts", copy_fonts);
+gulp.task("copy_js_cookie", copy_js_cookie);
 gulp.task("copy_jq", copy_jq);
 gulp.task("copy_popper", copy_popper);
 gulp.task("copy_bs", copy_bs);
 gulp.task("copy_bmj", copy_bmj);
 gulp.task("copy_bs_custom_file_input", copy_bs_custom_file_input);
 gulp.task("copy_moment", copy_moment);
+gulp.task("copy_clipboard", copy_clipboard);
 
 gulp.task("copy_lazyload", copy_lazyload);
 gulp.task("copy_bt", copy_bt);
@@ -164,6 +173,12 @@ function copy_moment(done) {
     done();
 }
 
+function copy_clipboard(done) {
+    gulp.src([clipboard_min_js_path])
+        .pipe(gulp.dest(static_js));
+    done();
+}
+
 function copy_bs(done) {
     gulp.src([bs_js_path, bs_min_js_path, bs_js_map_path, bs_min_js_map_path]).pipe(gulp.dest(static_js));
     gulp.src([bs_css_path, bs_min_css_path, bs_css_map_path, bs_min_css_map]).pipe(gulp.dest(static_css));
@@ -182,6 +197,11 @@ function copy_bt(done) {
 
 function copy_jq(done) {
     gulp.src([jquery_js_path, jquery_min_js_path]).pipe(gulp.dest(static_js));
+    done();
+}
+
+function copy_js_cookie(done) {
+    gulp.src([js_cookie_min_js_path, js_cookie_min_mjs_path]).pipe(gulp.dest(static_js));
     done();
 }
 
