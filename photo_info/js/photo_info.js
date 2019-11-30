@@ -7,12 +7,11 @@ $().ready(function () {
 /** 提交图片 **/
 let photo_input = document.body.querySelector("#photo_input");
 let photo_submit = document.body.querySelector("#photo_submit");
-let photo_form = document.body.querySelector("form");
-// let max_file_size_value = parseInt(document.body.querySelector("input[name=MAX_FILE_SIZE]").value);
 let max_file_size_value = 15728640;
 let photo_url = "/photo_info/photo_info.php";
 let files_upload_rule_btn = document.body.querySelector("#files_upload_rule_btn");
 let files_upload_rule_input = document.body.querySelector("#files_upload_rule_input");
+let bootstrapModalJs_options = {"backdrop": "static", "keyboard": false};
 
 let files_upload_rule_text = "<div style='font-size: 80%;'>" +
     "<span class='text-danger'><b>如若您不同意以下规则任意一条，请不要上传照片即可。</b></span><br>" +
@@ -24,10 +23,9 @@ let files_upload_rule_text = "<div style='font-size: 80%;'>" +
     "每日上传次数上限：<span class='text-success'><b>1次/日/IP</b></span><br>" +
     "</div>";
 
-
 if (files_upload_rule_btn) {
     files_upload_rule_btn.addEventListener("click", function () {
-        bootstrapModalJs("", files_upload_rule_text, "", "", true);
+        bootstrapModalJs("", files_upload_rule_text, files_upload_rule_text_footer, "", true, false, "shown", rules_status, bootstrapModalJs_options);
     });
 }
 
@@ -47,16 +45,16 @@ function upload_files_rules_style(e) {
 
     if (e.checked === true) {
         rule.classList.add("was-validated");
-        files_upload_rule_btn.classList.add("text-success");
         files_upload_rule_btn.classList.remove("text-danger");
-        e.classList.add("is-valid");
+        files_upload_rule_btn.classList.add("text-success");
         e.classList.remove("is-invalid");
+        e.classList.add("is-valid");
     } else {
         rule.classList.remove("was-validated");
         files_upload_rule_btn.classList.remove("text-success");
         files_upload_rule_btn.classList.add("text-danger");
-        e.classList.add("is-invalid");
         e.classList.remove("is-valid");
+        e.classList.add("is-invalid");
     }
 }
 
@@ -64,8 +62,7 @@ function upload_files_rules() {
     if (files_upload_rule_input.checked === true) {
         upload_files_check(photo_input);
     } else {
-        let options = {"backdrop": "static", "keyboard": false};
-        bootstrapModalJs("", files_upload_rule_text, files_upload_rule_text_footer, "", true, false, "shown", rules_status, options);
+        bootstrapModalJs("", files_upload_rule_text, files_upload_rule_text_footer, "", true, false, "shown", rules_status, bootstrapModalJs_options);
     }
 }
 
@@ -91,14 +88,13 @@ function rules_status() {
 }
 
 function agree_rules(e) {
-    console.log(e);
-    e.setAttribute("checked", "checked");
-    upload_files_rules_style(files_upload_rule_input);
+    if (!e.hasAttribute("checked")) e.setAttribute("checked", "");
+    upload_files_rules_style(e);
 }
 
 function disagree_rules(e) {
     if (e.hasAttribute("checked")) e.removeAttribute("checked");
-    upload_files_rules_style(files_upload_rule_input);
+    upload_files_rules_style(e);
 }
 
 function cancel_rules() {

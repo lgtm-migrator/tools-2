@@ -17,6 +17,7 @@ require_once '../header.php';
                    accept="image/jpeg,image/tiff,image/png" style="cursor: pointer;">
             <label class="custom-file-label text-truncate text-info border border-info" for="photo_input"
                    id="photo_label" data-browse="浏览">上传您的照片</label>
+<!--            <small class="form-text text-muted"></small>-->
         </div>
     </div>
     <div class="mb-3 d-flex justify-content-center custom-control custom-checkbox" id="rule">
