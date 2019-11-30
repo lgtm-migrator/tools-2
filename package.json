@@ -7,7 +7,7 @@
     "gulp-terser": "^1.2.0"
   },
   "scripts": {
-    "copy": "gulp add_footer copy_fonts copy_jq copy_popper copy_bs copy_bmj copy_bs_custom_file_input copy_moment copy_clipboard",
+    "copy": "gulp add_footer copy_fonts copy_js_cookie copy_jq copy_popper copy_bs copy_bmj copy_bs_custom_file_input copy_moment copy_clipboard",
     "add": "gulp add_footer",
     "terser_js": "gulp terser_phone_number_js terser_photo_info_js"
   },
@@ -19,6 +19,7 @@
     "clipboard": "^2.0.4",
     "fundebug-javascript": "^2.0.0",
     "jquery": "^3.4.1",
+    "js-cookie": "^3.0.0-beta.0",
     "moment": "^2.24.0",
     "popper.js": "^1.16.0"
   }

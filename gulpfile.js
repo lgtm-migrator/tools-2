@@ -27,6 +27,10 @@ const lazyload_js_path = "./node_modules/vanilla-lazyload/dist/lazyload.js";
 const lazyload_min_js_path = "./node_modules/vanilla-lazyload/dist/lazyload.min.js";
 const lazyload_min_js_map_path = "./node_modules/vanilla-lazyload/dist/lazyload.min.js.map";
 
+//js.cookie.js
+const js_cookie_min_js_path = "./node_modules/js-cookie/dist/js.cookie.min.js";
+const js_cookie_min_mjs_path = "./node_modules/js-cookie/dist/js.cookie.min.mjs";
+
 //jquery
 const jquery_js_path = "./node_modules/jquery/dist/jquery.js";
 const jquery_min_js_path = "./node_modules/jquery/dist/jquery.min.js";
@@ -104,6 +108,7 @@ gulp.task("terser_phone_number_js", terser_phone_number_js);
 gulp.task("terser_photo_info_js", terser_photo_info_js);
 
 gulp.task("copy_fonts", copy_fonts);
+gulp.task("copy_js_cookie", copy_js_cookie);
 gulp.task("copy_jq", copy_jq);
 gulp.task("copy_popper", copy_popper);
 gulp.task("copy_bs", copy_bs);
@@ -192,6 +197,11 @@ function copy_bt(done) {
 
 function copy_jq(done) {
     gulp.src([jquery_js_path, jquery_min_js_path]).pipe(gulp.dest(static_js));
+    done();
+}
+
+function copy_js_cookie(done) {
+    gulp.src([js_cookie_min_js_path, js_cookie_min_mjs_path]).pipe(gulp.dest(static_js));
     done();
 }
 
