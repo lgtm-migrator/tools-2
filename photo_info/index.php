@@ -5,7 +5,7 @@ if ($_POST) {
     die();
 }
 
-define('title', '照片信息解析');
+define('title', '照片详情信息');
 require_once '../header.php';
 ?>
 <link rel="stylesheet" href="/photo_info/css/photo_info.css">

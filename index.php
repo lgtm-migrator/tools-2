@@ -9,19 +9,19 @@ require_once './header.php';
             <div class="card mr-2 mb-2">
                 <div class="d-flex justify-content-between card-header px-4 py-2">
                     <a class="text-success font-weight-bold" id="phoneNumber" href="/phone_number/index.php"
-                       title="电话本">电话本</a>
+                       title="公共电话本">公共电话本</a>
                     <div class="category text-muted">[&nbsp;查询&nbsp;]</div>
                 </div>
-                <p class="card-desc card-text p-2">记录电话号码。</p>
+                <p class="card-desc card-text p-2">公开的电话号码本。</p>
             </div>
 
             <div class="card mr-2 mb-2">
                 <div class="d-flex justify-content-between card-header px-4 py-2">
                     <a class="text-success font-weight-bold" id="phoneNumber" href="/photo_info/index.php"
-                       title="照片信息">照片信息</a>
+                       title="照片详情信息">照片详情信息</a>
                     <div class="category text-muted">[&nbsp;查询&nbsp;]</div>
                 </div>
-                <p class="card-desc card-text p-2">查看照片EXIF信息。</p>
+                <p class="card-desc card-text p-2">查看照片的EXIF信息。</p>
             </div>
 
         </div>

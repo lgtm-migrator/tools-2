@@ -5,7 +5,7 @@ if ($_POST) {
     die();
 }
 
-define('title', '电话号码查询');
+define('title', '公共电话本');
 require_once '../header.php';
 ?>
     <link rel="stylesheet" href="/phone_number/css/phone_number.css">
