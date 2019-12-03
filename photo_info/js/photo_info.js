@@ -181,7 +181,7 @@ function upload_files_check(input) {
         upload_check_result += "<div class='small'>" +
             "以下文件格式不符&nbsp;" +
             `<span class='text-success'>` +
-            `${allowed_extension_name.join(" ")}` +
+            `${allowed_extension_name.join("&nbsp;")}` +
             `</span> ：<br>` +
             `<span class='text-danger'>` +
             `${disallow_files.join("<br>")}` +

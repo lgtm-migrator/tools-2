@@ -219,6 +219,7 @@ setInterval(function () {
     moment_time.innerHTML = moment().format('llll:ss');
 }, 1000);
 
+
 /** localStorage **/
 if (localStorage &&
     (localStorage.setItem("localStorage_status", "yes") || localStorage.getItem("localStorage_status") === "yes" || localStorage.length >= 1)) {
