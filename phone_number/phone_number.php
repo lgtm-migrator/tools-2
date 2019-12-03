@@ -98,6 +98,11 @@ require_once "../mysqli/mysqli.php";
 
 try {
     $db->connection("add_phone_number");
+} catch (Exception $e) {
+    die($e->getMessage());
+}
+
+try {
     $id = $db->insertMulti("phone_number", $phone_number_data);
 } catch (Exception $e) {
     die($e->getMessage());
