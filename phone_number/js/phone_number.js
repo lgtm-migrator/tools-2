@@ -338,6 +338,8 @@ function processing_search_result(data) {
         create_number_list(data[i]);
     }
     number_list_child();
+    $(".number i").tooltip();
+    clipboard_copy_number();
 }
 
 function create_number_list(data) {
@@ -358,6 +360,7 @@ function create_number_list(data) {
 
 function create_number_list_name(name) {
     let span = document.createElement("span");
+    let span_name = document.createElement("span");
     let ul = document.createElement("ul");
 
     let li = document.createElement("li");
@@ -366,14 +369,16 @@ function create_number_list_name(name) {
     span.className = "col-12 col-lg-4";
     ul.className = "mb-0 list-unstyled";
 
-    li.className = "mb-2";
-    li.innerHTML = name;
+    li.className = "number_name mb-2";
+
+    span_name.innerHTML = name;
 
     i.className = "mr-2 fa fa-home text-info";
     i.style.cursor = "pointer";
 
     span.appendChild(ul);
     ul.appendChild(li);
+    li.append(span_name);
     li.insertBefore(i, li.firstChild);
 
     return span;
@@ -383,24 +388,33 @@ function create_number_list_number(number, number_type) {
     let span = document.createElement("span");
     let ul = document.createElement("ul");
     let li = document.createElement("li");
-    let i = document.createElement("i");
+    let span_number = document.createElement("span");
+    let i_number_icon = document.createElement("i");
+    let i_clipboard_copy_icon = document.createElement("i");
 
     span.className = "col-12 col-sm-5 col-md-4 col-lg-3";
     ul.className = "mb-0 list-unstyled";
 
-    // li.className = "mb-2";
-    number_type === "tel" ? li.className = "mb-2" : li.className = "mb-2 text-none text-sm-right";
-    li.innerHTML = number;
+    span_number.innerHTML = number;
 
-    number_type === "tel" ? i.className = "ml-2 fa fa-phone-alt text-success" : i.className = "ml-2 fa fa-mobile-alt text-success";
-    i.style.cursor = "pointer";
-    i.addEventListener("click", function (e) {
+    number_type === "tel" ? li.className = "number mb-2" : li.className = "number mb-2 text-none text-sm-right";
+
+    number_type === "tel" ? i_number_icon.className = "ml-3 fa fa-phone-alt text-success" : i_number_icon.className = "ml-3 fa fa-mobile-alt text-success";
+    i_number_icon.style.cursor = "pointer";
+    i_number_icon.title = "拨打号码";
+    i_number_icon.addEventListener("click", function () {
         window.location.href = "tel://" + number;
     });
 
+    i_clipboard_copy_icon.className = "clipboard_copy ml-3 far fa-clipboard text-success";
+    i_clipboard_copy_icon.title = "复制号码";
+    i_clipboard_copy_icon.style.cursor = "pointer";
+
     span.appendChild(ul);
     ul.appendChild(li);
-    li.appendChild(i);
+    li.appendChild(span_number);
+    li.appendChild(i_clipboard_copy_icon);
+    li.appendChild(i_number_icon);
 
     return span;
 }
@@ -414,4 +428,28 @@ function number_list_child() {
     for (let x = number_list_child_even.length, i = 0; i < x; i++) {
         number_list_child_even[i].style.background = "aliceblue";
     }
+}
+
+function clipboard_copy_number() {
+    let clipboard_copy = document.body.querySelectorAll(".clipboard_copy");
+
+    for (let x = clipboard_copy.length, i = 0; i < x; i++) {
+        clipboard_copy[i].addEventListener("click", function () {
+            let clipboard = new ClipboardJS(".clipboard_copy", {
+                text: function (trigger) {
+                    return trigger.previousElementSibling.innerHTML;
+                }
+            });
+            clipboard.on('success', function (e) {
+                bootstrapModalJs("", "已经成功复制&nbsp;" + e.text, "", "", true);
+                clipboard.destroy();
+            });
+
+            clipboard.on('error', function (e) {
+                bootstrapModalJs("", "复制失败,请尝试手动复制", "", "", true);
+                clipboard.destroy();
+            });
+        });
+    }
+
 }
