@@ -32,6 +32,14 @@ require_once './header.php';
         <?php require_once "javascript.php"; ?>
     </div>
 
+    <script>
+        let wenjuan = "<div class='text-center'><b>" +
+            "<a href='https://www.wenjuan.com/s/jMjUfeE/' target='_blank' class='text-success'>网站功能反馈</a>" +
+            "</b></div>";
+
+        bootstrapModalJs("", wenjuan, "", "sm", true);
+    </script>
+
 <?php
 require_once './footer.php';
 ?>
