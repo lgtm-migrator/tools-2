@@ -255,8 +255,10 @@ function bootstrapModalJs_alert(alert_array = {}) {
     let body_div = document.createElement("div");
     let button = document.createElement("button");
     let span = document.createElement("span");
+    let a_sr_only = document.createElement("a");
 
     div.className = "alert mb-0 alert-" + alert_array.type + " alert-dismissible fade show";
+    div.setAttribute("rule", "增强提醒");
 
     h4.className = "alert-heading small";
     h4.innerHTML = alert_array.alert_heading;
@@ -265,7 +267,15 @@ function bootstrapModalJs_alert(alert_array = {}) {
     body_div.innerHTML = alert_array.innerHTML;
 
     button.className = "close";
+    button.type = "button";
     button.setAttribute("data-dismiss", "modal");
+    button.setAttribute("aria-label", "关闭强提醒");
+
+    a_sr_only.href = "javascript:";
+    a_sr_only.className = "sr-only d-block btn btn-sm btn-outline-success";
+    a_sr_only.innerHTML = "关闭强提醒&nbsp;&times;";
+    a_sr_only.setAttribute("data-dismiss", "modal");
+    a_sr_only.setAttribute("aria-label", "关闭强提醒");
 
     span.setAttribute("aria-hidden", "true");
     span.title = "关闭";
@@ -275,6 +285,7 @@ function bootstrapModalJs_alert(alert_array = {}) {
     div.append(h4);
     div.append(body_div);
     div.append(button);
+    div.append(a_sr_only);
 
     let id = bootstrapModalJs("", div, "", "xl", true, false, "", "", bootstrapModalJs_options);
     let modalBody = document.body.querySelector("#modalBody_" + id);
