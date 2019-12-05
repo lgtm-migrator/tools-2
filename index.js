@@ -5,12 +5,12 @@ cards_add_shadow();
 cards_remove_shadow();
 
 function cards_add_shadow() {
-    jt_list.addEventListener("mouseover", function (e) {
+    jt_list.addEventListener("mouseenter", function (e) {
         let target = e.target;
         if (target.classList.contains("card")) {
             add_shadow(e);
         }
-    });
+    },true);
 }
 
 function cards_remove_shadow() {
