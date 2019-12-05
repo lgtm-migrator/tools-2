@@ -2,6 +2,8 @@
 define('title', '在线小工具');
 require_once './header.php';
 ?>
+    <link rel="stylesheet" href="index.css">
+
     <div class="container" id="jt_index">
         <div id="jt_category"></div>
 
@@ -41,7 +43,7 @@ require_once './header.php';
     </div>
 
     <script>
-        let wenjuan = "<div class='text-center'><b>" +
+        let wenjuan = "<div class='text-center small'><b>" +
             "<a href='https://www.wenjuan.com/s/jMjUfeE/' target='_blank' class='text-success'>网站功能反馈</a>" +
             "</b></div>";
 

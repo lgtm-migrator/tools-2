@@ -7,7 +7,6 @@ cards_remove_shadow();
 function cards_add_shadow() {
     jt_list.addEventListener("mouseover", function (e) {
         let target = e.target;
-        console.log(target);
         if (target.classList.contains("card")) {
             add_shadow(e);
         }
@@ -15,10 +14,10 @@ function cards_add_shadow() {
 }
 
 function cards_remove_shadow() {
-    jt_list.addEventListener("mouseout", function (e) {
+    jt_list.addEventListener("mouseleave", function (e) {
         let target = e.target;
         if (target.classList.contains("card")) {
             remove_shadow(e);
         }
-    });
+    },true);
 }
