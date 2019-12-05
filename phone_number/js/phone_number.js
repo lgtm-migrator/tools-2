@@ -406,7 +406,7 @@ function create_number_list_number(number, number_type) {
         window.location.href = "tel://" + number;
     });
 
-    i_clipboard_copy_icon.className = "clipboard_copy ml-3 far fa-clipboard text-success";
+    i_clipboard_copy_icon.className = "clipboard_copy ml-3 far fa-copy text-success";
     i_clipboard_copy_icon.title = "复制号码";
     i_clipboard_copy_icon.style.cursor = "pointer";
 
@@ -441,15 +441,28 @@ function clipboard_copy_number() {
                 }
             });
             clipboard.on('success', function (e) {
-                bootstrapModalJs("", "已经成功复制&nbsp;" + e.text, "", "", true);
+                bootstrapModalJs("", clipboard_success_text(e), "", "sm", true);
                 clipboard.destroy();
             });
 
             clipboard.on('error', function (e) {
-                bootstrapModalJs("", "复制失败,请尝试手动复制", "", "", true);
+                bootstrapModalJs("", clipboard_error_text(e), "", "sm", true);
                 clipboard.destroy();
             });
         });
     }
 
+    function clipboard_success_text(e) {
+        return "<div class='text-center text-success'>已经成功复制&nbsp;" + "<span>" +
+            `${e.text}` +
+            "</span></div>";
+    }
+
+    function clipboard_error_text(e) {
+        return "<div class='text-center text-danger'>复制失败,请尝试手动复制" +"<span>" +
+            `${e}` +
+            "</span></div>";
+    }
+
 }
+
