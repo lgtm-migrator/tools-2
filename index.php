@@ -8,7 +8,7 @@ require_once './header.php';
         <div class="row justify-content-center row-cols-1 row-cols-md-3 row-cols-lg-4" id="jt_list">
             <div class="col mb-3">
                 <div class="card h-100">
-                    <div class="d-flex justify-content-between card-header py-2">
+                    <div class="d-flex justify-content-between card-header py-1 py-md-2">
                         <a class="text-success font-weight-bold" id="phoneNumber" href="/phone_number/index.php"
                            title="公共电话本" style="font-size: 95%;">公共电话本</a>
                         <div class="category text-muted small">[&nbsp;查询&nbsp;]</div>
@@ -21,7 +21,7 @@ require_once './header.php';
 
             <div class="col mb-3">
                 <div class="card h-100">
-                    <div class="d-flex justify-content-between card-header py-2">
+                    <div class="d-flex justify-content-between card-header py-1 py-md-2">
                         <a class="text-success font-weight-bold" id="phoneNumber" href="/photo_info/index.php"
                            title="照片详情信息" style="font-size: 95%;">照片详情信息</a>
                         <div class="category text-muted small">[&nbsp;查询&nbsp;]</div>

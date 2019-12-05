@@ -17,7 +17,6 @@ function cards_add_shadow() {
 function cards_remove_shadow() {
     jt_list.addEventListener("mouseout", function (e) {
         let target = e.target;
-        console.log(target);
         if (target.classList.contains("card")) {
             remove_shadow(e);
         }
