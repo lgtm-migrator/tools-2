@@ -175,7 +175,6 @@ function get_recaptcha_verify(token_key, pageAction) {
 /** 增加阴影 **/
 let btn_all = document.querySelectorAll("[class*='btn']");
 let input_all = document.querySelectorAll("input[class*='form-control']");
-let card_all = document.querySelectorAll(".card");
 
 for (let x = btn_all.length, i = 0; i < x; i++) {
     btn_all[i].addEventListener('mouseover', function (e) {
@@ -192,15 +191,6 @@ for (let x = input_all.length, i = 0; i < x; i++) {
     });
     input_all[i].addEventListener("blur", function (e) {
         remove_shadow(e, "sm");
-    });
-}
-
-for (let x = card_all.length, i = 0; i < x; i++) {
-    card_all[i].addEventListener("mouseover", function (e) {
-        add_shadow(e);
-    });
-    card_all[i].addEventListener("mouseout", function (e) {
-        remove_shadow(e);
     });
 }
 

@@ -37,6 +37,7 @@ require_once './header.php';
 
     <div>
         <?php require_once "javascript.php"; ?>
+        <script src="index.js"></script>
     </div>
 
     <script>
