@@ -339,6 +339,7 @@ function processing_search_result(data) {
     }
     number_list_child();
     $(".number i").tooltip();
+    dial_number();
     clipboard_copy_number();
 }
 
@@ -399,14 +400,11 @@ function create_number_list_number(number, number_type) {
 
     number_type === "tel" ? li.className = "number mb-2" : li.className = "number mb-2 text-none text-sm-right";
 
-    number_type === "tel" ? i_number_icon.className = "ml-3 fa fa-phone-volume text-success" : i_number_icon.className = "ml-3 fa fa-phone-volume text-success";
-    i_number_icon.style.cursor = "pointer";
+    i_number_icon.className = "ml-3 fa fa-phone-volume text-success dial_number";
     i_number_icon.title = "拨打号码";
-    i_number_icon.addEventListener("click", function () {
-        window.location.href = "tel://" + number;
-    });
+    i_number_icon.style.cursor = "pointer";
 
-    i_clipboard_copy_icon.className = "clipboard_copy ml-3 far fa-copy text-success";
+    i_clipboard_copy_icon.className = "ml-3 far fa-copy text-success clipboard_copy";
     i_clipboard_copy_icon.title = "复制号码";
     i_clipboard_copy_icon.style.cursor = "pointer";
 
@@ -428,6 +426,17 @@ function number_list_child() {
     for (let x = number_list_child_even.length, i = 0; i < x; i++) {
         number_list_child_even[i].style.background = "aliceblue";
     }
+}
+
+function dial_number() {
+    number_list.addEventListener("click", function (e) {
+        let target = e.target;
+
+        if (target.classList.contains("dial_number") || target.className.indexOf("dial_number") !== -1) {
+            let number = target.previousElementSibling.previousElementSibling.innerHTML;
+            window.location.href = "tel://" + number;
+        }
+    });
 }
 
 function clipboard_copy_number() {
