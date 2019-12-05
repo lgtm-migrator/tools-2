@@ -175,15 +175,33 @@ function get_recaptcha_verify(token_key, pageAction) {
 /** 增加阴影 **/
 let btn_all = document.querySelectorAll("[class*='btn']");
 let input_all = document.querySelectorAll("input[class*='form-control']");
+let card_all = document.querySelectorAll(".card");
 
-for (let btn_all_length = btn_all.length, i = 0; i < btn_all_length; i++) {
-    btn_all[i].addEventListener('mouseover', shadow);
-    btn_all[i].addEventListener('mouseout', shadow);
+for (let x = btn_all.length, i = 0; i < x; i++) {
+    btn_all[i].addEventListener('mouseover', function (e) {
+        shadow(e);
+    });
+    btn_all[i].addEventListener('mouseout', function (e) {
+        shadow(e);
+    });
 }
 
-for (let input_all_length = input_all.length, i = 0; i < input_all_length; i++) {
-    input_all[i].addEventListener("focusin", shadow_sm);
-    input_all[i].addEventListener("focusout", shadow_sm);
+for (let x = input_all.length, i = 0; i < x; i++) {
+    input_all[i].addEventListener("focus", function (e) {
+        shadow_sm(e);
+    });
+    input_all[i].addEventListener("blur", function (e) {
+        shadow_sm(e);
+    });
+}
+
+for (let x = card_all.length, i = 0; i < x; i++) {
+    card_all[i].addEventListener("mouseover", function (e) {
+        shadow(e);
+    });
+    card_all[i].addEventListener("mouseout", function (e) {
+        shadow(e);
+    });
 }
 
 function shadow(e) {
