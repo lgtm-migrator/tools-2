@@ -399,7 +399,7 @@ function create_number_list_number(number, number_type) {
 
     number_type === "tel" ? li.className = "number mb-2" : li.className = "number mb-2 text-none text-sm-right";
 
-    number_type === "tel" ? i_number_icon.className = "ml-3 fa fa-phone-alt text-success" : i_number_icon.className = "ml-3 fa fa-mobile-alt text-success";
+    number_type === "tel" ? i_number_icon.className = "ml-3 fa fa-phone-volume text-success" : i_number_icon.className = "ml-3 fa fa-phone-volume text-success";
     i_number_icon.style.cursor = "pointer";
     i_number_icon.title = "拨打号码";
     i_number_icon.addEventListener("click", function () {
@@ -431,10 +431,11 @@ function number_list_child() {
 }
 
 function clipboard_copy_number() {
-    let clipboard_copy = document.body.querySelectorAll(".clipboard_copy");
 
-    for (let x = clipboard_copy.length, i = 0; i < x; i++) {
-        clipboard_copy[i].addEventListener("click", function () {
+    number_list.addEventListener("click", function (e) {
+        let target = e.target;
+
+        if (target.classList.contains("clipboard_copy") || target.className.indexOf("clipboard_copy") !== -1) {
             let clipboard = new ClipboardJS(".clipboard_copy", {
                 text: function (trigger) {
                     return trigger.previousElementSibling.innerHTML;
@@ -449,8 +450,9 @@ function clipboard_copy_number() {
                 bootstrapModalJs("", clipboard_error_text(e), "", "sm", true);
                 clipboard.destroy();
             });
-        });
-    }
+        }
+
+    });
 
     function clipboard_success_text(e) {
         return "<div class='text-center text-success'>已经成功复制&nbsp;" + "<span>" +
@@ -459,7 +461,7 @@ function clipboard_copy_number() {
     }
 
     function clipboard_error_text(e) {
-        return "<div class='text-center text-danger'>复制失败,请尝试手动复制" +"<span>" +
+        return "<div class='text-center text-danger'>复制失败,请尝试手动复制" + "<span>" +
             `${e}` +
             "</span></div>";
     }
