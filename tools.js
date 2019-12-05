@@ -246,3 +246,37 @@ if (localStorage &&
 } else {
     throw new Error("不支持LocalStorage。");
 }
+
+/** bootstrapModalJs-alert **/
+function bootstrapModalJs_alert(alert_array = {}) {
+    let bootstrapModalJs_options = {"backdrop": "static", "keyboard": false};
+    let div = document.createElement("div");
+    let h4 = document.createElement("h4");
+    let body_div = document.createElement("div");
+    let button = document.createElement("button");
+    let span = document.createElement("span");
+
+    div.className = "alert mb-0 alert-" + alert_array.type + " alert-dismissible fade show";
+
+    h4.className = "alert-heading small";
+    h4.innerHTML = alert_array.alert_heading;
+
+    body_div.innerText = alert_array.innerText;
+    body_div.innerHTML = alert_array.innerHTML;
+
+    button.className = "close";
+    button.setAttribute("data-dismiss", "modal");
+
+    span.setAttribute("aria-hidden", "true");
+    span.title = "关闭";
+    span.innerHTML = "&times;";
+
+    button.append(span);
+    div.append(h4);
+    div.append(body_div);
+    div.append(button);
+
+    let id = bootstrapModalJs("", div, "", "xl", true, false, "", "", bootstrapModalJs_options);
+    let modalBody = document.body.querySelector("#modalBody_" + id);
+    modalBody.classList.add("p-0");
+}
