@@ -45,6 +45,7 @@ function create_form_add_init() {
     create_phone_name();
     create_tel_number();
     create_mobile_number();
+    input_shadow();
 }
 
 function create_form_add() {
@@ -53,12 +54,49 @@ function create_form_add() {
     create_phone_name();
     create_tel_number();
     create_mobile_number();
+    input_shadow();
 }
 
 function create_form_div() {
     let div = document.createElement("div");
     div.className = "mb-5 mb-sm-4 mb-md-3 form-row add_phone_number_form";
     add_phone_number_form.insertBefore(div, phone_number_submit.parentElement);
+}
+
+function create_btn_add() {
+    let a = document.createElement("a");
+    let i = document.createElement("i");
+
+    a.className = "position-relative text-success";
+    a.href = "javascript:";
+    a.title = "添加新的一行";
+    a.id = "phone_number_add";
+
+    i.className = "position-absolute fa fa-plus-circle phone_number_add";
+    i.style.top = "11px";
+    i.style.right = "0px";
+    a.appendChild(i);
+    add_phone_number_form.children[add_phone_number_form.childElementCount - 2].appendChild(a);
+    a.addEventListener("click", create_form_add);
+
+}
+
+function create_btn_del() {
+    let a = document.createElement("a");
+    let i = document.createElement("i");
+
+    a.className = "position-relative text-danger";
+    a.href = "javascript:";
+    a.title = "删除当前行";
+
+    i.className = "position-absolute fa fa-minus-circle phone_number_del";
+    i.style.top = "11px";
+    i.style.right = "0px";
+    a.appendChild(i);
+    add_phone_number_form.children[add_phone_number_form.childElementCount - 2].appendChild(a);
+    a.addEventListener("click", function (e) {
+        e.target.parentElement.parentElement.parentElement.removeChild(e.target.parentElement.parentElement);
+    });
 }
 
 function create_phone_name() {
@@ -155,42 +193,6 @@ function create_mobile_number() {
     add_phone_number_form.children[add_phone_number_form.childElementCount - 2].appendChild(div);
 }
 
-function create_btn_add() {
-    let a = document.createElement("a");
-    let i = document.createElement("i");
-
-    a.className = "position-relative text-success";
-    a.href = "javascript:";
-    a.title = "添加新的一行";
-    a.id = "phone_number_add";
-
-    i.className = "position-absolute fa fa-plus-circle phone_number_add";
-    i.style.top = "11px";
-    i.style.right = "0px";
-    a.appendChild(i);
-    add_phone_number_form.children[add_phone_number_form.childElementCount - 2].appendChild(a);
-    a.addEventListener("click", create_form_add);
-
-}
-
-function create_btn_del() {
-    let a = document.createElement("a");
-    let i = document.createElement("i");
-
-    a.className = "position-relative text-danger";
-    a.href = "javascript:";
-    a.title = "删除当前行";
-
-    i.className = "position-absolute fa fa-minus-circle phone_number_del";
-    i.style.top = "11px";
-    i.style.right = "0px";
-    a.appendChild(i);
-    add_phone_number_form.children[add_phone_number_form.childElementCount - 2].appendChild(a);
-    a.addEventListener("click", function (e) {
-        e.target.parentElement.parentElement.parentElement.removeChild(e.target.parentElement.parentElement);
-    });
-}
-
 function add_phone_number() {
     let data = phone_number_data();
     console.log(data);
@@ -226,6 +228,34 @@ function add_phone_number() {
             }
         }
     });
+}
+
+function input_shadow() {
+    add_phone_number_form.removeEventListener("mouseover", input_form_control_add_shadow);
+    add_phone_number_form.removeEventListener("mouseout", input_form_control_remove_shadow);
+    add_phone_number_form.removeEventListener("focus", input_form_control_add_shadow);
+    add_phone_number_form.removeEventListener("blur", input_form_control_remove_shadow);
+
+    add_phone_number_form.addEventListener("mouseover", input_form_control_add_shadow);
+    add_phone_number_form.addEventListener("mouseout", input_form_control_remove_shadow);
+    add_phone_number_form.addEventListener("focus", input_form_control_add_shadow);
+    add_phone_number_form.addEventListener("blur", input_form_control_remove_shadow);
+}
+
+function input_form_control_add_shadow(e) {
+    let target = e.target;
+    if (target.classList.contains("form-control")) {
+        console.log(target);
+        add_shadow(e);
+    }
+}
+
+function input_form_control_remove_shadow(e) {
+    let target = e.target;
+    if (target.classList.contains("form-control")) {
+        console.log(target);
+        remove_shadow(e);
+    }
 }
 
 

@@ -179,41 +179,49 @@ let card_all = document.querySelectorAll(".card");
 
 for (let x = btn_all.length, i = 0; i < x; i++) {
     btn_all[i].addEventListener('mouseover', function (e) {
-        shadow(e);
+        add_shadow(e);
     });
     btn_all[i].addEventListener('mouseout', function (e) {
-        shadow(e);
+        remove_shadow(e);
     });
 }
 
 for (let x = input_all.length, i = 0; i < x; i++) {
     input_all[i].addEventListener("focus", function (e) {
-        shadow_sm(e);
+        add_shadow(e, "sm");
     });
     input_all[i].addEventListener("blur", function (e) {
-        shadow_sm(e);
+        remove_shadow(e, "sm");
     });
 }
 
 for (let x = card_all.length, i = 0; i < x; i++) {
     card_all[i].addEventListener("mouseover", function (e) {
-        shadow(e);
+        add_shadow(e);
     });
     card_all[i].addEventListener("mouseout", function (e) {
-        shadow(e);
+        remove_shadow(e);
     });
 }
 
-function shadow(e) {
-    e.target.classList.toggle("shadow");
+function add_shadow(e, size = "") {
+    if (size === "") {
+        e.target.classList.add("shadow");
+    } else if (size === "sm") {
+        e.target.classList.add("shadow-sm");
+    } else if (size === "lg") {
+        e.target.classList.add("shadow-lg");
+    }
 }
 
-function shadow_sm(e) {
-    e.target.classList.toggle("shadow-sm");
-}
-
-function shadow_lg(e) {
-    e.target.classList.toggle("shadow-lg");
+function remove_shadow(e, size = "") {
+    if (size === "") {
+        e.target.classList.remove("shadow");
+    } else if (size === "sm") {
+        e.target.classList.remove("shadow-sm");
+    } else if (size === "lg") {
+        e.target.classList.remove("shadow-lg");
+    }
 }
 
 
