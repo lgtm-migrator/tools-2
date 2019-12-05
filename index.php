@@ -43,12 +43,12 @@ require_once './header.php';
     </div>
 
     <script>
-        let wenjuan = "<div class='text-center' style='font-size: 85%;'><b>" +
-            "<a href='https://www.wenjuan.com/s/jMjUfeE/' target='_blank' class='text-success'>网站功能反馈</a>" +
+        let survey = "<div class='text-center' style='font-size: 85%;'><b>" +
+            "<a href='https://www.wenjuan.com/s/jMjUfeE/' target='_blank' class='text-decoration-none text-success'>网站功能反馈</a>" +
             "</b></div>";
         let alert_arr = {
             alert_heading: "用户调查表",
-            innerHTML: wenjuan,
+            innerHTML: survey,
             innerText: "这是文本内容",
             type: "primary",
         };
