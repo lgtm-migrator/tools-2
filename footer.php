@@ -8,7 +8,7 @@
     </a>
     <div class="container" style="font-size: 75%;">
         <span class="my-1 d-block text-nowrap text-center text-muted" id="recaptcha_text_badge">
-            <span>本站由 reCAPTCHA 提供保护，并适用Google</span>
+            <span>由 reCAPTCHA 提供保护，并适用Google</span>
             <a class="text-reset text-decoration-none" href="https://www.google.cn/intl/zh-CN/policies/privacy/"
                target="_blank">隐私权</a>
             <span>和</span>
