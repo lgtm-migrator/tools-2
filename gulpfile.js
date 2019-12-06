@@ -6,118 +6,131 @@ const footer = require('gulp-footer');
 
 
 //Static Files Path
-const static_path = "./static/";
-const static_js = static_path + "js/";
-const static_css = static_path + "css/";
+const static_path = "./static/",
+    static_js = static_path + "js/",
+    static_css = static_path + "css/",
 
 //bootstrap-toasts
-const bootstrap_toasts_js_path = "./node_modules/bootstrap-toasts/dist/bootstrap-toasts.js";
-const bootstrap_toasts_min_js_path = "./node_modules/bootstrap-toasts/dist/bootstrap-toasts.min.js";
+    bootstrap_toasts_js_path = "./node_modules/bootstrap-toasts/dist/bootstrap-toasts.js",
+    bootstrap_toasts_min_js_path = "./node_modules/bootstrap-toasts/dist/bootstrap-toasts.min.js",
 
 //bootstrap-modal-js
-const bootstrap_modal_js_js_path = "./node_modules/bootstrap-modal-js/dist/bootstrap-modal-js.js";
-const bootstrap_modal_js_min_js_path = "./node_modules/bootstrap-modal-js/dist/bootstrap-modal-js.min.js";
+    bootstrap_modal_js_js_path = "./node_modules/bootstrap-modal-js/dist/bootstrap-modal-js.js",
+    bootstrap_modal_js_min_js_path = "./node_modules/bootstrap-modal-js/dist/bootstrap-modal-js.min.js",
 
 //bs-custom-file-input
-const bs_custom_file_input_js_path = "./node_modules/bs-custom-file-input/dist/bs-custom-file-input.js";
-const bs_custom_file_input_min_js_path = "./node_modules/bs-custom-file-input/dist/bs-custom-file-input.min.js";
+    bs_custom_file_input_js_path = "./node_modules/bs-custom-file-input/dist/bs-custom-file-input.js",
+    bs_custom_file_input_min_js_path = "./node_modules/bs-custom-file-input/dist/bs-custom-file-input.min.js",
 
 //lazyload
-const lazyload_js_path = "./node_modules/vanilla-lazyload/dist/lazyload.js";
-const lazyload_min_js_path = "./node_modules/vanilla-lazyload/dist/lazyload.min.js";
-const lazyload_min_js_map_path = "./node_modules/vanilla-lazyload/dist/lazyload.min.js.map";
+    lazyload_js_path = "./node_modules/vanilla-lazyload/dist/lazyload.js",
+    lazyload_min_js_path = "./node_modules/vanilla-lazyload/dist/lazyload.min.js",
+    lazyload_min_js_map_path = "./node_modules/vanilla-lazyload/dist/lazyload.min.js.map",
 
 //js.cookie.js
-const js_cookie_min_js_path = "./node_modules/js-cookie/dist/js.cookie.min.js";
-const js_cookie_min_mjs_path = "./node_modules/js-cookie/dist/js.cookie.min.mjs";
+    js_cookie_min_js_path = "./node_modules/js-cookie/dist/js.cookie.min.js",
+    js_cookie_min_mjs_path = "./node_modules/js-cookie/dist/js.cookie.min.mjs",
 
 //jquery
-const jquery_js_path = "./node_modules/jquery/dist/jquery.js";
-const jquery_min_js_path = "./node_modules/jquery/dist/jquery.min.js";
+    jquery_js_path = "./node_modules/jquery/dist/jquery.js",
+    jquery_min_js_path = "./node_modules/jquery/dist/jquery.min.js",
 
 // popper.js
-const popper_js_path = "./node_modules/popper.js/dist/umd/popper.js";
-const popper_min_js_path = "./node_modules/popper.js/dist/umd/popper.min.js";
-const popper_js_map_path = "./node_modules/popper.js/dist/umd/popper.js.map";
-const popper_min_js_map_path = "./node_modules/popper.js/dist/umd/popper.min.js.map";
+    popper_js_path = "./node_modules/popper.js/dist/umd/popper.js",
+    popper_min_js_path = "./node_modules/popper.js/dist/umd/popper.min.js",
+    popper_js_map_path = "./node_modules/popper.js/dist/umd/popper.js.map",
+    popper_min_js_map_path = "./node_modules/popper.js/dist/umd/popper.min.js.map",
 
 // Bootstrap
-const bs_js_path = "./node_modules/bootstrap/dist/js/bootstrap.js";
-const bs_min_js_path = "./node_modules/bootstrap/dist/js/bootstrap.min.js";
-const bs_js_map_path = "./node_modules/bootstrap/dist/js/bootstrap.js.map";
-const bs_min_js_map_path = "./node_modules/bootstrap/dist/js/bootstrap.min.js.map";
-const bs_css_path = "./node_modules/bootstrap/dist/css/bootstrap.css";
-const bs_min_css_path = "./node_modules/bootstrap/dist/css/bootstrap.min.css";
-const bs_css_map_path = "./node_modules/bootstrap/dist/css/bootstrap.css.map";
-const bs_min_css_map = "./node_modules/bootstrap/dist/css/bootstrap.min.css.map";
+    bs_js_path = "./node_modules/bootstrap/dist/js/bootstrap.js",
+    bs_min_js_path = "./node_modules/bootstrap/dist/js/bootstrap.min.js",
+    bs_js_map_path = "./node_modules/bootstrap/dist/js/bootstrap.js.map",
+    bs_min_js_map_path = "./node_modules/bootstrap/dist/js/bootstrap.min.js.map",
+    bs_css_path = "./node_modules/bootstrap/dist/css/bootstrap.css",
+    bs_min_css_path = "./node_modules/bootstrap/dist/css/bootstrap.min.css",
+    bs_css_map_path = "./node_modules/bootstrap/dist/css/bootstrap.css.map",
+    bs_min_css_map = "./node_modules/bootstrap/dist/css/bootstrap.min.css.map",
 
 //vue
-const vue_js_path = "./node_modules/vue/dist/vue.js";
-const vue_min_js_path = "./node_modules/vue/dist/vue.min.js";
+    vue_js_path = "./node_modules/vue/dist/vue.js",
+    vue_min_js_path = "./node_modules/vue/dist/vue.min.js",
 
 //font
-const font_css_path = "./node_modules/@fortawesome/fontawesome-free/css/all.css";
-const font_min_css_path = "./node_modules/@fortawesome/fontawesome-free/css/all.min.css";
-const font_webfonts_path = "./node_modules/@fortawesome/fontawesome-free/webfonts/*";
+    font_css_path = "./node_modules/@fortawesome/fontawesome-free/css/all.css",
+    font_min_css_path = "./node_modules/@fortawesome/fontawesome-free/css/all.min.css",
+    font_webfonts_path = "./node_modules/@fortawesome/fontawesome-free/webfonts/*",
 
 //video.js
-const video_js_path = "./node_modules/video.js/dist/video.js";
-const video_min_js_path = "./node_modules/video.js/dist/video.min.js";
-const video_lang_js_path = "./node_modules/video.js/dist/lang/zh-CN.js";
-const video_css_path = "./node_modules/video.js/dist/video-js.css";
-const video_min_css_path = "./node_modules/video.js/dist/video-js.min.css";
+    video_js_path = "./node_modules/video.js/dist/video.js",
+    video_min_js_path = "./node_modules/video.js/dist/video.min.js",
+    video_lang_js_path = "./node_modules/video.js/dist/lang/zh-CN.js",
+    video_css_path = "./node_modules/video.js/dist/video-js.css",
+    video_min_css_path = "./node_modules/video.js/dist/video-js.min.css",
 
 //viewerjs
-const viewerjs_min_css_path = "./node_modules/viewerjs/dist/viewer.min.css";
-const viewerjs_min_js_path = "./node_modules/viewerjs/dist/viewer.min.js";
+    viewerjs_min_css_path = "./node_modules/viewerjs/dist/viewer.min.css",
+    viewerjs_min_js_path = "./node_modules/viewerjs/dist/viewer.min.js",
 
 //canvas-nest.js
-const canvas_nest_umd_js_path = "./node_modules/canvas-nest.js/dist/canvas-nest.umd.js";
+    canvas_nest_umd_js_path = "./node_modules/canvas-nest.js/dist/canvas-nest.umd.js",
 
 //bowser.js
-const bowser_es5_js_path = "./node_modules/bowser/es5.js";
-const bowser_src_path = "./node_modules/bowser/src/*";
-const bowser_bundled_js_path = "./node_modules/bowser/bundled.js";
+    bowser_es5_js_path = "./node_modules/bowser/es5.js",
+    bowser_src_path = "./node_modules/bowser/src/*",
+    bowser_bundled_js_path = "./node_modules/bowser/bundled.js",
 
 //lax.js
-const lax_js_path = "./node_modules/lax.js/lib/lax.js";
-const lax_min_js_path = "./node_modules/lax.js/lib/lax.min.js";
+    lax_js_path = "./node_modules/lax.js/lib/lax.js",
+    lax_min_js_path = "./node_modules/lax.js/lib/lax.min.js",
 
 //FunDebug
-const fundebug_js_path = "./node_modules/fundebug-javascript/release/fundebug." + "*.*.*" + ".min.js";
+    fundebug_js_path = "./node_modules/fundebug-javascript/release/fundebug." + "*.*.*" + ".min.js",
 
 //moment.js
-const moment_js_path = "./node_modules/moment/src/moment.js";
-const moment_min_js_path = "./node_modules/moment/min/moment.min.js";
-const moment_with_locales_js_path = "./node_modules/moment/min/moment-with-locales.js";
-const moment_with_locales_min_js_path = "./node_modules/moment/min/moment-with-locales.min.js";
+    moment_js_path = "./node_modules/moment/src/moment.js",
+    moment_min_js_path = "./node_modules/moment/min/moment.min.js",
+    moment_with_locales_js_path = "./node_modules/moment/min/moment-with-locales.js",
+    moment_with_locales_min_js_path = "./node_modules/moment/min/moment-with-locales.min.js",
 
 //clipboard.js
-const clipboard_min_js_path = "./node_modules/clipboard/dist/clipboard.min.js";
+    clipboard_min_js_path = "./node_modules/clipboard/dist/clipboard.min.js",
 
 
-/** 文件路径 **/
+    /** 文件路径 **/
 //tools.js
-const tools_js_path = "tools.js";
-const tools_dest_js_path = "./";
+    tools_js_path = "tools.js",
+    tools_dest_js_path = "./",
+//tools.css
+    tools_css_path = "tools.css",
+    tools_dest_css_path = "./",
 
 //index.js
-const index_js_path = "index.js";
-const index_dest_js_path = "./";
+    index_js_path = "index.js",
+    index_dest_js_path = "./",
+//index.css
+    index_css_path = "index.css",
+    index_dest_css_path = "./",
 
 //phone_number.js
-const phone_number_js_path = "phone_number/js/phone_number.js";
-const phone_number_dest_js_path = "phone_number/js";
+    phone_number_js_path = "phone_number/js/phone_number.js",
+    phone_number_dest_js_path = "phone_number/js",
+//phone_number.css
+    phone_number_css_path = "phone_number/css/phone_number.css",
+    phone_number_dest_css_path = "phone_number/css",
 
 //photo_info.js
-const photo_info_js_path = "photo_info/js/photo_info.js";
-const photo_info_dest_js_path = "photo_info/js";
+    photo_info_js_path = "photo_info/js/photo_info.js",
+    photo_info_dest_js_path = "photo_info/js",
+//photo_info.css
+    photo_info_css_path = "photo_info/css/photo_info.css",
+    photo_info_dest_css_path = "photo_info/css";
 
 
 gulp.task("terser_tools_js", terser_tools_js);
 gulp.task("terser_index_js", terser_index_js);
 gulp.task("terser_phone_number_js", terser_phone_number_js);
 gulp.task("terser_photo_info_js", terser_photo_info_js);
+
 
 gulp.task("copy_fonts", copy_fonts);
 gulp.task("copy_js_cookie", copy_js_cookie);
@@ -128,6 +141,7 @@ gulp.task("copy_bmj", copy_bmj);
 gulp.task("copy_bs_custom_file_input", copy_bs_custom_file_input);
 gulp.task("copy_moment", copy_moment);
 gulp.task("copy_clipboard", copy_clipboard);
+
 
 gulp.task("copy_lazyload", copy_lazyload);
 gulp.task("copy_bt", copy_bt);
@@ -145,7 +159,7 @@ gulp.task("add_footer", add_fundebug_api);
 function terser_tools_js(done) {
     gulp.src([tools_js_path])
         .pipe(terser())
-        .pipe(rename({suffix:".min"}))
+        .pipe(rename({suffix: ".min"}))
         .pipe(gulp.dest(tools_dest_js_path));
     done();
 }
@@ -153,7 +167,7 @@ function terser_tools_js(done) {
 function terser_index_js(done) {
     gulp.src([index_js_path])
         .pipe(terser())
-        .pipe(rename({suffix:".min"}))
+        .pipe(rename({suffix: ".min"}))
         .pipe(gulp.dest(index_dest_js_path));
     done();
 }
@@ -161,7 +175,7 @@ function terser_index_js(done) {
 function terser_phone_number_js(done) {
     gulp.src([phone_number_js_path])
         .pipe(terser())
-        .pipe(rename({suffix:".min"}))
+        .pipe(rename({suffix: ".min"}))
         .pipe(gulp.dest(phone_number_dest_js_path));
     done();
 }
@@ -169,7 +183,7 @@ function terser_phone_number_js(done) {
 function terser_photo_info_js(done) {
     gulp.src([photo_info_js_path])
         .pipe(terser())
-        .pipe(rename({suffix:".min"}))
+        .pipe(rename({suffix: ".min"}))
         .pipe(gulp.dest(photo_info_dest_js_path));
     done();
 }
