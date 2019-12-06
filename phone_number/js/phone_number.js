@@ -15,6 +15,43 @@ if (add_new_number) add_new_number.addEventListener("click", function (e) {
 });
 if (phone_number_submit) phone_number_submit.addEventListener("click", add_phone_number);
 
+function verify_phone_number_data() {
+    let phone_name_all = document.querySelectorAll(".phone_name");
+    let tel_number_all = document.querySelectorAll(".tel_number");
+    let mobile_number_all = document.querySelectorAll(".mobile_number");
+
+    let verify = true;
+    let verify_result = [];
+
+    for (let x = phone_name_all.length, i = 0; i < x; i++) {
+        if (phone_name_all[i].value.length === 0) {
+            phone_name_all[i].value = "必填";
+        }
+        if (phone_name_all[i].value.length > 0 && (tel_number_all[i].value.length === 0 && mobile_number_all[i].value.length === 0)) {
+            tel_number_all[i].value = "选填其一";
+            mobile_number_all[i].value = "选填其一";
+        }
+
+
+        if (phone_name_all[i].classList.contains("is-invalid")) {
+            verify_result[i] = false;
+        } else if (phone_name_all[i].classList.contains("is-valid")) {
+            verify_result[i] = true;
+        } else if (!phone_name_all[i].classList.contains("is-invalid") && !phone_name_all[i].classList.contains("is-valid")) {
+            verify_result[i] = false;
+        }
+    }
+
+    for (let x = verify_result.length, i = 0; i < x; i++) {
+        console.log(verify_result[i]);
+        if (verify_result[i] === false) {
+            verify = false;
+        }
+    }
+
+    return verify;
+}
+
 function phone_number_data() {
     let phone_name_all = document.querySelectorAll(".phone_name");
     let tel_number_all = document.querySelectorAll(".tel_number");
@@ -37,6 +74,17 @@ function phone_number_data() {
         };
     }
     return JSON.stringify(result);
+}
+
+function custom_input_check(RegExp_rules_name, error_text, element) {
+    let RegExp_result = RegExp_rules_name.test(element.value);
+    if (!RegExp_result) {
+        validation_invalid_div(element, error_text);
+        input_error(element);
+    } else {
+        input_success(element);
+        remove_validation_div(element);
+    }
 }
 
 function create_form_add_init() {
@@ -194,40 +242,44 @@ function create_mobile_number() {
 }
 
 function add_phone_number() {
-    let data = phone_number_data();
-    console.log(data);
+    let verify = verify_phone_number_data();
+    if (verify === true) {
+        let data = phone_number_data();
+        console.log(data);
 
-    $.ajax({
-        method: "post",
-        url: add_phone_number_url,
-        dataType: "json",
-        timeout: 5000,
-        beforeSend: add_spinner_icon(phone_number_submit),
-        data: {
-            data: data,
-        },
-        success: function (data) {
-            let result = data.result;
-            remove_spinner_icon(phone_number_submit);
-            get_number_stored();
-            result ? bootstrapModalJs('', result, '', '', true) : "";
-            console.log(data);
-            if (data["data"]) {
-                bootstrapModalJs('', JSON.stringify(data["data"]), '', '', true);
-            }
-        },
-        error: function (data) {
-            if (data.statusText === "timeout") {
-                bootstrapModalJs('', '连接服务器超时，请尝试重新提交。', '', '', true);
-            } else if (data.statusText === "OK" && data.responseText !== "") {
-                bootstrapModalJs('', data.responseText, '', '', true);
+        $.ajax({
+            method: "post",
+            url: add_phone_number_url,
+            dataType: "json",
+            timeout: 5000,
+            beforeSend: add_spinner_icon(phone_number_submit),
+            data: {
+                data: data,
+            },
+            success: function (data) {
+                let result = data.result;
+                remove_spinner_icon(phone_number_submit);
+                get_number_stored();
+                result ? bootstrapModalJs('', result, '', '', true) : "";
                 console.log(data);
-            } else {
-                bootstrapModalJs('', '失败', '', '', true);
-                console.log(data);
+                if (data["data"]) {
+                    bootstrapModalJs('', JSON.stringify(data["data"]), '', '', true);
+                }
+            },
+            error: function (data) {
+                if (data.statusText === "timeout") {
+                    bootstrapModalJs('', '连接服务器超时，请尝试重新提交。', '', '', true);
+                } else if (data.statusText === "OK" && data.responseText !== "") {
+                    bootstrapModalJs('', data.responseText, '', '', true);
+                    console.log(data);
+                } else {
+                    bootstrapModalJs('', '失败', '', '', true);
+                    console.log(data);
+                }
             }
-        }
-    });
+        });
+    }
+
 }
 
 function input_shadow() {
@@ -252,7 +304,6 @@ function input_form_control_add_shadow(e) {
 function input_form_control_remove_shadow(e) {
     let target = e.target;
     if (target.classList.contains("form-control")) {
-        console.log(target);
         remove_shadow(e);
     }
 }
