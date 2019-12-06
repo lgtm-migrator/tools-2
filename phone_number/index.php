@@ -67,7 +67,7 @@ require_once '../header.php';
 
     <div>
         <?php require_once dirname(dirname(__FILE__)) . "/javascript.php"; ?>
-        <script src="/phone_number/js/phone_number.js"></script>
+        <script src="/phone_number/js/phone_number.min.js"></script>
     </div>
 
 

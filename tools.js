@@ -287,7 +287,7 @@ function bootstrapModalJs_alert(alert_array = {}) {
     div.append(button);
     div.append(a_sr_only);
 
-    let id = bootstrapModalJs("", div, "", "xl", true, false, "", "", bootstrapModalJs_options);
+    let id = bootstrapModalJs("", div, "", "sm", true, false, "", "", bootstrapModalJs_options);
     let modalBody = document.body.querySelector("#modalBody_" + id);
     modalBody.classList.add("p-0");
 }

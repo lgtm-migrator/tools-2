@@ -245,7 +245,6 @@ function input_shadow() {
 function input_form_control_add_shadow(e) {
     let target = e.target;
     if (target.classList.contains("form-control")) {
-        console.log(target);
         add_shadow(e);
     }
 }
