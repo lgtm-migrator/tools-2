@@ -1,5 +1,6 @@
 const gulp = require("gulp");
 const terser = require("gulp-terser");
+const cleanCSS = require("gulp-clean-css");
 const rename = require("gulp-rename");
 const header = require('gulp-header');
 const footer = require('gulp-footer');
@@ -131,6 +132,11 @@ gulp.task("terser_index_js", terser_index_js);
 gulp.task("terser_phone_number_js", terser_phone_number_js);
 gulp.task("terser_photo_info_js", terser_photo_info_js);
 
+gulp.task("cleanCSS_tools_css", cleanCSS_tools_css);
+gulp.task("cleanCSS_index_css", cleanCSS_index_css);
+gulp.task("cleanCSS_phone_number_css", cleanCSS_phone_number_css);
+gulp.task("cleanCSS_photo_info_css", cleanCSS_photo_info_css);
+
 
 gulp.task("copy_fonts", copy_fonts);
 gulp.task("copy_js_cookie", copy_js_cookie);
@@ -187,6 +193,39 @@ function terser_photo_info_js(done) {
         .pipe(gulp.dest(photo_info_dest_js_path));
     done();
 }
+
+function cleanCSS_tools_css(done) {
+    gulp.src([tools_css_path])
+        .pipe(cleanCSS())
+        .pipe(rename({suffix: ".min"}))
+        .pipe(gulp.dest(tools_dest_css_path));
+    done();
+}
+
+function cleanCSS_index_css(done) {
+    gulp.src([index_css_path])
+        .pipe(cleanCSS())
+        .pipe(rename({suffix: ".min"}))
+        .pipe(gulp.dest(index_dest_css_path));
+    done();
+}
+
+function cleanCSS_phone_number_css(done) {
+    gulp.src([phone_number_css_path])
+        .pipe(cleanCSS())
+        .pipe(rename({suffix: ".min"}))
+        .pipe(gulp.dest(phone_number_dest_css_path));
+    done();
+}
+
+function cleanCSS_photo_info_css(done) {
+    gulp.src([photo_info_css_path])
+        .pipe(cleanCSS())
+        .pipe(rename({suffix: ".min"}))
+        .pipe(gulp.dest(photo_info_dest_css_path));
+    done();
+}
+
 
 function copy_fonts(done) {
     gulp.src([font_css_path, font_min_css_path]).pipe(gulp.dest(static_path + "/font/css"));

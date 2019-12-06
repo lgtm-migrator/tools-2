@@ -2,7 +2,7 @@
 define('title', '在线小工具');
 require_once './header.php';
 ?>
-    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="index.min.css">
 
     <div class="container" id="jt_index">
         <div id="jt_category"></div>
