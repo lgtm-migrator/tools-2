@@ -19,7 +19,7 @@
     </div>
 </div>
 <div>
-    <script src="/tools.js"></script>
+    <script src="/tools.min.js"></script>
 </div>
 </body>
 </html>

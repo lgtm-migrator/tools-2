@@ -95,15 +95,27 @@ const moment_with_locales_min_js_path = "./node_modules/moment/min/moment-with-l
 //clipboard.js
 const clipboard_min_js_path = "./node_modules/clipboard/dist/clipboard.min.js";
 
+
+/** 文件路径 **/
+//tools.js
+const tools_js_path = "tools.js";
+const tools_dest_js_path = "./";
+
+//index.js
+const index_js_path = "index.js";
+const index_dest_js_path = "./";
+
 //phone_number.js
 const phone_number_js_path = "phone_number/js/phone_number.js";
-const phone_number_static_js_path = "phone_number/js";
+const phone_number_dest_js_path = "phone_number/js";
 
 //photo_info.js
 const photo_info_js_path = "photo_info/js/photo_info.js";
-const photo_info_static_js_path = "photo_info/js";
+const photo_info_dest_js_path = "photo_info/js";
 
 
+gulp.task("terser_tools_js", terser_tools_js);
+gulp.task("terser_index_js", terser_index_js);
 gulp.task("terser_phone_number_js", terser_phone_number_js);
 gulp.task("terser_photo_info_js", terser_photo_info_js);
 
@@ -130,19 +142,35 @@ gulp.task("copy_lax", copy_lax);
 // gulp.task("add_header", add_fundebug_api);
 gulp.task("add_footer", add_fundebug_api);
 
+function terser_tools_js(done) {
+    gulp.src([tools_js_path])
+        .pipe(terser())
+        .pipe(rename({suffix:".min"}))
+        .pipe(gulp.dest(tools_dest_js_path));
+    done();
+}
+
+function terser_index_js(done) {
+    gulp.src([index_js_path])
+        .pipe(terser())
+        .pipe(rename({suffix:".min"}))
+        .pipe(gulp.dest(index_dest_js_path));
+    done();
+}
+
 function terser_phone_number_js(done) {
     gulp.src([phone_number_js_path])
         .pipe(terser())
-        .pipe(rename("phone_number.min.js"))
-        .pipe(gulp.dest(phone_number_static_js_path));
+        .pipe(rename({suffix:".min"}))
+        .pipe(gulp.dest(phone_number_dest_js_path));
     done();
 }
 
 function terser_photo_info_js(done) {
     gulp.src([photo_info_js_path])
         .pipe(terser())
-        .pipe(rename("photo_info.min.js"))
-        .pipe(gulp.dest(photo_info_static_js_path));
+        .pipe(rename({suffix:".min"}))
+        .pipe(gulp.dest(photo_info_dest_js_path));
     done();
 }
 

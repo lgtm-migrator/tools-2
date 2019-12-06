@@ -9,7 +9,7 @@
   "scripts": {
     "copy": "gulp add_footer copy_fonts copy_js_cookie copy_jq copy_popper copy_bs copy_bmj copy_bs_custom_file_input copy_moment copy_clipboard",
     "add": "gulp add_footer",
-    "terser_js": "gulp terser_phone_number_js terser_photo_info_js"
+    "terser_js": "gulp terser_tools_js terser_index_js terser_phone_number_js terser_photo_info_js"
   },
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.11.2",
