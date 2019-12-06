@@ -59,7 +59,7 @@ require_once '../header.php';
                 </div>
             </div>
             <div class="my-2 d-flex justify-content-center" id="number_submit">
-                <button class="btn btn-lg btn-primary d-flex" id="phone_number_submit">提交新号码</button>
+                <button class="btn btn-primary" id="phone_number_submit">提交新号码</button>
             </div>
         </div>
         <span class="float-right" id="number_stored"></span>

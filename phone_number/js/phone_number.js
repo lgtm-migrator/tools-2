@@ -114,7 +114,7 @@ function create_phone_name() {
 
     i.className = "fa fa-home";
 
-    input.className = "form-control fa text-success text-center phone_name";
+    input.className = "form-control form-control-sm fa text-success text-center phone_name";
     input.id = "phone_name_" + id_timestamp;
     input.type = "text";
     input.setAttribute("minlength", "4");
@@ -146,7 +146,7 @@ function create_tel_number() {
 
     i.className = "fa fa-phone";
 
-    input.className = "form-control fa text-success text-center tel_number";
+    input.className = "form-control form-control-sm fa text-success text-center tel_number";
     input.id = "tel_number_" + id_timestamp;
     input.type = "tel";
     input.setAttribute("minlength", "12");
@@ -177,7 +177,7 @@ function create_mobile_number() {
 
     i.className = "fa fa-mobile-alt";
 
-    input.className = "form-control fa text-success text-center mobile_number";
+    input.className = "form-control form-control-sm fa text-success text-center mobile_number";
     input.id = "mobile_number_" + id_timestamp;
     input.type = "tel";
     input.setAttribute("minlength", "11");

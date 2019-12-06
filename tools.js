@@ -26,7 +26,7 @@ function validation_invalid_div(element, text, type = "tooltip") {
         let div = document.createElement("div");
         if (type === "tooltip") {
             div.className = "invalid-tooltip";
-            div.style.position = "unset";
+            div.style.position = "static";
         } else {
             div.className = "invalid-feedback";
         }
@@ -187,10 +187,10 @@ for (let x = btn_all.length, i = 0; i < x; i++) {
 
 for (let x = input_all.length, i = 0; i < x; i++) {
     input_all[i].addEventListener("focus", function (e) {
-        add_shadow(e, "sm");
+        add_shadow(e);
     });
     input_all[i].addEventListener("blur", function (e) {
-        remove_shadow(e, "sm");
+        remove_shadow(e);
     });
 }
 

@@ -11,8 +11,8 @@ require_once './header.php';
             <div class="col mb-3">
                 <div class="card h-100">
                     <div class="d-flex justify-content-between card-header py-1 py-md-2">
-                        <a class="text-success font-weight-bold" id="phoneNumber" href="/phone_number/index.php"
-                           title="公共电话本" style="font-size: 95%;">公共电话本</a>
+                        <a class="text-success font-weight-bold text-decoration-none" id="phoneNumber" href="/phone_number/index.php"
+                           title="公共电话本" style="font-size: 95%;"><i class="mr-2 fas fa-address-book"></i>公共电话本</a>
                         <div class="category text-muted small">[&nbsp;查询&nbsp;]</div>
                     </div>
                     <div class="card-body">
@@ -24,8 +24,8 @@ require_once './header.php';
             <div class="col mb-3">
                 <div class="card h-100">
                     <div class="d-flex justify-content-between card-header py-1 py-md-2">
-                        <a class="text-success font-weight-bold" id="phoneNumber" href="/photo_info/index.php"
-                           title="照片详情信息" style="font-size: 95%;">照片详情信息</a>
+                        <a class="text-success font-weight-bold text-decoration-none" id="phoneNumber" href="/photo_info/index.php"
+                           title="照片详情信息" style="font-size: 95%;"><i class="mr-2 fas fa-image"></i>照片详情信息</a>
                         <div class="category text-muted small">[&nbsp;查询&nbsp;]</div>
                     </div>
                     <div class="card-body">
