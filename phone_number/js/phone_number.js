@@ -242,10 +242,10 @@ function create_mobile_number() {
 }
 
 function add_phone_number() {
-    let verify = verify_phone_number_data();
+    // let verify = verify_phone_number_data();
+    let verify = true;
     if (verify === true) {
         let data = phone_number_data();
-        console.log(data);
 
         $.ajax({
             method: "post",
@@ -253,18 +253,11 @@ function add_phone_number() {
             dataType: "json",
             timeout: 5000,
             beforeSend: add_spinner_icon(phone_number_submit),
-            data: {
-                data: data,
-            },
+            data: {data: data},
             success: function (data) {
-                let result = data.result;
+                get_ajax_result(data);
                 remove_spinner_icon(phone_number_submit);
                 get_number_stored();
-                result ? bootstrapModalJs('', result, '', '', true) : "";
-                console.log(data);
-                if (data["data"]) {
-                    bootstrapModalJs('', JSON.stringify(data["data"]), '', '', true);
-                }
             },
             error: function (data) {
                 if (data.statusText === "timeout") {
@@ -278,6 +271,24 @@ function add_phone_number() {
                 }
             }
         });
+    }
+
+}
+
+function get_ajax_result(result) {
+    console.log(result);
+    console.log(result.error);
+    console.log(result.message);
+
+    if (result["message"]["add_number"].hasOwnProperty("success")) {
+        bootstrapModalJs('', result["message"]["add_number"]["success"], '', '', true);
+    }
+    if (result["message"]["add_number"].hasOwnProperty("failure")) {
+        bootstrapModalJs('', result["message"]["add_number"]["failure"], '', '', true);
+    }
+
+    if (result["error"].hasOwnProperty("data")) {
+        bootstrapModalJs('', JSON.stringify(result["error"]["data"]), '', '', true);
     }
 
 }
@@ -412,9 +423,8 @@ function get_search_result(data) {
 }
 
 function processing_search_result(data) {
-    let i;
     number_list.innerHTML = "";
-    for (i in data) {
+    for (let i in data) {
         create_number_list(data[i]);
     }
     number_list_child();
