@@ -305,28 +305,30 @@ function ajax_success_fun_debug(success_result, error_name) {
 
 function ajax_error(error_result) {
     let status = error_result.status;
+    let statusText = error_result.statusText;
     let readyState = error_result.readyState;
     let responseText = error_result.responseText;
-    let statusText = error_result.statusText;
     console.log(error_result);
 
     if (readyState === 4) {
-
+        if (status === 500 && responseText === "" && statusText === "Internal Server Error") {
+            bootstrapModalJs('', "服务器出错。", '', 'sm', true);
+        } else if (statusText === "timeout") {
+            bootstrapModalJs('', '服务器连接超时。', '', 'sm', true);
+        } else if (status === 200 && RegExp_rules.mysqli_1045.test(responseText)) {
+            bootstrapModalJs('', '数据库连接出错', '', 'sm', true);
+        } else if (status === 200 && responseText !== "") {
+            bootstrapModalJs('', responseText, '', 'xl', true, true);
+        } else {
+            bootstrapModalJs('', '失败。', '', 'sm', true);
+        }
     }
 
-    if (status < 500 && responseText !== "") {
-        bootstrapModalJs('', responseText, '', 'sm', true);
-    } else if (status === 500 && responseText === "" && statusText === "Internal Server Error") {
-        bootstrapModalJs('', "服务器出错。", '', 'sm', true);
-    } else if (statusText === "timeout") {
-        bootstrapModalJs('', '连接服务器超时。', '', 'sm', true);
-    } else if (statusText === "OK" && responseText !== "") {
-        bootstrapModalJs('', responseText, '', '', true);
-    } else {
-        bootstrapModalJs('', '失败。', '', 'sm', true);
+    if (readyState === 0 || status === 0) {
+        if (statusText === "error") {
+            bootstrapModalJs('', "服务器刚刚关闭。", '', 'sm', true, true);
+        }
     }
-
-
 }
 
 function ajax_error_fun_debug(error_result, error_name) {
