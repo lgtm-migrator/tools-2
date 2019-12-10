@@ -58,7 +58,7 @@ $regional_array = array(
     'xdw' => 'xiandewang',
 );
 $regional_key = filter_var($data_post_array['info']['regional'], FILTER_VALIDATE_REGEXP, filter_validate_options_regexp($PREG_rules['a_zA_Z4']));
-$regional_key = $regional_key? $regional_key : 'un';
+$regional_key = $regional_key ? $regional_key : 'un';
 
 $regional = $regional_array[$regional_key];
 
@@ -80,6 +80,7 @@ $user_agent = filter_input(INPUT_SERVER, 'HTTP_USER_AGENT');
 
 
 $data_count = count($data_post_array) - 1;
+$phone_number_data = array();
 for ($i = 0; $i < $data_count; $i++) {
     $phone_number_data[$i] = array(
         'phone_name' => $data_post_array[$i]['phone_name'],
@@ -130,11 +131,11 @@ if (!$id) {
         unset($phone_number_error_data[$k]['ip_v6']);
         unset($phone_number_error_data[$k]['user_agent']);
     }
-    $result['message']['add_number']['failure'] = '提交失败';
+    $result['message']['add_number']['failure'] = '';
     $result['error']['errno'] = $db->getLastErrno();
     $result['error']['error'] = $db->getLastError();
     $result['error']['data'] = $phone_number_error_data;
 } else {
-    $result['message']['add_number']['success'] = '您提交的' . $data_count . '个号码已经成功被收录';
+    $result['message']['add_number']['success'] = $data_count;
 }
 die(json_encode($result));

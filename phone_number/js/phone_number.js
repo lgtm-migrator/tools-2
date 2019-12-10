@@ -278,15 +278,25 @@ function get_ajax_result(result) {
 }
 
 function ajax_success(success_result, message_name) {
-    if (success_result["message"][message_name].hasOwnProperty("success")) {
-        bootstrapModalJs('', success_result["message"][message_name]["success"], '', 'sm', true);
-    }
     if (success_result["message"][message_name].hasOwnProperty("failure")) {
         let message = "<div class='small text-center'><span>" +
-            success_result["message"][message_name]["failure"] +
+            "提交失败。" +
             "<br>" +
             "错误代码：" +
             success_result["error"]["errno"] +
+            "</span></div>";
+        bootstrapModalJs('', message, '', 'sm', true);
+    }
+
+    if (success_result["message"][message_name].hasOwnProperty("repeat")) {
+
+    }
+
+    if (success_result["message"][message_name].hasOwnProperty("success")) {
+        let message = "<div class='small text-center'><span>" +
+            "您提交的" +
+            success_result["message"][message_name]["success"] +
+            "个号码已经成功被收录。" +
             "</span></div>";
         bootstrapModalJs('', message, '', 'sm', true);
     }
