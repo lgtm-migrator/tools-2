@@ -23,6 +23,7 @@ SET FOREIGN_KEY_CHECKS = 0;
 DROP TABLE IF EXISTS `google_recaptcha_data`;
 CREATE TABLE `google_recaptcha_data`  (
   `id` int(15) NOT NULL AUTO_INCREMENT COMMENT '主键',
+  `success` int(1) NOT NULL COMMENT '评分通过状态',
   `action` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '动作',
   `hostname` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '主机名',
   `score` decimal(2, 1) NOT NULL COMMENT '评分值',
