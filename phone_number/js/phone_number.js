@@ -242,8 +242,8 @@ function create_mobile_number() {
 }
 
 function add_phone_number() {
-    // let verify = verify_phone_number_data();
-    let verify = true;
+    let verify = verify_phone_number_data();
+    // let verify = true;
     if (verify === true) {
         let data = phone_number_data();
 
@@ -436,9 +436,9 @@ function get_number_stored() {
 
 
 /** ReCAPTCHA **/
-if (phone_number_submit) phone_number_submit.addEventListener("click", function () {
-    set_recaptcha_action("test11");
-});
+// if (phone_number_submit) phone_number_submit.addEventListener("click", function () {
+//     set_recaptcha_action("test11");
+// });
 
 
 /** 搜索 **/

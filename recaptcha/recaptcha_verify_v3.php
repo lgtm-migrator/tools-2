@@ -6,18 +6,18 @@ $remoteIp = filter_input(INPUT_SERVER, 'REMOTE_ADDR', FILTER_VALIDATE_IP);
 $timeoutSeconds = 4500;
 $threshold = 0.9;
 
-if ($action && $response) {
+if (!empty($action) && !empty($response)) {
     verify_result('json');
 }
 
-function verify_result($type = 'json', $Response = null, $Action = null, $Threshold = null)
+function verify_result($type = 'json', $Response = null, $Action = null, $Threshold = null, $TimeOutSeconds = null)
 {
-    $resp = ReCaptcha_verify($Response, $Action, $Threshold);
+    $resp = ReCaptcha_verify($Response, $Action, $Threshold, $TimeOutSeconds);
     $resp_array = $resp->toArray();
     $resp_json = json_encode($resp_array);
 
     require_once 'recaptcha_database.php';
-    recaptcha_data_to_database($resp_array);
+    recaptcha_data_to_database($resp_array, $Threshold);
 
     if ($type === 'bool') {
         if ($resp->isSuccess()) {
@@ -36,7 +36,7 @@ function verify_result($type = 'json', $Response = null, $Action = null, $Thresh
 }
 
 
-function ReCaptcha_verify($Response = null, $Action = null, $Threshold = null, $HostName = null, $TimeOutSeconds = null, $RemoteIp = null)
+function ReCaptcha_verify($Response = null, $Action = null, $Threshold = null, $TimeOutSeconds = null, $HostName = null, $RemoteIp = null)
 {
     global $recaptcha_v3_secret_key, $siteVerifyUrl, $response, $action, $hostname, $threshold, $timeoutSeconds, $remoteIp;
     require_once 'recaptcha_key.php';

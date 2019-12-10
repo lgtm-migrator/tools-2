@@ -2,18 +2,22 @@
 /**
  * 保存信息到数据库
  */
-function recaptcha_data_to_database($resp_array)
+function recaptcha_data_to_database($resp_array, $Threshold = null)
 {
     global $db_host, $db_user, $db_pwd, $db_database;
     global $threshold, $remoteIp, $timeoutSeconds;
     require_once dirname(dirname(__FILE__)) . "/mysqli/config.php";
 
     $now = new DateTime();
+
+    $success_value = $resp_array['success'] ? 1 : 0;
     $error_codes_json = (count($resp_array['error-codes']) > 0) ? json_encode($resp_array['error-codes']) : '';
 
+    $success = $success_value;
     $action = $resp_array['action'];
     $hostname = $resp_array['hostname'];
     $score = $resp_array['score'];
+    $Threshold = is_null($Threshold) ? $threshold : $Threshold;
     $error_codes = $error_codes_json;
     $challenge_ts = $resp_array['challenge_ts'];
     $challenge_ts_time = return_YmdHisu(challenge_ts_to_dataTime($challenge_ts));
@@ -23,10 +27,11 @@ function recaptcha_data_to_database($resp_array)
     $user_agent = filter_input(INPUT_SERVER, "HTTP_USER_AGENT");
 
     $google_recaptcha_data = array(
+        "success" => $success,
         "action" => $action,
         "hostname" => $hostname,
         "score" => $score,
-        "threshold" => $threshold,
+        "threshold" => $Threshold,
         "remote_ip" => $remoteIp,
         "error_codes" => $error_codes,
         "timeout_seconds" => $timeoutSeconds,
