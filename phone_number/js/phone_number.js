@@ -255,20 +255,13 @@ function add_phone_number() {
             beforeSend: add_spinner_icon(phone_number_submit),
             data: {data: data},
             success: function (data) {
-                get_ajax_result(data);
                 remove_spinner_icon(phone_number_submit);
+                get_ajax_result(data);
                 get_number_stored();
             },
             error: function (data) {
-                if (data.statusText === "timeout") {
-                    bootstrapModalJs('', '连接服务器超时，请尝试重新提交。', '', '', true);
-                } else if (data.statusText === "OK" && data.responseText !== "") {
-                    bootstrapModalJs('', data.responseText, '', '', true);
-                    console.log(data);
-                } else {
-                    bootstrapModalJs('', '失败', '', '', true);
-                    console.log(data);
-                }
+                ajax_error(data);
+                ajax_error_fun_debug(data, "phone_number_error");
             }
         });
     }
@@ -277,20 +270,69 @@ function add_phone_number() {
 
 function get_ajax_result(result) {
     console.log(result);
-    console.log(result.error);
-    console.log(result.message);
 
-    if (result["message"]["add_number"].hasOwnProperty("success")) {
-        bootstrapModalJs('', result["message"]["add_number"]["success"], '', '', true);
+    ajax_success(result, "add_number");
+    if (result['error'].length !== 0) {
+        ajax_success_fun_debug(result, "phone_number_success_error");
     }
-    if (result["message"]["add_number"].hasOwnProperty("failure")) {
-        bootstrapModalJs('', result["message"]["add_number"]["failure"], '', '', true);
+}
+
+function ajax_success(success_result, message_name) {
+    if (success_result["message"][message_name].hasOwnProperty("success")) {
+        bootstrapModalJs('', success_result["message"][message_name]["success"], '', 'sm', true);
+    }
+    if (success_result["message"][message_name].hasOwnProperty("failure")) {
+        let message = "<div class='small text-center'><span>" +
+            success_result["message"][message_name]["failure"] +
+            "<br>" +
+            "错误代码：" +
+            success_result["error"]["errno"] +
+            "</span></div>";
+        bootstrapModalJs('', message, '', 'sm', true);
+    }
+}
+
+function ajax_success_fun_debug(success_result, error_name) {
+    if (fundebug) {
+        let success_error = success_result["error"].hasOwnProperty("error") ? JSON.stringify(success_result['error']['error']) : "";
+        let success_errno = success_result["error"].hasOwnProperty("errno") ? JSON.stringify(success_result['error']['errno']) : "";
+        let success_data = success_result["error"].hasOwnProperty("data") ? JSON.stringify(success_result['error']['data']) : "";
+        fundebug.test(error_name, success_error);
+        fundebug.test(error_name, success_errno);
+        fundebug.test(error_name, success_data);
+    }
+}
+
+function ajax_error(error_result) {
+    let status = error_result.status;
+    let readyState = error_result.readyState;
+    let responseText = error_result.responseText;
+    let statusText = error_result.statusText;
+    console.log(error_result);
+
+    if (readyState === 4) {
+
     }
 
-    if (result["error"].hasOwnProperty("data")) {
-        bootstrapModalJs('', JSON.stringify(result["error"]["data"]), '', '', true);
+    if (status < 500 && responseText !== "") {
+        bootstrapModalJs('', responseText, '', 'sm', true);
+    } else if (status === 500 && responseText === "" && statusText === "Internal Server Error") {
+        bootstrapModalJs('', "服务器出错。", '', 'sm', true);
+    } else if (statusText === "timeout") {
+        bootstrapModalJs('', '连接服务器超时。', '', 'sm', true);
+    } else if (statusText === "OK" && responseText !== "") {
+        bootstrapModalJs('', responseText, '', '', true);
+    } else {
+        bootstrapModalJs('', '失败。', '', 'sm', true);
     }
 
+
+}
+
+function ajax_error_fun_debug(error_result, error_name) {
+    if (fundebug) {
+        fundebug.test(error_name, JSON.stringify(error_result));
+    }
 }
 
 function input_shadow() {
@@ -399,16 +441,8 @@ function ajax_search(search_data) {
             get_search_result(data);
         },
         error: function (data) {
-            let responseText = data.responseText;
-            let status = data.status;
-            if (status === 500 && responseText === "") {
-                bootstrapModalJs('', "查询失败，网络连接出错", '', '', true);
-            } else if (status <= 500 && responseText !== "") {
-                bootstrapModalJs('', responseText, '', '', true);
-            } else {
-                bootstrapModalJs('', "未知查询错误", '', '', true);
-            }
-            console.log(data);
+            ajax_error(data);
+            ajax_error_fun_debug(data, "search_number");
         }
     });
 }
@@ -425,7 +459,7 @@ function get_search_result(data) {
 function processing_search_result(data) {
     number_list.innerHTML = "";
     for (let i in data) {
-        create_number_list(data[i]);
+        if (data.hasOwnProperty(i)) create_number_list(data[i]);
     }
     number_list_child();
     $(".number i").tooltip();
