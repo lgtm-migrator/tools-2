@@ -1,12 +1,23 @@
 <?php
 
-if (filter_has_var(INPUT_POST, 'data')) {
-    $result = array(
-        'message' => array(),
-        'error' => array(),
-    );
+if (filter_has_var(INPUT_POST, 'g_recaptcha')) {
+    if ($_POST['g_recaptcha']['token'] && $_POST['g_recaptcha']['action']) {
+        $result = array(
+            'message' => array(),
+            'error' => array(),
+        );
+        require_once dirname(dirname(__FILE__)) . "/recaptcha/recaptcha_verify_v3.php";
+        $g_recaptcha_result = verify_result($type = 'bool', $_POST['g_recaptcha']['token'], $_POST['g_recaptcha']['action']);
+        if ($g_recaptcha_result === true) {
+            if (filter_has_var(INPUT_POST, 'data')) {
+                $phone_number_data_post = filter_input(INPUT_POST, 'data');
+            }
+        } else {
+            $result['message']['g_recaptcha']['verify'] = false;
+            die(json_encode($result));
+        }
 
-    $phone_number_data_post = filter_input(INPUT_POST, 'data');
+    }
 } else {
     die('访问受限');
 }

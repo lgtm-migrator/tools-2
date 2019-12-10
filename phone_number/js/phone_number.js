@@ -247,24 +247,49 @@ function add_phone_number() {
     if (verify === true) {
         let data = phone_number_data();
 
-        $.ajax({
-            method: "post",
-            url: add_phone_number_url,
-            dataType: "json",
-            timeout: 5000,
-            beforeSend: add_spinner_icon(phone_number_submit),
-            data: {data: data},
-            success: function (data) {
-                remove_spinner_icon(phone_number_submit);
-                get_ajax_result(data);
-                get_number_stored();
-            },
-            error: function (data) {
-                ajax_error(data);
-                ajax_error_fun_debug(data, "phone_number_error");
-            }
+
+        const v3_site_key = "6LcvIcEUAAAAAEUgtbN0VFiH_n2VHw-luW3rdZFv";
+        const url = "https://www.recaptcha.net/recaptcha/api.js?render=";
+
+        const action = "add_phone_number";
+
+        $.getScript(url + v3_site_key, function () {
+            grecaptcha.ready(function () {
+                grecaptcha.execute(v3_site_key, {action: action})
+                    .then(function (token) {
+                        console.log(token);
+                        ajax_phone_number(data, token, action);
+                    });
+            });
         });
     }
+
+}
+
+function ajax_phone_number(data, g_recaptcha_token, g_recaptcha_action) {
+    $.ajax({
+        method: "post",
+        url: add_phone_number_url,
+        dataType: "json",
+        timeout: 5000,
+        beforeSend: add_spinner_icon(phone_number_submit),
+        data: {
+            data: data,
+            g_recaptcha: {
+                token: g_recaptcha_token,
+                action: g_recaptcha_action,
+            },
+        },
+        success: function (data) {
+            remove_spinner_icon(phone_number_submit);
+            get_ajax_result(data);
+            get_number_stored();
+        },
+        error: function (data) {
+            ajax_error(data);
+            ajax_error_fun_debug(data, "phone_number_error");
+        }
+    });
 
 }
 

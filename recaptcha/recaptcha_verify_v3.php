@@ -4,40 +4,43 @@ $response = filter_input(INPUT_POST, 'token');
 $hostname = filter_input(INPUT_SERVER, 'SERVER_NAME');
 $remoteIp = filter_input(INPUT_SERVER, 'REMOTE_ADDR', FILTER_VALIDATE_IP);
 $timeoutSeconds = 4500;
-$threshold = 1.0;
+$threshold = 0.9;
 
-if ($action && $response && $response && $hostname) {
-    verify_result();
-} else {
-    die();
+if ($action && $response) {
+    verify_result('json');
 }
 
-function verify_result()
+function verify_result($type = 'json', $Response = null, $Action = null)
 {
-    $resp = ReCaptcha_verify();
+    $resp = ReCaptcha_verify($Response, $Action);
     $resp_array = $resp->toArray();
-    $resp_json = json_encode($resp->toArray());
+    $resp_json = json_encode($resp_array);
 
-    if ($resp->isSuccess()) {
-        die($resp_json);
-//        return true;
-    } else {
-//        $errors = $resp->getErrorCodes();
-//        echo json_encode($errors);
-        require_once "recaptcha_fun.php";
-        recaptcha_data_to_database($resp_array);
+    require_once 'recaptcha_database.php';
+    recaptcha_data_to_database($resp_array);
 
-        die($resp_json);
-//        return false;
+    if ($type === 'bool') {
+        if ($resp->isSuccess()) {
+            return true;
+        } else {
+            return false;
+        }
+    } elseif ($type === 'json') {
+        if ($resp->isSuccess()) {
+            die($resp_json);
+        } else {
+            die($resp_json);
+        }
     }
+
 }
 
 
 function ReCaptcha_verify($Response = null, $Action = null, $HostName = null, $Threshold = null, $TimeOutSeconds = null, $RemoteIp = null)
 {
     global $recaptcha_v3_secret_key, $siteVerifyUrl, $response, $action, $hostname, $threshold, $timeoutSeconds, $remoteIp;
-    require_once "recaptcha_key.php";
-    require_once "../vendor/autoload.php";
+    require_once 'recaptcha_key.php';
+    require_once '../vendor/autoload.php';
 
     $Response = (is_null($Response)) ? $response : $Response;
     $Action = (is_null($Action)) ? $action : $Action;
@@ -47,12 +50,11 @@ function ReCaptcha_verify($Response = null, $Action = null, $HostName = null, $T
     $RemoteIp = (is_null($RemoteIp)) ? $remoteIp : $RemoteIp;
 
     $recaptcha = new ReCaptcha\ReCaptcha($recaptcha_v3_secret_key, new ReCaptcha\RequestMethod\Post($siteVerifyUrl));
-    $resp = $recaptcha
+    return $recaptcha
         ->setExpectedAction($Action)
         ->setExpectedHostname($HostName)
         ->setScoreThreshold($Threshold)
         ->setChallengeTimeout($TimeOutSeconds)
         ->verify($Response, $RemoteIp);
-    return $resp;
 }
 
