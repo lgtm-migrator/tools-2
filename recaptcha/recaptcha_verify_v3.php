@@ -10,9 +10,9 @@ if ($action && $response) {
     verify_result('json');
 }
 
-function verify_result($type = 'json', $Response = null, $Action = null)
+function verify_result($type = 'json', $Response = null, $Action = null, $Threshold = null)
 {
-    $resp = ReCaptcha_verify($Response, $Action);
+    $resp = ReCaptcha_verify($Response, $Action, $Threshold);
     $resp_array = $resp->toArray();
     $resp_json = json_encode($resp_array);
 
@@ -36,7 +36,7 @@ function verify_result($type = 'json', $Response = null, $Action = null)
 }
 
 
-function ReCaptcha_verify($Response = null, $Action = null, $HostName = null, $Threshold = null, $TimeOutSeconds = null, $RemoteIp = null)
+function ReCaptcha_verify($Response = null, $Action = null, $Threshold = null, $HostName = null, $TimeOutSeconds = null, $RemoteIp = null)
 {
     global $recaptcha_v3_secret_key, $siteVerifyUrl, $response, $action, $hostname, $threshold, $timeoutSeconds, $remoteIp;
     require_once 'recaptcha_key.php';

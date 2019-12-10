@@ -303,28 +303,38 @@ function get_ajax_result(result) {
 }
 
 function ajax_success(success_result, message_name) {
-    if (success_result["message"][message_name].hasOwnProperty("failure")) {
-        let message = "<div class='small text-center'><span>" +
-            "提交失败。" +
-            "<br>" +
-            "错误代码：" +
-            success_result["error"]["errno"] +
+    if (success_result["message"]["g_recaptcha"]['verify'] === true) {
+        if (success_result["message"].hasOwnProperty(message_name)) {
+            if (success_result["message"][message_name].hasOwnProperty("failure")) {
+                let message = "<div class='small text-center'><span>" +
+                    "提交失败。" +
+                    "<br>" +
+                    "错误代码：" +
+                    success_result["error"]["errno"] +
+                    "</span></div>";
+                bootstrapModalJs('', message, '', 'sm', true);
+            }
+
+            if (success_result["message"][message_name].hasOwnProperty("repeat")) {
+
+            }
+
+            if (success_result["message"][message_name].hasOwnProperty("success")) {
+                let message = "<div class='small text-center'><span>" +
+                    "您提交的" +
+                    success_result["message"][message_name]["success"] +
+                    "个号码已经成功被收录。" +
+                    "</span></div>";
+                bootstrapModalJs('', message, '', 'sm', true);
+            }
+        }
+    } else {
+        let message = "<div class='small text-center text-danger'><span>" +
+            "服务器判断您的评分太低,没有收录您提交的号码。" +
             "</span></div>";
-        bootstrapModalJs('', message, '', 'sm', true);
+        bootstrapModalJs("", message, "", "", true);
     }
 
-    if (success_result["message"][message_name].hasOwnProperty("repeat")) {
-
-    }
-
-    if (success_result["message"][message_name].hasOwnProperty("success")) {
-        let message = "<div class='small text-center'><span>" +
-            "您提交的" +
-            success_result["message"][message_name]["success"] +
-            "个号码已经成功被收录。" +
-            "</span></div>";
-        bootstrapModalJs('', message, '', 'sm', true);
-    }
 }
 
 function ajax_success_fun_debug(success_result, error_name) {

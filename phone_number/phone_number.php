@@ -7,8 +7,9 @@ if (filter_has_var(INPUT_POST, 'g_recaptcha')) {
             'error' => array(),
         );
         require_once dirname(dirname(__FILE__)) . "/recaptcha/recaptcha_verify_v3.php";
-        $g_recaptcha_result = verify_result($type = 'bool', $_POST['g_recaptcha']['token'], $_POST['g_recaptcha']['action']);
+        $g_recaptcha_result = verify_result($type = 'bool', $_POST['g_recaptcha']['token'], $_POST['g_recaptcha']['action'], 0.8);
         if ($g_recaptcha_result === true) {
+            $result['message']['g_recaptcha']['verify'] = true;
             if (filter_has_var(INPUT_POST, 'data')) {
                 $phone_number_data_post = filter_input(INPUT_POST, 'data');
             }
@@ -17,6 +18,8 @@ if (filter_has_var(INPUT_POST, 'g_recaptcha')) {
             die(json_encode($result));
         }
 
+    } else {
+        die('访问受限');
     }
 } else {
     die('访问受限');
