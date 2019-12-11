@@ -39,7 +39,7 @@
 </head>
 <body>
 
-<div id="jt_header">
+<div class="mb-3 mb-lg-4" id="jt_header">
     <div class="py-1 py-lg-2 container" id="logo">
         <a class="text-decoration-none" href="/index.php">
             <span class="mr-1 mr-lg-2 logo-img">
