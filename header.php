@@ -44,7 +44,7 @@
         <a class="text-decoration-none" href="/index.php">
             <span class="mr-1 mr-lg-2 logo-img">
                 <!--<img src="" alt="">-->
-            <i class="mb-0 text-warning h4 fa fa-tools"></i>
+            <i class="mb-0 text-warning h4 fas fa-tools"></i>
             </span>
             <span class="logo-name" title="在线小工具">
                 <h1 class="mb-0 d-inline h5 text-info">在线小工具</h1>

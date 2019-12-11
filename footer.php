@@ -5,7 +5,7 @@
     <div class="my-3 border-bottom"></div>
     <a class="position-fixed border border-primary rounded p-1" href="javascript:" id="to_top"
        style="right: 1.2rem;bottom: 1rem;">
-        <i class="fa fa-2x fa-arrow-up"></i>
+        <i class="fas fa-2x fa-arrow-up"></i>
     </a>
     <div class="container small">
         <span class="my-2 d-block text-nowrap text-center text-white-50" id="recaptcha_text_badge">

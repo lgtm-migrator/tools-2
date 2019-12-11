@@ -14,17 +14,17 @@ require_once '../header.php';
         <div class="form-row justify-content-center">
             <div class="form-group col-11 col-sm-10 col-md-8 col-lg-6">
                 <label class="sr-only" for="phone_number_input">单位名称、简称或者号码</label>
-                <input class="form-control fa text-center" type="search" id="phone_number_input" minlength="2"
+                <input class="form-control fas text-center" type="search" id="phone_number_input" minlength="2"
                        maxlength="15" autofocus="autofocus"
                        placeholder="单位名称、简称或者号码&nbsp;&nbsp;&#xf015;&nbsp;&nbsp;&#xf095;&nbsp;&nbsp;&#xf3cd;">
             </div>
         </div>
         <div class="d-flex justify-content-center">
             <a href="javascript:" class="mx-2 btn btn-success" id="phone_name_search_btn">
-                <i class="fa fa-home">&nbsp;&nbsp;</i>按名称搜索</a>
+                <i class="fas fa-home">&nbsp;&nbsp;</i>按名称搜索</a>
             <a href="javascript:" class="mx-2 btn btn-danger" id="phone_number_search_btn">
-                <i class="fa fa-phone">&nbsp;&nbsp;</i>
-                <i class="fa fa-mobile-alt">&nbsp;&nbsp;</i>按号码搜索</a>
+                <i class="fas fa-phone">&nbsp;&nbsp;</i>
+                <i class="fas fa-mobile-alt">&nbsp;&nbsp;</i>按号码搜索</a>
         </div>
     </div>
 
