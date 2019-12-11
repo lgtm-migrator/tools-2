@@ -28,13 +28,13 @@ require_once '../header.php';
         </div>
     </div>
 
-    <div class="container mt-4" id="phone_search_result">
+    <div class="container mt-5" id="phone_search_result">
         <span class="font-weight-bold text-monospace text-success" style="font-size: 85%;">查询结果</span>
         <div class="mt-1 px-4 pt-3 border border-info rounded" id="number_list"></div>
         <a href="javascript:" class="my-2 btn btn-sm btn-outline-primary" id="add_new_number">我要添加新号码</a>
     </div>
 
-    <div class="container mt-3">
+    <div class="container mt-5">
         <div class="p-4 border border-info rounded fade d-none" id="add_phone_number_form">
             <div class="mb-5 mb-sm-4 mb-md-3 sr-only" id="regional">
                 <div class="custom-control custom-radio custom-control-inline">

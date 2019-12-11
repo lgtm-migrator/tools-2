@@ -120,7 +120,7 @@ function create_btn_add() {
     a.title = "添加新的一行";
     a.id = "phone_number_add";
 
-    i.className = "position-absolute fa fa-plus-circle phone_number_add";
+    i.className = "position-absolute fas fa-plus-circle phone_number_add";
     i.style.top = "11px";
     i.style.right = "0px";
     a.appendChild(i);
@@ -137,7 +137,7 @@ function create_btn_del() {
     a.href = "javascript:";
     a.title = "删除当前行";
 
-    i.className = "position-absolute fa fa-minus-circle phone_number_del";
+    i.className = "position-absolute fas fa-minus-circle phone_number_del";
     i.style.top = "11px";
     i.style.right = "0px";
     a.appendChild(i);
@@ -160,9 +160,9 @@ function create_phone_name() {
     label.setAttribute("for", "phone_name_" + id_timestamp);
     label.innerHTML = "单位名称&nbsp;";
 
-    i.className = "fa fa-home";
+    i.className = "fas fa-home";
 
-    input.className = "form-control form-control-sm fa text-success text-center phone_name";
+    input.className = "form-control form-control-sm fas text-success text-center phone_name";
     input.id = "phone_name_" + id_timestamp;
     input.type = "text";
     input.setAttribute("minlength", "4");
@@ -192,9 +192,9 @@ function create_tel_number() {
     label.setAttribute("for", "tel_number_" + id_timestamp);
     label.innerHTML = "座机电话号码&nbsp;";
 
-    i.className = "fa fa-phone";
+    i.className = "fas fa-phone";
 
-    input.className = "form-control form-control-sm fa text-success text-center tel_number";
+    input.className = "form-control form-control-sm fas text-success text-center tel_number";
     input.id = "tel_number_" + id_timestamp;
     input.type = "tel";
     input.setAttribute("minlength", "12");
@@ -223,9 +223,9 @@ function create_mobile_number() {
     label.setAttribute("for", "mobile_number_" + id_timestamp);
     label.innerHTML = "手机电话号码&nbsp;";
 
-    i.className = "fa fa-mobile-alt";
+    i.className = "fas fa-mobile-alt";
 
-    input.className = "form-control form-control-sm fa text-success text-center mobile_number";
+    input.className = "form-control form-control-sm fas text-success text-center mobile_number";
     input.id = "mobile_number_" + id_timestamp;
     input.type = "tel";
     input.setAttribute("minlength", "11");
@@ -545,7 +545,7 @@ function create_number_list_name(name) {
 
     span_name.innerHTML = name;
 
-    i.className = "mr-2 fa fa-home text-info";
+    i.className = "mr-2 fas fa-home text-info";
     i.style.cursor = "pointer";
 
     span.appendChild(ul);
@@ -571,7 +571,7 @@ function create_number_list_number(number, number_type) {
 
     number_type === "tel" ? li.className = "number mb-2" : li.className = "number mb-2 text-none text-sm-right";
 
-    i_number_icon.className = "ml-3 fa fa-phone-volume text-success dial_number";
+    i_number_icon.className = "ml-3 fas fa-phone-volume text-success dial_number";
     i_number_icon.title = "拨打号码";
     i_number_icon.style.cursor = "pointer";
 
