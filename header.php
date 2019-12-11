@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="/static/css/bootstrap.min.css">
     <link rel="stylesheet" href="/static/font/css/all.min.css">
 
-<!--        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css">-->
+    <!--        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css">-->
     <!--    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.11.2/css/all.min.css">-->
 
     <link rel="stylesheet" href="/tools.min.css">
@@ -50,7 +50,7 @@
                 <h1 class="mb-0 d-inline h5 text-info">在线小工具</h1>
             </span>
         </a>
-        <span class="position-relative badge badge-pill badge-danger"
+        <span class="py-1 position-relative badge badge-pill badge-danger"
               style="z-index:-1;bottom:10px;font-size: 75%;">测试版</span>
     </div>
     <div class="border-bottom"></div>
