@@ -1,4 +1,3 @@
-// const gulp = require("gulp");
 const {series, parallel, task, src, dest} = require('gulp');
 const terser = require("gulp-terser");
 const cleanCSS = require("gulp-clean-css");
