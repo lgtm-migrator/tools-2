@@ -15,6 +15,43 @@ if (add_new_number) add_new_number.addEventListener("click", function (e) {
 });
 if (phone_number_submit) phone_number_submit.addEventListener("click", add_phone_number);
 
+function verify_phone_number_data() {
+    let phone_name_all = document.querySelectorAll(".phone_name");
+    let tel_number_all = document.querySelectorAll(".tel_number");
+    let mobile_number_all = document.querySelectorAll(".mobile_number");
+
+    let verify = true;
+    let verify_result = [];
+
+    for (let x = phone_name_all.length, i = 0; i < x; i++) {
+        if (phone_name_all[i].value.length === 0) {
+            phone_name_all[i].value = "必填";
+        }
+        if (phone_name_all[i].value.length > 0 && (tel_number_all[i].value.length === 0 && mobile_number_all[i].value.length === 0)) {
+            tel_number_all[i].value = "选填其一";
+            mobile_number_all[i].value = "选填其一";
+        }
+
+
+        if (phone_name_all[i].classList.contains("is-invalid")) {
+            verify_result[i] = false;
+        } else if (phone_name_all[i].classList.contains("is-valid")) {
+            verify_result[i] = true;
+        } else if (!phone_name_all[i].classList.contains("is-invalid") && !phone_name_all[i].classList.contains("is-valid")) {
+            verify_result[i] = false;
+        }
+    }
+
+    for (let x = verify_result.length, i = 0; i < x; i++) {
+        console.log(verify_result[i]);
+        if (verify_result[i] === false) {
+            verify = false;
+        }
+    }
+
+    return verify;
+}
+
 function phone_number_data() {
     let phone_name_all = document.querySelectorAll(".phone_name");
     let tel_number_all = document.querySelectorAll(".tel_number");
@@ -39,12 +76,24 @@ function phone_number_data() {
     return JSON.stringify(result);
 }
 
+function custom_input_check(RegExp_rules_name, error_text, element) {
+    let RegExp_result = RegExp_rules_name.test(element.value);
+    if (!RegExp_result) {
+        validation_invalid_div(element, error_text);
+        input_error(element);
+    } else {
+        input_success(element);
+        remove_validation_div(element);
+    }
+}
+
 function create_form_add_init() {
     create_form_div();
     create_btn_add();
     create_phone_name();
     create_tel_number();
     create_mobile_number();
+    input_shadow();
 }
 
 function create_form_add() {
@@ -53,12 +102,49 @@ function create_form_add() {
     create_phone_name();
     create_tel_number();
     create_mobile_number();
+    input_shadow();
 }
 
 function create_form_div() {
     let div = document.createElement("div");
     div.className = "mb-5 mb-sm-4 mb-md-3 form-row add_phone_number_form";
     add_phone_number_form.insertBefore(div, phone_number_submit.parentElement);
+}
+
+function create_btn_add() {
+    let a = document.createElement("a");
+    let i = document.createElement("i");
+
+    a.className = "position-relative text-success";
+    a.href = "javascript:";
+    a.title = "添加新的一行";
+    a.id = "phone_number_add";
+
+    i.className = "position-absolute fas fa-plus-circle phone_number_add";
+    i.style.top = "11px";
+    i.style.right = "0px";
+    a.appendChild(i);
+    add_phone_number_form.children[add_phone_number_form.childElementCount - 2].appendChild(a);
+    a.addEventListener("click", create_form_add);
+
+}
+
+function create_btn_del() {
+    let a = document.createElement("a");
+    let i = document.createElement("i");
+
+    a.className = "position-relative text-danger";
+    a.href = "javascript:";
+    a.title = "删除当前行";
+
+    i.className = "position-absolute fas fa-minus-circle phone_number_del";
+    i.style.top = "11px";
+    i.style.right = "0px";
+    a.appendChild(i);
+    add_phone_number_form.children[add_phone_number_form.childElementCount - 2].appendChild(a);
+    a.addEventListener("click", function (e) {
+        e.target.parentElement.parentElement.parentElement.removeChild(e.target.parentElement.parentElement);
+    });
 }
 
 function create_phone_name() {
@@ -74,9 +160,9 @@ function create_phone_name() {
     label.setAttribute("for", "phone_name_" + id_timestamp);
     label.innerHTML = "单位名称&nbsp;";
 
-    i.className = "fa fa-home";
+    i.className = "fas fa-home";
 
-    input.className = "form-control fa text-success text-center phone_name";
+    input.className = "form-control form-control-sm fas text-success text-center phone_name";
     input.id = "phone_name_" + id_timestamp;
     input.type = "text";
     input.setAttribute("minlength", "4");
@@ -106,9 +192,9 @@ function create_tel_number() {
     label.setAttribute("for", "tel_number_" + id_timestamp);
     label.innerHTML = "座机电话号码&nbsp;";
 
-    i.className = "fa fa-phone";
+    i.className = "fas fa-phone";
 
-    input.className = "form-control fa text-success text-center tel_number";
+    input.className = "form-control form-control-sm fas text-success text-center tel_number";
     input.id = "tel_number_" + id_timestamp;
     input.type = "tel";
     input.setAttribute("minlength", "12");
@@ -137,9 +223,9 @@ function create_mobile_number() {
     label.setAttribute("for", "mobile_number_" + id_timestamp);
     label.innerHTML = "手机电话号码&nbsp;";
 
-    i.className = "fa fa-mobile-alt";
+    i.className = "fas fa-mobile-alt";
 
-    input.className = "form-control fa text-success text-center mobile_number";
+    input.className = "form-control form-control-sm fas text-success text-center mobile_number";
     input.id = "mobile_number_" + id_timestamp;
     input.type = "tel";
     input.setAttribute("minlength", "11");
@@ -155,46 +241,32 @@ function create_mobile_number() {
     add_phone_number_form.children[add_phone_number_form.childElementCount - 2].appendChild(div);
 }
 
-function create_btn_add() {
-    let a = document.createElement("a");
-    let i = document.createElement("i");
-
-    a.className = "position-relative text-success";
-    a.href = "javascript:";
-    a.title = "添加新的一行";
-    a.id = "phone_number_add";
-
-    i.className = "position-absolute fa fa-plus-circle phone_number_add";
-    i.style.top = "11px";
-    i.style.right = "0px";
-    a.appendChild(i);
-    add_phone_number_form.children[add_phone_number_form.childElementCount - 2].appendChild(a);
-    a.addEventListener("click", create_form_add);
-
-}
-
-function create_btn_del() {
-    let a = document.createElement("a");
-    let i = document.createElement("i");
-
-    a.className = "position-relative text-danger";
-    a.href = "javascript:";
-    a.title = "删除当前行";
-
-    i.className = "position-absolute fa fa-minus-circle phone_number_del";
-    i.style.top = "11px";
-    i.style.right = "0px";
-    a.appendChild(i);
-    add_phone_number_form.children[add_phone_number_form.childElementCount - 2].appendChild(a);
-    a.addEventListener("click", function (e) {
-        e.target.parentElement.parentElement.parentElement.removeChild(e.target.parentElement.parentElement);
-    });
-}
-
 function add_phone_number() {
-    let data = phone_number_data();
-    console.log(data);
+    let verify = verify_phone_number_data();
+    // let verify = true;
+    if (verify === true) {
+        let data = phone_number_data();
 
+
+        const v3_site_key = "6LcvIcEUAAAAAEUgtbN0VFiH_n2VHw-luW3rdZFv";
+        const url = "https://www.recaptcha.net/recaptcha/api.js?render=";
+
+        const action = "add_phone_number";
+
+        $.getScript(url + v3_site_key, function () {
+            grecaptcha.ready(function () {
+                grecaptcha.execute(v3_site_key, {action: action})
+                    .then(function (token) {
+                        console.log(token);
+                        ajax_phone_number(data, token, action);
+                    });
+            });
+        });
+    }
+
+}
+
+function ajax_phone_number(data, g_recaptcha_token, g_recaptcha_action) {
     $.ajax({
         method: "post",
         url: add_phone_number_url,
@@ -203,29 +275,137 @@ function add_phone_number() {
         beforeSend: add_spinner_icon(phone_number_submit),
         data: {
             data: data,
+            g_recaptcha: {
+                token: g_recaptcha_token,
+                action: g_recaptcha_action,
+            },
         },
         success: function (data) {
-            let result = data.result;
             remove_spinner_icon(phone_number_submit);
+            get_ajax_result(data);
             get_number_stored();
-            result ? bootstrapModalJs('', result, '', '', true) : "";
-            console.log(data);
-            if (data["data"]) {
-                bootstrapModalJs('', JSON.stringify(data["data"]), '', '', true);
-            }
         },
         error: function (data) {
-            if (data.statusText === "timeout") {
-                bootstrapModalJs('', '连接服务器超时，请尝试重新提交。', '', '', true);
-            } else if (data.statusText === "OK" && data.responseText !== "") {
-                bootstrapModalJs('', data.responseText, '', '', true);
-                console.log(data);
-            } else {
-                bootstrapModalJs('', '失败', '', '', true);
-                console.log(data);
-            }
+            ajax_error(data);
+            ajax_error_fun_debug(data, "phone_number_error");
         }
     });
+
+}
+
+function get_ajax_result(result) {
+    console.log(result);
+
+    ajax_success(result, "add_number");
+    if (result['error'].length !== 0) {
+        ajax_success_fun_debug(result, "phone_number_success_error");
+    }
+}
+
+function ajax_success(success_result, message_name) {
+    if (success_result["message"]["g_recaptcha"]['verify'] === true) {
+        if (success_result["message"].hasOwnProperty(message_name)) {
+            if (success_result["message"][message_name].hasOwnProperty("failure")) {
+                let message = "<div class='small text-center'><span>" +
+                    "提交失败。" +
+                    "<br>" +
+                    "错误代码：" +
+                    success_result["error"]["errno"] +
+                    "</span></div>";
+                bootstrapModalJs('', message, '', 'sm', true);
+            }
+
+            if (success_result["message"][message_name].hasOwnProperty("repeat")) {
+
+            }
+
+            if (success_result["message"][message_name].hasOwnProperty("success")) {
+                let message = "<div class='small text-center'><span>" +
+                    "您提交的" +
+                    success_result["message"][message_name]["success"] +
+                    "个号码已经成功被收录。" +
+                    "</span></div>";
+                bootstrapModalJs('', message, '', 'sm', true);
+            }
+        }
+    } else {
+        let message = "<div class='small text-center text-danger'><span>" +
+            "服务器判断您的评分太低,没有收录您提交的号码。" +
+            "</span></div>";
+        bootstrapModalJs("", message, "", "", true);
+    }
+
+}
+
+function ajax_success_fun_debug(success_result, error_name) {
+    if (fundebug) {
+        let success_error = success_result["error"].hasOwnProperty("error") ? JSON.stringify(success_result['error']['error']) : "";
+        let success_errno = success_result["error"].hasOwnProperty("errno") ? JSON.stringify(success_result['error']['errno']) : "";
+        let success_data = success_result["error"].hasOwnProperty("data") ? JSON.stringify(success_result['error']['data']) : "";
+        fundebug.test(error_name, success_error);
+        fundebug.test(error_name, success_errno);
+        fundebug.test(error_name, success_data);
+    }
+}
+
+function ajax_error(error_result) {
+    let status = error_result.status;
+    let statusText = error_result.statusText;
+    let readyState = error_result.readyState;
+    let responseText = error_result.responseText;
+    console.log(error_result);
+
+    if (readyState === 4) {
+        if (status === 500 && responseText === "" && statusText === "Internal Server Error") {
+            bootstrapModalJs('', "服务器出错。", '', 'sm', true);
+        } else if (statusText === "timeout") {
+            bootstrapModalJs('', '服务器连接超时。', '', 'sm', true);
+        } else if (status === 200 && RegExp_rules.mysqli_1045.test(responseText)) {
+            bootstrapModalJs('', '数据库连接出错', '', 'sm', true);
+        } else if (status === 200 && responseText !== "") {
+            bootstrapModalJs('', responseText, '', 'xl', true, true);
+        } else {
+            bootstrapModalJs('', '失败。', '', 'sm', true);
+        }
+    }
+
+    if (readyState === 0 || status === 0) {
+        if (statusText === "error") {
+            bootstrapModalJs('', "服务器刚刚关闭。", '', 'sm', true, true);
+        }
+    }
+}
+
+function ajax_error_fun_debug(error_result, error_name) {
+    if (fundebug) {
+        fundebug.test(error_name, JSON.stringify(error_result));
+    }
+}
+
+function input_shadow() {
+    add_phone_number_form.removeEventListener("mouseover", input_form_control_add_shadow);
+    add_phone_number_form.removeEventListener("mouseout", input_form_control_remove_shadow);
+    add_phone_number_form.removeEventListener("focus", input_form_control_add_shadow);
+    add_phone_number_form.removeEventListener("blur", input_form_control_remove_shadow);
+
+    add_phone_number_form.addEventListener("mouseover", input_form_control_add_shadow);
+    add_phone_number_form.addEventListener("mouseout", input_form_control_remove_shadow);
+    add_phone_number_form.addEventListener("focus", input_form_control_add_shadow);
+    add_phone_number_form.addEventListener("blur", input_form_control_remove_shadow);
+}
+
+function input_form_control_add_shadow(e) {
+    let target = e.target;
+    if (target.classList.contains("form-control")) {
+        add_shadow(e);
+    }
+}
+
+function input_form_control_remove_shadow(e) {
+    let target = e.target;
+    if (target.classList.contains("form-control")) {
+        remove_shadow(e);
+    }
 }
 
 
@@ -256,9 +436,9 @@ function get_number_stored() {
 
 
 /** ReCAPTCHA **/
-if (phone_number_submit) phone_number_submit.addEventListener("click", function () {
-    set_recaptcha_action("test11");
-});
+// if (phone_number_submit) phone_number_submit.addEventListener("click", function () {
+//     set_recaptcha_action("test11");
+// });
 
 
 /** 搜索 **/
@@ -308,16 +488,8 @@ function ajax_search(search_data) {
             get_search_result(data);
         },
         error: function (data) {
-            let responseText = data.responseText;
-            let status = data.status;
-            if (status === 500 && responseText === "") {
-                bootstrapModalJs('', "查询失败，网络连接出错", '', '', true);
-            } else if (status <= 500 && responseText !== "") {
-                bootstrapModalJs('', responseText, '', '', true);
-            } else {
-                bootstrapModalJs('', "未知查询错误", '', '', true);
-            }
-            console.log(data);
+            ajax_error(data);
+            ajax_error_fun_debug(data, "search_number");
         }
     });
 }
@@ -332,13 +504,13 @@ function get_search_result(data) {
 }
 
 function processing_search_result(data) {
-    let i;
     number_list.innerHTML = "";
-    for (i in data) {
-        create_number_list(data[i]);
+    for (let i in data) {
+        if (data.hasOwnProperty(i)) create_number_list(data[i]);
     }
     number_list_child();
     $(".number i").tooltip();
+    dial_number();
     clipboard_copy_number();
 }
 
@@ -373,7 +545,7 @@ function create_number_list_name(name) {
 
     span_name.innerHTML = name;
 
-    i.className = "mr-2 fa fa-home text-info";
+    i.className = "mr-2 fas fa-home text-info";
     i.style.cursor = "pointer";
 
     span.appendChild(ul);
@@ -399,14 +571,11 @@ function create_number_list_number(number, number_type) {
 
     number_type === "tel" ? li.className = "number mb-2" : li.className = "number mb-2 text-none text-sm-right";
 
-    number_type === "tel" ? i_number_icon.className = "ml-3 fa fa-phone-alt text-success" : i_number_icon.className = "ml-3 fa fa-mobile-alt text-success";
-    i_number_icon.style.cursor = "pointer";
+    i_number_icon.className = "ml-3 fas fa-phone-volume text-success dial_number";
     i_number_icon.title = "拨打号码";
-    i_number_icon.addEventListener("click", function () {
-        window.location.href = "tel://" + number;
-    });
+    i_number_icon.style.cursor = "pointer";
 
-    i_clipboard_copy_icon.className = "clipboard_copy ml-3 far fa-clipboard text-success";
+    i_clipboard_copy_icon.className = "ml-3 far fa-copy text-success clipboard_copy";
     i_clipboard_copy_icon.title = "复制号码";
     i_clipboard_copy_icon.style.cursor = "pointer";
 
@@ -430,26 +599,52 @@ function number_list_child() {
     }
 }
 
-function clipboard_copy_number() {
-    let clipboard_copy = document.body.querySelectorAll(".clipboard_copy");
+function dial_number() {
+    number_list.addEventListener("click", function (e) {
+        let target = e.target;
 
-    for (let x = clipboard_copy.length, i = 0; i < x; i++) {
-        clipboard_copy[i].addEventListener("click", function () {
+        if (target.classList.contains("dial_number") || target.className.indexOf("dial_number") !== -1) {
+            let number = target.previousElementSibling.previousElementSibling.innerHTML;
+            window.location.href = "tel://" + number;
+        }
+    });
+}
+
+function clipboard_copy_number() {
+
+    number_list.addEventListener("click", function (e) {
+        let target = e.target;
+
+        if (target.classList.contains("clipboard_copy") || target.className.indexOf("clipboard_copy") !== -1) {
             let clipboard = new ClipboardJS(".clipboard_copy", {
                 text: function (trigger) {
                     return trigger.previousElementSibling.innerHTML;
                 }
             });
             clipboard.on('success', function (e) {
-                bootstrapModalJs("", "已经成功复制&nbsp;" + e.text, "", "", true);
+                bootstrapModalJs("", clipboard_success_text(e), "", "sm", true);
                 clipboard.destroy();
             });
 
             clipboard.on('error', function (e) {
-                bootstrapModalJs("", "复制失败,请尝试手动复制", "", "", true);
+                bootstrapModalJs("", clipboard_error_text(e), "", "sm", true);
                 clipboard.destroy();
             });
-        });
+        }
+
+    });
+
+    function clipboard_success_text(e) {
+        return "<div class='text-center text-success'>已经成功复制&nbsp;" + "<span>" +
+            `${e.text}` +
+            "</span></div>";
+    }
+
+    function clipboard_error_text(e) {
+        return "<div class='text-center text-danger'>复制失败,请尝试手动复制" + "<span>" +
+            `${e}` +
+            "</span></div>";
     }
 
 }
+

@@ -15,10 +15,10 @@
     <link rel="stylesheet" href="/static/css/bootstrap.min.css">
     <link rel="stylesheet" href="/static/font/css/all.min.css">
 
-<!--        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css">-->
+    <!--        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css">-->
     <!--    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.11.2/css/all.min.css">-->
 
-    <link rel="stylesheet" href="/tools.css">
+    <link rel="stylesheet" href="/tools.min.css">
 
     <noscript>
         <div class="container">
@@ -39,18 +39,20 @@
 </head>
 <body>
 
-<div id="jt_header">
-    <div class="container mt-1" id="logo">
-        <a href="/index.php">
-            <span class="logo-img">
+<div class="mb-3 mb-lg-4" id="jt_header">
+    <div class="py-1 py-lg-2 container" id="logo">
+        <a class="text-decoration-none" href="/index.php">
+            <span class="mr-1 mr-lg-2 logo-img">
                 <!--<img src="" alt="">-->
+            <i class="mb-0 text-warning h4 fas fa-tools"></i>
             </span>
             <span class="logo-name" title="在线小工具">
-                <h1 class="d-inline h5 text-decoration-none text-info">在线小工具</h1>
+                <h1 class="mb-0 d-inline h5 text-info">在线小工具</h1>
             </span>
         </a>
-        <span class="position-relative badge badge-pill badge-danger"
+        <span class="py-1 position-relative badge badge-pill badge-danger"
               style="z-index:-1;bottom:10px;font-size: 75%;">测试版</span>
     </div>
+    <div class="border-bottom"></div>
 </div>
 <div id="jt_content" style="min-height: 85vh;">

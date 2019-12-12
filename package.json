@@ -1,18 +1,22 @@
 {
   "devDependencies": {
+    "del": "^5.1.0",
     "gulp": "^4.0.2",
+    "gulp-clean-css": "^4.2.0",
     "gulp-footer": "^2.0.2",
     "gulp-header": "^2.0.9",
-    "gulp-rename": "^1.4.0",
+    "gulp-rename": "^2.0.0",
     "gulp-terser": "^1.2.0"
   },
   "scripts": {
     "copy": "gulp add_footer copy_fonts copy_js_cookie copy_jq copy_popper copy_bs copy_bmj copy_bs_custom_file_input copy_moment copy_clipboard",
     "add": "gulp add_footer",
-    "terser_js": "gulp terser_phone_number_js terser_photo_info_js"
+    "terser": "gulp terser_tools_js terser_index_js terser_phone_number_js terser_photo_info_js",
+    "cleanCSS": "gulp cleanCSS_tools_css cleanCSS_index_css cleanCSS_phone_number_css cleanCSS_photo_info_css",
+    "npx_ncu": "npx --ignore-existing -p 'npm-check-updates' -c 'ncu | ncu -u | npm i '"
   },
   "dependencies": {
-    "@fortawesome/fontawesome-free": "^5.11.2",
+    "@fortawesome/fontawesome-free": "^5.12.0",
     "bootstrap": "^4.4.1",
     "bootstrap-modal-js": "^1.0.1",
     "bs-custom-file-input": "^1.3.2",

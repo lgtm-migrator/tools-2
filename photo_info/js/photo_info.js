@@ -99,7 +99,7 @@ function agree_rules(e) {
 }
 
 function disagree_rules(e) {
-    if (e.hasAttribute("checked")) e.checked = false;
+    if (e.checked === true) e.checked = "";
     Cookies.set("upload_rule", "no");
     upload_files_rules_style(e);
 }

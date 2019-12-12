@@ -3,30 +3,19 @@
 let RegExp_rules = {
     "chinese_name": new RegExp(/^([\u4e00-\u9fa5·]{2,16})$/),
     "tel_number": new RegExp(/\d{3}-\d{8}|\d{4}-\d{7}/),
+    "mysqli_1045": new RegExp(/(1045)/),
     "mobile_number": new RegExp(/^(?:(?:\+|00)86)?1(?:(?:3[\d])|(?:4[5-7|9])|(?:5[0-3|5-9])|(?:6[5-7])|(?:7[0-8])|(?:8[\d])|(?:9[1|8|9]))\d{8}$/),
     "ip_v4": new RegExp(/^(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/),
     "ip_v6": new RegExp(/^((([0-9A-Fa-f]{1,4}:){7}[0-9A-Fa-f]{1,4})|(([0-9A-Fa-f]{1,4}:){6}:[0-9A-Fa-f]{1,4})|(([0-9A-Fa-f]{1,4}:){5}:([0-9A-Fa-f]{1,4}:)?[0-9A-Fa-f]{1,4})|(([0-9A-Fa-f]{1,4}:){4}:([0-9A-Fa-f]{1,4}:){0,2}[0-9A-Fa-f]{1,4})|(([0-9A-Fa-f]{1,4}:){3}:([0-9A-Fa-f]{1,4}:){0,3}[0-9A-Fa-f]{1,4})|(([0-9A-Fa-f]{1,4}:){2}:([0-9A-Fa-f]{1,4}:){0,4}[0-9A-Fa-f]{1,4})|(([0-9A-Fa-f]{1,4}:){6}((\b((25[0-5])|(1\d{2})|(2[0-4]\d)|(\d{1,2}))\b)\.){3}(\b((25[0-5])|(1\d{2})|(2[0-4]\d)|(\d{1,2}))\b))|(([0-9A-Fa-f]{1,4}:){0,5}:((\b((25[0-5])|(1\d{2})|(2[0-4]\d)|(\d{1,2}))\b)\.){3}(\b((25[0-5])|(1\d{2})|(2[0-4]\d)|(\d{1,2}))\b))|(::([0-9A-Fa-f]{1,4}:){0,5}((\b((25[0-5])|(1\d{2})|(2[0-4]\d)|(\d{1,2}))\b)\.){3}(\b((25[0-5])|(1\d{2})|(2[0-4]\d)|(\d{1,2}))\b))|([0-9A-Fa-f]{1,4}::([0-9A-Fa-f]{1,4}:){0,5}[0-9A-Fa-f]{1,4})|(::([0-9A-Fa-f]{1,4}:){0,6}[0-9A-Fa-f]{1,4})|(([0-9A-Fa-f]{1,4}:){1,7}:))$/i),
     "zh_cn_number": new RegExp(/^((?:[\u3400-\u4DB5\u4E00-\u9FEA\uFA0E\uFA0F\uFA11\uFA13\uFA14\uFA1F\uFA21\uFA23\uFA24\uFA27-\uFA29]|[\uD840-\uD868\uD86A-\uD86C\uD86F-\uD872\uD874-\uD879][\uDC00-\uDFFF]|\uD869[\uDC00-\uDED6\uDF00-\uDFFF]|\uD86D[\uDC00-\uDF34\uDF40-\uDFFF]|\uD86E[\uDC00-\uDC1D\uDC20-\uDFFF]|\uD873[\uDC00-\uDEA1\uDEB0-\uDFFF]|\uD87A[\uDC00-\uDFE0])|(\d))+$/),
 };
 
-
-function custom_input_check(RegExp_rules_name, error_text, element) {
-    let RegExp_result = RegExp_rules_name.test(element.value);
-    if (!RegExp_result) {
-        validation_invalid_div(element, error_text);
-        input_error(element);
-    } else {
-        input_success(element);
-        remove_validation_div(element);
-    }
-}
-
 function validation_invalid_div(element, text, type = "tooltip") {
     if (!element.nextElementSibling) {
         let div = document.createElement("div");
         if (type === "tooltip") {
             div.className = "invalid-tooltip";
-            div.style.position = "unset";
+            div.style.position = "static";
         } else {
             div.className = "invalid-feedback";
         }
@@ -176,26 +165,42 @@ function get_recaptcha_verify(token_key, pageAction) {
 let btn_all = document.querySelectorAll("[class*='btn']");
 let input_all = document.querySelectorAll("input[class*='form-control']");
 
-for (let btn_all_length = btn_all.length, i = 0; i < btn_all_length; i++) {
-    btn_all[i].addEventListener('mouseover', shadow);
-    btn_all[i].addEventListener('mouseout', shadow);
+for (let x = btn_all.length, i = 0; i < x; i++) {
+    btn_all[i].addEventListener('mouseover', function (e) {
+        add_shadow(e);
+    });
+    btn_all[i].addEventListener('mouseout', function (e) {
+        remove_shadow(e);
+    });
 }
 
-for (let input_all_length = input_all.length, i = 0; i < input_all_length; i++) {
-    input_all[i].addEventListener("focusin", shadow_sm);
-    input_all[i].addEventListener("focusout", shadow_sm);
+for (let x = input_all.length, i = 0; i < x; i++) {
+    input_all[i].addEventListener("focus", function (e) {
+        add_shadow(e);
+    });
+    input_all[i].addEventListener("blur", function (e) {
+        remove_shadow(e);
+    });
 }
 
-function shadow(e) {
-    e.target.classList.toggle("shadow");
+function add_shadow(e, size = "") {
+    if (size === "") {
+        e.target.classList.add("shadow");
+    } else if (size === "sm") {
+        e.target.classList.add("shadow-sm");
+    } else if (size === "lg") {
+        e.target.classList.add("shadow-lg");
+    }
 }
 
-function shadow_sm(e) {
-    e.target.classList.toggle("shadow-sm");
-}
-
-function shadow_lg(e) {
-    e.target.classList.toggle("shadow-lg");
+function remove_shadow(e, size = "") {
+    if (size === "") {
+        e.target.classList.remove("shadow");
+    } else if (size === "sm") {
+        e.target.classList.remove("shadow-sm");
+    } else if (size === "lg") {
+        e.target.classList.remove("shadow-lg");
+    }
 }
 
 
@@ -229,4 +234,49 @@ if (localStorage &&
     }
 } else {
     throw new Error("不支持LocalStorage。");
+}
+
+/** bootstrapModalJs-alert **/
+function bootstrapModalJs_alert(alert_array = {}) {
+    let bootstrapModalJs_options = {"backdrop": "static", "keyboard": false};
+    let div = document.createElement("div");
+    let h4 = document.createElement("h4");
+    let body_div = document.createElement("div");
+    let button = document.createElement("button");
+    let span = document.createElement("span");
+    let a_sr_only = document.createElement("a");
+
+    div.className = "alert mb-0 alert-" + alert_array.type + " alert-dismissible fade show";
+    div.setAttribute("rule", "增强提醒");
+
+    h4.className = "alert-heading small";
+    h4.innerHTML = alert_array.alert_heading;
+
+    body_div.innerText = alert_array.innerText;
+    body_div.innerHTML = alert_array.innerHTML;
+
+    button.className = "close";
+    button.type = "button";
+    button.setAttribute("data-dismiss", "modal");
+    button.setAttribute("aria-label", "关闭强提醒");
+
+    a_sr_only.href = "javascript:";
+    a_sr_only.className = "sr-only d-block btn btn-sm btn-outline-success";
+    a_sr_only.innerHTML = "关闭强提醒&nbsp;&times;";
+    a_sr_only.setAttribute("data-dismiss", "modal");
+    a_sr_only.setAttribute("aria-label", "关闭强提醒");
+
+    span.setAttribute("aria-hidden", "true");
+    span.title = "关闭";
+    span.innerHTML = "&times;";
+
+    button.append(span);
+    div.append(h4);
+    div.append(body_div);
+    div.append(button);
+    div.append(a_sr_only);
+
+    let id = bootstrapModalJs("", div, "", "sm", true, false, "", "", bootstrapModalJs_options);
+    let modalBody = document.body.querySelector("#modalBody_" + id);
+    modalBody.classList.add("p-0");
 }

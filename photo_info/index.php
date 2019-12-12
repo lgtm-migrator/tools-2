@@ -5,10 +5,10 @@ if ($_POST) {
     die();
 }
 
-define('title', '照片信息解析');
+define('title', '照片详情信息');
 require_once '../header.php';
 ?>
-<link rel="stylesheet" href="/photo_info/css/photo_info.css">
+<link rel="stylesheet" href="/photo_info/css/photo_info.min.css">
 
 <div class="container mt-5" id="jt_container">
     <div class="mb-3 form-row justify-content-center">
@@ -53,7 +53,7 @@ require_once '../header.php';
 
 <div>
     <?php require_once dirname(dirname(__FILE__)) . "/javascript.php"; ?>
-    <script src="/photo_info/js/photo_info.js"></script>
+    <script src="/photo_info/js/photo_info.min.js"></script>
 </div>
 
 <?php

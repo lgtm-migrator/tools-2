@@ -1,7 +1,7 @@
 /*
  Navicat Premium Data Transfer
 
- Source Server         : aliyun
+ Source Server         : 本地数据库8.0
  Source Server Type    : MySQL
  Source Server Version : 80018
  Source Host           : localhost:3306
@@ -11,7 +11,7 @@
  Target Server Version : 80018
  File Encoding         : 65001
 
- Date: 17/11/2019 00:00:00
+ Date: 10/12/2019 00:00:00
 */
 
 SET NAMES utf8mb4;
@@ -23,7 +23,8 @@ SET FOREIGN_KEY_CHECKS = 0;
 DROP TABLE IF EXISTS `google_recaptcha_data`;
 CREATE TABLE `google_recaptcha_data`  (
   `id` int(15) NOT NULL AUTO_INCREMENT COMMENT '主键',
-  `action` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '动作',
+  `success` int(1) NOT NULL COMMENT '评分通过状态',
+  `action` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '动作',
   `hostname` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '主机名',
   `score` decimal(2, 1) NOT NULL COMMENT '评分值',
   `threshold` decimal(2, 1) NOT NULL COMMENT '预设threshold值',
