@@ -12,8 +12,7 @@
     "copy": "gulp add_footer copy_fonts copy_js_cookie copy_jq copy_popper copy_bs copy_bmj copy_bs_custom_file_input copy_moment copy_clipboard",
     "add": "gulp add_footer",
     "terser": "gulp terser_tools_js terser_index_js terser_phone_number_js terser_photo_info_js",
-    "cleanCSS": "gulp cleanCSS_tools_css cleanCSS_index_css cleanCSS_phone_number_css cleanCSS_photo_info_css",
-    "npx_ncu": "npx --ignore-existing -p 'npm-check-updates' -c 'ncu | ncu -u | npm i '"
+    "cleanCSS": "gulp cleanCSS_tools_css cleanCSS_index_css cleanCSS_phone_number_css cleanCSS_photo_info_css"
   },
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.12.0",
