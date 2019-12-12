@@ -1,4 +1,36 @@
 {
+  "name": "jzeg_tools",
+  "description": "小工具页面",
+  "version": "1.0.0",
+  "main": "",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zhangchenglin/tools.git"
+  },
+  "keywords": [
+    "JZEG"
+  ],
+  "author": {
+    "name": "张成林",
+    "email": "admin@pshelp.cn",
+    "url": "https://github.com/zhangchenglin"
+  },
+  "maintainers": [
+    "张成林 <admin@pshelp.cn> (https://zhangchenglin.github.io)"
+  ],
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/zhangchenglin/tools/issues"
+  },
+  "homepage": "",
+  "scripts": {
+    "default": "npm run nrm && npm i && npm run copy & npm run terser & npm run cleanCSS",
+    "copy": "gulp add_footer copy_fonts copy_js_cookie copy_jq copy_popper copy_bs copy_bmj copy_bs_custom_file_input copy_moment copy_clipboard",
+    "terser": "gulp terser_tools_js terser_index_js terser_phone_number_js terser_photo_info_js",
+    "cleanCSS": "gulp cleanCSS_tools_css cleanCSS_index_css cleanCSS_phone_number_css cleanCSS_photo_info_css",
+    "nrm": "npm i -g nrm --registry=https://registry.npm.taobao.org && nrm use taobao && nrm ls"
+  },
+  "peerDependencies": {},
   "devDependencies": {
     "del": "^5.1.0",
     "gulp": "^4.0.2",
@@ -7,13 +39,6 @@
     "gulp-header": "^2.0.9",
     "gulp-rename": "^2.0.0",
     "gulp-terser": "^1.2.0"
-  },
-  "scripts": {
-    "copy": "gulp add_footer copy_fonts copy_js_cookie copy_jq copy_popper copy_bs copy_bmj copy_bs_custom_file_input copy_moment copy_clipboard",
-    "add": "gulp add_footer",
-    "terser": "gulp terser_tools_js terser_index_js terser_phone_number_js terser_photo_info_js",
-    "cleanCSS": "gulp cleanCSS_tools_css cleanCSS_index_css cleanCSS_phone_number_css cleanCSS_photo_info_css",
-    "nrm": "npm i -g nrm --registry=https://registry.npm.taobao.org && nrm use taobao"
   },
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.12.0",
@@ -26,5 +51,11 @@
     "js-cookie": "^3.0.0-beta.1",
     "moment": "^2.24.0",
     "popper.js": "^1.16.0"
-  }
+  },
+  "engines": {
+    "node": ">=12.0",
+    "npm": ">=6.10"
+  },
+  "os": [],
+  "cpu": []
 }
