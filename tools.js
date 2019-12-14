@@ -261,14 +261,17 @@ function bootstrapModalJs_alert(alert_array = {}) {
     let span = document.createElement("span");
     let a_sr_only = document.createElement("a");
 
-    div.className = "alert mb-0 alert-" + alert_array.type + " alert-dismissible fade show";
+    let Event_Type = alert_array["Event_Type"];
+    let Callback_Function = alert_array["Callback_Function"];
+
+    div.className = "alert mb-0 alert-" + alert_array["color"] + " alert-dismissible fade show";
     div.setAttribute("rule", "增强提醒");
 
     h4.className = "alert-heading small";
-    h4.innerHTML = alert_array.alert_heading;
+    h4.innerHTML = alert_array["alert_heading"];
 
-    body_div.innerText = alert_array.innerText;
-    body_div.innerHTML = alert_array.innerHTML;
+    body_div.innerText = alert_array["innerText"];
+    body_div.innerHTML = alert_array["innerHTML"];
 
     button.className = "close";
     button.type = "button";
@@ -291,7 +294,20 @@ function bootstrapModalJs_alert(alert_array = {}) {
     div.append(button);
     div.append(a_sr_only);
 
-    let id = bootstrapModalJs("", div, "", "sm", true, false, "", "", bootstrapModalJs_options);
+    let id = bootstrapModalJs("", div, "", "sm", true, false, Event_Type, Callback_Function, bootstrapModalJs_options);
     let modalBody = document.body.querySelector("#modalBody_" + id);
     modalBody.classList.add("p-0");
+}
+
+/** js.cookie **/
+function set_cookie(key, value = "1") {
+    Cookies.set(key, value);
+}
+
+function get_cookie(key) {
+    return Cookies.get(key);
+}
+
+function remove_cookie(key) {
+    Cookies.remove(key);
 }
