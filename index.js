@@ -11,10 +11,13 @@ $().ready(function () {
         Event_Type: "hidden",
         Callback_Function: set_cookie_survey,
     };
-    if (!get_cookie('survey')) bootstrapModalJs_alert(alert_arr);
+    if (get_cookie('survey') !== "1") bootstrapModalJs_alert(alert_arr);
 
     function set_cookie_survey() {
-        set_cookie("survey");
+        let attributes = {
+            expires: 1
+        };
+        set_cookie("survey", "1", attributes);
     }
 });
 

@@ -12,6 +12,23 @@ let RegExp_rules = {
     "zh_cn_number": new RegExp(/^((?:[\u3400-\u4DB5\u4E00-\u9FEA\uFA0E\uFA0F\uFA11\uFA13\uFA14\uFA1F\uFA21\uFA23\uFA24\uFA27-\uFA29]|[\uD840-\uD868\uD86A-\uD86C\uD86F-\uD872\uD874-\uD879][\uDC00-\uDFFF]|\uD869[\uDC00-\uDED6\uDF00-\uDFFF]|\uD86D[\uDC00-\uDF34\uDF40-\uDFFF]|\uD86E[\uDC00-\uDC1D\uDC20-\uDFFF]|\uD873[\uDC00-\uDEA1\uDEB0-\uDFFF]|\uD87A[\uDC00-\uDFE0])|(\d))+$/),
 };
 
+
+/** js.cookie **/
+let js_cookies = window.Cookies.noConflict();
+
+function set_cookie(key, value = 1, attributes) {
+    js_cookies.set(key, value, attributes);
+}
+
+function get_cookie(key) {
+    return js_cookies.get(key);
+}
+
+function remove_cookie(key) {
+    js_cookies.remove(key);
+}
+
+
 function validation_invalid_div(element, text, type = "tooltip") {
     if (!element.nextElementSibling) {
         let div = document.createElement("div");
@@ -297,17 +314,4 @@ function bootstrapModalJs_alert(alert_array = {}) {
     let id = bootstrapModalJs("", div, "", "sm", true, false, Event_Type, Callback_Function, bootstrapModalJs_options);
     let modalBody = document.body.querySelector("#modalBody_" + id);
     modalBody.classList.add("p-0");
-}
-
-/** js.cookie **/
-function set_cookie(key, value = "1") {
-    Cookies.set(key, value);
-}
-
-function get_cookie(key) {
-    return Cookies.get(key);
-}
-
-function remove_cookie(key) {
-    Cookies.remove(key);
 }

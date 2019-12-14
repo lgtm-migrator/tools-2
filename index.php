@@ -4,7 +4,7 @@ require_once './header.php';
 ?>
     <link rel="stylesheet" href="index.min.css">
 
-    <div onpageshow="myFunction(event) class="container" id="jt_index">
+    <div class="container" id="jt_index">
         <div id="jt_category"></div>
 
         <div class="row justify-content-center row-cols-1 row-cols-md-3 row-cols-lg-4" id="jt_list">
