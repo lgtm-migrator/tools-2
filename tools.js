@@ -1,4 +1,6 @@
 /** 公用 **/
+let a_body = document.body.querySelector("#body");
+if (a_body) a_body.removeAttribute("hidden");
 
 let RegExp_rules = {
     "chinese_name": new RegExp(/^([\u4e00-\u9fa5·]{2,16})$/),
@@ -200,6 +202,19 @@ function remove_shadow(e, size = "") {
         e.target.classList.remove("shadow-sm");
     } else if (size === "lg") {
         e.target.classList.remove("shadow-lg");
+    }
+}
+
+function cursor_pointer(e) {
+    e.target.style.cursor = "pointer";
+}
+
+function get_href_url(e) {
+    let a = e.target.querySelector(".category_link");
+    console.log(a);
+    if (a.href !== undefined) {
+        console.log(a.href);
+        return a.href;
     }
 }
 

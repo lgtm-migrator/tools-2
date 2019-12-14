@@ -22,6 +22,7 @@
 <div>
     <script src="/tools.min.js"></script>
 </div>
+</div><!--id=body-->
 </body>
 </html>
 

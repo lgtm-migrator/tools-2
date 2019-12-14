@@ -1,16 +1,36 @@
+window.addEventListener('pageshow', function (e) {
+    if (e.persisted === true) {
+        console.log("cache");
+    } else {
+        let survey = "<div class='text-center' style='font-size: 85%;'><b>" +
+            "<a href='https://www.wenjuan.com/s/jMjUfeE/' target='_blank' class='text-decoration-none text-success'>网站功能反馈</a>" +
+            "</b></div>";
+        let alert_arr = {
+            alert_heading: "用户调查表",
+            innerHTML: survey,
+            innerText: "",
+            type: "primary",
+        };
+        bootstrapModalJs_alert(alert_arr);
+    }
+});
+
+
 /** Cards 阴影 **/
 let jt_list = document.querySelector("#jt_list");
 
 cards_add_shadow();
 cards_remove_shadow();
+cards_location_href_link();
 
 function cards_add_shadow() {
     jt_list.addEventListener("mouseenter", function (e) {
         let target = e.target;
         if (target.classList.contains("card")) {
             add_shadow(e);
+            cursor_pointer(e);
         }
-    },true);
+    }, true);
 }
 
 function cards_remove_shadow() {
@@ -19,5 +39,18 @@ function cards_remove_shadow() {
         if (target.classList.contains("card")) {
             remove_shadow(e);
         }
-    },true);
+    }, true);
+}
+
+function cards_location_href_link() {
+    jt_list.addEventListener("click", function (e) {
+        let target = e.target;
+        if (target.classList.contains("card")) {
+            console.log(target);
+            let x = target.querySelector(".category_link");
+            console.log(x);
+            console.log(x.href);
+            location.href = `${get_href_url(e)}`;
+        }
+    }, true);
 }
