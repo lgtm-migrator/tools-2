@@ -22,12 +22,11 @@ $().ready(function () {
 });
 
 
-/** Cards 阴影 **/
+/** Cards 阴影 链接 **/
 let jt_list = document.querySelector("#jt_list");
 
 cards_add_shadow();
 cards_remove_shadow();
-cards_location_href_link();
 
 function cards_add_shadow() {
     jt_list.addEventListener("mouseenter", function (e) {
@@ -35,6 +34,9 @@ function cards_add_shadow() {
         if (target.classList.contains("card")) {
             add_shadow(e);
             cursor_pointer(e);
+            target.addEventListener("click", function () {
+                location.href = `${get_href_url(target, "category_link")}`;
+            }, {once: true});
         }
     }, true);
 }
@@ -42,21 +44,6 @@ function cards_add_shadow() {
 function cards_remove_shadow() {
     jt_list.addEventListener("mouseleave", function (e) {
         let target = e.target;
-        if (target.classList.contains("card")) {
-            remove_shadow(e);
-        }
+        if (target.classList.contains("card")) remove_shadow(e);
     }, true);
-}
-
-function cards_location_href_link() {
-    jt_list.addEventListener("click", function (e) {
-        let target = e.target;
-        if (target.classList.contains("card")) {
-            console.log(target);
-            let x = target.querySelector(".category_link");
-            console.log(x);
-            console.log(x.href);
-            location.href = `${get_href_url(e)}`;
-        }
-    }, false);
 }

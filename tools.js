@@ -226,11 +226,9 @@ function cursor_pointer(e) {
     e.target.style.cursor = "pointer";
 }
 
-function get_href_url(e) {
-    let a = e.target.querySelector(".category_link");
-    console.log(a);
+function get_href_url(target, class_name) {
+    let a = target.querySelector("." + class_name);
     if (a.href !== undefined) {
-        console.log(a.href);
         return a.href;
     }
 }
