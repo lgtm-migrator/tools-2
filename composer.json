@@ -19,5 +19,6 @@
       "url": "https://mirrors.aliyun.com/composer/"
     }
   },
-  "scripts": {}
+  "scripts": {
+  }
 }
