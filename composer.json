@@ -19,11 +19,5 @@
       "url": "https://mirrors.aliyun.com/composer/"
     }
   },
-  "scripts": {
-    "custom_init": [
-      "composer clear",
-      "composer i --no-dev"
-    ],
-    "custom_php_cs_fixer": "php-cs-fixer fix --config=.php_cs"
-  }
+  "scripts": {}
 }
