@@ -7,8 +7,9 @@
        style="right: 1.2rem;bottom: 1rem;">
         <i class="fas fa-2x fa-arrow-up"></i>
     </a>
-    <div class="container small">
-        <span class="my-2 d-block text-nowrap text-center text-white-50" id="recaptcha_text_badge">
+    <div class="container small text-white-50">
+        <span class="my-2 d-block text-nowrap text-center" id="moment_time"></span>
+        <span class="my-2 d-block text-nowrap text-center" id="recaptcha_text_badge">
             <span>由 reCAPTCHA 提供保护，并适用Google</span>
             <a class="text-reset text-decoration-none" href="https://www.google.cn/intl/zh-CN/policies/privacy/"
                target="_blank" title="Google 隐私权">隐私权</a>
@@ -16,7 +17,6 @@
             <a class="text-reset text-decoration-none" href="https://www.google.cn/intl/zh-CN/policies/terms/"
                target="_blank" title="Google 服务条款">服务条款</a>
         </span>
-        <span class="my-2 d-block text-nowrap text-center text-white-50" id="moment_time"></span>
     </div>
 </div>
 <div>
