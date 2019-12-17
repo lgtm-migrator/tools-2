@@ -8,7 +8,7 @@
     content: attr(data-browse);
 }
 
-#rule {
+#rule label {
     font-size: 75%;
 }
 
