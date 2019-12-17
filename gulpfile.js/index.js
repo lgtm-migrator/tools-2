@@ -2,6 +2,7 @@ const {series, parallel, task, src, dest} = require('gulp');
 const terser = require("gulp-terser");
 const cleanCSS = require("gulp-clean-css");
 const del = require("del");
+const concat = require('gulp-concat');
 const rename = require("gulp-rename");
 const header = require('gulp-header');
 const footer = require('gulp-footer');
@@ -88,6 +89,7 @@ const static_path = "./static/",
     fundebug_js_path = "./node_modules/fundebug-javascript/release/fundebug." + "*.*.*" + ".min.js",
 
 //moment.js
+    concat_after_file_name = "day_js_with_locale.min.js",
     dayjs_min_js_path = "./node_modules/dayjs/dayjs.min.js",
     // dayjs_locale_zh_cn_js_path = "./node_modules/dayjs/locale/zh-cn.js",
     dayjs_locale_zh_cn_js_path = "D:/wwwroot/tools/node_modules/dayjs/locale/zh-cn.js",
@@ -261,9 +263,8 @@ function copy_moment(done) {
 }
 
 function copy_dayjs(done) {
-    let file_locale_zh_cn_js = fs.readdirSync(dayjs_locale_zh_cn_js_path);//fixme
-    src([dayjs_min_js_path])
-        .pipe(footer("\n" + file_locale_zh_cn_js))
+    src([dayjs_min_js_path, dayjs_locale_zh_cn_js_path])
+        .pipe(concat(concat_after_file_name))
         .pipe(dest(static_js));
     done();
 }
