@@ -268,7 +268,7 @@ let moment_time = document.body.querySelector("#moment_time");
 
 moment.locale("zh-cn");
 setInterval(function () {
-    moment_time.innerHTML = moment().format('llll:ss');
+    moment_time.innerHTML = moment().format('LL ddd A H点mm分s秒');
 }, 1000);
 
 
@@ -279,7 +279,8 @@ if (localStorage && (
     localStorage.length >= 1)) {
     if (!localStorage.getItem("localStorage_init_date_time")) {
         moment.locale("en");
-        localStorage.setItem("localStorage_init_date_time", moment().format());
+        localStorage.setItem("localStorage_init_date_time", moment().format("x"));
+        localStorage.setItem("localStorage_init_date_times", moment().format());
     }
 } else {
     throw new Error("不支持LocalStorage。");
