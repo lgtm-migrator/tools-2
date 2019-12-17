@@ -5,6 +5,7 @@ const del = require("del");
 const rename = require("gulp-rename");
 const header = require('gulp-header');
 const footer = require('gulp-footer');
+const fs = require('fs');
 
 
 //Static Files Path
@@ -87,6 +88,11 @@ const static_path = "./static/",
     fundebug_js_path = "./node_modules/fundebug-javascript/release/fundebug." + "*.*.*" + ".min.js",
 
 //moment.js
+    dayjs_min_js_path = "./node_modules/dayjs/dayjs.min.js",
+    // dayjs_locale_zh_cn_js_path = "./node_modules/dayjs/locale/zh-cn.js",
+    dayjs_locale_zh_cn_js_path = "D:/wwwroot/tools/node_modules/dayjs/locale/zh-cn.js",
+
+//moment.js
     moment_js_path = "./node_modules/moment/src/moment.js",
     moment_min_js_path = "./node_modules/moment/min/moment.min.js",
     moment_with_locales_js_path = "./node_modules/moment/min/moment-with-locales.js",
@@ -144,6 +150,7 @@ task("copy_popper", copy_popper);
 task("copy_bs", copy_bs);
 task("copy_bmj", copy_bmj);
 task("copy_bs_custom_file_input", copy_bs_custom_file_input);
+task("copy_dayjs", copy_dayjs);
 task("copy_moment", copy_moment);
 task("copy_clipboard", copy_clipboard);
 
@@ -249,6 +256,14 @@ function copy_bs_custom_file_input(done) {
 
 function copy_moment(done) {
     src([moment_with_locales_js_path, moment_with_locales_min_js_path])
+        .pipe(dest(static_js));
+    done();
+}
+
+function copy_dayjs(done) {
+    let file_locale_zh_cn_js = fs.readdirSync(dayjs_locale_zh_cn_js_path);//fixme
+    src([dayjs_min_js_path])
+        .pipe(footer("\n" + file_locale_zh_cn_js))
         .pipe(dest(static_js));
     done();
 }
