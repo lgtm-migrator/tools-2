@@ -273,10 +273,12 @@ setInterval(function () {
 
 
 /** localStorage **/
-if (localStorage &&
-    (localStorage.setItem("localStorage_status", "yes") || localStorage.getItem("localStorage_status") === "yes" || localStorage.length >= 1)) {
+if (localStorage && (
+    localStorage.setItem("localStorage_status", "yes") ||
+    localStorage.getItem("localStorage_status") === "yes" ||
+    localStorage.length >= 1)) {
     if (!localStorage.getItem("localStorage_init_date_time")) {
-        // moment.locale();
+        moment.locale("en");
         localStorage.setItem("localStorage_init_date_time", moment().format());
     }
 } else {
