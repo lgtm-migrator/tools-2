@@ -16,8 +16,23 @@ let RegExp_rules = {
 /** js.cookie **/
 let js_cookies = window.Cookies.noConflict();
 
-function set_cookie(key, value = 1, attributes) {
-    js_cookies.set(key, value, attributes);
+function set_cookie(key, value = 1, attributes, secure = true) {
+    if (secure === true) {
+        let js_cookies_attributes = {
+            // secure: true,
+            // FIXME:以上生产模式开启
+            // httpOnly: true,
+            // domain: "",
+            // path: "",
+            // expires: "",
+            sameSite: 'lax',
+            //fixme:sameSite值后期待调整
+        };
+        let secure_js_cookies = js_cookies.withAttributes(js_cookies_attributes);
+        secure_js_cookies.set(key, value, attributes);
+    } else {
+        js_cookies.set(key, value, attributes);
+    }
 }
 
 function get_cookie(key) {
@@ -29,6 +44,7 @@ function remove_cookie(key) {
 }
 
 
+/** 表单验证 **/
 function validation_invalid_div(element, text, type = "tooltip") {
     if (!element.nextElementSibling) {
         let div = document.createElement("div");
@@ -180,6 +196,7 @@ function get_recaptcha_verify(token_key, pageAction) {
     })
 }
 
+
 /** 增加阴影 **/
 let btn_all = document.querySelectorAll("[class*='btn']");
 let input_all = document.querySelectorAll("input[class*='form-control']");
@@ -259,12 +276,13 @@ setInterval(function () {
 if (localStorage &&
     (localStorage.setItem("localStorage_status", "yes") || localStorage.getItem("localStorage_status") === "yes" || localStorage.length >= 1)) {
     if (!localStorage.getItem("localStorage_init_date_time")) {
-        moment.locale();
+        // moment.locale();
         localStorage.setItem("localStorage_init_date_time", moment().format());
     }
 } else {
     throw new Error("不支持LocalStorage。");
 }
+
 
 /** bootstrapModalJs-alert **/
 function bootstrapModalJs_alert(alert_array = {}) {
