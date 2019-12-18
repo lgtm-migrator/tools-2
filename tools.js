@@ -223,7 +223,7 @@ function footer_recaptcha_text_badge() {
     div.className = "my-2 d-block text-nowrap text-center";
     div.id = "recaptcha_text_badge";
 
-    span_1.innerHTML = "由 reCAPTCHA 提供保护，并适用Google";
+    span_1.innerHTML = "由&nbsp;reCAPTCHA&nbsp;提供保护，并适用Google";
     span_2.innerHTML = "和";
 
     a_1.className = "text-reset text-decoration-none";
