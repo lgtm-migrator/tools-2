@@ -270,11 +270,26 @@ function page_qr_code() {
     i.addEventListener("click", function () {
         let url = document.location.href;
         let div = document.createElement("div");
+        let span = document.createElement("span");
+        let qrcode_option = {
+            errorCorrectionLevel: "H",
+            margin: 2,
+            width: 200,
+            color: {
+                dark: "#1E90FF",
+                light: "#ffffff",
+            },
+        };
 
         div.className = "text-center";
-        div.appendChild(canvas);
 
-        QRCode.toCanvas(canvas, url);
+        span.className = "d-block small text-success";
+        span.innerHTML = "扫描二维码，快速打开当前页面";
+
+        div.appendChild(canvas);
+        div.appendChild(span);
+
+        QRCode.toCanvas(canvas, url, qrcode_option);
         bootstrapModalJs("", div, "", "sm", true);
     });
 
