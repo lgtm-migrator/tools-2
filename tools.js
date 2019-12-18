@@ -257,6 +257,7 @@ function page_qr_code() {
     let div = document.createElement("div");
     let span = document.createElement("span");
     let i = document.createElement("i");
+    let canvas = document.createElement("canvas");
 
     div.className = "my-2 text-center";
     div.id = "current_page_QR_code";
@@ -267,7 +268,14 @@ function page_qr_code() {
 
     i.className = "fa-2x fas fa-qrcode";
     i.addEventListener("click", function () {
+        let url = document.location.href;
+        let div = document.createElement("div");
 
+        div.className = "text-center";
+        div.appendChild(canvas);
+
+        QRCode.toCanvas(canvas, url);
+        bootstrapModalJs("", div, "", "sm", true);
     });
 
     span.appendChild(i);
