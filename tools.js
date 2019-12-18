@@ -384,3 +384,18 @@ function bootstrapModalJs_alert(alert_array = {}) {
     let modalBody = document.body.querySelector("#modalBody_" + id);
     modalBody.classList.add("p-0");
 }
+
+
+/** 防镜像 **/
+$().ready(function () {
+    setTimeout(function () {
+        if (document.location.host !== "tools.jzeg.org" &&
+            document.location.host !== "118.190.26.200" &&
+            document.location.host !== "tools.jzeg.net") {
+            if (fundebug) fundebug.test("镜像", document.location.href);
+            setTimeout(function () {
+                location.href = location.href.replace(document.location.host, 'tools.jzeg.org');
+            }, 3000);
+        }
+    }, 1000);
+});
