@@ -324,13 +324,12 @@ $().ready(function () {
 
 /** localStorage **/
 if (localStorage && (
-    localStorage.setItem("localStorage_status", "yes") ||
-    localStorage.getItem("localStorage_status") === "yes" ||
+    localStorage.setItem("status", "yes") ||
+    localStorage.getItem("status") === "yes" ||
     localStorage.length >= 1)) {
-    if (!localStorage.getItem("localStorage_init_date_time")) {
-        dayjs.locale("zh-cn");
-        localStorage.setItem("localStorage_init_date_time", dayjs().format());
-        localStorage.setItem("localStorage_init_date_timestamp", dayjs().unix());
+    if (!localStorage.getItem("init_date_time")) {
+        localStorage.setItem("init_date_time", dayjs().locale("zh-cn").format());
+        localStorage.setItem("init_date_timestamp", dayjs().locale("zh-cn").unix());
     }
 } else {
     throw new Error("不支持LocalStorage。");
