@@ -1,6 +1,6 @@
 <?php
 ?>
-</div>
+</div><!--id=jt_content-->
 <div class="mt-3 mt-lg-4 pb-4 bg-dark" id="jt_footer">
     <div class="my-3 border-bottom"></div>
     <a class="position-fixed border border-primary rounded p-1" href="javascript:" id="to_top"
@@ -18,9 +18,6 @@
                target="_blank" title="Google 服务条款">服务条款</a>
         </span>
     </div>
-</div>
-<div>
-    <script src="/tools.min.js"></script>
 </div>
 </div><!--id=body-->
 </body>

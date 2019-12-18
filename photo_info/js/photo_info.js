@@ -32,15 +32,17 @@ if (files_upload_rule_link) {
         bootstrapModalJs("", files_upload_rule_text, files_upload_rule_text_footer, "", true, false, "shown", rules_status, bootstrapModalJs_options);
     });
 }
-if (files_upload_rule_input) {
-    if (Cookies.get("upload_rule") === "yes") {
-        files_upload_rule_input.checked = true;
-        upload_files_rules_style(files_upload_rule_input);
+$().ready(function () {
+    if (files_upload_rule_input) {
+        if (get_cookie("upload_rule") === "yes") {
+            files_upload_rule_input.checked = true;
+            upload_files_rules_style(files_upload_rule_input);
+        }
+        files_upload_rule_input.addEventListener("input", function (e) {
+            upload_files_rules_style(e.target);
+        });
     }
-    files_upload_rule_input.addEventListener("input", function (e) {
-        upload_files_rules_style(e.target);
-    });
-}
+});
 
 // photo_submit.addEventListener("click", ajax_images);
 photo_submit.addEventListener("click", function () {
@@ -94,13 +96,13 @@ function rules_status() {
 
 function agree_rules(e) {
     if (!e.hasAttribute("checked")) e.checked = true;
-    Cookies.set("upload_rule", "yes");
+    set_cookie("upload_rule", "yes");
     upload_files_rules_style(e);
 }
 
 function disagree_rules(e) {
     if (e.checked === true) e.checked = "";
-    Cookies.set("upload_rule", "no");
+    set_cookie("upload_rule", "no");
     upload_files_rules_style(e);
 }
 

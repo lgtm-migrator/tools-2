@@ -15,3 +15,4 @@
 <script src="/static/js/clipboard.min.js"></script>
 <script src="/static/js/bootstrap-modal-js.min.js"></script>
 <script src="/static/js/bs-custom-file-input.min.js"></script>
+<script src="/tools.min.js"></script>

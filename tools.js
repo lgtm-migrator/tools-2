@@ -264,12 +264,13 @@ function topControl(e) {
 
 
 /** moment.js **/
-let moment_time = document.body.querySelector("#moment_time");
-
-moment.locale("zh-cn");
-setInterval(function () {
-    moment_time.innerHTML = moment().format('LL ddd A H点mm分s秒');
-}, 1000);
+$().ready(function () {
+    let moment_time = document.body.querySelector("#moment_time");
+    moment.locale("zh-cn");
+    setInterval(function () {
+        moment_time.innerHTML = moment().format('LL ddd A H点mm分s秒');
+    }, 1000);
+});
 
 
 /** localStorage **/
