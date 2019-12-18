@@ -92,7 +92,7 @@ const
     concat_after_file_name = "day_js_with_locale.min.js",
     dayjs_min_js_path = "./node_modules/dayjs/dayjs.min.js",
     // dayjs_locale_zh_cn_js_path = "./node_modules/dayjs/locale/zh-cn.js",
-    dayjs_locale_zh_cn_js_path = "D:/wwwroot/tools/node_modules/dayjs/locale/zh-cn.js",
+    dayjs_locale_zh_cn_js_path = "./node_modules/dayjs/locale/zh-cn.js",
 
 //moment.js
     moment_js_path = "./node_modules/moment/src/moment.js",
