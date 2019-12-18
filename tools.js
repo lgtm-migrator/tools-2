@@ -201,6 +201,7 @@ function get_recaptcha_verify(token_key, pageAction) {
 
 
 $().ready(function () {
+    footer_recaptcha_text_badge();
     footer_current_time();
 });
 
@@ -211,6 +212,40 @@ function footer_current_time() {
     span.id = "current_time";
     span.innerHTML = "&nbsp;";
     footer_x.appendChild(span);
+}
+
+function footer_recaptcha_text_badge() {
+    let footer_x = document.querySelector("#footer_x");
+
+    let div = document.createElement("div");
+    let span_1 = document.createElement("span");
+    let span_2 = document.createElement("span");
+    let a_1 = document.createElement("a");
+    let a_2 = document.createElement("a");
+
+    div.className = "my-2 d-block text-nowrap text-center";
+    div.id = "recaptcha_text_badge";
+
+    span_1.innerHTML = "由 reCAPTCHA 提供保护，并适用Google";
+    span_2.innerHTML = "和";
+
+    a_1.className = "text-reset text-decoration-none";
+    a_1.href = "https://www.google.cn/intl/zh-CN/policies/privacy/";
+    a_1.title = "Google 隐私权";
+    a_1.target = "_blank";
+    a_1.innerHTML = "&nbsp;隐私权&nbsp;";
+
+    a_2.className = "text-reset text-decoration-none";
+    a_2.href = "https://www.google.cn/intl/zh-CN/policies/terms/";
+    a_2.title = "Google 服务条款";
+    a_2.target = "_blank";
+    a_2.innerHTML = "&nbsp;服务条款&nbsp;";
+
+    div.appendChild(span_1);
+    div.appendChild(a_1);
+    div.appendChild(span_2);
+    div.appendChild(a_2);
+    footer_x.appendChild(div);
 }
 
 
