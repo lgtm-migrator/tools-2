@@ -265,10 +265,10 @@ function topControl(e) {
 
 /** moment.js **/
 $().ready(function () {
-    let moment_time = document.body.querySelector("#moment_time");
+    let footer_time = document.body.querySelector("#footer_time");
     moment.locale("zh-cn");
     setInterval(function () {
-        moment_time.innerHTML = moment().format('LL ddd A H点mm分s秒');
+        footer_time.innerHTML = moment().format('LL ddd A H点mm分s秒');
     }, 1000);
 });
 
