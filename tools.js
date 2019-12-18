@@ -20,11 +20,11 @@ function set_cookie(key, value = 1, attributes, secure = true) {
     if (secure === true) {
         let js_cookies_attributes = {
             // secure: true,
+            expires: 30,
             // FIXME:以上生产模式开启
             // httpOnly: true,
             // domain: "",
             // path: "",
-            // expires: "",
             sameSite: "lax",
             //fixme:sameSite值后期待调整
         };
