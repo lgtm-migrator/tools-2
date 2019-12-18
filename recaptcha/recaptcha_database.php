@@ -6,7 +6,7 @@ function recaptcha_data_to_database($resp_array, $Threshold = null)
 {
     global $db_host, $db_user, $db_pwd, $db_database;
     global $threshold, $remoteIp, $timeoutSeconds;
-    require_once dirname(dirname(__FILE__)) . "/mysqli/config.php";
+    require_once dirname(__DIR__) . "/mysqli/config.php";
 
     $now = new DateTime();
 

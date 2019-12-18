@@ -23,7 +23,7 @@ function custom_header_404($Context = 'No input file specified.')
     die($Context);
 }
 
-require_once dirname(dirname(__FILE__)) . "/config/defined.php";
+require_once dirname(__DIR__) . "/config/defined.php";
 require_once "photo_info_fun.php";
 
 $allowed_extension_name = array("jfif", "pjpeg", "jpeg", "pjp", "jpg", "tiff", "tif");
