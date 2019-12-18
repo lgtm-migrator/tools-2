@@ -312,12 +312,12 @@ function topControl(e) {
 }
 
 
-/** moment.js **/
+/** 页脚时间 **/
 $().ready(function () {
     let current_time = document.body.querySelector("#current_time");
-    moment.locale("zh-cn");
+    dayjs.locale("zh-cn");
     setInterval(function () {
-        current_time.innerHTML = moment().format("LL ddd A H点mm分s秒");
+        current_time.innerHTML = dayjs().format("YYYY年M月D日 dddA H点mm分s秒");
     }, 1000);
 });
 
@@ -328,9 +328,9 @@ if (localStorage && (
     localStorage.getItem("localStorage_status") === "yes" ||
     localStorage.length >= 1)) {
     if (!localStorage.getItem("localStorage_init_date_time")) {
-        moment.locale("en");
-        localStorage.setItem("localStorage_init_date_time", moment().format("x"));
-        localStorage.setItem("localStorage_init_date_times", moment().format());
+        dayjs.locale("zh-cn");
+        localStorage.setItem("localStorage_init_date_time", dayjs().format());
+        localStorage.setItem("localStorage_init_date_timestamp", dayjs().unix());
     }
 } else {
     throw new Error("不支持LocalStorage。");
