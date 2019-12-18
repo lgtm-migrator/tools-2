@@ -152,11 +152,10 @@ task("copy_popper", copy_popper);
 task("copy_bs", copy_bs);
 task("copy_bmj", copy_bmj);
 task("copy_bs_custom_file_input", copy_bs_custom_file_input);
-task("copy_dayjs", copy_dayjs);
 task("copy_moment", copy_moment);
 task("copy_clipboard", copy_clipboard);
 
-
+task("copy_dayjs", copy_dayjs);
 task("copy_lazyload", copy_lazyload);
 task("copy_bt", copy_bt);
 task("copy_vue", copy_vue);
