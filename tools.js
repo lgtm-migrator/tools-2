@@ -25,7 +25,7 @@ function set_cookie(key, value = 1, attributes, secure = true) {
             // domain: "",
             // path: "",
             // expires: "",
-            sameSite: 'lax',
+            sameSite: "lax",
             //fixme:sameSite值后期待调整
         };
         let secure_js_cookies = js_cookies.withAttributes(js_cookies_attributes);
@@ -101,7 +101,7 @@ function add_spinner_icon(element, spinner_type = null, color = null, position =
     }
 
     switch (color) {
-        case 'primary':
+        case "primary":
             load_icon.classList.add("text-primary");
             break;
         case "secondary":
@@ -251,10 +251,10 @@ let btn_all = document.querySelectorAll("[class*='btn']");
 let input_all = document.querySelectorAll("input[class*='form-control']");
 
 for (let x = btn_all.length, i = 0; i < x; i++) {
-    btn_all[i].addEventListener('mouseover', function (e) {
+    btn_all[i].addEventListener("mouseover", function (e) {
         add_shadow(e);
     });
-    btn_all[i].addEventListener('mouseout', function (e) {
+    btn_all[i].addEventListener("mouseout", function (e) {
         remove_shadow(e);
     });
 }
@@ -303,7 +303,7 @@ function get_href_url(target, class_name) {
 /** 返回顶部 **/
 (function () {
     let floatToolBackTop = document.querySelector("#to_top");
-    floatToolBackTop ? floatToolBackTop.addEventListener('click', topControl) : "";
+    floatToolBackTop ? floatToolBackTop.addEventListener("click", topControl) : "";
 })();
 
 function topControl(e) {
@@ -317,7 +317,7 @@ $().ready(function () {
     let current_time = document.body.querySelector("#current_time");
     moment.locale("zh-cn");
     setInterval(function () {
-        current_time.innerHTML = moment().format('LL ddd A H点mm分s秒');
+        current_time.innerHTML = moment().format("LL ddd A H点mm分s秒");
     }, 1000);
 });
 
