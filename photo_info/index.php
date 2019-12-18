@@ -52,7 +52,7 @@ require_once '../header.php';
 
 
 <div>
-    <?php require_once dirname(dirname(__FILE__)) . "/javascript.php"; ?>
+    <?php require_once dirname(__DIR__) . "/javascript.php"; ?>
     <script src="/photo_info/js/photo_info.min.js"></script>
 </div>
 

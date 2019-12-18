@@ -1,4 +1,6 @@
 /** 公用 **/
+let a_body = document.body.querySelector("#body");
+if (a_body) a_body.removeAttribute("hidden");
 
 let RegExp_rules = {
     "chinese_name": new RegExp(/^([\u4e00-\u9fa5·]{2,16})$/),
@@ -10,6 +12,39 @@ let RegExp_rules = {
     "zh_cn_number": new RegExp(/^((?:[\u3400-\u4DB5\u4E00-\u9FEA\uFA0E\uFA0F\uFA11\uFA13\uFA14\uFA1F\uFA21\uFA23\uFA24\uFA27-\uFA29]|[\uD840-\uD868\uD86A-\uD86C\uD86F-\uD872\uD874-\uD879][\uDC00-\uDFFF]|\uD869[\uDC00-\uDED6\uDF00-\uDFFF]|\uD86D[\uDC00-\uDF34\uDF40-\uDFFF]|\uD86E[\uDC00-\uDC1D\uDC20-\uDFFF]|\uD873[\uDC00-\uDEA1\uDEB0-\uDFFF]|\uD87A[\uDC00-\uDFE0])|(\d))+$/),
 };
 
+
+/** js.cookie **/
+let js_cookies = window.Cookies.noConflict();
+
+function set_cookie(key, value = 1, attributes, secure = true) {
+    if (secure === true) {
+        let js_cookies_attributes = {
+            // secure: true,
+            // FIXME:以上生产模式开启
+            // httpOnly: true,
+            // domain: "",
+            // path: "",
+            // expires: "",
+            sameSite: "lax",
+            //fixme:sameSite值后期待调整
+        };
+        let secure_js_cookies = js_cookies.withAttributes(js_cookies_attributes);
+        secure_js_cookies.set(key, value, attributes);
+    } else {
+        js_cookies.set(key, value, attributes);
+    }
+}
+
+function get_cookie(key) {
+    return js_cookies.get(key);
+}
+
+function remove_cookie(key) {
+    js_cookies.remove(key);
+}
+
+
+/** 表单验证 **/
 function validation_invalid_div(element, text, type = "tooltip") {
     if (!element.nextElementSibling) {
         let div = document.createElement("div");
@@ -66,7 +101,7 @@ function add_spinner_icon(element, spinner_type = null, color = null, position =
     }
 
     switch (color) {
-        case 'primary':
+        case "primary":
             load_icon.classList.add("text-primary");
             break;
         case "secondary":
@@ -161,15 +196,65 @@ function get_recaptcha_verify(token_key, pageAction) {
     })
 }
 
+
+/** 页脚文案 **/
+$().ready(function () {
+    footer_recaptcha_text_badge();
+    footer_current_time();
+});
+
+function footer_current_time() {
+    let footer_x = document.querySelector("#footer_x");
+    let span = document.createElement("span");
+    span.className = "my-2 d-block text-nowrap text-center";
+    span.id = "current_time";
+    span.innerHTML = "&nbsp;";
+    footer_x.appendChild(span);
+}
+
+function footer_recaptcha_text_badge() {
+    let footer_x = document.querySelector("#footer_x");
+    let div = document.createElement("div");
+    let span_1 = document.createElement("span");
+    let span_2 = document.createElement("span");
+    let a_1 = document.createElement("a");
+    let a_2 = document.createElement("a");
+
+    div.className = "my-2 d-block text-nowrap text-center";
+    div.id = "recaptcha_text_badge";
+
+    span_1.innerHTML = "由&nbsp;reCAPTCHA&nbsp;提供保护，并适用Google";
+    span_2.innerHTML = "和";
+
+    a_1.className = "text-reset text-decoration-none";
+    a_1.href = "https://www.google.cn/intl/zh-CN/policies/privacy/";
+    a_1.title = "Google&nbsp;隐私权";
+    a_1.target = "_blank";
+    a_1.innerHTML = "&nbsp;隐私权&nbsp;";
+
+    a_2.className = "text-reset text-decoration-none";
+    a_2.href = "https://www.google.cn/intl/zh-CN/policies/terms/";
+    a_2.title = "Google 服务条款";
+    a_2.target = "_blank";
+    a_2.innerHTML = "&nbsp;服务条款&nbsp;";
+
+    div.appendChild(span_1);
+    div.appendChild(a_1);
+    div.appendChild(span_2);
+    div.appendChild(a_2);
+    footer_x.appendChild(div);
+}
+
+
 /** 增加阴影 **/
 let btn_all = document.querySelectorAll("[class*='btn']");
 let input_all = document.querySelectorAll("input[class*='form-control']");
 
 for (let x = btn_all.length, i = 0; i < x; i++) {
-    btn_all[i].addEventListener('mouseover', function (e) {
+    btn_all[i].addEventListener("mouseover", function (e) {
         add_shadow(e);
     });
-    btn_all[i].addEventListener('mouseout', function (e) {
+    btn_all[i].addEventListener("mouseout", function (e) {
         remove_shadow(e);
     });
 }
@@ -203,11 +288,22 @@ function remove_shadow(e, size = "") {
     }
 }
 
+function cursor_pointer(e) {
+    e.target.style.cursor = "pointer";
+}
+
+function get_href_url(target, class_name) {
+    let a = target.querySelector("." + class_name);
+    if (a.href !== undefined) {
+        return a.href;
+    }
+}
+
 
 /** 返回顶部 **/
 (function () {
     let floatToolBackTop = document.querySelector("#to_top");
-    floatToolBackTop ? floatToolBackTop.addEventListener('click', topControl) : "";
+    floatToolBackTop ? floatToolBackTop.addEventListener("click", topControl) : "";
 })();
 
 function topControl(e) {
@@ -216,25 +312,30 @@ function topControl(e) {
 }
 
 
-/** moment.js **/
-let moment_time = document.body.querySelector("#moment_time");
-
-moment.locale("zh-cn");
-setInterval(function () {
-    moment_time.innerHTML = moment().format('llll:ss');
-}, 1000);
+/** 页脚时间 **/
+$().ready(function () {
+    let current_time = document.body.querySelector("#current_time");
+    dayjs.locale("zh-cn");
+    setInterval(function () {
+        current_time.innerHTML = dayjs().format("YYYY年M月D日 dddA H点mm分s秒");
+    }, 1000);
+});
 
 
 /** localStorage **/
-if (localStorage &&
-    (localStorage.setItem("localStorage_status", "yes") || localStorage.getItem("localStorage_status") === "yes" || localStorage.length >= 1)) {
+if (localStorage && (
+    localStorage.setItem("localStorage_status", "yes") ||
+    localStorage.getItem("localStorage_status") === "yes" ||
+    localStorage.length >= 1)) {
     if (!localStorage.getItem("localStorage_init_date_time")) {
-        moment.locale();
-        localStorage.setItem("localStorage_init_date_time", moment().format());
+        dayjs.locale("zh-cn");
+        localStorage.setItem("localStorage_init_date_time", dayjs().format());
+        localStorage.setItem("localStorage_init_date_timestamp", dayjs().unix());
     }
 } else {
     throw new Error("不支持LocalStorage。");
 }
+
 
 /** bootstrapModalJs-alert **/
 function bootstrapModalJs_alert(alert_array = {}) {
@@ -246,14 +347,17 @@ function bootstrapModalJs_alert(alert_array = {}) {
     let span = document.createElement("span");
     let a_sr_only = document.createElement("a");
 
-    div.className = "alert mb-0 alert-" + alert_array.type + " alert-dismissible fade show";
+    let Event_Type = alert_array["Event_Type"];
+    let Callback_Function = alert_array["Callback_Function"];
+
+    div.className = "alert mb-0 alert-" + alert_array["color"] + " alert-dismissible fade show";
     div.setAttribute("rule", "增强提醒");
 
     h4.className = "alert-heading small";
-    h4.innerHTML = alert_array.alert_heading;
+    h4.innerHTML = alert_array["alert_heading"];
 
-    body_div.innerText = alert_array.innerText;
-    body_div.innerHTML = alert_array.innerHTML;
+    body_div.innerText = alert_array["innerText"];
+    body_div.innerHTML = alert_array["innerHTML"];
 
     button.className = "close";
     button.type = "button";
@@ -276,7 +380,7 @@ function bootstrapModalJs_alert(alert_array = {}) {
     div.append(button);
     div.append(a_sr_only);
 
-    let id = bootstrapModalJs("", div, "", "sm", true, false, "", "", bootstrapModalJs_options);
+    let id = bootstrapModalJs("", div, "", "sm", true, false, Event_Type, Callback_Function, bootstrapModalJs_options);
     let modalBody = document.body.querySelector("#modalBody_" + id);
     modalBody.classList.add("p-0");
 }

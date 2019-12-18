@@ -23,7 +23,7 @@ function custom_header_404($Context = 'No input file specified.')
     die($Context);
 }
 
-require_once dirname(dirname(__FILE__)) . "/config/defined.php";
+require_once dirname(__DIR__) . "/config/defined.php";
 require_once "photo_info_fun.php";
 
 $allowed_extension_name = array("jfif", "pjpeg", "jpeg", "pjp", "jpg", "tiff", "tif");
@@ -45,7 +45,7 @@ foreach ($image_files["error"] as $k => $error) {
                 if (!file_exists(UPLOAD_DIR_YMD)) mk_dir(UPLOAD_DIR_YMD);
                 $image_create_result = filters_image_types($file_name, $file_ext_name, $tmp_file_name);
                 if ($image_create_result === true) {
-                    //todo:改为数据库匹配图像识别字符串来判断文件是否上传过，用来达到不保存用户图片文件的目的。
+                    //fixme:改为数据库匹配图像识别字符串来判断文件是否上传过，用来达到不保存用户图片文件的目的。
                     if (!file_exists(UPLOAD_DIR_YMD . $file_name)) {
                         $rename_file_result = rename($php_created_image, UPLOAD_DIR_YMD . $file_name);
 

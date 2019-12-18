@@ -1,7 +1,7 @@
 <?php
 $php_tmp_dir = sys_get_temp_dir() . '/';
-$upload_tmp_dir = dirname(dirname(dirname(__FILE__))) . "/upload_tmp_dir/";
-$upload_dir = dirname(dirname(dirname(__FILE__))) . "/upload/";
+$upload_tmp_dir = dirname(dirname(__DIR__)) . "/upload_tmp_dir/";
+$upload_dir = dirname(dirname(__DIR__)) . "/upload/";
 $yyyy_mm_dd = date("Y/m/d/");
 
 

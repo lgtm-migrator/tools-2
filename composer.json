@@ -10,6 +10,7 @@
   },
   "require-dev": {
     "friendsofphp/php-cs-fixer": "^2.16",
+    "php-coveralls/php-coveralls": "^2.2",
     "phpunit/phpunit": "^8.4"
   },
   "repositories": {
@@ -17,5 +18,7 @@
       "type": "composer",
       "url": "https://mirrors.aliyun.com/composer/"
     }
+  },
+  "scripts": {
   }
 }
