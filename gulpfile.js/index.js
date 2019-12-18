@@ -1,16 +1,16 @@
 const {series, parallel, task, src, dest} = require('gulp');
-const terser = require("gulp-terser");
 const cleanCSS = require("gulp-clean-css");
-const del = require("del");
+const terser = require("gulp-terser");
 const concat = require('gulp-concat');
 const rename = require("gulp-rename");
 const header = require('gulp-header');
 const footer = require('gulp-footer');
-const fs = require('fs');
+const del = require("del");
 
 
 //Static Files Path
-const static_path = "./static/",
+const
+    static_path = "./static/",
     static_js = static_path + "js/",
     static_css = static_path + "css/",
 
@@ -46,14 +46,14 @@ const static_path = "./static/",
     popper_min_js_map_path = "./node_modules/popper.js/dist/umd/popper.min.js.map",
 
 // Bootstrap
-    bs_js_path = "./node_modules/bootstrap/dist/js/bootstrap.js",
-    bs_min_js_path = "./node_modules/bootstrap/dist/js/bootstrap.min.js",
-    bs_js_map_path = "./node_modules/bootstrap/dist/js/bootstrap.js.map",
-    bs_min_js_map_path = "./node_modules/bootstrap/dist/js/bootstrap.min.js.map",
-    bs_css_path = "./node_modules/bootstrap/dist/css/bootstrap.css",
-    bs_min_css_path = "./node_modules/bootstrap/dist/css/bootstrap.min.css",
-    bs_css_map_path = "./node_modules/bootstrap/dist/css/bootstrap.css.map",
-    bs_min_css_map = "./node_modules/bootstrap/dist/css/bootstrap.min.css.map",
+    bootstrap_js_path = "./node_modules/bootstrap/dist/js/bootstrap.js",
+    bootstrap_min_js_path = "./node_modules/bootstrap/dist/js/bootstrap.min.js",
+    bootstrap_js_map_path = "./node_modules/bootstrap/dist/js/bootstrap.js.map",
+    bootstrap_min_js_map_path = "./node_modules/bootstrap/dist/js/bootstrap.min.js.map",
+    bootstrap_css_path = "./node_modules/bootstrap/dist/css/bootstrap.css",
+    bootstrap_min_css_path = "./node_modules/bootstrap/dist/css/bootstrap.min.css",
+    bootstrap_css_map_path = "./node_modules/bootstrap/dist/css/bootstrap.css.map",
+    bootstrap_min_css_map = "./node_modules/bootstrap/dist/css/bootstrap.min.css.map",
 
 //vue
     vue_js_path = "./node_modules/vue/dist/vue.js",
@@ -145,19 +145,19 @@ task("cleanCSS_phone_number_css", cleanCSS_phone_number_css);
 task("cleanCSS_photo_info_css", cleanCSS_photo_info_css);
 
 
-task("copy_fonts", copy_fonts);
+task("copy_fontawesome_free", copy_fontawesome_free);
 task("copy_js_cookie", copy_js_cookie);
-task("copy_jq", copy_jq);
+task("copy_jquery", copy_jquery);
 task("copy_popper", copy_popper);
-task("copy_bs", copy_bs);
-task("copy_bmj", copy_bmj);
+task("copy_bootstrap", copy_bootstrap);
+task("copy_bootstrap_modal_js", copy_bootstrap_modal_js);
 task("copy_bs_custom_file_input", copy_bs_custom_file_input);
 task("copy_moment", copy_moment);
 task("copy_clipboard", copy_clipboard);
 
 task("copy_dayjs", copy_dayjs);
 task("copy_lazyload", copy_lazyload);
-task("copy_bt", copy_bt);
+task("copy_bootstrap_toasts_js", copy_bootstrap_toasts_js);
 task("copy_vue", copy_vue);
 task("copy_video", copy_video);
 task("copy_viewerjs", copy_viewerjs);
@@ -234,7 +234,7 @@ function cleanCSS_photo_info_css(done) {
 }
 
 
-function copy_fonts(done) {
+function copy_fontawesome_free(done) {
     src([all_fontawesome_free_path])
         .pipe(dest(static_path + "/font/"));
     done();
@@ -245,7 +245,7 @@ function copy_lazyload(done) {
     done();
 }
 
-function copy_bmj(done) {
+function copy_bootstrap_modal_js(done) {
     src([bootstrap_modal_js_js_path, bootstrap_modal_js_min_js_path]).pipe(dest(static_js));
     done();
 }
@@ -274,9 +274,9 @@ function copy_clipboard(done) {
     done();
 }
 
-function copy_bs(done) {
-    src([bs_js_path, bs_min_js_path, bs_js_map_path, bs_min_js_map_path]).pipe(dest(static_js));
-    src([bs_css_path, bs_min_css_path, bs_css_map_path, bs_min_css_map]).pipe(dest(static_css));
+function copy_bootstrap(done) {
+    src([bootstrap_js_path, bootstrap_min_js_path, bootstrap_js_map_path, bootstrap_min_js_map_path]).pipe(dest(static_js));
+    src([bootstrap_css_path, bootstrap_min_css_path, bootstrap_css_map_path, bootstrap_min_css_map]).pipe(dest(static_css));
     done();
 }
 
@@ -285,12 +285,12 @@ function copy_popper(done) {
     done();
 }
 
-function copy_bt(done) {
+function copy_bootstrap_toasts_js(done) {
     src([bootstrap_toasts_js_path, bootstrap_toasts_min_js_path]).pipe(dest(static_js));
     done();
 }
 
-function copy_jq(done) {
+function copy_jquery(done) {
     src([jquery_js_path, jquery_min_js_path]).pipe(dest(static_js));
     done();
 }
