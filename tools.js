@@ -255,10 +255,23 @@ $().ready(function () {
 function page_qr_code() {
     let footer_x = document.querySelector("#footer_x");
     let div = document.createElement("div");
+    let span = document.createElement("span");
+    let i = document.createElement("i");
 
+    div.className = "my-2 text-center";
     div.id = "current_page_QR_code";
-    div.className = "";
 
+    span.className = "text-light";
+    span.title = "点击查看当前页面二维码";
+    span.style.cursor = "pointer";
+
+    i.className = "fa-2x fas fa-qrcode";
+    i.addEventListener("click", function () {
+
+    });
+
+    span.appendChild(i);
+    div.appendChild(span);
     footer_x.appendChild(div);
 }
 
@@ -415,3 +428,11 @@ $().ready(function () {
         }
     }, 1000);
 });
+
+
+$().ready(function () {
+    $("span[title]").tooltip({
+        placement: "right",
+    });
+});
+

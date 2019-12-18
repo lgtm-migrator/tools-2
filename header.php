@@ -41,14 +41,9 @@
 <div id="body" hidden>
     <div class="mb-3 mb-lg-4" id="jt_header">
         <div class="py-1 py-lg-2 container" id="logo">
-            <a class="text-decoration-none" href="/index.php">
-            <span class="mr-1 mr-lg-2 logo-img">
-                <!--<img src="" alt="">-->
-            <i class="mb-0 text-warning h4 fas fa-tools"></i>
-            </span>
-                <span class="logo-name" title="在线小工具">
-                <h1 class="mb-0 d-inline h5 text-info">在线小工具</h1>
-            </span>
+            <a class="text-decoration-none" href="/index.php" title="在线小工具">
+                <span class="mr-1 mr-lg-2 logo-img"><i class="mb-0 text-warning h4 fas fa-tools"></i></span>
+                <span class="logo-name"><h1 class="mb-0 d-inline text-info h5">在线小工具</h1></span>
             </a>
             <span class="py-1 position-relative badge badge-pill badge-danger"
                   style="z-index:-1;bottom:10px;font-size: 75%;">测试版</span>
