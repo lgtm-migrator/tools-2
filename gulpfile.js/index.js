@@ -88,7 +88,7 @@ const
 //FunDebug
     fundebug_js_path = "./node_modules/fundebug-javascript/release/fundebug." + "*.*.*" + ".min.js",
 
-//moment.js
+//dayjs.js
     concat_after_file_name = "day_js_with_locale.min.js",
     dayjs_min_js_path = "./node_modules/dayjs/dayjs.min.js",
     // dayjs_locale_zh_cn_js_path = "./node_modules/dayjs/locale/zh-cn.js",
