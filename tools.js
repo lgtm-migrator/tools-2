@@ -228,7 +228,7 @@ function footer_recaptcha_text_badge() {
 
     a_1.className = "text-reset text-decoration-none";
     a_1.href = "https://www.google.cn/intl/zh-CN/policies/privacy/";
-    a_1.title = "Google 隐私权";
+    a_1.title = "Google&nbsp;隐私权";
     a_1.target = "_blank";
     a_1.innerHTML = "&nbsp;隐私权&nbsp;";
 
