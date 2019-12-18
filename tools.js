@@ -197,6 +197,23 @@ function get_recaptcha_verify(token_key, pageAction) {
 }
 
 
+/** 页脚文案 **/
+
+
+$().ready(function () {
+    footer_current_time();
+});
+
+function footer_current_time() {
+    let footer_x = document.querySelector("#footer_x");
+    let span = document.createElement("span");
+    span.className = "my-2 d-block text-nowrap text-center";
+    span.id = "current_time";
+    span.innerHTML = "&nbsp;";
+    footer_x.appendChild(span);
+}
+
+
 /** 增加阴影 **/
 let btn_all = document.querySelectorAll("[class*='btn']");
 let input_all = document.querySelectorAll("input[class*='form-control']");
@@ -265,10 +282,10 @@ function topControl(e) {
 
 /** moment.js **/
 $().ready(function () {
-    let footer_time = document.body.querySelector("#footer_time");
+    let current_time = document.body.querySelector("#current_time");
     moment.locale("zh-cn");
     setInterval(function () {
-        footer_time.innerHTML = moment().format('LL ddd A H点mm分s秒');
+        current_time.innerHTML = moment().format('LL ddd A H点mm分s秒');
     }, 1000);
 });
 
