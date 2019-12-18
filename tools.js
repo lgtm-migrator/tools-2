@@ -246,6 +246,23 @@ function footer_recaptcha_text_badge() {
 }
 
 
+/** 页脚二维码 **/
+$().ready(function () {
+    page_qr_code();
+});
+
+//fixme:待完善
+function page_qr_code() {
+    let footer_x = document.querySelector("#footer_x");
+    let div = document.createElement("div");
+
+    div.id = "current_page_QR_code";
+    div.className = "";
+
+    footer_x.appendChild(div);
+}
+
+
 /** 增加阴影 **/
 let btn_all = document.querySelectorAll("[class*='btn']");
 let input_all = document.querySelectorAll("input[class*='form-control']");
