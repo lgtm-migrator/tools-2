@@ -198,8 +198,6 @@ function get_recaptcha_verify(token_key, pageAction) {
 
 
 /** 页脚文案 **/
-
-
 $().ready(function () {
     footer_recaptcha_text_badge();
     footer_current_time();
@@ -216,7 +214,6 @@ function footer_current_time() {
 
 function footer_recaptcha_text_badge() {
     let footer_x = document.querySelector("#footer_x");
-
     let div = document.createElement("div");
     let span_1 = document.createElement("span");
     let span_2 = document.createElement("span");
