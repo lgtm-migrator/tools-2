@@ -26,7 +26,7 @@
   "scripts": {
     "default": "npm i && npm run copy && npm run terser && npm run cleanCSS",
     "nrm": "npm i -g nrm --registry=https://registry.npm.taobao.org && nrm use taobao && nrm ls",
-    "copy": "gulp add_footer copy_fontawesome_free copy_js_cookie copy_jquery copy_popper copy_bootstrap copy_bootstrap_modal_js copy_bs_custom_file_input copy_dayjs copy_clipboard",
+    "copy": "gulp add_footer copy_fontawesome_free copy_js_cookie copy_jquery copy_popper copy_bootstrap copy_bootstrap_modal_js copy_bs_custom_file_input copy_dayjs copy_qrcode copy_clipboard",
     "terser": "gulp terser_tools_js terser_index_js terser_phone_number_js terser_photo_info_js",
     "cleanCSS": "gulp cleanCSS_tools_css cleanCSS_index_css cleanCSS_phone_number_css cleanCSS_photo_info_css"
   },
@@ -51,7 +51,8 @@
     "fundebug-javascript": "^2.0.0",
     "jquery": "^3.4.1",
     "js-cookie": "^3.0.0-beta.2",
-    "popper.js": "^1.16.0"
+    "popper.js": "^1.16.0",
+    "qrcode": "^1.4.4"
   },
   "engines": {
     "node": ">=12.0",

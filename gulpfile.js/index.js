@@ -94,6 +94,11 @@ const
     // dayjs_locale_zh_cn_js_path = "./node_modules/dayjs/locale/zh-cn.js",
     dayjs_locale_zh_cn_js_path = "./node_modules/dayjs/locale/zh-cn.js",
 
+//node-qrcode
+    qrcode_js_path = "./node_modules/qrcode/build/qrcode.js",
+    qrcode_min_js_path = "./node_modules/qrcode/build/qrcode.min.js",
+    qrcode_js_map_path = "./node_modules/qrcode/build/qrcode.min.js.map",
+
 //moment.js
     moment_js_path = "./node_modules/moment/src/moment.js",
     moment_min_js_path = "./node_modules/moment/min/moment.min.js",
@@ -152,10 +157,11 @@ task("copy_popper", copy_popper);
 task("copy_bootstrap", copy_bootstrap);
 task("copy_bootstrap_modal_js", copy_bootstrap_modal_js);
 task("copy_bs_custom_file_input", copy_bs_custom_file_input);
-task("copy_moment", copy_moment);
-task("copy_clipboard", copy_clipboard);
-
 task("copy_dayjs", copy_dayjs);
+task("copy_clipboard", copy_clipboard);
+task("copy_qrcode", copy_qrcode);
+
+task("copy_moment", copy_moment);
 task("copy_lazyload", copy_lazyload);
 task("copy_bootstrap_toasts_js", copy_bootstrap_toasts_js);
 task("copy_vue", copy_vue);
@@ -270,6 +276,12 @@ function copy_dayjs(done) {
 
 function copy_clipboard(done) {
     src([clipboard_min_js_path])
+        .pipe(dest(static_js));
+    done();
+}
+
+function copy_qrcode(done) {
+    src([qrcode_min_js_path])
         .pipe(dest(static_js));
     done();
 }
