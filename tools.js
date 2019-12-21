@@ -1,7 +1,7 @@
 /** 公用 **/
 let a_body = document.body.querySelector("#body");
 if (a_body) a_body.removeAttribute("hidden");
-
+//fixme:影响表单autofocus属性
 let RegExp_rules = {
     "chinese_name": new RegExp(/^([\u4e00-\u9fa5·]{2,16})$/),
     "tel_number": new RegExp(/\d{3}-\d{8}|\d{4}-\d{7}/),
@@ -292,6 +292,9 @@ function page_qr_code() {
 
         button.className = "btn fas fa-copy";
         button.innerHTML = "&nbsp;&nbsp;复制当前网址";
+        button.addEventListener("click", function (e) {
+            copy_url(e.target, addUrlParam(url, url_param));
+        });
 
         i.className = "d-block mt-2 fas fa-question-circle";
         i.innerHTML = "使用方法";
@@ -308,8 +311,6 @@ function page_qr_code() {
 
         QRCode.toCanvas(canvas, url, qrcode_option);
         bootstrapModalJs("", div, "", "sm", true);
-        copy_url(button, addUrlParam(url, url_param));
-
     });
 
     span.appendChild(i);
@@ -325,13 +326,13 @@ function copy_url(event, url) {
     });
     clipboard.on('success', function () {
         bootstrapModalJs("", "复制成功", "", "sm", true);
+        clipboard.destroy();
     });
     clipboard.on('error', function () {
         bootstrapModalJs("", "复制失败", "", "sm", true);
         clipboard.destroy();
     });
 }
-
 
 function addUrlParam(url, name, value = null) {
     url += (url.indexOf("?") === -1) ? "?" : "&";
@@ -341,6 +342,7 @@ function addUrlParam(url, name, value = null) {
         for (let index in name) {
             if (name.hasOwnProperty(index)) {
                 url += encodeURIComponent(index) + "=" + encodeURIComponent(name[index]) + "&";
+                //fixme:&
             }
         }
     }
