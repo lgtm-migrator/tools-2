@@ -354,69 +354,103 @@ function addUrlParam(url, name, value = null) {
 }
 
 /** 增加阴影 **/
-let btn_all = document.querySelectorAll("[class*='btn']");
-let input_all = document.querySelectorAll("input[class*='form-control']");
+$().ready(function () {
+    let btn_all = document.querySelectorAll("[class*='btn']");
+    let input_all = document.querySelectorAll("input[class*='form-control']");
 
-for (let x = btn_all.length, i = 0; i < x; i++) {
-    btn_all[i].addEventListener("mouseover", function (e) {
-        add_shadow(e);
-    });
-    btn_all[i].addEventListener("mouseout", function (e) {
-        remove_shadow(e);
-    });
-}
-
-for (let x = input_all.length, i = 0; i < x; i++) {
-    input_all[i].addEventListener("focus", function (e) {
-        add_shadow(e);
-    });
-    input_all[i].addEventListener("blur", function (e) {
-        remove_shadow(e);
-    });
-}
-
-function add_shadow(e, size = "") {
-    if (size === "") {
-        e.target.classList.add("shadow");
-    } else if (size === "sm") {
-        e.target.classList.add("shadow-sm");
-    } else if (size === "lg") {
-        e.target.classList.add("shadow-lg");
+    for (let x = btn_all.length, i = 0; i < x; i++) {
+        btn_all[i].addEventListener("mouseover", function (e) {
+            add_shadow(e);
+        });
+        btn_all[i].addEventListener("mouseout", function (e) {
+            remove_shadow(e);
+        });
     }
-}
 
-function remove_shadow(e, size = "") {
-    if (size === "") {
-        e.target.classList.remove("shadow");
-    } else if (size === "sm") {
-        e.target.classList.remove("shadow-sm");
-    } else if (size === "lg") {
-        e.target.classList.remove("shadow-lg");
+    for (let x = input_all.length, i = 0; i < x; i++) {
+        input_all[i].addEventListener("focus", function (e) {
+            add_shadow(e);
+        });
+        input_all[i].addEventListener("blur", function (e) {
+            remove_shadow(e);
+        });
     }
-}
 
-function cursor_pointer(e) {
-    e.target.style.cursor = "pointer";
-}
-
-function get_href_url(target, class_name) {
-    let a = target.querySelector("." + class_name);
-    if (a.href !== undefined) {
-        return a.href;
+    function add_shadow(e, size = "") {
+        if (size === "") {
+            e.target.classList.add("shadow");
+        } else if (size === "sm") {
+            e.target.classList.add("shadow-sm");
+        } else if (size === "lg") {
+            e.target.classList.add("shadow-lg");
+        }
     }
-}
+
+    function remove_shadow(e, size = "") {
+        if (size === "") {
+            e.target.classList.remove("shadow");
+        } else if (size === "sm") {
+            e.target.classList.remove("shadow-sm");
+        } else if (size === "lg") {
+            e.target.classList.remove("shadow-lg");
+        }
+    }
+
+    function cursor_pointer(e) {
+        e.target.style.cursor = "pointer";
+    }
+
+    function get_href_url(target, class_name) {
+        let a = target.querySelector("." + class_name);
+        if (a.href !== undefined) {
+            return a.href;
+        }
+    }
+
+});
 
 
-/** 返回顶部 **/
-(function () {
-    let floatToolBackTop = document.querySelector("#to_top");
-    floatToolBackTop ? floatToolBackTop.addEventListener("click", topControl) : "";
-})();
-
-function topControl(e) {
-    e.preventDefault();
-    $("html,body").animate({scrollTop: "0px"}, 1000);
-}
+/** 滚动监听 **/
+// (function () {
+//     if (window) {
+//         let floatTools = document.querySelector("#floatTools");
+//         let floatToolQQ = document.querySelector("#floatToolQQ");
+//         let floatToolComment = document.querySelector("#floatToolComment");
+//         let floatToolBackTop = document.querySelector("#floatToolBackTop");
+//         let new_scroll_position = 0;
+//         let last_scroll_position;
+//         setTimeout(scrollListener, 500);
+//
+//         function scrollListener() {
+//             document.addEventListener('scroll', scrollSlide);
+//         }
+//
+//         function scrollSlide() {
+//             last_scroll_position = window.scrollY;
+//             if (new_scroll_position < last_scroll_position && last_scroll_position > 49) {
+//                 headerNav.classList.remove("slideDown");
+//                 headerNav.classList.add("slideUp", "fixed-top");
+//                 if (new_scroll_position < last_scroll_position && last_scroll_position > 400) {
+//                     floatToolQQ ? floatToolQQ.classList.remove("d-none") : "";
+//                     floatToolComment ? floatToolComment.classList.remove("d-none") : "";
+//                     floatToolBackTop ? floatToolBackTop.classList.remove("d-none") : "";
+//                 }
+//             } else if (new_scroll_position > last_scroll_position) {
+//                 headerNav.classList.remove("slideUp");
+//                 headerNav.classList.add("slideDown", "fixed-top");
+//                 if (last_scroll_position < 400) {
+//                     floatToolQQ ? floatToolQQ.classList.add("d-none") : "";
+//                     floatToolComment ? floatToolComment.classList.add("d-none") : "";
+//                     floatToolBackTop ? floatToolBackTop.classList.add("d-none") : "";
+//                     if (last_scroll_position < 49) {
+//                         headerNav.classList.remove('slideDown', "fixed-top");
+//                     }
+//                 }
+//             }
+//             new_scroll_position = last_scroll_position;
+//         }
+//     }
+// })();
 
 
 /** 页脚时间 **/
@@ -513,3 +547,15 @@ $().ready(function () {
     });
 });
 
+/** 返回顶部 **/
+$().ready(function () {
+    let to_top = document.querySelector("#to_top");
+    if (to_top) to_top.addEventListener("click", topControl);
+
+    function topControl(e) {
+        console.log("22");
+        e.preventDefault();
+        console.log("11");
+        $("html,body").animate({scrollTop: "0px"}, 1000);
+    }
+});
