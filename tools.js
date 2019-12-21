@@ -272,8 +272,8 @@ function page_qr_code() {
         let url_param = {"from": "clipboard"};
         let div = document.createElement("div");
         let span = document.createElement("span");
-        let button = document.createElement("button");
-        let i = document.createElement("i");
+        let i_copy = document.createElement("i");
+        let i_question = document.createElement("i");
 
         let qrcode_option = {
             errorCorrectionLevel: "H",
@@ -287,26 +287,27 @@ function page_qr_code() {
 
         div.className = "text-center small text-success";
 
-        span.className = "d-block";
-        span.innerHTML = "通过二维码,在移动端打开当前页面";
-
-        button.className = "btn fas fa-copy";
-        button.innerHTML = "&nbsp;&nbsp;复制当前网址";
-        button.addEventListener("click", function (e) {
+        i_copy.className = "d-block fas fa-copy";
+        i_copy.innerHTML = "&nbsp;&nbsp;复制网址";
+        i_copy.title = "复制当前页面的网址  需要操作2次才能复制成功";
+        i_copy.addEventListener("click", function (e) {
             copy_url(e.target, addUrlParam(url, url_param));
         });
 
-        i.className = "d-block mt-2 fas fa-question-circle";
-        i.innerHTML = "使用方法";
-        i.title = "截屏或者保存二维码图片，通过扫一扫功能，快速打开当前页面";
+        span.className = "d-block";
+        span.innerHTML = "通过二维码,在移动端打开当前页面";
 
-        $(i).tooltip({
+        i_question.className = "d-block mt-2 fas fa-question-circle";
+        i_question.innerHTML = "&nbsp;&nbsp;使用方法";
+        i_question.title = "截屏或者保存二维码图片，通过扫一扫功能，快速打开当前页面";
+
+        $([i_question, i_copy]).tooltip({
             placement: "bottom",
         });
 
-        span.appendChild(i);
+        span.appendChild(i_question);
         div.appendChild(canvas);
-        div.appendChild(button);
+        div.appendChild(i_copy);
         div.appendChild(span);
 
         QRCode.toCanvas(canvas, url, qrcode_option);
@@ -325,11 +326,11 @@ function copy_url(event, url) {
         }
     });
     clipboard.on('success', function () {
-        bootstrapModalJs("", "复制成功", "", "sm", true);
+        bootstrapModalJs("", "<span class='d-block text-center text-success small'>复制成功</span>", "", "sm", true);
         clipboard.destroy();
     });
     clipboard.on('error', function () {
-        bootstrapModalJs("", "复制失败", "", "sm", true);
+        bootstrapModalJs("", "<span class='d-block text-center text-danger small'>复制失败</span>", "", "sm", true);
         clipboard.destroy();
     });
 }
