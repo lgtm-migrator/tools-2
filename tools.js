@@ -1,7 +1,7 @@
 /** 公用 **/
 let a_body = document.body.querySelector("#body");
 if (a_body) a_body.removeAttribute("hidden");
-//fixme:影响表单autofocus属性
+
 let RegExp_rules = {
     "chinese_name": new RegExp(/^([\u4e00-\u9fa5·]{2,16})$/),
     "tel_number": new RegExp(/\d{3}-\d{8}|\d{4}-\d{7}/),
