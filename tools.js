@@ -269,7 +269,7 @@ function page_qr_code() {
     i.className = "fa-2x fas fa-qrcode";
     i.addEventListener("click", function () {
         let url = document.location.href;
-        let url_param = {"from": "clipboard", "test": "33113"};
+        let url_param = {"from": "clipboard"};
         let div = document.createElement("div");
         let span = document.createElement("span");
         let button = document.createElement("button");
@@ -293,7 +293,7 @@ function page_qr_code() {
         button.className = "btn fas fa-copy";
         button.innerHTML = "&nbsp;&nbsp;复制当前网址";
 
-        const clipboard = new ClipboardJS(button, {
+        let clipboard = new ClipboardJS(button, {
             text: function () {
                 return addUrlParam(url, url_param);
             }
