@@ -278,7 +278,7 @@ function page_qr_code() {
         let qrcode_option = {
             errorCorrectionLevel: "H",
             margin: 2,
-            width: 200,
+            width: 300,
             color: {
                 dark: "#1E90FF",
                 light: "#ffffff",
@@ -287,9 +287,10 @@ function page_qr_code() {
 
         div.className = "text-center small text-success";
 
-        i_copy.className = "d-block fas fa-copy";
+        i_copy.className = "my-2 d-block fas fa-copy";
         i_copy.innerHTML = "&nbsp;&nbsp;复制网址";
         i_copy.title = "复制当前页面的网址  需要操作2次才能复制成功";
+        i_copy.style.cursor = "pointer";
         i_copy.addEventListener("click", function (e) {
             copy_url(e.target, addUrlParam(url, url_param));
         });
@@ -300,6 +301,7 @@ function page_qr_code() {
         i_question.className = "d-block mt-2 fas fa-question-circle";
         i_question.innerHTML = "&nbsp;&nbsp;使用方法";
         i_question.title = "截屏或者保存二维码图片，通过扫一扫功能，快速打开当前页面";
+        i_question.style.cursor = "pointer";
 
         $([i_question, i_copy]).tooltip({
             placement: "bottom",
@@ -310,8 +312,8 @@ function page_qr_code() {
         div.appendChild(i_copy);
         div.appendChild(span);
 
-        QRCode.toCanvas(canvas, url, qrcode_option);
-        bootstrapModalJs("", div, "", "sm", true);
+        QRCode.toCanvas(canvas, addUrlParam(url, url_param), qrcode_option);
+        bootstrapModalJs("", div, "", "", true);
     });
 
     span.appendChild(i);
