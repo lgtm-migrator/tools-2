@@ -269,8 +269,12 @@ function page_qr_code() {
     i.className = "fa-2x fas fa-qrcode";
     i.addEventListener("click", function () {
         let url = document.location.href;
+        let url_param = {"from": "clipboard", "test": "33113"};
         let div = document.createElement("div");
         let span = document.createElement("span");
+        let button = document.createElement("button");
+        let i = document.createElement("i");
+
         let qrcode_option = {
             errorCorrectionLevel: "H",
             margin: 2,
@@ -281,12 +285,38 @@ function page_qr_code() {
             },
         };
 
-        div.className = "text-center";
+        div.className = "text-center small text-success";
 
-        span.className = "d-block small text-success";
-        span.innerHTML = "扫描二维码，快速打开当前页面";
+        span.className = "d-block";
+        span.innerHTML = "通过二维码,在移动端打开当前页面";
 
+        button.className = "btn fas fa-copy";
+        button.innerHTML = "&nbsp;&nbsp;复制当前网址";
+
+        const clipboard = new ClipboardJS(button, {
+            text: function () {
+                return addUrlParam(url, url_param);
+            }
+        });
+        clipboard.on('success', function () {
+            bootstrapModalJs("", "复制成功", "", "sm", true);
+        });
+        clipboard.on('error', function () {
+            bootstrapModalJs("", "复制失败", "", "sm", true);
+            clipboard.destroy();
+        });
+
+        i.className = "d-block mt-2 fas fa-question-circle";
+        i.innerHTML = "使用方法";
+        i.title = "截屏或者保存二维码图片，通过扫一扫功能，快速打开当前页面";
+
+        $(i).tooltip({
+            placement: "bottom",
+        });
+
+        span.appendChild(i);
         div.appendChild(canvas);
+        div.appendChild(button);
         div.appendChild(span);
 
         QRCode.toCanvas(canvas, url, qrcode_option);
@@ -298,6 +328,21 @@ function page_qr_code() {
     footer_x.appendChild(div);
 }
 
+
+function addUrlParam(url, name, value = null) {
+    url += (url.indexOf("?") === -1) ? "?" : "";
+    if (typeof name === "string") {
+        url += "&" + encodeURIComponent(name) + "=" + encodeURIComponent(value);
+    } else if (typeof name === "object") {
+        for (let index in name) {
+            if (name.hasOwnProperty(index)) {
+                url += "&" + encodeURIComponent(index) + "=" + encodeURIComponent(name[index]);
+            }
+        }
+    }
+
+    return url;
+}
 
 /** 增加阴影 **/
 let btn_all = document.querySelectorAll("[class*='btn']");
