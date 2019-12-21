@@ -293,19 +293,6 @@ function page_qr_code() {
         button.className = "btn fas fa-copy";
         button.innerHTML = "&nbsp;&nbsp;复制当前网址";
 
-        let clipboard = new ClipboardJS(button, {
-            text: function () {
-                return addUrlParam(url, url_param);
-            }
-        });
-        clipboard.on('success', function () {
-            bootstrapModalJs("", "复制成功", "", "sm", true);
-        });
-        clipboard.on('error', function () {
-            bootstrapModalJs("", "复制失败", "", "sm", true);
-            clipboard.destroy();
-        });
-
         i.className = "d-block mt-2 fas fa-question-circle";
         i.innerHTML = "使用方法";
         i.title = "截屏或者保存二维码图片，通过扫一扫功能，快速打开当前页面";
@@ -321,6 +308,8 @@ function page_qr_code() {
 
         QRCode.toCanvas(canvas, url, qrcode_option);
         bootstrapModalJs("", div, "", "sm", true);
+        copy_url(button, addUrlParam(url, url_param));
+
     });
 
     span.appendChild(i);
@@ -328,15 +317,30 @@ function page_qr_code() {
     footer_x.appendChild(div);
 }
 
+function copy_url(event, url) {
+    let clipboard = new ClipboardJS(event, {
+        text: function () {
+            return url;
+        }
+    });
+    clipboard.on('success', function () {
+        bootstrapModalJs("", "复制成功", "", "sm", true);
+    });
+    clipboard.on('error', function () {
+        bootstrapModalJs("", "复制失败", "", "sm", true);
+        clipboard.destroy();
+    });
+}
+
 
 function addUrlParam(url, name, value = null) {
-    url += (url.indexOf("?") === -1) ? "?" : "";
+    url += (url.indexOf("?") === -1) ? "?" : "&";
     if (typeof name === "string") {
-        url += "&" + encodeURIComponent(name) + "=" + encodeURIComponent(value);
+        url += encodeURIComponent(name) + "=" + encodeURIComponent(value);
     } else if (typeof name === "object") {
         for (let index in name) {
             if (name.hasOwnProperty(index)) {
-                url += "&" + encodeURIComponent(index) + "=" + encodeURIComponent(name[index]);
+                url += encodeURIComponent(index) + "=" + encodeURIComponent(name[index]) + "&";
             }
         }
     }
