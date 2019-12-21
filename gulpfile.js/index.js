@@ -94,6 +94,14 @@ const
     // dayjs_locale_zh_cn_js_path = "./node_modules/dayjs/locale/zh-cn.js",
     dayjs_locale_zh_cn_js_path = "./node_modules/dayjs/locale/zh-cn.js",
 
+//animate.css
+    animate_css_path = "./node_modules/animate.css/animate.css",
+    animate_min_css_path = "./node_modules/animate.css/animate.min.css",
+
+//hamburgers.css
+    hamburgers_css_path = "./node_modules/hamburgers/dist/hamburgers.css",
+    hamburgers_min_css_path = "./node_modules/hamburgers/dist/hamburgers.min.css",
+
 //node-qrcode
     qrcode_js_path = "./node_modules/qrcode/build/qrcode.js",
     qrcode_min_js_path = "./node_modules/qrcode/build/qrcode.min.js",
@@ -155,6 +163,8 @@ task("copy_js_cookie", copy_js_cookie);
 task("copy_jquery", copy_jquery);
 task("copy_popper", copy_popper);
 task("copy_bootstrap", copy_bootstrap);
+task("copy_animate_css", copy_animate_css);
+task("copy_hamburgers_css", copy_hamburgers_css);
 task("copy_bootstrap_modal_js", copy_bootstrap_modal_js);
 task("copy_bs_custom_file_input", copy_bs_custom_file_input);
 task("copy_dayjs", copy_dayjs);
@@ -289,6 +299,18 @@ function copy_qrcode(done) {
 function copy_bootstrap(done) {
     src([bootstrap_js_path, bootstrap_min_js_path, bootstrap_js_map_path, bootstrap_min_js_map_path]).pipe(dest(static_js));
     src([bootstrap_css_path, bootstrap_min_css_path, bootstrap_css_map_path, bootstrap_min_css_map]).pipe(dest(static_css));
+    done();
+}
+
+function copy_animate_css(done) {
+    src([animate_css_path, animate_min_css_path])
+        .pipe(dest(static_css));
+    done();
+}
+
+function copy_hamburgers_css(done) {
+    src([hamburgers_css_path, hamburgers_min_css_path])
+        .pipe(dest(static_css));
     done();
 }
 
