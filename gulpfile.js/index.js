@@ -88,11 +88,24 @@ const
 //FunDebug
     fundebug_js_path = "./node_modules/fundebug-javascript/release/fundebug." + "*.*.*" + ".min.js",
 
-//moment.js
+//dayjs.js
     concat_after_file_name = "day_js_with_locale.min.js",
     dayjs_min_js_path = "./node_modules/dayjs/dayjs.min.js",
     // dayjs_locale_zh_cn_js_path = "./node_modules/dayjs/locale/zh-cn.js",
-    dayjs_locale_zh_cn_js_path = "D:/wwwroot/tools/node_modules/dayjs/locale/zh-cn.js",
+    dayjs_locale_zh_cn_js_path = "./node_modules/dayjs/locale/zh-cn.js",
+
+//animate.css
+    animate_css_path = "./node_modules/animate.css/animate.css",
+    animate_min_css_path = "./node_modules/animate.css/animate.min.css",
+
+//hamburgers.css
+    hamburgers_css_path = "./node_modules/hamburgers/dist/hamburgers.css",
+    hamburgers_min_css_path = "./node_modules/hamburgers/dist/hamburgers.min.css",
+
+//node-qrcode
+    qrcode_js_path = "./node_modules/qrcode/build/qrcode.js",
+    qrcode_min_js_path = "./node_modules/qrcode/build/qrcode.min.js",
+    qrcode_js_map_path = "./node_modules/qrcode/build/qrcode.min.js.map",
 
 //moment.js
     moment_js_path = "./node_modules/moment/src/moment.js",
@@ -150,12 +163,15 @@ task("copy_js_cookie", copy_js_cookie);
 task("copy_jquery", copy_jquery);
 task("copy_popper", copy_popper);
 task("copy_bootstrap", copy_bootstrap);
+task("copy_animate_css", copy_animate_css);
+task("copy_hamburgers_css", copy_hamburgers_css);
 task("copy_bootstrap_modal_js", copy_bootstrap_modal_js);
 task("copy_bs_custom_file_input", copy_bs_custom_file_input);
-task("copy_moment", copy_moment);
-task("copy_clipboard", copy_clipboard);
-
 task("copy_dayjs", copy_dayjs);
+task("copy_clipboard", copy_clipboard);
+task("copy_qrcode", copy_qrcode);
+
+task("copy_moment", copy_moment);
 task("copy_lazyload", copy_lazyload);
 task("copy_bootstrap_toasts_js", copy_bootstrap_toasts_js);
 task("copy_vue", copy_vue);
@@ -274,9 +290,27 @@ function copy_clipboard(done) {
     done();
 }
 
+function copy_qrcode(done) {
+    src([qrcode_min_js_path])
+        .pipe(dest(static_js));
+    done();
+}
+
 function copy_bootstrap(done) {
     src([bootstrap_js_path, bootstrap_min_js_path, bootstrap_js_map_path, bootstrap_min_js_map_path]).pipe(dest(static_js));
     src([bootstrap_css_path, bootstrap_min_css_path, bootstrap_css_map_path, bootstrap_min_css_map]).pipe(dest(static_css));
+    done();
+}
+
+function copy_animate_css(done) {
+    src([animate_css_path, animate_min_css_path])
+        .pipe(dest(static_css));
+    done();
+}
+
+function copy_hamburgers_css(done) {
+    src([hamburgers_css_path, hamburgers_min_css_path])
+        .pipe(dest(static_css));
     done();
 }
 

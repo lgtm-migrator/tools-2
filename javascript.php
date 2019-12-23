@@ -7,6 +7,7 @@
 <!--<script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js"></script>-->
 <!--<script src="https://cdn.jsdelivr.net/npm/bootstrap-modal-js@1.0.1/dist/bootstrap-modal-js.min.js"></script>-->
 <!--<script src="https://cdn.jsdelivr.net/npm/bs-custom-file-input/dist/bs-custom-file-input.min.js"></script>-->
+<!--<script src="https://cdn.jsdelivr.net/npm/qrcode@1.4.4/build/qrcode.min.js"></script>-->
 
 <script src="/static/js/js.cookie.min.js"></script>
 <script src="/static/js/jquery.min.js"></script>
@@ -16,4 +17,5 @@
 <script src="/static/js/clipboard.min.js"></script>
 <script src="/static/js/bootstrap-modal-js.min.js"></script>
 <script src="/static/js/bs-custom-file-input.min.js"></script>
+<script src="/static/js/qrcode.min.js"></script>
 <script src="/tools.min.js"></script>
