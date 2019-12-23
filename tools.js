@@ -376,38 +376,38 @@ $().ready(function () {
         });
     }
 
-    function add_shadow(e, size = "") {
-        if (size === "") {
-            e.target.classList.add("shadow");
-        } else if (size === "sm") {
-            e.target.classList.add("shadow-sm");
-        } else if (size === "lg") {
-            e.target.classList.add("shadow-lg");
-        }
-    }
-
-    function remove_shadow(e, size = "") {
-        if (size === "") {
-            e.target.classList.remove("shadow");
-        } else if (size === "sm") {
-            e.target.classList.remove("shadow-sm");
-        } else if (size === "lg") {
-            e.target.classList.remove("shadow-lg");
-        }
-    }
-
-    function cursor_pointer(e) {
-        e.target.style.cursor = "pointer";
-    }
-
-    function get_href_url(target, class_name) {
-        let a = target.querySelector("." + class_name);
-        if (a.href !== undefined) {
-            return a.href;
-        }
-    }
-
 });
+
+function add_shadow(e, size = "") {
+    if (size === "") {
+        e.target.classList.add("shadow");
+    } else if (size === "sm") {
+        e.target.classList.add("shadow-sm");
+    } else if (size === "lg") {
+        e.target.classList.add("shadow-lg");
+    }
+}
+
+function remove_shadow(e, size = "") {
+    if (size === "") {
+        e.target.classList.remove("shadow");
+    } else if (size === "sm") {
+        e.target.classList.remove("shadow-sm");
+    } else if (size === "lg") {
+        e.target.classList.remove("shadow-lg");
+    }
+}
+
+function cursor_pointer(e) {
+    e.target.style.cursor = "pointer";
+}
+
+function get_href_url(target, class_name) {
+    let a = target.querySelector("." + class_name);
+    if (a.href !== undefined) {
+        return a.href;
+    }
+}
 
 
 /** 滚动监听 **/
