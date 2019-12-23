@@ -122,7 +122,7 @@ function create_btn_add() {
 
     i.className = "position-absolute fa-fw fas fa-plus-circle phone_number_add";
     i.style.top = "8px";
-    i.style.right = "-16px";
+    i.style.right = "-3px";
     a.appendChild(i);
     add_phone_number_form.children[add_phone_number_form.childElementCount - 2].appendChild(a);
     a.addEventListener("click", create_form_add);
@@ -138,7 +138,7 @@ function create_btn_del() {
 
     i.className = "position-absolute fa-fw fas fa-minus-circle phone_number_del";
     i.style.top = "8px";
-    i.style.right = "-16px";
+    i.style.right = "-3px";
     a.appendChild(i);
     add_phone_number_form.children[add_phone_number_form.childElementCount - 2].appendChild(a);
     a.addEventListener("click", function (e) {
