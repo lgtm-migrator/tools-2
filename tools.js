@@ -411,46 +411,42 @@ function get_href_url(target, class_name) {
 
 
 /** 滚动监听 **/
-// (function () {
-//     if (window) {
-//         let floatTools = document.querySelector("#floatTools");
-//         let floatToolQQ = document.querySelector("#floatToolQQ");
-//         let floatToolComment = document.querySelector("#floatToolComment");
-//         let floatToolBackTop = document.querySelector("#floatToolBackTop");
-//         let new_scroll_position = 0;
-//         let last_scroll_position;
-//         setTimeout(scrollListener, 500);
-//
-//         function scrollListener() {
-//             document.addEventListener('scroll', scrollSlide);
-//         }
-//
-//         function scrollSlide() {
-//             last_scroll_position = window.scrollY;
-//             if (new_scroll_position < last_scroll_position && last_scroll_position > 49) {
-//                 headerNav.classList.remove("slideDown");
-//                 headerNav.classList.add("slideUp", "fixed-top");
-//                 if (new_scroll_position < last_scroll_position && last_scroll_position > 400) {
-//                     floatToolQQ ? floatToolQQ.classList.remove("d-none") : "";
-//                     floatToolComment ? floatToolComment.classList.remove("d-none") : "";
-//                     floatToolBackTop ? floatToolBackTop.classList.remove("d-none") : "";
-//                 }
-//             } else if (new_scroll_position > last_scroll_position) {
-//                 headerNav.classList.remove("slideUp");
-//                 headerNav.classList.add("slideDown", "fixed-top");
-//                 if (last_scroll_position < 400) {
-//                     floatToolQQ ? floatToolQQ.classList.add("d-none") : "";
-//                     floatToolComment ? floatToolComment.classList.add("d-none") : "";
-//                     floatToolBackTop ? floatToolBackTop.classList.add("d-none") : "";
-//                     if (last_scroll_position < 49) {
-//                         headerNav.classList.remove('slideDown', "fixed-top");
-//                     }
-//                 }
-//             }
-//             new_scroll_position = last_scroll_position;
-//         }
-//     }
-// })();
+$().ready(function () {
+    let jt_header = document.querySelector("#jt_header");
+    let fixed_tools = document.querySelector("#fixed_tools");
+    let new_scroll_position = 0;
+    let last_scroll_position;
+    setTimeout(scrollListener, 500);
+
+    function scrollListener() {
+        document.addEventListener('scroll', scrollSlide);
+    }
+
+    function scrollSlide() {
+        last_scroll_position = scrollY;
+        if (new_scroll_position < last_scroll_position && last_scroll_position > 36) {
+            jt_header.classList.remove("slideDown");
+            jt_header.classList.add("slideUp", "fixed-top");
+            if (new_scroll_position < last_scroll_position && last_scroll_position > 400) {
+                fixed_tools.classList.remove("d-none");
+            }
+            if (new_scroll_position < last_scroll_position && last_scroll_position > 400) {
+            }
+        } else if (new_scroll_position > last_scroll_position) {
+            jt_header.classList.remove("slideUp");
+            jt_header.classList.add("slideDown", "fixed-top");
+            if (last_scroll_position < 400) {
+                fixed_tools.classList.add("d-none");
+            }
+            if (last_scroll_position < 400) {
+                if (last_scroll_position < 36) {
+                    jt_header.classList.remove('slideDown', "fixed-top");
+                }
+            }
+        }
+        new_scroll_position = last_scroll_position;
+    }
+});
 
 
 /** 页脚时间 **/
