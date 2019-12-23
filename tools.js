@@ -266,7 +266,7 @@ function page_qr_code() {
     span.title = "点击查看当前页面二维码";
     span.style.cursor = "pointer";
 
-    i.className = "fa-2x fas fa-qrcode";
+    i.className = "fa-2x fa-fw fas fa-qrcode";
     i.addEventListener("click", function () {
         let url = document.location.href;
         let url_param = {"from": "clipboard"};

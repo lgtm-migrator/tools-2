@@ -5,7 +5,7 @@
     <div class="my-3 border-bottom"></div>
     <a class="position-fixed border border-primary rounded p-1 animated faster zoomIn" href="javascript:" id="to_top"
        style="right: 1.2rem;bottom: 1rem;">
-        <i class="fas fa-2x fa-arrow-up"></i>
+        <i class="fa-2x fa-fw fas fa-arrow-up"></i>
     </a>
     <div class="container small text-white-50" id="footer_x"></div>
 </div>

@@ -120,13 +120,12 @@ function create_btn_add() {
     a.title = "添加新的一行";
     a.id = "phone_number_add";
 
-    i.className = "position-absolute fas fa-plus-circle phone_number_add";
-    i.style.top = "11px";
-    i.style.right = "0px";
+    i.className = "position-absolute fa-fw fas fa-plus-circle phone_number_add";
+    i.style.top = "8px";
+    i.style.right = "-16px";
     a.appendChild(i);
     add_phone_number_form.children[add_phone_number_form.childElementCount - 2].appendChild(a);
     a.addEventListener("click", create_form_add);
-
 }
 
 function create_btn_del() {
@@ -137,9 +136,9 @@ function create_btn_del() {
     a.href = "javascript:";
     a.title = "删除当前行";
 
-    i.className = "position-absolute fas fa-minus-circle phone_number_del";
-    i.style.top = "11px";
-    i.style.right = "0px";
+    i.className = "position-absolute fa-fw fas fa-minus-circle phone_number_del";
+    i.style.top = "8px";
+    i.style.right = "-16px";
     a.appendChild(i);
     add_phone_number_form.children[add_phone_number_form.childElementCount - 2].appendChild(a);
     a.addEventListener("click", function (e) {
@@ -160,7 +159,7 @@ function create_phone_name() {
     label.setAttribute("for", "phone_name_" + id_timestamp);
     label.innerHTML = "单位名称&nbsp;";
 
-    i.className = "fas fa-home";
+    i.className = "fa-fw fas fa-home";
 
     input.className = "form-control form-control-sm fas text-success text-center phone_name";
     input.id = "phone_name_" + id_timestamp;
@@ -571,11 +570,11 @@ function create_number_list_number(number, number_type) {
 
     number_type === "tel" ? li.className = "number mb-2" : li.className = "number mb-2 text-none text-sm-right";
 
-    i_number_icon.className = "ml-3 fas fa-phone-volume text-success dial_number";
+    i_number_icon.className = "ml-2 fa-fw fas fa-phone-volume text-success dial_number";
     i_number_icon.title = "拨打号码";
     i_number_icon.style.cursor = "pointer";
 
-    i_clipboard_copy_icon.className = "ml-3 far fa-copy text-success clipboard_copy";
+    i_clipboard_copy_icon.className = "ml-3 fa-fw far fa-copy text-success clipboard_copy";
     i_clipboard_copy_icon.title = "复制号码";
     i_clipboard_copy_icon.style.cursor = "pointer";
 
