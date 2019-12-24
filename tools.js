@@ -548,13 +548,12 @@ $().ready(function () {
         // console.log("last_scroll_position:== " + last_scroll_position);
         // console.log(last_scroll_position > new_scroll_position ? "last_scroll_position" : "new_scroll_position");
         if (new_scroll_position > last_scroll_position) {
-            console.log("向上滚动");
             if (last_scroll_position > 400) {
                 fixed_tools.classList.remove("d-none");
                 to_top.classList.add("animated", "faster");
                 if (to_top.classList.contains("zoomOut")) to_top.classList.remove("zoomOut");
                 to_top.classList.add("zoomIn");
-            } else if (last_scroll_position <= 400) {
+            } else if (last_scroll_position < 400) {
                 to_top.classList.remove("zoomIn");
                 to_top.classList.add("zoomOut");
                 if (last_scroll_position < 300) {
@@ -564,10 +563,9 @@ $().ready(function () {
                 }
             }
         } else if (new_scroll_position < last_scroll_position) {
-            console.log("向下滚动");
             setTimeout(function () {
                 fixed_tools.classList.add("d-none");
-            }, 550);
+            }, 200);
             if (to_top.classList.contains("zoomIn")) to_top.classList.remove("zoomIn");
             if (last_scroll_position > 400) {
                 to_top.classList.add("zoomOut");
