@@ -117,12 +117,13 @@ function create_btn_add() {
 
     a.className = "position-relative text-success";
     a.href = "javascript:";
-    a.title = "添加新的一行";
     a.id = "phone_number_add";
 
     i.className = "position-absolute fa-fw fas fa-plus-circle phone_number_add";
+    i.title = "添加新的一行";
     i.style.top = "8px";
     i.style.right = "-3px";
+    $(i).tooltip();
     a.appendChild(i);
     add_phone_number_form.children[add_phone_number_form.childElementCount - 2].appendChild(a);
     a.addEventListener("click", create_form_add);
@@ -134,11 +135,12 @@ function create_btn_del() {
 
     a.className = "position-relative text-danger";
     a.href = "javascript:";
-    a.title = "删除当前行";
 
     i.className = "position-absolute fa-fw fas fa-minus-circle phone_number_del";
+    i.title = "删除当前行";
     i.style.top = "8px";
     i.style.right = "-3px";
+    $(i).tooltip();
     a.appendChild(i);
     add_phone_number_form.children[add_phone_number_form.childElementCount - 2].appendChild(a);
     a.addEventListener("click", function (e) {
