@@ -53,4 +53,4 @@
         </div>
         <div class="border-bottom"></div>
     </div>
-    <div id="jt_content" style="min-height: 85vh;">
+    <div id="jt_content" class="min-vh-100">
