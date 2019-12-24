@@ -23,8 +23,11 @@ const
     bootstrap_modal_js_min_js_path = "./node_modules/bootstrap-modal-js/dist/bootstrap-modal-js.min.js",
 
 //bs-custom-file-input
+    bs_custom_file_input_dist_path = "./node_modules/bs-custom-file-input/dist/*",
     bs_custom_file_input_js_path = "./node_modules/bs-custom-file-input/dist/bs-custom-file-input.js",
+    bs_custom_file_input_js_map_path = "./node_modules/bs-custom-file-input/dist/bs-custom-file-input.js.map",
     bs_custom_file_input_min_js_path = "./node_modules/bs-custom-file-input/dist/bs-custom-file-input.min.js",
+    bs_custom_file_input_min_js_map_path = "./node_modules/bs-custom-file-input/dist/bs-custom-file-input.min.js.map",
 
 //lazyload
     lazyload_js_path = "./node_modules/vanilla-lazyload/dist/lazyload.js",
@@ -103,9 +106,15 @@ const
     hamburgers_min_css_path = "./node_modules/hamburgers/dist/hamburgers.min.css",
 
 //node-qrcode
+    qrcode_build_path = "./node_modules/qrcode/build/*",
+    qrcode_build_js_path = "./node_modules/qrcode/build/**.js",
+    qrcode_build_map_path = "./node_modules/qrcode/build/**.map",
     qrcode_js_path = "./node_modules/qrcode/build/qrcode.js",
     qrcode_min_js_path = "./node_modules/qrcode/build/qrcode.min.js",
-    qrcode_js_map_path = "./node_modules/qrcode/build/qrcode.min.js.map",
+    qrcode_min_js_map_path = "./node_modules/qrcode/build/qrcode.min.js.map",
+    qrcode_tosjis_js_path = "./node_modules/qrcode/build/qrcode.tosjis.js",
+    qrcode_tosjis_min_js_path = "./node_modules/qrcode/build/qrcode.tosjis.min.js",
+    qrcode_tosjis_min_js_map_path = "./node_modules/qrcode/build/qrcode.tosjis.min.js.map",
 
 //moment.js
     moment_js_path = "./node_modules/moment/src/moment.js",
@@ -267,7 +276,8 @@ function copy_bootstrap_modal_js(done) {
 }
 
 function copy_bs_custom_file_input(done) {
-    src([bs_custom_file_input_js_path, bs_custom_file_input_min_js_path]).pipe(dest(static_js));
+    src([bs_custom_file_input_dist_path])
+        .pipe(dest(static_js));
     done();
 }
 
@@ -291,7 +301,9 @@ function copy_clipboard(done) {
 }
 
 function copy_qrcode(done) {
-    src([qrcode_min_js_path])
+    // src([qrcode_js_path, qrcode_min_js_path, qrcode_min_js_map_path, qrcode_tosjis_js_path, qrcode_tosjis_min_js_path, qrcode_tosjis_min_js_map_path])
+    // src([qrcode_build_js_path,qrcode_build_map_path])
+    src([qrcode_build_path])
         .pipe(dest(static_js));
     done();
 }
