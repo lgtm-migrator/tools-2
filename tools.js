@@ -409,47 +409,6 @@ function get_href_url(target, class_name) {
     }
 }
 
-
-/** 滚动监听 **/
-$().ready(function () {
-    let jt_header = document.querySelector("#jt_header");
-    let fixed_tools = document.querySelector("#fixed_tools");
-    let to_top = document.querySelector("#to_top");
-    let new_scroll_position = 0;
-    let last_scroll_position;
-    setTimeout(scrollListener, 500);
-
-    function scrollListener() {
-        document.addEventListener('scroll', scrollSlide);
-    }
-
-    function scrollSlide() {
-        last_scroll_position = scrollY;
-        if (new_scroll_position < last_scroll_position && last_scroll_position > 36) {
-            jt_header.classList.remove("slideDown");
-            jt_header.classList.add("slideUp", "fixed-top");
-            fixed_tools.classList.remove("d-none");
-            to_top.classList.add("animated", "faster", "zoomOut");
-            if (last_scroll_position > 400) {
-            }
-        } else if (new_scroll_position > last_scroll_position) {
-            jt_header.classList.remove("slideUp");
-            jt_header.classList.add("slideDown", "fixed-top");
-            to_top.classList.remove("zoomOut");
-            to_top.classList.add("zoomIn");
-            if (last_scroll_position < 400) {
-                if (last_scroll_position < 36) {
-                    jt_header.classList.remove('slideDown', "fixed-top");
-                    fixed_tools.classList.add("d-none");
-                    to_top.classList.remove("zoomIn", "animated", "faster");
-                }
-            }
-        }
-        new_scroll_position = last_scroll_position;
-    }
-});
-
-
 /** 页脚时间 **/
 $().ready(function () {
     let current_time = document.body.querySelector("#current_time");
@@ -554,5 +513,66 @@ $().ready(function () {
         e.preventDefault();
         console.log("11");
         $("html,body").animate({scrollTop: "0px"}, 1000);
+    }
+});
+
+
+/** 滚动监听 **/
+$().ready(function () {
+    let jt_header = document.querySelector("#jt_header");
+    let fixed_tools = document.querySelector("#fixed_tools");
+    let to_top = document.querySelector("#to_top");
+    let new_scroll_position = 0;
+    let last_scroll_position;
+    let scrollSetTimeOutId = setTimeout(scrollListener, 500);
+
+    function scrollListener() {
+        document.addEventListener('scroll', scrollSlide);
+    }
+
+    function scrollSlide() {
+        last_scroll_position = scrollY;
+        /** 导航栏 **/
+        if (new_scroll_position < last_scroll_position && last_scroll_position > 36) {
+            jt_header.classList.remove("slideDown");
+            jt_header.classList.add("slideUp", "fixed-top");
+        } else if (new_scroll_position > last_scroll_position) {
+            jt_header.classList.remove("slideUp");
+            jt_header.classList.add("slideDown", "fixed-top");
+            if (last_scroll_position < 36) {
+                jt_header.classList.remove('slideDown', "fixed-top");
+            }
+        }
+        /** 右下角浮动工具栏 **/
+        // console.log("new_scroll_position:== " + new_scroll_position);
+        // console.log("last_scroll_position:== " + last_scroll_position);
+        // console.log(last_scroll_position > new_scroll_position ? "last_scroll_position" : "new_scroll_position");
+        if (new_scroll_position > last_scroll_position) {
+            console.log("向上滚动");
+            if (last_scroll_position > 400) {
+                fixed_tools.classList.remove("d-none");
+                to_top.classList.add("animated", "faster");
+                if (to_top.classList.contains("zoomOut")) to_top.classList.remove("zoomOut");
+                to_top.classList.add("zoomIn");
+            } else if (last_scroll_position <= 400) {
+                to_top.classList.remove("zoomIn");
+                to_top.classList.add("zoomOut");
+                if (last_scroll_position < 300) {
+                    fixed_tools.classList.add("d-none");
+                    to_top.classList.remove("zoomOut");
+                    to_top.classList.remove("animated", "faster");
+                }
+            }
+        } else if (new_scroll_position < last_scroll_position) {
+            console.log("向下滚动");
+            setTimeout(function () {
+                fixed_tools.classList.add("d-none");
+            }, 550);
+            if (to_top.classList.contains("zoomIn")) to_top.classList.remove("zoomIn");
+            if (last_scroll_position > 400) {
+                to_top.classList.add("zoomOut");
+            }
+        }
+        new_scroll_position = last_scroll_position;
     }
 });
