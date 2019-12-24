@@ -21,10 +21,10 @@ require_once '../header.php';
         </div>
         <div class="d-flex justify-content-center">
             <a href="javascript:" class="mx-2 btn btn-success" id="phone_name_search_btn">
-                <i class="fas fa-home">&nbsp;&nbsp;</i>按名称搜索</a>
+                <i class="fa-fw fas fa-home"></i>按名称搜索</a>
             <a href="javascript:" class="mx-2 btn btn-danger" id="phone_number_search_btn">
-                <i class="fas fa-phone">&nbsp;&nbsp;</i>
-                <i class="fas fa-mobile-alt">&nbsp;&nbsp;</i>按号码搜索</a>
+                <i class="fa-fw fas fa-phone"></i>
+                <i class="fa-fw fas fa-mobile-alt"></i>按号码搜索</a>
         </div>
     </div>
 

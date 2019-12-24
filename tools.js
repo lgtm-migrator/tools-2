@@ -266,7 +266,7 @@ function page_qr_code() {
     span.title = "点击查看当前页面二维码";
     span.style.cursor = "pointer";
 
-    i.className = "fa-2x fas fa-qrcode";
+    i.className = "fa-2x fa-fw fas fa-qrcode";
     i.addEventListener("click", function () {
         let url = document.location.href;
         let url_param = {"from": "clipboard"};
@@ -376,82 +376,38 @@ $().ready(function () {
         });
     }
 
-    function add_shadow(e, size = "") {
-        if (size === "") {
-            e.target.classList.add("shadow");
-        } else if (size === "sm") {
-            e.target.classList.add("shadow-sm");
-        } else if (size === "lg") {
-            e.target.classList.add("shadow-lg");
-        }
-    }
-
-    function remove_shadow(e, size = "") {
-        if (size === "") {
-            e.target.classList.remove("shadow");
-        } else if (size === "sm") {
-            e.target.classList.remove("shadow-sm");
-        } else if (size === "lg") {
-            e.target.classList.remove("shadow-lg");
-        }
-    }
-
-    function cursor_pointer(e) {
-        e.target.style.cursor = "pointer";
-    }
-
-    function get_href_url(target, class_name) {
-        let a = target.querySelector("." + class_name);
-        if (a.href !== undefined) {
-            return a.href;
-        }
-    }
-
 });
 
+function add_shadow(e, size = "") {
+    if (size === "") {
+        e.target.classList.add("shadow");
+    } else if (size === "sm") {
+        e.target.classList.add("shadow-sm");
+    } else if (size === "lg") {
+        e.target.classList.add("shadow-lg");
+    }
+}
 
-/** 滚动监听 **/
-// (function () {
-//     if (window) {
-//         let floatTools = document.querySelector("#floatTools");
-//         let floatToolQQ = document.querySelector("#floatToolQQ");
-//         let floatToolComment = document.querySelector("#floatToolComment");
-//         let floatToolBackTop = document.querySelector("#floatToolBackTop");
-//         let new_scroll_position = 0;
-//         let last_scroll_position;
-//         setTimeout(scrollListener, 500);
-//
-//         function scrollListener() {
-//             document.addEventListener('scroll', scrollSlide);
-//         }
-//
-//         function scrollSlide() {
-//             last_scroll_position = window.scrollY;
-//             if (new_scroll_position < last_scroll_position && last_scroll_position > 49) {
-//                 headerNav.classList.remove("slideDown");
-//                 headerNav.classList.add("slideUp", "fixed-top");
-//                 if (new_scroll_position < last_scroll_position && last_scroll_position > 400) {
-//                     floatToolQQ ? floatToolQQ.classList.remove("d-none") : "";
-//                     floatToolComment ? floatToolComment.classList.remove("d-none") : "";
-//                     floatToolBackTop ? floatToolBackTop.classList.remove("d-none") : "";
-//                 }
-//             } else if (new_scroll_position > last_scroll_position) {
-//                 headerNav.classList.remove("slideUp");
-//                 headerNav.classList.add("slideDown", "fixed-top");
-//                 if (last_scroll_position < 400) {
-//                     floatToolQQ ? floatToolQQ.classList.add("d-none") : "";
-//                     floatToolComment ? floatToolComment.classList.add("d-none") : "";
-//                     floatToolBackTop ? floatToolBackTop.classList.add("d-none") : "";
-//                     if (last_scroll_position < 49) {
-//                         headerNav.classList.remove('slideDown', "fixed-top");
-//                     }
-//                 }
-//             }
-//             new_scroll_position = last_scroll_position;
-//         }
-//     }
-// })();
+function remove_shadow(e, size = "") {
+    if (size === "") {
+        e.target.classList.remove("shadow");
+    } else if (size === "sm") {
+        e.target.classList.remove("shadow-sm");
+    } else if (size === "lg") {
+        e.target.classList.remove("shadow-lg");
+    }
+}
 
+function cursor_pointer(e) {
+    e.target.style.cursor = "pointer";
+}
+
+function get_href_url(target, class_name) {
+    let a = target.querySelector("." + class_name);
+    if (a.href !== undefined) {
+        return a.href;
+    }
+}
 
 /** 页脚时间 **/
 $().ready(function () {
@@ -557,5 +513,64 @@ $().ready(function () {
         e.preventDefault();
         console.log("11");
         $("html,body").animate({scrollTop: "0px"}, 1000);
+    }
+});
+
+
+/** 滚动监听 **/
+$().ready(function () {
+    let jt_header = document.querySelector("#jt_header");
+    let fixed_tools = document.querySelector("#fixed_tools");
+    let to_top = document.querySelector("#to_top");
+    let new_scroll_position = 0;
+    let last_scroll_position;
+    let scrollSetTimeOutId = setTimeout(scrollListener, 500);
+
+    function scrollListener() {
+        document.addEventListener('scroll', scrollSlide);
+    }
+
+    function scrollSlide() {
+        last_scroll_position = scrollY;
+        /** 导航栏 **/
+        if (new_scroll_position < last_scroll_position && last_scroll_position > 36) {
+            jt_header.classList.remove("slideDown");
+            jt_header.classList.add("slideUp", "fixed-top");
+        } else if (new_scroll_position > last_scroll_position) {
+            jt_header.classList.remove("slideUp");
+            jt_header.classList.add("slideDown", "fixed-top");
+            if (last_scroll_position < 36) {
+                jt_header.classList.remove('slideDown', "fixed-top");
+            }
+        }
+        /** 右下角浮动工具栏 **/
+        // console.log("new_scroll_position:== " + new_scroll_position);
+        // console.log("last_scroll_position:== " + last_scroll_position);
+        // console.log(last_scroll_position > new_scroll_position ? "last_scroll_position" : "new_scroll_position");
+        if (new_scroll_position > last_scroll_position) {
+            if (last_scroll_position > 400) {
+                fixed_tools.classList.remove("d-none");
+                to_top.classList.add("animated", "faster");
+                if (to_top.classList.contains("zoomOut")) to_top.classList.remove("zoomOut");
+                to_top.classList.add("zoomIn");
+            } else if (last_scroll_position < 400) {
+                to_top.classList.remove("zoomIn");
+                to_top.classList.add("zoomOut");
+                if (last_scroll_position < 300) {
+                    fixed_tools.classList.add("d-none");
+                    to_top.classList.remove("zoomOut");
+                    to_top.classList.remove("animated", "faster");
+                }
+            }
+        } else if (new_scroll_position < last_scroll_position) {
+            setTimeout(function () {
+                fixed_tools.classList.add("d-none");
+            }, 200);
+            if (to_top.classList.contains("zoomIn")) to_top.classList.remove("zoomIn");
+            if (last_scroll_position > 400) {
+                to_top.classList.add("zoomOut");
+            }
+        }
+        new_scroll_position = last_scroll_position;
     }
 });

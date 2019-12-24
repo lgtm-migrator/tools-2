@@ -28,7 +28,7 @@ require_once '../header.php';
     </div>
     <div class="d-flex justify-content-center">
         <a href="javascript:" class="mx-2 btn btn-outline-success" id="photo_submit" style="z-index: 1;">
-            <i class="fas fa-image">&nbsp;&nbsp;</i>提交</a>
+            <i class="fa-fw fas fa-image"></i>提交</a>
     </div>
 </div>
 
