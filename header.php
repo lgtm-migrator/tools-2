@@ -17,17 +17,6 @@
     <link rel="stylesheet" href="/static/css/animate.min.css">
     <link rel="stylesheet" href="/static/css/hamburgers.min.css">
     <link rel="stylesheet" href="/static/font/css/all.min.css">
-
-    <!--<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap/dist/css/bootstrap.min.css">-->
-    <!--<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css/animate.min.css">-->
-    <!--<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hamburgers/dist/hamburgers.min.css">-->
-    <!--<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css">-->
-
-    <!--<link rel="stylesheet" href="https://unpkg.com/bootstrap/dist/css/bootstrap.min.css">-->
-    <!--<link rel="stylesheet" href="https://unpkg.com/animate.css/animate.min.css">-->
-    <!--<link rel="stylesheet" href="https://unpkg.com/hamburgers/dist/hamburgers.min.css">-->
-    <!--<link rel="stylesheet" href="https://unpkg.com/@fortawesome/fontawesome-free/css/all.min.css">-->
-
     <link rel="stylesheet" href="/tools.min.css">
 
     <noscript>

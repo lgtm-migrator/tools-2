@@ -1,25 +1,3 @@
-<!--<script src="https://cdn.jsdelivr.net/npm/js-cookie/dist/js.cookie.min.js"></script>-->
-<!--<script src="https://cdn.jsdelivr.net/npm/dayjs/dayjs.min.js"></script>-->
-<!--<script src="https://cdn.jsdelivr.net/npm/dayjs/locale/zh-cn.js"></script>-->
-<!--<script src="https://cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js"></script>-->
-<!--<script src="https://cdn.jsdelivr.net/npm/popper.js/dist/umd/popper.min.js"></script>-->
-<!--<script src="https://cdn.jsdelivr.net/npm/bootstrap/dist/js/bootstrap.min.js"></script>-->
-<!--<script src="https://cdn.jsdelivr.net/npm/clipboard/dist/clipboard.min.js"></script>-->
-<!--<script src="https://cdn.jsdelivr.net/npm/bootstrap-modal-js/dist/bootstrap-modal-js.min.js"></script>-->
-<!--<script src="https://cdn.jsdelivr.net/npm/bs-custom-file-input/dist/bs-custom-file-input.min.js"></script>-->
-<!--<script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script>-->
-
-<!--<script src="https://unpkg.com/js-cookie@beta/dist/js.cookie.min"></script>-->
-<!--<script src="https://unpkg.com/dayjs"></script>-->
-<!--<script src="https://unpkg.com/dayjs/locale/zh-cn"></script>-->
-<!--<script src="https://unpkg.com/jquery"></script>-->
-<!--<script src="https://unpkg.com/popper.js/dist/umd/popper.min"></script>-->
-<!--<script src="https://unpkg.com/bootstrap"></script>-->
-<!--<script src="https://unpkg.com/clipboard"></script>-->
-<!--<script src="https://unpkg.com/bootstrap-modal-js"></script>-->
-<!--<script src="https://unpkg.com/bs-custom-file-input"></script>-->
-<!--<script src="https://unpkg.com/qrcode/build/qrcode"></script>-->
-
 <script src="/static/js/js.cookie.min.js"></script>
 <script src="/static/js/day_js_with_locale.min.js"></script>
 <script src="/static/js/jquery.min.js"></script>
