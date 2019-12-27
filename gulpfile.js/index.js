@@ -387,7 +387,7 @@ function copy_lax(done) {
 }
 
 function add_fundebug_api(done) {
-    const add_text = '\nfundebug.apikey = "3d4b48db363609255fd0abb3cfa559ca84a7a4ca4ca8922fbd42d8d38e2c36a4";\n';
+    const add_text = '\nfundebug.init({apikey:"3d4b48db363609255fd0abb3cfa559ca84a7a4ca4ca8922fbd42d8d38e2c36a4"});\n';
 
     src([fundebug_js_path])
         .pipe(footer(add_text))
