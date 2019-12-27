@@ -1,11 +1,8 @@
 /** 增加号码 **/
 let add_new_number = document.querySelector("#add_new_number");
 let phone_number_submit = document.querySelector("#phone_number_submit");
-
 let add_phone_number_form = document.querySelector("#add_phone_number_form");
-
 let add_phone_number_url = "/phone_number/index.php";
-
 
 if (add_new_number) add_new_number.addEventListener("click", function (e) {
     let e_target = e.target;
@@ -255,8 +252,9 @@ function add_phone_number() {
                     });
             });
         });
+    } else {
+        bootstrapModalJs('', '<div class="small text-center text-danger">您输入的号码有点不符合格式<br>请修改后再提交</div>', '', 'sm', true);
     }
-
 }
 
 function ajax_phone_number(data, g_recaptcha_token, g_recaptcha_action) {
@@ -300,7 +298,7 @@ function ajax_success(success_result, message_name) {
         if (success_result["message"].hasOwnProperty(message_name)) {
             if (success_result["message"][message_name].hasOwnProperty("failure")) {
                 let message = "<div class='small text-center'><span>" +
-                    "提交失败。" +
+                    "提交失败" +
                     "<br>" +
                     "错误代码：" +
                     success_result["error"]["errno"] +
@@ -316,14 +314,14 @@ function ajax_success(success_result, message_name) {
                 let message = "<div class='small text-center'><span>" +
                     "您提交的" +
                     success_result["message"][message_name]["success"] +
-                    "个号码已经成功被收录。" +
+                    "个号码已经成功被收录" +
                     "</span></div>";
                 bootstrapModalJs('', message, '', 'sm', true);
             }
         }
     } else {
         let message = "<div class='small text-center text-danger'><span>" +
-            "服务器判断您的评分太低,没有收录您提交的号码。" +
+            "服务器判断您的评分太低,<br>没有收录您刚刚提交的号码。" +
             "</span></div>";
         bootstrapModalJs("", message, "", "", true);
     }
@@ -350,21 +348,21 @@ function ajax_error(error_result) {
 
     if (readyState === 4) {
         if (status === 500 && responseText === "" && statusText === "Internal Server Error") {
-            bootstrapModalJs('', "服务器出错。", '', 'sm', true);
+            bootstrapModalJs('', "服务器出错", '', 'sm', true);
         } else if (statusText === "timeout") {
-            bootstrapModalJs('', '服务器连接超时。', '', 'sm', true);
+            bootstrapModalJs('', '服务器连接超时', '', 'sm', true);
         } else if (status === 200 && RegExp_rules.mysqli_1045.test(responseText)) {
             bootstrapModalJs('', '数据库连接出错', '', 'sm', true);
         } else if (status === 200 && responseText !== "") {
             bootstrapModalJs('', responseText, '', 'xl', true, true);
         } else {
-            bootstrapModalJs('', '失败。', '', 'sm', true);
+            bootstrapModalJs('', '失败', '', 'sm', true);
         }
     }
 
     if (readyState === 0 || status === 0) {
         if (statusText === "error") {
-            bootstrapModalJs('', "服务器刚刚关闭。", '', 'sm', true, true);
+            bootstrapModalJs('', "服务器刚刚关闭", '', 'sm', true, true);
         }
     }
 }
@@ -456,7 +454,7 @@ if (phone_number_search_btn) {
 function check_search_value(check_type) {
     let search_value = phone_number_input.value;
     if (search_value.length === 0) {
-        bootstrapModalJs('', '<div class="text-center text-success">请输入您要查询的单位名称或号码</div>', '', 'sm', true);
+        bootstrapModalJs('', '<div class="small text-center text-success">请输入您要查询的单位名称或号码</div>', '', 'sm', true);
         return false;
     } else {
         search_query(check_type);
@@ -493,7 +491,7 @@ function get_search_result(data) {
     if (data_length) {
         processing_search_result(data);
     } else {
-        bootstrapModalJs('', '<div class="text-center text-success">暂时没有找到您要查找的号码</div>', '', 'sm', true);
+        bootstrapModalJs('', '<div class="small text-center text-success">暂时没有找到您要查找的号码</div>', '', 'sm', true);
     }
 }
 
