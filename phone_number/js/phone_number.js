@@ -20,7 +20,7 @@ function verify_phone_number_data() {
     let phone_name_all = document.querySelectorAll(".phone_name");
     let tel_number_all = document.querySelectorAll(".tel_number");
     let mobile_number_all = document.querySelectorAll(".mobile_number");
-
+    let all_verify_events = [].concat(phone_name_all, tel_number_all, mobile_number_all);
     let verify = true;
     let verify_result = [];
 
@@ -32,24 +32,23 @@ function verify_phone_number_data() {
             tel_number_all[i].value = "选填其一";
             mobile_number_all[i].value = "选填其一";
         }
-
-
-        if (phone_name_all[i].classList.contains("is-valid")) {
-            verify_result[i] = true;
-        } else if (phone_name_all[i].classList.contains("is-invalid")) {
-            verify_result[i] = false;
-        } else if (!phone_name_all[i].classList.contains("is-invalid") && !phone_name_all[i].classList.contains("is-valid")) {
-            verify_result[i] = false;
+    }
+    for (let x = all_verify_events.length, i = 0; i < x; i++) {
+        for (let y = all_verify_events[i].length, j = 0; j < y; j++) {
+            if (all_verify_events[i][j].classList.contains("is-valid")) {
+                verify_result.push(true);
+            } else if (all_verify_events[i][j].classList.contains("is-invalid")) {
+                verify_result.push(false);
+            } else if (!all_verify_events[i][j].classList.contains("is-invalid") && !all_verify_events[i][j].classList.contains("is-valid")) {
+                verify_result.push(false);
+            }
         }
     }
-
     for (let x = verify_result.length, i = 0; i < x; i++) {
-        console.log(verify_result[i]);
         if (verify_result[i] === false) {
             verify = false;
         }
     }
-
     return verify;
 }
 
