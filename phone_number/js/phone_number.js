@@ -21,7 +21,6 @@ function verify_phone_number_data() {
     let tel_number_all = document.querySelectorAll(".tel_number");
     let mobile_number_all = document.querySelectorAll(".mobile_number");
     let all_verify_events = [].concat(phone_name_all, tel_number_all, mobile_number_all);
-    let verify = true;
     let verify_result = [];
 
     for (let x = phone_name_all.length, i = 0; i < x; i++) {
@@ -44,12 +43,7 @@ function verify_phone_number_data() {
             }
         }
     }
-    for (let x = verify_result.length, i = 0; i < x; i++) {
-        if (verify_result[i] === false) {
-            verify = false;
-        }
-    }
-    return verify;
+    return !verify_result.includes(false);
 }
 
 function phone_number_data() {
@@ -244,10 +238,8 @@ function create_mobile_number() {
 
 function add_phone_number() {
     let verify = verify_phone_number_data();
-    // let verify = true;
     if (verify === true) {
         let data = phone_number_data();
-
 
         const v3_site_key = "6LcvIcEUAAAAAEUgtbN0VFiH_n2VHw-luW3rdZFv";
         const url = "https://www.recaptcha.net/recaptcha/api.js?render=";
