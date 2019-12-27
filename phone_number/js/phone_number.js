@@ -1,15 +1,13 @@
 /** 增加号码 **/
 let add_new_number = document.querySelector("#add_new_number");
 let phone_number_submit = document.querySelector("#phone_number_submit");
-
 let add_phone_number_form = document.querySelector("#add_phone_number_form");
-
 let add_phone_number_url = "/phone_number/index.php";
 
-
 if (add_new_number) add_new_number.addEventListener("click", function (e) {
+    let e_target = e.target;
+    e_target.parentNode.parentNode.removeChild(e_target.parentNode);
     create_form_add_init();
-    e.target.parentNode.removeChild(e.target);
     add_phone_number_form.classList.remove("d-none");
     add_phone_number_form.classList.toggle("show");
 });
@@ -19,8 +17,7 @@ function verify_phone_number_data() {
     let phone_name_all = document.querySelectorAll(".phone_name");
     let tel_number_all = document.querySelectorAll(".tel_number");
     let mobile_number_all = document.querySelectorAll(".mobile_number");
-
-    let verify = true;
+    let all_verify_events = [].concat(phone_name_all, tel_number_all, mobile_number_all);
     let verify_result = [];
 
     for (let x = phone_name_all.length, i = 0; i < x; i++) {
@@ -31,25 +28,19 @@ function verify_phone_number_data() {
             tel_number_all[i].value = "选填其一";
             mobile_number_all[i].value = "选填其一";
         }
-
-
-        if (phone_name_all[i].classList.contains("is-invalid")) {
-            verify_result[i] = false;
-        } else if (phone_name_all[i].classList.contains("is-valid")) {
-            verify_result[i] = true;
-        } else if (!phone_name_all[i].classList.contains("is-invalid") && !phone_name_all[i].classList.contains("is-valid")) {
-            verify_result[i] = false;
+    }
+    for (let x = all_verify_events.length, i = 0; i < x; i++) {
+        for (let y = all_verify_events[i].length, j = 0; j < y; j++) {
+            if (all_verify_events[i][j].classList.contains("is-valid")) {
+                verify_result.push(true);
+            } else if (all_verify_events[i][j].classList.contains("is-invalid")) {
+                verify_result.push(false);
+            } else if (!all_verify_events[i][j].classList.contains("is-invalid") && !all_verify_events[i][j].classList.contains("is-valid")) {
+                verify_result.push(false);
+            }
         }
     }
-
-    for (let x = verify_result.length, i = 0; i < x; i++) {
-        console.log(verify_result[i]);
-        if (verify_result[i] === false) {
-            verify = false;
-        }
-    }
-
-    return verify;
+    return !verify_result.includes(false);
 }
 
 function phone_number_data() {
@@ -244,10 +235,8 @@ function create_mobile_number() {
 
 function add_phone_number() {
     let verify = verify_phone_number_data();
-    // let verify = true;
     if (verify === true) {
         let data = phone_number_data();
-
 
         const v3_site_key = "6LcvIcEUAAAAAEUgtbN0VFiH_n2VHw-luW3rdZFv";
         const url = "https://www.recaptcha.net/recaptcha/api.js?render=";
@@ -263,8 +252,9 @@ function add_phone_number() {
                     });
             });
         });
+    } else {
+        bootstrapModalJs('', '<div class="small text-center text-danger">您输入的号码有点不符合格式<br>请修改后再提交</div>', '', 'sm', true);
     }
-
 }
 
 function ajax_phone_number(data, g_recaptcha_token, g_recaptcha_action) {
@@ -308,7 +298,7 @@ function ajax_success(success_result, message_name) {
         if (success_result["message"].hasOwnProperty(message_name)) {
             if (success_result["message"][message_name].hasOwnProperty("failure")) {
                 let message = "<div class='small text-center'><span>" +
-                    "提交失败。" +
+                    "提交失败" +
                     "<br>" +
                     "错误代码：" +
                     success_result["error"]["errno"] +
@@ -324,14 +314,14 @@ function ajax_success(success_result, message_name) {
                 let message = "<div class='small text-center'><span>" +
                     "您提交的" +
                     success_result["message"][message_name]["success"] +
-                    "个号码已经成功被收录。" +
+                    "个号码已经成功被收录" +
                     "</span></div>";
                 bootstrapModalJs('', message, '', 'sm', true);
             }
         }
     } else {
         let message = "<div class='small text-center text-danger'><span>" +
-            "服务器判断您的评分太低,没有收录您提交的号码。" +
+            "服务器判断您的评分太低,<br>没有收录您刚刚提交的号码。" +
             "</span></div>";
         bootstrapModalJs("", message, "", "", true);
     }
@@ -358,21 +348,21 @@ function ajax_error(error_result) {
 
     if (readyState === 4) {
         if (status === 500 && responseText === "" && statusText === "Internal Server Error") {
-            bootstrapModalJs('', "服务器出错。", '', 'sm', true);
+            bootstrapModalJs('', "服务器出错", '', 'sm', true);
         } else if (statusText === "timeout") {
-            bootstrapModalJs('', '服务器连接超时。', '', 'sm', true);
+            bootstrapModalJs('', '服务器连接超时', '', 'sm', true);
         } else if (status === 200 && RegExp_rules.mysqli_1045.test(responseText)) {
             bootstrapModalJs('', '数据库连接出错', '', 'sm', true);
         } else if (status === 200 && responseText !== "") {
             bootstrapModalJs('', responseText, '', 'xl', true, true);
         } else {
-            bootstrapModalJs('', '失败。', '', 'sm', true);
+            bootstrapModalJs('', '失败', '', 'sm', true);
         }
     }
 
     if (readyState === 0 || status === 0) {
         if (statusText === "error") {
-            bootstrapModalJs('', "服务器刚刚关闭。", '', 'sm', true, true);
+            bootstrapModalJs('', "服务器刚刚关闭", '', 'sm', true, true);
         }
     }
 }
@@ -446,6 +436,7 @@ function get_number_stored() {
 let phone_number_input = document.querySelector("#phone_number_input");
 let phone_name_search_btn = document.querySelector("#phone_name_search_btn");
 let phone_number_search_btn = document.querySelector("#phone_number_search_btn");
+let phone_search_result = document.querySelector("#phone_search_result");
 let number_list = document.querySelector("#number_list");
 let search_url = "/phone_number/phone_number_search.php";
 
@@ -463,7 +454,7 @@ if (phone_number_search_btn) {
 function check_search_value(check_type) {
     let search_value = phone_number_input.value;
     if (search_value.length === 0) {
-        bootstrapModalJs('', '请输入您要查询的单位名称或号码', '', '', true);
+        bootstrapModalJs('', '<div class="small text-center text-success">请输入您要查询的单位名称或号码</div>', '', 'sm', true);
         return false;
     } else {
         search_query(check_type);
@@ -500,11 +491,13 @@ function get_search_result(data) {
     if (data_length) {
         processing_search_result(data);
     } else {
-        bootstrapModalJs('', "暂时没有找到您要查找的号码", '', '', true);
+        bootstrapModalJs('', '<div class="small text-center text-success">暂时没有找到您要查找的号码</div>', '', 'sm', true);
     }
 }
 
 function processing_search_result(data) {
+    phone_search_result.classList.remove("d-none");
+    add_new_number.parentNode.classList.remove("d-none");
     number_list.innerHTML = "";
     for (let i in data) {
         if (data.hasOwnProperty(i)) create_number_list(data[i]);

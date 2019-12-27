@@ -488,7 +488,11 @@ $().ready(function () {
         if (document.location.host !== "tools.jzeg.org" &&
             document.location.host !== "118.190.26.200" &&
             document.location.host !== "tools.jzeg.net") {
-            if (fundebug) fundebug.test("镜像", document.location.href);
+            if (fundebug) fundebug.notify("发现镜像", document.location.href, {
+                metaData: {
+                    location: document.location,
+                }
+            });
             setTimeout(function () {
                 location.href = location.href.replace(document.location.host, 'tools.jzeg.org');
             }, 3000);
