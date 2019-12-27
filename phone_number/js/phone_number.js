@@ -456,7 +456,7 @@ if (phone_number_search_btn) {
 function check_search_value(check_type) {
     let search_value = phone_number_input.value;
     if (search_value.length === 0) {
-        bootstrapModalJs('', '请输入您要查询的单位名称或号码', '', '', true);
+        bootstrapModalJs('', '<div class="text-center text-success">请输入您要查询的单位名称或号码</div>', '', 'sm', true);
         return false;
     } else {
         search_query(check_type);
@@ -493,7 +493,7 @@ function get_search_result(data) {
     if (data_length) {
         processing_search_result(data);
     } else {
-        bootstrapModalJs('', "暂时没有找到您要查找的号码", '', '', true);
+        bootstrapModalJs('', '<div class="text-center text-success">暂时没有找到您要查找的号码</div>', '', 'sm', true);
     }
 }
 
