@@ -1,5 +1,7 @@
 const {series, parallel, task, src, dest} = require('gulp');
 const cleanCSS = require("gulp-clean-css");
+const autoPreFixer = require("autoprefixer");
+const postcss = require("gulp-postcss");
 const terser = require("gulp-terser");
 const concat = require('gulp-concat');
 const rename = require("gulp-rename");
@@ -228,6 +230,7 @@ function terser_photo_info_js(done) {
 
 function cleanCSS_tools_css(done) {
     src([tools_css_path])
+        .pipe(postcss([autoPreFixer()]))
         .pipe(cleanCSS())
         .pipe(rename({suffix: ".min"}))
         .pipe(dest(tools_dest_css_path));
@@ -236,6 +239,7 @@ function cleanCSS_tools_css(done) {
 
 function cleanCSS_index_css(done) {
     src([index_css_path])
+        .pipe(postcss([autoPreFixer()]))
         .pipe(cleanCSS())
         .pipe(rename({suffix: ".min"}))
         .pipe(dest(index_dest_css_path));
@@ -244,6 +248,7 @@ function cleanCSS_index_css(done) {
 
 function cleanCSS_phone_number_css(done) {
     src([phone_number_css_path])
+        .pipe(postcss([autoPreFixer()]))
         .pipe(cleanCSS())
         .pipe(rename({suffix: ".min"}))
         .pipe(dest(phone_number_dest_css_path));
@@ -252,6 +257,7 @@ function cleanCSS_phone_number_css(done) {
 
 function cleanCSS_photo_info_css(done) {
     src([photo_info_css_path])
+        .pipe(postcss([autoPreFixer()]))
         .pipe(cleanCSS())
         .pipe(rename({suffix: ".min"}))
         .pipe(dest(photo_info_dest_css_path));
