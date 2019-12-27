@@ -64,7 +64,7 @@ require_once '../header.php';
                 <button class="btn btn-primary" id="phone_number_submit">提交新号码</button>
             </div>
         </div>
-        <span class="float-right" id="number_stored"></span>
+        <div class="text-right" id="number_stored"></div>
     </div>
 
     <div>
