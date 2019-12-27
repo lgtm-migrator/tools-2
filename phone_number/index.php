@@ -28,15 +28,17 @@ require_once '../header.php';
         </div>
     </div>
 
-    <div class="container mt-5" id="phone_search_result">
-        <span class="font-weight-bold text-monospace text-success" style="font-size: 85%;">查询结果</span>
-        <div class="mt-1 px-4 pt-3 border border-info rounded" id="number_list"></div>
+    <div class="container mt-5 d-none" id="phone_search_result">
+        <span class="small font-weight-bold text-success">查询结果</span>
+        <div class="container mt-1 pt-3" id="number_list"></div>
+    </div>
+    <div class="container mt-5 text-center" id="add">
         <a href="javascript:" class="my-2 btn btn-sm btn-outline-primary" id="add_new_number">我要添加新号码</a>
     </div>
 
     <div class="container mt-5">
-        <div class="p-4 border border-info rounded fade d-none" id="add_phone_number_form">
-            <div class="mb-5 mb-sm-4 mb-md-3 sr-only" id="regional">
+        <div class="px-4 py-3 border border-info rounded fade d-none" id="add_phone_number_form">
+            <div class="container mb-5 mb-sm-4 mb-md-3 sr-only" id="regional">
                 <div class="custom-control custom-radio custom-control-inline">
                     <input type="radio" id="regional_xm" name="regional" value="xm" class="custom-control-input"
                            checked>
@@ -58,7 +60,7 @@ require_once '../header.php';
                     <label class="custom-control-label" for="regional_xdw">显德旺</label>
                 </div>
             </div>
-            <div class="my-2 d-flex justify-content-center" id="number_submit">
+            <div class="my-2 text-center" id="number_submit">
                 <button class="btn btn-primary" id="phone_number_submit">提交新号码</button>
             </div>
         </div>

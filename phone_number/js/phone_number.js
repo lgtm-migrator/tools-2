@@ -8,8 +8,9 @@ let add_phone_number_url = "/phone_number/index.php";
 
 
 if (add_new_number) add_new_number.addEventListener("click", function (e) {
+    let e_target = e.target;
+    e_target.parentNode.parentNode.removeChild(e_target.parentNode);
     create_form_add_init();
-    e.target.parentNode.removeChild(e.target);
     add_phone_number_form.classList.remove("d-none");
     add_phone_number_form.classList.toggle("show");
 });
@@ -33,10 +34,10 @@ function verify_phone_number_data() {
         }
 
 
-        if (phone_name_all[i].classList.contains("is-invalid")) {
-            verify_result[i] = false;
-        } else if (phone_name_all[i].classList.contains("is-valid")) {
+        if (phone_name_all[i].classList.contains("is-valid")) {
             verify_result[i] = true;
+        } else if (phone_name_all[i].classList.contains("is-invalid")) {
+            verify_result[i] = false;
         } else if (!phone_name_all[i].classList.contains("is-invalid") && !phone_name_all[i].classList.contains("is-valid")) {
             verify_result[i] = false;
         }
@@ -446,6 +447,7 @@ function get_number_stored() {
 let phone_number_input = document.querySelector("#phone_number_input");
 let phone_name_search_btn = document.querySelector("#phone_name_search_btn");
 let phone_number_search_btn = document.querySelector("#phone_number_search_btn");
+let phone_search_result = document.querySelector("#phone_search_result");
 let number_list = document.querySelector("#number_list");
 let search_url = "/phone_number/phone_number_search.php";
 
@@ -505,6 +507,7 @@ function get_search_result(data) {
 }
 
 function processing_search_result(data) {
+    phone_search_result.classList.remove("d-none");
     number_list.innerHTML = "";
     for (let i in data) {
         if (data.hasOwnProperty(i)) create_number_list(data[i]);
