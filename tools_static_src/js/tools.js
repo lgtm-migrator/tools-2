@@ -4,14 +4,13 @@ if (a_body) a_body.removeAttribute("hidden");
 
 let RegExp_rules = {
     "chinese_name": new RegExp(/^([\u4e00-\u9fa5·]{2,16})$/),
-    "tel_number": new RegExp(/\d{3}-\d{8}|\d{4}-\d{7}/),
+    "tel_number": new RegExp(/\d{4}-\d{7}/),
     "mysqli_1045": new RegExp(/(1045)/),
     "mobile_number": new RegExp(/^(?:(?:\+|00)86)?1(?:(?:3[\d])|(?:4[5-7|9])|(?:5[0-3|5-9])|(?:6[5-7])|(?:7[0-8])|(?:8[\d])|(?:9[1|8|9]))\d{8}$/),
     "ip_v4": new RegExp(/^(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/),
     "ip_v6": new RegExp(/^((([0-9A-Fa-f]{1,4}:){7}[0-9A-Fa-f]{1,4})|(([0-9A-Fa-f]{1,4}:){6}:[0-9A-Fa-f]{1,4})|(([0-9A-Fa-f]{1,4}:){5}:([0-9A-Fa-f]{1,4}:)?[0-9A-Fa-f]{1,4})|(([0-9A-Fa-f]{1,4}:){4}:([0-9A-Fa-f]{1,4}:){0,2}[0-9A-Fa-f]{1,4})|(([0-9A-Fa-f]{1,4}:){3}:([0-9A-Fa-f]{1,4}:){0,3}[0-9A-Fa-f]{1,4})|(([0-9A-Fa-f]{1,4}:){2}:([0-9A-Fa-f]{1,4}:){0,4}[0-9A-Fa-f]{1,4})|(([0-9A-Fa-f]{1,4}:){6}((\b((25[0-5])|(1\d{2})|(2[0-4]\d)|(\d{1,2}))\b)\.){3}(\b((25[0-5])|(1\d{2})|(2[0-4]\d)|(\d{1,2}))\b))|(([0-9A-Fa-f]{1,4}:){0,5}:((\b((25[0-5])|(1\d{2})|(2[0-4]\d)|(\d{1,2}))\b)\.){3}(\b((25[0-5])|(1\d{2})|(2[0-4]\d)|(\d{1,2}))\b))|(::([0-9A-Fa-f]{1,4}:){0,5}((\b((25[0-5])|(1\d{2})|(2[0-4]\d)|(\d{1,2}))\b)\.){3}(\b((25[0-5])|(1\d{2})|(2[0-4]\d)|(\d{1,2}))\b))|([0-9A-Fa-f]{1,4}::([0-9A-Fa-f]{1,4}:){0,5}[0-9A-Fa-f]{1,4})|(::([0-9A-Fa-f]{1,4}:){0,6}[0-9A-Fa-f]{1,4})|(([0-9A-Fa-f]{1,4}:){1,7}:))$/i),
     "zh_cn_number": new RegExp(/^((?:[\u3400-\u4DB5\u4E00-\u9FEA\uFA0E\uFA0F\uFA11\uFA13\uFA14\uFA1F\uFA21\uFA23\uFA24\uFA27-\uFA29]|[\uD840-\uD868\uD86A-\uD86C\uD86F-\uD872\uD874-\uD879][\uDC00-\uDFFF]|\uD869[\uDC00-\uDED6\uDF00-\uDFFF]|\uD86D[\uDC00-\uDF34\uDF40-\uDFFF]|\uD86E[\uDC00-\uDC1D\uDC20-\uDFFF]|\uD873[\uDC00-\uDEA1\uDEB0-\uDFFF]|\uD87A[\uDC00-\uDFE0])|(\d))+$/),
 };
-
 
 /** js.cookie **/
 let js_cookies = window.Cookies.noConflict();
@@ -42,7 +41,6 @@ function get_cookie(key) {
 function remove_cookie(key) {
     js_cookies.remove(key);
 }
-
 
 /** 表单验证 **/
 function validation_invalid_div(element, text, type = "tooltip") {
@@ -149,7 +147,6 @@ function remove_spinner_icon(element) {
     element.lastElementChild ? element.removeChild(element.lastElementChild) : "";
 }
 
-
 /** ReCAPTCHA **/
 function set_recaptcha_action(Action = null) {
     const v3_site_key = "6LcvIcEUAAAAAEUgtbN0VFiH_n2VHw-luW3rdZFv";
@@ -195,7 +192,6 @@ function get_recaptcha_verify(token_key, pageAction) {
         }
     })
 }
-
 
 /** 页脚文案 **/
 $().ready(function () {
@@ -244,7 +240,6 @@ function footer_recaptcha_text_badge() {
     div.appendChild(a_2);
     footer_x.appendChild(div);
 }
-
 
 /** 页脚二维码 **/
 $().ready(function () {
@@ -418,7 +413,6 @@ $().ready(function () {
     }, 1000);
 });
 
-
 /** localStorage **/
 if (localStorage && (
     localStorage.setItem("status", "yes") ||
@@ -431,7 +425,6 @@ if (localStorage && (
 } else {
     throw new Error("不支持LocalStorage。");
 }
-
 
 /** bootstrapModalJs-alert **/
 function bootstrapModalJs_alert(alert_array = {}) {
@@ -481,7 +474,6 @@ function bootstrapModalJs_alert(alert_array = {}) {
     modalBody.classList.add("p-0");
 }
 
-
 /** 防镜像 **/
 $().ready(function () {
     setTimeout(function () {
@@ -499,7 +491,6 @@ $().ready(function () {
         }
     }, 1000);
 });
-
 
 $().ready(function () {
     $("span[title]").tooltip({
@@ -519,7 +510,6 @@ $().ready(function () {
         $("html,body").animate({scrollTop: "0px"}, 1000);
     }
 });
-
 
 /** 滚动监听 **/
 $().ready(function () {
