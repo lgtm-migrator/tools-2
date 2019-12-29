@@ -1,4 +1,4 @@
-const {series, parallel, task, src, dest} = require('gulp');
+const {task, src, dest, series, parallel, lastRun, watch, registry, symlink} = require('gulp');
 const cleanCSS = require("gulp-clean-css");
 const autoPreFixer = require("autoprefixer");
 const postcss = require("gulp-postcss");
@@ -14,9 +14,6 @@ const
     static_path = "./static/",
     static_js = static_path + "js/",
     static_css = static_path + "css/",
-    tools_static_path = "./tools_static/",
-    tools_static_js = tools_static_path + "js/",
-    tools_static_css = tools_static_path + "css/",
     /** bootstrap-toasts **/
     bootstrap_toasts_js_path = "./node_modules/bootstrap-toasts/dist/bootstrap-toasts.js",
     bootstrap_toasts_min_js_path = "./node_modules/bootstrap-toasts/dist/bootstrap-toasts.min.js",
@@ -88,31 +85,26 @@ const
     qrcode_build_path = "./node_modules/qrcode/build/*",
     /** clipboard.js **/
     clipboard_min_js_path = "./node_modules/clipboard/dist/clipboard.min.js",
-    //文件路径
-    /** tools.js **/
-    tools_js_path = "tools.js",
-    tools_dest_js_path = "./",
-    /** tools.css **/
-    tools_css_path = "tools.css",
-    tools_dest_css_path = "./",
-    /** index.js **/
-    index_js_path = "index.js",
-    index_dest_js_path = "./",
-    /** index.css **/
-    index_css_path = "index.css",
-    index_dest_css_path = "./",
-    /** phone_number.js **/
-    phone_number_js_path = "phone_number/js/phone_number.js",
-    phone_number_dest_js_path = "phone_number/js",
-    /** phone_number.css **/
-    phone_number_css_path = "phone_number/css/phone_number.css",
-    phone_number_dest_css_path = "phone_number/css",
-    /** photo_info.js **/
-    photo_info_js_path = "photo_info/js/photo_info.js",
-    photo_info_dest_js_path = "photo_info/js",
-    /** photo_info.css **/
-    photo_info_css_path = "photo_info/css/photo_info.css",
-    photo_info_dest_css_path = "photo_info/css";
+    //页面静态文件路径
+    /** 路径定义 **/
+    tools_static_src_path = "./tools_static_src/",
+    tools_static_src_js = tools_static_src_path + "js/",
+    tools_static_src_css = tools_static_src_path + "css/",
+    tools_static_path = "./tools_static/",
+    tools_static_js = tools_static_path + "js/",
+    tools_static_css = tools_static_path + "css/",
+    /** tools **/
+    tools_js_path = tools_static_src_js + "tools.js",
+    tools_css_path = tools_static_src_css + "tools.css",
+    /** index **/
+    index_js_path = tools_static_src_js + "index.js",
+    index_css_path = tools_static_src_css + "index.css",
+    /** phone_number **/
+    phone_number_js_path = tools_static_src_js + "phone_number.js",
+    phone_number_css_path = tools_static_src_css + "phone_number.css",
+    /** photo_info **/
+    photo_info_js_path = tools_static_src_js + "photo_info.js",
+    photo_info_css_path = tools_static_src_css + "photo_info.css";
 
 //Task
 task("terser_tools_js", terser_tools_js);
@@ -194,6 +186,8 @@ task("add_footer",
 //Tasks function
 function terser_tools_js(done) {
     src([tools_js_path])
+        .pipe(dest(tools_static_js));
+    src([tools_js_path])
         .pipe(terser())
         .pipe(rename({suffix: ".min"}))
         .pipe(dest(tools_static_js));
@@ -201,6 +195,8 @@ function terser_tools_js(done) {
 }
 
 function terser_index_js(done) {
+    src([index_js_path])
+        .pipe(dest(tools_static_js));
     src([index_js_path])
         .pipe(terser())
         .pipe(rename({suffix: ".min"}))
@@ -210,6 +206,8 @@ function terser_index_js(done) {
 
 function terser_phone_number_js(done) {
     src([phone_number_js_path])
+        .pipe(dest(tools_static_js));
+    src([phone_number_js_path])
         .pipe(terser())
         .pipe(rename({suffix: ".min"}))
         .pipe(dest(tools_static_js));
@@ -218,6 +216,8 @@ function terser_phone_number_js(done) {
 
 function terser_photo_info_js(done) {
     src([photo_info_js_path])
+        .pipe(dest(tools_static_js));
+    src([photo_info_js_path])
         .pipe(terser())
         .pipe(rename({suffix: ".min"}))
         .pipe(dest(tools_static_js));
@@ -225,6 +225,8 @@ function terser_photo_info_js(done) {
 }
 
 function cleanCSS_tools_css(done) {
+    src([tools_css_path])
+        .pipe(dest(tools_static_css));
     src([tools_css_path])
         .pipe(postcss([autoPreFixer()]))
         .pipe(cleanCSS())
@@ -235,6 +237,8 @@ function cleanCSS_tools_css(done) {
 
 function cleanCSS_index_css(done) {
     src([index_css_path])
+        .pipe(dest(tools_static_css));
+    src([index_css_path])
         .pipe(postcss([autoPreFixer()]))
         .pipe(cleanCSS())
         .pipe(rename({suffix: ".min"}))
@@ -244,6 +248,8 @@ function cleanCSS_index_css(done) {
 
 function cleanCSS_phone_number_css(done) {
     src([phone_number_css_path])
+        .pipe(dest(tools_static_css));
+    src([phone_number_css_path])
         .pipe(postcss([autoPreFixer()]))
         .pipe(cleanCSS())
         .pipe(rename({suffix: ".min"}))
@@ -252,6 +258,8 @@ function cleanCSS_phone_number_css(done) {
 }
 
 function cleanCSS_photo_info_css(done) {
+    src([photo_info_css_path])
+        .pipe(dest(tools_static_css));
     src([photo_info_css_path])
         .pipe(postcss([autoPreFixer()]))
         .pipe(cleanCSS())
@@ -398,7 +406,6 @@ function copy_lax(done) {
 
 function add_footer_funDebug_api(done) {
     const add_text = '\nfundebug.init({apikey:"3d4b48db363609255fd0abb3cfa559ca84a7a4ca4ca8922fbd42d8d38e2c36a4"});\n';
-
     src([fundebug_js_path])
         .pipe(footer(add_text))
         .pipe(rename('fundebug.min.js'))

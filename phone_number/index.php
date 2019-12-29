@@ -8,7 +8,7 @@ if ($_POST) {
 define('title', '公共电话本');
 require_once '../header.php';
 ?>
-    <link rel="stylesheet" href="/phone_number/css/phone_number.min.css">
+    <link rel="stylesheet" href="/tools_static/css/phone_number.min.css">
 
     <div class="container mt-5" id="jt_container">
         <div class="form-row justify-content-center">
@@ -69,7 +69,7 @@ require_once '../header.php';
 
     <div>
         <?php require_once dirname(__DIR__) . "/javascript.php"; ?>
-        <script src="/phone_number/js/phone_number.min.js"></script>
+        <script src="/tools_static/js/phone_number.min.js"></script>
     </div>
 
 
