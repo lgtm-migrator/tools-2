@@ -25,10 +25,13 @@
   "homepage": "https://github.com/zhangchenglin/tools",
   "scripts": {
     "nrm_use_taobao": "npm i -g nrm --registry=https://registry.npm.taobao.org && nrm use taobao && nrm ls",
-    "default": "npm i && npm run copy && npm run terser && npm run cleanCSS",
+    "default": "",
+    "build": "npm i && npm run build_static",
+    "watch": "npm run watch_static",
     "copy": "gulp add_footer copy",
-    "terser": "gulp terser",
-    "cleanCSS": "gulp cleanCSS"
+    "minimize_local_static": "gulp minimize_local_static",
+    "build_static": "gulp build_static",
+    "watch_static": "gulp watch_static"
   },
   "peerDependencies": {},
   "devDependencies": {

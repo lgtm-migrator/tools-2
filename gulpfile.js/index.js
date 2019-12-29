@@ -107,59 +107,44 @@ const
     photo_info_css_path = tools_static_src_css + "photo_info.css";
 
 //Task
-task("terser_tools_js", terser_tools_js);
-task("terser_index_js", terser_index_js);
-task("terser_phone_number_js", terser_phone_number_js);
-task("terser_photo_info_js", terser_photo_info_js);
+task(terser_tools_js);
+task(terser_index_js);
+task(terser_phone_number_js);
+task(terser_photo_info_js);
 
-task("cleanCSS_tools_css", cleanCSS_tools_css);
-task("cleanCSS_index_css", cleanCSS_index_css);
-task("cleanCSS_phone_number_css", cleanCSS_phone_number_css);
-task("cleanCSS_photo_info_css", cleanCSS_photo_info_css);
+task(cleanCSS_tools_css);
+task(cleanCSS_index_css);
+task(cleanCSS_phone_number_css);
+task(cleanCSS_photo_info_css);
 
-task("copy_fontawesome_free", copy_fontawesome_free);
-task("copy_js_cookie", copy_js_cookie);
-task("copy_jquery", copy_jquery);
-task("copy_popper", copy_popper);
-task("copy_bootstrap", copy_bootstrap);
-task("copy_animate_css", copy_animate_css);
-task("copy_hamburgers_css", copy_hamburgers_css);
-task("copy_bootstrap_modal_js", copy_bootstrap_modal_js);
-task("copy_bs_custom_file_input", copy_bs_custom_file_input);
-task("copy_dayjs", copy_dayjs);
-task("copy_clipboard", copy_clipboard);
-task("copy_qrcode", copy_qrcode);
+task(copy_fontawesome_free);
+task(copy_js_cookie);
+task(copy_jquery);
+task(copy_popper);
+task(copy_bootstrap);
+task(copy_animate_css);
+task(copy_hamburgers_css);
+task(copy_bootstrap_modal_js);
+task(copy_bs_custom_file_input);
+task(copy_dayjs);
+task(copy_clipboard);
+task(copy_qrcode);
 
 // Standby tasks
-task("copy_lazyload", copy_lazyload);
-task("copy_bootstrap_toasts_js", copy_bootstrap_toasts_js);
-task("copy_vue", copy_vue);
-task("copy_video", copy_video);
-task("copy_viewerjs", copy_viewerjs);
-task("copy_canvas_nest", copy_canvas_nest);
-task("copy_bowser", copy_bowser);
-task("copy_lax", copy_lax);
+task(copy_lazyload);
+task(copy_bootstrap_toasts_js);
+task(copy_vue);
+task(copy_video);
+task(copy_viewerjs);
+task(copy_canvas_nest);
+task(copy_bowser);
+task(copy_lax);
 
-/** task("add_header", ""); **/
-task("add_footer_funDebug_api", add_footer_funDebug_api);
+/** task("add_header"); **/
+task(add_footer_funDebug_api);
+task(watch_static);
 
 //Combined tasks
-task("terser",
-    parallel(
-        terser_tools_js,
-        terser_index_js,
-        terser_phone_number_js,
-        terser_photo_info_js,
-    )
-);
-task("cleanCSS",
-    parallel(
-        cleanCSS_tools_css,
-        cleanCSS_index_css,
-        cleanCSS_phone_number_css,
-        cleanCSS_photo_info_css,
-    )
-);
 task("copy",
     parallel(
         copy_fontawesome_free,
@@ -176,18 +161,46 @@ task("copy",
         copy_qrcode,
     )
 );
+task("terser",
+    parallel(
+        terser_tools_js,
+        terser_index_js,
+        terser_phone_number_js,
+        terser_photo_info_js,
+    )
+);
+task("cleanCSS",
+    parallel(
+        cleanCSS_tools_css,
+        cleanCSS_index_css,
+        cleanCSS_phone_number_css,
+        cleanCSS_photo_info_css,
+    )
+);
 task("add_footer",
     parallel(
         add_footer_funDebug_api,
     )
 );
-
+task("minimize_local_static",
+    parallel(
+        "terser",
+        "cleanCSS",
+    )
+);
+task("build_static",
+    parallel(
+        "add_footer",
+        "copy",
+        "minimize_local_static",
+    )
+);
 
 //Tasks function
 function terser_tools_js(done) {
-    src([tools_js_path])
+    src([tools_js_path], {since: lastRun(terser_tools_js)})
         .pipe(dest(tools_static_js));
-    src([tools_js_path])
+    src([tools_js_path], {since: lastRun(terser_tools_js)})
         .pipe(terser())
         .pipe(rename({suffix: ".min"}))
         .pipe(dest(tools_static_js));
@@ -195,9 +208,9 @@ function terser_tools_js(done) {
 }
 
 function terser_index_js(done) {
-    src([index_js_path])
+    src([index_js_path], {since: lastRun(terser_index_js)})
         .pipe(dest(tools_static_js));
-    src([index_js_path])
+    src([index_js_path], {since: lastRun(terser_index_js)})
         .pipe(terser())
         .pipe(rename({suffix: ".min"}))
         .pipe(dest(tools_static_js));
@@ -205,9 +218,9 @@ function terser_index_js(done) {
 }
 
 function terser_phone_number_js(done) {
-    src([phone_number_js_path])
+    src([phone_number_js_path], {since: lastRun(terser_phone_number_js)})
         .pipe(dest(tools_static_js));
-    src([phone_number_js_path])
+    src([phone_number_js_path], {since: lastRun(terser_phone_number_js)})
         .pipe(terser())
         .pipe(rename({suffix: ".min"}))
         .pipe(dest(tools_static_js));
@@ -215,9 +228,9 @@ function terser_phone_number_js(done) {
 }
 
 function terser_photo_info_js(done) {
-    src([photo_info_js_path])
+    src([photo_info_js_path], {since: lastRun(terser_photo_info_js)})
         .pipe(dest(tools_static_js));
-    src([photo_info_js_path])
+    src([photo_info_js_path], {since: lastRun(terser_photo_info_js)})
         .pipe(terser())
         .pipe(rename({suffix: ".min"}))
         .pipe(dest(tools_static_js));
@@ -225,9 +238,9 @@ function terser_photo_info_js(done) {
 }
 
 function cleanCSS_tools_css(done) {
-    src([tools_css_path])
+    src([tools_css_path], {since: lastRun(cleanCSS_tools_css)})
         .pipe(dest(tools_static_css));
-    src([tools_css_path])
+    src([tools_css_path], {since: lastRun(cleanCSS_tools_css)})
         .pipe(postcss([autoPreFixer()]))
         .pipe(cleanCSS())
         .pipe(rename({suffix: ".min"}))
@@ -236,9 +249,9 @@ function cleanCSS_tools_css(done) {
 }
 
 function cleanCSS_index_css(done) {
-    src([index_css_path])
+    src([index_css_path], {since: lastRun(cleanCSS_index_css)})
         .pipe(dest(tools_static_css));
-    src([index_css_path])
+    src([index_css_path], {since: lastRun(cleanCSS_index_css)})
         .pipe(postcss([autoPreFixer()]))
         .pipe(cleanCSS())
         .pipe(rename({suffix: ".min"}))
@@ -247,9 +260,9 @@ function cleanCSS_index_css(done) {
 }
 
 function cleanCSS_phone_number_css(done) {
-    src([phone_number_css_path])
+    src([phone_number_css_path], {since: lastRun(cleanCSS_phone_number_css)})
         .pipe(dest(tools_static_css));
-    src([phone_number_css_path])
+    src([phone_number_css_path], {since: lastRun(cleanCSS_phone_number_css)})
         .pipe(postcss([autoPreFixer()]))
         .pipe(cleanCSS())
         .pipe(rename({suffix: ".min"}))
@@ -258,9 +271,9 @@ function cleanCSS_phone_number_css(done) {
 }
 
 function cleanCSS_photo_info_css(done) {
-    src([photo_info_css_path])
+    src([photo_info_css_path], {since: lastRun(cleanCSS_photo_info_css)})
         .pipe(dest(tools_static_css));
-    src([photo_info_css_path])
+    src([photo_info_css_path], {since: lastRun(cleanCSS_photo_info_css)})
         .pipe(postcss([autoPreFixer()]))
         .pipe(cleanCSS())
         .pipe(rename({suffix: ".min"}))
@@ -406,9 +419,14 @@ function copy_lax(done) {
 
 function add_footer_funDebug_api(done) {
     const add_text = '\nfundebug.init({apikey:"3d4b48db363609255fd0abb3cfa559ca84a7a4ca4ca8922fbd42d8d38e2c36a4"});\n';
-    src([fundebug_js_path])
+    src([fundebug_js_path], {since: lastRun(add_footer_funDebug_api)})
         .pipe(footer(add_text))
         .pipe(rename('fundebug.min.js'))
         .pipe(dest(static_js));
+    done();
+}
+
+function watch_static(done) {
+    watch([tools_static_src_path + "**/*"], task("minimize_local_static"));
     done();
 }
