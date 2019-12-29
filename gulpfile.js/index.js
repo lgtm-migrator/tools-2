@@ -282,137 +282,135 @@ function cleanCSS_photo_info_css(done) {
 }
 
 function copy_fontawesome_free(done) {
-    src([all_fontawesome_free_path])
+    src([all_fontawesome_free_path], {since: lastRun(copy_fontawesome_free)})
         .pipe(dest(static_path + "/font/"));
     done();
 }
 
-function copy_lazyload(done) {
-    src([lazyload_js_path, lazyload_min_js_path, lazyload_min_js_map_path])
-        .pipe(dest(static_js));
-    done();
-}
-
 function copy_bootstrap_modal_js(done) {
-    src([bootstrap_modal_js_js_path, bootstrap_modal_js_min_js_path])
+    src([bootstrap_modal_js_js_path, bootstrap_modal_js_min_js_path], {since: lastRun(copy_bootstrap_modal_js)})
         .pipe(dest(static_js));
     done();
 }
 
 function copy_bs_custom_file_input(done) {
-    src([bs_custom_file_input_dist_path])
+    src([bs_custom_file_input_dist_path], {since: lastRun(copy_bs_custom_file_input)})
         .pipe(dest(static_js));
     done();
 }
 
 function copy_dayjs(done) {
-    src([dayjs_min_js_path, dayjs_locale_zh_cn_js_path])
+    src([dayjs_min_js_path, dayjs_locale_zh_cn_js_path], {since: lastRun(copy_dayjs)})
         .pipe(concat(concat_after_file_name))
         .pipe(dest(static_js));
     done();
 }
 
 function copy_clipboard(done) {
-    src([clipboard_min_js_path])
+    src([clipboard_min_js_path], {since: lastRun(copy_clipboard)})
         .pipe(dest(static_js));
     done();
 }
 
 function copy_qrcode(done) {
-    // src([qrcode_js_path, qrcode_min_js_path, qrcode_min_js_map_path, qrcode_tosjis_js_path, qrcode_tosjis_min_js_path, qrcode_tosjis_min_js_map_path])
-    // src([qrcode_build_js_path,qrcode_build_map_path])
-    src([qrcode_build_path])
+    src([qrcode_build_path], {since: lastRun(copy_qrcode)})
         .pipe(dest(static_js));
     done();
 }
 
 function copy_bootstrap(done) {
-    src([bootstrap_js_path, bootstrap_min_js_path, bootstrap_js_map_path, bootstrap_min_js_map_path])
+    src([bootstrap_js_path, bootstrap_min_js_path, bootstrap_js_map_path, bootstrap_min_js_map_path], {since: lastRun(copy_bootstrap)})
         .pipe(dest(static_js));
-    src([bootstrap_css_path, bootstrap_min_css_path, bootstrap_css_map_path, bootstrap_min_css_map])
+    src([bootstrap_css_path, bootstrap_min_css_path, bootstrap_css_map_path, bootstrap_min_css_map], {since: lastRun(copy_bootstrap)})
         .pipe(dest(static_css));
     done();
 }
 
 function copy_animate_css(done) {
-    src([animate_css_path, animate_min_css_path])
+    src([animate_css_path, animate_min_css_path], {since: lastRun(copy_animate_css)})
         .pipe(dest(static_css));
     done();
 }
 
 function copy_hamburgers_css(done) {
-    src([hamburgers_css_path, hamburgers_min_css_path])
+    src([hamburgers_css_path, hamburgers_min_css_path], {since: lastRun(copy_hamburgers_css)})
         .pipe(dest(static_css));
     done();
 }
 
 function copy_popper(done) {
-    src([popper_js_path, popper_min_js_path, popper_js_map_path, popper_min_js_map_path])
-        .pipe(dest(static_js));
-    done();
-}
-
-function copy_bootstrap_toasts_js(done) {
-    src([bootstrap_toasts_js_path, bootstrap_toasts_min_js_path])
+    src([popper_js_path, popper_min_js_path, popper_js_map_path, popper_min_js_map_path], {since: lastRun(copy_popper)})
         .pipe(dest(static_js));
     done();
 }
 
 function copy_jquery(done) {
-    src([jquery_js_path, jquery_min_js_path])
+    src([jquery_js_path, jquery_min_js_path], {since: lastRun(copy_jquery)})
         .pipe(dest(static_js));
     done();
 }
 
 function copy_js_cookie(done) {
-    src([js_cookie_min_js_path, js_cookie_min_mjs_path])
+    src([js_cookie_min_js_path, js_cookie_min_mjs_path], {since: lastRun(copy_js_cookie)})
         .pipe(dest(static_js));
     done();
 }
 
 function copy_vue(done) {
-    src([vue_js_path, vue_min_js_path])
+    src([vue_js_path, vue_min_js_path], {since: lastRun(copy_vue)})
         .pipe(dest(static_js));
     done();
 }
 
 function copy_video(done) {
-    src([video_js_path, video_min_js_path])
+    src([video_js_path, video_min_js_path], {since: lastRun(copy_video)})
         .pipe(dest(static_js));
-    src([video_lang_js_path])
+    src([video_lang_js_path], {since: lastRun(copy_video)})
         .pipe(rename({
             prefix: "video."
         }))
         .pipe(dest(static_js));
-    src([video_css_path, video_min_css_path])
+    src([video_css_path, video_min_css_path], {since: lastRun(copy_video)})
         .pipe(dest(static_css));
     done();
 }
 
 function copy_viewerjs(done) {
-    src([viewerjs_min_js_path])
+    src([viewerjs_min_js_path], {since: lastRun(copy_viewerjs)})
         .pipe(dest(static_js));
-    src([viewerjs_min_css_path])
+    src([viewerjs_min_css_path], {since: lastRun(copy_viewerjs)})
         .pipe(dest(static_css));
     done();
 }
 
+function copy_bootstrap_toasts_js(done) {
+    src([bootstrap_toasts_js_path, bootstrap_toasts_min_js_path], {since: lastRun(copy_bootstrap_toasts_js)})
+        .pipe(dest(static_js));
+    done();
+}
+
 function copy_canvas_nest(done) {
-    src([canvas_nest_umd_js_path])
+    src([canvas_nest_umd_js_path], {since: lastRun(copy_canvas_nest)})
         .pipe(dest(static_js));
     done();
 }
 
 function copy_bowser(done) {
-    src([bowser_es5_js_path, bowser_bundled_js_path])
+    src([bowser_es5_js_path, bowser_bundled_js_path], {since: lastRun(copy_bowser)})
         .pipe(dest(static_path + "/js/bowser/"));
     src([bowser_src_path])
         .pipe(dest(static_path + "/js/bowser/src"));
     done();
 }
 
+function copy_lazyload(done) {
+    src([lazyload_js_path, lazyload_min_js_path, lazyload_min_js_map_path], {since: lastRun(copy_lazyload)})
+        .pipe(dest(static_js));
+    done();
+}
+
 function copy_lax(done) {
-    src([lax_js_path, lax_min_js_path])
+    src([lax_js_path, lax_min_js_path], {since: lastRun(copy_lax)})
         .pipe(dest(static_js));
     done();
 }
