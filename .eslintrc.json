@@ -1,0 +1,31 @@
+{
+    "env": {
+        "browser": true,
+        "jquery": true,
+        "es6": true
+    },
+    "extends": [
+        "eslint:recommended",
+        "google"
+    ],
+    "globals": {
+        "Atomics": "readonly",
+        "SharedArrayBuffer": "readonly",
+        "grecaptcha": "readonly",
+        "ClipboardJS": "readonly",
+        "bootstrapModalJs": "readonly",
+        "dayjs": "readonly",
+        "fundebug": "readonly",
+        "QRCode": "readonly",
+        "set_cookie": "readonly",
+        "get_cookie": "readonly",
+        "remove_cookie": "readonly",
+        "RegExp_rules": "readonly"
+    },
+    "parserOptions": {
+        "ecmaVersion": 2018
+    },
+    "rules": {
+        "no-unused-vars": 0
+    }
+}

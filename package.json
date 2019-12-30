@@ -28,6 +28,7 @@
     "default": "",
     "build": "npm i && npm run build_static",
     "watch": "npm run watch_static",
+    "lint_tools_static_src/js": "npx eslint tools_static_src/js",
     "copy": "gulp add_footer copy",
     "minimize_local_static": "gulp minimize_local_static",
     "build_static": "gulp build_static",
@@ -64,8 +65,8 @@
     "qrcode": "^1.4.4"
   },
   "engines": {
-    "node": ">=12.0",
-    "npm": ">=6.10"
+    "node": "^10.18.0 || ^12.14.0 || ^13.4.0",
+    "npm": "^6.13.4"
   },
   "os": [],
   "cpu": []
