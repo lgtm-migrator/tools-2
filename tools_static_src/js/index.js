@@ -47,3 +47,37 @@ function cards_remove_shadow() {
         if (target.classList.contains("card")) remove_shadow(e);
     }, true);
 }
+
+
+/** 分类列表导航 **/
+let jt_category = document.querySelector("#jt_category");
+let jt_category_btn = jt_category.querySelectorAll("button");
+
+jt_category.addEventListener("click", function (e) {
+    jt_category_(e);
+});
+
+function jt_category_(e) {
+    let id = e.target.id;
+    for (let x = jt_category_btn.length, i = 0; i < x; i++) {
+        if (jt_category_btn[i].id !== id) {
+            jt_category_btn[i].classList.remove("active");
+        } else {
+            jt_category_btn[i].classList.add("active");
+        }
+    }
+    if (id !== "all") {
+        let all_tab_pane = document.querySelectorAll("#jt_list>[class*='tab_pane-']");
+        for (let index in all_tab_pane) {
+            if (all_tab_pane.hasOwnProperty(index)) if (all_tab_pane[index].classList.contains("active")) all_tab_pane[index].classList.remove("active", "show");
+        }
+        $("#jt_list>.tab_pane-" + id).tab("show");
+    } else {
+        $("#jt_list>[class*=tab_pane-]").tab("show");
+    }
+}
+
+// $("#jt_category button").on('shown.bs.tab', function (e) {
+//     console.log(e.target);
+//     console.log(e.relatedTarget);
+// });
