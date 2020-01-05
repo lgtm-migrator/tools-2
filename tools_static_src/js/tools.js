@@ -355,19 +355,19 @@ $().ready(function () {
 
     for (let x = btn_all.length, i = 0; i < x; i++) {
         btn_all[i].addEventListener("mouseover", function (e) {
-            add_shadow(e);
+            add_shadow(e.target);
         });
         btn_all[i].addEventListener("mouseout", function (e) {
-            remove_shadow(e);
+            remove_shadow(e.target);
         });
     }
 
     for (let x = input_all.length, i = 0; i < x; i++) {
         input_all[i].addEventListener("focus", function (e) {
-            add_shadow(e);
+            add_shadow(e.target);
         });
         input_all[i].addEventListener("blur", function (e) {
-            remove_shadow(e);
+            remove_shadow(e.target);
         });
     }
 
@@ -375,26 +375,26 @@ $().ready(function () {
 
 function add_shadow(e, size = "") {
     if (size === "") {
-        e.target.classList.add("shadow");
+        e.classList.add("shadow");
     } else if (size === "sm") {
-        e.target.classList.add("shadow-sm");
+        e.classList.add("shadow-sm");
     } else if (size === "lg") {
-        e.target.classList.add("shadow-lg");
+        e.classList.add("shadow-lg");
     }
 }
 
 function remove_shadow(e, size = "") {
     if (size === "") {
-        e.target.classList.remove("shadow");
+        e.classList.remove("shadow");
     } else if (size === "sm") {
-        e.target.classList.remove("shadow-sm");
+        e.classList.remove("shadow-sm");
     } else if (size === "lg") {
-        e.target.classList.remove("shadow-lg");
+        e.classList.remove("shadow-lg");
     }
 }
 
 function cursor_pointer(e) {
-    e.target.style.cursor = "pointer";
+    e.style.cursor = "pointer";
 }
 
 function get_href_url(target, class_name) {

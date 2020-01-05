@@ -32,8 +32,8 @@ function cards_add_shadow() {
     jt_list.addEventListener("mouseenter", function (e) {
         let target = e.target;
         if (target.classList.contains("card")) {
-            add_shadow(e);
-            cursor_pointer(e);
+            add_shadow(target);
+            cursor_pointer(target);
             target.addEventListener("click", function () {
                 location.href = `${get_href_url(target, "category_link")}`;
             }, {once: true});
@@ -44,7 +44,7 @@ function cards_add_shadow() {
 function cards_remove_shadow() {
     jt_list.addEventListener("mouseleave", function (e) {
         let target = e.target;
-        if (target.classList.contains("card")) remove_shadow(e);
+        if (target.classList.contains("card")) remove_shadow(target);
     }, true);
 }
 

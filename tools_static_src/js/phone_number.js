@@ -388,14 +388,14 @@ function input_shadow() {
 function input_form_control_add_shadow(e) {
     let target = e.target;
     if (target.classList.contains("form-control")) {
-        add_shadow(e);
+        add_shadow(target);
     }
 }
 
 function input_form_control_remove_shadow(e) {
     let target = e.target;
     if (target.classList.contains("form-control")) {
-        remove_shadow(e);
+        remove_shadow(target);
     }
 }
 
