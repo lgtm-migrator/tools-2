@@ -5,8 +5,8 @@ require_once './header.php';
 <link rel="stylesheet" href="tools_static/css/index.min.css">
 
 <div class="container" id="jt_index">
-    <div class="mb-3 btn-toolbar justify-content-center" id="jt_category">
-        <div class="btn-group btn-group-sm">
+    <div class="mb-3 d-flex justify-content-center" id="jt_category">
+        <div class="btn-group btn-group-sm mx-auto">
             <a class="btn border btn-outline-secondary active" id="all">所有</a>
             <a class="btn border btn-outline-secondary" id="enquiry">查询</a>
             <a class="btn border btn-outline-secondary" id="other">其他</a>

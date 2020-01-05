@@ -54,11 +54,13 @@ let jt_category = document.querySelector("#jt_category");
 let jt_category_btn = jt_category.querySelectorAll(".btn");
 
 jt_category.addEventListener("click", function (e) {
-    jt_category_(e);
+    let target = e.target;
+    if (target.classList.contains("btn")) jt_category_(target);
 });
 
 function jt_category_(e) {
-    let id = e.target.id;
+    let id = e.id;
+    let classList = e.classList;
     for (let x = jt_category_btn.length, i = 0; i < x; i++) {
         if (jt_category_btn[i].id !== id) {
             jt_category_btn[i].classList.remove("active");
@@ -66,7 +68,7 @@ function jt_category_(e) {
             jt_category_btn[i].classList.add("active");
         }
     }
-    if (id !== "all") {
+    if (id !== "all" && classList.contains("btn")) {
         let all_tab_pane = document.querySelectorAll("#jt_list>[class*='tab_pane-']");
         for (let index in all_tab_pane) {
             if (all_tab_pane.hasOwnProperty(index)) if (all_tab_pane[index].classList.contains("active")) all_tab_pane[index].classList.remove("active", "show");
