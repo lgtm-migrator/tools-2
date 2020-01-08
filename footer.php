@@ -8,7 +8,7 @@
             <i class="fa-2x fa-fw fas fa-arrow-up"></i>
         </a>
     </div>
-    <div class="container small text-white-50" id="footer_x"></div>
+    <div class="container text-center small text-white-50" id="footer_x"></div>
 </div>
 </div><!--id=body-->
 </body>

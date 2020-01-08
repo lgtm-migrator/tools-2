@@ -241,6 +241,26 @@ function footer_recaptcha_text_badge() {
     footer_x.appendChild(div);
 }
 
+/** ICP备案号 **/
+$().ready(function () {
+    page_icp_no();
+});
+
+function page_icp_no() {
+    let footer_x = document.querySelector("#footer_x");
+    let a = document.createElement("a");
+
+    a.className = "small text-reset text-decoration-none";
+    a.href = "http://www.beian.miit.gov.cn/";
+    a.target = "_blank";
+    a.rel = "noreferrer nofollow";
+    a.style.fontSize = "75%";
+    a.title = "ICP备案号";
+    a.innerHTML = "冀ICP备12018851号-2";
+
+    footer_x.appendChild(a);
+}
+
 /** 页脚二维码 **/
 $().ready(function () {
     page_qr_code();
