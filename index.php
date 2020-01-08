@@ -7,9 +7,9 @@ require_once './header.php';
 <div class="container" id="jt_index">
     <div class="mb-3 d-flex justify-content-center" id="jt_category">
         <div class="btn-group btn-group-sm mx-auto">
-            <a class="btn border btn-outline-secondary active" id="all">所有</a>
-            <a class="btn border btn-outline-secondary" id="enquiry">查询</a>
-            <a class="btn border btn-outline-secondary" id="other">其他</a>
+            <a class="btn border btn-outline-secondary active" id="tools-collapse">所有</a>
+            <a class="btn border btn-outline-secondary" id="collapse-enquiry">查询</a>
+            <a class="btn border btn-outline-secondary" id="collapse-other">其他</a>
         </div>
     </div>
     <div class="row justify-content-center row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5"
