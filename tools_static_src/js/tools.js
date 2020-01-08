@@ -202,7 +202,7 @@ $().ready(function () {
 function footer_current_time() {
     let footer_x = document.querySelector("#footer_x");
     let span = document.createElement("span");
-    span.className = "my-2 d-block text-nowrap text-center";
+    span.className = "my-2 d-block text-nowrap";
     span.id = "current_time";
     span.innerHTML = "&nbsp;";
     footer_x.appendChild(span);
@@ -216,7 +216,7 @@ function footer_recaptcha_text_badge() {
     let a_1 = document.createElement("a");
     let a_2 = document.createElement("a");
 
-    div.className = "my-2 d-block text-nowrap text-center";
+    div.className = "my-2 d-block text-nowrap";
     div.id = "recaptcha_text_badge";
 
     span_1.innerHTML = "由&nbsp;reCAPTCHA&nbsp;提供保护，并适用Google";
@@ -274,7 +274,7 @@ function page_qr_code() {
     let i = document.createElement("i");
     let canvas = document.createElement("canvas");
 
-    div.className = "my-2 text-center";
+    div.className = "my-2";
     div.id = "current_page_QR_code";
 
     span.className = "text-light";
