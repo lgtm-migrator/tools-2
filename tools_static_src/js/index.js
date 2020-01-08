@@ -69,17 +69,12 @@ function jt_category_(e) {
         }
     }
     if (id !== "all" && classList.contains("btn")) {
-        let all_tab_pane = document.querySelectorAll("#jt_list>[class*='tab_pane-']");
-        for (let index in all_tab_pane) {
-            if (all_tab_pane.hasOwnProperty(index)) if (all_tab_pane[index].classList.contains("active")) all_tab_pane[index].classList.remove("active", "show");
+        let all_collapse = document.querySelectorAll("#jt_list>[class*='collapse-']");
+        for (let index in all_collapse) {
+            if (all_collapse.hasOwnProperty(index)) if (all_collapse[index].classList.contains("show")) all_collapse[index].classList.remove("show");
         }
-        $("#jt_list>.tab_pane-" + id).tab("show");
+        $("#jt_list>.collapse-" + id).collapse("show");
     } else {
-        $("#jt_list>[class*=tab_pane-]").tab("show");
+        $("#jt_list .tools-collapse").collapse("show");
     }
 }
-
-// $("#jt_category button").on('shown.bs.tab', function (e) {
-//     console.log(e.target);
-//     console.log(e.relatedTarget);
-// });
