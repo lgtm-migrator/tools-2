@@ -202,7 +202,7 @@ $().ready(function () {
 function footer_current_time() {
     let footer_x = document.querySelector("#footer_x");
     let span = document.createElement("span");
-    span.className = "my-2 d-block text-nowrap text-center";
+    span.className = "my-2 d-block text-nowrap";
     span.id = "current_time";
     span.innerHTML = "&nbsp;";
     footer_x.appendChild(span);
@@ -216,7 +216,7 @@ function footer_recaptcha_text_badge() {
     let a_1 = document.createElement("a");
     let a_2 = document.createElement("a");
 
-    div.className = "my-2 d-block text-nowrap text-center";
+    div.className = "my-2 d-block text-nowrap";
     div.id = "recaptcha_text_badge";
 
     span_1.innerHTML = "由&nbsp;reCAPTCHA&nbsp;提供保护，并适用Google";
@@ -241,6 +241,26 @@ function footer_recaptcha_text_badge() {
     footer_x.appendChild(div);
 }
 
+/** ICP备案号 **/
+$().ready(function () {
+    page_icp_no();
+});
+
+function page_icp_no() {
+    let footer_x = document.querySelector("#footer_x");
+    let a = document.createElement("a");
+
+    a.className = "small text-reset text-decoration-none";
+    a.href = "http://www.beian.miit.gov.cn/";
+    a.target = "_blank";
+    a.rel = "noreferrer nofollow";
+    a.style.fontSize = "75%";
+    a.title = "ICP备案号";
+    a.innerHTML = "冀ICP备12018851号-7";
+
+    footer_x.appendChild(a);
+}
+
 /** 页脚二维码 **/
 $().ready(function () {
     page_qr_code();
@@ -254,7 +274,7 @@ function page_qr_code() {
     let i = document.createElement("i");
     let canvas = document.createElement("canvas");
 
-    div.className = "my-2 text-center";
+    div.className = "my-2";
     div.id = "current_page_QR_code";
 
     span.className = "text-light";
@@ -478,7 +498,6 @@ function bootstrapModalJs_alert(alert_array = {}) {
 $().ready(function () {
     setTimeout(function () {
         if (document.location.host !== "tools.jzeg.org" &&
-            document.location.host !== "118.190.26.200" &&
             document.location.host !== "tools.jzeg.net") {
             if (fundebug) fundebug.notify("发现镜像", document.location.href, {
                 metaData: {
@@ -486,7 +505,7 @@ $().ready(function () {
                 }
             });
             setTimeout(function () {
-                location.href = location.href.replace(document.location.host, 'tools.jzeg.org');
+                location.href = location.href.replace(document.location.host, 'tools.jzeg.net');
             }, 3000);
         }
     }, 1000);

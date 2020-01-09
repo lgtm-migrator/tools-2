@@ -38,7 +38,7 @@
 <div id="body" hidden>
     <div class="mb-3 mb-lg-4 bg-white" id="jt_header">
         <div class="py-1 py-lg-2 container" id="logo">
-            <a class="text-decoration-none" href="/index.php" title="在线小工具">
+            <a class="text-decoration-none" href="/" title="在线小工具">
                 <span class="mr-1 logo-img"><i class="mb-0 text-warning h4 fa-fw fas fa-tools"></i></span>
                 <span class="logo-name"><h1 class="mb-0 d-inline text-info h5">在线小工具</h1></span>
             </a>
