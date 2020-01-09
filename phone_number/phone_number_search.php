@@ -17,7 +17,7 @@ require_once "../mysqli/mysqli.php";
 
 $db->connection("phone_number_search");
 $db->Where("static", $static);
-$db->Where("regional", $regional);
+//$db->Where("regional", $regional);
 
 switch ($search_type) {
     case "number":

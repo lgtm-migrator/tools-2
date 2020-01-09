@@ -7,4 +7,4 @@
 <script src="/static/js/bootstrap-modal-js.min.js"></script>
 <script src="/static/js/bs-custom-file-input.min.js"></script>
 <script src="/static/js/qrcode.min.js"></script>
-<script src="/tools_static/js/tools.min.js"></script>
+<script src="/static/js/tools.min.js"></script>

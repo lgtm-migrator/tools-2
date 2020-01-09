@@ -1,4 +1,17 @@
 <?php
+require_once "config/defined.php";
+require_once "config/functions.php";
+if(!file_exists(SESSION_DIR_YMD)){
+    mk_dir(SESSION_DIR_YMD);
+}
+session_save_path(SESSION_DIR_YMD);
+
+$cookie_params = array(
+    "httponly" => true,
+    "secure" => true
+);
+session_set_cookie_params($cookie_params);
+session_start();
 ?>
 <!DOCTYPE html>
 <html lang="zh-CN">
@@ -17,7 +30,7 @@
     <link rel="stylesheet" href="/static/css/animate.min.css">
     <link rel="stylesheet" href="/static/css/hamburgers.min.css">
     <link rel="stylesheet" href="/static/font/css/all.min.css">
-    <link rel="stylesheet" href="/tools_static/css/tools.min.css">
+    <link rel="stylesheet" href="/static/css/tools.min.css">
 
     <noscript>
         <div class="container mx-auto" style="cursor: pointer;">
@@ -43,7 +56,7 @@
                 <span class="logo-name"><h1 class="mb-0 d-inline text-info h5">在线小工具</h1></span>
             </a>
             <span class="py-1 position-relative badge badge-pill badge-danger"
-                  style="bottom:10px;font-size: 75%;">测试版</span>
+                  style="bottom:10px;font-size: 75%;">测试版不保存数据 欢迎反馈</span>
         </div>
         <div class="border-bottom"></div>
     </div>

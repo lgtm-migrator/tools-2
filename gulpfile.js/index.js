@@ -90,9 +90,6 @@ const
     tools_static_src_path = "./tools_static_src/",
     tools_static_src_js = tools_static_src_path + "js/",
     tools_static_src_css = tools_static_src_path + "css/",
-    tools_static_path = "./tools_static/",
-    tools_static_js = tools_static_path + "js/",
-    tools_static_css = tools_static_path + "css/",
     /** tools **/
     tools_js_path = tools_static_src_js + "tools.js",
     tools_css_path = tools_static_src_css + "tools.css",
@@ -199,85 +196,85 @@ task("build_static",
 //Tasks function
 function terser_tools_js(done) {
     src([tools_js_path], {since: lastRun(terser_tools_js)})
-        .pipe(dest(tools_static_js));
+        .pipe(dest(static_js));
     src([tools_js_path], {since: lastRun(terser_tools_js)})
         .pipe(terser())
         .pipe(rename({suffix: ".min"}))
-        .pipe(dest(tools_static_js));
+        .pipe(dest(static_js));
     done();
 }
 
 function terser_index_js(done) {
     src([index_js_path], {since: lastRun(terser_index_js)})
-        .pipe(dest(tools_static_js));
+        .pipe(dest(static_js));
     src([index_js_path], {since: lastRun(terser_index_js)})
         .pipe(terser())
         .pipe(rename({suffix: ".min"}))
-        .pipe(dest(tools_static_js));
+        .pipe(dest(static_js));
     done();
 }
 
 function terser_phone_number_js(done) {
     src([phone_number_js_path], {since: lastRun(terser_phone_number_js)})
-        .pipe(dest(tools_static_js));
+        .pipe(dest(static_js));
     src([phone_number_js_path], {since: lastRun(terser_phone_number_js)})
         .pipe(terser())
         .pipe(rename({suffix: ".min"}))
-        .pipe(dest(tools_static_js));
+        .pipe(dest(static_js));
     done();
 }
 
 function terser_photo_info_js(done) {
     src([photo_info_js_path], {since: lastRun(terser_photo_info_js)})
-        .pipe(dest(tools_static_js));
+        .pipe(dest(static_js));
     src([photo_info_js_path], {since: lastRun(terser_photo_info_js)})
         .pipe(terser())
         .pipe(rename({suffix: ".min"}))
-        .pipe(dest(tools_static_js));
+        .pipe(dest(static_js));
     done();
 }
 
 function cleanCSS_tools_css(done) {
     src([tools_css_path], {since: lastRun(cleanCSS_tools_css)})
-        .pipe(dest(tools_static_css));
+        .pipe(dest(static_css));
     src([tools_css_path], {since: lastRun(cleanCSS_tools_css)})
         .pipe(postcss([autoPreFixer()]))
         .pipe(cleanCSS())
         .pipe(rename({suffix: ".min"}))
-        .pipe(dest(tools_static_css));
+        .pipe(dest(static_css));
     done();
 }
 
 function cleanCSS_index_css(done) {
     src([index_css_path], {since: lastRun(cleanCSS_index_css)})
-        .pipe(dest(tools_static_css));
+        .pipe(dest(static_css));
     src([index_css_path], {since: lastRun(cleanCSS_index_css)})
         .pipe(postcss([autoPreFixer()]))
         .pipe(cleanCSS())
         .pipe(rename({suffix: ".min"}))
-        .pipe(dest(tools_static_css));
+        .pipe(dest(static_css));
     done();
 }
 
 function cleanCSS_phone_number_css(done) {
     src([phone_number_css_path], {since: lastRun(cleanCSS_phone_number_css)})
-        .pipe(dest(tools_static_css));
+        .pipe(dest(static_css));
     src([phone_number_css_path], {since: lastRun(cleanCSS_phone_number_css)})
         .pipe(postcss([autoPreFixer()]))
         .pipe(cleanCSS())
         .pipe(rename({suffix: ".min"}))
-        .pipe(dest(tools_static_css));
+        .pipe(dest(static_css));
     done();
 }
 
 function cleanCSS_photo_info_css(done) {
     src([photo_info_css_path], {since: lastRun(cleanCSS_photo_info_css)})
-        .pipe(dest(tools_static_css));
+        .pipe(dest(static_css));
     src([photo_info_css_path], {since: lastRun(cleanCSS_photo_info_css)})
         .pipe(postcss([autoPreFixer()]))
         .pipe(cleanCSS())
         .pipe(rename({suffix: ".min"}))
-        .pipe(dest(tools_static_css));
+        .pipe(dest(static_css));
     done();
 }
 

@@ -17,13 +17,8 @@ if ($_POST) {
     custom_header_404();
 }
 
-function custom_header_404($Context = 'No input file specified.')
-{
-    header('HTTP/1.1 404 Not Found');
-    die($Context);
-}
-
 require_once dirname(__DIR__) . "/config/defined.php";
+require_once dirname(__DIR__) . "/config/functions.php";
 require_once "photo_info_fun.php";
 
 $allowed_extension_name = array("jfif", "pjpeg", "jpeg", "pjp", "jpg", "tiff", "tif");

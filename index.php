@@ -2,7 +2,7 @@
 define('title', '在线小工具');
 require_once './header.php';
 ?>
-<link rel="stylesheet" href="tools_static/css/index.min.css">
+<link rel="stylesheet" href="static/css/index.min.css">
 
 <div class="container" id="jt_index">
     <div class="mb-3 d-flex justify-content-center" id="jt_category">
@@ -46,7 +46,7 @@ require_once './header.php';
 
 <div>
     <?php require_once "javascript.php"; ?>
-    <script src="tools_static/js/index.min.js"></script>
+    <script src="static/js/index.min.js"></script>
 </div>
 
 <?php

@@ -1,5 +1,4 @@
 <?php
-
 if ($_POST) {
     require_once "phone_number.php";
     die();
@@ -8,7 +7,7 @@ if ($_POST) {
 define('title', '公共电话本');
 require_once '../header.php';
 ?>
-    <link rel="stylesheet" href="/tools_static/css/phone_number.min.css">
+    <link rel="stylesheet" href="/static/css/phone_number.min.css">
 
     <div class="container mt-5" id="jt_container">
         <div class="form-row justify-content-center">
@@ -38,25 +37,22 @@ require_once '../header.php';
 
     <div class="container mt-5">
         <div class="px-4 py-3 border border-info rounded fade d-none" id="add_phone_number_form">
-            <div class="container mb-5 mb-sm-4 mb-md-3 sr-only" id="regional">
+            <div class="container mb-5 mb-sm-4 mb-md-3" id="regional">
                 <div class="custom-control custom-radio custom-control-inline">
                     <input type="radio" id="regional_xm" name="regional" value="xm" class="custom-control-input"
                            checked>
                     <label class="custom-control-label" for="regional_xm">邢煤</label>
                 </div>
                 <div class="custom-control custom-radio custom-control-inline">
-                    <input type="radio" id="regional_gq" name="regional" value="gq" class="custom-control-input"
-                           disabled>
+                    <input type="radio" id="regional_gq" name="regional" value="gq" class="custom-control-input">
                     <label class="custom-control-label" for="regional_gq">葛泉</label>
                 </div>
                 <div class="custom-control custom-radio custom-control-inline">
-                    <input type="radio" id="regional_dp" name="regional" value="dp" class="custom-control-input"
-                           disabled>
+                    <input type="radio" id="regional_dp" name="regional" value="dp" class="custom-control-input">
                     <label class="custom-control-label" for="regional_dp">东庞</label>
                 </div>
                 <div class="custom-control custom-radio custom-control-inline">
-                    <input type="radio" id="regional_xdw" name="regional" value="xdw" class="custom-control-input"
-                           disabled>
+                    <input type="radio" id="regional_xdw" name="regional" value="xdw" class="custom-control-input">
                     <label class="custom-control-label" for="regional_xdw">显德旺</label>
                 </div>
             </div>
@@ -69,10 +65,8 @@ require_once '../header.php';
 
     <div>
         <?php require_once dirname(__DIR__) . "/javascript.php"; ?>
-        <script src="/tools_static/js/phone_number.min.js"></script>
+        <script src="/static/js/phone_number.min.js"></script>
     </div>
-
-
 <?php
 require_once '../footer.php';
 ?>
