@@ -56,7 +56,7 @@ session_start();
                 <span class="logo-name"><h1 class="mb-0 d-inline text-info h5">在线小工具</h1></span>
             </a>
             <span class="py-1 position-relative badge badge-pill badge-danger"
-                  style="bottom:10px;font-size: 75%;">测试版</span>
+                  style="bottom:10px;font-size: 75%;">测试版不保存数据 欢迎反馈</span>
         </div>
         <div class="border-bottom"></div>
     </div>
