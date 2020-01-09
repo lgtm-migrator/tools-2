@@ -498,7 +498,6 @@ function bootstrapModalJs_alert(alert_array = {}) {
 $().ready(function () {
     setTimeout(function () {
         if (document.location.host !== "tools.jzeg.org" &&
-            document.location.host !== "118.190.26.200" &&
             document.location.host !== "tools.jzeg.net") {
             if (fundebug) fundebug.notify("发现镜像", document.location.href, {
                 metaData: {
@@ -506,7 +505,7 @@ $().ready(function () {
                 }
             });
             setTimeout(function () {
-                location.href = location.href.replace(document.location.host, 'tools.jzeg.org');
+                location.href = location.href.replace(document.location.host, 'tools.jzeg.net');
             }, 3000);
         }
     }, 1000);
