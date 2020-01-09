@@ -17,7 +17,7 @@
     <link rel="stylesheet" href="/static/css/animate.min.css">
     <link rel="stylesheet" href="/static/css/hamburgers.min.css">
     <link rel="stylesheet" href="/static/font/css/all.min.css">
-    <link rel="stylesheet" href="/tools_static/css/tools.min.css">
+    <link rel="stylesheet" href="/static/css/tools.min.css">
 
     <noscript>
         <div class="container mx-auto" style="cursor: pointer;">

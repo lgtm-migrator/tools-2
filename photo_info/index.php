@@ -8,7 +8,7 @@ if ($_POST) {
 define('title', '照片详情信息');
 require_once '../header.php';
 ?>
-<link rel="stylesheet" href="/tools_static/css/photo_info.min.css">
+<link rel="stylesheet" href="/static/css/photo_info.min.css">
 
 <div class="container mt-5" id="jt_container">
     <div class="mb-3 form-row justify-content-center">

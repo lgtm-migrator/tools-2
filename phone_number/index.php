@@ -8,7 +8,7 @@ if ($_POST) {
 define('title', '公共电话本');
 require_once '../header.php';
 ?>
-    <link rel="stylesheet" href="/tools_static/css/phone_number.min.css">
+    <link rel="stylesheet" href="/static/css/phone_number.min.css">
 
     <div class="container mt-5" id="jt_container">
         <div class="form-row justify-content-center">
