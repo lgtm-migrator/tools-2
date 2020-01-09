@@ -256,7 +256,7 @@ function page_icp_no() {
     a.rel = "noreferrer nofollow";
     a.style.fontSize = "75%";
     a.title = "ICP备案号";
-    a.innerHTML = "冀ICP备12018851号-2";
+    a.innerHTML = "冀ICP备12018851号-7";
 
     footer_x.appendChild(a);
 }
