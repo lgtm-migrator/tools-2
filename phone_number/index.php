@@ -1,5 +1,4 @@
 <?php
-
 if ($_POST) {
     require_once "phone_number.php";
     die();
@@ -71,8 +70,6 @@ require_once '../header.php';
         <?php require_once dirname(__DIR__) . "/javascript.php"; ?>
         <script src="/static/js/phone_number.min.js"></script>
     </div>
-
-
 <?php
 require_once '../footer.php';
 ?>
