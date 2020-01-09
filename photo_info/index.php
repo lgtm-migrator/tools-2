@@ -53,7 +53,7 @@ require_once '../header.php';
 
 <div>
     <?php require_once dirname(__DIR__) . "/javascript.php"; ?>
-    <script src="/tools_static/js/photo_info.min.js"></script>
+    <script src="/static/js/photo_info.min.js"></script>
 </div>
 
 <?php
