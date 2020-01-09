@@ -1,4 +1,17 @@
 <?php
+require_once "config/defined.php";
+require_once "config/functions.php";
+if(!file_exists(SESSION_DIR_YMD)){
+    mk_dir(SESSION_DIR_YMD);
+}
+session_save_path(SESSION_DIR_YMD);
+
+$cookie_params = array(
+    "httponly" => true,
+    "secure" => true
+);
+session_set_cookie_params($cookie_params);
+session_start();
 ?>
 <!DOCTYPE html>
 <html lang="zh-CN">
