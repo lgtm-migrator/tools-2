@@ -15,7 +15,7 @@ $().ready(function () {
 
     function set_cookie_survey() {
         let attributes = {
-            expires: 1,
+            expires: 0.01,
         };
         set_cookie("survey", "1", attributes);
     }
