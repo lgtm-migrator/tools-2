@@ -199,10 +199,19 @@ $().ready(function () {
     footer_current_time();
 });
 
+/** 页脚时间 **/
+$().ready(function () {
+    let current_time = document.body.querySelector("#current_time");
+    dayjs.locale("zh-cn");
+    setInterval(function () {
+        current_time.innerHTML = dayjs().format("YYYY年M月D日 dddA H点mm分s秒");
+    }, 1000);
+});
+
 function footer_current_time() {
     let footer_x = document.querySelector("#footer_x");
     let span = document.createElement("span");
-    span.className = "my-2 d-block text-nowrap";
+    span.className = "my-2 d-block text-nowrap small";
     span.id = "current_time";
     span.innerHTML = "&nbsp;";
     footer_x.appendChild(span);
@@ -216,7 +225,7 @@ function footer_recaptcha_text_badge() {
     let a_1 = document.createElement("a");
     let a_2 = document.createElement("a");
 
-    div.className = "my-2 d-block text-nowrap";
+    div.className = "my-2 d-block small text-nowrap";
     div.id = "recaptcha_text_badge";
 
     span_1.innerHTML = "由&nbsp;reCAPTCHA&nbsp;提供保护，并适用Google";
@@ -278,7 +287,7 @@ function page_qr_code() {
     div.id = "current_page_QR_code";
 
     span.className = "text-light";
-    span.title = "点击查看当前页面二维码";
+    span.title = "当前页面二维码";
     span.style.cursor = "pointer";
 
     i.className = "fa-2x fa-fw fas fa-qrcode";
@@ -423,15 +432,6 @@ function get_href_url(target, class_name) {
         return a.href;
     }
 }
-
-/** 页脚时间 **/
-$().ready(function () {
-    let current_time = document.body.querySelector("#current_time");
-    dayjs.locale("zh-cn");
-    setInterval(function () {
-        current_time.innerHTML = dayjs().format("YYYY年M月D日 dddA H点mm分s秒");
-    }, 1000);
-});
 
 /** localStorage **/
 if (localStorage && (
