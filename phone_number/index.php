@@ -37,25 +37,6 @@ require_once '../header.php';
 
     <div class="container mt-5">
         <div class="px-4 py-3 border border-info rounded fade d-none" id="add_phone_number_form">
-            <div class="row container no-gutters justify-content-center mb-3 mb-sm-4 mb-md-4 row-cols-2 row-cols-sm-4" id="regional">
-                <div class="mb-2 mb-sm-0 custom-control custom-radio">
-                    <input type="radio" id="regional_xm" name="regional" value="xm" class="custom-control-input"
-                           checked>
-                    <label class="custom-control-label" for="regional_xm">邢煤</label>
-                </div>
-                <div class="mb-2 mb-sm-0 custom-control custom-radio">
-                    <input type="radio" id="regional_gq" name="regional" value="gq" class="custom-control-input">
-                    <label class="custom-control-label" for="regional_gq">葛泉</label>
-                </div>
-                <div class="mb-2 mb-sm-0 custom-control custom-radio">
-                    <input type="radio" id="regional_dp" name="regional" value="dp" class="custom-control-input">
-                    <label class="custom-control-label" for="regional_dp">东庞</label>
-                </div>
-                <div class="mb-2 mb-sm-0 custom-control custom-radio">
-                    <input type="radio" id="regional_xdw" name="regional" value="xdw" class="custom-control-input">
-                    <label class="custom-control-label" for="regional_xdw">显德旺</label>
-                </div>
-            </div>
             <div class="my-2 text-center" id="number_submit">
                 <button class="btn btn-primary" id="phone_number_submit">提交新号码</button>
             </div>
