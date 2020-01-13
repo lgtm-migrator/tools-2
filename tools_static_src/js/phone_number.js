@@ -241,8 +241,8 @@ function create_regional() {
   let regionOptions = {
     'dp': '东庞',
     'gq': '葛泉',
-    'xm': '邢煤',
     'xdw': '显德汪',
+    'xm': '邢煤',
     'xd': '邢东',
     'zc': '章村',
   };
