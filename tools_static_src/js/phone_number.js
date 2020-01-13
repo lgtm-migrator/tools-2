@@ -239,13 +239,15 @@ function create_mobile_number() {
 function create_regional() {
   let div = document.createElement('div');
   let regionOptions = {
-    'xm': '邢煤',
-    'gq': '葛泉',
     'dp': '东庞',
-    'xdw': '显德旺',
+    'gq': '葛泉',
+    'xm': '邢煤',
+    'xdw': '显德汪',
+    'xd': '邢东',
+    'zc': '章村',
   };
 
-  div.className = 'row container no-gutters justify-content-center mb-3 mb-sm-4 mb-md-4 row-cols-2 row-cols-sm-4';
+  div.className = 'row container no-gutters justify-content-center mb-3 mb-sm-4 mb-md-4 row-cols-2 row-cols-sm-3 row-cols-md-6';
   div.id = 'regional';
 
   for (let index in regionOptions) {
