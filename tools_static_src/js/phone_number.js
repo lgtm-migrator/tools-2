@@ -288,6 +288,7 @@ function create_regional_radio(input_value, label_text, check_status = false) {
 }
 
 function add_phone_number() {
+  add_spinner_icon(phone_number_submit);
   let verify = verify_phone_number_data();
   if (verify === true) {
     let data = phone_number_data();
@@ -308,6 +309,7 @@ function add_phone_number() {
     });
   } else {
     bootstrapModalJs('', '<div class="small text-center text-danger">您输入的号码有点不符合格式<br>请修改后再提交</div>', '', 'sm', true);
+    remove_spinner_icon(phone_number_submit);
   }
 }
 
@@ -317,7 +319,6 @@ function ajax_phone_number(data, g_recaptcha_token, g_recaptcha_action) {
     url: add_phone_number_url,
     dataType: 'json',
     timeout: 5000,
-    beforeSend: add_spinner_icon(phone_number_submit),
     data: {
       data: data,
       g_recaptcha: {
@@ -331,6 +332,7 @@ function ajax_phone_number(data, g_recaptcha_token, g_recaptcha_action) {
       get_number_stored();
     },
     error: function(data) {
+      remove_spinner_icon(phone_number_submit);
       ajax_error(data);
       ajax_error_fun_debug(data, 'phone_number_error');
     },
