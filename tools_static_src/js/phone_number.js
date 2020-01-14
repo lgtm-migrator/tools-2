@@ -109,11 +109,11 @@ function create_btn_add() {
   let a = document.createElement('a');
   let i = document.createElement('i');
 
-  a.className = 'position-relative text-success';
+  a.className = 'position-relative text-success hvr-icon-grow';
   a.href = 'javascript:';
   a.id = 'phone_number_add';
 
-  i.className = 'position-absolute fa-fw fas fa-plus-circle phone_number_add';
+  i.className = 'position-absolute fa-fw fas fa-plus-circle hvr-icon phone_number_add';
   i.title = '添加新的一行';
   i.style.top = '8px';
   i.style.right = '-3px';
@@ -127,10 +127,10 @@ function create_btn_del() {
   let a = document.createElement('a');
   let i = document.createElement('i');
 
-  a.className = 'position-relative text-danger';
+  a.className = 'position-relative text-danger hvr-icon-grow';
   a.href = 'javascript:';
 
-  i.className = 'position-absolute fa-fw fas fa-minus-circle phone_number_del';
+  i.className = 'position-absolute fa-fw fas fa-minus-circle hvr-icon phone_number_del';
   i.title = '删除当前行';
   i.style.top = '8px';
   i.style.right = '-3px';
