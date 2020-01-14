@@ -319,11 +319,11 @@ function footer_qr_code() {
   div.className = 'my-2';
   div.id = 'current_page_QR_code';
 
-  span.className = 'text-light';
+  span.className = 'text-light hvr-icon-spin';
   span.title = '当前页面二维码';
   span.style.cursor = 'pointer';
 
-  i.className = 'fa-2x fa-fw fas fa-qrcode';
+  i.className = 'fa-2x fa-fw fas fa-qrcode hvr-icon';
   i.addEventListener('click', function() {
     let url = document.location.href;
     let url_param = {'from': 'clipboard'};
