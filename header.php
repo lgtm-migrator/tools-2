@@ -28,6 +28,7 @@ session_start();
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="/static/css/bootstrap.min.css">
     <link rel="stylesheet" href="/static/css/animate.min.css">
+    <link rel="stylesheet" href="/static/css/hover.min.css">
     <link rel="stylesheet" href="/static/css/hamburgers.min.css">
     <link rel="stylesheet" href="/static/font/css/all.min.css">
     <link rel="stylesheet" href="/static/css/tools.min.css">

@@ -59,6 +59,7 @@
     "dayjs": "^1.8.19",
     "fundebug-javascript": "^2.0.0",
     "hamburgers": "^1.1.3",
+    "hover.css": "^2.3.2",
     "jquery": "^3.4.1",
     "js-cookie": "^3.0.0-beta.3",
     "popper.js": "^1.16.0",

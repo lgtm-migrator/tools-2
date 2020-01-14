@@ -78,6 +78,8 @@ const
     /** animate.css **/
     animate_css_path = "./node_modules/animate.css/animate.css",
     animate_min_css_path = "./node_modules/animate.css/animate.min.css",
+    /** hover.css **/
+    hover_min_css_path = "./node_modules/hover.css/css/hover-min.css",
     /** hamburgers.css **/
     hamburgers_css_path = "./node_modules/hamburgers/dist/hamburgers.css",
     hamburgers_min_css_path = "./node_modules/hamburgers/dist/hamburgers.min.css",
@@ -120,6 +122,7 @@ task(copy_jquery);
 task(copy_popper);
 task(copy_bootstrap);
 task(copy_animate_css);
+task(copy_hover_css);
 task(copy_hamburgers_css);
 task(copy_bootstrap_modal_js);
 task(copy_bs_custom_file_input);
@@ -150,6 +153,7 @@ task("copy",
         copy_popper,
         copy_bootstrap,
         copy_animate_css,
+        copy_hover_css,
         copy_hamburgers_css,
         copy_bootstrap_modal_js,
         copy_bs_custom_file_input,
@@ -325,6 +329,13 @@ function copy_bootstrap(done) {
 
 function copy_animate_css(done) {
     src([animate_css_path, animate_min_css_path], {since: lastRun(copy_animate_css)})
+        .pipe(dest(static_css));
+    done();
+}
+
+function copy_hover_css(done) {
+    src([hover_min_css_path], {since: lastRun(copy_hover_css)})
+        .pipe(rename("hover.min.css"))
         .pipe(dest(static_css));
     done();
 }
