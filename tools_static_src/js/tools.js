@@ -12,6 +12,13 @@ let RegExp_rules = {
   'zh_cn_number': new RegExp(/^((?:[\u3400-\u4DB5\u4E00-\u9FEA\uFA0E\uFA0F\uFA11\uFA13\uFA14\uFA1F\uFA21\uFA23\uFA24\uFA27-\uFA29]|[\uD840-\uD868\uD86A-\uD86C\uD86F-\uD872\uD874-\uD879][\uDC00-\uDFFF]|\uD869[\uDC00-\uDED6\uDF00-\uDFFF]|\uD86D[\uDC00-\uDF34\uDF40-\uDFFF]|\uD86E[\uDC00-\uDC1D\uDC20-\uDFFF]|\uD873[\uDC00-\uDEA1\uDEB0-\uDFFF]|\uD87A[\uDC00-\uDFE0])|(\d))+$/),
 };
 
+/** tooltip **/
+$().ready(function() {
+  $('span[title]').tooltip({
+    placement: 'right',
+  });
+});
+
 /** js.cookie **/
 let js_cookies = window.Cookies.noConflict();
 
@@ -448,6 +455,14 @@ $().ready(function() {
 
 });
 
+function add_class(e, class_name = '') {
+    e.classList.add(class_name);
+}
+
+function remove_class(e, class_name = '') {
+    e.classList.remove(class_name);
+}
+
 function add_shadow(e, size = '') {
   if (size === '') {
     e.classList.add('shadow');
@@ -542,6 +557,10 @@ function bootstrapModalJs_alert(alert_array = {}) {
 
 /** 防镜像 **/
 $().ready(function() {
+  anti_mirror();
+});
+
+function anti_mirror() {
   setTimeout(function() {
     if (document.location.host !== 'tools.jzeg.org' &&
       document.location.host !== 'tools.jzeg.net') {
@@ -557,26 +576,49 @@ $().ready(function() {
       }, 3000);
     }
   }, 1000);
+}
+
+/** 右下侧固定栏 **/
+$().ready(function() {
+  fixed_tools();
 });
 
-$().ready(function() {
-  $('span[title]').tooltip({
-    placement: 'right',
-  });
-});
+function fixed_tools() {
+  let jt_footer = document.querySelector('#jt_footer');
+  let div = document.createElement('div');
+
+  div.className = 'position-fixed d-none';
+  div.id = 'fixed_tools';
+  div.style.right = '1rem';
+  div.style.bottom = '1rem';
+
+  div.appendChild(fixed_tools_to_top());
+
+  jt_footer.appendChild(div);
+}
 
 /** 返回顶部 **/
-$().ready(function() {
-  let to_top = document.querySelector('#to_top');
-  if (to_top) to_top.addEventListener('click', topControl);
+function fixed_tools_to_top() {
+  let a = document.createElement('a');
+  let i = document.createElement('i');
 
-  function topControl(e) {
-    console.log('22');
-    e.preventDefault();
-    console.log('11');
-    $('html,body').animate({scrollTop: '0px'}, 1000);
-  }
-});
+  a.className = 'd-block border border-primary rounded p-1';
+  a.href = 'javascript:';
+  a.id = 'to_top';
+  a.style.backgroundColor = 'rgba(200, 200, 200, .7)';
+  a.addEventListener('click', topControl);
+
+  i.className = 'fa-2x fa-fw fas fa-arrow-up';
+
+  a.appendChild(i);
+
+  return a;
+}
+
+function topControl(e) {
+  e.preventDefault();
+  $('html,body').animate({scrollTop: '0px'}, 1000);
+}
 
 /** 滚动监听 **/
 $().ready(function() {
