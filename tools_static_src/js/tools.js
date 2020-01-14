@@ -211,7 +211,7 @@ function footer_add_x() {
   footer_x.appendChild(footer_recaptcha_text_badge());
   footer_x.appendChild(footer_record());
   footer_x.appendChild(footer_current_time());
-  footer_x.appendChild(disclaimer());
+  // footer_x.appendChild(disclaimer());
   footer_x.appendChild(footer_qr_code());
 }
 
@@ -275,8 +275,8 @@ function footer_record() {
   span.innerHTML = '&nbsp;&nbsp;';
 
   div.appendChild(footer_record_icp_no('冀ICP备12018851号-7'));
-  div.appendChild(span);
-  div.appendChild(footer_record_code('13050000000001', '邢'));
+  // div.appendChild(span);
+  // div.appendChild(footer_record_code('13050000000001', '邢'));
   return div;
 }
 
@@ -456,11 +456,11 @@ $().ready(function() {
 });
 
 function add_class(e, class_name = '') {
-    e.classList.add(class_name);
+  e.classList.add(class_name);
 }
 
 function remove_class(e, class_name = '') {
-    e.classList.remove(class_name);
+  e.classList.remove(class_name);
 }
 
 function add_shadow(e, size = '') {
