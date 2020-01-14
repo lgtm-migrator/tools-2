@@ -66,10 +66,12 @@ $static = array(
 //矿区
 $regional_array = array(
     'un' => 'unset',
-    'xm' => 'xingmei',
-    'gq' => 'gequan',
     'dp' => 'dongpang',
+    'gq' => 'gequan',
     'xdw' => 'xiandewang',
+    'xm' => 'xingmei',
+    'xd' => 'xingdong',
+    'zc' => 'zhangcun',
 );
 $regional_key = filter_var($data_post_array['info']['regional'], FILTER_VALIDATE_REGEXP, filter_validate_options_regexp($PREG_rules['a_zA_Z4']));
 $regional_key = $regional_key ? $regional_key : 'un';

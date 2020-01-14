@@ -1,7 +1,7 @@
 <?php
 require_once "config/defined.php";
 require_once "config/functions.php";
-if(!file_exists(SESSION_DIR_YMD)){
+if (!file_exists(SESSION_DIR_YMD)) {
     mk_dir(SESSION_DIR_YMD);
 }
 session_save_path(SESSION_DIR_YMD);
@@ -26,9 +26,10 @@ session_start();
     <meta http-equiv="Cache-Control" content="no-transform">
 
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
-    <link rel="stylesheet" href="/static/css/bootstrap.min.css">
     <link rel="stylesheet" href="/static/css/animate.min.css">
+    <link rel="stylesheet" href="/static/css/hover.min.css">
     <link rel="stylesheet" href="/static/css/hamburgers.min.css">
+    <link rel="stylesheet" href="/static/css/bootstrap.min.css">
     <link rel="stylesheet" href="/static/font/css/all.min.css">
     <link rel="stylesheet" href="/static/css/tools.min.css">
 
@@ -52,7 +53,9 @@ session_start();
     <div class="mb-3 mb-lg-4 bg-white" id="jt_header">
         <div class="py-1 py-lg-2 container" id="logo">
             <a class="text-decoration-none" href="/" title="在线小工具">
-                <span class="mr-1 logo-img"><i class="mb-0 text-warning h4 fa-fw fas fa-tools"></i></span>
+                <span class="mr-1 logo-img hvr-icon-spin">
+                    <i class="mb-0 text-warning h4 fa-fw fas fa-tools hvr-icon"></i>
+                </span>
                 <span class="logo-name"><h1 class="mb-0 d-inline text-info h5">在线小工具</h1></span>
             </a>
             <span class="py-1 position-relative badge badge-pill badge-danger"
