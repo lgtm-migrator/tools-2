@@ -32,7 +32,7 @@ function cards_add_shadow() {
     jt_list.addEventListener("mouseenter", function (e) {
         let target = e.target;
         if (target.classList.contains("card")) {
-            add_shadow(target);
+            add_class(target,"hvr-wobble-bottom");
             cursor_pointer(target);
             target.addEventListener("click", function () {
                 location.href = `${get_href_url(target, "category_link")}`;
@@ -44,7 +44,9 @@ function cards_add_shadow() {
 function cards_remove_shadow() {
     jt_list.addEventListener("mouseleave", function (e) {
         let target = e.target;
-        if (target.classList.contains("card")) remove_shadow(target);
+        if (target.classList.contains("card")) {
+            remove_class(target,"hvr-wobble-bottom");
+        }
     }, true);
 }
 
