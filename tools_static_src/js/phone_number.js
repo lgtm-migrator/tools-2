@@ -569,7 +569,7 @@ function create_number_list(data) {
   let tel_number = data['tel_number'];
   let mobile_number = data['mobile_number'];
 
-  div.className = 'mb-3 py-1 py-md-2 row  border rounded align-items-center number_list';
+  div.className = 'hvr-icon-pop mb-3 py-1 py-md-2 row  border rounded align-items-center number_list';
 
   div.appendChild(create_number_list_name(name));
   div.appendChild(create_number_list_number(tel_number, 'tel'));
@@ -593,7 +593,7 @@ function create_number_list_name(name) {
 
   span_name.innerHTML = name;
 
-  i.className = 'mr-2 fas fa-home text-info';
+  i.className = 'mr-2 fas fa-home text-info hvr-icon';
   i.style.cursor = 'pointer';
 
   span.appendChild(ul);
@@ -617,13 +617,13 @@ function create_number_list_number(number, number_type) {
 
   span_number.innerHTML = number;
 
-  number_type === 'tel' ? li.className = 'number mb-2' : li.className = 'number mb-2 text-none text-sm-right';
+  number_type === 'tel' ? li.className = 'hvr-icon-grow-rotate number mb-2' : li.className = 'hvr-icon-grow-rotate number mb-2 text-none text-sm-right';
 
-  i_number_icon.className = 'ml-2 fa-fw fas fa-phone-volume text-success dial_number';
+  i_number_icon.className = 'ml-2 fa-fw fas fa-phone-volume text-success hvr-icon dial_number';
   i_number_icon.title = '拨打号码';
   i_number_icon.style.cursor = 'pointer';
 
-  i_clipboard_copy_icon.className = 'ml-3 fa-fw far fa-copy text-success clipboard_copy';
+  i_clipboard_copy_icon.className = 'ml-3 fa-fw far fa-copy text-success hvr-icon clipboard_copy';
   i_clipboard_copy_icon.title = '复制号码';
   i_clipboard_copy_icon.style.cursor = 'pointer';
 
