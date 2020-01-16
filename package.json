@@ -32,7 +32,8 @@
     "copy": "gulp add_footer copy",
     "minimize_local_static": "gulp minimize_local_static",
     "build_static": "gulp build_static",
-    "watch_static": "gulp watch_static"
+    "watch_static": "gulp watch_static",
+    "install_ncu": "npm i -g npm-check-updates"
   },
   "peerDependencies": {},
   "devDependencies": {
