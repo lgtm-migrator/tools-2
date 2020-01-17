@@ -134,7 +134,11 @@ function add_spinner_icon(element, spinner_type = null, color = null, position =
       break;
   }
 
-  element.setAttribute('disabled', 'disabled');
+  if (element.tagName === 'button') {
+    set_element_attribute(element, 'disabled', 'disabled');
+  } else {
+    add_class(element, 'disabled');
+  }
 
   switch (position) {
     case 'before':
@@ -149,9 +153,26 @@ function add_spinner_icon(element, spinner_type = null, color = null, position =
 }
 
 function remove_spinner_icon(element) {
-  element.removeAttribute('disabled');
+  if (element.tagName === 'button') {
+    remove_element_attribute(element, 'disabled');
+  } else {
+    remove_class(element, 'disabled');
+  }
+
   // element.firstElementChild ? element.removeChild(element.firstElementChild) : "";
   element.lastElementChild ? element.removeChild(element.lastElementChild) : '';
+}
+
+function get_element_attribute(element, attribute_name) {
+  return element.getAttribute(attribute_name);
+}
+
+function set_element_attribute(element, attribute_name, attribute_value) {
+  element.setAttribute(attribute_name, attribute_value);
+}
+
+function remove_element_attribute(element, attribute_name) {
+  element.removeAttribute(attribute_name);
 }
 
 /** ReCAPTCHA **/
