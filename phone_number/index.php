@@ -18,10 +18,10 @@ require_once '../header.php';
                        placeholder="单位名称、简称或者号码&nbsp;&nbsp;&#xf015;&nbsp;&nbsp;&#xf095;&nbsp;&nbsp;&#xf3cd;">
             </div>
         </div>
-        <div class="d-flex justify-content-center">
-            <a href="javascript:" class="mx-2 btn btn-success" id="phone_name_search_btn">
+        <div class="d-flex justify-content-center" id="search_btn">
+            <a href="javascript:" class="mx-2 btn btn-success name">
                 <i class="fa-fw fas fa-home"></i>按名称搜索</a>
-            <a href="javascript:" class="mx-2 btn btn-danger" id="phone_number_search_btn">
+            <a href="javascript:" class="mx-2 btn btn-danger number">
                 <i class="fa-fw fas fa-phone"></i>
                 <i class="fa-fw fas fa-mobile-alt"></i>按号码搜索</a>
         </div>

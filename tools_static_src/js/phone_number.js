@@ -490,20 +490,21 @@ function get_number_stored() {
 
 /** 搜索 **/
 let phone_number_input = document.querySelector('#phone_number_input');
-let phone_name_search_btn = document.querySelector('#phone_name_search_btn');
-let phone_number_search_btn = document.querySelector('#phone_number_search_btn');
+let search_btn = document.querySelector('#search_btn');
 let phone_search_result = document.querySelector('#phone_search_result');
 let number_list = document.querySelector('#number_list');
 let search_url = '/phone_number/phone_number_search.php';
 
-if (phone_name_search_btn) {
-  phone_name_search_btn.addEventListener('click', function() {
-    check_search_value('name');
-  });
-}
-if (phone_number_search_btn) {
-  phone_number_search_btn.addEventListener('click', function() {
-    check_search_value('number');
+if (search_btn) {
+  search_btn.addEventListener('click', function(e) {
+    let target = e.target;
+    if (target.tagName === 'A') {
+      if (target.classList.contains('name')) {
+        check_search_value('name');
+      } else if (target.classList.contains('number')) {
+        check_search_value('number');
+      }
+    }
   });
 }
 
