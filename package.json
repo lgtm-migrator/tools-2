@@ -24,7 +24,7 @@
   },
   "homepage": "https://github.com/zhangchenglin/tools",
   "scripts": {
-    "nrm_use_taobao": "npm i -g nrm --registry=https://registry.npm.taobao.org && nrm use taobao && nrm ls",
+    "on_first_use": "npm run install_nrm_use_taobao && npm run install_ncu",
     "default": "npm run build",
     "build": "npm i && npm run build_static",
     "watch": "npm run watch_static",
@@ -33,6 +33,7 @@
     "minimize_local_static": "gulp minimize_local_static",
     "build_static": "gulp build_static",
     "watch_static": "gulp watch_static",
+    "install_nrm_use_taobao": "npm i -g nrm --registry=https://registry.npm.taobao.org && nrm use taobao && nrm ls",
     "install_ncu": "npm i -g npm-check-updates"
   },
   "peerDependencies": {},
