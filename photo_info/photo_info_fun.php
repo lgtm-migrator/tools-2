@@ -12,11 +12,11 @@ function filters_image_types($file_name, $file_ext_name, $tmp_file_name)
         $image_tmp = imagecreatefromjpeg($tmp_file_name);
         $image_create_result = imagejpeg($image_tmp, $php_created_image, 100);
         imagedestroy($image_tmp);
-    } elseif ($file_ext_name === 'tiff' || $file_ext_name === 'tif') {
+//    } elseif ($file_ext_name === 'tiff' || $file_ext_name === 'tif') {
         //todo:处理tiff格式
-        $image_tmp = imagecreatefromjpeg($tmp_file_name);
-        $image_create_result = imagejpeg($image_tmp, $php_created_image, 100);
-        imagedestroy($image_tmp);
+//        $image_tmp = imagecreatefromjpeg($tmp_file_name);
+//        $image_create_result = imagejpeg($image_tmp, $php_created_image, 100);
+//        imagedestroy($image_tmp);
     } elseif ($file_ext_name === 'png' && (imagetypes() & IMG_PNG)) {
         $image_tmp = imagecreatefrompng($tmp_file_name);
         $image_create_result = imagepng($image_tmp, $php_created_image, 9);
