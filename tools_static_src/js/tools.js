@@ -12,6 +12,27 @@ let RegExp_rules = {
   'zh_cn_number': new RegExp(/^((?:[\u3400-\u4DB5\u4E00-\u9FEA\uFA0E\uFA0F\uFA11\uFA13\uFA14\uFA1F\uFA21\uFA23\uFA24\uFA27-\uFA29]|[\uD840-\uD868\uD86A-\uD86C\uD86F-\uD872\uD874-\uD879][\uDC00-\uDFFF]|\uD869[\uDC00-\uDED6\uDF00-\uDFFF]|\uD86D[\uDC00-\uDF34\uDF40-\uDFFF]|\uD86E[\uDC00-\uDC1D\uDC20-\uDFFF]|\uD873[\uDC00-\uDEA1\uDEB0-\uDFFF]|\uD87A[\uDC00-\uDFE0])|(\d))+$/),
 };
 
+/** 封装方法 **/
+function add_class(element, class_name) {
+  element.classList.add(class_name);
+}
+
+function remove_class(element, class_name) {
+  element.classList.remove(class_name);
+}
+
+function get_element_attribute(element, attribute_name) {
+  return element.getAttribute(attribute_name);
+}
+
+function set_element_attribute(element, attribute_name, attribute_value) {
+  element.setAttribute(attribute_name, attribute_value);
+}
+
+function remove_element_attribute(element, attribute_name) {
+  element.removeAttribute(attribute_name);
+}
+
 /** tooltip **/
 $().ready(function() {
   $('span[title]').tooltip({
@@ -105,36 +126,9 @@ function add_spinner_icon(element, spinner_type = null, color = null, position =
       load_icon.className = 'ml-1 spinner-border spinner-border-sm align-self-center';
   }
 
-  switch (color) {
-    case 'primary':
-      load_icon.classList.add('text-primary');
-      break;
-    case 'secondary':
-      load_icon.classList.add('text-secondary');
-      break;
-    case 'success':
-      load_icon.classList.add('text-success');
-      break;
-    case 'danger':
-      load_icon.classList.add('text-danger');
-      break;
-    case 'warning':
-      load_icon.classList.add('text-warning');
-      break;
-    case 'info':
-      load_icon.classList.add('text-info');
-      break;
-    case 'light':
-      load_icon.classList.add('text-light');
-      break;
-    case 'dark':
-      load_icon.classList.add('text-dark');
-      break;
-    default:
-      break;
-  }
+  if (color) load_icon.classList.add('text-' + color);
 
-  element.setAttribute('disabled', 'disabled');
+  toggle_disabled_element(element);
 
   switch (position) {
     case 'before':
@@ -149,9 +143,26 @@ function add_spinner_icon(element, spinner_type = null, color = null, position =
 }
 
 function remove_spinner_icon(element) {
-  element.removeAttribute('disabled');
+  toggle_disabled_element(element);
   // element.firstElementChild ? element.removeChild(element.firstElementChild) : "";
   element.lastElementChild ? element.removeChild(element.lastElementChild) : '';
+}
+
+function toggle_disabled_element(element) {
+  let disabled_element_type = ['BUTTON'];
+  if (disabled_element_type.includes(element.tagName)) {
+    if (!element.hasAttribute('disabled')) {
+      element.setAttribute('disabled', 'disabled');
+    } else {
+      element.removeAttribute('disabled');
+    }
+  } else {
+    if (!element.classList.contains('disabled')) {
+      element.classList.add('disabled');
+    } else {
+      element.classList.remove('disabled');
+    }
+  }
 }
 
 /** ReCAPTCHA **/
@@ -454,14 +465,6 @@ $().ready(function() {
   }
 
 });
-
-function add_class(e, class_name = '') {
-  e.classList.add(class_name);
-}
-
-function remove_class(e, class_name = '') {
-  e.classList.remove(class_name);
-}
 
 function add_shadow(e, size = '') {
   if (size === '') {

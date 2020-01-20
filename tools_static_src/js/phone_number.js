@@ -490,49 +490,53 @@ function get_number_stored() {
 
 /** 搜索 **/
 let phone_number_input = document.querySelector('#phone_number_input');
-let phone_name_search_btn = document.querySelector('#phone_name_search_btn');
-let phone_number_search_btn = document.querySelector('#phone_number_search_btn');
+let search_btn = document.querySelector('#search_btn');
 let phone_search_result = document.querySelector('#phone_search_result');
 let number_list = document.querySelector('#number_list');
 let search_url = '/phone_number/phone_number_search.php';
 
-if (phone_name_search_btn) {
-  phone_name_search_btn.addEventListener('click', function() {
-    check_search_value('name');
-  });
-}
-if (phone_number_search_btn) {
-  phone_number_search_btn.addEventListener('click', function() {
-    check_search_value('number');
+if (search_btn) {
+  search_btn.addEventListener('click', function(e) {
+    let target = e.target;
+    if (target.tagName === 'A') {
+      add_spinner_icon(target);
+      if (target.classList.contains('name')) {
+        check_search_value('name', target);
+      } else if (target.classList.contains('number')) {
+        check_search_value('number', target);
+      }
+    }
   });
 }
 
-function check_search_value(check_type) {
+function check_search_value(check_type, element) {
   let search_value = phone_number_input.value;
   if (search_value.length === 0) {
-    bootstrapModalJs('', '<div class="small text-center text-success">请输入您要查询的单位名称或号码</div>', '', 'sm', true);
+    remove_spinner_icon(element);
+    bootstrapModalJs('', '<div class="small text-center text-danger">请输入您要查询的单位名称或号码</div>', '', 'sm', true);
     return false;
   } else {
-    search_query(check_type);
+    search_query(check_type, element);
   }
 }
 
-function search_query(search_type = 'name') {
+function search_query(search_type = 'name', element) {
   let search_value = phone_number_input.value;
   let search_data = {
     search_type: search_type,
     search_value: search_value,
   };
-  ajax_search(search_data);
+  ajax_search(search_data, element);
 }
 
-function ajax_search(search_data) {
+function ajax_search(search_data, element) {
   $.ajax({
     type: 'post',
     url: search_url,
     data: search_data,
     dataType: 'json',
     success: function(data) {
+      remove_spinner_icon(element);
       get_search_result(data);
     },
     error: function(data) {
@@ -547,7 +551,7 @@ function get_search_result(data) {
   if (data_length) {
     processing_search_result(data);
   } else {
-    bootstrapModalJs('', '<div class="small text-center text-success">暂时没有找到您要查找的号码</div>', '', 'sm', true);
+    bootstrapModalJs('', '<div class="small text-center text-danger">暂时没有找到您要查找的号码</div>', '', 'sm', true);
   }
 }
 
@@ -555,8 +559,8 @@ function processing_search_result(data) {
   phone_search_result.classList.remove('d-none');
   add_new_number.parentNode.classList.remove('d-none');
   number_list.innerHTML = '';
-  for (let i in data) {
-    if (data.hasOwnProperty(i)) create_number_list(data[i]);
+  for (let index in data) {
+    if (data.hasOwnProperty(index)) create_number_list(data[index]);
   }
   number_list_child();
   $('.number i').tooltip();
@@ -566,17 +570,21 @@ function processing_search_result(data) {
 
 function create_number_list(data) {
   let div = document.createElement('div');
+  let div1 = document.createElement('div');
 
   let name = data['phone_name'];
   let tel_number = data['tel_number'];
   let mobile_number = data['mobile_number'];
 
-  div.className = 'hvr-icon-pop mb-3 py-1 py-md-2 row  border rounded align-items-center number_list';
+  // div.className = 'pulse animated hvr-icon-pop mb-3 py-1 py-md-2 row  border rounded align-items-center number_list';
+  div.className = 'container pulse animated mb-3 py-1 py-md-2 border rounded number_list';
+  div1.className = 'hvr-icon-pop row align-items-center';
 
-  div.appendChild(create_number_list_name(name));
-  div.appendChild(create_number_list_number(tel_number, 'tel'));
-  div.appendChild(create_number_list_number(mobile_number, 'mobile'));
+  div1.appendChild(create_number_list_name(name));
+  div1.appendChild(create_number_list_number(tel_number, 'tel'));
+  div1.appendChild(create_number_list_number(mobile_number, 'mobile'));
 
+  div.appendChild(div1);
   number_list.appendChild(div);
 }
 

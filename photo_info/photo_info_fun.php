@@ -14,7 +14,7 @@ function filters_image_types($file_name, $file_ext_name, $tmp_file_name)
         imagedestroy($image_tmp);
     } elseif ($file_ext_name === 'tiff' || $file_ext_name === 'tif') {
         //todo:处理tiff格式
-        $image_tmp = imagecreatefromjpeg($tmp_file_name);
+        $image_tmp = imagecreatefromtiff($tmp_file_name);
         $image_create_result = imagejpeg($image_tmp, $php_created_image, 100);
         imagedestroy($image_tmp);
     } elseif ($file_ext_name === 'png' && (imagetypes() & IMG_PNG)) {
@@ -34,4 +34,22 @@ function filters_image_types($file_name, $file_ext_name, $tmp_file_name)
     }
 
     return $image_create_result;
+}
+
+function imagecreatefromtiff($tiff_file)
+{
+    $info = pathinfo($tiff_file);
+    $filename = $info['filename'];
+    $base_dir = $info['dirname']."/";
+
+    $jpeg_file = $base_dir.$filename.".jpg";
+
+    // comando para conversão de tiff para jpeg
+    // necessita do imagemagick num servidor unix
+    $command = "convert $tiff_file $jpeg_file";
+
+    // executa o comando
+    exec($command, $result);
+
+    return imagecreatefromjpeg($jpeg_file);
 }

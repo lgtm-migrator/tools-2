@@ -47,6 +47,7 @@ require_once './header.php';
 <div>
     <?php require_once "javascript.php"; ?>
     <script src="static/js/index.min.js"></script>
+    <script src="static/js/survey.min.js"></script>
 </div>
 
 <?php

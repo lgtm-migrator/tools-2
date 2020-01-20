@@ -7,7 +7,7 @@ $().ready(function() {
 /** 提交图片 **/
 let photo_input = document.body.querySelector('#photo_input');
 let photo_submit = document.body.querySelector('#photo_submit');
-let max_file_size_value = 15728640;
+let max_file_size_value = 1048576 * 15;
 let allowed_extension_name = ['jpeg', 'jpg', 'tiff', 'tif'];
 
 let photo_url = '/photo_info/photo_info.php';
@@ -16,10 +16,11 @@ let files_upload_rule_link = document.body.querySelector('#files_upload_rule_lin
 let files_upload_rule_input = document.body.querySelector('#files_upload_rule_input');
 let bootstrapModalJs_options = {'backdrop': 'static', 'keyboard': false};
 
-let files_upload_rule_text = '<div class=\'small\'>' +
-  '<span class=\'text-danger\'><b>如若您不同意以下规则任意一条，请不要上传照片即可。</b></span><br>' +
-  '<span class=\'text-danger\'><b>本站不存储您上传的照片，请您保存好您自己的照片。</b></span><br>' +
-  '<span class=\'text-danger\'><b><del>不接受重复监测同一张照片的信息。</del></b></span><br>' +
+let files_upload_rule_text = '<div class=\'small text-danger\'>' +
+  '<span><b>如若您不同意以下规则任意一条，请不要上传照片即可。</b></span><br>' +
+  '<span><b>本站不存储您上传的照片，请您保存好您自己的照片。</b></span><br>' +
+  '<span><b><del>不接受重复监测同一张照片的信息。</del></b></span><br>' +
+  `<span class="d-block mt-2"><b>上传规则：</b></span>` +
   `<span class='text-dark'><b>3个/次/${get_file_size(max_file_size_value)}/日/IP</b></span><br>` +
   `文件格式类型：<span class='text-success'><b>${allowed_extension_name.join('&nbsp;&nbsp;')}</b></span><br>` +
   '文件数量上限：<span class=\'text-success\'><b>3</b></span><br>' +
@@ -152,11 +153,12 @@ function upload_files_check(input) {
   let files_size_tips = [];
   let disallow_files = [];
 
-  let no_upload_files__text = '<div class=\'small\'>' +
-    '请先选择您要查看信息的照片，<br>然后后点击提交按钮上传图片。<br>' +
+  let no_upload_files__text = '<div class=\'text-center small text-danger\'>' +
+    '请先选择您要查看信息的照片<br>' +
+    '然后后点击提交按钮上传图片<br>' +
     '</div>';
 
-  let files_length_text = '<div class=\'small\'>' +
+  let files_length_text = '<div class=\'text-center small text-danger\'>' +
     '上传文件数量请不要超过3个。<br>' +
     '</div>';
 
@@ -180,7 +182,7 @@ function upload_files_check(input) {
   }
 
   if (disallow_files.length > 0) {
-    upload_check_result += '<div class=\'small\'>' +
+    upload_check_result += '<div class=\'text-center small text-danger\'>' +
       '以下文件格式不符&nbsp;' +
       `<span class='text-success'>` +
       `${allowed_extension_name.join('&nbsp;')}` +
@@ -191,7 +193,7 @@ function upload_files_check(input) {
       '</div>';
   }
   if (files_size_tips.length > 0) {
-    upload_check_result += '<div class=\'small\'>' +
+    upload_check_result += '<div class=\'text-center small text-danger\'>' +
       '以下文件尺寸超过&nbsp;' +
       `<span class='text-success'>` +
       `${get_file_size(max_file_size_value)}` +
