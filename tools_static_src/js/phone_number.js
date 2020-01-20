@@ -499,41 +499,44 @@ if (search_btn) {
   search_btn.addEventListener('click', function(e) {
     let target = e.target;
     if (target.tagName === 'A') {
+      add_spinner_icon(target);
       if (target.classList.contains('name')) {
-        check_search_value('name');
+        check_search_value('name', target);
       } else if (target.classList.contains('number')) {
-        check_search_value('number');
+        check_search_value('number', target);
       }
     }
   });
 }
 
-function check_search_value(check_type) {
+function check_search_value(check_type, element) {
   let search_value = phone_number_input.value;
   if (search_value.length === 0) {
+    remove_spinner_icon(element);
     bootstrapModalJs('', '<div class="small text-center text-success">请输入您要查询的单位名称或号码</div>', '', 'sm', true);
     return false;
   } else {
-    search_query(check_type);
+    search_query(check_type, element);
   }
 }
 
-function search_query(search_type = 'name') {
+function search_query(search_type = 'name', element) {
   let search_value = phone_number_input.value;
   let search_data = {
     search_type: search_type,
     search_value: search_value,
   };
-  ajax_search(search_data);
+  ajax_search(search_data, element);
 }
 
-function ajax_search(search_data) {
+function ajax_search(search_data, element) {
   $.ajax({
     type: 'post',
     url: search_url,
     data: search_data,
     dataType: 'json',
     success: function(data) {
+      remove_spinner_icon(element);
       get_search_result(data);
     },
     error: function(data) {

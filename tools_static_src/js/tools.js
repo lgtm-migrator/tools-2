@@ -184,6 +184,23 @@ function remove_spinner_icon(element) {
   element.lastElementChild ? element.removeChild(element.lastElementChild) : '';
 }
 
+function toggle_disabled_element(element) {
+  let disabled_element_type = ['BUTTON'];
+  if (disabled_element_type.includes(element.tagName)) {
+    if (!element.hasAttribute('disabled')) {
+      element.setAttribute('disabled', 'disabled');
+    } else {
+      element.removeAttribute('disabled');
+    }
+  } else {
+    if (!element.classList.contains('disabled')) {
+      element.classList.add('disabled');
+    } else {
+      element.classList.remove('disabled');
+    }
+  }
+}
+
 /** ReCAPTCHA **/
 function set_recaptcha_action(Action = null) {
   const v3_site_key = '6LcvIcEUAAAAAEUgtbN0VFiH_n2VHw-luW3rdZFv';
