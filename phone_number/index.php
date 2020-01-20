@@ -29,7 +29,7 @@ require_once '../header.php';
 
     <div class="container mt-5 d-none" id="phone_search_result">
         <span class="small font-weight-bold text-success">查询结果</span>
-        <div class="container mt-1 pt-3" id="number_list"></div>
+        <div class="mt-1 pt-3" id="number_list"></div>
     </div>
     <div class="container mt-5 text-center d-none" id="add">
         <a href="javascript:" class="my-2 btn btn-sm btn-outline-primary" id="add_new_number">我要添加新号码</a>

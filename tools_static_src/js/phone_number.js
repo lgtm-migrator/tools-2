@@ -570,17 +570,21 @@ function processing_search_result(data) {
 
 function create_number_list(data) {
   let div = document.createElement('div');
+  let div1 = document.createElement('div');
 
   let name = data['phone_name'];
   let tel_number = data['tel_number'];
   let mobile_number = data['mobile_number'];
 
-  div.className = 'pulse animated hvr-icon-pop mb-3 py-1 py-md-2 row  border rounded align-items-center number_list';
+  // div.className = 'pulse animated hvr-icon-pop mb-3 py-1 py-md-2 row  border rounded align-items-center number_list';
+  div.className = 'container pulse animated mb-3 py-1 py-md-2 border rounded number_list';
+  div1.className = 'hvr-icon-pop row align-items-center';
 
-  div.appendChild(create_number_list_name(name));
-  div.appendChild(create_number_list_number(tel_number, 'tel'));
-  div.appendChild(create_number_list_number(mobile_number, 'mobile'));
+  div1.appendChild(create_number_list_name(name));
+  div1.appendChild(create_number_list_number(tel_number, 'tel'));
+  div1.appendChild(create_number_list_number(mobile_number, 'mobile'));
 
+  div.appendChild(div1);
   number_list.appendChild(div);
 }
 
