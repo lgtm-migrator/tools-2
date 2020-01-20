@@ -126,34 +126,7 @@ function add_spinner_icon(element, spinner_type = null, color = null, position =
       load_icon.className = 'ml-1 spinner-border spinner-border-sm align-self-center';
   }
 
-  switch (color) {
-    case 'primary':
-      load_icon.classList.add('text-primary');
-      break;
-    case 'secondary':
-      load_icon.classList.add('text-secondary');
-      break;
-    case 'success':
-      load_icon.classList.add('text-success');
-      break;
-    case 'danger':
-      load_icon.classList.add('text-danger');
-      break;
-    case 'warning':
-      load_icon.classList.add('text-warning');
-      break;
-    case 'info':
-      load_icon.classList.add('text-info');
-      break;
-    case 'light':
-      load_icon.classList.add('text-light');
-      break;
-    case 'dark':
-      load_icon.classList.add('text-dark');
-      break;
-    default:
-      break;
-  }
+  if (color) load_icon.classList.add('text-' + color);
 
   toggle_disabled_element(element);
 
