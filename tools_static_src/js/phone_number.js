@@ -575,7 +575,7 @@ function create_number_list(data) {
   let tel_number = data['tel_number'];
   let mobile_number = data['mobile_number'];
 
-  div.className = 'hvr-icon-pop mb-3 py-1 py-md-2 row  border rounded align-items-center number_list';
+  div.className = 'pulse animated hvr-icon-pop mb-3 py-1 py-md-2 row  border rounded align-items-center number_list';
 
   div.appendChild(create_number_list_name(name));
   div.appendChild(create_number_list_number(tel_number, 'tel'));
