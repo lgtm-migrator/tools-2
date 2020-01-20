@@ -155,11 +155,7 @@ function add_spinner_icon(element, spinner_type = null, color = null, position =
       break;
   }
 
-  if (element.tagName === 'BUTTON') {
-    set_element_attribute(element, 'disabled', 'disabled');
-  } else {
-    add_class(element, 'disabled');
-  }
+  toggle_disabled_element(element);
 
   switch (position) {
     case 'before':
@@ -174,12 +170,7 @@ function add_spinner_icon(element, spinner_type = null, color = null, position =
 }
 
 function remove_spinner_icon(element) {
-  if (element.tagName === 'BUTTON') {
-    remove_element_attribute(element, 'disabled');
-  } else {
-    remove_class(element, 'disabled');
-  }
-
+  toggle_disabled_element(element);
   // element.firstElementChild ? element.removeChild(element.firstElementChild) : "";
   element.lastElementChild ? element.removeChild(element.lastElementChild) : '';
 }
