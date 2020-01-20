@@ -95,6 +95,9 @@ const
     /** tools **/
     tools_js_path = tools_static_src_js + "tools.js",
     tools_css_path = tools_static_src_css + "tools.css",
+    /** survey **/
+    survey_js_path = tools_static_src_js + "survey.js",
+    survey_css_path = tools_static_src_css + "survey.css",
     /** index **/
     index_js_path = tools_static_src_js + "index.js",
     index_css_path = tools_static_src_css + "index.css",
@@ -107,11 +110,13 @@ const
 
 //Task
 task(terser_tools_js);
+task(terser_survey_js);
 task(terser_index_js);
 task(terser_phone_number_js);
 task(terser_photo_info_js);
 
 task(cleanCSS_tools_css);
+task(cleanCSS_survey_css);
 task(cleanCSS_index_css);
 task(cleanCSS_phone_number_css);
 task(cleanCSS_photo_info_css);
@@ -165,6 +170,7 @@ task("copy",
 task("terser",
     parallel(
         terser_tools_js,
+        terser_survey_js,
         terser_index_js,
         terser_phone_number_js,
         terser_photo_info_js,
@@ -173,6 +179,7 @@ task("terser",
 task("cleanCSS",
     parallel(
         cleanCSS_tools_css,
+        cleanCSS_survey_css,
         cleanCSS_index_css,
         cleanCSS_phone_number_css,
         cleanCSS_photo_info_css,
@@ -202,6 +209,16 @@ function terser_tools_js(done) {
     src([tools_js_path], {since: lastRun(terser_tools_js)})
         .pipe(dest(static_js));
     src([tools_js_path], {since: lastRun(terser_tools_js)})
+        .pipe(terser())
+        .pipe(rename({suffix: ".min"}))
+        .pipe(dest(static_js));
+    done();
+}
+
+function terser_survey_js(done) {
+    src([survey_js_path], {since: lastRun(terser_survey_js)})
+        .pipe(dest(static_js));
+    src([survey_js_path], {since: lastRun(terser_survey_js)})
         .pipe(terser())
         .pipe(rename({suffix: ".min"}))
         .pipe(dest(static_js));
@@ -242,6 +259,17 @@ function cleanCSS_tools_css(done) {
     src([tools_css_path], {since: lastRun(cleanCSS_tools_css)})
         .pipe(dest(static_css));
     src([tools_css_path], {since: lastRun(cleanCSS_tools_css)})
+        .pipe(postcss([autoPreFixer()]))
+        .pipe(cleanCSS())
+        .pipe(rename({suffix: ".min"}))
+        .pipe(dest(static_css));
+    done();
+}
+
+function cleanCSS_survey_css(done) {
+    src([survey_css_path], {since: lastRun(cleanCSS_survey_css)})
+        .pipe(dest(static_css));
+    src([survey_css_path], {since: lastRun(cleanCSS_survey_css)})
         .pipe(postcss([autoPreFixer()]))
         .pipe(cleanCSS())
         .pipe(rename({suffix: ".min"}))
