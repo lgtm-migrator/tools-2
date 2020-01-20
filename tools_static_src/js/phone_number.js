@@ -513,7 +513,7 @@ function check_search_value(check_type, element) {
   let search_value = phone_number_input.value;
   if (search_value.length === 0) {
     remove_spinner_icon(element);
-    bootstrapModalJs('', '<div class="small text-center text-success">请输入您要查询的单位名称或号码</div>', '', 'sm', true);
+    bootstrapModalJs('', '<div class="small text-center text-danger">请输入您要查询的单位名称或号码</div>', '', 'sm', true);
     return false;
   } else {
     search_query(check_type, element);
@@ -551,7 +551,7 @@ function get_search_result(data) {
   if (data_length) {
     processing_search_result(data);
   } else {
-    bootstrapModalJs('', '<div class="small text-center text-success">暂时没有找到您要查找的号码</div>', '', 'sm', true);
+    bootstrapModalJs('', '<div class="small text-center text-danger">暂时没有找到您要查找的号码</div>', '', 'sm', true);
   }
 }
 
