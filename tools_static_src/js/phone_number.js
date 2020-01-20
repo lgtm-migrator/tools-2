@@ -559,8 +559,8 @@ function processing_search_result(data) {
   phone_search_result.classList.remove('d-none');
   add_new_number.parentNode.classList.remove('d-none');
   number_list.innerHTML = '';
-  for (let i in data) {
-    if (data.hasOwnProperty(i)) create_number_list(data[i]);
+  for (let index in data) {
+    if (data.hasOwnProperty(index)) create_number_list(data[index]);
   }
   number_list_child();
   $('.number i').tooltip();
