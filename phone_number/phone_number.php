@@ -59,8 +59,8 @@ if ($validate_ip_v4) {
 $static = array(
     'n' => 'no',
     'y' => 'yes',
-    'v' => 'Verify',
-    'vd' => 'Verified',
+    'v' => 'verify',
+    'vd' => 'verified',
 );
 
 //矿区
