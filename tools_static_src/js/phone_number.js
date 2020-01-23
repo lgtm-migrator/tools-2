@@ -308,7 +308,7 @@ function add_phone_number() {
       });
     });
   } else {
-    bootstrapModalJs('', '<div class="small text-center text-danger">您输入的号码有点不符合格式<br>请修改后再提交</div>', '', 'sm', true);
+    bootstrapModalJs('', create_small_center_text('您输入的号码有点不符合格式<br>请修改后再提交', 'danger'), '', 'sm', true);
     remove_spinner_icon(phone_number_submit);
   }
 }
@@ -353,13 +353,13 @@ function ajax_success(success_result, message_name) {
   if (success_result['message']['g_recaptcha']['verify'] === true) {
     if (success_result['message'].hasOwnProperty(message_name)) {
       if (success_result['message'][message_name].hasOwnProperty('failure')) {
-        let message = '<div class=\'small text-center\'><span>' +
+        let message = '<span>' +
           '提交失败' +
           '<br>' +
           '错误代码：' +
           success_result['error']['errno'] +
-          '</span></div>';
-        bootstrapModalJs('', message, '', 'sm', true);
+          '</span>';
+        bootstrapModalJs('', create_small_center_text(message, 'danger'), '', 'sm', true);
       }
 
       if (success_result['message'][message_name].hasOwnProperty('repeat')) {
@@ -367,19 +367,17 @@ function ajax_success(success_result, message_name) {
       }
 
       if (success_result['message'][message_name].hasOwnProperty('success')) {
-        let message = '<div class=\'small text-center\'><span>' +
-          '您提交的' +
-          success_result['message'][message_name]['success'] +
-          '个号码已经成功被收录' +
-          '</span></div>';
-        bootstrapModalJs('', message, '', 'sm', true);
+        let message = '<span>' +
+          '您提交的' + success_result['message'][message_name]['success'] + '个号码已经成功被收录' +
+          '</span>';
+        bootstrapModalJs('', create_small_center_text(message, 'danger'), '', 'sm', true);
       }
     }
   } else {
-    let message = '<div class=\'small text-center text-danger\'><span>' +
+    let message = '<span>' +
       '服务器判断您的评分太低,<br>没有收录您刚刚提交的号码。' +
-      '</span></div>';
-    bootstrapModalJs('', message, '', '', true);
+      '</span>';
+    bootstrapModalJs('', create_small_center_text(message, 'danger'), '', '', true);
   }
 
 }
@@ -404,15 +402,15 @@ function ajax_error(error_result) {
 
   if (readyState === 4) {
     if (status === 500 && responseText === '' && statusText === 'Internal Server Error') {
-      bootstrapModalJs('', '服务器出错', '', 'sm', true);
+      bootstrapModalJs('', create_small_center_text('服务器出错', 'danger'), '', 'sm', true);
     } else if (statusText === 'timeout') {
-      bootstrapModalJs('', '服务器连接超时', '', 'sm', true);
+      bootstrapModalJs('', create_small_center_text('服务器连接超时', 'danger'), '', 'sm', true);
     } else if (status === 200 && RegExp_rules.mysqli_1045.test(responseText)) {
-      bootstrapModalJs('', '数据库连接出错', '', 'sm', true);
+      bootstrapModalJs('', create_small_center_text('数据库连接出错', 'danger'), '', 'sm', true);
     } else if (status === 200 && responseText !== '') {
-      bootstrapModalJs('', responseText, '', 'xl', true, true);
+      bootstrapModalJs('', create_small_center_text(responseText, 'danger'), '', '', true, true);
     } else {
-      bootstrapModalJs('', '失败', '', 'sm', true);
+      bootstrapModalJs('', create_small_center_text('失败', 'danger'), '', 'sm', true);
     }
   }
 
@@ -513,14 +511,14 @@ function check_search_value(check_type, element) {
   let search_value = phone_number_input.value;
   if (search_value.length === 0) {
     remove_spinner_icon(element);
-    bootstrapModalJs('', '<div class="small text-center text-danger">请输入您要查询的单位名称或号码</div>', '', 'sm', true);
+    bootstrapModalJs('', create_small_center_text('请输入您要查询的单位名称或号码', 'danger'), '', 'sm', true);
     return false;
   } else {
     search_query(check_type, element);
   }
 }
 
-function search_query(search_type = 'name', element) {
+function search_query(search_type, element) {
   let search_value = phone_number_input.value;
   let search_data = {
     search_type: search_type,
@@ -540,6 +538,7 @@ function ajax_search(search_data, element) {
       get_search_result(data);
     },
     error: function(data) {
+      remove_spinner_icon(element);
       ajax_error(data);
       ajax_error_fun_debug(data, 'search_number');
     },
@@ -551,7 +550,7 @@ function get_search_result(data) {
   if (data_length) {
     processing_search_result(data);
   } else {
-    bootstrapModalJs('', '<div class="small text-center text-danger">暂时没有找到您要查找的号码</div>', '', 'sm', true);
+    bootstrapModalJs('', create_small_center_text('暂时没有找到您要查找的号码', 'danger'), '', 'sm', true);
   }
 }
 

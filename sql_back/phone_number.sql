@@ -11,7 +11,7 @@
  Target Server Version : 80018
  File Encoding         : 65001
 
- Date: 14/11/2019 00:00:00
+ Date: 24/01/2020 00:00:00
 */
 
 SET NAMES utf8mb4;
@@ -37,7 +37,10 @@ CREATE TABLE `phone_number`  (
   `ip_v4` varchar(15) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '提交IP',
   `ip_v6` varchar(40) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '提交IP',
   `user_agent` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'User_Agent',
-  PRIMARY KEY (`id`) USING BTREE
+  PRIMARY KEY (`id`) USING BTREE,
+  UNIQUE INDEX `unique_name`(`phone_name`, `regional`) USING BTREE COMMENT '名称唯一性',
+  UNIQUE INDEX `unique_tel_number`(`tel_number`, `regional`) USING BTREE COMMENT '座机号码唯一性',
+  UNIQUE INDEX `unique_mobile_number`(`mobile_number`, `regional`) USING BTREE COMMENT '手机号码唯一性'
 ) ENGINE = InnoDB AUTO_INCREMENT = 11 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '记录单位电话号码' ROW_FORMAT = Dynamic;
 
 -- ----------------------------

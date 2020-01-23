@@ -6,7 +6,13 @@ if (filter_has_var(INPUT_POST, 'search_type')) {
 }
 
 $query_key = filter_input(INPUT_POST, 'search_value');
-if ($query_key === "") die("请输入要查询的内容");
+if ($query_key === "") {
+    die("请输入要查询的内容");
+} elseif (isset($query_key{10})) {
+    die("输入的内容过长");
+} elseif (mb_strlen($query_key) < 3) {
+    die("输入的内容过短");
+}
 
 $result_columns = ["phone_name", "tel_number", "mobile_number", "department", "phone_nick_name", "note"];
 

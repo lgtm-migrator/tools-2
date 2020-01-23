@@ -3,8 +3,8 @@ let a_body = document.body.querySelector('#body');
 if (a_body) a_body.removeAttribute('hidden');
 
 let RegExp_rules = {
-  'chinese_name': new RegExp(/^([\u4e00-\u9fa5·]{2,16})$/),
-  'tel_number': new RegExp(/\d{4}-\d{7}/),
+  'phone_name': new RegExp(/^([\u4e00-\u9fa5]{2,16})$/),
+  'tel_number': new RegExp(/^0319-2(06|08|11)(\d{4})$/),
   'mysqli_1045': new RegExp(/(1045)/),
   'mobile_number': new RegExp(/^(?:(?:\+|00)86)?1(?:(?:3[\d])|(?:4[5-7|9])|(?:5[0-3|5-9])|(?:6[5-7])|(?:7[0-8])|(?:8[\d])|(?:9[1|8|9]))\d{8}$/),
   'ip_v4': new RegExp(/^(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/),
@@ -31,6 +31,15 @@ function set_element_attribute(element, attribute_name, attribute_value) {
 
 function remove_element_attribute(element, attribute_name) {
   element.removeAttribute(attribute_name);
+}
+
+function create_small_center_text(text, color = '') {
+  let div = document.createElement('div');
+
+  div.className = color ? 'small text-center text-' + color : 'small text-center';
+  div.innerHTML = text;
+
+  return div;
 }
 
 /** tooltip **/
