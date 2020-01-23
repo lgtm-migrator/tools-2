@@ -13,8 +13,8 @@ require_once '../header.php';
     <div class="form-row justify-content-center">
         <div class="form-group col-11 col-sm-10 col-md-8 col-lg-6">
             <label class="sr-only" for="phone_number_input">单位名称、简称或者号码</label>
-            <input class="form-control fas text-center" type="search" id="phone_number_input" minlength="2"
-                   maxlength="15"
+            <input class="form-control fas text-center" type="search" id="phone_number_input" minlength="3"
+                   maxlength="10"
                    placeholder="单位名称、简称或者号码&nbsp;&nbsp;&#xf015;&nbsp;&nbsp;&#xf095;&nbsp;&nbsp;&#xf3cd;">
         </div>
     </div>
