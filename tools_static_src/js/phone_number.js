@@ -540,6 +540,7 @@ function ajax_search(search_data, element) {
       get_search_result(data);
     },
     error: function(data) {
+      remove_spinner_icon(element);
       ajax_error(data);
       ajax_error_fun_debug(data, 'search_number');
     },
