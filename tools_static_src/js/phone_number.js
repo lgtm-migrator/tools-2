@@ -518,7 +518,7 @@ function check_search_value(check_type, element) {
   }
 }
 
-function search_query(search_type = 'name', element) {
+function search_query(search_type, element) {
   let search_value = phone_number_input.value;
   let search_data = {
     search_type: search_type,
