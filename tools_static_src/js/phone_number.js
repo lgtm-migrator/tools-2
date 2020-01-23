@@ -509,9 +509,20 @@ if (search_btn) {
 
 function check_search_value(check_type, element) {
   let search_value = phone_number_input.value;
-  if (search_value.length === 0) {
+  let search_value_length = search_value.length;
+  let minlength = phone_number_input.getAttribute('minlength');
+  let maxlength = phone_number_input.getAttribute('maxlength');
+  if (search_value_length === 0) {
     remove_spinner_icon(element);
     bootstrapModalJs('', create_small_center_text('请输入您要查询的单位名称或号码', 'danger'), '', 'sm', true);
+    return false;
+  } else if (search_value_length < minlength) {
+    remove_spinner_icon(element);
+    bootstrapModalJs('', create_small_center_text('输入的内容过短', 'danger'), '', 'sm', true);
+    return false;
+  } else if (search_value_length > maxlength) {
+    remove_spinner_icon(element);
+    bootstrapModalJs('', create_small_center_text('输入的内容过长', 'danger'), '', 'sm', true);
     return false;
   } else {
     search_query(check_type, element);
