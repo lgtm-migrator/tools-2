@@ -509,12 +509,22 @@ if (search_btn) {
 
 function check_search_value(check_type, element) {
   let search_value = phone_number_input.value;
-  if (search_value.length === 0) {
-    remove_spinner_icon(element);
-    bootstrapModalJs('', create_small_center_text('请输入您要查询的单位名称或号码', 'danger'), '', 'sm', true);
-    return false;
-  } else {
+  let search_value_length = search_value.length;
+  let minlength = phone_number_input.getAttribute('minlength');
+  let maxlength = phone_number_input.getAttribute('maxlength');
+
+  if (search_value_length >= minlength && search_value_length <= maxlength) {
     search_query(check_type, element);
+  } else {
+    remove_spinner_icon(element);
+    if (search_value_length === 0) {
+      bootstrapModalJs('', create_small_center_text('请输入您要查询的单位名称或号码', 'danger'), '', 'sm', true);
+    } else if (search_value_length < minlength) {
+      bootstrapModalJs('', create_small_center_text('输入的内容过短<br>最少输入3个汉字或者数字', 'danger'), '', 'sm', true);
+    } else if (search_value_length > maxlength) {
+      bootstrapModalJs('', create_small_center_text('输入的内容过长<br>最多输入10个汉字或者数字', 'danger'), '', 'sm', true);
+    }
+    return false;
   }
 }
 
