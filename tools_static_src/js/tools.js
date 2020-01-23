@@ -33,6 +33,15 @@ function remove_element_attribute(element, attribute_name) {
   element.removeAttribute(attribute_name);
 }
 
+function create_small_center_text(text, color = '') {
+  let div = document.createElement('div');
+
+  div.className = color ? 'small text-center text-' + color : 'small text-center';
+  div.innerHTML = text;
+
+  return div;
+}
+
 /** tooltip **/
 $().ready(function() {
   $('span[title]').tooltip({
