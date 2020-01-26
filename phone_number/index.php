@@ -11,10 +11,37 @@ require_once '../header.php';
 
 <div class="container mt-5" id="jt_container">
     <div class="form-row justify-content-center">
-        <div class="form-group col-11 col-sm-10 col-md-8 col-lg-6">
+        <div class="mb-3 input-group col-11 col-sm-10 col-md-8 col-lg-6">
+            <div class="input-group-prepend">
+                <button type="button" class="btn btn-light border-secondary dropdown-toggle" id="regional">邢煤</button>
+                <div class="dropdown-menu min-w-rem-7 text-center" id="regional_list">
+                    <span class="p-0 dropdown-item">
+                        <a class="py-1 d-block small btn-outline-secondary text-decoration-none" href="javascript:">东庞</a>
+                    </span>
+                    <span class="p-0 dropdown-item">
+                        <a class="py-1 d-block small btn-outline-secondary text-decoration-none" href="javascript:">葛泉</a>
+                    </span>
+                    <span class="p-0 dropdown-item">
+                        <a class="py-1 d-block small btn-outline-secondary text-decoration-none" href="javascript:">显德汪</a>
+                    </span>
+                    <span class="p-0 dropdown-item">
+                        <a class="py-1 d-block small btn-outline-secondary text-decoration-none" href="javascript:">邢煤</a>
+                    </span>
+                    <span class="p-0 dropdown-item">
+                        <a class="py-1 d-block small btn-outline-secondary text-decoration-none" href="javascript:">邢东</a>
+                    </span>
+                    <span class="p-0 dropdown-item">
+                        <a class="py-1 d-block small btn-outline-secondary text-decoration-none" href="javascript:">章村</a>
+                    </span>
+                    <div class="dropdown-divider border-secondary" role="separator"><span class="sr-only">分隔符</span></div>
+                    <span class="p-0 dropdown-item">
+                        <a class="py-1 d-block small btn-outline-success text-decoration-none" href="javascript:">添加新的号码</a>
+                    </span>
+                </div>
+            </div>
             <label class="sr-only" for="phone_number_input">单位名称、简称或者号码</label>
-            <input class="form-control fas text-center" type="search" id="phone_number_input" minlength="3"
-                   maxlength="10"
+            <input class="form-control border-secondary fas text-center" type="search" id="phone_number_input"
+                   minlength="3" maxlength="10"
                    placeholder="单位名称、简称或者号码&nbsp;&nbsp;&#xf015;&nbsp;&nbsp;&#xf095;&nbsp;&nbsp;&#xf3cd;">
         </div>
     </div>
