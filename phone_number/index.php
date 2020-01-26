@@ -13,29 +13,29 @@ require_once '../header.php';
     <div class="form-row justify-content-center">
         <div class="mb-3 input-group col-11 col-sm-10 col-md-8 col-lg-6">
             <div class="input-group-prepend">
-                <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown">邢煤</button>
-                <div class="dropdown-menu min-w-rem-8 text-center">
+                <button type="button" class="btn btn-light border-secondary dropdown-toggle" data-toggle="dropdown">邢煤</button>
+                <div class="dropdown-menu min-w-rem-7 text-center">
                     <span class="p-0 dropdown-item">
-                        <a class="py-2 d-block btn-outline-secondary text-decoration-none" href="#">东庞</a>
+                        <a class="py-1 d-block small btn-outline-secondary text-decoration-none" href="javascript:">东庞</a>
                     </span>
                     <span class="p-0 dropdown-item">
-                        <a class="py-2 d-block btn-outline-secondary text-decoration-none" href="#">葛泉</a>
+                        <a class="py-1 d-block small btn-outline-secondary text-decoration-none" href="javascript:">葛泉</a>
                     </span>
                     <span class="p-0 dropdown-item">
-                        <a class="py-2 d-block btn-outline-secondary text-decoration-none" href="#">显德汪</a>
+                        <a class="py-1 d-block small btn-outline-secondary text-decoration-none" href="javascript:">显德汪</a>
                     </span>
                     <span class="p-0 dropdown-item">
-                        <a class="py-2 d-block btn-outline-secondary text-decoration-none" href="#">邢煤</a>
+                        <a class="py-1 d-block small btn-outline-secondary text-decoration-none" href="javascript:">邢煤</a>
                     </span>
                     <span class="p-0 dropdown-item">
-                        <a class="py-2 d-block btn-outline-secondary text-decoration-none" href="#">邢东</a>
+                        <a class="py-1 d-block small btn-outline-secondary text-decoration-none" href="javascript:">邢东</a>
                     </span>
                     <span class="p-0 dropdown-item">
-                        <a class="py-2 d-block btn-outline-secondary text-decoration-none" href="#">章村</a>
+                        <a class="py-1 d-block small btn-outline-secondary text-decoration-none" href="javascript:">章村</a>
                     </span>
                     <div class="dropdown-divider border-secondary" role="separator"><span class="sr-only">分隔符</span></div>
                     <span class="p-0 dropdown-item">
-                        <a class="py-2 d-block btn-outline-secondary text-decoration-none" href="#">添加新的号码</a>
+                        <a class="py-1 d-block small btn-outline-success text-decoration-none" href="javascript:">添加新的号码</a>
                     </span>
                 </div>
             </div>
