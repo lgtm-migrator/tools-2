@@ -13,7 +13,7 @@ require_once '../header.php';
     <div class="form-row justify-content-center">
         <div class="mb-3 input-group col-11 col-sm-10 col-md-8 col-lg-6">
             <div class="input-group-prepend">
-                <button type="button" class="btn btn-light border-secondary dropdown-toggle" id="regional">邢煤</button>
+                <button type="button" class="btn btn-light border-secondary dropdown-toggle" data-toggle="dropdown" id="regional">邢煤</button>
                 <div class="dropdown-menu min-w-rem-7 text-center" id="regional_list">
                     <span class="p-0 dropdown-item">
                         <a class="py-1 d-block small btn-outline-secondary text-decoration-none" href="javascript:">东庞</a>
