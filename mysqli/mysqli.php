@@ -26,13 +26,3 @@ $db->addConnection("number_stored", array(
 //        'prefix' => '',
 //        'charset' => 'utf8'
 ));
-
-function table_num_rows($database_table)
-{
-    global $db;
-    $db->connection("number_stored");
-    $db->where("NAME", $database_table);
-    $query = $db->get("INNODB_TABLESTATS", null, "NUM_ROWS");
-//    return $query[0]["NUM_ROWS"] === 0 ? "数据获取失败" : $query[0]["NUM_ROWS"];
-    return (!$query[0]["NUM_ROWS"]) ? "数据获取失败" : $query[0]["NUM_ROWS"];
-}
