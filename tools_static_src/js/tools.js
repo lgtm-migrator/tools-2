@@ -295,8 +295,8 @@ function footer_record() {
   span.innerHTML = '&nbsp;&nbsp;';
 
   div.appendChild(footer_record_icp_no('冀ICP备12018851号-7'));
-  // div.appendChild(span);
-  // div.appendChild(footer_record_code('13050000000001', '邢'));
+  div.appendChild(span);
+  div.appendChild(footer_record_code('13050002001901', '冀'));
   return div;
 }
 
@@ -323,7 +323,7 @@ function footer_record_code(code_number = '', code_area = '') {
   a.rel = 'noreferrer nofollow';
   a.style.fontSize = '75%';
   a.title = '';
-  a.innerHTML = code_area + '公网安备&nbsp;' + code_number;
+  a.innerHTML = code_area + '公网安备&nbsp;' + code_number + '号';
 
   return a;
 }
