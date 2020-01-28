@@ -15,28 +15,20 @@ require_once '../header.php';
             <div class="input-group-prepend">
                 <button type="button" class="btn btn-light border-secondary dropdown-toggle" data-toggle="dropdown" id="regional">邢煤</button>
                 <div class="dropdown-menu min-w-rem-7 text-center" id="regional_list">
-                    <span class="p-0 dropdown-item">
-                        <a class="py-1 d-block small btn-outline-secondary text-decoration-none" href="javascript:">东庞</a>
-                    </span>
-                    <span class="p-0 dropdown-item">
-                        <a class="py-1 d-block small btn-outline-secondary text-decoration-none" href="javascript:">葛泉</a>
-                    </span>
-                    <span class="p-0 dropdown-item">
-                        <a class="py-1 d-block small btn-outline-secondary text-decoration-none" href="javascript:">显德汪</a>
-                    </span>
-                    <span class="p-0 dropdown-item">
-                        <a class="py-1 d-block small btn-outline-secondary text-decoration-none" href="javascript:">邢煤</a>
-                    </span>
-                    <span class="p-0 dropdown-item">
-                        <a class="py-1 d-block small btn-outline-secondary text-decoration-none" href="javascript:">邢东</a>
-                    </span>
-                    <span class="p-0 dropdown-item">
-                        <a class="py-1 d-block small btn-outline-secondary text-decoration-none" href="javascript:">章村</a>
-                    </span>
-                    <div class="dropdown-divider border-secondary" role="separator"><span class="sr-only">分隔符</span></div>
-                    <span class="p-0 dropdown-item">
-                        <a class="py-1 d-block small btn-outline-success text-decoration-none" href="javascript:">添加新的号码</a>
-                    </span>
+                    <div class="btn-group-vertical btn-group-toggle" data-toggle="buttons">
+                        <label class="btn btn-outline-secondary" for="regional_dp">东庞</label>
+                        <input class="d-none" type="radio" name="regional" id="regional_dp" value="dp">
+                        <label class="btn btn-outline-secondary" for="regional_gq">葛泉</label>
+                        <input class="d-none" type="radio" name="regional" id="regional_gq" value="gq">
+                        <label class="btn btn-outline-secondary" for="regional_xdw">显德汪</label>
+                        <input class="d-none" type="radio" name="regional" id="regional_xdw" value="xdw">
+                        <label class="btn btn-outline-secondary" for="regional_xm">邢煤</label>
+                        <input class="d-none" type="radio" name="regional" id="regional_xm" value="xm">
+                        <label class="btn btn-outline-secondary" for="regional_xd">邢东</label>
+                        <input class="d-none" type="radio" name="regional" id="regional_xd" value="xd">
+                        <input class="d-none" type="radio" name="regional" id="regional_zc" value="zc">
+                        <label class="btn btn-outline-secondary" for="regional_zc">章村</label>
+                    </div>
                 </div>
             </div>
             <label class="sr-only" for="phone_number_input">单位名称、简称或者号码</label>
