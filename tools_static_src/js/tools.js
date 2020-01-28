@@ -639,7 +639,7 @@ $().ready(function() {
   let to_top = document.querySelector('#to_top');
   let new_scroll_position = 0;
   let last_scroll_position;
-  let scrollSetTimeOutId = setTimeout(scrollListener, 500);
+  setTimeout(scrollListener, 500);
 
   function scrollListener() {
     document.addEventListener('scroll', scrollSlide);
