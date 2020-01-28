@@ -521,18 +521,9 @@ if (search_regional_list) {
         if (target.tagName === 'LABEL') {
             search_regional.innerText = target.innerText;
             if (target.firstElementChild.tagName === 'INPUT') {
-                // console.log(target.firstElementChild);
-                // console.log(target.firstElementChild.checked);
                 target.firstElementChild.checked = true;
-                // console.log(target.firstElementChild.checked);
             }
         }
-        // if (target.tagName === 'INPUT') {
-        //     console.log(target);
-        //     console.log(target.checked);
-        //     target.checked = true;
-        //     console.log(target.checked);
-        // }
     });
 }
 
