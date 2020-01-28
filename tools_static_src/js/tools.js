@@ -308,7 +308,6 @@ function footer_record_icp_no(icp_no = '') {
   a.href = 'http://www.beian.miit.gov.cn/';
   a.target = '_blank';
   a.rel = 'noreferrer nofollow';
-  a.style.fontSize = '75%';
   a.title = '';
   a.innerHTML = icp_no;
 
@@ -322,7 +321,6 @@ function footer_record_code(code_number = '', code_area = '') {
   a.href = 'http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=' + code_number;
   a.target = '_blank';
   a.rel = 'noreferrer nofollow';
-  a.style.fontSize = '75%';
   a.title = '';
   a.innerHTML = code_area + '公网安备&nbsp;' + code_number + '号';
 
