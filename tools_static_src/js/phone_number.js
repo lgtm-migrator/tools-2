@@ -196,7 +196,7 @@ function create_tel_number() {
     input.setAttribute('maxlength', '12');
     input.placeholder = '座机电话号码 ';
     input.addEventListener('input', function () {
-        custom_input_check(RegExp_rules.tel_number, '请输入正确格式的座机号码 例如：\n0319-1234567', this);
+        custom_input_check(RegExp_rules.tel_number, '请输入当地正确格式的座机号码 例如：\n0319-2061234\n0319-2089123\n······ 等更多正确格式', this);
     });
 
     label.appendChild(i);
