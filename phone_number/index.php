@@ -13,25 +13,26 @@ require_once '../header.php';
     <div class="form-row justify-content-center">
         <div class="mb-3 input-group col-11 col-sm-10 col-md-8 col-lg-6">
             <div class="input-group-prepend">
-                <button type="button" class="btn btn-light border-secondary dropdown-toggle" data-toggle="dropdown" id="regional">邢煤</button>
-                <div class="dropdown-menu min-w-rem-7 text-center" id="regional_list">
+                <button type="button" class="btn btn-light border-secondary dropdown-toggle" id="search_regional">邢煤</button>
+                <div class="dropdown-menu min-w-rem-7 shadow text-center" id="search_regional_list">
                     <div class="btn-group-vertical btn-group-toggle" data-toggle="buttons">
-                        <label class="min-w-rem-8 border-0 rounded-0 btn btn-outline-secondary" for="regional_dp">
-                            <input type="radio" name="regional" id="regional_dp" value="dp">东庞</label>
-                        <label class="min-w-rem-8 border-0 rounded-0 btn btn-outline-secondary" for="regional_gq">
-                            <input type="radio" name="regional" id="regional_gq" value="gq">葛泉</label>
-                        <label class="min-w-rem-8 border-0 rounded-0 btn btn-outline-secondary" for="regional_xdw">
-                            <input type="radio" name="regional" id="regional_xdw" value="xdw">显德汪</label>
-                        <label class="min-w-rem-8 border-0 rounded-0 btn btn-outline-secondary" for="regional_xm">
-                            <input type="radio" name="regional" id="regional_xm" value="xm">邢煤</label>
-                        <label class="min-w-rem-8 border-0 rounded-0 btn btn-outline-secondary" for="regional_xd">
-                            <input type="radio" name="regional" id="regional_xd" value="xd">邢东</label>
-                        <label class="min-w-rem-8 border-0 rounded-0 btn btn-outline-secondary" for="regional_zc">
-                            <input type="radio" name="regional" id="regional_zc" value="zc">章村</label>
+                        <label class="min-w-rem-9 border-0 rounded-0 btn btn-outline-danger" for="search_regional_dp">
+                            <input type="radio" name="search_regional" id="search_regional_dp" value="dp">东庞</label>
+                        <label class="min-w-rem-9 border-0 rounded-0 btn btn-outline-danger" for="search_regional_gq">
+                            <input type="radio" name="search_regional" id="search_regional_gq" value="gq">葛泉</label>
+                        <label class="min-w-rem-9 border-0 rounded-0 btn btn-outline-danger" for="search_regional_xdw">
+                            <input type="radio" name="search_regional" id="search_regional_xdw" value="xdw">显德汪</label>
+                        <label class="min-w-rem-9 border-0 rounded-0 btn btn-outline-danger" for="search_regional_xm">
+                            <input type="radio" name="search_regional" id="search_regional_xm" value="xm">邢煤</label>
+                        <label class="min-w-rem-9 border-0 rounded-0 btn btn-outline-danger" for="search_regional_xd">
+                            <input type="radio" name="search_regional" id="search_regional_xd" value="xd">邢东</label>
+                        <label class="min-w-rem-9 border-0 rounded-0 btn btn-outline-danger" for="search_regional_zc">
+                            <input type="radio" name="search_regional" id="search_regional_zc" value="zc">章村</label>
                     </div>
                     <div class="dropdown-divider border-secondary"></div>
                     <div class="btn-group-vertical">
-                        <button class="min-w-rem-8 border-0 rounded-0 btn btn-outline-secondary" type="button" id="add_new_numbers">添加新的号码</button>
+                        <button class="min-w-rem-9 border-0 rounded-0 btn btn-outline-success" type="button" id="add_new_numbers">
+                            <i class="fas fa-plus-circle">&nbsp;添加新的号码</i></button>
                     </div>
                 </div>
             </div>

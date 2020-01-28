@@ -14,16 +14,24 @@ if ($query_key === "") {
     die("输入的内容过短");
 }
 
-$result_columns = ["phone_name", "tel_number", "mobile_number", "department", "phone_nick_name", "note"];
+
+$regional_value = filter_input(INPUT_POST, 'search_regional');
+
+require_once "phone_number_common.php";
+
+$regional_key = filter_var($regional_value, FILTER_VALIDATE_REGEXP, filter_validate_options_regexp($PREG_rules['a_zA_Z4']));
+$regional_key = $regional_key ? $regional_key : 'un';
+$regional_key = $regional_array[$regional_key];
 
 $static = "yes";
-$regional = "xingmei";
+
+$result_columns = ["phone_name", "tel_number", "mobile_number", "department", "phone_nick_name", "note"];
 
 require_once "../mysqli/mysqli.php";
 
 $db->connection("phone_number_search");
 $db->Where("static", $static);
-//$db->Where("regional", $regional);
+$db->Where("regional", $regional_key);
 
 switch ($search_type) {
     case "number":
