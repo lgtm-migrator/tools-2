@@ -53,7 +53,7 @@ function jt_category_btns(e) {
 function jt_category_(e) {
   let id = e.id;
   let classList = e.classList;
-  let all_collapse = document.querySelectorAll('#jt_list>[class*=\'collapse-\']');
+  let all_collapse = document.querySelectorAll('#jt_list>[class*="collapse-"]');
   for (let index in all_collapse) {
     if (all_collapse.hasOwnProperty(index)) if (all_collapse[index].classList.contains('show')) all_collapse[index].classList.remove('show');
   }

@@ -702,13 +702,13 @@ function clipboard_copy_number() {
   });
 
   function clipboard_success_text(e) {
-    return '<div class=\'text-center text-success\'>已经成功复制&nbsp;' + '<span>' +
+    return '<div class="text-center text-success">已经成功复制&nbsp;' + '<span>' +
       `${e.text}` +
       '</span></div>';
   }
 
   function clipboard_error_text(e) {
-    return '<div class=\'text-center text-danger\'>复制失败,请尝试手动复制' + '<span>' +
+    return '<div class="text-center text-danger">复制失败,请尝试手动复制' + '<span>' +
       `${e}` +
       '</span></div>';
   }

@@ -405,11 +405,11 @@ function copy_url(event, url) {
     },
   });
   clipboard.on('success', function() {
-    bootstrapModalJs('', '<span class=\'d-block text-center text-success small\'>复制成功</span>', '', 'sm', true);
+    bootstrapModalJs('', '<span class="d-block text-center text-success small">复制成功</span>', '', 'sm', true);
     clipboard.destroy();
   });
   clipboard.on('error', function() {
-    bootstrapModalJs('', '<span class=\'d-block text-center text-danger small\'>复制失败</span>', '', 'sm', true);
+    bootstrapModalJs('', '<span class="d-block text-center text-danger small">复制失败</span>', '', 'sm', true);
     clipboard.destroy();
   });
 }
@@ -451,8 +451,8 @@ function disclaimer() {
 
 /** 增加阴影 **/
 $().ready(function() {
-  let btn_all = document.querySelectorAll('[class*=\'btn\']');
-  let input_all = document.querySelectorAll('input[class*=\'form-control\']');
+  let btn_all = document.querySelectorAll('[class*="btn"]');
+  let input_all = document.querySelectorAll('input[class*="form-control"]');
 
   for (let x = btn_all.length, i = 0; i < x; i++) {
     btn_all[i].addEventListener('mouseover', function(e) {
