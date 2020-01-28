@@ -16,18 +16,22 @@ require_once '../header.php';
                 <button type="button" class="btn btn-light border-secondary dropdown-toggle" data-toggle="dropdown" id="regional">邢煤</button>
                 <div class="dropdown-menu min-w-rem-7 text-center" id="regional_list">
                     <div class="btn-group-vertical btn-group-toggle" data-toggle="buttons">
-                        <label class="btn btn-outline-secondary" for="regional_dp">东庞</label>
-                        <input class="d-none" type="radio" name="regional" id="regional_dp" value="dp">
-                        <label class="btn btn-outline-secondary" for="regional_gq">葛泉</label>
-                        <input class="d-none" type="radio" name="regional" id="regional_gq" value="gq">
-                        <label class="btn btn-outline-secondary" for="regional_xdw">显德汪</label>
-                        <input class="d-none" type="radio" name="regional" id="regional_xdw" value="xdw">
-                        <label class="btn btn-outline-secondary" for="regional_xm">邢煤</label>
-                        <input class="d-none" type="radio" name="regional" id="regional_xm" value="xm">
-                        <label class="btn btn-outline-secondary" for="regional_xd">邢东</label>
-                        <input class="d-none" type="radio" name="regional" id="regional_xd" value="xd">
-                        <input class="d-none" type="radio" name="regional" id="regional_zc" value="zc">
-                        <label class="btn btn-outline-secondary" for="regional_zc">章村</label>
+                        <label class="min-w-rem-8 border-0 rounded-0 btn btn-block btn-outline-secondary" for="regional_dp">
+                            <input type="radio" name="regional" id="regional_dp" value="dp">东庞</label>
+                        <label class="min-w-rem-8 border-0 rounded-0 btn btn-block btn-outline-secondary" for="regional_gq">
+                            <input type="radio" name="regional" id="regional_gq" value="gq">葛泉</label>
+                        <label class="min-w-rem-8 border-0 rounded-0 btn btn-block btn-outline-secondary" for="regional_xdw">
+                            <input type="radio" name="regional" id="regional_xdw" value="xdw">显德汪</label>
+                        <label class="min-w-rem-8 border-0 rounded-0 btn btn-block btn-outline-secondary" for="regional_xm">
+                            <input type="radio" name="regional" id="regional_xm" value="xm">邢煤</label>
+                        <label class="min-w-rem-8 border-0 rounded-0 btn btn-block btn-outline-secondary" for="regional_xd">
+                            <input type="radio" name="regional" id="regional_xd" value="xd">邢东</label>
+                        <label class="min-w-rem-8 border-0 rounded-0 btn btn-block btn-outline-secondary" for="regional_zc">
+                            <input type="radio" name="regional" id="regional_zc" value="zc">章村</label>
+                    </div>
+                    <div class="dropdown-divider border-secondary"></div>
+                    <div class="btn-group-vertical">
+                        <button class="min-w-rem-8 border-0 rounded-0 btn btn-outline-secondary" type="button" id="add_new_numbers">添加新的号码</button>
                     </div>
                 </div>
             </div>
