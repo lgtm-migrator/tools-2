@@ -16,6 +16,7 @@ let RegExp_rules = {
 /** 公共元素变量名 **/
 let jt_header = document.querySelector('#jt_header');
 let jt_content = document.querySelector('#jt_content');
+let jt_container = document.querySelector('#jt_container');
 let jt_footer = document.querySelector('#jt_footer');
 
 /** 封装方法 **/
