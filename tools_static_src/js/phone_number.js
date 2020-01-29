@@ -4,9 +4,6 @@ let phone_number_submit = document.querySelector('#phone_number_submit');
 let add_phone_number_form = document.querySelector('#add_phone_number_form');
 let add_phone_number_url = '/phone_number/index.php';
 
-if (add_new_number) add_new_number.addEventListener('click', function () {
-    $("#search_regional").dropdown("hide");
-});
 if (add_new_number) add_new_number.addEventListener('click', show_add_phone_number_form, {once: true});
 if (phone_number_submit) phone_number_submit.addEventListener('click', add_phone_number);
 
@@ -497,13 +494,7 @@ let number_list = document.querySelector('#number_list');
 let search_url = '/phone_number/phone_number_search.php';
 
 if (search_btn) search_btn.addEventListener('click', click_search_btn);
-if (search_regional) search_regional.addEventListener('click', function () {
-    $("#search_regional").dropdown("toggle");
-    // todo:
-    // search_regional.addEventListener('focusout', function () {
-    //     $("#search_regional").dropdown("hide");
-    // });
-});
+
 if (search_regional_dropdown_menu) search_regional_dropdown_menu.addEventListener('click', toggle_search_regional_dropdown_menu);
 
 function click_search_btn(e) {
@@ -524,7 +515,6 @@ function toggle_search_regional_dropdown_menu(e) {
         search_regional.innerText = target.innerText;
         if (target.firstElementChild.tagName === 'INPUT') {
             target.firstElementChild.checked = true;
-            $("#search_regional").dropdown("hide");
         }
     }
 }
