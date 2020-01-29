@@ -31,7 +31,7 @@ require_once '../header.php';
                     </div>
                     <div class="dropdown-divider border-secondary"></div>
                     <div class="btn-group-vertical">
-                        <button class="min-w-rem-9 border-0 rounded-0 btn btn-outline-success" type="button" id="add_new_numbers">
+                        <button class="min-w-rem-9 border-0 rounded-0 btn btn-outline-success" type="button" id="add_new_number">
                             <i class="fas fa-plus-circle">&nbsp;添加新的号码</i></button>
                     </div>
                 </div>
@@ -39,7 +39,7 @@ require_once '../header.php';
             <label class="sr-only" for="phone_number_input">单位名称、简称或者号码</label>
             <input class="form-control border-secondary fas text-center" type="search" id="phone_number_input"
                    minlength="3" maxlength="10"
-                   placeholder="单位名称、简称或者号码&nbsp;&nbsp;&#xf015;&nbsp;&nbsp;&#xf095;&nbsp;&nbsp;&#xf3cd;">
+                   placeholder="&nbsp;&nbsp;&#xf015;&nbsp;&nbsp;&#xf095;&nbsp;&nbsp;&#xf3cd;">
         </div>
     </div>
     <div class="d-flex justify-content-center" id="search_btn">
@@ -54,9 +54,6 @@ require_once '../header.php';
 <div class="container mt-5 d-none" id="phone_search_result">
     <span class="small font-weight-bold text-success">查询结果</span>
     <div class="mt-1 pt-3" id="number_list"></div>
-</div>
-<div class="container mt-5 text-center d-none" id="add">
-    <a href="javascript:" class="my-2 btn btn-sm btn-outline-primary" id="add_new_number">我要添加新号码</a>
 </div>
 
 <div class="container mt-5">
