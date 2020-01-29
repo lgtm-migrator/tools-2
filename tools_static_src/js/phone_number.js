@@ -4,17 +4,15 @@ let phone_number_submit = document.querySelector('#phone_number_submit');
 let add_phone_number_form = document.querySelector('#add_phone_number_form');
 let add_phone_number_url = '/phone_number/index.php';
 
-if (add_new_number) {
-    add_new_number.addEventListener('click', function (e) {
-        let e_target = e.target;
-        e_target.parentNode.parentNode.removeChild(e_target.parentNode);
-        create_form_add_init();
-        create_regional();
-        add_phone_number_form.classList.remove('d-none');
-        add_phone_number_form.classList.toggle('show');
-    });
-}
+if (add_new_number) add_new_number.addEventListener('click', show_add_phone_number_form);
 if (phone_number_submit) phone_number_submit.addEventListener('click', add_phone_number);
+
+function show_add_phone_number_form() {
+    create_form_add_init();
+    create_regional();
+    add_phone_number_form.classList.remove('d-none');
+    add_phone_number_form.classList.toggle('show');
+}
 
 function verify_phone_number_data() {
     let phone_name_all = document.querySelectorAll('.phone_name');
@@ -495,36 +493,32 @@ let phone_search_result = document.querySelector('#phone_search_result');
 let number_list = document.querySelector('#number_list');
 let search_url = '/phone_number/phone_number_search.php';
 
-if (search_btn) {
-    search_btn.addEventListener('click', function (e) {
-        let target = e.target;
-        if (target.tagName === 'A') {
-            add_spinner_icon(target);
-            if (target.classList.contains('name')) {
-                check_search_value('name', target);
-            } else if (target.classList.contains('number')) {
-                check_search_value('number', target);
-            }
+if (search_btn) search_btn.addEventListener('click', click_search_btn);
+if (search_regional) search_regional.addEventListener('click', function () {
+    $("#search_regional").dropdown("toggle");
+});
+if (search_regional_list) search_regional_list.addEventListener('click', toggle_search_regional);
+
+function click_search_btn(e) {
+    let target = e.target;
+    if (target.tagName === 'A') {
+        add_spinner_icon(target);
+        if (target.classList.contains('name')) {
+            check_search_value('name', target);
+        } else if (target.classList.contains('number')) {
+            check_search_value('number', target);
         }
-    });
+    }
 }
 
-if (search_regional) {
-    search_regional.addEventListener('click', function () {
-        $("#search_regional").dropdown("toggle");
-    });
-}
-
-if (search_regional_list) {
-    search_regional_list.addEventListener('click', function (e) {
-        let target = e.target;
-        if (target.tagName === 'LABEL') {
-            search_regional.innerText = target.innerText;
-            if (target.firstElementChild.tagName === 'INPUT') {
-                target.firstElementChild.checked = true;
-            }
+function toggle_search_regional(e) {
+    let target = e.target;
+    if (target.tagName === 'LABEL') {
+        search_regional.innerText = target.innerText;
+        if (target.firstElementChild.tagName === 'INPUT') {
+            target.firstElementChild.checked = true;
         }
-    });
+    }
 }
 
 function check_search_value(check_type, element) {
@@ -599,7 +593,6 @@ function get_search_result(data) {
 
 function processing_search_result(data) {
     phone_search_result.classList.remove('d-none');
-    add_new_number.parentNode.classList.remove('d-none');
     number_list.innerHTML = '';
     for (let index in data) {
         if (data.hasOwnProperty(index)) create_number_list(data[index]);
