@@ -65,7 +65,7 @@ require_once '../header.php';
     <div class="text-right" id="number_stored"></div>
 </div>
 
-<div>
+<div class="d-none">
     <?php require_once dirname(__DIR__) . "/javascript.php"; ?>
     <script src="/static/js/phone_number.min.js"></script>
 </div>
