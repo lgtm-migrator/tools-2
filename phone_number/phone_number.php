@@ -31,14 +31,6 @@ $udate = new DateTime();
 $create_date = $udate->format('Y-m-d H:i:s.u');
 $modify_date = $udate->format('Y-m-d H:i:s.u');
 
-$PREG_rules = array(
-    'phone_name' => '/^([\u4e00-\u9fa5]{2,16})$/',
-    'a_zA_Z4' => '/[a-zA-Z]{1,4}/',
-    'tel_number' => '/^0319-2(06|08|11)(\d{4})$/',
-    'mobile_number' => '/^(?:(?:\+|00)86)?1(?:(?:3[\d])|(?:4[5-7|9])|(?:5[0-3|5-9])|(?:6[5-7])|(?:7[0-8])|(?:8[\d])|(?:9[1|8|9]))\d{8}$/',
-);
-
-
 $server_remote_addr = filter_input(INPUT_SERVER, 'REMOTE_ADDR', FILTER_VALIDATE_IP);
 
 $validate_ip_v4 = filter_var($server_remote_addr, FILTER_VALIDATE_IP, FILTER_FLAG_IPV4);
@@ -55,7 +47,6 @@ if ($validate_ip_v4) {
     $ip = 'unset';
 }
 
-
 $static = array(
     'n' => 'no',
     'y' => 'yes',
@@ -63,29 +54,12 @@ $static = array(
     'vd' => 'verified',
 );
 
-//矿区
-$regional_array = array(
-    'un' => 'unset',
-    'dp' => 'dongpang',
-    'gq' => 'gequan',
-    'xdw' => 'xiandewang',
-    'xm' => 'xingmei',
-    'xd' => 'xingdong',
-    'zc' => 'zhangcun',
-);
+require_once "phone_number_common.php";
+
 $regional_key = filter_var($data_post_array['info']['regional'], FILTER_VALIDATE_REGEXP, filter_validate_options_regexp($PREG_rules['a_zA_Z4']));
 $regional_key = $regional_key ? $regional_key : 'un';
 
 $regional = $regional_array[$regional_key];
-
-function filter_validate_options_regexp($regexp_rule_string)
-{
-    return array(
-        'options' => array(
-            'regexp' => $regexp_rule_string
-        )
-    );
-}
 
 //区队、科室
 $department = array(
