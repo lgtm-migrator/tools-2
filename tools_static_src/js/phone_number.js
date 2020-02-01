@@ -556,7 +556,6 @@ function check_search_regional() {
 
     for (let x = search_regional_list.length, i = 0; i < x; i++) {
         if (true === search_regional_list[i].checked) {
-            console.log(search_regional_list[i].value);
             return search_regional_list[i].value;
         }
     }

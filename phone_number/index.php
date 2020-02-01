@@ -12,9 +12,11 @@ require_once '../header.php';
 <div class="container mt-5" id="jt_container">
     <div id="search_number_tools">
         <div class="form-row justify-content-center">
-            <div class="mb-3 input-group col-11 col-sm-10 col-md-8 col-lg-6">
+            <div class="mb-3 input-group input-group-lg col-11 col-sm-10 col-md-8 col-lg-6">
                 <div class="input-group-prepend">
-                    <button type="button" class="btn btn-light border-secondary dropdown-toggle" data-toggle="dropdown" id="search_regional">区域</button>
+                    <button type="button" class="btn btn-light border-secondary" title="区域" data-toggle="dropdown" id="search_regional">
+                        <i class="text-muted fa-fw fas fa-map-signs"></i>
+                    </button>
                     <div class="dropdown-menu min-w-rem-7 shadow text-center" id="search_regional_dropdown_menu">
                         <div class="btn-group-vertical btn-group-toggle" data-toggle="buttons">
                             <label class="min-w-rem-9 border-0 rounded-0 btn btn-outline-danger" for="search_regional_dp">
