@@ -539,9 +539,9 @@ function check_search_value(search_options) {
     } else {
         remove_spinner_icon(search_options.clicked_btn);
         if (!regional_list.includes(regional_value)) {
-            bootstrapModalJs('', create_small_center_text('请选择您要查询的区域', 'danger'), '', 'sm');
+            bootstrapModalJs('', create_small_center_text('请选择您要查询的区域<br><i class="mt-2 text-muted fa-2x fa-fw fas fa-map-signs"></i>', 'danger'), '', 'sm');
         } else if (search_value_length === 0) {
-            bootstrapModalJs('', create_small_center_text('请输入您要查询的单位名称或号码', 'danger'), '', 'sm');
+            bootstrapModalJs('', create_small_center_text('请输入您要查询的单位名称或号码<br><i class="mt-2 text-muted fa-2x fa-fw fas fa-home"></i><i class="mt-2 text-muted fa-2x fa-fw fas fa-phone"></i><i class="mt-2 text-muted fa-2x fa-fw fas fa-mobile-alt"></i>', 'danger'), '', 'sm');
         } else if (search_value_length < minlength) {
             bootstrapModalJs('', create_small_center_text('输入的内容过短<br>最少输入3个汉字或者数字', 'danger'), '', 'sm');
         } else if (search_value_length > maxlength) {
