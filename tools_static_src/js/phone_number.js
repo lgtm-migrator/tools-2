@@ -525,36 +525,46 @@ function check_search_value(search_options) {
     let search_value_length = search_value.length;
     let minlength = phone_number_input.getAttribute('minlength');
     let maxlength = phone_number_input.getAttribute('maxlength');
+    let search_regional_list = document.querySelectorAll('input[name=search_regional]');
+    let regional_value = check_search_regional();
+    let regional_list = [];
 
-    if (search_value_length >= minlength && search_value_length <= maxlength) {
+    for (let x = search_regional_list.length, i = 0; i < x; i++) {
+        regional_list.push(search_regional_list[i].value);
+    }
+
+    if (search_value_length >= minlength && search_value_length <= maxlength && regional_list.includes(regional_value)) {
+        search_options.search_regional = regional_value;
         search_query(search_options);
     } else {
         remove_spinner_icon(search_options.clicked_btn);
-        if (search_value_length === 0) {
-            bootstrapModalJs('', create_small_center_text('请输入您要查询的单位名称或号码', 'danger'), '', 'sm', true);
+        if (!regional_list.includes(regional_value)) {
+            bootstrapModalJs('', create_small_center_text('请选择您要查询的区域', 'danger'), '', 'sm');
+        } else if (search_value_length === 0) {
+            bootstrapModalJs('', create_small_center_text('请输入您要查询的单位名称或号码', 'danger'), '', 'sm');
         } else if (search_value_length < minlength) {
-            bootstrapModalJs('', create_small_center_text('输入的内容过短<br>最少输入3个汉字或者数字', 'danger'), '', 'sm', true);
+            bootstrapModalJs('', create_small_center_text('输入的内容过短<br>最少输入3个汉字或者数字', 'danger'), '', 'sm');
         } else if (search_value_length > maxlength) {
-            bootstrapModalJs('', create_small_center_text('输入的内容过长<br>最多输入10个汉字或者数字', 'danger'), '', 'sm', true);
+            bootstrapModalJs('', create_small_center_text('输入的内容过长<br>最多输入10个汉字或者数字', 'danger'), '', 'sm');
         }
         return false;
     }
 }
 
 function check_search_regional() {
-    let search_regional_input = document.querySelectorAll('input[name=search_regional]');
+    let search_regional_list = document.querySelectorAll('input[name=search_regional]');
 
-    for (let x = search_regional_input.length, i = 0; i < x; i++) {
-        if (true === search_regional_input[i].checked) {
-            console.log(search_regional_input[i].value);
-            return search_regional_input[i].value;
+    for (let x = search_regional_list.length, i = 0; i < x; i++) {
+        if (true === search_regional_list[i].checked) {
+            console.log(search_regional_list[i].value);
+            return search_regional_list[i].value;
         }
     }
 }
 
 function search_query(search_options) {
     let search_value = phone_number_input.value;
-    let search_regional_value = check_search_regional();
+    let search_regional_value = search_options.search_regional;
     let search_data = {
         search_type: search_options.search_type,
         search_value: search_value,
