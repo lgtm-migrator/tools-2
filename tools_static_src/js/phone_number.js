@@ -250,11 +250,7 @@ function create_regional() {
 
     for (let index in regionOptions) {
         if (regionOptions.hasOwnProperty(index)) {
-            if (index !== 'xm') {
-                div.appendChild(create_regional_radio(index, regionOptions[index]));
-            } else {
-                div.appendChild(create_regional_radio(index, regionOptions[index], true));
-            }
+            div.appendChild(create_regional_radio(index, regionOptions[index]));
         }
     }
 
