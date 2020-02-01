@@ -499,13 +499,17 @@ if (search_regional_dropdown_menu) search_regional_dropdown_menu.addEventListene
 
 function click_search_btn(e) {
     let target = e.target;
+    let search_options = {
+        clicked_btn: target,
+    };
     if (target.tagName === 'A') {
         add_spinner_icon(target);
         if (target.classList.contains('name')) {
-            check_search_value('name', target);
+            search_options['search_type'] = 'name';
         } else if (target.classList.contains('number')) {
-            check_search_value('number', target);
+            search_options['search_type'] = 'number';
         }
+        check_search_value(search_options);
     }
 }
 
@@ -516,16 +520,16 @@ function toggle_search_regional_dropdown_menu(e) {
     }
 }
 
-function check_search_value(check_type, element) {
+function check_search_value(search_options) {
     let search_value = phone_number_input.value;
     let search_value_length = search_value.length;
     let minlength = phone_number_input.getAttribute('minlength');
     let maxlength = phone_number_input.getAttribute('maxlength');
 
     if (search_value_length >= minlength && search_value_length <= maxlength) {
-        search_query(check_type, element);
+        search_query(search_options);
     } else {
-        remove_spinner_icon(element);
+        remove_spinner_icon(search_options.clicked_btn);
         if (search_value_length === 0) {
             bootstrapModalJs('', create_small_center_text('请输入您要查询的单位名称或号码', 'danger'), '', 'sm', true);
         } else if (search_value_length < minlength) {
@@ -548,29 +552,29 @@ function check_search_regional() {
     }
 }
 
-function search_query(search_type, element) {
+function search_query(search_options) {
     let search_value = phone_number_input.value;
     let search_regional_value = check_search_regional();
     let search_data = {
-        search_type: search_type,
+        search_type: search_options.search_type,
         search_value: search_value,
         search_regional: search_regional_value,
     };
-    ajax_search(search_data, element);
+    ajax_search(search_data, search_options.clicked_btn);
 }
 
-function ajax_search(search_data, element) {
+function ajax_search(search_data, clicked_btn) {
     $.ajax({
         type: 'post',
         url: search_url,
         data: search_data,
         dataType: 'json',
         success: function (data) {
-            remove_spinner_icon(element);
+            remove_spinner_icon(clicked_btn);
             get_search_result(data);
         },
         error: function (data) {
-            remove_spinner_icon(element);
+            remove_spinner_icon(clicked_btn);
             ajax_error(data);
             ajax_error_fun_debug(data, 'search_number');
         },
