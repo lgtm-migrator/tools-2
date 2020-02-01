@@ -513,9 +513,6 @@ function toggle_search_regional_dropdown_menu(e) {
     let target = e.target;
     if (target.tagName === 'LABEL') {
         search_regional.innerText = target.innerText;
-        if (target.firstElementChild.tagName === 'INPUT') {
-            target.firstElementChild.checked = true;
-        }
     }
 }
 
