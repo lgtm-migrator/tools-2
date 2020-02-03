@@ -54,9 +54,11 @@ $static = array(
     'vd' => 'verified',
 );
 
+$regional_value = $data_post_array['info']['regional'];
+
 require_once "phone_number_common.php";
 
-$regional = filter_var($data_post_array['info']['regional'], FILTER_VALIDATE_REGEXP, filter_validate_options_regexp($PREG_rules['a_zA_Z4']));
+$regional = filter_var($regional_value, FILTER_VALIDATE_REGEXP, filter_validate_options_regexp($PREG_rules['a_zA_Z4']));
 $regional = $regional ? $regional : '';
 if (array_key_exists($regional, $regional_array)) {
     $regional_key = $regional_array[$regional];
@@ -69,6 +71,7 @@ $department = array(
     'un' => 'unset',
     'bwk' => 'baoweike',
 );
+
 $user_agent = filter_input(INPUT_SERVER, 'HTTP_USER_AGENT');
 
 
