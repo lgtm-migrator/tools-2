@@ -496,7 +496,6 @@ function get_number_stored() {
 /** 搜索 **/
 let search_regional = document.querySelector('#search_regional');
 let search_regional_dropdown_menu = document.querySelector('#search_regional_dropdown_menu');
-let phone_number_input = document.querySelector('#phone_number_input');
 let search_btn = document.querySelector('#search_btn');
 let phone_search_result = document.querySelector('#phone_search_result');
 let number_list = document.querySelector('#number_list');
@@ -518,7 +517,19 @@ function click_search_btn(e) {
         } else if (target.classList.contains('number')) {
             search_options['search_type'] = 'number';
         }
-        check_search_value(search_options);
+        check_search(search_options);
+    }
+}
+
+function check_search(options) {
+    let search_input_value = check_search_input_value(options.clicked_btn);
+    let search_regional_value = check_search_regional(options.clicked_btn);
+    if (search_input_value && search_regional_value) {
+        options.search_input_value = search_input_value;
+        options.search_regional_value = search_regional_value;
+        search_query(options);
+    }else {
+        remove_spinner_icon(options.clicked_btn);
     }
 }
 
@@ -529,27 +540,17 @@ function toggle_search_regional_dropdown_menu(e) {
     }
 }
 
-function check_search_value(search_options) {
-    let search_value = phone_number_input.value;
-    let search_value_length = search_value.length;
+function check_search_input_value(clicked_btn) {
+    let phone_number_input = document.querySelector('#phone_number_input');
     let minlength = phone_number_input.getAttribute('minlength');
     let maxlength = phone_number_input.getAttribute('maxlength');
-    let search_regional_list = document.querySelectorAll('input[name=search_regional]');
-    let regional_value = check_search_regional();
-    let regional_list = [];
+    let search_value = phone_number_input.value;
+    let search_value_length = search_value.length;
 
-    for (let x = search_regional_list.length, i = 0; i < x; i++) {
-        regional_list.push(search_regional_list[i].value);
-    }
-
-    if (search_value_length >= minlength && search_value_length <= maxlength && regional_list.includes(regional_value)) {
-        search_options.search_regional = regional_value;
-        search_query(search_options);
+    if (search_value_length >= minlength && search_value_length <= maxlength) {
+        return search_value;
     } else {
-        remove_spinner_icon(search_options.clicked_btn);
-        if (!regional_list.includes(regional_value)) {
-            bootstrapModalJs('', create_small_center_text('请选择您要查询的区域<br><i class="mt-2 text-muted fa-2x fa-fw fas fa-map-signs"></i>', 'danger'), '', 'sm');
-        } else if (search_value_length === 0) {
+        if (search_value_length === 0) {
             bootstrapModalJs('', create_small_center_text('请输入您要查询的单位名称或号码<br><i class="mt-2 text-muted fa-2x fa-fw fas fa-home"></i><i class="mt-2 text-muted fa-2x fa-fw fas fa-phone"></i><i class="mt-2 text-muted fa-2x fa-fw fas fa-mobile-alt"></i>', 'danger'), '', 'sm');
         } else if (search_value_length < minlength) {
             bootstrapModalJs('', create_small_center_text('输入的内容过短<br>最少输入3个汉字或者数字', 'danger'), '', 'sm');
@@ -560,23 +561,33 @@ function check_search_value(search_options) {
     }
 }
 
-function check_search_regional() {
+function check_search_regional(clicked_btn) {
     let search_regional_list = document.querySelectorAll('input[name=search_regional]');
+    let regional_value;
+    let regional_list = [];
 
     for (let x = search_regional_list.length, i = 0; i < x; i++) {
+        regional_list.push(search_regional_list[i].value);
         if (true === search_regional_list[i].checked) {
-            return search_regional_list[i].value;
+            regional_value = search_regional_list[i].value;
         }
+    }
+    if (!regional_list.includes(regional_value)) {
+        bootstrapModalJs('', create_small_center_text('请选择您要查询的区域<br><i class="mt-2 text-muted fa-2x fa-fw fas fa-map-signs"></i>', 'danger'), '', 'sm');
+        return false;
+    } else {
+        return regional_value;
     }
 }
 
 function search_query(search_options) {
-    let search_value = phone_number_input.value;
-    let search_regional_value = search_options.search_regional;
+    let search_type = search_options.search_type;
+    let search_regional = search_options.search_regional_value;
+    let search_value = search_options.search_input_value;
     let search_data = {
-        search_type: search_options.search_type,
+        search_type: search_type,
+        search_regional: search_regional,
         search_value: search_value,
-        search_regional: search_regional_value,
     };
     ajax_search(search_data, search_options.clicked_btn);
 }
