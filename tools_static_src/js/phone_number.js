@@ -250,11 +250,7 @@ function create_regional() {
 
     for (let index in regionOptions) {
         if (regionOptions.hasOwnProperty(index)) {
-            if (index !== 'xm') {
-                div.appendChild(create_regional_radio(index, regionOptions[index]));
-            } else {
-                div.appendChild(create_regional_radio(index, regionOptions[index], true));
-            }
+            div.appendChild(create_regional_radio(index, regionOptions[index]));
         }
     }
 
@@ -396,6 +392,8 @@ function ajax_error(error_result) {
     let statusText = error_result.statusText;
     let readyState = error_result.readyState;
     let responseText = error_result.responseText;
+    let readyState_array = [];
+    let status_array = [200, 500];
     console.log(error_result);
 
     if (readyState === 4) {
@@ -416,6 +414,17 @@ function ajax_error(error_result) {
         if (statusText === 'error') {
             bootstrapModalJs('', '服务器刚刚关闭', '', 'sm', true, true);
         }
+    }
+
+    if (false === status_array.includes(status)) {
+        if (fundebug) fundebug.notify('状态码异常超限，请查看', document.location.href, {
+            metaData: {
+                location: document.location,
+                readyState: readyState,
+            },
+        });
+    }
+    if (false === readyState_array.includes(readyState)) {
     }
 }
 
@@ -487,7 +496,6 @@ function get_number_stored() {
 /** 搜索 **/
 let search_regional = document.querySelector('#search_regional');
 let search_regional_dropdown_menu = document.querySelector('#search_regional_dropdown_menu');
-let phone_number_input = document.querySelector('#phone_number_input');
 let search_btn = document.querySelector('#search_btn');
 let phone_search_result = document.querySelector('#phone_search_result');
 let number_list = document.querySelector('#number_list');
@@ -495,85 +503,107 @@ let search_url = '/phone_number/phone_number_search.php';
 
 if (search_btn) search_btn.addEventListener('click', click_search_btn);
 
-if (search_regional_dropdown_menu) search_regional_dropdown_menu.addEventListener('click', toggle_search_regional_dropdown_menu);
+if (search_regional_dropdown_menu) search_regional_dropdown_menu.addEventListener('click', toggle_search_regional_dropdown_btn_text);
 
-function click_search_btn(e) {
-    let target = e.target;
-    if (target.tagName === 'A') {
-        add_spinner_icon(target);
-        if (target.classList.contains('name')) {
-            check_search_value('name', target);
-        } else if (target.classList.contains('number')) {
-            check_search_value('number', target);
-        }
-    }
-}
-
-function toggle_search_regional_dropdown_menu(e) {
+function toggle_search_regional_dropdown_btn_text(e) {
     let target = e.target;
     if (target.tagName === 'LABEL') {
         search_regional.innerText = target.innerText;
-        if (target.firstElementChild.tagName === 'INPUT') {
-            target.firstElementChild.checked = true;
-        }
     }
 }
 
-function check_search_value(check_type, element) {
-    let search_value = phone_number_input.value;
-    let search_value_length = search_value.length;
+function click_search_btn(e) {
+    let target = e.target;
+    let search_options = {
+        clicked_btn: target,
+    };
+    if (target.tagName === 'A') {
+        add_spinner_icon(target);
+        if (target.classList.contains('name')) {
+            search_options['search_type'] = 'name';
+        } else if (target.classList.contains('number')) {
+            search_options['search_type'] = 'number';
+        }
+        check_search(search_options);
+    }
+}
+
+function check_search(options) {
+    let search_input_value = check_search_input_value(options.clicked_btn);
+    let search_regional_value = check_search_regional_value(options.clicked_btn);
+    if (search_input_value && search_regional_value) {
+        options.search_input_value = search_input_value;
+        options.search_regional_value = search_regional_value;
+        search_query(options);
+    } else {
+        remove_spinner_icon(options.clicked_btn);
+    }
+}
+
+function check_search_input_value(clicked_btn) {
+    let phone_number_input = document.querySelector('#phone_number_input');
     let minlength = phone_number_input.getAttribute('minlength');
     let maxlength = phone_number_input.getAttribute('maxlength');
+    let search_value = phone_number_input.value;
+    let search_value_length = search_value.length;
 
     if (search_value_length >= minlength && search_value_length <= maxlength) {
-        search_query(check_type, element);
+        return search_value;
     } else {
-        remove_spinner_icon(element);
         if (search_value_length === 0) {
-            bootstrapModalJs('', create_small_center_text('请输入您要查询的单位名称或号码', 'danger'), '', 'sm', true);
+            bootstrapModalJs('', create_small_center_text('请输入您要查询的单位名称或号码<br><i class="mt-2 text-muted fa-2x fa-fw fas fa-home"></i><i class="mt-2 text-muted fa-2x fa-fw fas fa-phone"></i><i class="mt-2 text-muted fa-2x fa-fw fas fa-mobile-alt"></i>', 'danger'), '', 'sm');
         } else if (search_value_length < minlength) {
-            bootstrapModalJs('', create_small_center_text('输入的内容过短<br>最少输入3个汉字或者数字', 'danger'), '', 'sm', true);
+            bootstrapModalJs('', create_small_center_text('输入的内容过短<br>最少输入3个汉字或者数字', 'danger'), '', 'sm');
         } else if (search_value_length > maxlength) {
-            bootstrapModalJs('', create_small_center_text('输入的内容过长<br>最多输入10个汉字或者数字', 'danger'), '', 'sm', true);
+            bootstrapModalJs('', create_small_center_text('输入的内容过长<br>最多输入10个汉字或者数字', 'danger'), '', 'sm');
         }
         return false;
     }
 }
 
-function check_search_regional() {
-    let search_regional_input = document.querySelectorAll('input[name=search_regional]');
+function check_search_regional_value(clicked_btn) {
+    let search_regional_list = document.querySelectorAll('input[name=search_regional]');
+    let regional_value;
+    let regional_list = [];
 
-    for (let x = search_regional_input.length, i = 0; i < x; i++) {
-        if (true === search_regional_input[i].checked) {
-            console.log(search_regional_input[i].value);
-            return search_regional_input[i].value;
+    for (let x = search_regional_list.length, i = 0; i < x; i++) {
+        regional_list.push(search_regional_list[i].value);
+        if (true === search_regional_list[i].checked) {
+            regional_value = search_regional_list[i].value;
         }
+    }
+    if (!regional_list.includes(regional_value)) {
+        bootstrapModalJs('', create_small_center_text('请选择您要查询的区域<br><i class="mt-2 text-muted fa-2x fa-fw fas fa-map-signs"></i>', 'danger'), '', 'sm');
+        return false;
+    } else {
+        return regional_value;
     }
 }
 
-function search_query(search_type, element) {
-    let search_value = phone_number_input.value;
-    let search_regional_value = check_search_regional();
+function search_query(search_options) {
+    let search_type = search_options.search_type;
+    let search_regional = search_options.search_regional_value;
+    let search_value = search_options.search_input_value;
     let search_data = {
         search_type: search_type,
+        search_regional: search_regional,
         search_value: search_value,
-        search_regional: search_regional_value,
     };
-    ajax_search(search_data, element);
+    ajax_search(search_data, search_options.clicked_btn);
 }
 
-function ajax_search(search_data, element) {
+function ajax_search(search_data, clicked_btn) {
     $.ajax({
         type: 'post',
         url: search_url,
         data: search_data,
         dataType: 'json',
         success: function (data) {
-            remove_spinner_icon(element);
+            remove_spinner_icon(clicked_btn);
             get_search_result(data);
         },
         error: function (data) {
-            remove_spinner_icon(element);
+            remove_spinner_icon(clicked_btn);
             ajax_error(data);
             ajax_error_fun_debug(data, 'search_number');
         },

@@ -19,9 +19,13 @@ $regional_value = filter_input(INPUT_POST, 'search_regional');
 
 require_once "phone_number_common.php";
 
-$regional_key = filter_var($regional_value, FILTER_VALIDATE_REGEXP, filter_validate_options_regexp($PREG_rules['a_zA_Z4']));
-$regional_key = $regional_key ? $regional_key : 'un';
-$regional_key = $regional_array[$regional_key];
+$regional = filter_var($regional_value, FILTER_VALIDATE_REGEXP, filter_validate_options_regexp($PREG_rules['a_zA_Z4']));
+$regional = $regional ? $regional : '';
+if (array_key_exists($regional, $regional_array)) {
+    $regional_key = $regional_array[$regional];
+} else {
+    die($result['error']['error'] = '请提交正确的矿区');
+}
 
 $static = "yes";
 

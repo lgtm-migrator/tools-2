@@ -54,18 +54,24 @@ $static = array(
     'vd' => 'verified',
 );
 
+$regional_value = $data_post_array['info']['regional'];
+
 require_once "phone_number_common.php";
 
-$regional_key = filter_var($data_post_array['info']['regional'], FILTER_VALIDATE_REGEXP, filter_validate_options_regexp($PREG_rules['a_zA_Z4']));
-$regional_key = $regional_key ? $regional_key : 'un';
-
-$regional = $regional_array[$regional_key];
+$regional = filter_var($regional_value, FILTER_VALIDATE_REGEXP, filter_validate_options_regexp($PREG_rules['a_zA_Z4']));
+$regional = $regional ? $regional : '';
+if (array_key_exists($regional, $regional_array)) {
+    $regional_key = $regional_array[$regional];
+} else {
+    die($result['error']['error'] = '请提交正确的矿区');
+}
 
 //区队、科室
 $department = array(
     'un' => 'unset',
     'bwk' => 'baoweike',
 );
+
 $user_agent = filter_input(INPUT_SERVER, 'HTTP_USER_AGENT');
 
 
@@ -79,7 +85,7 @@ for ($i = 0; $i < $data_count; $i++) {
         'tel_number' => $data_post_array[$i]['tel_number'],
         'mobile_number' => $data_post_array[$i]['mobile_number'],
         'static' => $static['y'],
-        'regional' => $regional,
+        'regional' => $regional_key,
         'department' => $department['un'],
         'create_data' => $create_date,
         'modify_data' => $modify_date,
@@ -109,10 +115,13 @@ try {
 if (!$id) {
     $phone_number_error_data = $phone_number_data;
     foreach ($phone_number_error_data as $k => $v) {
+//        unset($phone_number_error_data[$k]['phone_name']);
         unset($phone_number_error_data[$k]['phone_nick_name']);
         unset($phone_number_error_data[$k]['note']);
+//        unset($phone_number_error_data[$k]['tel_number']);
+//        unset($phone_number_error_data[$k]['mobile_number']);
         unset($phone_number_error_data[$k]['static']);
-        unset($phone_number_error_data[$k]['regional']);
+//        unset($phone_number_error_data[$k]['regional']);
         unset($phone_number_error_data[$k]['department']);
         unset($phone_number_error_data[$k]['create_data']);
         unset($phone_number_error_data[$k]['modify_data']);
