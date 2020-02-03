@@ -109,10 +109,13 @@ try {
 if (!$id) {
     $phone_number_error_data = $phone_number_data;
     foreach ($phone_number_error_data as $k => $v) {
+//        unset($phone_number_error_data[$k]['phone_name']);
         unset($phone_number_error_data[$k]['phone_nick_name']);
         unset($phone_number_error_data[$k]['note']);
+//        unset($phone_number_error_data[$k]['tel_number']);
+//        unset($phone_number_error_data[$k]['mobile_number']);
         unset($phone_number_error_data[$k]['static']);
-        unset($phone_number_error_data[$k]['regional']);
+//        unset($phone_number_error_data[$k]['regional']);
         unset($phone_number_error_data[$k]['department']);
         unset($phone_number_error_data[$k]['create_data']);
         unset($phone_number_error_data[$k]['modify_data']);
