@@ -503,7 +503,14 @@ let search_url = '/phone_number/phone_number_search.php';
 
 if (search_btn) search_btn.addEventListener('click', click_search_btn);
 
-if (search_regional_dropdown_menu) search_regional_dropdown_menu.addEventListener('click', toggle_search_regional_dropdown_menu);
+if (search_regional_dropdown_menu) search_regional_dropdown_menu.addEventListener('click', toggle_search_regional_dropdown_btn_text);
+
+function toggle_search_regional_dropdown_btn_text(e) {
+    let target = e.target;
+    if (target.tagName === 'LABEL') {
+        search_regional.innerText = target.innerText;
+    }
+}
 
 function click_search_btn(e) {
     let target = e.target;
@@ -528,17 +535,11 @@ function check_search(options) {
         options.search_input_value = search_input_value;
         options.search_regional_value = search_regional_value;
         search_query(options);
-    }else {
+    } else {
         remove_spinner_icon(options.clicked_btn);
     }
 }
 
-function toggle_search_regional_dropdown_menu(e) {
-    let target = e.target;
-    if (target.tagName === 'LABEL') {
-        search_regional.innerText = target.innerText;
-    }
-}
 
 function check_search_input_value(clicked_btn) {
     let phone_number_input = document.querySelector('#phone_number_input');
