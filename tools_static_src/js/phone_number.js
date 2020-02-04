@@ -7,7 +7,7 @@ let search_result_number_list = document.querySelector('#search_result_number_li
 if (search_btn) search_btn.addEventListener('click', click_search_btn);
 
 if (search_regional_dropdown_menu) search_regional_dropdown_menu.addEventListener('click', toggle_search_regional_dropdown_btn_text);
-
+create_search_result();
 function toggle_search_regional_dropdown_btn_text(e) {
     let target = e.target;
     if (target.tagName === 'LABEL') {
@@ -138,6 +138,24 @@ function processing_search_result(data) {
     copy_search_result_number();
 }
 
+function create_search_result() {
+    let search_result = document.createElement("div");
+    let span = document.createElement("span");
+    let search_result_number_list = document.createElement("div");
+
+    search_result.className = 'mt-5';
+    search_result.id = 'search_result';
+
+    span.className = 'small font-weight-bold text-success';
+
+    search_result_number_list.className = 'mt-1 pt-3';
+    search_result_number_list.id = 'search_result_number_list';
+
+    search_result.appendChild(span);
+    search_result.appendChild(search_result_number_list);
+    jt_container.appendChild(search_result);
+}
+
 function create_search_result_number_list(data) {
     let div = document.createElement('div');
     let div1 = document.createElement('div');
@@ -239,7 +257,6 @@ function dial_search_result_number() {
 }
 
 function copy_search_result_number() {
-
     search_result_number_list.addEventListener('click', function (e) {
         let target = e.target;
 
