@@ -287,7 +287,7 @@ if (add_number_submit) add_number_submit.addEventListener('click', add_number);
 
 function show_add_number_form() {
     create_add_form_init();
-    // create_add_regional();
+    create_add_regional('button');
     add_number_form.classList.remove('d-none');
     add_number_form.classList.toggle('show');
 }
@@ -518,7 +518,7 @@ function create_add_mobile_number() {
     add_number_submit.previousElementSibling.appendChild(div);
 }
 
-function create_add_regional() {
+function create_add_regional(type) {
     let div = document.createElement('div');
     let regionOptions = {
         'dp': '东庞',
@@ -529,19 +529,32 @@ function create_add_regional() {
         'zc': '章村',
     };
 
-    div.className = 'row no-gutters mb-3 mb-sm-4 mb-md-4 row-cols-2 row-cols-sm-3 row-cols-md-6';
+    if (type === 'radio') {
+        div.className = 'row no-gutters mb-3 mb-sm-4 mb-md-4 row-cols-2 row-cols-sm-3 row-cols-md-6';
+    } else if (type === 'button') {
+        div.className = 'mb-3 mb-sm-4 mb-md-4 btn-group btn-group-sm btn-group-toggle';
+        div.setAttribute('data-toggle', 'buttons');
+    }
     div.id = 'add_regional';
 
-    for (let index in regionOptions) {
-        if (regionOptions.hasOwnProperty(index)) {
-            div.appendChild(create_add_regional_radio(index, regionOptions[index]));
+    if (type === 'radio') {
+        for (let index in regionOptions) {
+            if (regionOptions.hasOwnProperty(index)) {
+                div.appendChild(create_add_regional_input_radio(index, regionOptions[index]));
+            }
+        }
+    } else if (type === 'button') {
+        for (let index in regionOptions) {
+            if (regionOptions.hasOwnProperty(index)) {
+                div.appendChild(create_add_regional_button_group_radio(index, regionOptions[index]));
+            }
         }
     }
 
     add_number_form.insertBefore(div, add_number_form.firstChild);
 }
 
-function create_add_regional_radio(input_value, label_text, check_status = false) {
+function create_add_regional_input_radio(input_value, label_text, check_status = false) {
     let div = document.createElement('div');
     let input = document.createElement('input');
     let label = document.createElement('label');
@@ -563,6 +576,25 @@ function create_add_regional_radio(input_value, label_text, check_status = false
     div.appendChild(label);
 
     return div;
+}
+
+function create_add_regional_button_group_radio(input_value, label_text, check_status = false) {
+    let label = document.createElement('label');
+    let input = document.createElement('input');
+
+    input.type = 'radio';
+    input.id = 'add_regional_' + input_value;
+    input.name = 'add_regional';
+    input.value = input_value;
+    if (check_status === true) input.checked = true;
+
+    label.className = 'btn btn-outline-secondary';
+    label.setAttribute('for', input.id);
+    label.innerHTML = label_text;
+
+    label.appendChild(input);
+
+    return label;
 }
 
 function add_number() {
