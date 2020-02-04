@@ -2,7 +2,6 @@
 let add_new_number = document.querySelector('#add_new_number');
 let phone_number_submit = document.querySelector('#phone_number_submit');
 let add_phone_number_form = document.querySelector('#add_phone_number_form');
-let add_phone_number_url = '/phone_number/index.php';
 
 if (add_new_number) add_new_number.addEventListener('click', show_add_phone_number_form, {once: true});
 if (phone_number_submit) phone_number_submit.addEventListener('click', add_phone_number);
@@ -314,6 +313,8 @@ function add_phone_number() {
 }
 
 function ajax_phone_number(data, g_recaptcha_token, g_recaptcha_action) {
+    let add_phone_number_url = '/phone_number/index.php';
+
     $.ajax({
         method: 'post',
         url: add_phone_number_url,
