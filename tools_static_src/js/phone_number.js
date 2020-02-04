@@ -130,7 +130,6 @@ function processing_search_result(data) {
     for (let index in data) {
         if (data.hasOwnProperty(index)) create_search_result_number_list(data[index]);
     }
-    style_search_result_number_list();
     $('.number i').tooltip();
     dial_search_result_number();
     copy_search_result_number();
@@ -231,17 +230,6 @@ function create_search_result_number_list_number(number, number_type) {
     li.appendChild(i_number_icon);
 
     return span;
-}
-
-function style_search_result_number_list() {
-    let number_list_child_odd = document.querySelectorAll('#search_result_number_list div:nth-child(odd)');
-    let number_list_child_even = document.querySelectorAll('#search_result_number_list div:nth-child(even)');
-    for (let x = number_list_child_odd.length, i = 0; i < x; i++) {
-        number_list_child_odd[i].style.background = 'whitesmoke';
-    }
-    for (let x = number_list_child_even.length, i = 0; i < x; i++) {
-        number_list_child_even[i].style.background = 'aliceblue';
-    }
 }
 
 function dial_search_result_number() {
