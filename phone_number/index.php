@@ -54,17 +54,13 @@ require_once '../header.php';
         </div>
     </div>
 
-    <div class="mt-5 d-none" id="phone_search_result">
+    <div class="mt-5 d-none" id="search_result">
         <span class="small font-weight-bold text-success">查询结果</span>
-        <div class="mt-1 pt-3" id="number_list"></div>
+        <div class="mt-1 pt-3" id="search_result_number_list"></div>
     </div>
 
-    <div class="mt-5">
-        <div class="px-4 py-3 border border-info rounded fade d-none" id="add_phone_number_form">
-            <div class="my-2 text-center" id="number_submit">
-                <button class="btn btn-primary" id="phone_number_submit">提交新号码</button>
-            </div>
-        </div>
+    <div class="mt-5 px-4 py-3 text-center border border-info rounded fade d-none" id="add_phone_number_form">
+        <a href="javascript:" class="my-2 btn btn-primary" id="phone_number_submit">提交新号码</a>
         <div class="text-right" id="number_stored"></div>
     </div>
 </div>

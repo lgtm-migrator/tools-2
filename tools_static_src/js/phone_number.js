@@ -1,8 +1,286 @@
+/** 搜索 **/
+let search_btn = document.querySelector('#search_btn');
+let search_regional_dropdown_menu = document.querySelector('#search_regional_dropdown_menu');
+let search_regional = document.querySelector('#search_regional');
+let search_result_number_list = document.querySelector('#search_result_number_list');
+
+if (search_btn) search_btn.addEventListener('click', click_search_btn);
+
+if (search_regional_dropdown_menu) search_regional_dropdown_menu.addEventListener('click', toggle_search_regional_dropdown_btn_text);
+
+function toggle_search_regional_dropdown_btn_text(e) {
+    let target = e.target;
+    if (target.tagName === 'LABEL') {
+        search_regional.innerText = target.innerText;
+    }
+}
+
+function click_search_btn(e) {
+    let target = e.target;
+    let search_options = {
+        clicked_btn: target,
+    };
+    if (target.tagName === 'A') {
+        add_spinner_icon(target);
+        if (target.classList.contains('name')) {
+            search_options['search_type'] = 'name';
+        } else if (target.classList.contains('number')) {
+            search_options['search_type'] = 'number';
+        }
+        check_search(search_options);
+    }
+}
+
+function check_search(options) {
+    let search_input_value = check_search_input_value(options.clicked_btn);
+    let search_regional_value = check_search_regional_value(options.clicked_btn);
+    if (search_input_value && search_regional_value) {
+        options.search_input_value = search_input_value;
+        options.search_regional_value = search_regional_value;
+        search_query(options);
+    } else {
+        remove_spinner_icon(options.clicked_btn);
+    }
+}
+
+function check_search_input_value(clicked_btn) {
+    let phone_number_input = document.querySelector('#phone_number_input');
+    let minlength = phone_number_input.getAttribute('minlength');
+    let maxlength = phone_number_input.getAttribute('maxlength');
+    let search_value = phone_number_input.value;
+    let search_value_length = search_value.length;
+
+    if (search_value_length >= minlength && search_value_length <= maxlength) {
+        return search_value;
+    } else {
+        if (search_value_length === 0) {
+            bootstrapModalJs('', create_small_center_text('请输入您要查询的单位名称或号码<br><i class="mt-2 text-muted fa-2x fa-fw fas fa-home"></i><i class="mt-2 text-muted fa-2x fa-fw fas fa-phone"></i><i class="mt-2 text-muted fa-2x fa-fw fas fa-mobile-alt"></i>', 'danger'), '', 'sm');
+        } else if (search_value_length < minlength) {
+            bootstrapModalJs('', create_small_center_text('输入的内容过短<br>最少输入3个汉字或者数字', 'danger'), '', 'sm');
+        } else if (search_value_length > maxlength) {
+            bootstrapModalJs('', create_small_center_text('输入的内容过长<br>最多输入10个汉字或者数字', 'danger'), '', 'sm');
+        }
+        return false;
+    }
+}
+
+function check_search_regional_value(clicked_btn) {
+    let search_regional_list = document.querySelectorAll('input[name=search_regional]');
+    let regional_value;
+    let regional_list = [];
+
+    for (let x = search_regional_list.length, i = 0; i < x; i++) {
+        regional_list.push(search_regional_list[i].value);
+        if (true === search_regional_list[i].checked) {
+            regional_value = search_regional_list[i].value;
+        }
+    }
+    if (!regional_list.includes(regional_value)) {
+        bootstrapModalJs('', create_small_center_text('请选择您要查询的区域<br><i class="mt-2 text-muted fa-2x fa-fw fas fa-map-signs"></i>', 'danger'), '', 'sm');
+        return false;
+    } else {
+        return regional_value;
+    }
+}
+
+function search_query(search_options) {
+    let search_type = search_options.search_type;
+    let search_regional = search_options.search_regional_value;
+    let search_value = search_options.search_input_value;
+    let search_data = {
+        search_type: search_type,
+        search_regional: search_regional,
+        search_value: search_value,
+    };
+    ajax_search(search_data, search_options.clicked_btn);
+}
+
+function ajax_search(search_data, clicked_btn) {
+    let search_url = '/phone_number/phone_number_search.php';
+
+    $.ajax({
+        type: 'post',
+        url: search_url,
+        data: search_data,
+        dataType: 'json',
+        success: function (data) {
+            remove_spinner_icon(clicked_btn);
+            get_search_result(data);
+        },
+        error: function (data) {
+            remove_spinner_icon(clicked_btn);
+            ajax_error(data);
+            ajax_error_fun_debug(data, 'search_number');
+        },
+    });
+}
+
+function get_search_result(data) {
+    let data_length = data.length;
+    if (data_length) {
+        processing_search_result(data);
+    } else {
+        bootstrapModalJs('', create_small_center_text('暂时没有找到您要查找的号码', 'danger'), '', 'sm', true);
+    }
+}
+
+function processing_search_result(data) {
+    let search_result = document.querySelector('#search_result');
+
+    search_result.classList.remove('d-none');
+    search_result_number_list.innerHTML = '';
+    for (let index in data) {
+        if (data.hasOwnProperty(index)) create_search_result_number_list(data[index]);
+    }
+    style_search_result_number_list();
+    $('.number i').tooltip();
+    dial_search_result_number();
+    copy_search_result_number();
+}
+
+function create_search_result_number_list(data) {
+    let div = document.createElement('div');
+    let div1 = document.createElement('div');
+
+    let name = data['phone_name'];
+    let tel_number = data['tel_number'];
+    let mobile_number = data['mobile_number'];
+
+    // div.className = 'pulse animated hvr-icon-pop mb-3 py-1 py-md-2 row  border rounded align-items-center number_list';
+    div.className = 'container pulse animated mb-3 py-1 py-md-2 border rounded number_list';
+    div1.className = 'hvr-icon-pop row align-items-center';
+
+    div1.appendChild(create_search_result_number_list_name(name));
+    div1.appendChild(create_search_result_number_list_number(tel_number, 'tel'));
+    div1.appendChild(create_search_result_number_list_number(mobile_number, 'mobile'));
+
+    div.appendChild(div1);
+    search_result_number_list.appendChild(div);
+}
+
+function create_search_result_number_list_name(name) {
+    let span = document.createElement('span');
+    let span_name = document.createElement('span');
+    let ul = document.createElement('ul');
+
+    let li = document.createElement('li');
+    let i = document.createElement('i');
+
+    span.className = 'col-12 col-lg-4';
+    ul.className = 'mb-0 list-unstyled';
+
+    li.className = 'number_name mb-2';
+
+    span_name.innerHTML = name;
+
+    i.className = 'mr-2 fas fa-home text-info hvr-icon';
+    i.style.cursor = 'pointer';
+
+    span.appendChild(ul);
+    ul.appendChild(li);
+    li.append(span_name);
+    li.insertBefore(i, li.firstChild);
+
+    return span;
+}
+
+function create_search_result_number_list_number(number, number_type) {
+    let span = document.createElement('span');
+    let ul = document.createElement('ul');
+    let li = document.createElement('li');
+    let span_number = document.createElement('span');
+    let i_number_icon = document.createElement('i');
+    let i_clipboard_copy_icon = document.createElement('i');
+
+    span.className = 'col-12 col-sm-5 col-md-4 col-lg-3';
+    ul.className = 'mb-0 list-unstyled';
+
+    span_number.innerHTML = number;
+
+    number_type === 'tel' ? li.className = 'hvr-icon-grow-rotate number mb-2' : li.className = 'hvr-icon-grow-rotate number mb-2 text-none text-sm-right';
+
+    i_number_icon.className = 'ml-2 fa-fw fas fa-phone-volume text-success hvr-icon dial_number';
+    i_number_icon.title = '拨打号码';
+    i_number_icon.style.cursor = 'pointer';
+
+    i_clipboard_copy_icon.className = 'ml-3 fa-fw far fa-copy text-success hvr-icon clipboard_copy';
+    i_clipboard_copy_icon.title = '复制号码';
+    i_clipboard_copy_icon.style.cursor = 'pointer';
+
+    span.appendChild(ul);
+    ul.appendChild(li);
+    li.appendChild(span_number);
+    li.appendChild(i_clipboard_copy_icon);
+    li.appendChild(i_number_icon);
+
+    return span;
+}
+
+function style_search_result_number_list() {
+    let number_list_child_odd = document.querySelectorAll('#number_list div:nth-child(odd)');
+    let number_list_child_even = document.querySelectorAll('#number_list div:nth-child(even)');
+    for (let x = number_list_child_odd.length, i = 0; i < x; i++) {
+        number_list_child_odd[i].style.background = 'whitesmoke';
+    }
+    for (let x = number_list_child_even.length, i = 0; i < x; i++) {
+        number_list_child_even[i].style.background = 'aliceblue';
+    }
+}
+
+function dial_search_result_number() {
+    search_result_number_list.addEventListener('click', function (e) {
+        let target = e.target;
+
+        if (target.classList.contains('dial_number') || target.className.indexOf('dial_number') !== -1) {
+            let number = target.previousElementSibling.previousElementSibling.innerHTML;
+            window.location.href = 'tel://' + number;
+        }
+    });
+}
+
+function copy_search_result_number() {
+
+    search_result_number_list.addEventListener('click', function (e) {
+        let target = e.target;
+
+        if (target.classList.contains('clipboard_copy') || target.className.indexOf('clipboard_copy') !== -1) {
+            let clipboard = new ClipboardJS('.clipboard_copy', {
+                text: function (trigger) {
+                    return trigger.previousElementSibling.innerHTML;
+                },
+            });
+            clipboard.on('success', function (e) {
+                bootstrapModalJs('', clipboard_success_text(e), '', 'sm', true);
+                clipboard.destroy();
+            });
+
+            clipboard.on('error', function (e) {
+                bootstrapModalJs('', clipboard_error_text(e), '', 'sm', true);
+                clipboard.destroy();
+            });
+        }
+
+    });
+
+    function clipboard_success_text(e) {
+        return '<div class="text-center text-success">已经成功复制&nbsp;' + '<span>' +
+            `${e.text}` +
+            '</span></div>';
+    }
+
+    function clipboard_error_text(e) {
+        return '<div class="text-center text-danger">复制失败,请尝试手动复制' + '<span>' +
+            `${e}` +
+            '</span></div>';
+    }
+
+}
+
+
 /** 增加号码 **/
 let add_new_number = document.querySelector('#add_new_number');
 let phone_number_submit = document.querySelector('#phone_number_submit');
 let add_phone_number_form = document.querySelector('#add_phone_number_form');
-let add_phone_number_url = '/phone_number/index.php';
 
 if (add_new_number) add_new_number.addEventListener('click', show_add_phone_number_form, {once: true});
 if (phone_number_submit) phone_number_submit.addEventListener('click', add_phone_number);
@@ -100,7 +378,7 @@ function create_form_add() {
 function create_form_div() {
     let div = document.createElement('div');
     div.className = 'mb-5 mb-sm-4 mb-md-3 form-row add_phone_number_form';
-    add_phone_number_form.insertBefore(div, phone_number_submit.parentElement);
+    add_phone_number_form.insertBefore(div, phone_number_submit);
 }
 
 function create_btn_add() {
@@ -116,8 +394,10 @@ function create_btn_add() {
     i.style.top = '8px';
     i.style.right = '-3px';
     $(i).tooltip();
+
     a.appendChild(i);
-    add_phone_number_form.children[add_phone_number_form.childElementCount - 2].appendChild(a);
+    phone_number_submit.previousElementSibling.appendChild(a);
+
     a.addEventListener('click', create_form_add);
 }
 
@@ -133,8 +413,10 @@ function create_btn_del() {
     i.style.top = '8px';
     i.style.right = '-3px';
     $(i).tooltip();
+
     a.appendChild(i);
-    add_phone_number_form.children[add_phone_number_form.childElementCount - 2].appendChild(a);
+    phone_number_submit.previousElementSibling.appendChild(a);
+
     a.addEventListener('click', function (e) {
         e.target.parentElement.parentElement.parentElement.removeChild(e.target.parentElement.parentElement);
     });
@@ -169,7 +451,7 @@ function create_phone_name() {
     div.appendChild(label);
     div.appendChild(input);
 
-    add_phone_number_form.children[add_phone_number_form.childElementCount - 2].appendChild(div);
+    phone_number_submit.previousElementSibling.appendChild(div);
 }
 
 function create_tel_number() {
@@ -200,7 +482,8 @@ function create_tel_number() {
     label.appendChild(i);
     div.appendChild(label);
     div.appendChild(input);
-    add_phone_number_form.children[add_phone_number_form.childElementCount - 2].appendChild(div);
+
+    phone_number_submit.previousElementSibling.appendChild(div);
 }
 
 function create_mobile_number() {
@@ -231,7 +514,8 @@ function create_mobile_number() {
     label.appendChild(i);
     div.appendChild(label);
     div.appendChild(input);
-    add_phone_number_form.children[add_phone_number_form.childElementCount - 2].appendChild(div);
+
+    phone_number_submit.previousElementSibling.appendChild(div);
 }
 
 function create_regional() {
@@ -245,7 +529,7 @@ function create_regional() {
         'zc': '章村',
     };
 
-    div.className = 'row container no-gutters justify-content-center mb-3 mb-sm-4 mb-md-4 row-cols-2 row-cols-sm-3 row-cols-md-6';
+    div.className = 'row no-gutters mb-3 mb-sm-4 mb-md-4 row-cols-2 row-cols-sm-3 row-cols-md-6';
     div.id = 'regional';
 
     for (let index in regionOptions) {
@@ -308,6 +592,8 @@ function add_phone_number() {
 }
 
 function ajax_phone_number(data, g_recaptcha_token, g_recaptcha_action) {
+    let add_phone_number_url = '/phone_number/index.php';
+
     $.ajax({
         method: 'post',
         url: add_phone_number_url,
@@ -392,7 +678,6 @@ function ajax_error(error_result) {
     let statusText = error_result.statusText;
     let readyState = error_result.readyState;
     let responseText = error_result.responseText;
-    let readyState_array = [];
     let status_array = [200, 500];
     console.log(error_result);
 
@@ -423,8 +708,6 @@ function ajax_error(error_result) {
                 readyState: readyState,
             },
         });
-    }
-    if (false === readyState_array.includes(readyState)) {
     }
 }
 
@@ -491,281 +774,3 @@ function get_number_stored() {
 // if (phone_number_submit) phone_number_submit.addEventListener("click", function () {
 //     set_recaptcha_action("test11");
 // });
-
-
-/** 搜索 **/
-let search_regional = document.querySelector('#search_regional');
-let search_regional_dropdown_menu = document.querySelector('#search_regional_dropdown_menu');
-let search_btn = document.querySelector('#search_btn');
-let phone_search_result = document.querySelector('#phone_search_result');
-let number_list = document.querySelector('#number_list');
-let search_url = '/phone_number/phone_number_search.php';
-
-if (search_btn) search_btn.addEventListener('click', click_search_btn);
-
-if (search_regional_dropdown_menu) search_regional_dropdown_menu.addEventListener('click', toggle_search_regional_dropdown_btn_text);
-
-function toggle_search_regional_dropdown_btn_text(e) {
-    let target = e.target;
-    if (target.tagName === 'LABEL') {
-        search_regional.innerText = target.innerText;
-    }
-}
-
-function click_search_btn(e) {
-    let target = e.target;
-    let search_options = {
-        clicked_btn: target,
-    };
-    if (target.tagName === 'A') {
-        add_spinner_icon(target);
-        if (target.classList.contains('name')) {
-            search_options['search_type'] = 'name';
-        } else if (target.classList.contains('number')) {
-            search_options['search_type'] = 'number';
-        }
-        check_search(search_options);
-    }
-}
-
-function check_search(options) {
-    let search_input_value = check_search_input_value(options.clicked_btn);
-    let search_regional_value = check_search_regional_value(options.clicked_btn);
-    if (search_input_value && search_regional_value) {
-        options.search_input_value = search_input_value;
-        options.search_regional_value = search_regional_value;
-        search_query(options);
-    } else {
-        remove_spinner_icon(options.clicked_btn);
-    }
-}
-
-function check_search_input_value(clicked_btn) {
-    let phone_number_input = document.querySelector('#phone_number_input');
-    let minlength = phone_number_input.getAttribute('minlength');
-    let maxlength = phone_number_input.getAttribute('maxlength');
-    let search_value = phone_number_input.value;
-    let search_value_length = search_value.length;
-
-    if (search_value_length >= minlength && search_value_length <= maxlength) {
-        return search_value;
-    } else {
-        if (search_value_length === 0) {
-            bootstrapModalJs('', create_small_center_text('请输入您要查询的单位名称或号码<br><i class="mt-2 text-muted fa-2x fa-fw fas fa-home"></i><i class="mt-2 text-muted fa-2x fa-fw fas fa-phone"></i><i class="mt-2 text-muted fa-2x fa-fw fas fa-mobile-alt"></i>', 'danger'), '', 'sm');
-        } else if (search_value_length < minlength) {
-            bootstrapModalJs('', create_small_center_text('输入的内容过短<br>最少输入3个汉字或者数字', 'danger'), '', 'sm');
-        } else if (search_value_length > maxlength) {
-            bootstrapModalJs('', create_small_center_text('输入的内容过长<br>最多输入10个汉字或者数字', 'danger'), '', 'sm');
-        }
-        return false;
-    }
-}
-
-function check_search_regional_value(clicked_btn) {
-    let search_regional_list = document.querySelectorAll('input[name=search_regional]');
-    let regional_value;
-    let regional_list = [];
-
-    for (let x = search_regional_list.length, i = 0; i < x; i++) {
-        regional_list.push(search_regional_list[i].value);
-        if (true === search_regional_list[i].checked) {
-            regional_value = search_regional_list[i].value;
-        }
-    }
-    if (!regional_list.includes(regional_value)) {
-        bootstrapModalJs('', create_small_center_text('请选择您要查询的区域<br><i class="mt-2 text-muted fa-2x fa-fw fas fa-map-signs"></i>', 'danger'), '', 'sm');
-        return false;
-    } else {
-        return regional_value;
-    }
-}
-
-function search_query(search_options) {
-    let search_type = search_options.search_type;
-    let search_regional = search_options.search_regional_value;
-    let search_value = search_options.search_input_value;
-    let search_data = {
-        search_type: search_type,
-        search_regional: search_regional,
-        search_value: search_value,
-    };
-    ajax_search(search_data, search_options.clicked_btn);
-}
-
-function ajax_search(search_data, clicked_btn) {
-    $.ajax({
-        type: 'post',
-        url: search_url,
-        data: search_data,
-        dataType: 'json',
-        success: function (data) {
-            remove_spinner_icon(clicked_btn);
-            get_search_result(data);
-        },
-        error: function (data) {
-            remove_spinner_icon(clicked_btn);
-            ajax_error(data);
-            ajax_error_fun_debug(data, 'search_number');
-        },
-    });
-}
-
-function get_search_result(data) {
-    let data_length = data.length;
-    if (data_length) {
-        processing_search_result(data);
-    } else {
-        bootstrapModalJs('', create_small_center_text('暂时没有找到您要查找的号码', 'danger'), '', 'sm', true);
-    }
-}
-
-function processing_search_result(data) {
-    phone_search_result.classList.remove('d-none');
-    number_list.innerHTML = '';
-    for (let index in data) {
-        if (data.hasOwnProperty(index)) create_number_list(data[index]);
-    }
-    number_list_child();
-    $('.number i').tooltip();
-    dial_number();
-    clipboard_copy_number();
-}
-
-function create_number_list(data) {
-    let div = document.createElement('div');
-    let div1 = document.createElement('div');
-
-    let name = data['phone_name'];
-    let tel_number = data['tel_number'];
-    let mobile_number = data['mobile_number'];
-
-    // div.className = 'pulse animated hvr-icon-pop mb-3 py-1 py-md-2 row  border rounded align-items-center number_list';
-    div.className = 'container pulse animated mb-3 py-1 py-md-2 border rounded number_list';
-    div1.className = 'hvr-icon-pop row align-items-center';
-
-    div1.appendChild(create_number_list_name(name));
-    div1.appendChild(create_number_list_number(tel_number, 'tel'));
-    div1.appendChild(create_number_list_number(mobile_number, 'mobile'));
-
-    div.appendChild(div1);
-    number_list.appendChild(div);
-}
-
-function create_number_list_name(name) {
-    let span = document.createElement('span');
-    let span_name = document.createElement('span');
-    let ul = document.createElement('ul');
-
-    let li = document.createElement('li');
-    let i = document.createElement('i');
-
-    span.className = 'col-12 col-lg-4';
-    ul.className = 'mb-0 list-unstyled';
-
-    li.className = 'number_name mb-2';
-
-    span_name.innerHTML = name;
-
-    i.className = 'mr-2 fas fa-home text-info hvr-icon';
-    i.style.cursor = 'pointer';
-
-    span.appendChild(ul);
-    ul.appendChild(li);
-    li.append(span_name);
-    li.insertBefore(i, li.firstChild);
-
-    return span;
-}
-
-function create_number_list_number(number, number_type) {
-    let span = document.createElement('span');
-    let ul = document.createElement('ul');
-    let li = document.createElement('li');
-    let span_number = document.createElement('span');
-    let i_number_icon = document.createElement('i');
-    let i_clipboard_copy_icon = document.createElement('i');
-
-    span.className = 'col-12 col-sm-5 col-md-4 col-lg-3';
-    ul.className = 'mb-0 list-unstyled';
-
-    span_number.innerHTML = number;
-
-    number_type === 'tel' ? li.className = 'hvr-icon-grow-rotate number mb-2' : li.className = 'hvr-icon-grow-rotate number mb-2 text-none text-sm-right';
-
-    i_number_icon.className = 'ml-2 fa-fw fas fa-phone-volume text-success hvr-icon dial_number';
-    i_number_icon.title = '拨打号码';
-    i_number_icon.style.cursor = 'pointer';
-
-    i_clipboard_copy_icon.className = 'ml-3 fa-fw far fa-copy text-success hvr-icon clipboard_copy';
-    i_clipboard_copy_icon.title = '复制号码';
-    i_clipboard_copy_icon.style.cursor = 'pointer';
-
-    span.appendChild(ul);
-    ul.appendChild(li);
-    li.appendChild(span_number);
-    li.appendChild(i_clipboard_copy_icon);
-    li.appendChild(i_number_icon);
-
-    return span;
-}
-
-function number_list_child() {
-    let number_list_child_odd = document.querySelectorAll('#number_list div:nth-child(odd)');
-    let number_list_child_even = document.querySelectorAll('#number_list div:nth-child(even)');
-    for (let x = number_list_child_odd.length, i = 0; i < x; i++) {
-        number_list_child_odd[i].style.background = 'whitesmoke';
-    }
-    for (let x = number_list_child_even.length, i = 0; i < x; i++) {
-        number_list_child_even[i].style.background = 'aliceblue';
-    }
-}
-
-function dial_number() {
-    number_list.addEventListener('click', function (e) {
-        let target = e.target;
-
-        if (target.classList.contains('dial_number') || target.className.indexOf('dial_number') !== -1) {
-            let number = target.previousElementSibling.previousElementSibling.innerHTML;
-            window.location.href = 'tel://' + number;
-        }
-    });
-}
-
-function clipboard_copy_number() {
-
-    number_list.addEventListener('click', function (e) {
-        let target = e.target;
-
-        if (target.classList.contains('clipboard_copy') || target.className.indexOf('clipboard_copy') !== -1) {
-            let clipboard = new ClipboardJS('.clipboard_copy', {
-                text: function (trigger) {
-                    return trigger.previousElementSibling.innerHTML;
-                },
-            });
-            clipboard.on('success', function (e) {
-                bootstrapModalJs('', clipboard_success_text(e), '', 'sm', true);
-                clipboard.destroy();
-            });
-
-            clipboard.on('error', function (e) {
-                bootstrapModalJs('', clipboard_error_text(e), '', 'sm', true);
-                clipboard.destroy();
-            });
-        }
-
-    });
-
-    function clipboard_success_text(e) {
-        return '<div class="text-center text-success">已经成功复制&nbsp;' + '<span>' +
-            `${e.text}` +
-            '</span></div>';
-    }
-
-    function clipboard_error_text(e) {
-        return '<div class="text-center text-danger">复制失败,请尝试手动复制' + '<span>' +
-            `${e}` +
-            '</span></div>';
-    }
-
-}
-
