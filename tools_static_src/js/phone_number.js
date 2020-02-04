@@ -278,6 +278,7 @@ function copy_search_result_number() {
 
 
 /** 增加号码 **/
+create_add_number_form();
 let add_new_number = document.querySelector('#add_new_number');
 let add_number_submit = document.querySelector('#add_number_submit');
 let add_number_form = document.querySelector('#add_number_form');
@@ -288,7 +289,6 @@ if (add_number_submit) add_number_submit.addEventListener('click', add_number);
 function show_add_number_form() {
     create_add_form_init();
     create_add_regional('button');
-    add_number_form.classList.remove('d-none');
     add_number_form.classList.toggle('show');
 }
 
@@ -355,6 +355,27 @@ function check_add_input_value(RegExp_rules_name, error_text, element) {
         input_success(element);
         remove_validation_div(element);
     }
+}
+
+function create_add_number_form() {
+    let add_number_form = document.createElement("div");
+    let number_stored = document.createElement("div");
+    let a = document.createElement("a");
+
+    add_number_form.className = 'mt-5 px-4 py-3 text-center border border-info rounded fade';
+    add_number_form.id = 'add_number_form';
+
+    a.href = 'javascript:';
+    a.className = 'my-2 btn btn-primary';
+    a.id = 'add_number_submit';
+    a.innerHTML = '提交新号码';
+
+    number_stored.className = 'text-right';
+    number_stored.id = 'number_stored';
+
+    add_number_form.appendChild(a);
+    add_number_form.appendChild(number_stored);
+    jt_container.appendChild(add_number_form);
 }
 
 function create_add_form_init() {
