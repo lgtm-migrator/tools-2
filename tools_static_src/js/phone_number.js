@@ -8,6 +8,7 @@ if (search_btn) search_btn.addEventListener('click', click_search_btn);
 
 if (search_regional_dropdown_menu) search_regional_dropdown_menu.addEventListener('click', toggle_search_regional_dropdown_btn_text);
 create_search_result();
+
 function toggle_search_regional_dropdown_btn_text(e) {
     let target = e.target;
     if (target.tagName === 'LABEL') {
@@ -147,6 +148,7 @@ function create_search_result() {
     search_result.id = 'search_result';
 
     span.className = 'small font-weight-bold text-success';
+    span.innerHTML = '查询结果';
 
     search_result_number_list.className = 'mt-1 pt-3';
     search_result_number_list.id = 'search_result_number_list';
