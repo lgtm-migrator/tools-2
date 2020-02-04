@@ -491,12 +491,10 @@ function get_number_stored() {
 
 
 /** 搜索 **/
-let search_regional = document.querySelector('#search_regional');
-let search_regional_dropdown_menu = document.querySelector('#search_regional_dropdown_menu');
 let search_btn = document.querySelector('#search_btn');
-let phone_search_result = document.querySelector('#phone_search_result');
-let number_list = document.querySelector('#number_list');
-let search_url = '/phone_number/phone_number_search.php';
+let search_regional_dropdown_menu = document.querySelector('#search_regional_dropdown_menu');
+let search_regional = document.querySelector('#search_regional');
+let search_result_number_list = document.querySelector('#search_result_number_list');
 
 if (search_btn) search_btn.addEventListener('click', click_search_btn);
 
@@ -590,6 +588,8 @@ function search_query(search_options) {
 }
 
 function ajax_search(search_data, clicked_btn) {
+    let search_url = '/phone_number/phone_number_search.php';
+
     $.ajax({
         type: 'post',
         url: search_url,
@@ -617,18 +617,20 @@ function get_search_result(data) {
 }
 
 function processing_search_result(data) {
-    phone_search_result.classList.remove('d-none');
-    number_list.innerHTML = '';
+    let search_result = document.querySelector('#search_result');
+
+    search_result.classList.remove('d-none');
+    search_result_number_list.innerHTML = '';
     for (let index in data) {
-        if (data.hasOwnProperty(index)) create_number_list(data[index]);
+        if (data.hasOwnProperty(index)) create_search_result_number_list(data[index]);
     }
-    number_list_child();
+    style_search_result_number_list();
     $('.number i').tooltip();
-    dial_number();
-    clipboard_copy_number();
+    dial_search_result_number();
+    copy_search_result_number();
 }
 
-function create_number_list(data) {
+function create_search_result_number_list(data) {
     let div = document.createElement('div');
     let div1 = document.createElement('div');
 
@@ -640,15 +642,15 @@ function create_number_list(data) {
     div.className = 'container pulse animated mb-3 py-1 py-md-2 border rounded number_list';
     div1.className = 'hvr-icon-pop row align-items-center';
 
-    div1.appendChild(create_number_list_name(name));
-    div1.appendChild(create_number_list_number(tel_number, 'tel'));
-    div1.appendChild(create_number_list_number(mobile_number, 'mobile'));
+    div1.appendChild(create_search_result_number_list_name(name));
+    div1.appendChild(create_search_result_number_list_number(tel_number, 'tel'));
+    div1.appendChild(create_search_result_number_list_number(mobile_number, 'mobile'));
 
     div.appendChild(div1);
-    number_list.appendChild(div);
+    search_result_number_list.appendChild(div);
 }
 
-function create_number_list_name(name) {
+function create_search_result_number_list_name(name) {
     let span = document.createElement('span');
     let span_name = document.createElement('span');
     let ul = document.createElement('ul');
@@ -674,7 +676,7 @@ function create_number_list_name(name) {
     return span;
 }
 
-function create_number_list_number(number, number_type) {
+function create_search_result_number_list_number(number, number_type) {
     let span = document.createElement('span');
     let ul = document.createElement('ul');
     let li = document.createElement('li');
@@ -706,7 +708,7 @@ function create_number_list_number(number, number_type) {
     return span;
 }
 
-function number_list_child() {
+function style_search_result_number_list() {
     let number_list_child_odd = document.querySelectorAll('#number_list div:nth-child(odd)');
     let number_list_child_even = document.querySelectorAll('#number_list div:nth-child(even)');
     for (let x = number_list_child_odd.length, i = 0; i < x; i++) {
@@ -717,8 +719,8 @@ function number_list_child() {
     }
 }
 
-function dial_number() {
-    number_list.addEventListener('click', function (e) {
+function dial_search_result_number() {
+    search_result_number_list.addEventListener('click', function (e) {
         let target = e.target;
 
         if (target.classList.contains('dial_number') || target.className.indexOf('dial_number') !== -1) {
@@ -728,9 +730,9 @@ function dial_number() {
     });
 }
 
-function clipboard_copy_number() {
+function copy_search_result_number() {
 
-    number_list.addEventListener('click', function (e) {
+    search_result_number_list.addEventListener('click', function (e) {
         let target = e.target;
 
         if (target.classList.contains('clipboard_copy') || target.className.indexOf('clipboard_copy') !== -1) {

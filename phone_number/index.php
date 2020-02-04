@@ -54,9 +54,9 @@ require_once '../header.php';
         </div>
     </div>
 
-    <div class="mt-5 d-none" id="phone_search_result">
+    <div class="mt-5 d-none" id="search_result">
         <span class="small font-weight-bold text-success">查询结果</span>
-        <div class="mt-1 pt-3" id="number_list"></div>
+        <div class="mt-1 pt-3" id="search_result_number_list"></div>
     </div>
 
     <div class="mt-5">
