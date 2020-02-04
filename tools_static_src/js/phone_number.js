@@ -392,7 +392,6 @@ function ajax_error(error_result) {
     let statusText = error_result.statusText;
     let readyState = error_result.readyState;
     let responseText = error_result.responseText;
-    let readyState_array = [];
     let status_array = [200, 500];
     console.log(error_result);
 
@@ -423,8 +422,6 @@ function ajax_error(error_result) {
                 readyState: readyState,
             },
         });
-    }
-    if (false === readyState_array.includes(readyState)) {
     }
 }
 
