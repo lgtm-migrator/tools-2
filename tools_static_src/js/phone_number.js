@@ -234,8 +234,8 @@ function create_search_result_number_list_number(number, number_type) {
 }
 
 function style_search_result_number_list() {
-    let number_list_child_odd = document.querySelectorAll('#number_list div:nth-child(odd)');
-    let number_list_child_even = document.querySelectorAll('#number_list div:nth-child(even)');
+    let number_list_child_odd = document.querySelectorAll('#search_result_number_list div:nth-child(odd)');
+    let number_list_child_even = document.querySelectorAll('#search_result_number_list div:nth-child(even)');
     for (let x = number_list_child_odd.length, i = 0; i < x; i++) {
         number_list_child_odd[i].style.background = 'whitesmoke';
     }
