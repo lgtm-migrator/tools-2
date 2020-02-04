@@ -100,7 +100,7 @@ function create_form_add() {
 function create_form_div() {
     let div = document.createElement('div');
     div.className = 'mb-5 mb-sm-4 mb-md-3 form-row add_phone_number_form';
-    add_phone_number_form.insertBefore(div, phone_number_submit.parentElement);
+    add_phone_number_form.insertBefore(div, phone_number_submit);
 }
 
 function create_btn_add() {
@@ -245,7 +245,7 @@ function create_regional() {
         'zc': '章村',
     };
 
-    div.className = 'row container no-gutters justify-content-center mb-3 mb-sm-4 mb-md-4 row-cols-2 row-cols-sm-3 row-cols-md-6';
+    div.className = 'row no-gutters mb-3 mb-sm-4 mb-md-4 row-cols-2 row-cols-sm-3 row-cols-md-6';
     div.id = 'regional';
 
     for (let index in regionOptions) {
