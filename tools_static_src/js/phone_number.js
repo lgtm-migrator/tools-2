@@ -1,4 +1,5 @@
 /** 搜索 **/
+create_search_result();
 let search_btn = document.querySelector('#search_btn');
 let search_regional_dropdown_menu = document.querySelector('#search_regional_dropdown_menu');
 let search_regional = document.querySelector('#search_regional');
@@ -7,7 +8,6 @@ let search_result_number_list = document.querySelector('#search_result_number_li
 if (search_btn) search_btn.addEventListener('click', click_search_btn);
 
 if (search_regional_dropdown_menu) search_regional_dropdown_menu.addEventListener('click', toggle_search_regional_dropdown_btn_text);
-create_search_result();
 
 function toggle_search_regional_dropdown_btn_text(e) {
     let target = e.target;
@@ -126,9 +126,6 @@ function get_search_result(data) {
 }
 
 function processing_search_result(data) {
-    let search_result = document.querySelector('#search_result');
-
-    search_result.classList.remove('d-none');
     search_result_number_list.innerHTML = '';
     for (let index in data) {
         if (data.hasOwnProperty(index)) create_search_result_number_list(data[index]);
