@@ -752,21 +752,23 @@ function ajax_error(error_result) {
 
     if (readyState === 4) {
         if (status === 500 && responseText === '' && statusText === 'Internal Server Error') {
-            bootstrapModalJs('', create_small_center_text('服务器出错', 'danger'), '', 'sm', true);
+            bootstrapModalJs('', create_small_center_text('服务器出错', 'danger'), '', 'sm');
         } else if (statusText === 'timeout') {
-            bootstrapModalJs('', create_small_center_text('服务器连接超时', 'danger'), '', 'sm', true);
+            bootstrapModalJs('', create_small_center_text('服务器连接超时1', 'danger'), '', 'sm');
         } else if (status === 200 && RegExp_rules.mysqli_1045.test(responseText)) {
-            bootstrapModalJs('', create_small_center_text('数据库连接出错', 'danger'), '', 'sm', true);
+            bootstrapModalJs('', create_small_center_text('数据库连接出错', 'danger'), '', 'sm');
         } else if (status === 200 && responseText !== '') {
-            bootstrapModalJs('', create_small_center_text(responseText, 'danger'), '', '', true, true);
+            bootstrapModalJs('', create_small_center_text(responseText, 'danger'), '', '', false, true);
         } else {
-            bootstrapModalJs('', create_small_center_text('失败', 'danger'), '', 'sm', true);
+            bootstrapModalJs('', create_small_center_text('失败', 'danger'), '', 'sm');
         }
     }
 
     if (readyState === 0 || status === 0) {
         if (statusText === 'error') {
-            bootstrapModalJs('', '服务器刚刚关闭', '', 'sm', true, true);
+            bootstrapModalJs('', create_small_center_text('服务器刚刚关闭', 'danger'), '', 'sm', true);
+        } else if (statusText === 'timeout') {
+            bootstrapModalJs('', create_small_center_text('服务器连接超时2', 'danger'), '', 'sm', true);
         }
     }
 
