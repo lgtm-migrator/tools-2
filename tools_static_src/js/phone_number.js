@@ -116,8 +116,10 @@ function create_btn_add() {
     i.style.top = '8px';
     i.style.right = '-3px';
     $(i).tooltip();
+
     a.appendChild(i);
-    add_phone_number_form.children[add_phone_number_form.childElementCount - 2].appendChild(a);
+    phone_number_submit.previousElementSibling.appendChild(a);
+
     a.addEventListener('click', create_form_add);
 }
 
@@ -133,8 +135,10 @@ function create_btn_del() {
     i.style.top = '8px';
     i.style.right = '-3px';
     $(i).tooltip();
+
     a.appendChild(i);
-    add_phone_number_form.children[add_phone_number_form.childElementCount - 2].appendChild(a);
+    phone_number_submit.previousElementSibling.appendChild(a);
+
     a.addEventListener('click', function (e) {
         e.target.parentElement.parentElement.parentElement.removeChild(e.target.parentElement.parentElement);
     });
@@ -169,7 +173,7 @@ function create_phone_name() {
     div.appendChild(label);
     div.appendChild(input);
 
-    add_phone_number_form.children[add_phone_number_form.childElementCount - 2].appendChild(div);
+    phone_number_submit.previousElementSibling.appendChild(div);
 }
 
 function create_tel_number() {
@@ -200,7 +204,8 @@ function create_tel_number() {
     label.appendChild(i);
     div.appendChild(label);
     div.appendChild(input);
-    add_phone_number_form.children[add_phone_number_form.childElementCount - 2].appendChild(div);
+
+    phone_number_submit.previousElementSibling.appendChild(div);
 }
 
 function create_mobile_number() {
@@ -231,7 +236,8 @@ function create_mobile_number() {
     label.appendChild(i);
     div.appendChild(label);
     div.appendChild(input);
-    add_phone_number_form.children[add_phone_number_form.childElementCount - 2].appendChild(div);
+
+    phone_number_submit.previousElementSibling.appendChild(div);
 }
 
 function create_regional() {

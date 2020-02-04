@@ -61,8 +61,8 @@ require_once '../header.php';
 
     <div class="mt-5 px-4 py-3 text-center border border-info rounded fade d-none" id="add_phone_number_form">
         <a href="javascript:" class="my-2 btn btn-primary" id="phone_number_submit">提交新号码</a>
+        <div class="text-right" id="number_stored"></div>
     </div>
-    <div class="text-right" id="number_stored"></div>
 </div>
 
 
