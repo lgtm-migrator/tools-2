@@ -14,27 +14,36 @@ require_once '../header.php';
         <div class="form-row justify-content-center">
             <div class="mb-3 input-group input-group-lg col-11 col-sm-10 col-md-8 col-lg-6">
                 <div class="input-group-prepend">
-                    <button type="button" class="btn btn-light border-secondary" title="区域" data-toggle="dropdown" id="search_regional">
+                    <button type="button" class="btn btn-light border-secondary" title="区域" data-toggle="dropdown"
+                            id="search_regional">
                         <i class="text-muted fa-fw fas fa-map-signs"></i>
                     </button>
                     <div class="dropdown-menu min-w-rem-7 shadow text-center" id="search_regional_dropdown_menu">
                         <div class="btn-group-vertical btn-group-toggle" data-toggle="buttons">
-                            <label class="min-w-rem-9 border-0 rounded-0 btn btn-outline-danger" for="search_regional_dp">
+                            <label class="min-w-rem-9 border-0 rounded-0 btn btn-outline-danger"
+                                   for="search_regional_dp">
                                 <input type="radio" name="search_regional" id="search_regional_dp" value="dp">东庞</label>
-                            <label class="min-w-rem-9 border-0 rounded-0 btn btn-outline-danger" for="search_regional_gq">
+                            <label class="min-w-rem-9 border-0 rounded-0 btn btn-outline-danger"
+                                   for="search_regional_gq">
                                 <input type="radio" name="search_regional" id="search_regional_gq" value="gq">葛泉</label>
-                            <label class="min-w-rem-9 border-0 rounded-0 btn btn-outline-danger" for="search_regional_xdw">
-                                <input type="radio" name="search_regional" id="search_regional_xdw" value="xdw">显德汪</label>
-                            <label class="min-w-rem-9 border-0 rounded-0 btn btn-outline-danger" for="search_regional_xm">
+                            <label class="min-w-rem-9 border-0 rounded-0 btn btn-outline-danger"
+                                   for="search_regional_xdw">
+                                <input type="radio" name="search_regional" id="search_regional_xdw"
+                                       value="xdw">显德汪</label>
+                            <label class="min-w-rem-9 border-0 rounded-0 btn btn-outline-danger"
+                                   for="search_regional_xm">
                                 <input type="radio" name="search_regional" id="search_regional_xm" value="xm">邢煤</label>
-                            <label class="min-w-rem-9 border-0 rounded-0 btn btn-outline-danger" for="search_regional_xd">
+                            <label class="min-w-rem-9 border-0 rounded-0 btn btn-outline-danger"
+                                   for="search_regional_xd">
                                 <input type="radio" name="search_regional" id="search_regional_xd" value="xd">邢东</label>
-                            <label class="min-w-rem-9 border-0 rounded-0 btn btn-outline-danger" for="search_regional_zc">
+                            <label class="min-w-rem-9 border-0 rounded-0 btn btn-outline-danger"
+                                   for="search_regional_zc">
                                 <input type="radio" name="search_regional" id="search_regional_zc" value="zc">章村</label>
                         </div>
                         <div class="dropdown-divider border-secondary"></div>
                         <div class="btn-group-vertical">
-                            <button class="min-w-rem-9 border-0 rounded-0 btn btn-outline-success" type="button" id="add_new_number">
+                            <button class="min-w-rem-9 border-0 rounded-0 btn btn-outline-success" type="button"
+                                    id="add_new_number">
                                 <i class="fas fa-plus-circle">&nbsp;添加新的号码</i></button>
                         </div>
                     </div>
@@ -53,18 +62,7 @@ require_once '../header.php';
                 <i class="fa-fw fas fa-mobile-alt"></i>按号码搜索</a>
         </div>
     </div>
-
-    <div class="mt-5 d-none" id="search_result">
-        <span class="small font-weight-bold text-success">查询结果</span>
-        <div class="mt-1 pt-3" id="search_result_number_list"></div>
-    </div>
-
-    <div class="mt-5 px-4 py-3 text-center border border-info rounded fade d-none" id="add_phone_number_form">
-        <a href="javascript:" class="my-2 btn btn-primary" id="phone_number_submit">提交新号码</a>
-        <div class="text-right" id="number_stored"></div>
-    </div>
 </div>
-
 
 <div class="d-none">
     <?php require_once dirname(__DIR__) . "/javascript.php"; ?>
