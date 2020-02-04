@@ -60,7 +60,7 @@ require_once '../header.php';
     </div>
 
     <div class="mt-5 px-4 py-3 text-center border border-info rounded fade d-none" id="add_number_form">
-        <div class="mb-3 mb-sm-4 mb-md-4 btn-group btn-group-sm btn-group-toggle" data-toggle="buttons">
+        <div class="mb-3 mb-sm-4 mb-md-4 btn-group btn-group-sm btn-group-toggle" data-toggle="buttons" id="add_regional">
             <label class="btn btn-outline-secondary" for="add_regional_dp">
                 <input type="radio" name="add_regional" id="add_regional_dp" value="dp">东庞</label>
             <label class="btn btn-outline-secondary" for="add_regional_gq">

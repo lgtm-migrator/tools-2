@@ -287,7 +287,7 @@ if (add_number_submit) add_number_submit.addEventListener('click', add_number);
 
 function show_add_number_form() {
     create_add_form_init();
-    create_add_regional();
+    // create_add_regional();
     add_number_form.classList.remove('d-none');
     add_number_form.classList.toggle('show');
 }
