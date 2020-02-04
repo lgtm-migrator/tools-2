@@ -667,9 +667,9 @@ function ajax_success_fun_debug(success_result, error_name) {
         let success_error = success_result['error'].hasOwnProperty('error') ? JSON.stringify(success_result['error']['error']) : '';
         let success_errno = success_result['error'].hasOwnProperty('errno') ? JSON.stringify(success_result['error']['errno']) : '';
         let success_data = success_result['error'].hasOwnProperty('data') ? JSON.stringify(success_result['error']['data']) : '';
-        fundebug.test(error_name, success_error);
-        fundebug.test(error_name, success_errno);
-        fundebug.test(error_name, success_data);
+        fundebug.notify(error_name, success_error);
+        fundebug.notify(error_name, success_errno);
+        fundebug.notify(error_name, success_data);
     }
 }
 
@@ -713,7 +713,7 @@ function ajax_error(error_result) {
 
 function ajax_error_fun_debug(error_result, error_name) {
     if (fundebug) {
-        fundebug.test(error_name, JSON.stringify(error_result));
+        fundebug.notify(error_name, JSON.stringify(error_result));
     }
 }
 
