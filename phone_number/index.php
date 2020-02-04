@@ -59,8 +59,22 @@ require_once '../header.php';
         <div class="mt-1 pt-3" id="search_result_number_list"></div>
     </div>
 
-    <div class="mt-5 px-4 py-3 text-center border border-info rounded fade d-none" id="add_phone_number_form">
-        <a href="javascript:" class="my-2 btn btn-primary" id="phone_number_submit">提交新号码</a>
+    <div class="mt-5 px-4 py-3 text-center border border-info rounded fade d-none" id="add_number_form">
+        <div class="mb-3 mb-sm-4 mb-md-4 btn-group btn-group-sm btn-group-toggle" data-toggle="buttons">
+            <label class="btn btn-outline-secondary" for="add_regional_dp">
+                <input type="radio" name="add_regional" id="add_regional_dp" value="dp">东庞</label>
+            <label class="btn btn-outline-secondary" for="add_regional_gq">
+                <input type="radio" name="add_regional" id="add_regional_gq" value="gq">葛泉</label>
+            <label class="btn btn-outline-secondary" for="add_regional_xdw">
+                <input type="radio" name="add_regional" id="add_regional_xdw" value="xdw">显德汪</label>
+            <label class="btn btn-outline-secondary" for="add_regional_xm">
+                <input type="radio" name="add_regional" id="add_regional_xm" value="xm">邢煤</label>
+            <label class="btn btn-outline-secondary" for="add_regional_xd">
+                <input type="radio" name="add_regional" id="add_regional_xd" value="xd">邢东</label>
+            <label class="btn btn-outline-secondary" for="add_regional_zc">
+                <input type="radio" name="add_regional" id="add_regional_zc" value="zc">章村</label>
+        </div>
+        <a href="javascript:" class="my-2 btn btn-primary" id="add_number_submit">提交新号码</a>
         <div class="text-right" id="number_stored"></div>
     </div>
 </div>

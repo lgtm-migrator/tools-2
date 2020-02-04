@@ -279,20 +279,20 @@ function copy_search_result_number() {
 
 /** 增加号码 **/
 let add_new_number = document.querySelector('#add_new_number');
-let phone_number_submit = document.querySelector('#phone_number_submit');
-let add_phone_number_form = document.querySelector('#add_phone_number_form');
+let add_number_submit = document.querySelector('#add_number_submit');
+let add_number_form = document.querySelector('#add_number_form');
 
-if (add_new_number) add_new_number.addEventListener('click', show_add_phone_number_form, {once: true});
-if (phone_number_submit) phone_number_submit.addEventListener('click', add_phone_number);
+if (add_new_number) add_new_number.addEventListener('click', show_add_number_form, {once: true});
+if (add_number_submit) add_number_submit.addEventListener('click', add_number);
 
-function show_add_phone_number_form() {
-    create_form_add_init();
-    create_regional();
-    add_phone_number_form.classList.remove('d-none');
-    add_phone_number_form.classList.toggle('show');
+function show_add_number_form() {
+    create_add_form_init();
+    create_add_regional();
+    add_number_form.classList.remove('d-none');
+    add_number_form.classList.toggle('show');
 }
 
-function verify_phone_number_data() {
+function verify_add_number_data() {
     let phone_name_all = document.querySelectorAll('.phone_name');
     let tel_number_all = document.querySelectorAll('.tel_number');
     let mobile_number_all = document.querySelectorAll('.mobile_number');
@@ -322,17 +322,17 @@ function verify_phone_number_data() {
     return !verify_result.includes(false);
 }
 
-function phone_number_data() {
+function add_number_data() {
     let phone_name_all = document.querySelectorAll('.phone_name');
     let tel_number_all = document.querySelectorAll('.tel_number');
     let mobile_number_all = document.querySelectorAll('.mobile_number');
-    let regional = document.querySelectorAll('input[name=regional]');
+    let regional_all = document.querySelectorAll('input[name=add_regional]');
 
     let result = {};
 
-    for (let x = regional.length, i = 0; i < x; i++) {
-        if (true === regional[i].checked) {
-            result['info'] = {regional: regional[i].value};
+    for (let x = regional_all.length, i = 0; i < x; i++) {
+        if (true === regional_all[i].checked) {
+            result['info'] = {regional: regional_all[i].value};
         }
     }
 
@@ -346,7 +346,7 @@ function phone_number_data() {
     return JSON.stringify(result);
 }
 
-function custom_input_check(RegExp_rules_name, error_text, element) {
+function check_add_input_value(RegExp_rules_name, error_text, element) {
     let RegExp_result = RegExp_rules_name.test(element.value);
     if (!RegExp_result) {
         validation_invalid_div(element, error_text);
@@ -357,31 +357,31 @@ function custom_input_check(RegExp_rules_name, error_text, element) {
     }
 }
 
-function create_form_add_init() {
-    create_form_div();
-    create_btn_add();
-    create_phone_name();
-    create_tel_number();
-    create_mobile_number();
+function create_add_form_init() {
+    create_add_form_div();
+    create_add_btn_add();
+    create_add_phone_name();
+    create_add_tel_number();
+    create_add_mobile_number();
     input_shadow();
 }
 
-function create_form_add() {
-    create_form_div();
-    create_btn_del();
-    create_phone_name();
-    create_tel_number();
-    create_mobile_number();
+function create_add_form() {
+    create_add_form_div();
+    create_add_btn_del();
+    create_add_phone_name();
+    create_add_tel_number();
+    create_add_mobile_number();
     input_shadow();
 }
 
-function create_form_div() {
+function create_add_form_div() {
     let div = document.createElement('div');
     div.className = 'mb-5 mb-sm-4 mb-md-3 form-row add_phone_number_form';
-    add_phone_number_form.insertBefore(div, phone_number_submit);
+    add_number_form.insertBefore(div, add_number_submit);
 }
 
-function create_btn_add() {
+function create_add_btn_add() {
     let a = document.createElement('a');
     let i = document.createElement('i');
 
@@ -396,12 +396,12 @@ function create_btn_add() {
     $(i).tooltip();
 
     a.appendChild(i);
-    phone_number_submit.previousElementSibling.appendChild(a);
+    add_number_submit.previousElementSibling.appendChild(a);
 
-    a.addEventListener('click', create_form_add);
+    a.addEventListener('click', create_add_form);
 }
 
-function create_btn_del() {
+function create_add_btn_del() {
     let a = document.createElement('a');
     let i = document.createElement('i');
 
@@ -415,14 +415,14 @@ function create_btn_del() {
     $(i).tooltip();
 
     a.appendChild(i);
-    phone_number_submit.previousElementSibling.appendChild(a);
+    add_number_submit.previousElementSibling.appendChild(a);
 
     a.addEventListener('click', function (e) {
         e.target.parentElement.parentElement.parentElement.removeChild(e.target.parentElement.parentElement);
     });
 }
 
-function create_phone_name() {
+function create_add_phone_name() {
     let div = document.createElement('div');
     let label = document.createElement('label');
     let input = document.createElement('input');
@@ -444,17 +444,17 @@ function create_phone_name() {
     input.setAttribute('maxlength', '15');
     input.placeholder = '单位名称 ';
     input.addEventListener('input', function () {
-        custom_input_check(RegExp_rules.phone_name, '请输入单位的中文名称 例如：\n掘进一队', this);
+        check_add_input_value(RegExp_rules.phone_name, '请输入单位的中文名称 例如：\n掘进一队', this);
     });
 
     label.appendChild(i);
     div.appendChild(label);
     div.appendChild(input);
 
-    phone_number_submit.previousElementSibling.appendChild(div);
+    add_number_submit.previousElementSibling.appendChild(div);
 }
 
-function create_tel_number() {
+function create_add_tel_number() {
     let div = document.createElement('div');
     let label = document.createElement('label');
     let input = document.createElement('input');
@@ -476,17 +476,17 @@ function create_tel_number() {
     input.setAttribute('maxlength', '12');
     input.placeholder = '座机电话号码 ';
     input.addEventListener('input', function () {
-        custom_input_check(RegExp_rules.tel_number, '请输入当地正确格式的座机号码 例如：\n0319-2061234\n0319-2089123\n······ 等更多正确格式', this);
+        check_add_input_value(RegExp_rules.tel_number, '请输入当地正确格式的座机号码 例如：\n0319-2061234\n0319-2089123\n······ 等更多正确格式', this);
     });
 
     label.appendChild(i);
     div.appendChild(label);
     div.appendChild(input);
 
-    phone_number_submit.previousElementSibling.appendChild(div);
+    add_number_submit.previousElementSibling.appendChild(div);
 }
 
-function create_mobile_number() {
+function create_add_mobile_number() {
     let div = document.createElement('div');
     let label = document.createElement('label');
     let input = document.createElement('input');
@@ -508,17 +508,17 @@ function create_mobile_number() {
     input.setAttribute('maxlength', '15');
     input.placeholder = '手机电话号码 ';
     input.addEventListener('input', function () {
-        custom_input_check(RegExp_rules.mobile_number, '请输入正确格式的手机号 例如：\n13812345678\n+8613812345678\n008613812345678', this);
+        check_add_input_value(RegExp_rules.mobile_number, '请输入正确格式的手机号 例如：\n13812345678\n+8613812345678\n008613812345678', this);
     });
 
     label.appendChild(i);
     div.appendChild(label);
     div.appendChild(input);
 
-    phone_number_submit.previousElementSibling.appendChild(div);
+    add_number_submit.previousElementSibling.appendChild(div);
 }
 
-function create_regional() {
+function create_add_regional() {
     let div = document.createElement('div');
     let regionOptions = {
         'dp': '东庞',
@@ -530,18 +530,18 @@ function create_regional() {
     };
 
     div.className = 'row no-gutters mb-3 mb-sm-4 mb-md-4 row-cols-2 row-cols-sm-3 row-cols-md-6';
-    div.id = 'regional';
+    div.id = 'add_regional';
 
     for (let index in regionOptions) {
         if (regionOptions.hasOwnProperty(index)) {
-            div.appendChild(create_regional_radio(index, regionOptions[index]));
+            div.appendChild(create_add_regional_radio(index, regionOptions[index]));
         }
     }
 
-    add_phone_number_form.insertBefore(div, add_phone_number_form.firstChild);
+    add_number_form.insertBefore(div, add_number_form.firstChild);
 }
 
-function create_regional_radio(input_value, label_text, check_status = false) {
+function create_add_regional_radio(input_value, label_text, check_status = false) {
     let div = document.createElement('div');
     let input = document.createElement('input');
     let label = document.createElement('label');
@@ -550,8 +550,8 @@ function create_regional_radio(input_value, label_text, check_status = false) {
 
     input.className = 'custom-control-input';
     input.type = 'radio';
-    input.id = 'regional_' + input_value;
-    input.name = 'regional';
+    input.id = 'add_regional_' + input_value;
+    input.name = 'add_regional';
     input.value = input_value;
     if (check_status === true) input.checked = true;
 
@@ -565,16 +565,16 @@ function create_regional_radio(input_value, label_text, check_status = false) {
     return div;
 }
 
-function add_phone_number() {
-    add_spinner_icon(phone_number_submit);
-    let verify = verify_phone_number_data();
+function add_number() {
+    add_spinner_icon(add_number_submit);
+    let verify = verify_add_number_data();
     if (verify === true) {
-        let data = phone_number_data();
+        let data = add_number_data();
 
         const v3_site_key = '6LcvIcEUAAAAAEUgtbN0VFiH_n2VHw-luW3rdZFv';
         const url = 'https://www.recaptcha.net/recaptcha/api.js?render=';
 
-        const action = 'add_phone_number';
+        const action = 'add_new_number';
 
         $.getScript(url + v3_site_key, function () {
             grecaptcha.ready(function () {
@@ -587,7 +587,7 @@ function add_phone_number() {
         });
     } else {
         bootstrapModalJs('', create_small_center_text('您输入的号码有点不符合格式<br>请修改后再提交', 'danger'), '', 'sm', true);
-        remove_spinner_icon(phone_number_submit);
+        remove_spinner_icon(add_number_submit);
     }
 }
 
@@ -607,12 +607,12 @@ function ajax_phone_number(data, g_recaptcha_token, g_recaptcha_action) {
             },
         },
         success: function (data) {
-            remove_spinner_icon(phone_number_submit);
+            remove_spinner_icon(add_number_submit);
             get_ajax_result(data);
             get_number_stored();
         },
         error: function (data) {
-            remove_spinner_icon(phone_number_submit);
+            remove_spinner_icon(add_number_submit);
             ajax_error(data);
             ajax_error_fun_debug(data, 'phone_number_error');
         },
@@ -718,15 +718,15 @@ function ajax_error_fun_debug(error_result, error_name) {
 }
 
 function input_shadow() {
-    add_phone_number_form.removeEventListener('mouseover', input_form_control_add_shadow);
-    add_phone_number_form.removeEventListener('mouseout', input_form_control_remove_shadow);
-    add_phone_number_form.removeEventListener('focus', input_form_control_add_shadow);
-    add_phone_number_form.removeEventListener('blur', input_form_control_remove_shadow);
+    add_number_form.removeEventListener('mouseover', input_form_control_add_shadow);
+    add_number_form.removeEventListener('mouseout', input_form_control_remove_shadow);
+    add_number_form.removeEventListener('focus', input_form_control_add_shadow);
+    add_number_form.removeEventListener('blur', input_form_control_remove_shadow);
 
-    add_phone_number_form.addEventListener('mouseover', input_form_control_add_shadow);
-    add_phone_number_form.addEventListener('mouseout', input_form_control_remove_shadow);
-    add_phone_number_form.addEventListener('focus', input_form_control_add_shadow);
-    add_phone_number_form.addEventListener('blur', input_form_control_remove_shadow);
+    add_number_form.addEventListener('mouseover', input_form_control_add_shadow);
+    add_number_form.addEventListener('mouseout', input_form_control_remove_shadow);
+    add_number_form.addEventListener('focus', input_form_control_add_shadow);
+    add_number_form.addEventListener('blur', input_form_control_remove_shadow);
 }
 
 function input_form_control_add_shadow(e) {
