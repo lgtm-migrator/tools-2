@@ -33,8 +33,8 @@ function click_search_btn(e) {
 }
 
 function check_search(options) {
-    let search_input_value = check_search_input_value(options.clicked_btn);
-    let search_regional_value = check_search_regional_value(options.clicked_btn);
+    let search_input_value = check_search_input_value();
+    let search_regional_value = check_regional_value('search_regional', '请选择您要查询的区域<br><i class="mt-2 text-muted fa-2x fa-fw fas fa-map-signs"></i>');
     if (search_input_value && search_regional_value) {
         options.search_input_value = search_input_value;
         options.search_regional_value = search_regional_value;
@@ -44,7 +44,7 @@ function check_search(options) {
     }
 }
 
-function check_search_input_value(clicked_btn) {
+function check_search_input_value() {
     let phone_number_input = document.querySelector('#phone_number_input');
     let minlength = phone_number_input.getAttribute('minlength');
     let maxlength = phone_number_input.getAttribute('maxlength');
@@ -55,29 +55,29 @@ function check_search_input_value(clicked_btn) {
         return search_value;
     } else {
         if (search_value_length === 0) {
-            bootstrapModalJs('', create_small_center_text('请输入您要查询的单位名称或号码<br><i class="mt-2 text-muted fa-2x fa-fw fas fa-home"></i><i class="mt-2 text-muted fa-2x fa-fw fas fa-phone"></i><i class="mt-2 text-muted fa-2x fa-fw fas fa-mobile-alt"></i>', 'danger'), '', 'sm');
+            bootstrapModalJs('', create_small_center_text('请输入您要查询的单位名称或号码<br><i class="mt-2 text-muted fa-2x fa-fw fas fa-home"></i><i class="mt-2 text-muted fa-2x fa-fw fas fa-phone"></i><i class="mt-2 text-muted fa-2x fa-fw fas fa-mobile-alt"></i>', 'danger'), '', 'sm', true);
         } else if (search_value_length < minlength) {
-            bootstrapModalJs('', create_small_center_text('输入的内容过短<br>最少输入3个汉字或者数字', 'danger'), '', 'sm');
+            bootstrapModalJs('', create_small_center_text('输入的内容过短<br>最少输入3个汉字或者数字', 'danger'), '', 'sm', true);
         } else if (search_value_length > maxlength) {
-            bootstrapModalJs('', create_small_center_text('输入的内容过长<br>最多输入10个汉字或者数字', 'danger'), '', 'sm');
+            bootstrapModalJs('', create_small_center_text('输入的内容过长<br>最多输入10个汉字或者数字', 'danger'), '', 'sm', true);
         }
         return false;
     }
 }
 
-function check_search_regional_value(clicked_btn) {
-    let search_regional_list = document.querySelectorAll('input[name=search_regional]');
+function check_regional_value(input_name, tip_text) {
+    let regional_list = document.querySelectorAll('input[name=' + input_name + ']');
     let regional_value;
-    let regional_list = [];
+    let regional_array = [];
 
-    for (let x = search_regional_list.length, i = 0; i < x; i++) {
-        regional_list.push(search_regional_list[i].value);
-        if (true === search_regional_list[i].checked) {
-            regional_value = search_regional_list[i].value;
+    for (let x = regional_list.length, i = 0; i < x; i++) {
+        regional_array.push(regional_list[i].value);
+        if (true === regional_list[i].checked) {
+            regional_value = regional_list[i].value;
         }
     }
-    if (!regional_list.includes(regional_value)) {
-        bootstrapModalJs('', create_small_center_text('请选择您要查询的区域<br><i class="mt-2 text-muted fa-2x fa-fw fas fa-map-signs"></i>', 'danger'), '', 'sm');
+    if (!regional_array.includes(regional_value)) {
+        bootstrapModalJs('', create_small_center_text(tip_text, 'danger'), '', 'sm', true);
         return false;
     } else {
         return regional_value;
@@ -297,33 +297,35 @@ function show_add_number_form() {
 }
 
 function verify_add_number_data() {
+    let number = check_number_data();
+    let regional = check_regional_data();
+    return !!(number && regional);
+}
+
+function check_number_data() {
     let phone_name_all = document.querySelectorAll('.phone_name');
     let tel_number_all = document.querySelectorAll('.tel_number');
     let mobile_number_all = document.querySelectorAll('.mobile_number');
     let all_verify_events = [].concat(phone_name_all, tel_number_all, mobile_number_all);
-    let verify_result = [];
+    let check_result = [];
 
-    for (let x = phone_name_all.length, i = 0; i < x; i++) {
-        if (phone_name_all[i].value.length === 0) {
-            phone_name_all[i].value = '必填';
-        }
-        if (phone_name_all[i].value.length > 0 && (tel_number_all[i].value.length === 0 && mobile_number_all[i].value.length === 0)) {
-            tel_number_all[i].value = '选填其一';
-            mobile_number_all[i].value = '选填其一';
-        }
-    }
     for (let x = all_verify_events.length, i = 0; i < x; i++) {
         for (let y = all_verify_events[i].length, j = 0; j < y; j++) {
             if (all_verify_events[i][j].classList.contains('is-valid')) {
-                verify_result.push(true);
+                check_result.push(true);
             } else if (all_verify_events[i][j].classList.contains('is-invalid')) {
-                verify_result.push(false);
+                check_result.push(false);
             } else if (!all_verify_events[i][j].classList.contains('is-invalid') && !all_verify_events[i][j].classList.contains('is-valid')) {
-                verify_result.push(false);
+                all_verify_events[i][j].classList.add('is-invalid');
+                check_result.push(false);
             }
         }
     }
-    return !verify_result.includes(false);
+    return !check_result.includes(false);
+}
+
+function check_regional_data() {
+    return check_regional_value('add_regional', '请选择您所添加号码的区域');
 }
 
 function add_number_data() {
@@ -348,17 +350,6 @@ function add_number_data() {
         };
     }
     return JSON.stringify(result);
-}
-
-function check_add_input_value(RegExp_rules_name, error_text, element) {
-    let RegExp_result = RegExp_rules_name.test(element.value);
-    if (!RegExp_result) {
-        validation_invalid_div(element, error_text);
-        input_error(element);
-    } else {
-        input_success(element);
-        remove_validation_div(element);
-    }
 }
 
 function create_add_number_form() {
@@ -469,7 +460,7 @@ function create_add_phone_name() {
     input.setAttribute('maxlength', '15');
     input.placeholder = '单位名称 ';
     input.addEventListener('input', function () {
-        check_add_input_value(RegExp_rules.phone_name, '请输入单位的中文名称 例如：\n掘进一队', this);
+        check_regexp_input_value(RegExp_rules.phone_name, '请输入单位的中文名称 例如：\n掘进一队', this);
     });
 
     label.appendChild(i);
@@ -501,7 +492,7 @@ function create_add_tel_number() {
     input.setAttribute('maxlength', '12');
     input.placeholder = '座机电话号码 ';
     input.addEventListener('input', function () {
-        check_add_input_value(RegExp_rules.tel_number, '请输入当地正确格式的座机号码 例如：\n0319-2061234\n0319-2089123\n······ 等更多正确格式', this);
+        check_regexp_input_value(RegExp_rules.tel_number, '请输入当地正确格式的座机号码 例如：\n0319-2061234\n0319-2089123\n······ 等更多正确格式', this);
     });
 
     label.appendChild(i);
@@ -533,7 +524,7 @@ function create_add_mobile_number() {
     input.setAttribute('maxlength', '15');
     input.placeholder = '手机电话号码 ';
     input.addEventListener('input', function () {
-        check_add_input_value(RegExp_rules.mobile_number, '请输入正确格式的手机号 例如：\n13812345678\n+8613812345678\n008613812345678', this);
+        check_regexp_input_value(RegExp_rules.mobile_number, '请输入正确格式的手机号 例如：\n13812345678\n+8613812345678\n008613812345678', this);
     });
 
     label.appendChild(i);
@@ -773,6 +764,17 @@ function ajax_error(error_result) {
 function ajax_error_fun_debug(error_result, error_name) {
     if (fundebug) {
         fundebug.notify(error_name, JSON.stringify(error_result));
+    }
+}
+
+function check_regexp_input_value(RegExp_rules_name, error_text, element) {
+    let RegExp_result = RegExp_rules_name.test(element.value);
+    if (!RegExp_result) {
+        validation_invalid_div(element, error_text);
+        input_error(element);
+    } else {
+        input_success(element);
+        remove_validation_div(element);
     }
 }
 
