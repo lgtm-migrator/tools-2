@@ -54,10 +54,8 @@ function create_close_btn(fun_name) {
     let close_span = document.createElement("span");
 
     close_button.type = 'button';
-    close_button.className = 'position-relative close';
+    close_button.className = 'close';
     close_button.setAttribute('aria-label', 'Close');
-    close_button.style.top = '-1.3rem';
-    close_button.style.right = '-1.3rem';
 
     close_span.setAttribute('aria-hidden', 'true');
     close_span.title = '关闭';
