@@ -116,6 +116,17 @@ function ajax_search(search_data, clicked_btn) {
     });
 }
 
+
+/** 搜索号码结果 **/
+function show_search_result() {
+
+}
+
+function dispose_search_result() {
+    let search_result = document.querySelector('#search_result');
+    jt_container.removeChild(search_result);
+}
+
 function get_search_result(data) {
     let data_length = data.length;
     if (data_length) {
@@ -278,17 +289,6 @@ function copy_search_result_number() {
             '</span></div>';
     }
 
-}
-
-
-/** 搜索号码结果 **/
-function show_search_result() {
-
-}
-
-function dispose_search_result() {
-    let search_result = document.querySelector('#search_result');
-    jt_container.removeChild(search_result);
 }
 
 
