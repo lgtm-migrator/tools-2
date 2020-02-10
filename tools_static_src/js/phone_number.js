@@ -1,4 +1,4 @@
-/** 搜索 **/
+/** 搜索号码 **/
 create_search_result();
 let search_btn = document.querySelector('#search_btn');
 let search_regional_dropdown_menu = document.querySelector('#search_regional_dropdown_menu');
@@ -151,7 +151,7 @@ function create_search_result() {
 
     search_result.appendChild(span);
     search_result.appendChild(search_result_number_list);
-    jt_container.appendChild(search_result);
+    jt_container.insertBefore(search_result, jt_container.firstElementChild.nextElementSibling);
 }
 
 function create_search_result_number_list(data) {
@@ -192,10 +192,10 @@ function create_search_result_number_list_name(name) {
     i.className = 'mr-2 fas fa-home text-info hvr-icon';
     i.style.cursor = 'pointer';
 
-    span.appendChild(ul);
-    ul.appendChild(li);
-    li.append(span_name);
     li.insertBefore(i, li.firstChild);
+    li.append(span_name);
+    ul.appendChild(li);
+    span.appendChild(ul);
 
     return span;
 }
@@ -205,7 +205,7 @@ function create_search_result_number_list_number(number, number_type) {
     let ul = document.createElement('ul');
     let li = document.createElement('li');
     let span_number = document.createElement('span');
-    let i_number_icon = document.createElement('i');
+    let i_dial_number_icon = document.createElement('i');
     let i_clipboard_copy_icon = document.createElement('i');
 
     span.className = 'col-12 col-sm-5 col-md-4 col-lg-3';
@@ -215,19 +215,19 @@ function create_search_result_number_list_number(number, number_type) {
 
     number_type === 'tel' ? li.className = 'hvr-icon-grow-rotate number mb-2' : li.className = 'hvr-icon-grow-rotate number mb-2 text-none text-sm-right';
 
-    i_number_icon.className = 'ml-2 fa-fw fas fa-phone-volume text-success hvr-icon dial_number';
-    i_number_icon.title = '拨打号码';
-    i_number_icon.style.cursor = 'pointer';
+    i_dial_number_icon.className = 'ml-2 fa-fw fas fa-phone-volume text-success hvr-icon dial_number';
+    i_dial_number_icon.title = '拨打号码';
+    i_dial_number_icon.style.cursor = 'pointer';
 
     i_clipboard_copy_icon.className = 'ml-3 fa-fw far fa-copy text-success hvr-icon clipboard_copy';
     i_clipboard_copy_icon.title = '复制号码';
     i_clipboard_copy_icon.style.cursor = 'pointer';
 
-    span.appendChild(ul);
-    ul.appendChild(li);
     li.appendChild(span_number);
     li.appendChild(i_clipboard_copy_icon);
-    li.appendChild(i_number_icon);
+    li.appendChild(i_dial_number_icon);
+    ul.appendChild(li);
+    span.appendChild(ul);
 
     return span;
 }
@@ -281,19 +281,38 @@ function copy_search_result_number() {
 }
 
 
-/** 增加号码 **/
-create_add_number_form();
-let add_new_number = document.querySelector('#add_new_number');
-let add_number_submit = document.querySelector('#add_number_submit');
-let add_number_form = document.querySelector('#add_number_form');
+/** 搜索号码结果 **/
+function show_search_result() {
 
-if (add_new_number) add_new_number.addEventListener('click', show_add_number_form, {once: true});
-if (add_number_submit) add_number_submit.addEventListener('click', add_number);
+}
+
+function dispose_search_result() {
+    let search_result = document.querySelector('#search_result');
+    jt_container.removeChild(search_result);
+}
+
+
+/** 增加号码 **/
+let add_new_number = document.querySelector('#add_new_number');
+let add_number_submit;
+let add_number_form;
+
+if (add_new_number) add_new_number.addEventListener('click', show_add_number_form);
 
 function show_add_number_form() {
+    add_new_number.removeEventListener('click', show_add_number_form);
+    create_add_number_form();
+    add_number_submit = document.querySelector('#add_number_submit');
+    add_number_form = document.querySelector('#add_number_form');
+
     create_add_form_init();
     create_add_regional('button');
-    add_number_form.classList.toggle('show');
+    create_add_number_form_close();
+}
+
+function dispose_add_number_form() {
+    jt_container.removeChild(add_number_form);
+    add_new_number.addEventListener('click', show_add_number_form);
 }
 
 function verify_add_number_data() {
@@ -357,13 +376,14 @@ function create_add_number_form() {
     let number_stored = document.createElement("div");
     let a = document.createElement("a");
 
-    add_number_form.className = 'mt-5 px-4 py-3 text-center border border-info rounded fade';
+    add_number_form.className = 'mt-5 px-4 py-3 text-center border border-info rounded';
     add_number_form.id = 'add_number_form';
 
     a.href = 'javascript:';
     a.className = 'my-2 btn btn-primary';
     a.id = 'add_number_submit';
     a.innerHTML = '提交新号码';
+    a.addEventListener('click', add_number);
 
     number_stored.className = 'text-right';
     number_stored.id = 'number_stored';
@@ -371,6 +391,11 @@ function create_add_number_form() {
     add_number_form.appendChild(a);
     add_number_form.appendChild(number_stored);
     jt_container.appendChild(add_number_form);
+}
+
+function create_add_number_form_close() {
+    let close_btn = create_close_btn(dispose_add_number_form);
+    add_number_form.insertBefore(close_btn, add_number_form.firstChild);
 }
 
 function create_add_form_init() {
