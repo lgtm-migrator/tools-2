@@ -296,6 +296,7 @@ function dispose_search_result() {
 let add_new_number = document.querySelector('#add_new_number');
 let add_number_submit;
 let add_number_form;
+let number_stored;
 
 if (add_new_number) add_new_number.addEventListener('click', show_add_number_form);
 
@@ -304,6 +305,7 @@ function show_add_number_form() {
     create_add_number_form();
     add_number_submit = document.querySelector('#add_number_submit');
     add_number_form = document.querySelector('#add_number_form');
+    number_stored = document.querySelector('#number_stored');
 
     create_add_form_init();
     create_add_regional('button');
@@ -387,6 +389,7 @@ function create_add_number_form() {
 
     number_stored.className = 'text-right';
     number_stored.id = 'number_stored';
+    number_stored.addEventListener('click', get_number_stored);
 
     add_number_form.appendChild(a);
     add_number_form.appendChild(number_stored);
@@ -831,10 +834,6 @@ function input_form_control_remove_shadow(e) {
 
 
 /** 获取存储数量 **/
-let number_stored = document.querySelector('#number_stored');
-// if (number_stored) get_number_stored();
-if (number_stored) number_stored.addEventListener('click', get_number_stored);
-
 function get_number_stored() {
     $.ajax({
         type: 'post',
