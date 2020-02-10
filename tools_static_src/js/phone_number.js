@@ -1,9 +1,8 @@
 /** 搜索号码 **/
-create_search_result();
+show_search_result();
 let search_btn = document.querySelector('#search_btn');
 let search_regional_dropdown_menu = document.querySelector('#search_regional_dropdown_menu');
 let search_regional = document.querySelector('#search_regional');
-let search_result_number_list = document.querySelector('#search_result_number_list');
 
 if (search_btn) search_btn.addEventListener('click', click_search_btn);
 
@@ -118,13 +117,17 @@ function ajax_search(search_data, clicked_btn) {
 
 
 /** 搜索号码结果 **/
-function show_search_result() {
+let search_result_number_list = document.querySelector('#search_result_number_list');
 
+function show_search_result() {
+    create_search_result();
+    create_search_result_close();
 }
 
 function dispose_search_result() {
+    let search_number_tools = document.querySelector('#search_number_tools');
     let search_result = document.querySelector('#search_result');
-    jt_container.removeChild(search_result);
+    search_number_tools.removeChild(search_result);
 }
 
 function get_search_result(data) {
@@ -138,6 +141,8 @@ function get_search_result(data) {
 
 function processing_search_result(data) {
     search_result_number_list.innerHTML = '';
+    // dispose_search_result();
+    // show_search_result();
     for (let index in data) {
         if (data.hasOwnProperty(index)) create_search_result_number_list(data[index]);
     }
@@ -147,6 +152,7 @@ function processing_search_result(data) {
 }
 
 function create_search_result() {
+    let search_number_tools = document.querySelector('#search_number_tools');
     let search_result = document.createElement("div");
     let span = document.createElement("span");
     let search_result_number_list = document.createElement("div");
@@ -162,7 +168,13 @@ function create_search_result() {
 
     search_result.appendChild(span);
     search_result.appendChild(search_result_number_list);
-    jt_container.insertBefore(search_result, jt_container.firstElementChild.nextElementSibling);
+    search_number_tools.appendChild(search_result);
+}
+
+function create_search_result_close() {
+    let search_result = document.querySelector('#search_result');
+    let close_btn = create_close_btn(dispose_search_result);
+    search_result.insertBefore(close_btn, search_result.firstElementChild);
 }
 
 function create_search_result_number_list(data) {
