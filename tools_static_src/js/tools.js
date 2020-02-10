@@ -49,12 +49,12 @@ function create_small_center_text(text, color = '') {
     return div;
 }
 
-function create_close_btn(fun_name) {
+function create_close_btn(fun_name, class_name) {
     let close_button = document.createElement("button");
     let close_span = document.createElement("span");
 
     close_button.type = 'button';
-    close_button.className = 'close';
+    close_button.className = class_name ? 'close ' + class_name : 'close';
     close_button.setAttribute('aria-label', 'Close');
 
     close_span.setAttribute('aria-hidden', 'true');
