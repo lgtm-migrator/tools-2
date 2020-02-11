@@ -1,9 +1,8 @@
 /** 搜索号码 **/
-create_search_result();
+show_search_result();
 let search_btn = document.querySelector('#search_btn');
 let search_regional_dropdown_menu = document.querySelector('#search_regional_dropdown_menu');
 let search_regional = document.querySelector('#search_regional');
-let search_result_number_list = document.querySelector('#search_result_number_list');
 
 if (search_btn) search_btn.addEventListener('click', click_search_btn);
 
@@ -116,6 +115,21 @@ function ajax_search(search_data, clicked_btn) {
     });
 }
 
+
+/** 搜索号码结果 **/
+let search_result_number_list = document.querySelector('#search_result_number_list');
+
+function show_search_result() {
+    create_search_result();
+    create_search_result_close();
+}
+
+function dispose_search_result() {
+    let search_number_tools = document.querySelector('#search_number_tools');
+    let search_result = document.querySelector('#search_result');
+    search_number_tools.removeChild(search_result);
+}
+
 function get_search_result(data) {
     let data_length = data.length;
     if (data_length) {
@@ -127,6 +141,8 @@ function get_search_result(data) {
 
 function processing_search_result(data) {
     search_result_number_list.innerHTML = '';
+    // dispose_search_result();
+    // show_search_result();
     for (let index in data) {
         if (data.hasOwnProperty(index)) create_search_result_number_list(data[index]);
     }
@@ -136,6 +152,7 @@ function processing_search_result(data) {
 }
 
 function create_search_result() {
+    let search_number_tools = document.querySelector('#search_number_tools');
     let search_result = document.createElement("div");
     let span = document.createElement("span");
     let search_result_number_list = document.createElement("div");
@@ -151,7 +168,13 @@ function create_search_result() {
 
     search_result.appendChild(span);
     search_result.appendChild(search_result_number_list);
-    jt_container.insertBefore(search_result, jt_container.firstElementChild.nextElementSibling);
+    search_number_tools.appendChild(search_result);
+}
+
+function create_search_result_close() {
+    let search_result = document.querySelector('#search_result');
+    let close_btn = create_close_btn(dispose_search_result);
+    search_result.insertBefore(close_btn, search_result.firstElementChild);
 }
 
 function create_search_result_number_list(data) {
@@ -281,21 +304,11 @@ function copy_search_result_number() {
 }
 
 
-/** 搜索号码结果 **/
-function show_search_result() {
-
-}
-
-function dispose_search_result() {
-    let search_result = document.querySelector('#search_result');
-    jt_container.removeChild(search_result);
-}
-
-
 /** 增加号码 **/
 let add_new_number = document.querySelector('#add_new_number');
 let add_number_submit;
 let add_number_form;
+let number_stored;
 
 if (add_new_number) add_new_number.addEventListener('click', show_add_number_form);
 
@@ -304,6 +317,7 @@ function show_add_number_form() {
     create_add_number_form();
     add_number_submit = document.querySelector('#add_number_submit');
     add_number_form = document.querySelector('#add_number_form');
+    number_stored = document.querySelector('#number_stored');
 
     create_add_form_init();
     create_add_regional('button');
@@ -387,6 +401,7 @@ function create_add_number_form() {
 
     number_stored.className = 'text-right';
     number_stored.id = 'number_stored';
+    number_stored.addEventListener('click', get_number_stored);
 
     add_number_form.appendChild(a);
     add_number_form.appendChild(number_stored);
@@ -831,10 +846,6 @@ function input_form_control_remove_shadow(e) {
 
 
 /** 获取存储数量 **/
-let number_stored = document.querySelector('#number_stored');
-// if (number_stored) get_number_stored();
-if (number_stored) number_stored.addEventListener('click', get_number_stored);
-
 function get_number_stored() {
     $.ajax({
         type: 'post',

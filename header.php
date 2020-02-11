@@ -25,6 +25,7 @@ session_start();
     <meta http-equiv="Cache-Control" content="no-siteapp">
     <meta http-equiv="Cache-Control" content="no-transform">
 
+    <!--    <link rel="apple-touch-icon" href="">-->
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="/static/css/animate.min.css">
     <link rel="stylesheet" href="/static/css/hover.min.css">
@@ -45,7 +46,18 @@ session_start();
     </noscript>
 
     <title><?php echo title; ?></title>
+    <!-- Global Site Tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-158181386-2"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
 
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
+        gtag('js', new Date());
+        gtag('config', 'UA-158181386-2');
+    </script>
     <script src="/static/js/fundebug.min.js"></script>
 </head>
 <body>
