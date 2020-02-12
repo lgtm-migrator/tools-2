@@ -1,8 +1,8 @@
 /** Cards 阴影 链接 **/
 let jt_list = document.querySelector('#jt_list');
 
-cards_add_shadow();
-cards_remove_shadow();
+// cards_add_shadow();
+// cards_remove_shadow();
 
 function cards_add_shadow() {
   jt_list.addEventListener('mouseenter', function(e) {
