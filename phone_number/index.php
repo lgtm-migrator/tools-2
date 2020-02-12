@@ -16,7 +16,7 @@ require_once '../header.php';
                 <div class="input-group-prepend">
                     <button type="button" class="btn btn-light border-secondary" title="区域" data-toggle="dropdown"
                             id="search_regional">
-                        <i class="text-muted fa-fw fas fa-map-signs"></i>
+                        <i class="text-muted fa-lg fa-fw fas fa-map-signs"></i>
                     </button>
                     <div class="dropdown-menu min-w-rem-7 shadow text-center" id="search_regional_dropdown_menu">
                         <div class="btn-group-vertical btn-group-toggle" data-toggle="buttons">
@@ -56,10 +56,9 @@ require_once '../header.php';
         </div>
         <div class="d-flex justify-content-center" id="search_btn">
             <a href="javascript:" class="mx-2 btn btn-success name">
-                <i class="fa-fw fas fa-home"></i>按名称搜索</a>
+                <i class="fa-lg fas fa-home"></i>&nbsp;按名称搜索</a>
             <a href="javascript:" class="mx-2 btn btn-danger number">
-                <i class="fa-fw fas fa-phone"></i>
-                <i class="fa-fw fas fa-mobile-alt"></i>按号码搜索</a>
+                <i class="fa-lg fas fa-phone"></i>&nbsp;<i class="fa-lg fas fa-mobile-alt"></i>&nbsp;按号码搜索</a>
         </div>
     </div>
 </div>
