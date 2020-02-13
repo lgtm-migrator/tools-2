@@ -4,7 +4,7 @@ require_once './header.php';
 ?>
 <link rel="stylesheet" href="static/css/index.min.css">
 
-<div class="container" id="jt_index">
+<div class="pt-3 pt-md-4 pt-lg-5 container" id="jt_index">
     <div class="mb-3 d-flex justify-content-center" id="jt_category">
         <div class="btn-group btn-group-sm mx-auto">
             <a class="btn border btn-outline-secondary active" id="tools-collapse">所有</a>
@@ -16,9 +16,9 @@ require_once './header.php';
          id="jt_list">
         <div class="col mb-3 tools-collapse collapse-enquiry collapse show">
             <div class="card h-100 hvr-wobble-bottom">
-                <div class="d-flex justify-content-between card-header py-1 py-md-2">
-                    <a class="stretched-link text-success font-weight-bold text-decoration-none" href="/phone_number/"
-                       title="公共电话本" style="font-size: 95%;"><i class="mr-1 fa-fw fas fa-address-book"></i>公共电话本</a>
+                <div class="d-flex justify-content-between card-header py-2">
+                    <a class="stretched-link text-dark font-weight-bold text-decoration-none" href="/phone_number/"
+                       title="公共电话本" style="font-size: 95%;"><i class="mr-2 text-success fa-lg fas fa-address-book"></i>公共电话本</a>
                     <div class="category_name text-muted small">[&nbsp;查询&nbsp;]</div>
                 </div>
                 <div class="card-body">
@@ -28,9 +28,9 @@ require_once './header.php';
         </div>
         <div class="col mb-3 tools-collapse collapse-other collapse show">
             <div class="card h-100 hvr-wobble-bottom">
-                <div class="d-flex justify-content-between card-header py-1 py-md-2">
-                    <a class="stretched-link text-success font-weight-bold text-decoration-none" href="/photo_info/"
-                       title="照片详情信息" style="font-size: 95%;"><i class="mr-1 fa-fw fas fa-image"></i>照片详情信息</a>
+                <div class="d-flex justify-content-between card-header py-2">
+                    <a class="stretched-link text-dark font-weight-bold text-decoration-none" href="/photo_info/"
+                       title="照片详情信息" style="font-size: 95%;"><i class="mr-2 text-success fa-lg fas fa-image"></i>照片详情信息</a>
                     <div class="category_name text-muted small">[&nbsp;其他&nbsp;]</div>
                 </div>
                 <div class="card-body">

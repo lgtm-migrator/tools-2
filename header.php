@@ -62,7 +62,7 @@ session_start();
 </head>
 <body>
 <div id="body" hidden>
-    <div class="mb-3 mb-lg-4 bg-white" id="jt_header">
+    <div class="bg-white" id="jt_header">
         <div class="py-1 py-lg-2 container" id="logo">
             <a class="text-decoration-none" href="/" title="在线小工具">
                 <span class="mr-1 logo-img hvr-icon-spin">
