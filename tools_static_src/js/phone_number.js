@@ -390,7 +390,7 @@ function create_add_number_form() {
     let number_stored = document.createElement("div");
     let a = document.createElement("a");
 
-    add_number_form.className = 'mt-5 px-4 py-3 text-center border border-info rounded';
+    add_number_form.className = 'mt-5 px-4 py-3 text-center border rounded';
     add_number_form.id = 'add_number_form';
 
     a.href = 'javascript:';
@@ -441,11 +441,11 @@ function create_add_btn_add() {
     let a = document.createElement('a');
     let i = document.createElement('i');
 
-    a.className = 'position-relative text-success hvr-icon-grow';
+    a.className = 'position-relative hvr-icon-grow';
     a.href = 'javascript:';
     a.id = 'phone_number_add';
 
-    i.className = 'position-absolute fa-fw fas fa-plus-circle hvr-icon phone_number_add';
+    i.className = 'position-absolute text-success fa-fw fas fa-plus-circle hvr-icon phone_number_add';
     i.title = '添加新的一行';
     i.style.top = '8px';
     i.style.right = '-3px';
@@ -461,10 +461,10 @@ function create_add_btn_del() {
     let a = document.createElement('a');
     let i = document.createElement('i');
 
-    a.className = 'position-relative text-danger hvr-icon-grow';
+    a.className = 'position-relative hvr-icon-grow';
     a.href = 'javascript:';
 
-    i.className = 'position-absolute fa-fw fas fa-minus-circle hvr-icon phone_number_del';
+    i.className = 'position-absolute text-danger fa-fw fas fa-minus-circle hvr-icon phone_number_del';
     i.title = '删除当前行';
     i.style.top = '8px';
     i.style.right = '-3px';
