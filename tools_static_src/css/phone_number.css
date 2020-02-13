@@ -8,5 +8,5 @@
 .min-w-rem-8{min-width: 8rem;}
 .min-w-rem-9{min-width: 9rem;}
 
-#search_result_number_list > div:nth-child(odd){background-color: whitesmoke;}
-#search_result_number_list > div:nth-child(even){background-color: aliceblue;}
+#search_result_number_list > div:nth-child(odd){background-color: #ff000040;}
+#search_result_number_list > div:nth-child(even){background-color: #00ff0040;}
