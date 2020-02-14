@@ -1,14 +1,8 @@
 const config = require('./config.json'),
-    {task, src, dest, series, parallel, lastRun, watch, registry, symlink} = require('gulp'),
-    cleanCSS = require("gulp-clean-css"),
-    autoPreFixer = require("autoprefixer"),
-    postcss = require("gulp-postcss"),
-    terser = require("gulp-terser"),
+    {task, src, dest, parallel, lastRun, watch} = require('gulp'),
     concat = require('gulp-concat'),
-    rename = require("gulp-rename"),
-    header = require('gulp-header'),
     footer = require('gulp-footer'),
-    del = require("del");
+    rename = require("gulp-rename");
 
 // Static Files Path
 // 静态文件路径
@@ -205,5 +199,5 @@ function add_footer_funDebug_api(done) {
 }
 
 function watch_config_json() {
-    return watch(['./config.json'],task(add_footer_funDebug_api));
+    return watch(['./config.json'], task(add_footer_funDebug_api));
 }
