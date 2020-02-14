@@ -848,6 +848,7 @@ function input_form_control_remove_shadow(e) {
 
 /** 获取存储数量 **/
 function get_number_stored() {
+    add_spinner_icon(number_stored, 'border', 'primary', 'left');
     $.ajax({
         type: 'post',
         url: '/phone_number/number_stored.php',
@@ -856,7 +857,6 @@ function get_number_stored() {
         data: {
             number_stored: '1',
         },
-        complete: add_spinner_icon(number_stored, 'border', 'primary', 'left'),
         success: function (data) {
             remove_spinner_icon(number_stored);
             number_stored.innerHTML = '当前号码存储数量' + data + '条';
