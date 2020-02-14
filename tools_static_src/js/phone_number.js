@@ -586,9 +586,9 @@ function create_add_regional(type) {
     };
 
     if (type === 'radio') {
-        div.className = 'row no-gutters mb-3 mb-sm-4 mb-md-4 row-cols-2 row-cols-sm-3 row-cols-md-6';
+        div.className = 'row no-gutters mb-3 mb-sm-4 mb-md-4 py-2 bg-white border row-cols-2 row-cols-sm-3 row-cols-md-6';
     } else if (type === 'button') {
-        div.className = 'mb-3 mb-sm-4 mb-md-4 btn-group btn-group-sm btn-group-toggle';
+        div.className = 'mb-3 mb-sm-4 mb-md-4 bg-white btn-group btn-group-sm btn-group-toggle';
         div.setAttribute('data-toggle', 'buttons');
     }
     div.id = 'add_regional';
@@ -627,6 +627,7 @@ function create_add_regional_input_radio(input_value, label_text, check_status =
     label.className = 'custom-control-label';
     label.setAttribute('for', input.id);
     label.innerHTML = label_text;
+    cursor_pointer(label);
 
     div.appendChild(input);
     div.appendChild(label);
