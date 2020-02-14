@@ -493,7 +493,7 @@ $().ready(function () {
                 add_shadow(e_target);
             }
         });
-        btn_all[i].addEventListener('mouseout', function (e) {
+        btn_all[i].addEventListener('mouseleave', function (e) {
             remove_shadow(e.target);
         });
     }
