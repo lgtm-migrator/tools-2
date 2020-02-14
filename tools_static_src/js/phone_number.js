@@ -33,7 +33,7 @@ function click_search_btn(e) {
 
 function check_search(options) {
     let search_input_value = check_search_input_value();
-    let search_regional_value = check_regional_value('search_regional', '请选择您要查询的区域<br><i class="mt-2 text-muted fa-2x fa-fw fas fa-map-signs"></i>');
+    let search_regional_value = check_regional_value('search_regional', '请选择您要查询的区域<br><i class="mt-2 text-danger fa-2x fa-fw fas fa-map-signs"></i>');
     if (search_input_value && search_regional_value) {
         options.search_input_value = search_input_value;
         options.search_regional_value = search_regional_value;
@@ -54,7 +54,7 @@ function check_search_input_value() {
         return search_value;
     } else {
         if (search_value_length === 0) {
-            bootstrapModalJs('', create_small_center_text('请输入您要查询的单位名称或号码<br><i class="mt-2 text-muted fa-2x fa-fw fas fa-home"></i><i class="mt-2 text-muted fa-2x fa-fw fas fa-phone"></i><i class="mt-2 text-muted fa-2x fa-fw fas fa-mobile-alt"></i>', 'danger'), '', 'sm', true);
+            bootstrapModalJs('', create_small_center_text('请输入您要查询的单位名称或号码<br><i class="mt-2 text-danger fa-2x fa-fw fas fa-home"></i><i class="mt-2 text-danger fa-2x fa-fw fas fa-phone"></i><i class="mt-2 text-danger fa-2x fa-fw fas fa-mobile-alt"></i>', 'danger'), '', 'sm', true);
         } else if (search_value_length < minlength) {
             bootstrapModalJs('', create_small_center_text('输入的内容过短<br>最少输入3个汉字或者数字', 'danger'), '', 'sm', true);
         } else if (search_value_length > maxlength) {

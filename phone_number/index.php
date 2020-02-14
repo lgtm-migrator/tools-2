@@ -14,9 +14,9 @@ require_once '../header.php';
         <div class="form-row justify-content-center">
             <div class="mb-3 input-group input-group-lg col-11 col-sm-10 col-md-8 col-lg-6">
                 <div class="input-group-prepend">
-                    <button type="button" class="btn btn-light border text-muted" title="区域" data-toggle="dropdown"
+                    <button type="button" class="btn btn-light border text-success" title="区域" data-toggle="dropdown"
                             id="search_regional">
-                        <i class="fa-lg fa-fw fas fa-map-signs"></i>
+                        <i class="text-danger fa-lg fa-fw fas fa-map-signs"></i>
                     </button>
                     <div class="dropdown-menu min-w-rem-7 shadow text-center" id="search_regional_dropdown_menu">
                         <div class="btn-group-vertical btn-group-toggle" data-toggle="buttons">
@@ -50,15 +50,14 @@ require_once '../header.php';
                 </div>
                 <label class="sr-only" for="phone_number_input">单位名称、简称或者号码</label>
                 <input class="border form-control fas text-center" type="search" id="phone_number_input"
-                       minlength="3" maxlength="10"
-                       placeholder="&nbsp;&nbsp;&#xf015;&nbsp;&nbsp;&#xf095;&nbsp;&nbsp;&#xf3cd;">
+                       minlength="3" maxlength="10" placeholder="&#xf015;&#xf095;&#xf3cd;">
             </div>
         </div>
         <div class="d-flex justify-content-center" id="search_btn">
             <a href="javascript:" class="mx-2 btn btn-success name">
-                <i class="fa-lg fas fa-home"></i>&nbsp;按名称搜索</a>
+                <i class="fa-lg fas fa-home"></i>&nbsp;搜名称</a>
             <a href="javascript:" class="mx-2 btn btn-danger number">
-                <i class="fa-lg fas fa-phone"></i>&nbsp;<i class="fa-lg fas fa-mobile-alt"></i>&nbsp;按号码搜索</a>
+                <i class="fa-lg fas fa-phone"></i>&nbsp;<i class="fa-lg fas fa-mobile-alt"></i>&nbsp;搜号码</a>
         </div>
     </div>
 </div>
