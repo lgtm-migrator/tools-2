@@ -1,32 +1,3 @@
-/** Cards 阴影 链接 **/
-let jt_list = document.querySelector('#jt_list');
-
-cards_add_shadow();
-cards_remove_shadow();
-
-function cards_add_shadow() {
-  jt_list.addEventListener('mouseenter', function(e) {
-    let target = e.target;
-    if (target.classList.contains('card')) {
-      add_class(target, 'hvr-wobble-bottom');
-      cursor_pointer(target);
-      target.addEventListener('click', function() {
-        location.href = `${get_href_url(target, 'category_link')}`;
-      }, {once: true});
-    }
-  }, true);
-}
-
-function cards_remove_shadow() {
-  jt_list.addEventListener('mouseleave', function(e) {
-    let target = e.target;
-    if (target.classList.contains('card')) {
-      remove_class(target, 'hvr-wobble-bottom');
-    }
-  }, true);
-}
-
-
 /** 分类列表导航 **/
 let jt_category = document.querySelector('#jt_category');
 let jt_category_btn = jt_category.querySelectorAll('.btn');

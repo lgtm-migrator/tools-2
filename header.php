@@ -17,7 +17,7 @@ session_start();
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="applicable-device" content="pc,mobile">
     <meta name="renderer" content="webkit">
@@ -62,7 +62,7 @@ session_start();
 </head>
 <body>
 <div id="body" hidden>
-    <div class="mb-3 mb-lg-4 bg-white" id="jt_header">
+    <div class="bg-white" id="jt_header">
         <div class="py-1 py-lg-2 container" id="logo">
             <a class="text-decoration-none" href="/" title="在线小工具">
                 <span class="mr-1 logo-img hvr-icon-spin">
@@ -71,7 +71,7 @@ session_start();
                 <span class="logo-name"><h1 class="mb-0 d-inline text-info h5">在线小工具</h1></span>
             </a>
             <span class="py-1 position-relative badge badge-pill badge-danger"
-                  style="bottom:10px;font-size: 75%;">测试版不保存数据 欢迎反馈</span>
+                  style="bottom:5px;font-size: 75%;">测试版不保存数据 欢迎反馈</span>
         </div>
         <div class="border-bottom"></div>
     </div>

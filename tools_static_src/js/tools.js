@@ -487,9 +487,13 @@ $().ready(function () {
 
     for (let x = btn_all.length, i = 0; i < x; i++) {
         btn_all[i].addEventListener('mouseover', function (e) {
-            add_shadow(e.target);
+            let e_target = e.target;
+            let tagNames = ['BUTTON', 'A'];
+            if (tagNames.includes(e_target.tagName)) {
+                add_shadow(e_target);
+            }
         });
-        btn_all[i].addEventListener('mouseout', function (e) {
+        btn_all[i].addEventListener('mouseleave', function (e) {
             remove_shadow(e.target);
         });
     }

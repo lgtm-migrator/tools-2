@@ -33,7 +33,7 @@ function click_search_btn(e) {
 
 function check_search(options) {
     let search_input_value = check_search_input_value();
-    let search_regional_value = check_regional_value('search_regional', '请选择您要查询的区域<br><i class="mt-2 text-muted fa-2x fa-fw fas fa-map-signs"></i>');
+    let search_regional_value = check_regional_value('search_regional', '请选择您要查询的区域<br><i class="mt-2 text-danger fa-2x fa-fw fas fa-map-signs"></i>');
     if (search_input_value && search_regional_value) {
         options.search_input_value = search_input_value;
         options.search_regional_value = search_regional_value;
@@ -54,7 +54,7 @@ function check_search_input_value() {
         return search_value;
     } else {
         if (search_value_length === 0) {
-            bootstrapModalJs('', create_small_center_text('请输入您要查询的单位名称或号码<br><i class="mt-2 text-muted fa-2x fa-fw fas fa-home"></i><i class="mt-2 text-muted fa-2x fa-fw fas fa-phone"></i><i class="mt-2 text-muted fa-2x fa-fw fas fa-mobile-alt"></i>', 'danger'), '', 'sm', true);
+            bootstrapModalJs('', create_small_center_text('请输入您要查询的单位名称或号码<br><i class="mt-2 text-danger fa-2x fa-fw fas fa-home"></i><i class="mt-2 text-danger fa-2x fa-fw fas fa-phone"></i><i class="mt-2 text-danger fa-2x fa-fw fas fa-mobile-alt"></i>', 'danger'), '', 'sm', true);
         } else if (search_value_length < minlength) {
             bootstrapModalJs('', create_small_center_text('输入的内容过短<br>最少输入3个汉字或者数字', 'danger'), '', 'sm', true);
         } else if (search_value_length > maxlength) {
@@ -390,7 +390,7 @@ function create_add_number_form() {
     let number_stored = document.createElement("div");
     let a = document.createElement("a");
 
-    add_number_form.className = 'mt-5 px-4 py-3 text-center border border-info rounded';
+    add_number_form.className = 'mt-5 px-4 py-3 text-center border rounded';
     add_number_form.id = 'add_number_form';
 
     a.href = 'javascript:';
@@ -441,11 +441,11 @@ function create_add_btn_add() {
     let a = document.createElement('a');
     let i = document.createElement('i');
 
-    a.className = 'position-relative text-success hvr-icon-grow';
+    a.className = 'position-relative hvr-icon-grow';
     a.href = 'javascript:';
     a.id = 'phone_number_add';
 
-    i.className = 'position-absolute fa-fw fas fa-plus-circle hvr-icon phone_number_add';
+    i.className = 'position-absolute text-success fa-fw fas fa-plus-circle hvr-icon phone_number_add';
     i.title = '添加新的一行';
     i.style.top = '8px';
     i.style.right = '-3px';
@@ -461,10 +461,10 @@ function create_add_btn_del() {
     let a = document.createElement('a');
     let i = document.createElement('i');
 
-    a.className = 'position-relative text-danger hvr-icon-grow';
+    a.className = 'position-relative hvr-icon-grow';
     a.href = 'javascript:';
 
-    i.className = 'position-absolute fa-fw fas fa-minus-circle hvr-icon phone_number_del';
+    i.className = 'position-absolute text-danger fa-fw fas fa-minus-circle hvr-icon phone_number_del';
     i.title = '删除当前行';
     i.style.top = '8px';
     i.style.right = '-3px';
@@ -586,9 +586,9 @@ function create_add_regional(type) {
     };
 
     if (type === 'radio') {
-        div.className = 'row no-gutters mb-3 mb-sm-4 mb-md-4 row-cols-2 row-cols-sm-3 row-cols-md-6';
+        div.className = 'row no-gutters mb-3 mb-sm-4 mb-md-4 py-2 bg-white border row-cols-2 row-cols-sm-3 row-cols-md-6';
     } else if (type === 'button') {
-        div.className = 'mb-3 mb-sm-4 mb-md-4 btn-group btn-group-sm btn-group-toggle';
+        div.className = 'mb-3 mb-sm-4 mb-md-4 bg-white btn-group btn-group-sm btn-group-toggle';
         div.setAttribute('data-toggle', 'buttons');
     }
     div.id = 'add_regional';
@@ -627,6 +627,7 @@ function create_add_regional_input_radio(input_value, label_text, check_status =
     label.className = 'custom-control-label';
     label.setAttribute('for', input.id);
     label.innerHTML = label_text;
+    cursor_pointer(label);
 
     div.appendChild(input);
     div.appendChild(label);
