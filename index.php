@@ -12,8 +12,7 @@ require_once './header.php';
             <a class="btn border btn-outline-secondary" id="collapse-other">其他</a>
         </div>
     </div>
-    <div class="row justify-content-center row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5"
-         id="jt_list">
+    <div class="row justify-content-center row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4" id="jt_list">
         <div class="col mb-3 tools-collapse collapse-enquiry collapse show">
             <div class="card h-100 hvr-wobble-bottom">
                 <div class="d-flex justify-content-between card-header py-2">
