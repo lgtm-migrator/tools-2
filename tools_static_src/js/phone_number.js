@@ -588,7 +588,7 @@ function create_add_regional(type) {
     if (type === 'radio') {
         div.className = 'row no-gutters mb-3 mb-sm-4 mb-md-4 py-2 w-100 bg-white border rounded row-cols-2 row-cols-sm-3 row-cols-md-6';
     } else if (type === 'button') {
-        div.className = 'mb-3 mb-sm-4 mb-md-4 w-100 bg-white btn-group btn-group-sm btn-group-toggle';
+        div.className = 'mb-3 mb-sm-4 mb-md-4 w-100 w-sm-75 w-md-50 bg-white btn-group btn-group-sm btn-group-toggle';
         div.setAttribute('data-toggle', 'buttons');
     }
     div.id = 'add_regional';
