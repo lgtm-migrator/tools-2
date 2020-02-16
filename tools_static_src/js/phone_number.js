@@ -551,7 +551,7 @@ function create_add_mobile_number() {
     let i = document.createElement('i');
     let id_timestamp = new Date().getTime();
 
-    div.className = 'form-group col-12 col-sm-6 col-md-4';
+    div.className = 'form-group col-12 col-sm-6 col-md-3';
 
     label.className = 'sr-only';
     label.setAttribute('for', 'mobile_number_' + id_timestamp);
@@ -583,7 +583,7 @@ function create_add_qrcode() {
     let i = document.createElement('i');
     let id_timestamp = new Date().getTime();
 
-    div.className = 'form-group col-12 col-sm-12 col-md-2';
+    div.className = 'form-group col-12 col-sm-12 col-md-3';
 
     label.className = 'sr-only';
     label.setAttribute('for', 'qrcode_' + id_timestamp);
