@@ -414,22 +414,24 @@ function create_add_number_form_close() {
 }
 
 function create_add_form_init() {
+    let timestamp = get_timestamp();
     create_add_form_div();
     create_add_btn_add();
-    create_add_phone_name();
-    create_add_tel_number();
-    create_add_mobile_number();
-    create_add_qrcode();
+    create_add_phone_name(timestamp);
+    create_add_tel_number(timestamp);
+    create_add_mobile_number(timestamp);
+    create_add_qrcode(timestamp);
     input_shadow();
 }
 
 function create_add_form() {
+    let timestamp = get_timestamp();
     create_add_form_div();
     create_add_btn_del();
-    create_add_phone_name();
-    create_add_tel_number();
-    create_add_mobile_number();
-    create_add_qrcode();
+    create_add_phone_name(timestamp);
+    create_add_tel_number(timestamp);
+    create_add_mobile_number(timestamp);
+    create_add_qrcode(timestamp);
     input_shadow();
 }
 
@@ -480,20 +482,13 @@ function create_add_btn_del() {
     });
 }
 
-function create_add_phone_name() {
+function create_add_phone_name(id_timestamp) {
     let div = document.createElement('div');
     let label = document.createElement('label');
     let input = document.createElement('input');
     let i = document.createElement('i');
-    let id_timestamp = new Date().getTime();
 
     div.className = 'form-group col-12 col-sm-12 col-md-3';
-
-    label.className = 'sr-only';
-    label.setAttribute('for', 'phone_name_' + id_timestamp);
-    label.innerHTML = '单位名称&nbsp;';
-
-    i.className = 'fa-fw fas fa-home';
 
     input.className = 'form-control form-control-sm fas text-success text-center phone_name';
     input.id = 'phone_name_' + id_timestamp;
@@ -502,8 +497,14 @@ function create_add_phone_name() {
     input.setAttribute('maxlength', '15');
     input.placeholder = '单位名称 ';
     input.addEventListener('input', function () {
-        check_regexp_input_value(RegExp_rules.phone_name, '请输入单位的中文名称 例如：\n掘进一队', this);
+      check_regexp_input_value(RegExp_rules.phone_name, '请输入单位的中文名称 例如：\n掘进一队', this);
     });
+
+    label.className = 'sr-only';
+    label.setAttribute('for', input.id);
+    label.innerHTML = '单位名称&nbsp;';
+
+    i.className = 'fa-fw fas fa-home';
 
     label.appendChild(i);
     div.appendChild(label);
@@ -512,20 +513,13 @@ function create_add_phone_name() {
     add_number_submit.previousElementSibling.appendChild(div);
 }
 
-function create_add_tel_number() {
+function create_add_tel_number(id_timestamp) {
     let div = document.createElement('div');
     let label = document.createElement('label');
     let input = document.createElement('input');
     let i = document.createElement('i');
-    let id_timestamp = new Date().getTime();
 
     div.className = 'form-group col-12 col-sm-6 col-md-3';
-
-    label.className = 'sr-only';
-    label.setAttribute('for', 'tel_number_' + id_timestamp);
-    label.innerHTML = '座机电话号码&nbsp;';
-
-    i.className = 'fas fa-phone';
 
     input.className = 'form-control form-control-sm fas text-success text-center tel_number';
     input.id = 'tel_number_' + id_timestamp;
@@ -534,8 +528,14 @@ function create_add_tel_number() {
     input.setAttribute('maxlength', '12');
     input.placeholder = '座机电话号码 ';
     input.addEventListener('input', function () {
-        check_regexp_input_value(RegExp_rules.tel_number, '请输入当地正确格式的座机号码 例如：\n0319-2061234\n0319-2089123\n······ 等更多正确格式', this);
+      check_regexp_input_value(RegExp_rules.tel_number, '请输入当地正确格式的座机号码 例如：\n0319-2061234\n0319-2089123\n······ 等更多正确格式', this);
     });
+
+    label.className = 'sr-only';
+    label.setAttribute('for', input.id);
+    label.innerHTML = '座机电话号码&nbsp;';
+
+    i.className = 'fas fa-phone';
 
     label.appendChild(i);
     div.appendChild(label);
@@ -544,20 +544,13 @@ function create_add_tel_number() {
     add_number_submit.previousElementSibling.appendChild(div);
 }
 
-function create_add_mobile_number() {
+function create_add_mobile_number(id_timestamp) {
     let div = document.createElement('div');
     let label = document.createElement('label');
     let input = document.createElement('input');
     let i = document.createElement('i');
-    let id_timestamp = new Date().getTime();
 
     div.className = 'form-group col-12 col-sm-6 col-md-3';
-
-    label.className = 'sr-only';
-    label.setAttribute('for', 'mobile_number_' + id_timestamp);
-    label.innerHTML = '手机电话号码&nbsp;';
-
-    i.className = 'fas fa-mobile-alt';
 
     input.className = 'form-control form-control-sm fas text-success text-center mobile_number';
     input.id = 'mobile_number_' + id_timestamp;
@@ -566,8 +559,14 @@ function create_add_mobile_number() {
     input.setAttribute('maxlength', '15');
     input.placeholder = '手机电话号码 ';
     input.addEventListener('input', function () {
-        check_regexp_input_value(RegExp_rules.mobile_number, '请输入正确格式的手机号 例如：\n13812345678\n+8613812345678\n008613812345678', this);
+      check_regexp_input_value(RegExp_rules.mobile_number, '请输入正确格式的手机号 例如：\n13812345678\n+8613812345678\n008613812345678', this);
     });
+
+    label.className = 'sr-only';
+    label.setAttribute('for', input.id);
+    label.innerHTML = '手机电话号码&nbsp;';
+
+    i.className = 'fas fa-mobile-alt';
 
     label.appendChild(i);
     div.appendChild(label);
@@ -576,20 +575,13 @@ function create_add_mobile_number() {
     add_number_submit.previousElementSibling.appendChild(div);
 }
 
-function create_add_qrcode() {
+function create_add_qrcode(id_timestamp) {
     let div = document.createElement('div');
     let label = document.createElement('label');
     let input = document.createElement('input');
     let i = document.createElement('i');
-    let id_timestamp = new Date().getTime();
 
     div.className = 'form-group col-12 col-sm-12 col-md-3';
-
-    label.className = 'sr-only';
-    label.setAttribute('for', 'qrcode_' + id_timestamp);
-    label.innerHTML = '二维码&nbsp;';
-
-    i.className = 'fas fa-qrcode';
 
     input.className = 'form-control-file form-control-sm border bg-light fas text-center qrcode';
     input.id = 'qrcode_' + id_timestamp;
@@ -600,11 +592,21 @@ function create_add_qrcode() {
     //     check_input_file(‘size’, '请上传正确的二维码图片，格式png', this);
     // });
 
+    label.className = 'sr-only';
+    label.setAttribute('for', input.id);
+    label.innerHTML = '二维码&nbsp;';
+
+    i.className = 'fas fa-qrcode';
+
     label.appendChild(i);
     div.appendChild(label);
     div.appendChild(input);
 
     add_number_submit.previousElementSibling.appendChild(div);
+}
+
+function get_timestamp() {
+  return new Date().getTime();
 }
 
 function create_add_regional(type) {
