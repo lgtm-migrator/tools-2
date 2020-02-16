@@ -419,6 +419,7 @@ function create_add_form_init() {
     create_add_phone_name();
     create_add_tel_number();
     create_add_mobile_number();
+    create_add_qrcode();
     input_shadow();
 }
 
@@ -428,6 +429,7 @@ function create_add_form() {
     create_add_phone_name();
     create_add_tel_number();
     create_add_mobile_number();
+    create_add_qrcode();
     input_shadow();
 }
 
@@ -517,7 +519,7 @@ function create_add_tel_number() {
     let i = document.createElement('i');
     let id_timestamp = new Date().getTime();
 
-    div.className = 'form-group col-12 col-sm-6 col-md-4';
+    div.className = 'form-group col-12 col-sm-6 col-md-3';
 
     label.className = 'sr-only';
     label.setAttribute('for', 'tel_number_' + id_timestamp);
@@ -549,7 +551,7 @@ function create_add_mobile_number() {
     let i = document.createElement('i');
     let id_timestamp = new Date().getTime();
 
-    div.className = 'form-group col-12 col-sm-6 col-md-5';
+    div.className = 'form-group col-12 col-sm-6 col-md-4';
 
     label.className = 'sr-only';
     label.setAttribute('for', 'mobile_number_' + id_timestamp);
@@ -566,6 +568,37 @@ function create_add_mobile_number() {
     input.addEventListener('input', function () {
         check_regexp_input_value(RegExp_rules.mobile_number, '请输入正确格式的手机号 例如：\n13812345678\n+8613812345678\n008613812345678', this);
     });
+
+    label.appendChild(i);
+    div.appendChild(label);
+    div.appendChild(input);
+
+    add_number_submit.previousElementSibling.appendChild(div);
+}
+
+function create_add_qrcode() {
+    let div = document.createElement('div');
+    let label = document.createElement('label');
+    let input = document.createElement('input');
+    let i = document.createElement('i');
+    let id_timestamp = new Date().getTime();
+
+    div.className = 'form-group col-12 col-sm-12 col-md-2';
+
+    label.className = 'sr-only';
+    label.setAttribute('for', 'qrcode_' + id_timestamp);
+    label.innerHTML = '二维码&nbsp;';
+
+    i.className = 'fas fa-qrcode';
+
+    input.className = 'form-control-file form-control-sm border bg-light fas text-center qrcode';
+    input.id = 'qrcode_' + id_timestamp;
+    input.type = 'file';
+    input.setAttribute('accept', 'image/png');
+    input.setAttribute('MAX_FILE_SIZE', '111');
+    // input.addEventListener('input', function () {
+    //     check_input_file(‘size’, '请上传正确的二维码图片，格式png', this);
+    // });
 
     label.appendChild(i);
     div.appendChild(label);
@@ -817,6 +850,10 @@ function check_regexp_input_value(RegExp_rules_name, error_text, element) {
         input_success(element);
         remove_validation_div(element);
     }
+}
+
+function check_input_file() {
+
 }
 
 function input_shadow() {
