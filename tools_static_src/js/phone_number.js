@@ -421,6 +421,7 @@ function create_add_form_init() {
     create_add_tel_number(timestamp);
     create_add_mobile_number(timestamp);
     create_add_qrcode(timestamp);
+    bsCustomFileInput.init();
     input_shadow();
 }
 
@@ -432,6 +433,7 @@ function create_add_form() {
     create_add_tel_number(timestamp);
     create_add_mobile_number(timestamp);
     create_add_qrcode(timestamp);
+    bsCustomFileInput.init();
     input_shadow();
 }
 
@@ -581,9 +583,9 @@ function create_add_qrcode(id_timestamp) {
     let input = document.createElement('input');
     let i = document.createElement('i');
 
-    div.className = 'form-group col-12 col-sm-12 col-md-3';
+    div.className = 'custom-file col-12 col-sm-12 col-md-3';
 
-    input.className = 'form-control-file form-control-sm border bg-light fas text-center qrcode';
+    input.className = 'custom-file-input border bg-light fas text-center qrcode';
     input.id = 'qrcode_' + id_timestamp;
     input.type = 'file';
     input.setAttribute('accept', 'image/png');
@@ -592,15 +594,16 @@ function create_add_qrcode(id_timestamp) {
     //     check_input_file(‘size’, '请上传正确的二维码图片，格式png', this);
     // });
 
-    label.className = 'sr-only';
+    label.className = 'custom-file-label';
     label.setAttribute('for', input.id);
-    label.innerHTML = '二维码&nbsp;';
+    label.setAttribute('data-browse', '二维码');
+    label.innerHTML = '选择图片';
 
-    i.className = 'fas fa-qrcode';
+    // i.className = 'ml-1 fas fa-qrcode';
 
-    label.appendChild(i);
-    div.appendChild(label);
+    // label.appendChild(i);
     div.appendChild(input);
+    div.appendChild(label);
 
     add_number_submit.previousElementSibling.appendChild(div);
 }
