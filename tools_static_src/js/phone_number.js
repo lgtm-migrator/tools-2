@@ -421,7 +421,6 @@ function create_add_form_init() {
     create_add_tel_number(timestamp);
     create_add_mobile_number(timestamp);
     create_add_qrcode(timestamp);
-    bsCustomFileInput.init();
     input_shadow();
 }
 
@@ -433,7 +432,6 @@ function create_add_form() {
     create_add_tel_number(timestamp);
     create_add_mobile_number(timestamp);
     create_add_qrcode(timestamp);
-    bsCustomFileInput.init();
     input_shadow();
 }
 
@@ -578,14 +576,20 @@ function create_add_mobile_number(id_timestamp) {
 }
 
 function create_add_qrcode(id_timestamp) {
-    let div = document.createElement('div');
+    let form_group = document.createElement('div');
+    let form_file = document.createElement('div');
     let label = document.createElement('label');
     let input = document.createElement('input');
-    let i = document.createElement('i');
+    let span_text = document.createElement("span");
+    let span_btn = document.createElement("span");
+    let i = document.createElement("i");
 
-    div.className = 'custom-file col-12 col-sm-12 col-md-3';
+    i.className = 'fas fa-qrcode';
 
-    input.className = 'custom-file-input border bg-light fas text-center qrcode';
+    form_group.className = 'form-group col-12 col-sm-12 col-md-3';
+    form_file.className = 'form-file';
+
+    input.className = 'form-file-input border bg-light fas text-center qrcode';
     input.id = 'qrcode_' + id_timestamp;
     input.type = 'file';
     input.setAttribute('accept', 'image/png');
@@ -594,18 +598,23 @@ function create_add_qrcode(id_timestamp) {
     //     check_input_file(‘size’, '请上传正确的二维码图片，格式png', this);
     // });
 
-    label.className = 'custom-file-label';
+    label.className = 'form-file-label';
     label.setAttribute('for', input.id);
-    label.setAttribute('data-browse', '二维码');
-    label.innerHTML = '选择图片';
 
-    // i.className = 'ml-1 fas fa-qrcode';
+    span_text.className = 'form-file-text';
+    span_text.innerHTML = '上传图片';
 
-    // label.appendChild(i);
-    div.appendChild(input);
-    div.appendChild(label);
+    span_btn.className = 'form-file-button';
+    // span_btn.innerHTML = '二维码';
 
-    add_number_submit.previousElementSibling.appendChild(div);
+    span_btn.appendChild(i);
+    label.appendChild(span_text);
+    label.appendChild(span_btn);
+    form_file.appendChild(input);
+    form_file.appendChild(label);
+    form_group.appendChild(form_file);
+
+    add_number_submit.previousElementSibling.appendChild(form_group);
 }
 
 function get_timestamp() {
