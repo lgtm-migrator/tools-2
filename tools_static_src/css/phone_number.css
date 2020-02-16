@@ -12,8 +12,8 @@
 #search_result_number_list > div:nth-child(even) {background-color: #00ff0040;}
 
 input[type=search] {letter-spacing: .3rem;}
-input[type=search]::placeholder {color: red;}
-input[type=search]:placeholder-shown {letter-spacing: 2rem;}
+input[type=search]::placeholder {color: var(--danger);}
+input[type=search]:placeholder-shown {letter-spacing: 1rem;}
 
-.add_phone_number_form input::placeholder {color: #fd7e14;}
+.add_phone_number_form input::placeholder {color: var(--orange);}
 .add_phone_number_form input:placeholder-shown {}
