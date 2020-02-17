@@ -1,8 +1,7 @@
 <script src="/static/js/js.cookie.min.js"></script>
 <script src="/static/js/day_js_with_locale.min.js"></script>
 <script src="/static/js/jquery.min.js"></script>
-<script src="/static/js/popper.min.js"></script>
-<script src="/static/js/bootstrap.min.js"></script>
+<script src="/static/js/bootstrap.bundle.min.js"></script>
 <script src="/static/js/clipboard.min.js"></script>
 <script src="/static/js/bootstrap-modal-js.min.js"></script>
 <script src="/static/js/bs-custom-file-input.min.js"></script>
