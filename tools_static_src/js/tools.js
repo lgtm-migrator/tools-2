@@ -540,6 +540,16 @@ function get_href_url(target, class_name) {
     }
 }
 
+function create_img(options, alt, className) {
+  let img = document.createElement("img");
+
+  img.className = options.className ? options.className : className;
+  img.src = options.src ? options.src : options;
+  img.alt = options.alt ? options.alt : alt;
+
+  return img;
+}
+
 /** localStorage **/
 if (localStorage && (
     localStorage.setItem('status', 'yes') ||

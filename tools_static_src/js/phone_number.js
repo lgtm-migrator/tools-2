@@ -210,17 +210,46 @@ function create_search_result_number_list_name(name) {
 
     li.className = 'number_name mb-2';
 
+    span_name.className = 'mr-2';
     span_name.innerHTML = name;
 
     i.className = 'mr-2 fas fa-home text-info hvr-icon';
-    i.style.cursor = 'pointer';
+    cursor_pointer(i);
 
     li.insertBefore(i, li.firstChild);
     li.append(span_name);
+    li.append(create_search_result_qrcode_popover('https://www.baidu.com/img/PCpad_bc531b595cf1e37c3907d14b69e3a2dd.png'));
     ul.appendChild(li);
     span.appendChild(ul);
 
     return span;
+}
+
+function create_search_result_qrcode_popover(img_src) {
+  let i = document.createElement("i");
+  let img = create_img_qrcode(img_src);
+  console.log('img---' + img);
+
+  i.className = 'btn btn-outline-secondary fas fa-qrcode';
+  cursor_pointer(i);
+  i.dataset.toggle = 'popover';
+  i.dataset.trigger = 'hover focus';
+  i.dataset.placement = 'bottom';
+  i.dataset.content = img;
+  i.dataset.title = '微信';
+  $('[data-toggle="popover"]').popover();
+
+  return i;
+}
+
+function create_img_qrcode(img_src) {
+  let options = {
+    src: img_src,
+    alt: '二维码',
+    className: 'img-thumbnail',
+  };
+  console.log(create_img(options));
+  return create_img(options);
 }
 
 function create_search_result_number_list_number(number, number_type) {
@@ -576,24 +605,23 @@ function create_add_mobile_number(id_timestamp) {
 }
 
 function create_add_qrcode(id_timestamp) {
-    let form_group = document.createElement('div');
     let form_file = document.createElement('div');
     let label = document.createElement('label');
     let input = document.createElement('input');
     let span_text = document.createElement("span");
     let span_btn = document.createElement("span");
     let i = document.createElement("i");
+    let max_file_size = 1048576 / 2;
 
     i.className = 'fas fa-qrcode';
 
-    form_group.className = 'form-group col-12 col-sm-12 col-md-3';
-    form_file.className = 'form-file';
+    form_file.className = 'form-file form-file-sm col-12 col-sm-12 col-md-3';
 
-    input.className = 'form-file-input border bg-light fas text-center qrcode';
+    input.className = 'form-file-input';
     input.id = 'qrcode_' + id_timestamp;
     input.type = 'file';
     input.setAttribute('accept', 'image/png');
-    input.setAttribute('MAX_FILE_SIZE', '111');
+    input.setAttribute('MAX_FILE_SIZE', max_file_size);
     // input.addEventListener('input', function () {
     //     check_input_file(‘size’, '请上传正确的二维码图片，格式png', this);
     // });
@@ -612,9 +640,8 @@ function create_add_qrcode(id_timestamp) {
     label.appendChild(span_btn);
     form_file.appendChild(input);
     form_file.appendChild(label);
-    form_group.appendChild(form_file);
 
-    add_number_submit.previousElementSibling.appendChild(form_group);
+    add_number_submit.previousElementSibling.appendChild(form_file);
 }
 
 function get_timestamp() {
