@@ -74,6 +74,24 @@ function create_close_btn(fun_name, class_name) {
     return close_button;
 }
 
+function get_file_ext_name(file_name, index_of = '.') {
+  return file_name.substring(file_name.lastIndexOf(index_of) + 1).toLowerCase();
+}
+
+function get_file_size(file_size) {
+  file_size = typeof file_size === 'number' ? file_size : parseInt(file_size);
+  if (file_size >= 1073741824) {
+    file_size = ((file_size / 1073741824 * 100) / 100).toFixed(2) + ' GB';
+  } else if (file_size >= 1048576) {
+    file_size = ((file_size / 1048576 * 100) / 100).toFixed(2) + ' MB';
+  } else if (file_size >= 1024) {
+    file_size = ((file_size / 1024 * 100) / 100).toFixed(2) + ' KB';
+  } else {
+    file_size = file_size + ' bytes';
+  }
+  return file_size;
+}
+
 /** tooltip **/
 $().ready(function () {
     $('span[title]').tooltip({
