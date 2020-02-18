@@ -617,14 +617,14 @@ function create_add_qrcode(id_timestamp) {
 
     form_file.className = 'form-file form-file-sm col-12 col-sm-12 col-md-3';
 
-    input.className = 'form-file-input';
+    input.className = 'form-file-input new_qrcode';
     input.id = 'qrcode_' + id_timestamp;
     input.type = 'file';
     input.setAttribute('accept', 'image/png');
     input.setAttribute('MAX_FILE_SIZE', max_file_size);
-    // input.addEventListener('input', function () {
-    //     check_input_file(‘size’, '请上传正确的二维码图片，格式png', this);
-    // });
+    input.addEventListener('change', function () {
+        check_input_file('请上传正确的二维码图片，格式png', this);
+    });
 
     label.className = 'form-file-label';
     label.setAttribute('for', input.id);
@@ -893,8 +893,31 @@ function check_regexp_input_value(RegExp_rules_name, error_text, element) {
     }
 }
 
-function check_input_file() {
+function check_input_file(error_text, element) {
+  console.log(element.files);
+  let file = element.files[0];
+  if (file) {
+    let max_file_size = 1048576 / 2;
+    let allowed_files_name = ['png'];
+    let file_size = file.size;
+    let file_type = file.type;
+    let file_name = file.name;
 
+    if (allowed_files_name.includes(get_file_ext_name(file_type, '/'))) {
+      validation_invalid_div(element, '文件格式不符合，只允许上传' + allowed_files_name.join('&nbsp;') + '格式的文件');
+      input_error(element);
+    } else if (max_file_size < file_size) {
+      validation_invalid_div(element, '文件太大了，只允许上传' + get_file_size(file_size) + '的文件');
+      input_error(element);
+    } else {
+      input_success(element);
+      remove_validation_div(element);
+      validation_valid_div(element, file_name);
+    }
+  }else {
+    validation_invalid_div(element, error_text);
+    input_error(element);
+  }
 }
 
 function input_shadow() {
