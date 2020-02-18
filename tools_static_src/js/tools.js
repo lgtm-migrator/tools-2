@@ -149,7 +149,7 @@ function validation_valid_div(element, text, type = 'tooltip') {
         let div = document.createElement('div');
         if (type === 'tooltip') {
             div.className = 'valid-tooltip';
-            // div.style.position = "unset";
+            div.style.position = 'static';
         } else {
             div.className = 'valid-feedback';
         }
