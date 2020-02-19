@@ -349,7 +349,7 @@ function show_add_number_form() {
     number_stored = document.querySelector('#number_stored');
 
     create_add_form_init();
-    create_add_regional('button');
+    create_add_regional('radio');
     create_add_number_form_close();
 }
 
@@ -526,7 +526,7 @@ function create_add_phone_name(id_timestamp) {
     input.setAttribute('maxlength', '15');
     input.placeholder = '单位名称 ';
     input.addEventListener('input', function () {
-      check_regexp_input_value(RegExp_rules.phone_name, '请输入单位的中文名称 例如：\n掘进一队', this);
+      check_regexp_input_value(RegExp_rules.phone_name, '请输入单位的中文名称 例如：<br>掘进一队', this);
     });
 
     label.className = 'sr-only';
@@ -557,7 +557,7 @@ function create_add_tel_number(id_timestamp) {
     input.setAttribute('maxlength', '12');
     input.placeholder = '座机电话号码 ';
     input.addEventListener('input', function () {
-      check_regexp_input_value(RegExp_rules.tel_number, '请输入当地正确格式的座机号码 例如：\n0319-2061234\n0319-2089123\n······ 等更多正确格式', this);
+      check_regexp_input_value(RegExp_rules.tel_number, '请输入当地正确格式的座机号码 例如：<br>0319-2061234<br>0319-2089123<br>······ 等更多正确格式', this);
     });
 
     label.className = 'sr-only';
@@ -588,7 +588,7 @@ function create_add_mobile_number(id_timestamp) {
     input.setAttribute('maxlength', '15');
     input.placeholder = '手机电话号码 ';
     input.addEventListener('input', function () {
-      check_regexp_input_value(RegExp_rules.mobile_number, '请输入正确格式的手机号 例如：\n13812345678\n+8613812345678\n008613812345678', this);
+      check_regexp_input_value(RegExp_rules.mobile_number, '请输入正确格式的手机号 例如：<br>13812345678<br>+8613812345678<br>008613812345678', this);
     });
 
     label.className = 'sr-only';
@@ -623,7 +623,7 @@ function create_add_qrcode(id_timestamp) {
     input.setAttribute('accept', 'image/png');
     input.setAttribute('MAX_FILE_SIZE', max_file_size);
     input.addEventListener('change', function () {
-        check_input_file('请上传正确的二维码图片，格式png', this);
+        check_input_file(this);
     });
 
     label.className = 'form-file-label';
@@ -660,7 +660,7 @@ function create_add_regional(type) {
     };
 
     if (type === 'radio') {
-        div.className = 'row no-gutters mx-auto mb-3 mb-sm-4 mb-md-4 py-2 w-100 w-md-75 w-lg-50 bg-white border rounded row-cols-2 row-cols-sm-3 row-cols-md-none';
+        div.className = 'row no-gutters mx-auto mb-3 mb-sm-4 mb-md-4 py-2 w-100 w-md-75 w-lg-50 bg-white border rounded row-cols-2 row-cols-sm-3 row-cols-md-auto';
     } else if (type === 'button') {
         div.className = 'mb-3 mb-sm-4 mb-md-4 w-100 w-md-75 w-lg-50 bg-white btn-group btn-group-sm btn-group-toggle';
         div.setAttribute('data-toggle', 'buttons');
@@ -888,33 +888,39 @@ function check_regexp_input_value(RegExp_rules_name, error_text, element) {
         validation_invalid_div(element, error_text);
         input_error(element);
     } else {
+        validation_valid_div(element, error_text);
         input_success(element);
-        remove_validation_div(element);
     }
 }
 
-function check_input_file(error_text, element) {
+function check_input_file(element) {
   console.log(element.files);
   let file = element.files[0];
   if (file) {
     let max_file_size = 1048576 / 2;
     let allowed_files_name = ['png'];
     let file_size = file.size;
-    let file_type = file.type;
     let file_name = file.name;
 
-    if (allowed_files_name.includes(get_file_ext_name(file_type, '/'))) {
+    if (!allowed_files_name.includes(get_file_ext_name(file_name, '.'))) {
       validation_invalid_div(element, '文件格式不符合，只允许上传' + allowed_files_name.join('&nbsp;') + '格式的文件');
       input_error(element);
+      console.log('1');
+      console.log(get_file_ext_name(file_name, '.'));
     } else if (max_file_size < file_size) {
+      console.log('2');
       validation_invalid_div(element, '文件太大了，只允许上传' + get_file_size(file_size) + '的文件');
       input_error(element);
     } else {
-      input_success(element);
-      remove_validation_div(element);
+      console.log('3');
       validation_valid_div(element, file_name);
+      input_success(element);
     }
-  }else {
+  } else {
+    console.log('4');
+    let error_text = '请上传正确的图片<br>' +
+      `图片格式 ${['png'].join('&nbsp;')}<br>` +
+      `图片大小 ${get_file_size(1048576 / 2)}<br>`;
     validation_invalid_div(element, error_text);
     input_error(element);
   }

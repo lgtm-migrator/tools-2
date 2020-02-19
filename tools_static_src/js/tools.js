@@ -131,37 +131,47 @@ function remove_cookie(key) {
 
 /** 表单验证 **/
 function validation_invalid_div(element, text, type = 'tooltip') {
-    if (!element.nextElementSibling) {
-        let div = document.createElement('div');
-        if (type === 'tooltip') {
-            div.className = 'invalid-tooltip';
-            div.style.position = 'static';
-        } else {
-            div.className = 'invalid-feedback';
-        }
-        div.innerText = text;
-        element.parentNode.appendChild(div);
+  if (remove_validation_div(element)) {
+    let div = document.createElement('div');
+    if (type === 'tooltip') {
+      div.className = 'invalid-tooltip';
+      div.style.position = 'static';
+    } else {
+      div.className = 'invalid-feedback';
     }
+    div.innerHTML = text;
+    element.parentNode.appendChild(div);
+  }
 }
 
 function validation_valid_div(element, text, type = 'tooltip') {
-    if (element.nextElementSibling) {
-        let div = document.createElement('div');
-        if (type === 'tooltip') {
-            div.className = 'valid-tooltip';
-            div.style.position = 'static';
-        } else {
-            div.className = 'valid-feedback';
-        }
-        div.innerText = text;
-        element.parentNode.appendChild(div);
+  if (remove_validation_div(element)) {
+    let div = document.createElement('div');
+    if (type === 'tooltip') {
+      div.className = 'valid-tooltip';
+      div.style.position = 'static';
+    } else {
+      div.className = 'valid-feedback';
     }
+    div.innerHTML = text;
+    element.parentNode.appendChild(div);
+  }
 }
 
 function remove_validation_div(element) {
-    while (element.nextElementSibling) {
-        element.nextElementSibling.remove();
+  if (element.nextElementSibling) {
+    if (element.nextElementSibling.classList.contains('valid-tooltip') ||
+      element.nextElementSibling.classList.contains('invalid-tooltip') ||
+      element.nextElementSibling.classList.contains('valid-feedback') ||
+      element.nextElementSibling.classList.contains('invalid-feedback')) {
+      element.nextElementSibling.remove();
+      return true;
+    } else {
+      remove_validation_div(element.nextElementSibling);
     }
+  } else {
+    return true;
+  }
 }
 
 function input_error(element) {
