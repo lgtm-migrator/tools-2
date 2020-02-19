@@ -1,3 +1,17 @@
+.row-cols-auto > * {flex: auto;max-width: none;}
+@media (min-width: 576px) {
+  .row-cols-sm-auto > * {flex: auto;max-width: none;}
+}
+@media (min-width: 768px) {
+  .row-cols-md-auto > * {flex: auto;max-width: none;}
+}
+@media (min-width: 992px) {
+  .row-cols-lg-auto > * {flex: auto;max-width: none;}
+}
+@media (min-width: 1200px) {
+  .row-cols-xl-auto > * {flex: auto;max-width: none;}
+}
+
 .form-file {
   position: relative;
   display: inline-block;
