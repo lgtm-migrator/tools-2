@@ -1,5 +1,6 @@
 require('./common');
 require('./tools_static');
+require('./jt_qrcode');
 
 const {task, series, parallel} = require('gulp');
 
@@ -9,12 +10,14 @@ task("build_static",
     series(
         "build_static_tools",
         "build_static_common",
+        "build_static_jt_qrcode",
     )
 );
 task('watch_change',
     parallel(
         'watch_static',
         'watch_config_json',
+        'watch_static_jt_qrcode',
     )
 );
 task('copy',

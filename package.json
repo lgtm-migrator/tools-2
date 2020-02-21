@@ -33,6 +33,7 @@
     "minimize_local_static": "gulp minimize_local_static",
     "build_static": "gulp build_static",
     "watch_static": "gulp watch_static",
+    "watch_change": "gulp watch_change",
     "install_nrm_use_taobao": "npm i -g nrm --registry=https://registry.npm.taobao.org && nrm use taobao && nrm ls",
     "install_ncu": "npm i -g npm-check-updates"
   },
