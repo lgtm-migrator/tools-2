@@ -10,18 +10,19 @@ task("build_static",
     series(
         "build_static_tools",
         "build_static_common",
-        "build_static_jt_qrcode",
+        "build_jt_qrcode",
     )
 );
 task('watch_change',
     parallel(
         'watch_static',
         'watch_config_json',
-        'watch_static_jt_qrcode',
+        'watch_jt_qrcode',
     )
 );
 task('copy',
     parallel(
         'copy_common',
+        'copy_jt_qrcode',
     )
 );
