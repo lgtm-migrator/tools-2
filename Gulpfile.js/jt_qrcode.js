@@ -26,23 +26,31 @@ const
 
 // Task
 // 任务
-task(terser_jt_qrcode);
+task(copy_jt_qrcode_js);
+task(copy_jt_qrcode_css);
 
+task(terser_jt_qrcode);
 task(cleanCSS_jt_qrcode);
 
-task(watch_static_jt_qrcode);
+task(watch_jt_qrcode);
 
 // Combined tasks
 // 合并任务
-task("minimize_static_jt_qrcode",
+task('copy_jt_qrcode',
+    parallel(
+        'copy_jt_qrcode_js',
+        'copy_jt_qrcode_css',
+    ));
+task("minimize_jt_qrcode",
     parallel(
         "terser_jt_qrcode",
         "cleanCSS_jt_qrcode",
     )
 );
-task("build_static_jt_qrcode",
+task("build_jt_qrcode",
     parallel(
-        "minimize_static_jt_qrcode",
+        "minimize_jt_qrcode",
+        "copy_jt_qrcode",
     )
 );
 
@@ -104,7 +112,7 @@ function cleanCSS_jt_qrcode(done) {
     done();
 }
 
-function watch_static_jt_qrcode(done) {
-    watch([jt_qrcode_js_path, jt_qrcode_css_path], task("build_static_jt_qrcode"));
+function watch_jt_qrcode(done) {
+    watch([jt_qrcode_js_path, jt_qrcode_css_path], task("build_jt_qrcode"));
     done();
 }
