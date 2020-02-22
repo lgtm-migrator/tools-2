@@ -48,43 +48,53 @@ task("build_static_jt_qrcode",
 
 // Tasks function
 // 任务函数
-function copy_jt_qrcode_js() {
-    return src([jt_qrcode_js_path], {since: lastRun(copy_jt_qrcode_js)})
-        .pipe(dest(static_js));
-}
+// function copy_jt_qrcode_js() {
+//     return src([jt_qrcode_js_path], {since: lastRun(copy_jt_qrcode_js)})
+//         .pipe(dest(static_js));
+// }
+//
+// function terser_jt_qrcode() {
+//     return src([jt_qrcode_js_path], {since: lastRun(terser_jt_qrcode)})
+//         .pipe(terser())
+//         .pipe(rename({suffix: ".min"}))
+//         .pipe(dest(static_js))
+//         .pipe(copy_jt_qrcode_js());
+// }
 
-function terser_jt_qrcode() {
-    return src([jt_qrcode_js_path], {since: lastRun(terser_jt_qrcode)})
+function terser_jt_qrcode(done) {
+    src([jt_qrcode_js_path], {since: lastRun(terser_jt_qrcode)})
+        .pipe(dest(static_js));
+    src([jt_qrcode_js_path], {since: lastRun(terser_jt_qrcode)})
         .pipe(terser())
         .pipe(rename({suffix: ".min"}))
-        .pipe(dest(static_js))
-        .pipe(copy_jt_qrcode_js());
+        .pipe(dest(static_js));
+    done();
 }
 
-function copy_jt_qrcode_css() {
-    return src([jt_qrcode_css_path], {since: lastRun(copy_jt_qrcode_css)})
-        .pipe(dest(static_css));
-}
-
-function cleanCSS_jt_qrcode() {
-    return src([jt_qrcode_css_path], {since: lastRun(cleanCSS_jt_qrcode)})
-        .pipe(postcss([autoPreFixer()]))
-        .pipe(cleanCSS())
-        .pipe(rename({suffix: ".min"}))
-        .pipe(dest(static_css))
-        .pipe(copy_jt_qrcode_css());
-}
-
-// function cleanCSS_jt_qrcode(done) {
-//     src([jt_qrcode_css_path], {since: lastRun(cleanCSS_jt_qrcode)})
+// function copy_jt_qrcode_css() {
+//     return src([jt_qrcode_css_path], {since: lastRun(copy_jt_qrcode_css)})
 //         .pipe(dest(static_css));
-//     src([jt_qrcode_css_path], {since: lastRun(cleanCSS_jt_qrcode)})
+// }
+//
+// function cleanCSS_jt_qrcode() {
+//     return src([jt_qrcode_css_path], {since: lastRun(cleanCSS_jt_qrcode)})
 //         .pipe(postcss([autoPreFixer()]))
 //         .pipe(cleanCSS())
 //         .pipe(rename({suffix: ".min"}))
-//         .pipe(dest(static_css));
-//     done();
+//         .pipe(dest(static_css))
+//         .pipe(copy_jt_qrcode_css());
 // }
+
+function cleanCSS_jt_qrcode(done) {
+    src([jt_qrcode_css_path], {since: lastRun(cleanCSS_jt_qrcode)})
+        .pipe(dest(static_css));
+    src([jt_qrcode_css_path], {since: lastRun(cleanCSS_jt_qrcode)})
+        .pipe(postcss([autoPreFixer()]))
+        .pipe(cleanCSS())
+        .pipe(rename({suffix: ".min"}))
+        .pipe(dest(static_css));
+    done();
+}
 
 function watch_static_jt_qrcode(done) {
     watch([jt_qrcode_js_path, jt_qrcode_css_path], task("build_static_jt_qrcode"));
