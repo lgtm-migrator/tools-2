@@ -58,7 +58,7 @@ function terser_jt_qrcode() {
         .pipe(terser())
         .pipe(rename({suffix: ".min"}))
         .pipe(dest(static_js))
-        .pipe(copy_jt_qrcode_js);
+        .pipe(copy_jt_qrcode_js());
 }
 
 function copy_jt_qrcode_css() {
@@ -72,7 +72,7 @@ function cleanCSS_jt_qrcode() {
         .pipe(cleanCSS())
         .pipe(rename({suffix: ".min"}))
         .pipe(dest(static_css))
-        .pipe(copy_jt_qrcode_css);
+        .pipe(copy_jt_qrcode_css());
 }
 
 // function cleanCSS_jt_qrcode(done) {
