@@ -2,7 +2,7 @@
 
 if ($_POST && $_FILES) {
     if ($_FILES['qrcode_img'] && $_POST['qrcode_title'] && $_POST['qrcode_description'] && $_POST['qrcode_password']) {
-        global $result;
+        global $new_img_file, $result;
 
         $qrcode_img_file = $_FILES['qrcode_img'];
         require_once "./file.php";
@@ -13,11 +13,12 @@ if ($_POST && $_FILES) {
     } else {
         die('参数错误');
     }
-}else{
+} else {
     die('方式错误');
 }
 
-$img_path = $qrcode_img_file;
+//$img_path = $new_img_file['file_path'];
+$img_path = $new_img_file['file_path'];
 $title = $qrcode_title;
 $description = $qrcode_description;
 $password = $qrcode_password;
