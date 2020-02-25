@@ -3,5 +3,6 @@
 
 # Project exclude paths
 /static/
+/qrcode_img/
 /node_modules/
 /vendor/
