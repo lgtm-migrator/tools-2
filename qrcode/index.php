@@ -35,8 +35,8 @@ require_once '../header.php';
                     <label class="sr-only" for="qrcode_title">灵活码标题</label>
                     <span class="input-group-text">灵活码标题</span>
                 </div>
-                <input class="form-control" type="text" name="qrcode_title" id="qrcode_title" value="默认标题"
-                       placeholder="灵活码标题" required>
+                <input class="form-control" type="text" name="qrcode_title" id="qrcode_title" placeholder="灵活码标题"
+                       maxlength="10" value="默认标题" required>
             </div>
             <div class="mb-3 input-group">
                 <div class="input-group-prepend">
@@ -44,7 +44,7 @@ require_once '../header.php';
                     <span class="input-group-text">灵活码介绍</span>
                 </div>
                 <input class="form-control" type="text" name="qrcode_description" id="qrcode_description" value="默认介绍"
-                       placeholder="灵活码介绍" required>
+                       maxlength="150" placeholder="灵活码介绍 上限150字" required>
             </div>
             <div class="small text-danger">请务必牢记这个密码，密码是您唯一调整灵活码信息的方式，相同的二维码不能重复提交。如忘记管理密码，需要通过验证找回密码，请联系管理。</div>
             <div class="mb-3 input-group">
