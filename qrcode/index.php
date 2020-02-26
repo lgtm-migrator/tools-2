@@ -1,6 +1,6 @@
 <?php
 
-define('title', '动态二维码');
+define('title', '灵活码');
 require_once '../header.php';
 ?>
 <link rel="stylesheet" href="/static/css/jt_qrcode.min.css">
