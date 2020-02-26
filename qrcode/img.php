@@ -17,7 +17,6 @@ if ($_POST && $_FILES) {
     die('方式错误');
 }
 
-//$img_path = $new_img_file['file_path'];
 $img_path = $new_img_file['file_path'];
 $title = $qrcode_title;
 $description = $qrcode_description;
@@ -26,6 +25,7 @@ $category = 'img_qrcode';
 $identifier = '0111';
 $img_md5 = '111';
 $qrcode_content = '111';
+$static = 'yes';
 
 $qrcode_data = array(
     'img_path' => $img_path,
@@ -36,6 +36,7 @@ $qrcode_data = array(
     'img_md5' => $img_md5,
     'qrcode_content' => $qrcode_content,
     'password' => $password,
+    'static' => $static,
 );
 
 
