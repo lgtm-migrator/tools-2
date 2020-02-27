@@ -43,8 +43,8 @@ require_once '../header.php';
                     <label class="sr-only" for="qrcode_description">灵活码介绍</label>
                     <span class="input-group-text">灵活码介绍</span>
                 </div>
-                <textarea class="form-control" type="text" name="qrcode_description" id="qrcode_description"
-                          maxlength="150" placeholder="灵活码介绍 上限150字" required>默认介绍</textarea>
+                <textarea class="form-control" type="text" name="qrcode_description" id="qrcode_description" rows="5"
+                          cols="" wrap="soft" maxlength="150" placeholder="灵活码介绍 上限150字" required>默认介绍</textarea>
             </div>
             <div class="small text-danger">请务必牢记这个密码，密码是您唯一调整灵活码信息的方式，相同的二维码不能重复提交。如忘记管理密码，需要通过验证找回密码，请联系管理。</div>
             <div class="mb-3 input-group">
