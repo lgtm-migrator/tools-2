@@ -11,7 +11,7 @@
  Target Server Version : 80019
  File Encoding         : 65001
 
- Date: 26/02/2020 01:01:11
+ Date: 27/02/2020 22:19:21
 */
 
 SET NAMES utf8mb4;
@@ -31,9 +31,10 @@ CREATE TABLE `qrcode`  (
   `qrcode_content` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '二维码内容',
   `img_md5` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '图片MD5',
   `dddd` json NULL COMMENT '访问次数',
-  `password` varchar(16) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '管理密码',
+  `password` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '管理密码',
+  `static` varchar(6) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '状态（yes,no,updated）',
   PRIMARY KEY (`id`) USING BTREE,
-  UNIQUE INDEX `identifier`(`identifier`, `title`, `description`) USING BTREE COMMENT '识别码控制去重'
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+  UNIQUE INDEX `identifier`(`identifier`, `static`) USING BTREE COMMENT '识别码控制去重'
+) ENGINE = InnoDB AUTO_INCREMENT = 62 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
 SET FOREIGN_KEY_CHECKS = 1;
