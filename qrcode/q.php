@@ -17,7 +17,7 @@ if ($_POST) {
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css">
-    <title>灵活码</title>
+    <title>灵活码结果</title>
 </head>
 <body class="min-vh-100"
       style="background-image: linear-gradient(180deg,hsla(0,0%,100%,0) 60%,#ffebb2),linear-gradient(70deg,#dbedff 32%,#d2ffde);">
@@ -47,7 +47,7 @@ if ($_POST) {
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.bundle.min.js"></script>
 
     <script>
-        let query = 'alipay';
+        let query = 'LHM-1582811959';
         let url = 'query.php';
 
         $.ajax({

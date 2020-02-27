@@ -17,12 +17,13 @@ if ($_POST && $_FILES) {
     die('方式错误');
 }
 
+
 $img_path = $new_img_file['file_path'];
 $title = $qrcode_title;
 $description = $qrcode_description;
 $password = $qrcode_password;
 $category = 'img_qrcode';
-$identifier = '0111';
+$identifier = 'LHM-' . time();
 $img_md5 = '111';
 $qrcode_content = '111';
 $static = 'yes';
@@ -45,3 +46,4 @@ $result = array();
 require_once './database_add_qrcode.php';
 
 die(json_encode($result));
+//echo json_encode($result);
