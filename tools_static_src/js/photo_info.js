@@ -1,9 +1,3 @@
-/** bsCustomFileInput **/
-$().ready(function() {
-  bsCustomFileInput.init();
-});
-
-
 /** 提交图片 **/
 let photo_input = document.body.querySelector('#photo_input');
 let photo_submit = document.body.querySelector('#photo_submit');
@@ -221,7 +215,7 @@ function ajax_result_error(data) {
 function ajax_result_success(data) {
   let result = JSON.parse(data);
   console.log(JSON.parse(data));
-  let result_text = '';
+  let result_text;
   let result_error = '';
   let result_upload_message_success = '';
   let result_upload_message_failure = '';
