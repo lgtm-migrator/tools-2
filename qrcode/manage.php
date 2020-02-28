@@ -1,7 +1,7 @@
 <?php
 
 define('title', '管理灵活码');
-require_once '../header.php';
+require_once dirname(__DIR__) .'/header.php';
 ?>
 <link rel="stylesheet" href="/static/css/jt_qrcode.min.css">
 <div class="py-3 container bg-white" id="jt_container">
@@ -135,5 +135,5 @@ require_once '../header.php';
 </div>
 
 <?php
-require_once '../footer.php';
+require_once dirname(__DIR__) . '/footer.php';
 ?>

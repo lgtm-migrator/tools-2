@@ -17,7 +17,7 @@ if ($_POST) {
 global $query_result, $query_key;
 $query_key = $query;
 
-require_once "./database_query_qrcode.php";
+require_once dirname(__FILE__) . "/database_query_qrcode.php";
 
 
 $query_result = json_encode($query_result);

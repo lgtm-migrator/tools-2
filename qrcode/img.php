@@ -12,7 +12,7 @@ if ($_POST && $_FILES) {
 global $new_img_file, $result;
 
 $qrcode_img_file = $_FILES['qrcode_img'];
-require_once "./file.php";
+require_once dirname(__FILE__) . "/file.php";
 
 
 $qrcode_title = $_POST['qrcode_title'];
@@ -45,7 +45,7 @@ $qrcode_data = array(
 
 $result = array();
 
-require_once './database_add_qrcode.php';
+require_once dirname(__FILE__) . '/database_add_qrcode.php';
 
 die(json_encode($result));
 //echo json_encode($result);

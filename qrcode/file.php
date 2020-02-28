@@ -2,7 +2,7 @@
 
 require_once dirname(__DIR__) . "/config/defined.php";
 require_once dirname(__DIR__) . "/config/functions.php";
-require_once "../photo_info/photo_info_fun.php";
+require_once dirname(__DIR__)."/photo_info/photo_info_fun.php";
 
 $allowed_extension_name = array("pjpeg", "jpeg", "pjp", "jpg", "png");
 

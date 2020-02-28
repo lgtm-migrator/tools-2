@@ -1,7 +1,7 @@
 <?php
 
 define('title', '灵活码');
-require_once '../header.php';
+require_once dirname(__DIR__) .'/header.php';
 ?>
 <link rel="stylesheet" href="/static/css/jt_qrcode.min.css">
 <div class="py-3 container bg-white" id="jt_container">
@@ -20,7 +20,9 @@ require_once '../header.php';
             <div class="mb-1 small">
                 <div class="font-weight-bolder">付费方式</div>
                 <div class="small text-success">实行先管理，后付费方式。</div>
-                <div class="small text-muted">在需要重新更新灵活码内容时，可以直接登录，进行调整灵活码的结果内容（二维码图片、文字标题和文字简介），新的灵活码结果内容会进入审核阶段（审核阶段新二维码立刻生效可用），</div>
+                <div class="small text-muted">
+                    在需要重新更新灵活码内容时，可以直接登录，进行调整灵活码的结果内容（二维码图片、文字标题和文字简介），新的灵活码结果内容会进入审核阶段（审核阶段新二维码立刻生效可用），
+                </div>
                 <div class="small text-muted">15分钟内完成付费，审核通过，15分钟后，未付费的灵活码，停止使用，无有效扫描结果。</div>
             </div>
             <div class="mb-1 small">
@@ -121,5 +123,5 @@ require_once '../header.php';
 </div>
 
 <?php
-require_once '../footer.php';
+require_once dirname(__DIR__) . '/footer.php';
 ?>

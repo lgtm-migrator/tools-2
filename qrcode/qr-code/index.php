@@ -1,7 +1,7 @@
 <?php
 if (!defined('JT_QRCODE')) define('JT_QRCODE', true);
 
-require_once "./basic.php";
+require_once dirname(__FILE__) . "/basic.php";
 
 $options = array(
     'Size' => 300,
@@ -27,7 +27,7 @@ $options = array(
 
 
 $qrcode_url_text = 'http://tools.jzeg.org/qrcode/q.php?q=dd';
-$save_file_path = '../../upload/qrcode_img/qrcode.png';
+$save_file_path = dirname(__DIR__) . '/upload/qrcode_img/qrcode.png';
 
 //echo create_qrcode($qrcode_url_text, $options, $save_file_path);
 echo create_qrcode($qrcode_url_text, $options);
