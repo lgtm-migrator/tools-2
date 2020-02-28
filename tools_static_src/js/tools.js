@@ -609,6 +609,7 @@ $().ready(function () {
 function anti_mirror() {
     setTimeout(function () {
         if (document.location.host !== 'tools.jzeg.org' &&
+            document.location.host !== 'test.jzeg.net' &&
             document.location.host !== 'tools.jzeg.net') {
             if (fundebug) {
                 fundebug.notify('发现镜像', document.location.href, {
