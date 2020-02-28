@@ -36,8 +36,9 @@ if ($_POST) {
 </div>
 
 <div class="pb-2 container-fluid text-center">
-    <div class="clearfix">
-        <button type="button" class="mr-2 float-right btn btn-sm btn-outline-dark">举报</button>
+    <div class="mb-2 clearfix" id="jt_feedback">
+        <a class="float-left btn btn-sm btn-outline-dark make" href="javascript:" target="_blank" title="我也要制作灵活码">我也要制作灵活码</a>
+        <a class="float-right btn btn-sm btn-outline-dark report" href="javascript:" title="举报">举报</a>
     </div>
     <div class="small text-black-50">灵活码工具由杰格网提供技术支持</div>
 </div>
@@ -47,7 +48,7 @@ if ($_POST) {
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.bundle.min.js"></script>
 
     <script>
-        let query = 'LHM-1582811959';
+        let query = 'LHM-1582813189';
         let url = 'query.php';
 
         $.ajax({
@@ -104,6 +105,17 @@ if ($_POST) {
             qrcode.alt = data['title'];
         }
 
+    </script>
+    <script>
+        let jt_feedback = document.querySelector('#jt_feedback');
+        jt_feedback.addEventListener('click', function (e) {
+            let e_target = e.target;
+            if (e_target.classList.contains('make')) {
+                window.open(location.origin + '/qrcode/')
+            } else if (e_target.classList.contains('report')) {
+                alert('举报功能制作中，可先自行联系管理员');
+            }
+        })
     </script>
 </div>
 </body>
