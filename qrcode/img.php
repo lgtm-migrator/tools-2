@@ -14,12 +14,13 @@ global $new_img_file, $result, $qrcode_img_file;
 $qrcode_img_file = $_FILES['qrcode_img'];
 require_once dirname(__FILE__) . "/file.php";
 
+$new_img_file_path = $new_img_file['file_path'];
 
 $qrcode_title = $_POST['qrcode_title'];
 $qrcode_description = $_POST['qrcode_description'];
 $qrcode_password = $_POST['qrcode_password'];
 
-$img_path = $new_img_file['file_path'];
+$img_path = $new_img_file_path;
 $title = $qrcode_title;
 $description = $qrcode_description;
 $password = $qrcode_password;
