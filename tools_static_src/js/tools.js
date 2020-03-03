@@ -112,7 +112,7 @@ function remove_cookie(key) {
 }
 
 /** bsCustomFileInput **/
-$().ready(function() {
+$().ready(function () {
     bsCustomFileInput.init();
 });
 
@@ -369,7 +369,6 @@ function footer_qr_code() {
     let div = document.createElement('div');
     let span = document.createElement('span');
     let i = document.createElement('i');
-    let canvas = document.createElement('canvas');
 
     div.className = 'my-2';
     div.id = 'current_page_QR_code';
@@ -387,10 +386,13 @@ function footer_qr_code() {
         let i_copy = document.createElement('i');
         let i_question = document.createElement('i');
 
+        let img = document.createElement("img");
         let qrcode_option = {
             errorCorrectionLevel: 'H',
+            type: 'image/jpeg',
             margin: 2,
             width: 300,
+            quality: 0.3,
             color: {
                 dark: '#1E90FF',
                 light: '#ffffff',
@@ -420,11 +422,14 @@ function footer_qr_code() {
         });
 
         span.appendChild(i_question);
-        div.appendChild(canvas);
+        div.appendChild(img);
         div.appendChild(i_copy);
         div.appendChild(span);
 
-        QRCode.toCanvas(canvas, addUrlParam(url, url_param), qrcode_option);
+        QRCode.toDataURL(addUrlParam(url, url_param), qrcode_option, function (err, url) {
+            if (err) throw err;
+            img.src = url;
+        });
         bootstrapModalJs('', div, '', '', true);
     });
 
