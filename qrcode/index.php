@@ -19,7 +19,7 @@ require_once dirname(__DIR__) . '/header.php';
                         </button>
                         <div class="dropdown-menu dropdown-menu-right">
                             <a class="d-block border-0 rounded-0 btn btn-outline-warning" href="#lhm_scrollspy-safety"
-                              >安全</a>
+                            >安全</a>
                             <a class="d-block border-0 rounded-0 btn btn-outline-warning"
                                href="#lhm_scrollspy-guarantee">保障</a>
                         </div>
@@ -30,7 +30,7 @@ require_once dirname(__DIR__) . '/header.php';
                         </button>
                         <div class="dropdown-menu dropdown-menu-right">
                             <a class="d-block border-0 rounded-0 btn btn-outline-warning" href="#lhm_scrollspy-price"
-                              >价格</a>
+                            >价格</a>
                             <a class="d-block border-0 rounded-0 btn btn-outline-warning"
                                href="#lhm_scrollspy-price-methods">付费方式</a>
                             <a class="d-block border-0 rounded-0 btn btn-outline-warning"
@@ -133,7 +133,7 @@ require_once dirname(__DIR__) . '/header.php';
                 </div>
                 <div class="form-text small text-muted">
                     <span>提示：上传要转到的二维码图片文件</span>
-                    <div>查看图片要求</div>
+                    <span class="d-block">查看图片要求</span>
                 </div>
             </div>
             <div class="form-group">
@@ -144,7 +144,9 @@ require_once dirname(__DIR__) . '/header.php';
                     <input class="form-control" type="text" name="qrcode_title" id="qrcode_title" placeholder="灵活码标题"
                            maxlength="10" value="默认标题" required>
                 </div>
-                <div class="form-text small text-muted">提示：文字上限15个</div>
+                <div class="form-text small text-muted">
+                    <span>提示：文字上限15个</span>
+                </div>
             </div>
             <div class="form-group">
                 <div class="input-group">
@@ -155,7 +157,9 @@ require_once dirname(__DIR__) . '/header.php';
                               rows="6"
                               cols="" wrap="soft" maxlength="150" placeholder="灵活码介绍" required>默认介绍</textarea>
                 </div>
-                <div class="form-text small text-muted">提示：文字上限150个</div>
+                <div class="form-text small text-muted">
+                    <span>提示：文字上限150个</span>
+                </div>
             </div>
             <div class="form-group">
                 <div class="input-group">
