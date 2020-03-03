@@ -5,7 +5,12 @@ require_once dirname(__DIR__) . '/header.php';
 ?>
 <link rel="stylesheet" href="/static/css/jt_qrcode.min.css">
 <div class="py-3 container bg-white" id="jt_container">
-    <h1 class="h6 font-weight-bolder">灵活码<i class="ml-2 fa fa-qrcode"></i></h1>
+    <div class="mb-3">
+        <h1 class="mb-0 d-inline-block h6 font-weight-bolder">
+            <a class="text-reset text-decoration-none" href="/qrcode/" title="灵活码">灵活码</a>
+        </h1>
+        <i class="fa-fw fa fa-qrcode"></i>
+    </div>
     <div class="mb-3 row no-gutters">
         <div class="col-12">
             <div class="mb-2 justify-content-center d-flex btn-toolbar" id="lhm_tabs_link">
