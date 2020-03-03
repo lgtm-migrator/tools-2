@@ -2,11 +2,9 @@
 
 require_once dirname(__DIR__) . "/config/defined.php";
 require_once dirname(__DIR__) . "/config/functions.php";
-require_once dirname(__DIR__)."/photo_info/photo_info_fun.php";
+require_once dirname(__DIR__) . "/photo_info/photo_info_fun.php";
 
 $allowed_extension_name = array("pjpeg", "jpeg", "pjp", "jpg", "png");
-
-global $qrcode_img_file, $result;
 
 $yyyy_mm_dd = date("Y/m/d/");
 $upload_dir = "/upload/";

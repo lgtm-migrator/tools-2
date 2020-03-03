@@ -9,7 +9,7 @@ if ($_POST && $_FILES) {
 }
 
 
-global $new_img_file, $result;
+global $new_img_file, $result, $qrcode_img_file;
 
 $qrcode_img_file = $_FILES['qrcode_img'];
 require_once dirname(__FILE__) . "/file.php";
