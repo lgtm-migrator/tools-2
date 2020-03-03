@@ -43,7 +43,7 @@ require_once dirname(__DIR__) . '/header.php';
             </div>
         </div>
         <div class="col-12" style="max-height: 20rem;">
-            <div class="h-100 px-2 py-3 rounded tab-content text-white-50" id="lhm_tabs_pane"
+            <div class="h-100 px-2 py-3 rounded bg-dark bg_square tab-content text-white-50" id="lhm_tabs_pane"
                  style="overflow: auto;">
                 <div class="mb-3 tab-pane fade" id="lhm_scrollspy-definition">
                     <h6 class="font-weight-bolder">定义</h6>
@@ -117,7 +117,7 @@ require_once dirname(__DIR__) . '/header.php';
             </div>
         </div>
     </div>
-    <div class="mb-3 px-2 py-3 rounded text-warning" id="lhm-free">
+    <div class="mb-3 px-2 py-3 rounded bg-danger bg_square_x text-warning" id="lhm-free">
         <div>灵活码工具正在试运营，免费开放使用，所有人都可以免费制作，有问题请积极反馈。</div>
         <div>试运营期间创建的灵活码，有效期自生成之日起2个月内（31&times;2=62天）可自由维护调整。</div>
         <div>试运营期间创建的灵活码，在试运营结束后将会保留。</div>
