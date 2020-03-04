@@ -49,7 +49,7 @@ require_once dirname(__DIR__) . '/header.php';
         </div>
         <div class="col-12">
             <div class="px-2 py-3 rounded bg-dark bg_square tab-content small text-white-50" id="lhm_tabs_pane"
-                 style="height: 10rem;overflow: auto;">
+                 style="height: 10rem;overflow: overlay;">
                 <div class="mb-3 tab-pane fade" id="lhm_scrollspy-definition">
                     <h6 class="font-weight-bolder">定义</h6>
                     <div>
