@@ -66,8 +66,7 @@ require_once dirname(__DIR__) . '/header.php';
                 <div class="mb-3 tab-pane fade" id="lhm_scrollspy-supportList">
                     <h6 class="font-weight-bolder">支持列表</h6>
                     <div>
-                        <span class="d-block">如有知名可信赖类型的社交软件可提交反馈，如可信赖会增加支持，其他的二维码图片，不受支持，请勿制作灵活码。</span>
-                        <span class="d-block">灵活码目前支持二维码列表：</span>
+                        <span class="d-block">灵活码目前支持二维码内容：</span>
                         <ul>
                             <li>支付宝群二维码</li>
                             <li>钉钉群二维码</li>
@@ -79,7 +78,8 @@ require_once dirname(__DIR__) . '/header.php';
                 <div class="mb-3 tab-pane fade active show" id="lhm_scrollspy-safety">
                     <h6 class="font-weight-bolder">安全信息</h6>
                     <div>
-                        <span>灵活码工具为防止网络钓鱼类信息，二维码只允许上传阿里系、字节跳动系、腾讯系等知名公司旗下的社群二维码图片。其他公司旗下软件生成的二维码，暂不支持，请勿上传。</span>
+                        <span>灵活码工具为防止网络钓鱼类信息，二维码只允许阿里系、字节跳动系、腾讯系等知名公司旗下的社群二维码图片，其他公司旗下软件生成的二维码，暂不支持。</span>
+                        <span class="d-block">如有知名可信赖类型的社交软件可提交反馈，如可信赖会增加支持。</span>
                     </div>
                 </div>
                 <div class="mb-3 tab-pane fade" id="lhm_scrollspy-guarantee">
@@ -115,17 +115,17 @@ require_once dirname(__DIR__) . '/header.php';
                 </div>
                 <div class="mb-3 tab-pane fade" id="lhm_scrollspy-price-renew">
                     <h6 class="font-weight-bolder">续费</h6>
-                    <div>
-                        <span>暂时不保证永久可以续费</span>
-                    </div>
+                    <div><span>暂时不保证永久可以续费</span></div>
                 </div>
             </div>
         </div>
     </div>
-    <div class="mb-3 px-2 py-3 rounded bg-danger bg_square_x small text-white-50" id="lhm-free">
+    <div class="mb-3 px-2 py-3 rounded bg-danger bg_square_x small text-white-50" id="lhm-free"
+         style="height: 8rem;overflow: auto;overflow: overlay;">
+        <span class="d-block h5 text-center">免费活动</span>
         <div>灵活码工具正在试运营，免费开放使用，所有人都可以免费制作，有问题请积极反馈。</div>
         <div>试运营期间创建的灵活码，有效期自生成之日起2个月内（31&times;2=62天）可自由维护调整。</div>
-        <div>试运营期间创建的灵活码，在试运营结束后将会保留。</div>
+        <div>试运营期间创建的灵活码，在免费活动结束后将会保留。</div>
     </div>
     <div class="mb-3 p-3 border rounded" id="lhm_make">
         <div class="mb-1 font-weight-bolder text-warning">制作灵活码</div>
