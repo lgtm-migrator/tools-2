@@ -1,7 +1,7 @@
 <?php
 
 define('title', '管理灵活码');
-require_once dirname(__DIR__) .'/header.php';
+require_once dirname(__DIR__) . '/header.php';
 ?>
 <link rel="stylesheet" href="/static/css/jt_qrcode.min.css">
 <div class="py-3 container bg-white" id="jt_container">
@@ -103,13 +103,14 @@ require_once dirname(__DIR__) .'/header.php';
     <script src="/static/js/jt_qrcode.min.js"></script>
 
     <script>
-        // $().ready(function () {
+        $().ready(function () {
             let result_img = document.querySelector('#result_img');
 
             result_img.addEventListener('click', function (e) {
                 let e_target = e.target;
                 if (e_target.classList.contains('lhm_img')) {
-                    let img_url = 'http://tools.jzeg.org/upload/qrcode_img/2020/02/27/dd.jpg';
+                    let lhm_id = 'LHM-SADFAFS';
+                    let img_url = location.origin + '/qrcode/q.php?q=' + lhm_id;
                     let img = create_lhm_manage_result_img(img_url);
                     let modal_title = '<span class="font-weight-bolder text-success">当前灵活码</span>';
                     bootstrapModalJs(modal_title, img, '', '', true, true);
@@ -130,7 +131,7 @@ require_once dirname(__DIR__) .'/header.php';
 
                 return img;
             }
-        // });
+        });
     </script>
 </div>
 
