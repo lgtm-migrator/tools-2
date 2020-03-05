@@ -4,7 +4,7 @@ define('title', '灵活码');
 require_once dirname(__DIR__) . '/header.php';
 ?>
 <link rel="stylesheet" href="/static/css/jt_qrcode.min.css">
-<div class="pt-3 container bg-white" id="jt_container">
+<div class="py-3 container bg-white" id="jt_container">
     <div class="mb-4" id="jt_lhm_toolbar">
         <div class="mb-3">
             <h1 class="mb-0 d-inline-block h6 font-weight-bolder">
