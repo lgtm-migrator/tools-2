@@ -19,6 +19,10 @@ $().ready(function () {
     let lhm_editor = document.querySelector('#lhm_editor');
     let lhm_editor_size_range = document.querySelector('#lhm_editor_size_range');
     let lhm_editor_size_value = document.querySelector('#lhm_editor_size_value');
+    let lhm_editor_quality_value = document.querySelector('#lhm_editor_quality_value');
+    let lhm_editor_quality_range = document.querySelector('#lhm_editor_quality_range');
+    let lhm_editor_margin_value = document.querySelector('#lhm_editor_margin_value');
+    let lhm_editor_margin_range = document.querySelector('#lhm_editor_margin_range');
 
     if (lhm_editor) {
         lhm_editor_size_value.addEventListener('input', function () {
@@ -27,6 +31,17 @@ $().ready(function () {
         lhm_editor_size_range.addEventListener('input', function () {
             lhm_editor_size_value.value = lhm_editor_size_range.value;
         });
+        lhm_editor_quality_value.addEventListener('input', function () {
+            lhm_editor_quality_range.value = lhm_editor_quality_value.value;
+        });
+        lhm_editor_quality_range.addEventListener('input', function () {
+            lhm_editor_quality_value.value = lhm_editor_quality_range.value;
+        });
+        lhm_editor_margin_value.addEventListener('input', function () {
+            lhm_editor_margin_range.value = lhm_editor_margin_value.value;
+        });
+        lhm_editor_margin_range.addEventListener('input', function () {
+            lhm_editor_margin_value.value = lhm_editor_margin_range.value;
+        });
     }
-
 });

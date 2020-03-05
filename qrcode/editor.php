@@ -53,32 +53,32 @@ require_once dirname(__DIR__) . '/header.php';
             <div class="form-group">
                 <div class="mb-1 input-group">
                     <div class="input-group-prepend">
-                        <label class="input-group-text" for="lhm_editor_quality">图片质量</label>
+                        <label class="input-group-text" for="lhm_editor_quality_value">图片质量</label>
                     </div>
                     <input type="number" class="form-control text-right" min="0.1" max="1.0" step="0.1" value="0.9"
-                           id="lhm_editor_quality">
+                           id="lhm_editor_quality_value">
                     <div class="input-group-append">
                         <span class="input-group-text">%</span>
                     </div>
                 </div>
-                <label class="sr-only" for="lhm_editor_size_range">质量范围</label>
+                <label class="sr-only" for="lhm_editor_quality_range">质量范围</label>
                 <input type="range" class="col-12 custom-range" min="0.1" max="1.0" step="0.1" value="0.9"
-                       id="lhm_editor_size_range">
+                       id="lhm_editor_quality_range">
             </div>
             <div class="form-group">
                 <div class="mb-1 input-group">
                     <div class="input-group-prepend">
-                        <label class="input-group-text" for="lhm_editor_margin">边距</label>
+                        <label class="input-group-text" for="lhm_editor_margin_value">边距</label>
                     </div>
                     <input type="number" class="form-control text-right" min="0" max="30" step="1" value="10"
-                           id="lhm_editor_margin">
+                           id="lhm_editor_margin_value">
                     <div class="input-group-append">
                         <span class="input-group-text">px&nbsp;(像素)</span>
                     </div>
                 </div>
-                <label class="sr-only" for="lhm_editor_size_range">边距范围</label>
+                <label class="sr-only" for="lhm_editor_margin_range">边距范围</label>
                 <input type="range" class="col-12 custom-range" min="0" max="30" step="1" value="10"
-                       id="lhm_editor_size_range">
+                       id="lhm_editor_margin_range">
             </div>
             <div class="form-group">
                 <div class="input-group">
@@ -96,7 +96,7 @@ require_once dirname(__DIR__) . '/header.php';
             <div class="mb-2">
                 <div>效果预览</div>
                 <div class="text-center">
-                    <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt=""
+                    <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="灵活码"
                          class="img-thumbnail border-info" id="lhm_editor_preview">
                 </div>
             </div>
