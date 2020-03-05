@@ -86,10 +86,10 @@ require_once dirname(__DIR__) . '/header.php';
                         <label class="input-group-text" for="lhm_editor_errorCorrectionLevel">容错级别</label>
                     </div>
                     <select class="custom-select" size="4" id="lhm_editor_errorCorrectionLevel">
-                        <option value="l">低（7%）</option>
-                        <option value="m">中（15%）</option>
-                        <option value="q">1/4（25%）</option>
-                        <option value="h">高（30%）</option>
+                        <option value="l">低（≈7%）</option>
+                        <option value="m">中（≈15%）</option>
+                        <option value="q">1/4（≈25%）</option>
+                        <option value="h">高（≈30%）</option>
                     </select>
                 </div>
             </div>
