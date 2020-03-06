@@ -80,10 +80,10 @@ require_once dirname(__DIR__) . '/header.php';
             <div class="form-group">
                 <div class="input-group">
                     <div class="input-group-prepend">
-                        <label class="input-group-text" for="lhm_editor_type">格式</label>
+                        <label class="input-group-text" for="lhm_editor_img_format">格式</label>
                     </div>
-                    <select class="p-0 custom-select" size="2" id="lhm_editor_type">
-                        <option class="px-3 py-1" value="png">PNG</option>
+                    <select class="p-0 custom-select" size="2" id="lhm_editor_img_format">
+                        <option class="px-3 py-1" value="png" selected>PNG</option>
                         <option class="px-3 py-1" value="jpg">JPG</option>
                     </select>
                 </div>
