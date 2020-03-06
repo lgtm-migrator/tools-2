@@ -752,3 +752,12 @@ $().ready(function () {
         }
     }
 });
+
+/**
+ * 动态同步文本输入框元素和滑动条元素的值
+ */
+function dynamic_synchronization_element(source_element, target_element, event_type) {
+    source_element.addEventListener(event_type, function () {
+        target_element.value = source_element.value;
+    })
+}
