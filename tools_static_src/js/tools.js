@@ -734,3 +734,21 @@ $().ready(function () {
         new_scroll_position = last_scroll_position;
     }
 });
+
+
+/**
+ * 隐藏显示全部选项时出现的滚动条
+ * 本功能只在PC端有效果
+ * 忽略select可能存在的其他类型无效子元素可能造成的影响
+ * 添加时的chrome版本 80.0.3987.132
+ **/
+$().ready(function () {
+    let all_select_elements = document.querySelectorAll('select');
+    for (let x = all_select_elements.length, i = 0; i < x; i++) {
+        let elements_size_value = all_select_elements[i].size;
+        let children_length = all_select_elements[i].children.length;
+        if (elements_size_value === children_length) {
+            all_select_elements[i].style.overflow = 'overlay';
+        }
+    }
+});
