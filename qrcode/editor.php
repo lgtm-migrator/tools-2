@@ -6,7 +6,7 @@ require_once dirname(__DIR__) . '/header.php';
 <link rel="stylesheet" href="/static/css/jt_qrcode.min.css">
 <div class="py-3 container bg-white" id="jt_container">
     <div class="mb-4" id="jt_lhm_toolbar">
-        <div class="px-4 py-3 border rounded" id="lhm_editor">
+        <div class="mb-3 px-4 py-3 border rounded" id="lhm_editor">
             <div class="mb-3 font-weight-bolder">灵活码图片设置</div>
             <div class="form-group">
                 <div class="mb-1 input-group">
@@ -109,12 +109,12 @@ require_once dirname(__DIR__) . '/header.php';
                 <input type="range" class="custom-range" min="1" max="100" step="1" value="90"
                        id="lhm_editor_quality_range">
             </div>
-            <div class="mb-2">
-                <div>效果预览</div>
-                <div class="text-center">
-                    <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="灵活码"
-                         class="img-thumbnail border-info" id="lhm_editor_preview">
-                </div>
+        </div>
+        <div class="mb-3 px-2 py-3 border rounded" id="lhm_preview">
+            <div>效果预览</div>
+            <div class="text-center">
+                <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="灵活码"
+                     class="img-thumbnail border-info" id="lhm_preview_img">
             </div>
         </div>
     </div>
