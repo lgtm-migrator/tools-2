@@ -16,7 +16,7 @@ $().ready(function () {
 });
 
 /**
- * 动态同步文本输入框元素和滑动条元素的值
+ * 动态同步编辑器内的文本输入框和相关滑动条的值
  */
 $().ready(function () {
     let lhm_editor = document.querySelector('#lhm_editor');
@@ -39,9 +39,4 @@ $().ready(function () {
         }
     }
 
-    function dynamic_synchronization_element(source_element, target_element, event_type) {
-        source_element.addEventListener(event_type, function () {
-            target_element.value = source_element.value;
-        })
-    }
 });
