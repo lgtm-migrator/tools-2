@@ -85,3 +85,33 @@ $().ready(function () {
     }
 
 });
+
+/**
+ * 效果预览
+ */
+$().ready(function () {
+    let lhm_preview = document.querySelector('#lhm_preview');
+    let lhm_preview_img = document.querySelector('#lhm_preview_img');
+
+    let url = document.location.href;
+    let url_param = {'from': 'lhm_preview'};
+    let qrcode_option = {
+        errorCorrectionLevel: 'H',
+        type: 'image/jpeg',
+        margin: 2,
+        width: 300,
+        quality: 0.3,
+        color: {
+            dark: '#1E90FF',
+            light: '#ffffff',
+        },
+    };
+
+    if (lhm_preview) {
+        QRCode.toDataURL(addUrlParam(url, url_param), qrcode_option, function (err, url) {
+            if (err) throw err;
+            lhm_preview_img.src = url;
+        });
+    }
+
+});
