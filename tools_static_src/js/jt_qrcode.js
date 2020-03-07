@@ -20,16 +20,16 @@ $().ready(function () {
  */
 $().ready(function () {
     let lhm_editor = document.querySelector('#lhm_editor');
-    let lhm_editor_size_value = document.querySelector('#lhm_editor_size_value');
+    let lhm_editor_size_number = document.querySelector('#lhm_editor_size_number');
     let lhm_editor_size_range = document.querySelector('#lhm_editor_size_range');
-    let lhm_editor_quality_value = document.querySelector('#lhm_editor_quality_value');
+    let lhm_editor_quality_number = document.querySelector('#lhm_editor_quality_number');
     let lhm_editor_quality_range = document.querySelector('#lhm_editor_quality_range');
-    let lhm_editor_margin_value = document.querySelector('#lhm_editor_margin_value');
+    let lhm_editor_margin_number = document.querySelector('#lhm_editor_margin_number');
     let lhm_editor_margin_range = document.querySelector('#lhm_editor_margin_range');
     let lhm_editor_xxx_elements = [
-        [lhm_editor_size_value, lhm_editor_size_range],
-        [lhm_editor_quality_value, lhm_editor_quality_range],
-        [lhm_editor_margin_value, lhm_editor_margin_range],
+        [lhm_editor_size_number, lhm_editor_size_range],
+        [lhm_editor_quality_number, lhm_editor_quality_range],
+        [lhm_editor_margin_number, lhm_editor_margin_range],
     ];
 
     if (lhm_editor) {
@@ -48,13 +48,13 @@ $().ready(function () {
 $().ready(function () {
     let lhm_editor_img_format = document.querySelector('#lhm_editor_img_format');
     let lhm_editor_quality_value = document.querySelector('#lhm_editor_quality_value');
-    let lhm_editor_quality_value_min = lhm_editor_quality_value.getAttribute('min');
-    let lhm_editor_quality_value_max = lhm_editor_quality_value.getAttribute('max');
-    let lhm_editor_quality_value_step = lhm_editor_quality_value.getAttribute('step');
+    // let lhm_editor_quality_value_min = lhm_editor_quality_value.getAttribute('min');
+    // let lhm_editor_quality_value_max = lhm_editor_quality_value.getAttribute('max');
+    // let lhm_editor_quality_value_step = lhm_editor_quality_value.getAttribute('step');
     let lhm_editor_quality_range = document.querySelector('#lhm_editor_quality_range');
-    let lhm_editor_quality_range_min = lhm_editor_quality_range.getAttribute('min');
-    let lhm_editor_quality_range_max = lhm_editor_quality_range.getAttribute('max');
-    let lhm_editor_quality_range_step = lhm_editor_quality_range.getAttribute('step');
+    // let lhm_editor_quality_range_min = lhm_editor_quality_range.getAttribute('min');
+    // let lhm_editor_quality_range_max = lhm_editor_quality_range.getAttribute('max');
+    // let lhm_editor_quality_range_step = lhm_editor_quality_range.getAttribute('step');
 
     // let type_array = [];
     // type_array.push('png', 'jpg');
@@ -62,7 +62,7 @@ $().ready(function () {
     // verify_input_maybe_value(lhm_editor_img_format, type_array, 'change');
 
     let lhm_editor_img_format_value = lhm_editor_img_format.value;
-    console.log(lhm_editor_img_format.value);
+    // console.log(lhm_editor_img_format.value);
     lhm_editor_img_format.addEventListener('input', function () {
         lhm_editor_img_format_value = lhm_editor_img_format.value;
         console.log(lhm_editor_img_format_value);
@@ -87,31 +87,132 @@ $().ready(function () {
 });
 
 /**
+ * 前景色、背景色
+ */
+$().ready(function () {
+    $('#lhm_editor_color_dark_colorPicker, #lhm_editor_color_light_colorPicker').colorpicker();
+});
+
+
+/**
  * 效果预览
  */
 $().ready(function () {
     let lhm_preview = document.querySelector('#lhm_preview');
     let lhm_preview_img = document.querySelector('#lhm_preview_img');
 
-    let url = document.location.href;
-    let url_param = {'from': 'lhm_preview'};
-    let qrcode_option = {
-        errorCorrectionLevel: 'H',
-        type: 'image/jpeg',
-        margin: 2,
-        width: 300,
-        quality: 0.3,
-        color: {
-            dark: '#1E90FF',
-            light: '#ffffff',
-        },
+    let lhm_editor_size_number = document.querySelector('#lhm_editor_size_number');
+    let lhm_editor_size_range = document.querySelector('#lhm_editor_size_range');
+    let lhm_editor_margin_number = document.querySelector('#lhm_editor_margin_number');
+    let lhm_editor_margin_range = document.querySelector('#lhm_editor_margin_range');
+    let lhm_editor_color_dark = document.querySelector('#lhm_editor_color_dark');
+    let lhm_editor_color_light = document.querySelector('#lhm_editor_color_light');
+    let lhm_editor_errorCorrectionLevel = document.querySelector('#lhm_editor_errorCorrectionLevel');
+    let lhm_editor_img_format = document.querySelector('#lhm_editor_img_format');
+    let lhm_editor_quality_number = document.querySelector('#lhm_editor_quality_number');
+    let lhm_editor_quality_range = document.querySelector('#lhm_editor_quality_range');
+
+    let current_qrcode_options = {
+        'width': "",
+        'errorCorrectionLevel': '',
+        'type': '',
+        'margin': '',
+        'quality': '',
+        'color_dark': '',
+        'color_light': '',
     };
 
     if (lhm_preview) {
+        lhm_editor_size_number.addEventListener('input', function () {
+            current_qrcode_options['width'] = this.value;
+            set_qrcode_options(current_qrcode_options);
+        });
+        lhm_editor_size_range.addEventListener('input', function () {
+            current_qrcode_options['width'] = this.value;
+            set_qrcode_options(current_qrcode_options);
+        });
+
+        lhm_editor_margin_number.addEventListener('input', function () {
+            current_qrcode_options['margin'] = this.value;
+            set_qrcode_options(current_qrcode_options);
+        });
+
+        lhm_editor_margin_range.addEventListener('input', function () {
+            current_qrcode_options['margin'] = this.value;
+            set_qrcode_options(current_qrcode_options);
+        });
+
+        lhm_editor_color_dark.addEventListener('input', function () {
+            current_qrcode_options['color_dark'] = this.value;
+            set_qrcode_options(current_qrcode_options);
+        });
+
+        lhm_editor_color_light.addEventListener('input', function () {
+            current_qrcode_options['color_light'] = this.value;
+            set_qrcode_options(current_qrcode_options);
+        });
+
+        lhm_editor_errorCorrectionLevel.addEventListener('input', function () {
+            current_qrcode_options['errorCorrectionLevel'] = this.value;
+            set_qrcode_options(current_qrcode_options);
+        });
+
+        lhm_editor_img_format.addEventListener('input', function () {
+            current_qrcode_options['type'] = this.value;
+            set_qrcode_options(current_qrcode_options);
+        });
+
+        lhm_editor_quality_number.addEventListener('input', function () {
+            current_qrcode_options['quality'] = this.value;
+            set_qrcode_options(current_qrcode_options);
+        });
+
+        lhm_editor_quality_range.addEventListener('input', function () {
+            current_qrcode_options['quality'] = this.value;
+            set_qrcode_options(current_qrcode_options);
+        });
+
+
+    }
+
+
+    function set_qrcode_options(options = []) {
+        let url = document.location.href;
+        let url_param = {'from': 'lhm_preview'};
+        let qrcode_option = {
+            errorCorrectionLevel: options['errorCorrectionLevel'],
+            type: 'image/' + options['type'],
+            margin: options['margin'],
+            width: options['width'],
+            // quality: 0.3,
+            quality: options['quality'],
+            // color: {
+            //     dark: '#1E90FF',
+            //     light: '#ffffff',
+            // },
+            color: {
+                dark: options['color_dark'],
+                light: options['color_light'],
+            },
+        };
+        // let qrcode_option = {
+        //     errorCorrectionLevel: 'H',
+        //     type: 'image/jpeg',
+        //     margin: 2,
+        //     width: 300,
+        //     quality: 0.3,
+        //     color: {
+        //         dark: '#1E90FF',
+        //         light: '#ffffff',
+        //     },
+        // };
+
         QRCode.toDataURL(addUrlParam(url, url_param), qrcode_option, function (err, url) {
             if (err) throw err;
             lhm_preview_img.src = url;
         });
+
     }
+
 
 });
