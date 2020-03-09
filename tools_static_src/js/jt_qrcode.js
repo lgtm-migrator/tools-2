@@ -113,16 +113,18 @@ $().ready(function () {
     let lhm_editor_quality_range = document.querySelector('#lhm_editor_quality_range');
 
     let current_qrcode_options = {
-        'width': "",
-        'errorCorrectionLevel': '',
-        'type': '',
-        'margin': '',
-        'quality': '',
-        'color_dark': '',
-        'color_light': '',
+        'width': "200",
+        'errorCorrectionLevel': 'q',
+        'type': 'image/png',
+        'margin': '0',
+        'quality': '90',
+        'color_dark': '#000000',
+        'color_light': '#ffffff',
     };
 
     if (lhm_preview) {
+        set_qrcode_options(current_qrcode_options);
+
         lhm_editor_size_number.addEventListener('input', function () {
             current_qrcode_options['width'] = this.value;
             set_qrcode_options(current_qrcode_options);
@@ -143,7 +145,8 @@ $().ready(function () {
         });
 
         lhm_editor_color_dark.addEventListener('input', function () {
-            current_qrcode_options['color_dark'] = this.value;
+            lhm_editor_color_dark.setAttribute('value', this.value);
+            current_qrcode_options['color_dark'] = lhm_editor_color_dark.getAttribute('value');
             set_qrcode_options(current_qrcode_options);
         });
 

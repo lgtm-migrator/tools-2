@@ -32,17 +32,18 @@ require_once dirname(__DIR__) . '/header.php';
                     <div class="input-group-prepend">
                         <label class="input-group-text" for="lhm_editor_margin_number">边距</label>
                     </div>
-                    <input type="number" class="form-control text-right" min="0" max="50" step="1" value="10"
+                    <input type="number" class="form-control text-right" min="0" max="10" step="0.1" value="0"
                            id="lhm_editor_margin_number">
                     <div class="input-group-append">
-                        <span class="input-group-text">px&nbsp;(像素)</span>
+                        <span class="input-group-text">%</span>
                     </div>
                 </div>
                 <div class="form-text small text-muted">
                     <span>生成的灵活码图片四边的空白区域宽度。</span>
+                    <span class="d-block">不影响尺寸大小。</span>
                 </div>
                 <label class="sr-only" for="lhm_editor_margin_range">边距范围</label>
-                <input type="range" class="custom-range" min="0" max="50" step="1" value="10"
+                <input type="range" class="custom-range" min="0" max="10" step="0.1" value="0"
                        id="lhm_editor_margin_range">
             </div>
             <div class="form-group form-row">
@@ -59,7 +60,7 @@ require_once dirname(__DIR__) . '/header.php';
                     <div class="input-group-prepend">
                         <label class="input-group-text" for="lhm_editor_color_light">背景色</label>
                     </div>
-                    <input type="text" class="form-control text-center" value="#FFFFFF" id="lhm_editor_color_light">
+                    <input type="text" class="form-control text-center" value="#ffffff" id="lhm_editor_color_light">
                     <div class="input-group-append">
                         <span class="input-group-text colorpicker-input-addon"><i></i></span>
                     </div>
@@ -117,15 +118,25 @@ require_once dirname(__DIR__) . '/header.php';
                        id="lhm_editor_quality_range">
             </div>
         </div>
-        <div class="mb-3 px-2 py-3 border rounded" id="lhm_preview">
-            <div>效果预览</div>
-            <div class="text-center">
-                <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="预览灵活码效果"
-                     class="img-thumbnail border-info" id="lhm_preview_img">
+        <div class="position-sticky mb-3 px-2 py-3 border rounded bg-white" id="lhm_preview" style="bottom: 0;">
+            <div class="mb-3 small">
+                <span class="d-block">灵活码实时样式预览</span>
+                <span class="d-block">不包含图片尺寸，图片尺寸以实际设置为准。</span>
+            </div>
+            <div class="text-center h-100">
+                <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+                     alt="灵活码实时效果预览" class="border border-secondary img-fluid bg-white" id="lhm_preview_img" style="width:200px;max-width: 200px;">
+            </div>
+            <div class="small text-center">
+                <span>标识符：<span class="text-danger">LHM-000000</span></span>
+                <div>
+                    <button type="button" class="btn btn-sm btn-secondary" id="lhm_down">下载</button>
+                </div>
             </div>
         </div>
     </div>
 </div>
+
 <div>
     <?php require_once dirname(__DIR__) . "/javascript.php"; ?>
     <script src="/static/js/bootstrap-colorpicker.min.js"></script>
