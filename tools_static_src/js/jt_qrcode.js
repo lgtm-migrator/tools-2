@@ -113,7 +113,7 @@ $().ready(function () {
     let lhm_editor_quality_range = document.querySelector('#lhm_editor_quality_range');
 
     let current_qrcode_options = {
-        'width': "200",
+        'width': "250",
         'errorCorrectionLevel': 'q',
         'type': 'image/png',
         'margin': '0',

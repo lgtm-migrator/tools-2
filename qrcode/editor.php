@@ -14,7 +14,7 @@ require_once dirname(__DIR__) . '/header.php';
                     <div class="input-group-prepend">
                         <label class="input-group-text" for="lhm_editor_size_number">尺寸</label>
                     </div>
-                    <input type="number" class="form-control text-right" min="100" max="3000" step="10" value="300"
+                    <input type="number" class="form-control text-right" min="100" max="3000" step="10" value="250"
                            id="lhm_editor_size_number">
                     <div class="input-group-append">
                         <span class="input-group-text">px&nbsp;(像素)</span>
@@ -24,7 +24,7 @@ require_once dirname(__DIR__) . '/header.php';
                     <span>生成的灵活码图片是正方形。</span>
                 </div>
                 <label class="sr-only" for="lhm_editor_size_range">尺寸范围</label>
-                <input type="range" class="custom-range" min="100" max="3000" step="10" value="300"
+                <input type="range" class="custom-range" min="100" max="3000" step="10" value="250"
                        id="lhm_editor_size_range">
             </div>
             <div class="form-group">
@@ -125,7 +125,7 @@ require_once dirname(__DIR__) . '/header.php';
             </div>
             <div class="text-center h-100">
                 <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
-                     alt="灵活码实时效果预览" class="border border-secondary img-fluid bg-white" id="lhm_preview_img" style="width:200px;max-width: 200px;">
+                     alt="灵活码实时效果预览" class="border border-secondary img-fluid bg-white" id="lhm_preview_img" style="width:250px;max-width: 250px;">
             </div>
             <div class="small text-center">
                 <span>标识符：<span class="text-danger">LHM-000000</span></span>
