@@ -185,10 +185,10 @@ require_once dirname(__DIR__) . '/header.php';
                 </div>
             </form>
         </div>
-        <div class="d-flex justify-content-center">
-            <a class="mx-2" target="_blank" href="/qrcode/manage.php" title="管理灵活码">管理灵活码</a>
-            <a class="mx-2" target="_blank" href="/qrcode/editor.php" title="灵活码设置">灵活码设置</a>
-            <a class="mx-2" target="_blank" href="/qrcode/q.php?q=LHM-1582813209" title="灵活码示例">灵活码示例</a>
+        <div class="d-flex p-2 border justify-content-center">
+            <a class="mx-2" target="_blank" href="/qrcode/manage.php" title="管理灵活码">管理</a>
+            <a class="mx-2" target="_blank" href="/qrcode/editor.php" title="编辑灵活码">样式编辑</a>
+            <a class="mx-2" target="_blank" href="/qrcode/q.php?q=LHM-1582813209" title="灵活码示例">示例</a>
         </div>
     </div>
 </div>
