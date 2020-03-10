@@ -112,6 +112,15 @@ $().ready(function () {
     let lhm_editor_quality_number = document.querySelector('#lhm_editor_quality_number');
     let lhm_editor_quality_range = document.querySelector('#lhm_editor_quality_range');
 
+    let lhm_preview_img_identifier = document.querySelector('#lhm_preview_img_identifier');
+    let lhm_preview_img_size = document.querySelector('#lhm_preview_img_size');
+    let lhm_preview_img_format = document.querySelector('#lhm_preview_img_format');
+    let lhm_preview_img_margin = document.querySelector('#lhm_preview_img_margin');
+    let lhm_preview_img_errorCorrectionLevel = document.querySelector('#lhm_preview_img_errorCorrectionLevel');
+    let lhm_preview_img_quality = document.querySelector('#lhm_preview_img_quality');
+    let lhm_preview_img_color_dark = document.querySelector('#lhm_preview_img_color_dark');
+    let lhm_preview_img_color_light = document.querySelector('#lhm_preview_img_color_light');
+
     let current_qrcode_options = {
         'width': "250",
         'errorCorrectionLevel': 'q',
@@ -127,51 +136,63 @@ $().ready(function () {
 
         lhm_editor_size_number.addEventListener('input', function () {
             current_qrcode_options['width'] = this.value;
+            lhm_preview_img_size.innerHTML = this.value;
             set_qrcode_options(current_qrcode_options);
         });
         lhm_editor_size_range.addEventListener('input', function () {
             current_qrcode_options['width'] = this.value;
+            lhm_preview_img_size.innerHTML = this.value;
             set_qrcode_options(current_qrcode_options);
         });
 
         lhm_editor_margin_number.addEventListener('input', function () {
             current_qrcode_options['margin'] = this.value;
+            lhm_preview_img_margin.innerHTML = this.value;
             set_qrcode_options(current_qrcode_options);
         });
 
         lhm_editor_margin_range.addEventListener('input', function () {
             current_qrcode_options['margin'] = this.value;
+            lhm_preview_img_margin.innerHTML = this.value;
             set_qrcode_options(current_qrcode_options);
         });
 
         lhm_editor_color_dark.addEventListener('input', function () {
             lhm_editor_color_dark.setAttribute('value', this.value);
             current_qrcode_options['color_dark'] = lhm_editor_color_dark.getAttribute('value');
+            lhm_preview_img_color_dark.innerHTML = this.value;
             set_qrcode_options(current_qrcode_options);
         });
 
         lhm_editor_color_light.addEventListener('input', function () {
             current_qrcode_options['color_light'] = this.value;
+            lhm_preview_img_color_light.innerHTML = this.value;
             set_qrcode_options(current_qrcode_options);
         });
 
-        lhm_editor_errorCorrectionLevel.addEventListener('input', function () {
+        lhm_editor_errorCorrectionLevel.addEventListener('input', function (e) {
             current_qrcode_options['errorCorrectionLevel'] = this.value;
+            let text = this.querySelector("[value=" + current_qrcode_options['errorCorrectionLevel'] + "]");
+            lhm_preview_img_errorCorrectionLevel.innerHTML = text.innerText;
             set_qrcode_options(current_qrcode_options);
         });
 
         lhm_editor_img_format.addEventListener('input', function () {
             current_qrcode_options['type'] = this.value;
+            let text = this.querySelector("[value=" + current_qrcode_options['type'] + "]");
+            lhm_preview_img_format.innerHTML = text.innerText;
             set_qrcode_options(current_qrcode_options);
         });
 
         lhm_editor_quality_number.addEventListener('input', function () {
             current_qrcode_options['quality'] = this.value;
+            lhm_preview_img_quality.innerHTML = this.value;
             set_qrcode_options(current_qrcode_options);
         });
 
         lhm_editor_quality_range.addEventListener('input', function () {
             current_qrcode_options['quality'] = this.value;
+            lhm_preview_img_quality.innerHTML = this.value;
             set_qrcode_options(current_qrcode_options);
         });
 

@@ -1,6 +1,6 @@
 <?php
 
-define('title', '灵活码');
+define('title', '灵活码样式编辑');
 require_once dirname(__DIR__) . '/header.php';
 ?>
 <link rel="stylesheet" href="/static/css/bootstrap-colorpicker.min.css">
@@ -8,7 +8,7 @@ require_once dirname(__DIR__) . '/header.php';
 <div class="py-3 container bg-white" id="jt_container">
     <div class="mb-4" id="jt_lhm_toolbar">
         <div class="mb-3 px-4 py-3 border rounded" id="lhm_editor">
-            <div class="mb-3 font-weight-bolder">灵活码图片设置</div>
+            <div class="mb-3 font-weight-bolder text-warning">灵活码样式编辑</div>
             <div class="form-group">
                 <div class="mb-1 input-group">
                     <div class="input-group-prepend">
@@ -91,8 +91,8 @@ require_once dirname(__DIR__) . '/header.php';
                         <label class="input-group-text" for="lhm_editor_img_format">格式</label>
                     </div>
                     <select class="p-0 custom-select" size="2" id="lhm_editor_img_format">
-                        <option class="px-3 py-1" value="png" selected>PNG</option>
-                        <option class="px-3 py-1" value="jpeg">JPEG</option>
+                        <option class="px-3 py-1" value="png" selected>PNG&nbsp;(32位)</option>
+                        <option class="px-3 py-1" value="jpeg">JPEG&nbsp;(24位)</option>
                     </select>
                 </div>
                 <div class="form-text small text-muted">
@@ -118,19 +118,30 @@ require_once dirname(__DIR__) . '/header.php';
                        id="lhm_editor_quality_range">
             </div>
         </div>
-        <div class="position-sticky mb-3 px-2 py-3 border rounded bg-white" id="lhm_preview" style="bottom: 0;">
-            <div class="mb-3 small">
-                <span class="d-block">灵活码实时样式预览</span>
-                <span class="d-block">不包含图片尺寸，图片尺寸以实际设置为准。</span>
-            </div>
-            <div class="text-center h-100">
-                <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
-                     alt="灵活码实时效果预览" class="border border-secondary img-fluid bg-white" id="lhm_preview_img" style="width:250px;max-width: 250px;">
-            </div>
-            <div class="small text-center">
-                <span>标识符：<span class="text-danger">LHM-000000</span></span>
-                <div>
-                    <button type="button" class="btn btn-sm btn-secondary" id="lhm_down">下载</button>
+        <div class="position-sticky mb-3 px-4 pt-3 pb-4 border rounded bg-white" id="lhm_preview" style="bottom: 0;">
+            <div class="mb-2 font-weight-bolder text-warning">灵活码实时样式预览</div>
+            <div class="form-row">
+                <div class="col-12 col-md-5 col-lg-4 mb-2 py-2 rounded bg_square bg-light-50 mb-md-0 text-center">
+                    <img src="data:image/png;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+                         alt="灵活码实时效果预览" class="border img-fluid bg-white" id="lhm_preview_img"
+                         style="width:250px;max-width: 250px;">
+                </div>
+                <div class="col-12 col-md-7 col-lg-8 text-center">
+                    <a class="mb-2 btn btn-sm btn-success" id="lhm_download"
+                       download="data:image/png;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7">下载</a>
+                    <details class="mb-2 px-3 py-1 py-md-2 rounded border small">
+                        <summary class="text-danger">查看当前信息</summary>
+                        <fieldset>
+                            <div class="small">标识符：<span id="lhm_preview_img_identifier">LHM-000000</span></div>
+                            <div class="small">尺寸：<span id="lhm_preview_img_size">250</span>px</div>
+                            <div class="small">格式：<span id="lhm_preview_img_format">PNG (32位)</span></div>
+                            <div class="small">边距：<span id="lhm_preview_img_margin">0</span></div>
+                            <div class="small">容错级别：<span id="lhm_preview_img_errorCorrectionLevel">1/4（≈25%）</span></div>
+                            <div class="small">图片质量：<span id="lhm_preview_img_quality">1</span></div>
+                            <div class="small">前景色：<span id="lhm_preview_img_color_dark">#000000</span></div>
+                            <div class="small">背景色：<span id="lhm_preview_img_color_light">#FFFFFF</span></div>
+                        </fieldset>
+                    </details>
                 </div>
             </div>
         </div>
