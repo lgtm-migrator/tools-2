@@ -61,12 +61,12 @@ $().ready(function () {
     // verify_input_maybe_value(lhm_editor_img_format, type_array, 'input');
     // verify_input_maybe_value(lhm_editor_img_format, type_array, 'change');
 
-    let lhm_editor_img_format_value = lhm_editor_img_format.value;
-    // console.log(lhm_editor_img_format.value);
-    lhm_editor_img_format.addEventListener('input', function () {
-        lhm_editor_img_format_value = lhm_editor_img_format.value;
-        console.log(lhm_editor_img_format_value);
-    });
+    if (lhm_editor_img_format) {
+        let lhm_editor_img_format_value;
+        lhm_editor_img_format.addEventListener('input', function () {
+            lhm_editor_img_format_value = lhm_editor_img_format.value;
+        });
+    }
 
     function verify_input_maybe_value(element, maybe_value = [], type = '') {
         let element_value = element.value;
@@ -90,7 +90,14 @@ $().ready(function () {
  * 前景色、背景色
  */
 $().ready(function () {
-    $('#lhm_editor_color_dark_colorPicker, #lhm_editor_color_light_colorPicker').colorpicker();
+    let lhm_editor_color_dark_colorPicker = document.querySelector('#lhm_editor_color_dark_colorPicker');
+    let lhm_editor_color_light_colorPicker = document.querySelector('#lhm_editor_color_light_colorPicker');
+
+    if (lhm_editor_color_dark_colorPicker && lhm_editor_color_light_colorPicker) {
+        $('#lhm_editor_color_dark_colorPicker, #lhm_editor_color_light_colorPicker').colorpicker();
+        // lhm_editor_color_dark_colorPicker.colorpicker();
+        // lhm_editor_color_light_colorPicker.colorpicker();
+    }
 });
 
 
@@ -170,7 +177,7 @@ $().ready(function () {
             set_qrcode_options(current_qrcode_options);
         });
 
-        lhm_editor_errorCorrectionLevel.addEventListener('input', function (e) {
+        lhm_editor_errorCorrectionLevel.addEventListener('input', function () {
             current_qrcode_options['errorCorrectionLevel'] = this.value;
             let text = this.querySelector("[value=" + current_qrcode_options['errorCorrectionLevel'] + "]");
             lhm_preview_img_errorCorrectionLevel.innerHTML = text.innerText;
