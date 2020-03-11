@@ -17,7 +17,7 @@ require_once dirname(__DIR__) . '/header.php';
                     <input type="number" class="form-control text-right" min="100" max="3000" step="10" value="250"
                            id="lhm_editor_size_number">
                     <div class="input-group-append">
-                        <span class="input-group-text">px&nbsp;(像素)</span>
+                        <span class="input-group-text">px</span>
                     </div>
                 </div>
                 <div class="form-text small text-muted">
