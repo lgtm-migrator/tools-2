@@ -6,7 +6,7 @@ require_once dirname(__DIR__) . '/header.php';
 <link rel="stylesheet" href="/static/css/jt_qrcode.min.css">
 <div class="py-3 container bg-white" id="jt_container">
     <div class="mb-3 p-3 border rounded" id="lhm_manage">
-        <div class="mb-1 font-weight-bolder text-warning">登录后管理灵活码</div>
+        <div class="mb-1 font-weight-bolder text-warning">管理灵活码</div>
         <form action="update.php" method="post" enctype="multipart/form-data">
             <div class="mb-2 small text-success">灵活码图片和标识符输入任意其中一项即可</div>
             <div class="form-group">
@@ -23,7 +23,7 @@ require_once dirname(__DIR__) . '/header.php';
                         <label class="input-group-text" for="lhm_manage_identifier">标识</label>
                     </div>
                     <input class="form-control" type="text" name="lhm_manage_identifier" id="lhm_manage_identifier"
-                           placeholder="格式示例：LHM-1582813209" maxlength="10" value="LHM-0001">
+                           placeholder="格式示例：LHM-1582813209" maxlength="10" value="LHM-0001" required>
                 </div>
                 <div class="form-text small text-muted">提示：请输入在您获得灵活码时对应的标识符</div>
             </div>
@@ -39,8 +39,8 @@ require_once dirname(__DIR__) . '/header.php';
             </div>
             <div class="mb-3 form-group text-center">
                 <input type="hidden" name="token" id="lhm_manage_token" value="">
-                <input class="btn btn-sm btn-outline-dark" type="submit" name="" id="lhm_manage_submit" value="登录后调整">
-                <a href="javascript:" class="ml-4 btn-link small text-reset">忘记密码</a>
+                <input class="btn btn-sm btn-outline-dark" type="submit" id="lhm_manage_submit" value="登录后调整">
+                <a href="javascript:" class="ml-4 btn-link small text-reset" id="lhm_forget_password">忘记密码</a>
             </div>
         </form>
     </div>

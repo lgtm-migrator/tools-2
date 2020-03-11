@@ -90,16 +90,13 @@ $().ready(function () {
  * 前景色、背景色
  */
 $().ready(function () {
-    let lhm_editor_color_dark_colorPicker = document.querySelector('#lhm_editor_color_dark_colorPicker');
-    let lhm_editor_color_light_colorPicker = document.querySelector('#lhm_editor_color_light_colorPicker');
-
-    if (lhm_editor_color_dark_colorPicker && lhm_editor_color_light_colorPicker) {
+    let lhm_editor = document.querySelector('#lhm_editor');
+    if (lhm_editor) {
         $('#lhm_editor_color_dark_colorPicker, #lhm_editor_color_light_colorPicker').colorpicker();
         // lhm_editor_color_dark_colorPicker.colorpicker();
         // lhm_editor_color_light_colorPicker.colorpicker();
     }
 });
-
 
 /**
  * 效果预览
@@ -206,7 +203,6 @@ $().ready(function () {
 
     }
 
-
     function set_qrcode_options(options = []) {
         let url = document.location.href;
         let url_param = {'from': 'lhm_preview'};
@@ -244,6 +240,24 @@ $().ready(function () {
         });
 
     }
+});
 
+/**
+ * 登录后管理灵活码
+ */
+$().ready(function () {
+    let lhm_manage = document.querySelector('#lhm_manage');
+    if (lhm_manage) {
+        let lhm_manage_img = document.querySelector('#lhm_manage_img');
+        let lhm_manage_identifier = document.querySelector('#lhm_manage_identifier');
+        let lhm_manage_password = document.querySelector('#lhm_manage_password');
+        let lhm_manage_submit = document.querySelector('#lhm_manage_submit');
+        let lhm_forget_password = document.querySelector('#lhm_forget_password');
+
+        lhm_manage_img.addEventListener('change', function () {
+            console.log(lhm_manage_img.value);
+            console.log(lhm_manage_img.files);
+        });
+    }
 
 });
