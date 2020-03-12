@@ -31,8 +31,8 @@ if ($_POST) {
         <span id="description"></span>
     </div>
     <div class="text-center">
-        <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt=""
-             class="img-thumbnail shadow-lg" id="qrcode" style="max-height: 150vw;border-radius: 3rem;">
+        <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+             class="img-thumbnail shadow-lg" id="qrcode" style="max-height: 15rem;">
     </div>
 </div>
 
@@ -67,7 +67,7 @@ if ($_POST) {
                     let data = {
                         'title': '没有找到你扫描的灵活码',
                         'description': '请确认您的灵活码是否到期，可以使用管理密码进行维护，扫描下面二维码进行管理。',
-                        'img_path': 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7',
+                        'img_path': '/static/img/lhm-manage.png',
                     };
                     set_qrcode_info(data);
                     set_admin_img(data);
