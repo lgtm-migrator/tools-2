@@ -51,7 +51,7 @@
     "gulp-postcss": "^8.0.0",
     "gulp-rename": "^2.0.0",
     "gulp-terser": "^1.2.0",
-    "stylelint": "^13.2.0"
+    "stylelint": "^13.2.1"
   },
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.12.1",
@@ -61,8 +61,8 @@
     "bootstrap-modal-js": "^1.0.1",
     "bs-custom-file-input": "^1.3.4",
     "clipboard": "^2.0.6",
-    "dayjs": "^1.8.21",
-    "fundebug-javascript": "^2.0.0",
+    "dayjs": "^1.8.22",
+    "fundebug-javascript": "^2.1.1",
     "hamburgers": "^1.1.3",
     "hover.css": "^2.3.2",
     "jquery": "^3.4.1",
