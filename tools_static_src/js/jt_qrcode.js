@@ -249,6 +249,7 @@ $().ready(function () {
     let lhm_manage = document.querySelector('#lhm_manage');
     if (lhm_manage) {
         let lhm_manage_img = document.querySelector('#lhm_manage_img');
+        let lhm_manage_img_preview = document.querySelector('#lhm_manage_img_preview');
         let lhm_manage_identifier = document.querySelector('#lhm_manage_identifier');
         let lhm_manage_password = document.querySelector('#lhm_manage_password');
         let lhm_manage_submit = document.querySelector('#lhm_manage_submit');
@@ -257,7 +258,34 @@ $().ready(function () {
         lhm_manage_img.addEventListener('change', function () {
             console.log(lhm_manage_img.value);
             console.log(lhm_manage_img.files);
+            manage_create_img_preview(lhm_manage_img.files[0]);
+            console.log('22');
+            console.log(manage_encode_lhm_img(lhm_manage_img_preview.querySelector('img').src));
+            console.log('11');
         });
+
+        function manage_encode_lhm_img(img) {
+            return QRCode.encode(img);
+        }
+
+        function manage_create_img_preview(img_file) {
+            let img = document.createElement("img");
+            img.src = getObjectURL(img_file);
+            img.alt = img_file.name;
+            img.title = img_file.name;
+            img.style.width = '15rem';
+            img.className = 'my-2 img-thumbnail';
+            lhm_manage_img_preview.innerHTML = '';
+            lhm_manage_img_preview.appendChild(img);
+        }
+
+        /**
+         * 匹配不同浏览器的 createObjectURL
+         */
+        function getObjectURL(file) {
+            let URL = window.URL || window.webkitURL;
+            return URL.createObjectURL(file) || null;
+        }
     }
 
 });
