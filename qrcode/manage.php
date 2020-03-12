@@ -11,11 +11,12 @@ require_once dirname(__DIR__) . '/header.php';
             <div class="mb-2 small text-success">灵活码图片和标识符输入任意其中一项即可</div>
             <div class="form-group">
                 <div class="custom-file">
-                    <input class="custom-file-input" type="file" name="lhm_manage_img" id="lhm_manage_img"
+                    <input class="custom-file-input" type="file" id="lhm_manage_img"
                            accept="image/jpeg,image/png">
                     <label class="custom-file-label" for="lhm_manage_img" data-browse="浏览">需要调整的灵活码</label>
                 </div>
                 <div class="form-text small text-muted">提示：请上传需要管理更新的灵活码图片</div>
+                <div class="text-center" id="lhm_manage_img_preview"></div>
             </div>
             <div class="form-group">
                 <div class="input-group">
