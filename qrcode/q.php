@@ -52,7 +52,7 @@ if ($_POST) {
     <script src="/static/js/bootstrap.min.js"></script>
 
     <script>
-        let query = 'LHM-1582813189';
+        let query = 'LHM-001';
         let url = 'query.php';
 
         $.ajax({
