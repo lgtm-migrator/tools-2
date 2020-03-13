@@ -6,7 +6,8 @@
     "miljar/php-exif": "^0.6.5",
     "ext-json": "*",
     "ext-gd": "*",
-    "lsolesen/pel": "^0.9.6"
+    "lsolesen/pel": "^0.9.6",
+    "alibabacloud/sdk": "^1.8"
   },
   "require-dev": {
     "friendsofphp/php-cs-fixer": "^2.16",
