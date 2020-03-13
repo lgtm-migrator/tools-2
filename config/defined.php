@@ -1,4 +1,6 @@
 <?php
+if (!defined("JZEG_NET")) define('JZEG_NET', '');
+
 $php_tmp_dir = sys_get_temp_dir() . '/';
 $yyyy_mm_dd = date("Y/m/d/");
 $upload_tmp_dir = dirname(dirname(__DIR__)) . "/upload_tmp_dir/";
