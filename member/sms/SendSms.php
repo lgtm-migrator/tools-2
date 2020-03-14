@@ -1,5 +1,5 @@
 <?php
-//if (!defined('JZEG_NET_SMS')) die('');
+if (!defined('JZEG_NET_SMS')) die();
 require_once dirname(dirname(__DIR__)) . '/vendor/autoload.php';
 
 global $accessKeyId,
@@ -8,10 +8,10 @@ global $accessKeyId,
        $RegionId,
        $PhoneNumbers,
        $SignName,
-//       $SmsUpExtendCode,
-//       $OutId,
        $TemplateCode,
-       $TemplateParam;
+       $TemplateParam,
+       $SmsUpExtendCode,
+       $OutId;
 
 use AlibabaCloud\Client\AlibabaCloud;
 use AlibabaCloud\Client\Exception\ClientException;

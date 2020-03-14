@@ -1,18 +1,10 @@
 <?php
 require_once dirname(__FILE__) . "/template.php";
-
 global $template_json;
 
-$action_type = array(
-    "forget_user_info",
-    "forget_user_name",
-    "forget_user_password",
-    "user_register",
-    "user_login",
-    "change_user_password",
-    "Sensitive_operation_notification",
-);
-$action_name = $action_type[4];
+$action_types = array_keys($template_json);
+
+$action_name = $action_types[4];
 $TemplateCode_value = $template_json[$action_name]['templateCode'];
 $TemplateParam_value = json_encode($template_json[$action_name]['templateParam']);
 
