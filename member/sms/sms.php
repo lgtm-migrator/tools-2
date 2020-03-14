@@ -1,5 +1,5 @@
 <?php
-if (!defined('JZEG_NET_SMS')) define('JZEG_NET_SMS', '');
+if (!defined('JZEG_NET_SMS')) define('JZEG_NET_SMS', 0);
 if ($_GET) die();
 
 if (isset($_POST['_token'])) {
@@ -8,16 +8,14 @@ if (isset($_POST['_token'])) {
     die();
 }
 
-
 if ($_POST['jt_sms_send_accessKeyId'] && $_POST['jt_sms_send_accessSecret'] && $_POST['jt_sms_send_PhoneNumbers'] && $_POST['jt_sms_send_TemplateCode']) {
-//    require_once dirname(__FILE__) . '/sms_send.php';
     if (isset($_POST['jt_sms_send_type']) && 'batch' === $_POST['jt_sms_send_type']) {
         $batch_send_sms = true;
     } else {
         $batch_send_sms = false;
     }
 } else {
-    die('1');
+    die();
 }
 
 $accessKeyId = $_POST['jt_sms_send_accessKeyId'];
@@ -25,24 +23,14 @@ $accessSecret = $_POST['jt_sms_send_accessSecret'];
 $PhoneNumbers = $_POST['jt_sms_send_PhoneNumbers'];
 $action_name = $_POST['jt_sms_send_TemplateCode'];
 
-//require_once dirname(__FILE__) . '/sms_send.php';
-
-//global $accessKeyId,
-//       $accessSecret,
-//       $result_json,
-//       $RegionId,
-//       $PhoneNumbers,
-//       $SignName,
-//       $SmsUpExtendCode,
-//       $OutId,
-//       $TemplateCode,
-//       $TemplateParam;
-
-//require_once dirname(__FILE__) . "/config.php";
-
 
 require_once dirname(__FILE__) . "/template.php";
 global $template_json;
+
+$default_action_names = array_keys($template_json);
+if (true === array_key_exists($action_name, $default_action_names)) {
+    die('模板不存在');
+}
 
 $action_value = ($batch_send_sms) ? 'SendBatchSms' : 'SendSms';
 $result_json = array(
