@@ -1,4 +1,6 @@
 <?php
+namespace JZEG_NET\Member\Sms\SendSms;
+
 if (!defined('JZEG_NET_SMS')) die();
 require_once dirname(dirname(__DIR__)) . '/vendor/autoload.php';
 
