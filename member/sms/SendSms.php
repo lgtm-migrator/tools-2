@@ -1,4 +1,5 @@
 <?php
+
 namespace JZEG_NET\Member\Sms\SendSms;
 
 if (!defined('JZEG_NET_SMS')) die();
@@ -27,7 +28,7 @@ AlibabaCloud::accessKeyClient($accessKeyId, $accessSecret)
     ->asDefaultClient();
 
 try {
-    $result = AlibabaCloud::rpc()
+    $request_result = AlibabaCloud::rpc()
         ->product($result_json['product'])
         ->scheme($result_json['scheme'])
         ->version($result_json['version'])
@@ -46,7 +47,9 @@ try {
             ],
         ])
         ->request();
-    print_r($result->toArray());
+//    print_r($request_result->toArray());
+    $result['request'] = $request_result->toArray();
+    return $result;
 } catch (ClientException $e) {
     echo $e->getErrorMessage() . PHP_EOL;
 } catch (ServerException $e) {

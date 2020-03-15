@@ -1,4 +1,5 @@
 <?php
+
 namespace JZEG_NET\Member\Sms\SendBatchSms;
 
 if (!defined('JZEG_NET_SMS')) die();
@@ -26,7 +27,7 @@ AlibabaCloud::accessKeyClient($accessKeyId, $accessSecret)
     ->asDefaultClient();
 
 try {
-    $result = AlibabaCloud::rpc()
+    $request_result = AlibabaCloud::rpc()
         ->product($result_json['product'])
         ->scheme($result_json['scheme'])
         ->version($result_json['version'])
@@ -44,36 +45,11 @@ try {
             ],
         ])
         ->request();
-    print_r($result->toArray());
+//    print_r($request_result->toArray());
+    $result['request'] = $request_result;
+    return $result;
 } catch (ClientException $e) {
     echo $e->getErrorMessage() . PHP_EOL;
 } catch (ServerException $e) {
     echo $e->getErrorMessage() . PHP_EOL;
 }
-
-//
-//try {
-//    $result = AlibabaCloud::rpc()
-//        ->product('Dysmsapi')
-//        // ->scheme('https') // https | http
-//        ->version('2017-05-25')
-//        ->action('SendBatchSms')
-//        ->method('POST')
-//        ->host('dysmsapi.aliyuncs.com')
-//        ->options([
-//            'query' => [
-//                'RegionId' => "cn-hangzhou",
-//                'PhoneNumberJson' => "11111",
-//                'SignNameJson' => "222222",
-//                'TemplateCode' => "333333",
-//                'TemplateParamJson' => "44444411",
-//                'SmsUpExtendCodeJson' => "555555555",
-//            ],
-//        ])
-//        ->request();
-//    print_r($result->toArray());
-//} catch (ClientException $e) {
-//    echo $e->getErrorMessage() . PHP_EOL;
-//} catch (ServerException $e) {
-//    echo $e->getErrorMessage() . PHP_EOL;
-//}
