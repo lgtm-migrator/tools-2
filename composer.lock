@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "4cfde76673de7b758830826c4b112a42",
+    "content-hash": "c4774d3904f74f46897ba893dd758fdd",
     "packages": [
         {
             "name": "adbario/php-dot-notation",
@@ -150,16 +150,16 @@
         },
         {
             "name": "alibabacloud/sdk",
-            "version": "1.8.173",
+            "version": "1.8.174",
             "source": {
                 "type": "git",
                 "url": "https://github.com/aliyun/openapi-sdk-php.git",
-                "reference": "057985c1391f2798cb00b1517e94ad33122e04f5"
+                "reference": "54b74926a3bcfea0204c19fd58518b9a30a9f12d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/aliyun/openapi-sdk-php/zipball/057985c1391f2798cb00b1517e94ad33122e04f5",
-                "reference": "057985c1391f2798cb00b1517e94ad33122e04f5",
+                "url": "https://api.github.com/repos/aliyun/openapi-sdk-php/zipball/54b74926a3bcfea0204c19fd58518b9a30a9f12d",
+                "reference": "54b74926a3bcfea0204c19fd58518b9a30a9f12d",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -386,7 +386,7 @@
                 "library",
                 "sdk"
             ],
-            "time": "2020-03-13T02:22:19+00:00"
+            "time": "2020-03-16T03:43:11+00:00"
         },
         {
             "name": "clagiordano/weblibs-configmanager",
