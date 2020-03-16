@@ -57,13 +57,12 @@ $TemplateCode = $TemplateCode_value;
 //短信模板变量对应的实际值，JSON格式。
 $TemplateParam = $TemplateParam_value;
 //上行短信扩展码
-$SmsUpExtendCode = '';
+$SmsUpExtendCode = null;
 //外部流水扩展字段。
-$OutId = '';
+$OutId = null;
 
 
 global $result;
-
 
 if (true === $batch_send_sms) {
     require_once dirname(__FILE__) . '/SendBatchSms.php';
@@ -82,22 +81,23 @@ $sql_add_data['SmsUpExtendCode'] = $SmsUpExtendCode;
 $sql_add_data['TemplateName'] = $TemplateName;
 $sql_add_data['TemplateCode'] = $TemplateCode;
 $sql_add_data['TemplateParam'] = $TemplateParam;
-$sql_add_data['SmsContent'] = '';
+$sql_add_data['SmsContent'] = 'unset';
 $sql_add_data['Host'] = $result_json['host'];
 $sql_add_data['Scheme'] = $result_json['scheme'];
 $sql_add_data['Method'] = $result_json['method'];
 $sql_add_data['Version'] = $result_json['version'];
 $sql_add_data['Product'] = $result_json['product'];
-$sql_add_data['RequestId'] = $result['request']['RequestId'];
-$sql_add_data['Code'] = $result['request']['Code'];
-$sql_add_data['BizId'] = (isset($result['request']['BizId'])) ? $result['request']['BizId'] : null;
-$sql_add_data['Message'] = $result['request']['Message'];
+$sql_add_data['RequestId'] = $request_result['RequestId'];
+$sql_add_data['Code'] = $request_result['Code'];
+$sql_add_data['BizId'] = (isset($request_result['BizId'])) ?: null;
+$sql_add_data['Message'] = $request_result['Message'];
 
-global $sms_database;
+//global $sms_database;
 $sms_database = $sql_add_data;
 
 require_once dirname(__FILE__) . "/database_add_sms.php";
 
-echo json_encode($sms_database);
-echo "\n\n\n";
-//echo json_encode($result);
+//echo json_encode($sms_database);
+//echo "\n\n\n";
+
+echo json_encode($result);

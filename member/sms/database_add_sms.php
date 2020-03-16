@@ -17,12 +17,10 @@ try {
     die($e->getMessage());
 }
 
-
 if (!$id) {
 //    global $result;
     $error_data = $sms_database;
 
-    $result['message']['qrcode']['failure'] = '';
     $result['error']['errno'] = $db->getLastErrno();
     try {
         $result['error']['error'] = $db->getLastError();

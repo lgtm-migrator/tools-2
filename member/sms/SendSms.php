@@ -5,16 +5,16 @@ namespace JZEG_NET\Member\Sms\SendSms;
 if (!defined('JZEG_NET_SMS')) die();
 require_once dirname(dirname(__DIR__)) . '/vendor/autoload.php';
 
-global $accessKeyId,
-       $accessSecret,
-       $result_json,
-       $RegionId,
-       $PhoneNumbers,
-       $SignName,
-       $TemplateCode,
-       $TemplateParam,
-       $SmsUpExtendCode,
-       $OutId;
+//global $accessKeyId,
+//       $accessSecret,
+//       $result_json,
+//       $RegionId,
+//       $PhoneNumbers,
+//       $SignName,
+//       $TemplateCode,
+//       $TemplateParam,
+//       $SmsUpExtendCode,
+//       $OutId;
 
 use AlibabaCloud\Client\AlibabaCloud;
 use AlibabaCloud\Client\Exception\ClientException;
@@ -42,14 +42,12 @@ try {
                 'SignName' => $SignName,
                 'TemplateCode' => $TemplateCode,
                 'TemplateParam' => $TemplateParam,
-//                'SmsUpExtendCode' => $SmsUpExtendCode,
-//                'OutId' => $OutId,
+                'SmsUpExtendCode' => $SmsUpExtendCode,
+                'OutId' => $OutId,
             ],
         ])
         ->request();
-//    print_r($request_result->toArray());
-    $result['request'] = $request_result->toArray();
-    return $result;
+    return $request_result->toArray();
 } catch (ClientException $e) {
     echo $e->getErrorMessage() . PHP_EOL;
 } catch (ServerException $e) {
