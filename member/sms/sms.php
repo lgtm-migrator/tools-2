@@ -22,6 +22,7 @@ $accessKeyId = $_POST['jt_sms_send_accessKeyId'];
 $accessSecret = $_POST['jt_sms_send_accessSecret'];
 $PhoneNumbers = $_POST['jt_sms_send_PhoneNumbers'];
 $TemplateName = $_POST['jt_sms_send_TemplateCode'];
+$SmsContent = null;
 
 
 require_once dirname(__FILE__) . "/template.php";
@@ -81,7 +82,7 @@ $sql_add_data['SmsUpExtendCode'] = $SmsUpExtendCode;
 $sql_add_data['TemplateName'] = $TemplateName;
 $sql_add_data['TemplateCode'] = $TemplateCode;
 $sql_add_data['TemplateParam'] = $TemplateParam;
-$sql_add_data['SmsContent'] = 'unset';
+$sql_add_data['SmsContent'] = $SmsContent;
 $sql_add_data['Host'] = $result_json['host'];
 $sql_add_data['Scheme'] = $result_json['scheme'];
 $sql_add_data['Method'] = $result_json['method'];
@@ -89,7 +90,7 @@ $sql_add_data['Version'] = $result_json['version'];
 $sql_add_data['Product'] = $result_json['product'];
 $sql_add_data['RequestId'] = $request_result['RequestId'];
 $sql_add_data['Code'] = $request_result['Code'];
-$sql_add_data['BizId'] = (isset($request_result['BizId'])) ?: null;
+$sql_add_data['BizId'] = (isset($request_result['BizId'])) ? $request_result['BizId'] : null;
 $sql_add_data['Message'] = $request_result['Message'];
 
 //global $sms_database;
