@@ -18,12 +18,15 @@ if ($_POST['jt_sms_send_accessKeyId'] && $_POST['jt_sms_send_accessSecret'] && $
     die();
 }
 
+
+/**
+ * 短信请求操作
+ */
 $accessKeyId = $_POST['jt_sms_send_accessKeyId'];
 $accessSecret = $_POST['jt_sms_send_accessSecret'];
 $PhoneNumbers = $_POST['jt_sms_send_PhoneNumbers'];
 $TemplateName = $_POST['jt_sms_send_TemplateCode'];
 $SmsContent = null;
-
 
 require_once dirname(__FILE__) . "/template.php";
 global $template_json;
@@ -33,20 +36,18 @@ if (true === array_key_exists($TemplateName, $default_action_names)) {
     die('模板不存在');
 }
 
-$action_value = ($batch_send_sms) ? 'SendBatchSms' : 'SendSms';
-$result_json = array(
+$request_action_value = ($batch_send_sms) ? 'SendBatchSms' : 'SendSms';
+$request_json = array(
     "product" => "Dysmsapi",
     "scheme" => "https",//生产模式的时候使用https
     "version" => "2017-05-25",
-    "action" => $action_value,
+    "action" => $request_action_value,
     "method" => "POST",
     "host" => "dysmsapi.aliyuncs.com",
 );
 
-
 $TemplateCode_value = $template_json[$TemplateName]['templateCode'];
 $TemplateParam_value = json_encode($template_json[$TemplateName]['templateParam']);
-
 
 $RegionId = 'cn-hangzhou';
 //接收短信的手机号码,手机号码之间以英文逗号（,）分隔。上限为1000个手机号码。
@@ -62,9 +63,6 @@ $SmsUpExtendCode = null;
 //外部流水扩展字段。
 $OutId = null;
 
-
-global $result;
-
 if (true === $batch_send_sms) {
     require_once dirname(__FILE__) . '/SendBatchSms.php';
 } else {
@@ -72,33 +70,50 @@ if (true === $batch_send_sms) {
 }
 
 
+/**
+ * 数据库操作
+ */
 $sql_add_data['PhoneNumbers'] = $PhoneNumbers;
 $sql_add_data['SignName'] = $SignName;
 $sql_add_data['AccessKeyId'] = $accessKeyId;
 $sql_add_data['RegionId'] = $RegionId;
-$sql_add_data['Action'] = $result_json['action'];
+$sql_add_data['Action'] = $request_json['action'];
 $sql_add_data['OutId'] = $OutId;
 $sql_add_data['SmsUpExtendCode'] = $SmsUpExtendCode;
 $sql_add_data['TemplateName'] = $TemplateName;
 $sql_add_data['TemplateCode'] = $TemplateCode;
 $sql_add_data['TemplateParam'] = $TemplateParam;
 $sql_add_data['SmsContent'] = $SmsContent;
-$sql_add_data['Host'] = $result_json['host'];
-$sql_add_data['Scheme'] = $result_json['scheme'];
-$sql_add_data['Method'] = $result_json['method'];
-$sql_add_data['Version'] = $result_json['version'];
-$sql_add_data['Product'] = $result_json['product'];
-$sql_add_data['RequestId'] = $request_result['RequestId'];
-$sql_add_data['Code'] = $request_result['Code'];
+$sql_add_data['Host'] = $request_json['host'];
+$sql_add_data['Scheme'] = $request_json['scheme'];
+$sql_add_data['Method'] = $request_json['method'];
+$sql_add_data['Version'] = $request_json['version'];
+$sql_add_data['Product'] = $request_json['product'];
+$sql_add_data['RequestId'] = (isset($request_result['RequestId'])) ? $request_result['RequestId'] : null;
+$sql_add_data['Code'] = (isset($request_result['Code'])) ? $request_result['Code'] : null;
 $sql_add_data['BizId'] = (isset($request_result['BizId'])) ? $request_result['BizId'] : null;
-$sql_add_data['Message'] = $request_result['Message'];
+$sql_add_data['Message'] = (isset($request_result['Message'])) ? $request_result['Message'] : null;
 
-//global $sms_database;
-$sms_database = $sql_add_data;
-
+$sms_data = $sql_add_data;
 require_once dirname(__FILE__) . "/database_add_sms.php";
 
-//echo json_encode($sms_database);
-//echo "\n\n\n";
+
+/**
+ * 返回值处理
+ */
+global $sms_request_result,
+       $database_result;
+$result['sms_request'] = $sms_request_result;
+$result['database'] = $database_result;
+
+if (!isset($result['database']['error']) && !isset($result['sms_request']['error'])) {
+    $result['status'] = true;
+} elseif (isset($result['database']['error'])) {
+    $result['status'] = false;
+    $result['error']['type'] = 'database';
+} elseif (!isset($result['sms_request']['error'])) {
+    $result['status'] = false;
+    $result['error']['type'] = 'sms_request';
+}
 
 echo json_encode($result);
