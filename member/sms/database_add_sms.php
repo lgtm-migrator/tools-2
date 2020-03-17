@@ -7,7 +7,7 @@ $db->addConnection("sms", $db_addConnection_params);
 
 
 try {
-    $db->connection('1sms');
+    $db->connection('sms');
 } catch (Exception $e) {
     $database_result['error']['getMessage'][] = $e->getMessage();
 }
