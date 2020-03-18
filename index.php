@@ -6,14 +6,13 @@ require_once './header.php';
 
 <div class="pt-3 pt-md-4 pt-lg-5 container" id="jt_index">
     <div class="mb-3 d-flex justify-content-center" id="jt_category">
-        <div class="mx-auto btn-group btn-group-sm bg-white">
+        <div class="mx-auto w-50 w-sm-50 w-lg-25 btn-group btn-group-sm bg-white">
             <a class="btn border btn-outline-secondary active" id="tools-collapse">所有</a>
             <a class="btn border btn-outline-secondary" id="collapse-enquiry">查询</a>
             <a class="btn border btn-outline-secondary" id="collapse-other">其他</a>
         </div>
     </div>
-    <div class="row justify-content-center row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5"
-         id="jt_list">
+    <div class="row justify-content-center row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4" id="jt_list">
         <div class="col mb-3 tools-collapse collapse-enquiry collapse show">
             <div class="card h-100 hvr-wobble-bottom">
                 <div class="d-flex justify-content-between card-header py-2">
