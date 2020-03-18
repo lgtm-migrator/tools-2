@@ -47,7 +47,7 @@ try {
             ],
         ])
         ->request();
-    $sms_request_result['request_result'] = $request_result->toArray();
+    $sms_request_result = $request_result->toArray();
 } catch (ClientException $e) {
     $sms_request_result['error']['ClientException'] = $e->getErrorMessage() . PHP_EOL;
 } catch (ServerException $e) {

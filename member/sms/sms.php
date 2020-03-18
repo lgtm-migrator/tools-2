@@ -106,14 +106,17 @@ global $sms_request_result,
 $result['sms_request'] = $sms_request_result;
 $result['database'] = $database_result;
 
-if (!isset($result['database']['error']) && !isset($result['sms_request']['error'])) {
+if (!isset($result['database']['error']) && 'OK' === $result['sms_request']['Code']) {
     $result['status'] = true;
-} elseif (isset($result['database']['error'])) {
-    $result['status'] = false;
-    $result['error']['type'] = 'database';
-} elseif (!isset($result['sms_request']['error'])) {
-    $result['status'] = false;
-    $result['error']['type'] = 'sms_request';
+} else {
+    if (isset($result['database']['error'])) {
+        $result['status'] = false;
+        $result['error']['type'][] = 'database';
+    }
+    if ('OK' !== $result['sms_request']['Code']) {
+        $result['status'] = false;
+        $result['error']['type'][] = 'sms_request';
+    }
 }
 
 echo json_encode($result);
