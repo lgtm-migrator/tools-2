@@ -14,7 +14,7 @@ AlibabaCloud::accessKeyClient('<accessKeyId>', '<accessSecret>')
 try {
     $result = AlibabaCloud::rpc()
         ->product('Dysmsapi')
-        // ->scheme('https') // https | http
+        ->scheme('https')
         ->version('2017-05-25')
         ->action('QuerySendDetails')
         ->method('POST')
@@ -23,7 +23,7 @@ try {
             'query' => [
                 'RegionId' => "cn-hangzhou",
                 'PhoneNumber' => "15227731266",
-                'SendDate' => "20200314",
+                'SendDate' => "20200318",
                 'PageSize' => "10",
                 'CurrentPage' => "1",
                 'BizId' => "0",
