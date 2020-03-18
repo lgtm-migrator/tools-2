@@ -106,7 +106,7 @@ global $sms_request_result,
 $result['sms_request'] = $sms_request_result;
 $result['database'] = $database_result;
 
-if (!isset($result['database']['error']) && 'OK' === $result['sms_request']['Code']) {
+if (!isset($result['database']['error']) && (!is_null($result['sms_request']['BizId']) && 'OK' === $result['sms_request']['Code'])) {
     $result['status'] = true;
 } else {
     if (isset($result['database']['error'])) {
