@@ -1,6 +1,9 @@
 .DS_Store
 .idea
 
+# PHP error log
+/**/php_errors.log
+
 # Project exclude paths
 /static/
 /node_modules/
