@@ -20,6 +20,8 @@ const
     tools_static_src_path = "./tools_static_src/",
     tools_static_src_js = tools_static_src_path + "js/",
     tools_static_src_css = tools_static_src_path + "css/",
+    /** bootstrap_5 **/
+    bootstrap_5_css_path = tools_static_src_css + "bootstrap_5.css",
     /** tools **/
     tools_js_path = tools_static_src_js + "tools.js",
     tools_css_path = tools_static_src_css + "tools.css",
@@ -44,6 +46,7 @@ task(terser_index_js);
 task(terser_phone_number_js);
 task(terser_photo_info_js);
 
+task(cleanCSS_bootstrap_5_css);
 task(cleanCSS_tools_css);
 task(cleanCSS_survey_css);
 task(cleanCSS_index_css);
@@ -65,6 +68,7 @@ task("terser",
 );
 task("cleanCSS",
     parallel(
+        cleanCSS_bootstrap_5_css,
         cleanCSS_tools_css,
         cleanCSS_survey_css,
         cleanCSS_index_css,
@@ -133,6 +137,17 @@ function terser_photo_info_js(done) {
         .pipe(terser())
         .pipe(rename({suffix: ".min"}))
         .pipe(dest(static_js));
+    done();
+}
+
+function cleanCSS_bootstrap_5_css(done) {
+    src([bootstrap_5_css_path], {since: lastRun(cleanCSS_bootstrap_5_css)})
+        .pipe(dest(static_css));
+    src([bootstrap_5_css_path], {since: lastRun(cleanCSS_bootstrap_5_css)})
+        .pipe(postcss([autoPreFixer()]))
+        .pipe(cleanCSS())
+        .pipe(rename({suffix: ".min"}))
+        .pipe(dest(static_css));
     done();
 }
 

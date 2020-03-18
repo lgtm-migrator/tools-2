@@ -29,10 +29,7 @@ const
     popper_js_map_path = "./node_modules/popper.js/dist/umd/popper.js.map",
     popper_min_js_map_path = "./node_modules/popper.js/dist/umd/popper.min.js.map",
     /** Bootstrap **/
-    bootstrap_js_path = "./node_modules/bootstrap/dist/js/bootstrap.js",
-    bootstrap_min_js_path = "./node_modules/bootstrap/dist/js/bootstrap.min.js",
-    bootstrap_js_map_path = "./node_modules/bootstrap/dist/js/bootstrap.js.map",
-    bootstrap_min_js_map_path = "./node_modules/bootstrap/dist/js/bootstrap.min.js.map",
+    bootstrap_all_js_path = "./node_modules/bootstrap/dist/js/*",
     bootstrap_css_path = "./node_modules/bootstrap/dist/css/bootstrap.css",
     bootstrap_min_css_path = "./node_modules/bootstrap/dist/css/bootstrap.min.css",
     bootstrap_css_map_path = "./node_modules/bootstrap/dist/css/bootstrap.css.map",
@@ -158,7 +155,7 @@ function copy_qrcode(done) {
 }
 
 function copy_bootstrap(done) {
-    src([bootstrap_js_path, bootstrap_min_js_path, bootstrap_js_map_path, bootstrap_min_js_map_path], {since: lastRun(copy_bootstrap)})
+    src([bootstrap_all_js_path], {since: lastRun(copy_bootstrap)})
         .pipe(dest(static_js));
     src([bootstrap_css_path, bootstrap_min_css_path, bootstrap_css_map_path, bootstrap_min_css_map], {since: lastRun(copy_bootstrap)})
         .pipe(dest(static_css));

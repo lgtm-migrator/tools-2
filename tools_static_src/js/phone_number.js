@@ -210,17 +210,46 @@ function create_search_result_number_list_name(name) {
 
     li.className = 'number_name mb-2';
 
+    span_name.className = 'mr-2';
     span_name.innerHTML = name;
 
     i.className = 'mr-2 fas fa-home text-info hvr-icon';
-    i.style.cursor = 'pointer';
+    cursor_pointer(i);
 
     li.insertBefore(i, li.firstChild);
     li.append(span_name);
+    li.append(create_search_result_qrcode_popover('https://www.baidu.com/img/PCpad_bc531b595cf1e37c3907d14b69e3a2dd.png'));
     ul.appendChild(li);
     span.appendChild(ul);
 
     return span;
+}
+
+function create_search_result_qrcode_popover(img_src) {
+  let i = document.createElement("i");
+  let img = create_img_qrcode(img_src);
+  console.log('img---' + img);
+
+  i.className = 'btn btn-outline-secondary fas fa-qrcode';
+  cursor_pointer(i);
+  i.dataset.toggle = 'popover';
+  i.dataset.trigger = 'hover focus';
+  i.dataset.placement = 'bottom';
+  i.dataset.content = img;
+  i.dataset.title = '微信';
+  $('[data-toggle="popover"]').popover();
+
+  return i;
+}
+
+function create_img_qrcode(img_src) {
+  let options = {
+    src: img_src,
+    alt: '二维码',
+    className: 'img-thumbnail',
+  };
+  console.log(create_img(options));
+  return create_img(options);
 }
 
 function create_search_result_number_list_number(number, number_type) {
@@ -320,7 +349,7 @@ function show_add_number_form() {
     number_stored = document.querySelector('#number_stored');
 
     create_add_form_init();
-    create_add_regional('button');
+    create_add_regional('radio');
     create_add_number_form_close();
 }
 
@@ -414,20 +443,24 @@ function create_add_number_form_close() {
 }
 
 function create_add_form_init() {
+    let timestamp = get_timestamp();
     create_add_form_div();
     create_add_btn_add();
-    create_add_phone_name();
-    create_add_tel_number();
-    create_add_mobile_number();
+    create_add_phone_name(timestamp);
+    create_add_tel_number(timestamp);
+    create_add_mobile_number(timestamp);
+    create_add_qrcode(timestamp);
     input_shadow();
 }
 
 function create_add_form() {
+    let timestamp = get_timestamp();
     create_add_form_div();
     create_add_btn_del();
-    create_add_phone_name();
-    create_add_tel_number();
-    create_add_mobile_number();
+    create_add_phone_name(timestamp);
+    create_add_tel_number(timestamp);
+    create_add_mobile_number(timestamp);
+    create_add_qrcode(timestamp);
     input_shadow();
 }
 
@@ -478,20 +511,13 @@ function create_add_btn_del() {
     });
 }
 
-function create_add_phone_name() {
+function create_add_phone_name(id_timestamp) {
     let div = document.createElement('div');
     let label = document.createElement('label');
     let input = document.createElement('input');
     let i = document.createElement('i');
-    let id_timestamp = new Date().getTime();
 
     div.className = 'form-group col-12 col-sm-12 col-md-3';
-
-    label.className = 'sr-only';
-    label.setAttribute('for', 'phone_name_' + id_timestamp);
-    label.innerHTML = '单位名称&nbsp;';
-
-    i.className = 'fa-fw fas fa-home';
 
     input.className = 'form-control form-control-sm fas text-success text-center phone_name';
     input.id = 'phone_name_' + id_timestamp;
@@ -500,8 +526,14 @@ function create_add_phone_name() {
     input.setAttribute('maxlength', '15');
     input.placeholder = '单位名称 ';
     input.addEventListener('input', function () {
-        check_regexp_input_value(RegExp_rules.phone_name, '请输入单位的中文名称 例如：\n掘进一队', this);
+      check_regexp_input_value(RegExp_rules.phone_name, '请输入单位的中文名称 例如：<br>掘进一队', this);
     });
+
+    label.className = 'sr-only';
+    label.setAttribute('for', input.id);
+    label.innerHTML = '单位名称&nbsp;';
+
+    i.className = 'fa-fw fas fa-home';
 
     label.appendChild(i);
     div.appendChild(label);
@@ -510,20 +542,13 @@ function create_add_phone_name() {
     add_number_submit.previousElementSibling.appendChild(div);
 }
 
-function create_add_tel_number() {
+function create_add_tel_number(id_timestamp) {
     let div = document.createElement('div');
     let label = document.createElement('label');
     let input = document.createElement('input');
     let i = document.createElement('i');
-    let id_timestamp = new Date().getTime();
 
-    div.className = 'form-group col-12 col-sm-6 col-md-4';
-
-    label.className = 'sr-only';
-    label.setAttribute('for', 'tel_number_' + id_timestamp);
-    label.innerHTML = '座机电话号码&nbsp;';
-
-    i.className = 'fas fa-phone';
+    div.className = 'form-group col-12 col-sm-6 col-md-3';
 
     input.className = 'form-control form-control-sm fas text-success text-center tel_number';
     input.id = 'tel_number_' + id_timestamp;
@@ -532,8 +557,14 @@ function create_add_tel_number() {
     input.setAttribute('maxlength', '12');
     input.placeholder = '座机电话号码 ';
     input.addEventListener('input', function () {
-        check_regexp_input_value(RegExp_rules.tel_number, '请输入当地正确格式的座机号码 例如：\n0319-2061234\n0319-2089123\n······ 等更多正确格式', this);
+      check_regexp_input_value(RegExp_rules.tel_number, '请输入当地正确格式的座机号码 例如：<br>0319-2061234<br>0319-2089123<br>······ 等更多正确格式', this);
     });
+
+    label.className = 'sr-only';
+    label.setAttribute('for', input.id);
+    label.innerHTML = '座机电话号码&nbsp;';
+
+    i.className = 'fas fa-phone';
 
     label.appendChild(i);
     div.appendChild(label);
@@ -542,20 +573,13 @@ function create_add_tel_number() {
     add_number_submit.previousElementSibling.appendChild(div);
 }
 
-function create_add_mobile_number() {
+function create_add_mobile_number(id_timestamp) {
     let div = document.createElement('div');
     let label = document.createElement('label');
     let input = document.createElement('input');
     let i = document.createElement('i');
-    let id_timestamp = new Date().getTime();
 
-    div.className = 'form-group col-12 col-sm-6 col-md-5';
-
-    label.className = 'sr-only';
-    label.setAttribute('for', 'mobile_number_' + id_timestamp);
-    label.innerHTML = '手机电话号码&nbsp;';
-
-    i.className = 'fas fa-mobile-alt';
+    div.className = 'form-group col-12 col-sm-6 col-md-3';
 
     input.className = 'form-control form-control-sm fas text-success text-center mobile_number';
     input.id = 'mobile_number_' + id_timestamp;
@@ -564,14 +588,64 @@ function create_add_mobile_number() {
     input.setAttribute('maxlength', '15');
     input.placeholder = '手机电话号码 ';
     input.addEventListener('input', function () {
-        check_regexp_input_value(RegExp_rules.mobile_number, '请输入正确格式的手机号 例如：\n13812345678\n+8613812345678\n008613812345678', this);
+      check_regexp_input_value(RegExp_rules.mobile_number, '请输入正确格式的手机号 例如：<br>13812345678<br>+8613812345678<br>008613812345678', this);
     });
+
+    label.className = 'sr-only';
+    label.setAttribute('for', input.id);
+    label.innerHTML = '手机电话号码&nbsp;';
+
+    i.className = 'fas fa-mobile-alt';
 
     label.appendChild(i);
     div.appendChild(label);
     div.appendChild(input);
 
     add_number_submit.previousElementSibling.appendChild(div);
+}
+
+function create_add_qrcode(id_timestamp) {
+    let form_file = document.createElement('div');
+    let label = document.createElement('label');
+    let input = document.createElement('input');
+    let span_text = document.createElement("span");
+    let span_btn = document.createElement("span");
+    let i = document.createElement("i");
+    let max_file_size = 1048576 / 2;
+
+    i.className = 'fas fa-qrcode';
+
+    form_file.className = 'form-file form-file-sm col-12 col-sm-12 col-md-3';
+
+    input.className = 'form-file-input new_qrcode';
+    input.id = 'qrcode_' + id_timestamp;
+    input.type = 'file';
+    input.setAttribute('accept', 'image/png');
+    input.setAttribute('MAX_FILE_SIZE', max_file_size);
+    input.addEventListener('change', function () {
+        check_input_file(this);
+    });
+
+    label.className = 'form-file-label';
+    label.setAttribute('for', input.id);
+
+    span_text.className = 'form-file-text';
+    span_text.innerHTML = '上传图片';
+
+    span_btn.className = 'form-file-button';
+    // span_btn.innerHTML = '二维码';
+
+    span_btn.appendChild(i);
+    label.appendChild(span_text);
+    label.appendChild(span_btn);
+    form_file.appendChild(input);
+    form_file.appendChild(label);
+
+    add_number_submit.previousElementSibling.appendChild(form_file);
+}
+
+function get_timestamp() {
+  return new Date().getTime();
 }
 
 function create_add_regional(type) {
@@ -586,9 +660,9 @@ function create_add_regional(type) {
     };
 
     if (type === 'radio') {
-        div.className = 'row no-gutters mb-3 mb-sm-4 mb-md-4 py-2 w-100 bg-white border rounded row-cols-2 row-cols-sm-3 row-cols-md-6';
+        div.className = 'row no-gutters mx-auto mb-3 mb-sm-4 mb-md-4 py-2 w-100 w-md-75 w-lg-50 bg-white border rounded row-cols-2 row-cols-sm-3 row-cols-md-auto';
     } else if (type === 'button') {
-        div.className = 'mb-3 mb-sm-4 mb-md-4 w-100 w-sm-75 w-md-50 bg-white btn-group btn-group-sm btn-group-toggle';
+        div.className = 'mb-3 mb-sm-4 mb-md-4 w-100 w-md-75 w-lg-50 bg-white btn-group btn-group-sm btn-group-toggle';
         div.setAttribute('data-toggle', 'buttons');
     }
     div.id = 'add_regional';
@@ -814,9 +888,42 @@ function check_regexp_input_value(RegExp_rules_name, error_text, element) {
         validation_invalid_div(element, error_text);
         input_error(element);
     } else {
+        validation_valid_div(element, error_text);
         input_success(element);
-        remove_validation_div(element);
     }
+}
+
+function check_input_file(element) {
+  console.log(element.files);
+  let file = element.files[0];
+  if (file) {
+    let max_file_size = 1048576 / 2;
+    let allowed_files_name = ['png'];
+    let file_size = file.size;
+    let file_name = file.name;
+
+    if (!allowed_files_name.includes(get_file_ext_name(file_name, '.'))) {
+      validation_invalid_div(element, '文件格式不符合，只允许上传' + allowed_files_name.join('&nbsp;') + '格式的文件');
+      input_error(element);
+      console.log('1');
+      console.log(get_file_ext_name(file_name, '.'));
+    } else if (max_file_size < file_size) {
+      console.log('2');
+      validation_invalid_div(element, '文件太大了，只允许上传' + get_file_size(file_size) + '的文件');
+      input_error(element);
+    } else {
+      console.log('3');
+      validation_valid_div(element, file_name);
+      input_success(element);
+    }
+  } else {
+    console.log('4');
+    let error_text = '请上传正确的图片<br>' +
+      `图片格式 ${['png'].join('&nbsp;')}<br>` +
+      `图片大小 ${get_file_size(1048576 / 2)}<br>`;
+    validation_invalid_div(element, error_text);
+    input_error(element);
+  }
 }
 
 function input_shadow() {

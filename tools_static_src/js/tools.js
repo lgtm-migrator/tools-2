@@ -74,6 +74,24 @@ function create_close_btn(fun_name, class_name) {
     return close_button;
 }
 
+function get_file_ext_name(file_name, index_of = '.') {
+  return file_name.substring(file_name.lastIndexOf(index_of) + 1).toLowerCase();
+}
+
+function get_file_size(file_size) {
+  file_size = typeof file_size === 'number' ? file_size : parseInt(file_size);
+  if (file_size >= 1073741824) {
+    file_size = ((file_size / 1073741824 * 100) / 100).toFixed(2) + ' GB';
+  } else if (file_size >= 1048576) {
+    file_size = ((file_size / 1048576 * 100) / 100).toFixed(2) + ' MB';
+  } else if (file_size >= 1024) {
+    file_size = ((file_size / 1024 * 100) / 100).toFixed(2) + ' KB';
+  } else {
+    file_size = file_size + ' bytes';
+  }
+  return file_size;
+}
+
 /** tooltip **/
 $().ready(function () {
     $('span[title]').tooltip({
@@ -118,37 +136,47 @@ $().ready(function () {
 
 /** 表单验证 **/
 function validation_invalid_div(element, text, type = 'tooltip') {
-    if (!element.nextElementSibling) {
-        let div = document.createElement('div');
-        if (type === 'tooltip') {
-            div.className = 'invalid-tooltip';
-            div.style.position = 'static';
-        } else {
-            div.className = 'invalid-feedback';
-        }
-        div.innerText = text;
-        element.parentNode.appendChild(div);
+  if (remove_validation_div(element)) {
+    let div = document.createElement('div');
+    if (type === 'tooltip') {
+      div.className = 'invalid-tooltip';
+      div.style.position = 'static';
+    } else {
+      div.className = 'invalid-feedback';
     }
+    div.innerHTML = text;
+    element.parentNode.appendChild(div);
+  }
 }
 
 function validation_valid_div(element, text, type = 'tooltip') {
-    if (element.nextElementSibling) {
-        let div = document.createElement('div');
-        if (type === 'tooltip') {
-            div.className = 'valid-tooltip';
-            // div.style.position = "unset";
-        } else {
-            div.className = 'valid-feedback';
-        }
-        div.innerText = text;
-        element.parentNode.appendChild(div);
+  if (remove_validation_div(element)) {
+    let div = document.createElement('div');
+    if (type === 'tooltip') {
+      div.className = 'valid-tooltip';
+      div.style.position = 'static';
+    } else {
+      div.className = 'valid-feedback';
     }
+    div.innerHTML = text;
+    element.parentNode.appendChild(div);
+  }
 }
 
 function remove_validation_div(element) {
-    while (element.nextElementSibling) {
-        element.nextElementSibling.remove();
+  if (element.nextElementSibling) {
+    if (element.nextElementSibling.classList.contains('valid-tooltip') ||
+      element.nextElementSibling.classList.contains('invalid-tooltip') ||
+      element.nextElementSibling.classList.contains('valid-feedback') ||
+      element.nextElementSibling.classList.contains('invalid-feedback')) {
+      element.nextElementSibling.remove();
+      return true;
+    } else {
+      remove_validation_div(element.nextElementSibling);
     }
+  } else {
+    return true;
+  }
 }
 
 function input_error(element) {
@@ -548,6 +576,16 @@ function get_href_url(target, class_name) {
     if (a.href !== undefined) {
         return a.href;
     }
+}
+
+function create_img(options, alt, className) {
+  let img = document.createElement("img");
+
+  img.className = options.className ? options.className : className;
+  img.src = options.src ? options.src : options;
+  img.alt = options.alt ? options.alt : alt;
+
+  return img;
 }
 
 /** localStorage **/

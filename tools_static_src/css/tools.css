@@ -97,6 +97,7 @@
     visibility: hidden;
 }
 #body { background-image: linear-gradient(180deg, hsla(0, 0%, 100%, 0) 60%, #fff), linear-gradient(70deg, #dbedff 32%, #ebfff0);}
+#body, body > div[id^='Modal_'] {user-select: none;}
 
 .grecaptcha-badge { visibility: hidden;}
 
@@ -131,30 +132,34 @@
 .slideUp { transform: translateY(-100px); transition: transform .5s ease-out;}
 .slideDown { transform: translateY(0); transition: all .5s ease-out;}
 /* 滚动 */
-
+.row-cols-auto > * {flex: auto;max-width: none;}
 @media (min-width: 576px) {
   .w-sm-25 {width: 25% !important;}
   .w-sm-50 {width: 50% !important;}
   .w-sm-75 {width: 75% !important;}
   .w-sm-100 {width: 100% !important;}
+  .row-cols-sm-auto > * {flex: auto;max-width: none;}
 }
 @media (min-width: 768px) {
   .w-md-25 {width: 25% !important;}
   .w-md-50 {width: 50% !important;}
   .w-md-75 {width: 75% !important;}
   .w-md-100 {width: 100% !important;}
+  .row-cols-md-auto > * {flex: auto;max-width: none;}
 }
 @media (min-width: 992px) {
   .w-lg-25 {width: 25% !important;}
   .w-lg-50 {width: 50% !important;}
   .w-lg-75 {width: 75% !important;}
   .w-lg-100 {width: 100% !important;}
+  .row-cols-lg-auto > * {flex: auto;max-width: none;}
 }
 @media (min-width: 1200px) {
   .w-xl-25 {width: 25% !important;}
   .w-xl-50 {width: 50% !important;}
   .w-xl-75 {width: 75% !important;}
   .w-xl-100 {width: 100% !important;}
+  .row-cols-xl-auto > * {flex: auto;max-width: none;}
 }
 
 .bg-img-purple { background-image: linear-gradient(180deg, #d6338499, #6f42c199)}
