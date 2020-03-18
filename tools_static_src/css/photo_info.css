@@ -1,23 +1,19 @@
 .custom-file-label::after {
-    color: #fff;
-    background-color: #17a2b8;
-    font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace !important;
+  color: #fff;
+  background-color: #17a2b8;
+  font-family: SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace !important;
 }
 
-.custom-file-label[data-browse]::after {
-    content: attr(data-browse);
-}
+.custom-file-label[data-browse]::after {content: attr(data-browse);}
 
-#rule label {
-    font-size: 75%;
-}
+#rule label {font-size: 75%;}
 
 .custom-control-label::before,
 .custom-control-label::after {
-    top: 0.2rem;
-    left: -1.2rem;
-    width: 0.8rem;
-    height: 0.8rem;
+  top: 0.2rem;
+  left: -1.2rem;
+  width: 0.8rem;
+  height: 0.8rem;
 }
 
 /*.custom-control-label::after {*/

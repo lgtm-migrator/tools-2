@@ -648,10 +648,9 @@ function fixed_tools_to_top() {
     let a = document.createElement('a');
     let i = document.createElement('i');
 
-    a.className = 'd-block border border-primary rounded p-1';
+    a.className = 'bg-img-blue d-block border border-primary rounded p-1';
     a.href = 'javascript:';
     a.id = 'to_top';
-    a.style.backgroundColor = 'rgba(200, 200, 200, .7)';
     a.addEventListener('click', topControl);
 
     i.className = 'fa-2x fa-fw fas fa-arrow-up';
