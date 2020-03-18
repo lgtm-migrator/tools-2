@@ -74,7 +74,7 @@ if (!defined('JZEG_NET')) die();
 </div>
 <div class="d-none">
     <?php require_once dirname(dirname(__DIR__)) . "/javascript.php"; ?>
-    <!--        <script src="/static/js/"></script>-->
+<!--    <script src="/static/js/jt_sms_index.min.js"></script>-->
     <script>
         $().ready(function () {
             let jt_sms_send = document.querySelector('#jt_sms_send');
