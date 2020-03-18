@@ -5,7 +5,7 @@ if (!defined('JZEG_NET')) die();
 ?>
 <div class="py-2 container" id="jt_sms_send">
     <div class="mb-2 font-weight-bolder">向用户发送短信提示</div>
-    <form action="/member/sms/sms.php" method="post">
+    <form action="/member/sms/send.php" method="post">
         <div class="form-row form-group">
             <div class="col-12 col-md-6 mb-2 mb-md-0 input-group">
                 <div class="input-group-prepend">
