@@ -111,6 +111,11 @@ function remove_cookie(key) {
     js_cookies.remove(key);
 }
 
+/** bsCustomFileInput **/
+$().ready(function () {
+    bsCustomFileInput.init();
+});
+
 /** 表单验证 **/
 function validation_invalid_div(element, text, type = 'tooltip') {
     if (!element.nextElementSibling) {
@@ -364,7 +369,6 @@ function footer_qr_code() {
     let div = document.createElement('div');
     let span = document.createElement('span');
     let i = document.createElement('i');
-    let canvas = document.createElement('canvas');
 
     div.className = 'my-2';
     div.id = 'current_page_QR_code';
@@ -382,10 +386,13 @@ function footer_qr_code() {
         let i_copy = document.createElement('i');
         let i_question = document.createElement('i');
 
+        let img = document.createElement("img");
         let qrcode_option = {
             errorCorrectionLevel: 'H',
+            type: 'image/jpeg',
             margin: 2,
             width: 300,
+            quality: 0.3,
             color: {
                 dark: '#1E90FF',
                 light: '#ffffff',
@@ -415,11 +422,14 @@ function footer_qr_code() {
         });
 
         span.appendChild(i_question);
-        div.appendChild(canvas);
+        div.appendChild(img);
         div.appendChild(i_copy);
         div.appendChild(span);
 
-        QRCode.toCanvas(canvas, addUrlParam(url, url_param), qrcode_option);
+        QRCode.toDataURL(addUrlParam(url, url_param), qrcode_option, function (err, url) {
+            if (err) throw err;
+            img.src = url;
+        });
         bootstrapModalJs('', div, '', '', true);
     });
 
@@ -609,6 +619,7 @@ $().ready(function () {
 function anti_mirror() {
     setTimeout(function () {
         if (document.location.host !== 'tools.jzeg.org' &&
+            document.location.host !== 'test.jzeg.net' &&
             document.location.host !== 'tools.jzeg.net') {
             if (fundebug) {
                 fundebug.notify('发现镜像', document.location.href, {
@@ -722,3 +733,30 @@ $().ready(function () {
         new_scroll_position = last_scroll_position;
     }
 });
+
+
+/**
+ * 隐藏显示全部选项时出现的滚动条
+ * 本功能只在PC端有效果
+ * 忽略select可能存在的其他类型无效子元素可能造成的影响
+ * 添加时的chrome版本 80.0.3987.132
+ **/
+$().ready(function () {
+    let all_select_elements = document.querySelectorAll('select');
+    for (let x = all_select_elements.length, i = 0; i < x; i++) {
+        let elements_size_value = all_select_elements[i].size;
+        let children_length = all_select_elements[i].children.length;
+        if (elements_size_value === children_length) {
+            all_select_elements[i].style.overflow = 'overlay';
+        }
+    }
+});
+
+/**
+ * 动态同步文本输入框元素和滑动条元素的值
+ */
+function dynamic_synchronization_element(source_element, target_element, event_type) {
+    source_element.addEventListener(event_type, function () {
+        target_element.value = source_element.value;
+    })
+}

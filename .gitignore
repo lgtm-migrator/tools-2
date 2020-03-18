@@ -3,5 +3,6 @@
 
 # Project exclude paths
 /static/
+/upload/
 /node_modules/
 /vendor/

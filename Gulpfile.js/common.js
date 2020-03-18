@@ -53,6 +53,9 @@ const
     hamburgers_min_css_path = "./node_modules/hamburgers/dist/hamburgers.min.css",
     /** node-qrcode **/
     qrcode_build_path = "./node_modules/qrcode/build/*",
+    /** bootstrap-colorpicker.js **/
+    bootstrap_color_picker_js_path = "./node_modules/bootstrap-colorpicker/dist/js/*",
+    bootstrap_color_picker_css_path = "./node_modules/bootstrap-colorpicker/dist/css/*",
     /** clipboard.js **/
     clipboard_min_js_path = "./node_modules/clipboard/dist/clipboard.min.js";
 
@@ -70,6 +73,7 @@ task(copy_bs_custom_file_input);
 task(copy_dayjs);
 task(copy_clipboard);
 task(copy_qrcode);
+task(copy_bootstrap_colorPicker);
 
 /** task("add_header"); **/
 task(add_footer_funDebug_api);
@@ -92,6 +96,7 @@ task("copy_common",
         copy_dayjs,
         copy_clipboard,
         copy_qrcode,
+        copy_bootstrap_colorPicker,
     )
 );
 task("add_footer",
@@ -135,6 +140,14 @@ function copy_dayjs(done) {
 function copy_clipboard(done) {
     src([clipboard_min_js_path], {since: lastRun(copy_clipboard)})
         .pipe(dest(static_js));
+    done();
+}
+
+function copy_bootstrap_colorPicker(done) {
+    src([bootstrap_color_picker_js_path], {since: lastRun(copy_bootstrap_colorPicker)})
+        .pipe(dest(static_js));
+    src([bootstrap_color_picker_css_path], {since: lastRun(copy_bootstrap_colorPicker)})
+        .pipe(dest(static_css));
     done();
 }
 
