@@ -86,7 +86,7 @@ if (!defined('JZEG_NET')) die();
                         <span>分页查看发送记录，指定发送记录的的当前页码。</span>
                     </div>
                     <label class="sr-only" for="jt_sms_query_send_CurrentPage_range">记录数量滑动条</label>
-                    <input type="range" class="custom-range" min="1" max="50" step="1" value="1"
+                    <input type="range" class="custom-range" min="1" max="10" step="1" value="1"
                            id="jt_sms_query_send_CurrentPage_range">
                 </div>
             </div>
@@ -110,6 +110,19 @@ if (!defined('JZEG_NET')) die();
             $().ready(function () {
                 let jt_sms_query_send = document.querySelector('#jt_sms_query_send');
                 if (jt_sms_query_send) {
+                    let jt_sms_query_send_PageSize_number = document.querySelector('#jt_sms_query_send_PageSize_number');
+                    let jt_sms_query_send_PageSize_range = document.querySelector('#jt_sms_query_send_PageSize_range');
+                    let jt_sms_query_send_CurrentPage_number = document.querySelector('#jt_sms_query_send_CurrentPage_number');
+                    let jt_sms_query_send_CurrentPage_range = document.querySelector('#jt_sms_query_send_CurrentPage_range');
+                    let lhm_editor_xxx_elements = [
+                        [jt_sms_query_send_PageSize_number, jt_sms_query_send_PageSize_range],
+                        [jt_sms_query_send_CurrentPage_number, jt_sms_query_send_CurrentPage_range],
+                    ];
+
+                    for (let x = lhm_editor_xxx_elements.length, i = 0; i < x; i++) {
+                        dynamic_synchronization_element(lhm_editor_xxx_elements[i]['0'], lhm_editor_xxx_elements[i]['1'], 'input');
+                        dynamic_synchronization_element(lhm_editor_xxx_elements[i]['1'], lhm_editor_xxx_elements[i]['0'], 'input');
+                    }
                 }
             });
         </script>
