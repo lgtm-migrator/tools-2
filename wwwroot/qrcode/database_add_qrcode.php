@@ -1,5 +1,5 @@
 <?php
-require_once dirname(__DIR__) . '/mysqli/mysqli.php';
+require_once dirname(dirname(__DIR__)) . '/mysqli/mysqli.php';
 
 $db->addConnection("qrcode", $db_addConnection_params);
 

@@ -3,7 +3,7 @@
 namespace JZEG_NET\Member\Sms\SendBatchSms;
 
 if (!defined('JZEG_NET_SMS')) die();
-require_once dirname(dirname(__DIR__)) . '/vendor/autoload.php';
+require_once dirname(dirname(dirname(__DIR__))) . '/vendor/autoload.php';
 
 global $accessKeyId,
        $accessSecret,

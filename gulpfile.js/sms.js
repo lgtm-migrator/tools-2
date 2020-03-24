@@ -12,7 +12,8 @@ const {task, src, dest, parallel, lastRun, watch} = require('gulp'),
 // Static Files Path
 // 静态文件路径
 const
-  static_path = "./static/",
+  root = "./wwwroot/",
+  static_path = root + "static/",
   static_js = static_path + "js/",
   static_css = static_path + "css/",
   //页面静态文件路径

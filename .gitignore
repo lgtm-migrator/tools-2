@@ -5,7 +5,7 @@
 /**/php_errors.log
 
 # Project exclude paths
-/static/
 /upload/
 /node_modules/
 /vendor/
+/wwwroot/static/

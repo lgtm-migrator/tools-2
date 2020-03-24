@@ -43,7 +43,7 @@
   },
   "peerDependencies": {},
   "devDependencies": {
-    "autoprefixer": "^9.7.4",
+    "autoprefixer": "^9.7.5",
     "del": "^5.1.0",
     "eslint": "^6.8.0",
     "eslint-config-google": "^0.14.0",
@@ -58,7 +58,7 @@
     "stylelint": "^13.2.1"
   },
   "dependencies": {
-    "@fortawesome/fontawesome-free": "^5.12.1",
+    "@fortawesome/fontawesome-free": "^5.13.0",
     "animate.css": "^3.7.2",
     "bootstrap": "^4.4.1",
     "bootstrap-colorpicker": "^3.2.0",
@@ -67,7 +67,7 @@
     "bs-custom-file-input": "^1.3.4",
     "clipboard": "^2.0.6",
     "dayjs": "^1.8.23",
-    "fundebug-javascript": "^2.1.2",
+    "fundebug-javascript": "^2.2.0",
     "hamburgers": "^1.1.3",
     "hover.css": "^2.3.2",
     "jquery": "^3.4.1",

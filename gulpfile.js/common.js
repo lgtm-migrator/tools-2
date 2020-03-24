@@ -8,7 +8,8 @@ const config_file = './config.json',
 // Static Files Path
 // 静态文件路径
 const
-  static_path = "./static/",
+  root = "./wwwroot/",
+  static_path = root + "static/",
   static_js = static_path + "js/",
   static_css = static_path + "css/",
   /** FunDebug **/
@@ -165,9 +166,9 @@ function copy_bootstrap(done) {
 }
 
 function copy_bootstrap_table(done) {
-  src([bootstrap_table_js_path,bootstrap_table_js_min_path,bootstrap_table_all_locale_js_path,bootstrap_table_zh_CN_js_path,bootstrap_table_zh_CN_min_js_path,], {since: lastRun(copy_bootstrap_table)})
+  src([bootstrap_table_js_path, bootstrap_table_js_min_path, bootstrap_table_all_locale_js_path, bootstrap_table_zh_CN_js_path, bootstrap_table_zh_CN_min_js_path,], {since: lastRun(copy_bootstrap_table)})
     .pipe(dest(static_js));
-  src([bootstrap_table_css_path,bootstrap_table_css_min_path], {since: lastRun(copy_bootstrap_table)})
+  src([bootstrap_table_css_path, bootstrap_table_css_min_path], {since: lastRun(copy_bootstrap_table)})
     .pipe(dest(static_css));
   done();
 }
@@ -182,7 +183,7 @@ function copy_hover_css(done) {
   src([hover_min_css_path], {since: lastRun(copy_hover_css)})
     .pipe(rename("hover.min.css"))
     .pipe(dest(static_css));
-  src([hover_css_path,hover_css_map_path], {since: lastRun(copy_hover_css)})
+  src([hover_css_path, hover_css_map_path], {since: lastRun(copy_hover_css)})
     .pipe(dest(static_css));
   done();
 }

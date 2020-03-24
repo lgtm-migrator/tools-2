@@ -1,6 +1,6 @@
 <?php
-require_once dirname(__FILE__) . "/config/defined.php";
-require_once dirname(__FILE__) . "/config/functions.php";
+require_once dirname(__DIR__) . "/config/defined.php";
+require_once dirname(__DIR__) . "/config/functions.php";
 if (!file_exists(SESSION_DIR_YMD)) {
   mk_dir(SESSION_DIR_YMD);
 }
