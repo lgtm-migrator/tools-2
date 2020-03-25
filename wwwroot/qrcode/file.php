@@ -21,20 +21,20 @@ $php_created_image = PHP_TMP_DIR . $file_name;
 if (is_uploaded_file($tmp_file_name)) {
   if ($error === 0) {
     if (in_array($file_ext_name, $allowed_extension_name)) {
-      if (!file_exists(UPLOAD_IMG_QRCODE_PATH_YMD)) mk_dir(UPLOAD_IMG_QRCODE_PATH_YMD);
+      if (!file_exists(LHM_RESULT_IMG_YMD_PATH)) mk_dir(LHM_RESULT_IMG_YMD_PATH);
+      echo LHM_RESULT_IMG_YMD_PATH;
       $image_create_result = filters_image_types($file_name, $file_ext_name, $tmp_file_name);
       if ($image_create_result === true) {
-        if (!file_exists(UPLOAD_IMG_QRCODE_PATH_YMD . $file_name)) {
-          $rename_file_result = rename($php_created_image, UPLOAD_IMG_QRCODE_PATH_YMD . $file_name);
+        if (!file_exists(LHM_RESULT_IMG_YMD_PATH . $file_name)) {
+          $rename_file_result = rename($php_created_image, LHM_RESULT_IMG_YMD_PATH . $file_name);
 
           if ($rename_file_result === true) {
             global $new_img_file;
             $new_img_file = array(
-              'file_path' => UPLOAD_IMG_QRCODE_DIR_YMD . $file_name,
+              'file_path' => LHM_RESULT_IMG_YMD_DIR . $file_name,
               'file_name' => $file_name,
               'file_ext_name' => $file_ext_name,
               'file_size' => $file_size,
-              '' => '',
             );
             return $new_img_file;
           } else {

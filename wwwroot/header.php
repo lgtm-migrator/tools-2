@@ -1,10 +1,8 @@
 <?php
 require_once dirname(__DIR__) . "/config/defined.php";
 require_once dirname(__DIR__) . "/config/functions.php";
-if (!file_exists(SESSION_DIR_YMD)) {
-  mk_dir(SESSION_DIR_YMD);
-}
-session_save_path(SESSION_DIR_YMD);
+if (!file_exists(SESSION_YMD_DIR)) mk_dir(SESSION_YMD_DIR);
+session_save_path(SESSION_YMD_DIR);
 
 $cookie_params = array(
   "httponly" => true,

@@ -32,17 +32,17 @@ foreach ($image_files["error"] as $k => $error) {
     $file_size = $image_files['size'][$k];
 
     $php_created_image = PHP_TMP_DIR . $file_name;
-//    $php_created_image = UPLOAD_DIR_YMD . '0/' . $file_name;
+//    $php_created_image = UPLOAD_YMD_DIR . '0/' . $file_name;
 
     if (in_array($file_ext_name, $allowed_extension_name)) {
         if ($error === 0) {
             if (is_uploaded_file($tmp_file_name)) {
-                if (!file_exists(UPLOAD_DIR_YMD)) mk_dir(UPLOAD_DIR_YMD);
+                if (!file_exists(UPLOAD_YMD_DIR)) mk_dir(UPLOAD_YMD_DIR);
                 $image_create_result = filters_image_types($file_name, $file_ext_name, $tmp_file_name);
                 if ($image_create_result === true) {
                     //fixme:改为数据库匹配图像识别字符串来判断文件是否上传过，用来达到不保存用户图片文件的目的。
-                    if (!file_exists(UPLOAD_DIR_YMD . $file_name)) {
-                        $rename_file_result = rename($php_created_image, UPLOAD_DIR_YMD . $file_name);
+                    if (!file_exists(UPLOAD_YMD_DIR . $file_name)) {
+                        $rename_file_result = rename($php_created_image, UPLOAD_YMD_DIR . $file_name);
 
                         if ($rename_file_result === true) {
                             $result['message']['upload']['success'][] = $file_name;
