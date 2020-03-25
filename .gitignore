@@ -1,11 +1,15 @@
+# 排除IDE相关文件
 .DS_Store
 .idea
 
-# PHP error log
+# 排除PHP错误日志
 /**/php_errors.log
 
-# Project exclude paths
-/upload/
-/node_modules/
+# 排除项目构建生成路径
 /vendor/
+/node_modules/
 /wwwroot/static/
+
+# 排除项目运行生成路径
+/session_files/
+/wwwroot/upload/
