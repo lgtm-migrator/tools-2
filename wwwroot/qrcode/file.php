@@ -22,7 +22,6 @@ if (is_uploaded_file($tmp_file_name)) {
   if ($error === 0) {
     if (in_array($file_ext_name, $allowed_extension_name)) {
       if (!file_exists(LHM_RESULT_IMG_YMD_PATH)) mk_dir(LHM_RESULT_IMG_YMD_PATH);
-      echo LHM_RESULT_IMG_YMD_PATH;
       $image_create_result = filters_image_types($file_name, $file_ext_name, $tmp_file_name);
       if ($image_create_result === true) {
         if (!file_exists(LHM_RESULT_IMG_YMD_PATH . $file_name)) {

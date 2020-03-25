@@ -16,7 +16,7 @@ function verify_result($type = 'json', $Response = null, $Action = null, $Thresh
     $resp_array = $resp->toArray();
     $resp_json = json_encode($resp_array);
 
-    require_once 'recaptcha_database.php';
+    require_once dirname(__FILE__) . '/recaptcha_database.php';
     recaptcha_data_to_database($resp_array, $Threshold);
 
     if ($type === 'bool') {
@@ -39,8 +39,8 @@ function verify_result($type = 'json', $Response = null, $Action = null, $Thresh
 function ReCaptcha_verify($Response = null, $Action = null, $Threshold = null, $TimeOutSeconds = null, $HostName = null, $RemoteIp = null)
 {
     global $recaptcha_v3_secret_key, $siteVerifyUrl, $response, $action, $hostname, $threshold, $timeoutSeconds, $remoteIp;
-    require_once 'recaptcha_key.php';
-    require_once '../vendor/autoload.php';
+    require_once dirname(__FILE__) . '/recaptcha_key.php';
+    require_once dirname(__DIR__) . "/vendor/autoload.php";
 
     $Response = (is_null($Response)) ? $response : $Response;
     $Action = (is_null($Action)) ? $action : $Action;

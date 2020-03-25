@@ -6,7 +6,8 @@ function recaptcha_data_to_database($resp_array, $Threshold = null)
 {
     global $db_host, $db_user, $db_pwd, $db_database;
     global $threshold, $remoteIp, $timeoutSeconds;
-    require_once dirname(__DIR__) . "/mysqli/config.php";
+    global $db;
+    require_once dirname(__DIR__) . "/mysqli/mysqli.php";
 
     $now = new DateTime();
 
@@ -43,20 +44,8 @@ function recaptcha_data_to_database($resp_array, $Threshold = null)
         "user_agent" => $user_agent,
     );
 
-
-    $db = new MysqliDb();
-    $db->addConnection("google_recaptcha_data", array(
-        'host' => $db_host,
-        'username' => $db_user,
-        'password' => $db_pwd,
-        'db' => $db_database,
-//        'port' => 3306,
-//        'prefix' => '',
-//        'charset' => 'utf8'
-    ));
-
     try {
-        $db->connection("google_recaptcha_data");
+        $db->connection("recaptcha");
         $id = $db->insert("jzeg_tools.google_recaptcha_data", $google_recaptcha_data);
     } catch (Exception $e) {
         die($e->getMessage());
