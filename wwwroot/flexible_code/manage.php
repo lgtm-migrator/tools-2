@@ -3,7 +3,7 @@
 define('title', '管理灵活码');
 require_once dirname(__DIR__) . '/header.php';
 ?>
-<link rel="stylesheet" href="/static/css/jt_qrcode.min.css">
+<link rel="stylesheet" href="/static/css/flexible_code.min.css">
 <div class="py-3 container bg-white" id="jt_container">
   <div class="mb-3 p-3 border rounded" id="lhm_manage">
     <div class="mb-1 font-weight-bolder text-warning">管理灵活码</div>
@@ -99,7 +99,7 @@ require_once dirname(__DIR__) . '/header.php';
 </div>
 <div>
   <?php require_once dirname(__DIR__) . "/javascript.php"; ?>
-  <script src="/static/js/jt_qrcode.min.js"></script>
+  <script src="/static/js/flexible_code.min.js"></script>
 
   <script>
     $().ready(function () {

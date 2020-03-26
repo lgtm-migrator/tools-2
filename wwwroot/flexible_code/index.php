@@ -3,12 +3,12 @@
 define('title', '灵活码');
 require_once dirname(__DIR__) . '/header.php';
 ?>
-<link rel="stylesheet" href="/static/css/jt_qrcode.min.css">
+<link rel="stylesheet" href="/static/css/flexible_code.min.css">
 <div class="py-3 container bg-white" id="jt_container">
   <div class="mb-4" id="jt_lhm_toolbar">
     <div class="mb-3">
       <h1 class="mb-0 d-inline-block h6 font-weight-bolder">
-        <a class="text-reset text-decoration-none" href="/qrcode/" title="灵活码">灵活码</a>
+        <a class="text-reset text-decoration-none" href="#" title="灵活码">灵活码</a>
       </h1>
       <i class="fa-fw fa fa-qrcode"></i>
     </div>
@@ -174,20 +174,20 @@ require_once dirname(__DIR__) . '/header.php';
           </div>
         </div>
         <div class="form-group text-center">
-          <input class="btn btn-sm btn-outline-success" type="submit" name="" id="submit" value="开始制作">
+          <input class="btn btn-sm btn-outline-success" type="submit" name="" id="submit" value="生成灵活码">
         </div>
       </form>
     </div>
     <div class="d-flex p-2 border justify-content-center">
-      <a class="mx-2" target="_blank" href="/qrcode/manage.php" title="管理灵活码">管理</a>
-      <a class="mx-2" target="_blank" href="/qrcode/editor.php" title="编辑灵活码">样式编辑</a>
-      <a class="mx-2" target="_blank" href="/qrcode/q.php?q=LHM-1582813209" title="灵活码示例">示例</a>
+      <a class="mx-2" target="_blank" href="manage.php" title="管理灵活码">管理</a>
+      <a class="mx-2" target="_blank" href="editor.php" title="编辑灵活码">样式编辑</a>
+      <a class="mx-2" target="_blank" href="q.php?q=lhm-001" title="灵活码示例">示例</a>
     </div>
   </div>
 </div>
 <div>
   <?php require_once dirname(__DIR__) . "/javascript.php"; ?>
-  <script src="/static/js/jt_qrcode.min.js"></script>
+  <script src="/static/js/flexible_code.min.js"></script>
 </div>
 
 <?php

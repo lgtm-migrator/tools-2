@@ -2,7 +2,7 @@ require('./common');
 require('./user');
 require('./sms');
 require('./tools_static');
-require('./jt_qrcode');
+require('./flexible_code');
 
 const {task, series, parallel} = require('gulp');
 
@@ -14,7 +14,7 @@ task("build_static",
     "build_sms",
     "build_tools",
     "build_common",
-    "build_jt_qrcode",
+    "build_flexible_code",
   )
 );
 task('watch_change',
@@ -23,7 +23,7 @@ task('watch_change',
     'watch_sms',
     'watch_tools',
     'watch_config_json',
-    'watch_jt_qrcode',
+    'watch_flexible_code',
   )
 );
 task('copy',
@@ -32,6 +32,6 @@ task('copy',
     'copy_sms',
     'copy_common',
     'copy_tools',
-    'copy_jt_qrcode',
+    'copy_flexible_code',
   )
 );
