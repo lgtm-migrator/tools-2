@@ -4,7 +4,7 @@ define('title', '灵活码样式编辑');
 require_once dirname(__DIR__) . '/header.php';
 ?>
 <link rel="stylesheet" href="/static/css/bootstrap-colorpicker.min.css">
-<link rel="stylesheet" href="/static/css/jt_qrcode.min.css">
+<link rel="stylesheet" href="/static/css/flexible_code.min.css">
 <div class="py-3 container bg-white" id="jt_container">
   <div class="mb-4" id="jt_lhm_toolbar">
     <div class="mb-3 px-4 py-3 border rounded" id="lhm_editor">
@@ -146,7 +146,7 @@ require_once dirname(__DIR__) . '/header.php';
 <div>
   <?php require_once dirname(__DIR__) . "/javascript.php"; ?>
   <script src="/static/js/bootstrap-colorpicker.min.js"></script>
-  <script src="/static/js/jt_qrcode.min.js"></script>
+  <script src="/static/js/flexible_code.min.js"></script>
 </div>
 
 <?php
