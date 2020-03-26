@@ -35,7 +35,7 @@ require_once dirname(__DIR__) . '/header.php';
               <div class="dropdown-menu dropdown-menu-right">
                 <a class="d-block border-0 rounded-0 btn btn-outline-warning" href="#lhm_scrollspy-price">价格</a>
                 <a class="d-block border-0 rounded-0 btn btn-outline-warning"
-                   href="#lhm_scrollspy-price-methods">付费方式</a>
+                   href="#lhm_scrollspy-price-methods">扣费方式</a>
                 <a class="d-block border-0 rounded-0 btn btn-outline-warning"
                    href="#lhm_scrollspy-price-discount">折扣</a>
                 <a class="d-block border-0 rounded-0 btn btn-outline-warning" href="#lhm_scrollspy-price-renew">续费</a>
@@ -94,7 +94,7 @@ require_once dirname(__DIR__) . '/header.php';
             </div>
           </div>
           <div class="mb-3 tab-pane fade" id="lhm_scrollspy-price-methods">
-            <h6 class="font-weight-bolder">付费方式</h6>
+            <h6 class="font-weight-bolder">扣费方式</h6>
             <div>
               <div class="text-success">实行先管理，后付费方式。</div>
               <div class="text-muted">
