@@ -17,6 +17,7 @@ $db->addConnection("add_phone_number", $db_addConnection_params);
 $db->addConnection("phone_number_search", $db_addConnection_params);
 $db->addConnection("photo_info", $db_addConnection_params);
 $db->addConnection("recaptcha", $db_addConnection_params);
+$db->addConnection("jt_session", $db_addConnection_params);
 
 $db->addConnection("number_stored", array(
     'host' => $db_host,

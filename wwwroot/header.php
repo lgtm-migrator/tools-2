@@ -1,14 +1,42 @@
 <?php
+date_default_timezone_set('Asia/Shanghai');
+
 require_once dirname(__DIR__) . "/config/defined.php";
 require_once dirname(__DIR__) . "/config/functions.php";
+require_once dirname(__DIR__) . "/session/session_functions.php";
+
 if (!file_exists(SESSION_YMD_DIR)) mk_dir(SESSION_YMD_DIR);
 session_save_path(SESSION_YMD_DIR);
 
+session_name('JZEG_NET');
+
 $cookie_params = array(
   "httponly" => true,
-  "secure" => true
+//  "secure" => true,
 );
 session_set_cookie_params($cookie_params);
+
+//设置session存储到数据库中
+$cookie_data = session_get_cookie_params();
+$session_data = array(
+  'session_expires' => $cookie_data['lifetime'],
+  'session_path' => $cookie_data['path'],
+  'session_domain' => $cookie_data['domain'],
+  'session_secure' => $cookie_data['secure'],
+  'session_httpOnly' => $cookie_data['httponly'],
+  'session_sameSite' => $cookie_data['samesite'],
+);
+
+$session_opens = jt_session_open();
+$session_close = jt_session_close();
+$session_read = jt_session_read(session_id());
+$session_write = jt_session_write(session_id(), $session_data);
+$session_status_destroy = jt_session_status_destroy(session_id());
+$session_gc = jt_session_gc();
+
+session_set_save_handler($session_opens, $session_close, $session_read, $session_write, $session_status_destroy, $session_gc);
+
+
 session_start();
 ?>
 <!DOCTYPE html>
