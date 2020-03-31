@@ -45,12 +45,6 @@ require_once dirname(__DIR__) . "/header.php";
                maxlength="10" placeholder="&#xf015;&#xf095;&#xf3cd;">
       </div>
     </div>
-    <div class="d-flex justify-content-center" id="search_btn">
-      <a href="javascript:" class="mx-2 btn btn-success name">
-        <i class="fa-lg fas fa-home"></i>&nbsp;搜名称</a>
-      <a href="javascript:" class="mx-2 btn btn-danger number">
-        <i class="fa-lg fas fa-phone"></i>&nbsp;<i class="fa-lg fas fa-mobile-alt"></i>&nbsp;搜号码</a>
-    </div>
   </div>
 </div>
 
