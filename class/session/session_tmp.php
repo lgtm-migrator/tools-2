@@ -23,7 +23,7 @@ function session_init()
   $cookie_data = session_get_cookie_params();
   $session_data = array(
     'session_lifetime' => $cookie_data['lifetime'],
-    'session_expires' => $cookie_data['expires'],
+    'session_expires' => '',
     'session_path' => $cookie_data['path'],
     'session_domain' => $cookie_data['domain'],
     'session_secure' => $cookie_data['secure'],
