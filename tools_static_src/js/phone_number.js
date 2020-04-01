@@ -9,18 +9,46 @@ if (search_btn) search_btn.addEventListener('click', click_search_btn);
 
 if (search_regional_dropdown_menu) search_regional_dropdown_menu.addEventListener('click', toggle_search_regional_dropdown_btn_text);
 
-
 function create_search_number_tools() {
-  // let search_number_tools = document.createElement("div");
-  let search_number_tools = document.querySelector("#search_number_tools");
+  let jt_container = document.querySelector('#jt_container');
+  let search_number_tools = document.createElement("div");
 
-  // search_number_tools.id = 'search_number_tools';
+  search_number_tools.id = 'search_number_tools';
 
+  search_number_tools.appendChild(create_search_regional_form());
   search_number_tools.appendChild(create_search_submits());
+  jt_container.appendChild(search_number_tools);
 }
 
 function create_search_regional_form() {
+  let form_row = document.createElement("div");
+  let input_group = document.createElement("div");
+  let label = document.createElement("label");
+  let input = document.createElement("input");
+  let tmp = document.createElement("div");
 
+  form_row.className = 'form-row justify-content-center';
+
+  input_group.className = 'mb-3 input-group input-group-lg col-11 col-sm-10 col-md-8 col-lg-6';
+
+  input.className = 'border form-control fas text-center';
+  input.id = 'phone_number_input';
+  input.type = 'search';
+  input.minLength = 3;
+  input.maxLength = 10;
+  tmp.innerHTML = '&#xf015;&#xf095;&#xf3cd;';
+  input.placeholder = tmp.innerHTML;
+
+  label.className = 'sr-only';
+  label.setAttribute('for', input.id);
+  label.innerHTML = '单位名称、简称或者号码';
+
+  input_group.appendChild(create_search_regional_dropdown_menu());
+  input_group.appendChild(label);
+  input_group.appendChild(input);
+  form_row.appendChild(input_group);
+
+  return form_row;
 }
 
 function create_search_regional_dropdown_menu() {
@@ -44,6 +72,8 @@ function create_search_regional_dropdown_menu() {
 
   search_regional.appendChild(i);
   search_regional_dropdown_menu.appendChild(create_search_regional_buttons());
+  search_regional_dropdown_menu.appendChild(create_dropdown_divider());
+  search_regional_dropdown_menu.appendChild(create_search_regional_buttons_ext());
   input_group_prepend.appendChild(search_regional);
   input_group_prepend.appendChild(search_regional_dropdown_menu);
 
@@ -72,14 +102,41 @@ function create_search_regional_buttons() {
     input.name = 'search_regional';
     input.id = 'search_regional_' + index;
     input.value = index;
-    input.innerHTML = regional_array[index];
 
+    label.innerHTML = regional_array[index];
     label.className = 'min-w-rem-9 border-0 rounded-0 btn btn-outline-danger';
     label.setAttribute('for', input.id);
 
     label.appendChild(input);
     div.appendChild(label);
   }
+
+  return div;
+}
+
+function create_dropdown_divider(border) {
+  let div = document.createElement("div");
+  div.className = border ? 'dropdown-divider ' + border : 'dropdown-divider';
+
+  return div;
+}
+
+function create_search_regional_buttons_ext() {
+  let div = document.createElement("div");
+  let button = document.createElement("button");
+  let i = document.createElement("i");
+
+  div.className = 'btn-group-vertical';
+
+  button.className = 'min-w-rem-9 border-0 rounded-0 btn btn-outline-success';
+  button.type = 'button';
+  button.id = 'add_new_number';
+
+  i.className = 'fas fa-plus-circle';
+  i.innerHTML = '&nbsp;添加新的号码';
+
+  button.appendChild(i);
+  div.appendChild(button);
 
   return div;
 }
