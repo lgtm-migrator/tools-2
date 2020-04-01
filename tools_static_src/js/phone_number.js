@@ -10,7 +10,6 @@ if (search_btn) search_btn.addEventListener('click', click_search_btn);
 if (search_regional_dropdown_menu) search_regional_dropdown_menu.addEventListener('click', toggle_search_regional_dropdown_btn_text);
 
 function create_search_number_tools() {
-  let jt_container = document.querySelector('#jt_container');
   let search_number_tools = document.createElement("div");
 
   search_number_tools.id = 'search_number_tools';
@@ -72,7 +71,7 @@ function create_search_regional_dropdown_menu() {
 
   search_regional.appendChild(i);
   search_regional_dropdown_menu.appendChild(create_search_regional_buttons());
-  search_regional_dropdown_menu.appendChild(create_dropdown_divider());
+  search_regional_dropdown_menu.appendChild(create_dropdown_divider('border-secondary'));
   search_regional_dropdown_menu.appendChild(create_search_regional_buttons_ext());
   input_group_prepend.appendChild(search_regional);
   input_group_prepend.appendChild(search_regional_dropdown_menu);
@@ -110,13 +109,6 @@ function create_search_regional_buttons() {
     label.appendChild(input);
     div.appendChild(label);
   }
-
-  return div;
-}
-
-function create_dropdown_divider(border) {
-  let div = document.createElement("div");
-  div.className = border ? 'dropdown-divider ' + border : 'dropdown-divider';
 
   return div;
 }

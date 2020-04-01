@@ -74,6 +74,13 @@ function create_close_btn(fun_name, class_name) {
     return close_button;
 }
 
+function create_dropdown_divider(border) {
+  let div = document.createElement("div");
+  div.className = border ? 'dropdown-divider ' + border : 'dropdown-divider';
+
+  return div;
+}
+
 function get_file_ext_name(file_name, index_of = '.') {
   return file_name.substring(file_name.lastIndexOf(index_of) + 1).toLowerCase();
 }
@@ -697,7 +704,7 @@ function fixed_tools_to_top() {
     let a = document.createElement('a');
     let i = document.createElement('i');
 
-    a.className = 'bg-img-blue d-block border border-primary rounded p-1';
+    a.className = 'bg-img-blue d-block border border-primary rounded-circle p-1';
     a.href = 'javascript:';
     a.id = 'to_top';
     a.addEventListener('click', topControl);
