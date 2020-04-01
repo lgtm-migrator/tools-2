@@ -43,6 +43,8 @@ const
   dayjs_locale_zh_cn_js_path = "./node_modules/dayjs/locale/zh-cn.js",
   /** animate.css **/
   animate_all_css_path = "./node_modules/animate.css/animate.*css",
+  /** aqua.css **/
+  aqua_all_css_path = "./node_modules/@alphardex/aqua.css/dist/*",
   /** hover.css **/
   hover_css_path = "./node_modules/hover.css/css/hover.css",
   hover_css_map_path = "./node_modules/hover.css/css/hover.css.map",
@@ -65,6 +67,7 @@ task(copy_popper);
 task(copy_bootstrap);
 task(copy_bootstrap_table);
 task(copy_animate_css);
+task(copy_aqua_css);
 task(copy_hover_css);
 task(copy_hamburgers_css);
 task(copy_bootstrap_modal_js);
@@ -89,6 +92,7 @@ task("copy_common",
     copy_bootstrap,
     copy_bootstrap_table,
     copy_animate_css,
+    copy_aqua_css,
     copy_hover_css,
     copy_hamburgers_css,
     copy_bootstrap_modal_js,
@@ -175,6 +179,12 @@ function copy_bootstrap_table(done) {
 
 function copy_animate_css(done) {
   src([animate_all_css_path], {since: lastRun(copy_animate_css)})
+    .pipe(dest(static_css));
+  done();
+}
+
+function copy_aqua_css(done) {
+  src([aqua_all_css_path], {since: lastRun(copy_aqua_css)})
     .pipe(dest(static_css));
   done();
 }

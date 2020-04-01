@@ -1,4 +1,5 @@
 /** 搜索号码 **/
+create_search_number_tools();
 show_search_result();
 let search_btn = document.querySelector('#search_btn');
 let search_regional_dropdown_menu = document.querySelector('#search_regional_dropdown_menu');
@@ -7,6 +8,167 @@ let search_regional = document.querySelector('#search_regional');
 if (search_btn) search_btn.addEventListener('click', click_search_btn);
 
 if (search_regional_dropdown_menu) search_regional_dropdown_menu.addEventListener('click', toggle_search_regional_dropdown_btn_text);
+
+function create_search_number_tools() {
+  let search_number_tools = document.createElement("div");
+
+  search_number_tools.id = 'search_number_tools';
+
+  search_number_tools.appendChild(create_search_regional_form());
+  search_number_tools.appendChild(create_search_submits());
+  jt_container.appendChild(search_number_tools);
+}
+
+function create_search_regional_form() {
+  let form_row = document.createElement("div");
+  let input_group = document.createElement("div");
+  let label = document.createElement("label");
+  let input = document.createElement("input");
+  let tmp = document.createElement("div");
+
+  form_row.className = 'form-row justify-content-center';
+
+  input_group.className = 'mb-3 input-group input-group-lg col-11 col-sm-10 col-md-8 col-lg-6';
+
+  input.className = 'border form-control fas text-center';
+  input.id = 'phone_number_input';
+  input.type = 'search';
+  input.minLength = 3;
+  input.maxLength = 10;
+  tmp.innerHTML = '&#xf015;&#xf095;&#xf3cd;';
+  input.placeholder = tmp.innerHTML;
+
+  label.className = 'sr-only';
+  label.setAttribute('for', input.id);
+  label.innerHTML = '单位名称、简称或者号码';
+
+  input_group.appendChild(create_search_regional_dropdown_menu());
+  input_group.appendChild(label);
+  input_group.appendChild(input);
+  form_row.appendChild(input_group);
+
+  return form_row;
+}
+
+function create_search_regional_dropdown_menu() {
+  let search_regional = document.createElement("button");
+  let i = document.createElement("i");
+  let search_regional_dropdown_menu = document.createElement("div");
+  let input_group_prepend = document.createElement("div");
+
+  input_group_prepend.className = 'input-group-prepend';
+
+  search_regional_dropdown_menu.className = 'dropdown-menu min-w-rem-7 shadow text-center';
+  search_regional_dropdown_menu.id = 'search_regional_dropdown_menu';
+
+  search_regional.type = 'button';
+  search_regional.className = 'btn btn-light border text-success';
+  search_regional.id = 'search_regional';
+  search_regional.title = '区域';
+  search_regional.setAttribute('data-toggle', 'dropdown');
+
+  i.className = 'text-danger fa-lg fa-fw fas fa-map-signs';
+
+  search_regional.appendChild(i);
+  search_regional_dropdown_menu.appendChild(create_search_regional_buttons());
+  search_regional_dropdown_menu.appendChild(create_dropdown_divider('border-secondary'));
+  search_regional_dropdown_menu.appendChild(create_search_regional_buttons_ext());
+  input_group_prepend.appendChild(search_regional);
+  input_group_prepend.appendChild(search_regional_dropdown_menu);
+
+  return input_group_prepend;
+}
+
+function create_search_regional_buttons() {
+  let div = document.createElement("div");
+  let regional_array = {
+    'dp': '东庞',
+    'gq': '葛泉',
+    'xdw': '显德汪',
+    'xm': '邢煤',
+    'xd': '邢东',
+    'zc': '章村',
+  };
+
+  div.className = 'btn-group-vertical btn-group-toggle';
+  div.setAttribute('data-toggle', 'buttons');
+
+  for (let index in regional_array) {
+    let label = document.createElement("label");
+    let input = document.createElement("input");
+
+    input.type = 'radio';
+    input.name = 'search_regional';
+    input.id = 'search_regional_' + index;
+    input.value = index;
+
+    label.innerHTML = regional_array[index];
+    label.className = 'min-w-rem-9 border-0 rounded-0 btn btn-outline-danger';
+    label.setAttribute('for', input.id);
+
+    label.appendChild(input);
+    div.appendChild(label);
+  }
+
+  return div;
+}
+
+function create_search_regional_buttons_ext() {
+  let div = document.createElement("div");
+  let button = document.createElement("button");
+  let i = document.createElement("i");
+
+  div.className = 'btn-group-vertical';
+
+  button.className = 'min-w-rem-9 border-0 rounded-0 btn btn-outline-success';
+  button.type = 'button';
+  button.id = 'add_new_number';
+
+  i.className = 'fas fa-plus-circle';
+  i.innerHTML = '&nbsp;添加新的号码';
+
+  button.appendChild(i);
+  div.appendChild(button);
+
+  return div;
+}
+
+function create_search_submits() {
+  let search_submits = document.createElement("div");
+  let search_name_a = document.createElement("a");
+  let search_name_i = document.createElement("i");
+  let search_number_a = document.createElement("a");
+  let search_number_i_1 = document.createElement("i");
+  let search_number_i_2 = document.createElement("i");
+  let text_nbsp = document.createTextNode(` `);
+
+  search_submits.id = 'search_btn';
+  search_submits.className = 'd-flex justify-content-center';
+
+  search_name_a.className = 'mx-2 btn btn-success name';
+  search_name_a.href = 'javascript:';
+  search_name_a.innerHTML = '&nbsp;搜名称';
+
+  search_name_i.className = 'fa-lg fas fa-home';
+
+  search_number_a.className = 'mx-2 btn btn-danger number';
+  search_number_a.href = 'javascript:';
+  search_number_a.innerHTML = '&nbsp;搜号码';
+
+  search_number_i_1.className = 'fa-lg fas fa-phone';
+  search_number_i_2.className = 'fa-lg fas fa-mobile-alt';
+
+  search_name_a.insertBefore(search_name_i, search_name_a.lastChild);
+
+  search_number_a.insertBefore(search_number_i_1, search_number_a.lastChild);
+  search_number_a.insertBefore(search_number_i_2, search_number_a.lastChild);
+  search_number_a.insertBefore(text_nbsp, search_number_a.lastElementChild);
+
+  search_submits.appendChild(search_name_a);
+  search_submits.appendChild(search_number_a);
+
+  return search_submits;
+}
 
 function toggle_search_regional_dropdown_btn_text(e) {
   let target = e.target;

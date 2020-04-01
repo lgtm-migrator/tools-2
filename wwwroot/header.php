@@ -1,15 +1,7 @@
 <?php
-require_once dirname(__DIR__) . "/config/defined.php";
-require_once dirname(__DIR__) . "/config/functions.php";
-if (!file_exists(SESSION_YMD_DIR)) mk_dir(SESSION_YMD_DIR);
-session_save_path(SESSION_YMD_DIR);
-
-$cookie_params = array(
-  "httponly" => true,
-  "secure" => true
-);
-session_set_cookie_params($cookie_params);
-session_start();
+date_default_timezone_set('Asia/Shanghai');
+require_once dirname(__DIR__).'/class/session/session_tmp.php';
+session_init();
 ?>
 <!DOCTYPE html>
 <html lang="zh-CN">
