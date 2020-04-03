@@ -1,13 +1,6 @@
 /** 搜索号码 **/
 create_search_number_tools();
-show_search_result();
-let search_btn = document.querySelector('#search_btn');
-let search_regional_dropdown_menu = document.querySelector('#search_regional_dropdown_menu');
-let search_regional = document.querySelector('#search_regional');
-
-if (search_btn) search_btn.addEventListener('click', click_search_btn);
-
-if (search_regional_dropdown_menu) search_regional_dropdown_menu.addEventListener('click', toggle_search_regional_dropdown_btn_text);
+create_search_result();
 
 function create_search_number_tools() {
   let search_number_tools = document.createElement("div");
@@ -58,14 +51,20 @@ function create_search_regional_dropdown_menu() {
 
   input_group_prepend.className = 'input-group-prepend';
 
-  search_regional_dropdown_menu.className = 'dropdown-menu min-w-rem-7 shadow text-center';
-  search_regional_dropdown_menu.id = 'search_regional_dropdown_menu';
-
   search_regional.type = 'button';
   search_regional.className = 'btn btn-light border text-success';
   search_regional.id = 'search_regional';
   search_regional.title = '区域';
   search_regional.setAttribute('data-toggle', 'dropdown');
+
+  search_regional_dropdown_menu.className = 'dropdown-menu min-w-rem-7 shadow text-center';
+  search_regional_dropdown_menu.id = 'search_regional_dropdown_menu';
+  search_regional_dropdown_menu.addEventListener('click', function (e) {
+    let target = e.target;
+    if (target.tagName === 'LABEL') {
+      search_regional.innerText = target.innerText;
+    }
+  });
 
   i.className = 'text-danger fa-lg fa-fw fas fa-map-signs';
 
@@ -135,49 +134,54 @@ function create_search_regional_buttons_ext() {
 
 function create_search_submits() {
   let search_submits = document.createElement("div");
+
+  search_submits.id = 'search_btn';
+  search_submits.className = 'd-flex justify-content-center';
+
+  search_submits.appendChild(create_search_submit_name());
+  search_submits.appendChild(create_search_submit_number());
+
+  return search_submits;
+}
+
+function create_search_submit_name() {
   let search_name_a = document.createElement("a");
   let search_name_i = document.createElement("i");
+
+  search_name_a.className = 'mx-2 btn btn-success name';
+  search_name_a.href = 'javascript:';
+  search_name_a.innerHTML = '&nbsp;搜名称';
+  search_name_a.addEventListener('click', click_search_submits);
+
+  search_name_i.className = 'fa-lg fas fa-home';
+
+  search_name_a.insertBefore(search_name_i, search_name_a.lastChild);
+
+  return search_name_a;
+}
+
+function create_search_submit_number() {
   let search_number_a = document.createElement("a");
   let search_number_i_1 = document.createElement("i");
   let search_number_i_2 = document.createElement("i");
   let text_nbsp = document.createTextNode(` `);
 
-  search_submits.id = 'search_btn';
-  search_submits.className = 'd-flex justify-content-center';
-
-  search_name_a.className = 'mx-2 btn btn-success name';
-  search_name_a.href = 'javascript:';
-  search_name_a.innerHTML = '&nbsp;搜名称';
-
-  search_name_i.className = 'fa-lg fas fa-home';
-
   search_number_a.className = 'mx-2 btn btn-danger number';
   search_number_a.href = 'javascript:';
   search_number_a.innerHTML = '&nbsp;搜号码';
+  search_number_a.addEventListener('click', click_search_submits);
 
   search_number_i_1.className = 'fa-lg fas fa-phone';
   search_number_i_2.className = 'fa-lg fas fa-mobile-alt';
-
-  search_name_a.insertBefore(search_name_i, search_name_a.lastChild);
 
   search_number_a.insertBefore(search_number_i_1, search_number_a.lastChild);
   search_number_a.insertBefore(search_number_i_2, search_number_a.lastChild);
   search_number_a.insertBefore(text_nbsp, search_number_a.lastElementChild);
 
-  search_submits.appendChild(search_name_a);
-  search_submits.appendChild(search_number_a);
-
-  return search_submits;
+  return search_number_a;
 }
 
-function toggle_search_regional_dropdown_btn_text(e) {
-  let target = e.target;
-  if (target.tagName === 'LABEL') {
-    search_regional.innerText = target.innerText;
-  }
-}
-
-function click_search_btn(e) {
+function click_search_submits(e) {
   let target = e.target;
   let search_options = {
     clicked_btn: target,
@@ -281,15 +285,9 @@ function ajax_search(search_data, clicked_btn) {
 /** 搜索号码结果 **/
 let search_result_number_list = document.querySelector('#search_result_number_list');
 
-function show_search_result() {
-  create_search_result();
-  create_search_result_close();
-}
-
 function dispose_search_result() {
-  let search_number_tools = document.querySelector('#search_number_tools');
   let search_result = document.querySelector('#search_result');
-  search_number_tools.removeChild(search_result);
+  jt_container.removeChild(search_result);
 }
 
 function get_search_result(data) {
@@ -303,8 +301,7 @@ function get_search_result(data) {
 
 function processing_search_result(data) {
   search_result_number_list.innerHTML = '';
-  // dispose_search_result();
-  // show_search_result();
+
   for (let index in data) {
     if (data.hasOwnProperty(index)) create_search_result_number_list(data[index]);
   }
@@ -314,7 +311,6 @@ function processing_search_result(data) {
 }
 
 function create_search_result() {
-  let search_number_tools = document.querySelector('#search_number_tools');
   let search_result = document.createElement("div");
   let span = document.createElement("span");
   let search_result_number_list = document.createElement("div");
@@ -330,13 +326,8 @@ function create_search_result() {
 
   search_result.appendChild(span);
   search_result.appendChild(search_result_number_list);
-  search_number_tools.appendChild(search_result);
-}
-
-function create_search_result_close() {
-  let search_result = document.querySelector('#search_result');
-  let close_btn = create_close_btn(dispose_search_result);
-  search_result.insertBefore(close_btn, search_result.firstElementChild);
+  search_result.insertBefore(create_close_btn(dispose_search_result), search_result.firstElementChild);
+  jt_container.appendChild(search_result);
 }
 
 function create_search_result_number_list(data) {
