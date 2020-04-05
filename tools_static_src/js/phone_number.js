@@ -1,6 +1,6 @@
 /** 搜索号码 **/
 create_search_number_tools();
-create_search_result();
+// create_search_result();
 
 function create_search_number_tools() {
   let search_number_tools = document.createElement("div");
@@ -283,16 +283,12 @@ function ajax_search(search_data, clicked_btn) {
 
 
 /** 搜索号码结果 **/
-let search_result_number_list = document.querySelector('#search_result_number_list');
-
-function dispose_search_result() {
-  let search_result = document.querySelector('#search_result');
-  jt_container.removeChild(search_result);
-}
+// let search_result_number_list = document.querySelector('#search_result_number_list');
 
 function get_search_result(data) {
   let data_length = data.length;
   if (data_length) {
+    create_search_result();
     processing_search_result(data);
   } else {
     bootstrapModalJs('', create_small_center_text('暂时没有找到您要查找的号码', 'danger'), '', 'sm', true);
@@ -300,6 +296,7 @@ function get_search_result(data) {
 }
 
 function processing_search_result(data) {
+  let search_result_number_list = document.querySelector('#search_result_number_list');
   search_result_number_list.innerHTML = '';
 
   for (let index in data) {
@@ -311,6 +308,7 @@ function processing_search_result(data) {
 }
 
 function create_search_result() {
+  remove_search_result();
   let search_result = document.createElement("div");
   let span = document.createElement("span");
   let search_result_number_list = document.createElement("div");
@@ -326,11 +324,26 @@ function create_search_result() {
 
   search_result.appendChild(span);
   search_result.appendChild(search_result_number_list);
-  search_result.insertBefore(create_close_btn(dispose_search_result), search_result.firstElementChild);
+  search_result.insertBefore(create_close_btn(remove_search_result), search_result.firstElementChild);
   jt_container.appendChild(search_result);
 }
 
+function remove_search_result() {
+  let search_result = document.querySelector('#search_result');
+  remove_selfElement(search_result);
+}
+
+function remove_selfElement(element) {
+  if (element) {
+    element.parentElement.removeChild(element)
+  } else {
+    return false;
+  }
+  return true;
+}
+
 function create_search_result_number_list(data) {
+  let search_result_number_list = document.querySelector('#search_result_number_list');
   let div = document.createElement('div');
   let div1 = document.createElement('div');
 
@@ -438,17 +451,23 @@ function create_search_result_number_list_number(number, number_type) {
 }
 
 function dial_search_result_number() {
+  let search_result_number_list = document.querySelector('#search_result_number_list');
   search_result_number_list.addEventListener('click', function (e) {
     let target = e.target;
 
     if (target.classList.contains('dial_number') || target.className.indexOf('dial_number') !== -1) {
       let number = target.previousElementSibling.previousElementSibling.innerHTML;
-      window.location.href = 'tel://' + number;
+      tel_number(number);
     }
   });
 }
 
+function tel_number(numeric) {
+  window.location.href = 'tel://' + numeric;
+}
+
 function copy_search_result_number() {
+  let search_result_number_list = document.querySelector('#search_result_number_list');
   search_result_number_list.addEventListener('click', function (e) {
     let target = e.target;
 
