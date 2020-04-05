@@ -724,7 +724,7 @@ function create_add_tel_number(id_timestamp) {
 
   input.className = 'form-control form-control-sm fas text-success text-center tel_number';
   input.id = 'tel_number_' + id_timestamp;
-  input.type = 'tel';
+  input.type = 'text';
   input.setAttribute('minlength', '12');
   input.setAttribute('maxlength', '12');
   input.placeholder = '座机电话号码 ';
@@ -755,7 +755,7 @@ function create_add_mobile_number(id_timestamp) {
 
   input.className = 'form-control form-control-sm fas text-success text-center mobile_number';
   input.id = 'mobile_number_' + id_timestamp;
-  input.type = 'tel';
+  input.type = 'text';
   input.setAttribute('minlength', '11');
   input.setAttribute('maxlength', '15');
   input.placeholder = '手机电话号码 ';
