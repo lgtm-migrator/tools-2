@@ -29,7 +29,7 @@ require_once './header.php';
         <div class="col mb-3 tools-collapse collapse-conversion collapse show">
             <div class="card h-100 hvr-wobble-bottom">
                 <div class="d-flex justify-content-between card-header py-2">
-                    <a class="stretched-link text-dark font-weight-bold text-decoration-none" href="/qrcode/"
+                    <a class="stretched-link text-dark font-weight-bold text-decoration-none" href="/flexible_code/"
                        title="照片详情信息" style="font-size: 95%;"><i class="mr-2 text-success fa-lg fas fa-qrcode"></i>灵活码</a>
                     <div class="category_name text-muted small">[&nbsp;转换&nbsp;]</div>
                 </div>
