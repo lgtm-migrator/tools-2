@@ -7,12 +7,17 @@ function session_init()
   if (!file_exists(SESSION_YMD_DIR)) mk_dir(SESSION_YMD_DIR);
   session_save_path(SESSION_YMD_DIR);
 
-  session_name('JZEG_NET');
+  $jt_sess_id = session_create_id('jt-');
+//  session_name('JZEG_NET');
+  session_name($jt_sess_id);
+  session_id($jt_sess_id);
+
+  $current_domain = $_SERVER['HTTP_HOST'];
 
   $cookie_params = array(
 //  "lifetime" => 0,
 //  "path" => '/',
-//  "domain" => '',
+    "domain" => $current_domain,
 //  "secure" => true,
     "httponly" => true,
 //  "samesite" => '',
