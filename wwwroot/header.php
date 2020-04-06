@@ -1,7 +1,11 @@
 <?php
 date_default_timezone_set('Asia/Shanghai');
-require_once dirname(__DIR__).'/class/session/session_tmp.php';
+require_once dirname(__DIR__) . '/class/session/session_tmp.php';
 session_init();
+set_session();
+set_user_loggedIn();
+set_token();
+set_session_cookie('_token', $_SESSION['_token']);
 ?>
 <!DOCTYPE html>
 <html lang="zh-CN">
