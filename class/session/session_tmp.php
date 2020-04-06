@@ -37,7 +37,7 @@ function set_session()
 
 function set_session_cookie($session_name, $session_value)
 {
-  $params = set_session_params();
+  $params = set_cookie_params();
   setcookie($session_name, $session_value, $params);
 }
 
@@ -50,25 +50,52 @@ function set_session_cookie($session_name, $session_value)
 
 function set_session_params()
 {
-  $cookie_params = array();
+  $session_params = array();
   $current_domain = $_SERVER['HTTP_HOST'];
 
   if ('http' === $_SERVER['REQUEST_SCHEME']) {
-    $cookie_params = array(
+    $session_params = array(
 //  "lifetime" => 0,
-//  "path" => '/',
+      "path" => '/',
       "domain" => $current_domain,
       "secure" => false,
       "httponly" => true,
 //  "samesite" => '',
     );
   } else if ('https' === $_SERVER['REQUEST_SCHEME']) {
-    $cookie_params = array(
+    $session_params = array(
 //  "lifetime" => 0,
-//  "path" => '/',
+      "path" => '/',
       "domain" => $current_domain,
       "secure" => true,
       "httponly" => true,
+//  "samesite" => '',
+    );
+  }
+  return $session_params;
+}
+
+function set_cookie_params()
+{
+  $cookie_params = array();
+  $current_domain = $_SERVER['HTTP_HOST'];
+
+  if ('http' === $_SERVER['REQUEST_SCHEME']) {
+    $cookie_params = array(
+      "expires" => 0,
+      "path" => '/',
+      "domain" => $current_domain,
+      "secure" => false,
+      "httponly" => false,
+//  "samesite" => '',
+    );
+  } else if ('https' === $_SERVER['REQUEST_SCHEME']) {
+    $cookie_params = array(
+      "expires" => 0,
+      "path" => '/',
+      "domain" => $current_domain,
+      "secure" => true,
+      "httponly" => false,
 //  "samesite" => '',
     );
   }
