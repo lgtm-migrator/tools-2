@@ -109,7 +109,10 @@ function set_user_loggedIn()
 
 function set_token()
 {
-  $jt_sess_token = for_md5($_SESSION['session_id'], $_SESSION['timestamp'], 2000);
+  $ip = (isset($_SERVER['REMOTE_ADDR'])) ? $_SERVER['REMOTE_ADDR'] : null;
+  $ua = (isset($_SERVER['HTTP_USER_AGENT'])) ? $_SERVER['HTTP_USER_AGENT'] : null;
+  $md5_array = [$ip, $ua, $_SESSION['session_id'], $_SESSION['timestamp']];
+  $jt_sess_token = for_md5(2000, $md5_array);
   $_SESSION['_token'] = $jt_sess_token;
 }
 
@@ -125,11 +128,13 @@ function set_timestamp()
   $_SESSION['timestamp'] = $timestamp;
 }
 
-function for_md5($value_1, $value_2, $number = 1000)
+function for_md5(int $number, array $value_array)
 {
+  $value = (is_array($value_array)) ? implode('', $value_array) : false;
+  if ($value === false) return false;
   $result = '';
   for ($i = 0; $i <= $number; $i++) {
-    $result = md5($value_1 . $value_2);
+    $result = md5($value);
   }
   return $result;
 }
