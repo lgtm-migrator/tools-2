@@ -595,19 +595,6 @@ function create_img(options, alt, className) {
   return img;
 }
 
-/** localStorage **/
-if (localStorage && (
-    localStorage.setItem('status', 'yes') ||
-    localStorage.getItem('status') === 'yes' ||
-    localStorage.length >= 1)) {
-    if (!localStorage.getItem('init_date_time')) {
-        localStorage.setItem('init_date_time', dayjs().locale('zh-cn').format());
-        localStorage.setItem('init_date_timestamp', dayjs().locale('zh-cn').unix());
-    }
-} else {
-    throw new Error('不支持LocalStorage。');
-}
-
 /** bootstrapModalJs-alert **/
 function bootstrapModalJs_alert(alert_array = {}) {
     let bootstrapModalJs_options = {'backdrop': 'static', 'keyboard': false};
