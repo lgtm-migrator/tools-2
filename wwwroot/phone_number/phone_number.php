@@ -21,9 +21,14 @@ if (filter_has_var(INPUT_POST, 'g_recaptcha')) {
 }
 
 if (filter_has_var(INPUT_POST, 'token')) {
-  $result['token'][] = json_encode($_SESSION);
-  $result['token'][] = $_POST['token'];
-  $result['token'][] = $_COOKIE['_token'];
+  if ($_COOKIE['_token'] = $_POST['token']) {
+    //fixme:改$_SESSION调用
+    $result['token'][0] = json_encode($_SESSION);
+    $result['token'][1] = $_POST['token'];
+    $result['token'][2] = $_COOKIE['_token'];
+  } else {
+    die('token错误');
+  }
 } else {
   die('token访问受限');
 }
