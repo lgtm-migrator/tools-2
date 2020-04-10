@@ -1,30 +1,43 @@
 <?php
+session_name('jt_session');
+session_start();
+
+$result = array(
+  'message' => array(),
+  'error' => array(),
+);
 
 if (filter_has_var(INPUT_POST, 'g_recaptcha')) {
-  if ($_POST['g_recaptcha']['token'] && $_POST['g_recaptcha']['action']) {
-    $result = array(
-      'message' => array(),
-      'error' => array(),
-    );
-    require_once dirname(dirname(__DIR__)) . "/recaptcha/recaptcha_verify_v3.php";
-    $g_recaptcha_result = verify_result($type = 'bool', $_POST['g_recaptcha']['token'], $_POST['g_recaptcha']['action'], 0.9);
-    if ($g_recaptcha_result === true) {
-      $result['message']['g_recaptcha']['verify'] = true;
-      if (filter_has_var(INPUT_POST, 'data')) {
-        $phone_number_data_post = filter_input(INPUT_POST, 'data');
-      }
-    } else {
-      $result['message']['g_recaptcha']['verify'] = false;
-      die(json_encode($result));
-    }
-
+  require_once dirname(dirname(__DIR__)) . "/recaptcha/recaptcha_verify_v3.php";
+  $g_recaptcha_result = verify_result($type = 'bool', $_POST['g_recaptcha']['token'], $_POST['g_recaptcha']['action'], 0.9);
+  if ($g_recaptcha_result === true) {
+    $result['message']['g_recaptcha']['verify'] = true;
   } else {
-    die('访问受限');
+    $result['message']['g_recaptcha']['verify'] = false;
+    die(json_encode($result));
   }
 } else {
   die('访问受限');
 }
 
+if (filter_has_var(INPUT_POST, 'token')) {
+  if ($_COOKIE['_token'] = $_POST['token']) {
+    //fixme:改$_SESSION调用
+    $result['token'][0] = json_encode($_SESSION);
+    $result['token'][1] = $_POST['token'];
+    $result['token'][2] = $_COOKIE['_token'];
+  } else {
+    die('token错误');
+  }
+} else {
+  die('token访问受限');
+}
+
+if (filter_has_var(INPUT_POST, 'data')) {
+  $phone_number_data_post = filter_input(INPUT_POST, 'data');
+} else {
+  die('访问受限');
+}
 $data_post_array = json_decode($phone_number_data_post, true);
 
 $udate = new DateTime();

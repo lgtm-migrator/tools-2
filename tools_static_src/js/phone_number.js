@@ -567,7 +567,6 @@ function add_number_data() {
   let tel_number_all = document.querySelectorAll('.tel_number');
   let mobile_number_all = document.querySelectorAll('.mobile_number');
   let regional_all = document.querySelectorAll('input[name=add_regional]');
-
   let result = {};
 
   for (let x = regional_all.length, i = 0; i < x; i++) {
@@ -584,6 +583,10 @@ function add_number_data() {
     };
   }
   return JSON.stringify(result);
+}
+
+function get_token() {
+  return get_cookie('_token');
 }
 
 function create_add_number_form() {
@@ -936,6 +939,7 @@ function ajax_phone_number(data, g_recaptcha_token, g_recaptcha_action) {
     timeout: 5000,
     data: {
       data: data,
+      token: get_token(),
       g_recaptcha: {
         token: g_recaptcha_token,
         action: g_recaptcha_action,
