@@ -1,13 +1,13 @@
 <?php
 ?>
-<div class="tab-content">
-  <div class="tab-pane fade zoomIn animated" id="login">
-    <?php require_once dirname(__FILE__) . '/panel_user_login.php'; ?>
+<div class="tab-content" id="account_tab_content">
+  <div class="tab-pane fade zoomIn animated" id="sign_in">
+    <?php require_once dirname(__FILE__) . '/sign_in.php'; ?>
   </div>
-  <div class="tab-pane fade zoomIn animated" id="register">
-    <?php require_once dirname(__FILE__) . '/panel_user_register.php'; ?>
+  <div class="tab-pane fade zoomIn animated" id="sign_up">
+    <?php require_once dirname(__FILE__) . '/sign_up.php'; ?>
   </div>
-  <div class="tab-pane fade zoomIn animated" id="lostPassword">
-    <?php require_once dirname(__FILE__) . '/panel_user_lostPassword.php'; ?>
+  <div class="tab-pane fade zoomIn animated" id="password_reset">
+    <?php require_once dirname(__FILE__) . '/password_reset.php'; ?>
   </div>
 </div>

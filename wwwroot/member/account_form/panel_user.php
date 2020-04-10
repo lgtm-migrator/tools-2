@@ -11,6 +11,9 @@
       <div class="modal-body">
         <?php require_once dirname(__FILE__) . '/panel_content.php'; ?>
       </div>
+      <div class="modal-footer">
+        <?php include_once dirname(__FILE__) . '/oauth_login.php'; ?>
+      </div>
     </div>
   </div>
 </div>

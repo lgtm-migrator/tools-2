@@ -167,3 +167,15 @@
 .bg-img-purple { background-image: linear-gradient(180deg, #d6338499, #6f42c199)}
 .bg-img-blue { background-image: linear-gradient(180deg, #007bff99, #28a74570)}
 .bg-img-yellow { background-image: linear-gradient(180deg, #ffc10799, #fd7e1499)}
+
+/* icon图标颜色 */
+.fa-alipay{}
+.fa-aliyun{}
+.fa-google{}
+.fa-github{}
+.fa-weibo{}
+.fa-qq{}
+.fa-weixin{}
+.fa-facebook{}
+.fa-twitter{}
+.fa-linkedin{}
