@@ -1,14 +1,14 @@
-<div class="mt-2 text-center" id="oauth_login">
-  <span class="small text-muted" id="collapse_oauth_login">更多登录方式<i class="ml-2 fa-lg fas fa-chevron-up"></i></span>
-  <div class="mt-2 py-1 border rounded collapse fa-lg" id="oauth_login_list">
-    <div class="d-inline mt-0 m-1" id="oauth_alipay"><i class="fab fa-fw fa-alipay" title="支付宝登录"></i></div>
-    <div class="d-inline mt-0 m-1" id="oauth_google"><i class="fab fa-fw fa-google" title="谷歌登录"></i></div>
-    <div class="d-inline mt-0 m-1" id="oauth_github"><i class="fab fa-fw fa-github" title="GitHub登录"></i></div>
-    <div class="d-inline mt-0 m-1" id="oauth_weibo"><i class="fab fa-fw fa-weibo" title="微博登录"></i></div>
-    <div class="d-inline mt-0 m-1" id="oauth_qq"><i class="fab fa-fw fa-qq" title="QQ登录"></i></div>
-    <div class="d-inline mt-0 m-1" id="oauth_weixin"><i class="fab fa-fw fa-weixin" title="微信登录"></i></div>
-    <div class="d-inline mt-0 m-1" id="oauth_facebook"><i class="fab fa-fw fa-facebook" title="Facebook登录"></i></div>
-    <div class="d-inline mt-0 m-1" id="oauth_twitter"><i class="fab fa-fw fa-twitter" title="推特登录"></i></div>
-    <div class="d-inline mt-0 m-1" id="oauth_linkedin"><i class="fab fa-fw fa-linkedin" title="领英登录"></i></div>
+<div class="mt-2 pb-5" id="oauth_sign_in">
+  <button type="button" class="p-2 border-0 btn btn-outline-secondary fab fa-lg fa-alipay" data-title="支付宝登录"></button>
+  <button type="button" class="p-2 border-0 btn btn-outline-secondary fab fa-lg fa-weixin" data-title="微信登录"></button>
+  <button type="button" class="p-2 border-0 btn btn-outline-secondary fab fa-lg fa-qq" data-title="QQ登录"></button>
+  <button type="button" class="p-2 border-0 btn btn-outline-secondary fab fa-lg fa-github" data-title="GitHub登录"></button>
+  <button type="button" class="border-0 btn btn-outline-secondary dropdown-toggle" data-toggle="dropdown">更多</button>
+  <div class="dropdown-menu dropdown-menu-right">
+    <button type="button" class="p-2 border-0 btn btn-outline-secondary fab fa-lg fa-google" data-title="谷歌登录"></button>
+    <button type="button" class="p-2 border-0 btn btn-outline-secondary fab fa-lg fa-weibo" data-title="微博登录"></button>
+    <button type="button" class="p-2 border-0 btn btn-outline-secondary fab fa-lg fa-facebook" data-title="脸书登录"></button>
+    <button type="button" class="p-2 border-0 btn btn-outline-secondary fab fa-lg fa-twitter" data-title="推特登录"></button>
+    <button type="button" class="p-2 border-0 btn btn-outline-secondary fab fa-lg fa-linkedin" data-title="领英登录"></button>
   </div>
 </div>
