@@ -17,8 +17,8 @@
           case "oauth_linkedin":
           default:
             let e_dataset_val = e.target.parentElement.dataset["originalTitle"];
-            bootstrapModalJs('', e_dataset_val + '正在开发中。', '', 'sm', true);
-            break;
+            let tip = `<div class="text-center text-warning">${e_dataset_val}功能正在开发中</div>`;
+            bootstrapModalJs('', tip, '', 'sm', true);
         }
       })
     }
@@ -42,7 +42,7 @@
 
   function collapse_oauth_login_toggle_icon() {
     let i = collapse_oauth_login.querySelector("i");
-    let $oauth_login_list=$("#oauth_login_list");
+    let $oauth_login_list = $("#oauth_login_list");
     $oauth_login_list.on('hidden.bs.collapse', function () {
       i.classList.remove("fa-chevron-down");
       i.classList.add("fa-chevron-up");
@@ -51,5 +51,38 @@
       i.classList.remove("fa-chevron-up");
       i.classList.add("fa-chevron-down");
     });
+  }
+})();
+
+// 登录切换
+(function () {
+  let sign_tab = document.querySelector('#sign_tab');
+  if (sign_tab) {
+    sign_tab.addEventListener('click', function (e) {
+      let e_target = e.target;
+      if ('BUTTON' === e_target.tagName) {
+        $(e_target).tab('show');
+      }
+    });
+
+    let $sign_tab_btn = $('#sign_tab button');
+    $sign_tab_btn.on('show.bs.tab', function (e) {
+      let e_target = e.target;
+      let e_relatedTarget = e.relatedTarget;
+      console.log($(e_target));
+      console.log(e_target);
+      console.log($(e_relatedTarget));
+      console.log(e_relatedTarget);
+    });
+
+    $sign_tab_btn.on('shown.bs.tab', function (e) {
+      let e_target = e.target;
+      let e_relatedTarget = e.relatedTarget;
+      console.log($(e_target));
+      console.log(e_target);
+      console.log($(e_relatedTarget));
+      console.log(e_relatedTarget);
+    });
+
   }
 })();

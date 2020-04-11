@@ -48,7 +48,7 @@
       <label class="custom-control-label" for="signIn_rememberMe">30天内免登录</label>
     </div>
   </div>
-  <div class="form-group form-row justify-content-center">
-    <button class="btn btn-sm btn-outline-info" type="button" id="signIn_submit">登录</button>
+  <div class="d-flex justify-content-center">
+    <button class="btn btn-outline-info" type="button" id="signIn_submit">登录</button>
   </div>
 </div>
