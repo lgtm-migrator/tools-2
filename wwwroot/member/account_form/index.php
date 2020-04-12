@@ -13,15 +13,12 @@ if (!defined('JZEG_NET')) die();
         </button>
         <div class="dropdown-menu min-w-rem-7 shadow text-center dropdown-menu-right">
           <div class="btn-group-sm btn-group-vertical">
-            <button class="min-w-rem-9 border-0 rounded-0 btn btn-outline-secondary" type="button">
-              <i class="fas fa-user mr-1 mr-lg-2">&nbsp;用户名</i>
-            </button>
+            <button class="min-w-rem-9 border-0 rounded-0 btn btn-outline-secondary fas fa-user" type="button">用户名</button>
           </div>
-          <div class="dropdown-divider border-secondary"></div>
+          <div class="dropdown-divider"></div>
           <div class="btn-group-sm btn-group-vertical">
-            <button class="min-w-rem-9 border-0 rounded-0 btn btn-outline-secondary" type="button">
-              <i class="fas fa-sign-out-alt mr-1 mr-lg-2">&nbsp;退出</i>
-            </button>
+            <button class="min-w-rem-9 border-0 rounded-0 btn btn-outline-secondary fas fa-sign-out-alt" type="button">设置</button>
+            <button class="min-w-rem-9 border-0 rounded-0 btn btn-outline-secondary fas fa-sign-out-alt" type="button">退出</button>
           </div>
 
         </div>
