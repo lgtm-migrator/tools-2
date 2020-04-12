@@ -18,8 +18,10 @@
       </div>
     </div>
   </div>
-  <div class="d-flex justify-content-end">
-    <a class="small text-decoration-none text-secondary" id="modalTab_lostPassword" href="#password_reset"
+  <div class="d-flex justify-content-end small">
+    <a class="ml-2 text-decoration-none text-secondary" id="modalTab_sign_in_phone" href="#sign_in_phone"
+       data-toggle="tab">手机号登录</a>
+    <a class="ml-2 text-decoration-none text-secondary" id="modalTab_lostPassword" href="#password_reset"
        data-toggle="tab">忘记密码</a>
   </div>
   <div class="d-flex flex-column align-items-center justify-content-center" id="reCaptcha_status" style="display: none!important;">
@@ -49,6 +51,6 @@
     </div>
   </div>
   <div class="d-flex justify-content-center">
-    <button class="btn btn-outline-info" type="button" id="signIn_submit">登录</button>
+    <button class="btn btn-secondary" type="button" id="signIn_submit">登录</button>
   </div>
 </div>
