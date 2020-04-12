@@ -13,40 +13,31 @@ if (!defined('JZEG_NET')) die();
         </button>
         <div class="dropdown-menu min-w-rem-7 shadow text-center dropdown-menu-right">
           <div class="btn-group-sm btn-group-vertical">
-            <button class="min-w-rem-9 border-0 rounded-0 btn btn-outline-secondary" type="button">
-              <i class="fas fa-user mr-1 mr-lg-2">&nbsp;用户名</i>
-            </button>
+            <a href="javascript:" class="min-w-rem-9 border-0 rounded-0 btn btn-outline-secondary">
+              <span>用户名</span>
+            </a>
           </div>
-          <div class="dropdown-divider border-secondary"></div>
+          <div class="dropdown-divider"></div>
           <div class="btn-group-sm btn-group-vertical">
-            <button class="min-w-rem-9 border-0 rounded-0 btn btn-outline-secondary" type="button">
-              <i class="fas fa-sign-out-alt mr-1 mr-lg-2">&nbsp;退出</i>
-            </button>
+            <a href="javascript:" class="min-w-rem-9 border-0 rounded-0 btn btn-outline-secondary">
+              <i class="fas fa-cog"></i>
+              <span>设置</span>
+            </a>
+            <a href="javascript:" class="min-w-rem-9 border-0 rounded-0 btn btn-outline-secondary">
+              <i class="fas fa-sign-out-alt"></i>
+              <span>退出</span>
+            </a>
           </div>
 
         </div>
       </div>
-      <div class="btn-group btn-group-sm" id="account_sign_in">
-        <a class="btn btn-outline-secondary" href="#" data-toggle="modal" data-target="#modalLogin"
-           data-modaltab="login">
+      <div class="btn-group btn-group-sm" id="account_sign">
+        <a class="btn btn-outline-secondary" href="#" data-toggle="modal" data-target="#sign" data-modaltab="sign_in">
           <i class="fas fa-sign-in-alt mr-1 mr-lg-2">&nbsp;登录</i>
         </a>
-        <button type="button" class="btn btn-outline-secondary dropdown-toggle dropdown-toggle-split"
-                data-toggle="dropdown">
-          <span class="sr-only">下拉菜单</span>
-        </button>
-        <div class="dropdown-menu min-w-rem-7 shadow text-center dropdown-menu-right">
-          <div class="btn-group-vertical">
-            <button class="min-w-rem-9 border-0 rounded-0 btn btn-outline-secondary" type="button" data-toggle="modal" data-target="#modalLogin"
-                    data-modaltab="register">
-              <i class="fas fa-user-plus mr-1 mr-lg-2">&nbsp;注册</i>
-            </button>
-            <button class="min-w-rem-9 border-0 rounded-0 btn btn-outline-secondary" type="button" data-toggle="modal" data-target="#modalLogin"
-                    data-modaltab="lostPassword">
-              <i class="fas fa-user-md mr-1 mr-lg-2">&nbsp;找回密码</i>
-            </button>
-          </div>
-        </div>
+        <a class="btn btn-outline-secondary" href="#" data-toggle="modal" data-target="#sign" data-modaltab="sign_up">
+          <i class="fas fa-user-plus mr-1 mr-lg-2">&nbsp;注册</i>
+        </a>
       </div>
       <?php require_once dirname(__FILE__) . '/panel_user.php'; ?>
     </div>

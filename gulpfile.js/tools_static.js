@@ -21,8 +21,8 @@ const
   tools_static_src_path = "./tools_static_src/",
   tools_static_src_js = tools_static_src_path + "js/",
   tools_static_src_css = tools_static_src_path + "css/",
-  /** bootstrap_5 **/
-  bootstrap_5_css_path = tools_static_src_css + "bootstrap_5.css",
+  /** bootstrap_next **/
+  bootstrap_next_css_path = tools_static_src_css + "bootstrap_next.css",
   /** tools **/
   tools_js_path = tools_static_src_js + "tools.js",
   tools_css_path = tools_static_src_css + "tools.css",
@@ -76,7 +76,7 @@ task("build_tools",
 // Tasks function
 // 任务函数
 function copy_tools_css(done) {
-  src([tools_css_path, index_css_path, survey_css_path, phone_number_css_path, photo_info_css_path, bootstrap_5_css_path], {since: lastRun(copy_tools_css)})
+  src([tools_css_path, index_css_path, survey_css_path, phone_number_css_path, photo_info_css_path, bootstrap_next_css_path], {since: lastRun(copy_tools_css)})
     .pipe(dest(static_css));
   done();
 }
@@ -88,7 +88,7 @@ function copy_tools_js(done) {
 }
 
 function cleanCSS_tools(done) {
-  src([tools_css_path, index_css_path, survey_css_path, phone_number_css_path, photo_info_css_path, bootstrap_5_css_path], {since: lastRun(cleanCSS_tools)})
+  src([tools_css_path, index_css_path, survey_css_path, phone_number_css_path, photo_info_css_path, bootstrap_next_css_path], {since: lastRun(cleanCSS_tools)})
     .pipe(postcss([autoPreFixer()]))
     .pipe(cleanCSS())
     .pipe(rename({suffix: ".min"}))
