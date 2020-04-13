@@ -179,3 +179,22 @@
 .fa-facebook{}
 .fa-twitter{}
 .fa-linkedin{}
+
+/* 分隔 */
+.jz-divider {
+  height: 0;
+  margin: .5rem 0;
+  overflow: hidden;
+  border-top: 1px solid #d9dcdf;
+}
+
+.border-none {border-top-style: none!important;}
+.border-hidden {border-top-style: hidden!important;}
+.border-dotted {border-top-style: dotted!important;}
+.border-dashed {border-top-style: dashed!important;}
+.border-solid {border-top-style: solid!important;}
+.border-double {border-top-style: double!important;}
+.border-groove {border-top-style: groove!important;}
+.border-ridge {border-top-style: ridge!important;}
+.border-inset {border-top-style: inset!important;}
+.border-outset {border-top-style: outset!important;}
