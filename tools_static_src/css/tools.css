@@ -102,6 +102,7 @@
 .grecaptcha-badge { visibility: hidden;}
 
 /* 响应式宽度 */
+.min-w-100 {min-width: 100%;}
 .min-w-rem-1 {min-width: 1rem;}
 .min-w-rem-2 {min-width: 2rem;}
 .min-w-rem-3 {min-width: 3rem;}
@@ -188,6 +189,7 @@
   border-top: 1px solid #d9dcdf;
 }
 
+/* 边框 */
 .border-none {border-top-style: none !important;}
 .border-hidden {border-top-style: hidden !important;}
 .border-dotted {border-top-style: dotted !important;}
@@ -198,3 +200,6 @@
 .border-ridge {border-top-style: ridge !important;}
 .border-inset {border-top-style: inset !important;}
 .border-outset {border-top-style: outset !important;}
+
+/* 文本 */
+.text-align-last {text-align-last: justify;}

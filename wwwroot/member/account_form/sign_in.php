@@ -1,7 +1,9 @@
 <div id="account_sign_in">
-  <div class="form-group">
-    <label class="sr-only text-dark" for="signIn_user_name">用户名</label>
-    <div class="input-group">
+  <div class="form-group form-row align-items-center">
+    <div class="col-2 col-sm-2">
+      <label class="mb-1 d-inline-block min-w-100 text-align-last text-dark" for="signIn_user_name">用户名</label>
+    </div>
+    <div class="col-12 col-sm-10 input-group">
       <input class="form-control" type="text" id="signIn_user_name" placeholder="请输入用户名" minlength="5" maxlength="20"
              autocomplete="off" required>
     </div>
