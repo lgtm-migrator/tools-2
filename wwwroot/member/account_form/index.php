@@ -28,7 +28,6 @@ if (!defined('JZEG_NET')) die();
               <span>退出</span>
             </a>
           </div>
-
         </div>
       </div>
       <div class="btn-group btn-group-sm" id="account_sign">

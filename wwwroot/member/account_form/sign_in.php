@@ -1,28 +1,26 @@
 <div id="account_sign_in">
   <div class="form-group">
-    <label class="d-none text-dark" for="signIn_user_name">用户名</label>
+    <label class="sr-only text-dark" for="signIn_user_name">用户名</label>
     <div class="input-group">
       <input class="form-control" type="text" id="signIn_user_name" placeholder="请输入用户名" minlength="5" maxlength="20"
              autocomplete="off" required>
     </div>
   </div>
   <div class="form-group">
-    <label class="d-none text-dark" for="signIn_password">密码</label>
+    <label class="sr-only text-dark" for="signIn_password">密码</label>
     <div class="input-group">
-      <input class="form-control" type="text" id="signIn_password" placeholder="请输入密码" minlength="5" maxlength="20"
+      <input class="form-control" type="password" id="signIn_password" placeholder="请输入密码" minlength="5" maxlength="20"
              autocomplete="off" required>
       <div class="input-group-append">
         <div class="input-group-text">
-          <i id="toggle_password" class="fas fa-lg fa-eye" title="显示密码"></i>
+          <i class="fas fa-fw fa-lg fa-eye" title="显示密码" id="password_switch"></i>
         </div>
       </div>
     </div>
   </div>
-  <div class="d-flex justify-content-end small">
-    <a class="ml-2 text-decoration-none text-secondary" id="modalTab_sign_in_phone" href="#sign_in_phone"
-       data-toggle="tab">手机号登录</a>
-    <a class="ml-2 text-decoration-none text-secondary" id="modalTab_lostPassword" href="#password_reset"
-       data-toggle="tab">忘记密码</a>
+  <div class="mb-2 d-flex justify-content-end">
+    <button class="ml-2 btn btn-sm btn-link text-decoration-none text-secondary sign_tab" type="button" data-target="sign_in_phone">手机号登录</button>
+    <button class="ml-2 btn btn-sm btn-link text-decoration-none text-secondary sign_tab" type="button" data-target="password_reset">忘记密码</button>
   </div>
   <div class="d-flex flex-column align-items-center justify-content-center" id="reCaptcha_status" style="display: none!important;">
     <div id="reCaptcha_check">
@@ -37,8 +35,11 @@
   </div>
   <div class="form-group">
     <div class="input-group">
+      <label class="sr-only text-dark" for="modal_login_captcha">验证码</label>
       <div class="input-group-prepend">
-        <label class="input-group-text" for="modal_login_captcha" id="captcha">验证码<div>123456</div></label>
+        <div class="input-group-text">
+          <div id="captcha">123456</div>
+        </div>
       </div>
       <input class="form-control" type="text" id="modal_login_captcha" placeholder="请输入验证码" minlength="4"
              maxlength="6" autocomplete="off" required>
