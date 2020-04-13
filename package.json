@@ -71,7 +71,7 @@
     "fundebug-javascript": "^2.4.0",
     "hamburgers": "^1.1.3",
     "hover.css": "^2.3.2",
-    "jquery": "^3.5.0",
+    "jquery": "^3.4.1",
     "js-cookie": "^3.0.0-rc.0",
     "popper.js": "^1.16.1",
     "qrcode": "^1.4.4"
