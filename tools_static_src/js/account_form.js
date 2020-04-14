@@ -70,3 +70,50 @@ $().ready(function () {
     })
   }
 });
+
+// reCaptcha状态检测
+$().ready(function () {
+  let recaptcha_status = document.querySelector('#recaptcha_status');
+  if (recaptcha_status) {
+    let recaptcha_check = document.querySelector('#recaptcha_check');
+    let recaptcha_check_text = document.querySelector('#recaptcha_check_text');
+    let recaptcha_check_retry = document.querySelector('#recaptcha_check_retry');
+    let recaptcha_progress = document.querySelector('#recaptcha_progress');
+    let recaptcha_progress_bar = document.querySelector('#recaptcha_progress_bar');
+    let recaptcha_result = document.querySelector('#recaptcha_result');
+    let recaptcha_result_success = document.querySelector('#recaptcha_result_success');
+    let recaptcha_result_failure = document.querySelector('#recaptcha_result_failure');
+
+    show_element(recaptcha_status);
+    progress_bar_revise(recaptcha_progress_bar);
+
+    function show_element(element) {
+      if (element.classList.contains('d-none')) {
+        element.classList.remove('d-none');
+      } else {
+        element.style.display = '';
+      }
+    }
+
+    function progress_bar_revise(bar_element) {
+      let element_current_width = get_element_style_number(bar_element, 'width');
+      let max_time = 6,
+        max_width = 100,
+        gap_width = max_width - element_current_width;
+
+
+    }
+
+    function get_element_style_number(element, style_name) {
+      let style_attribute_value = window.getComputedStyle(element, null).getPropertyValue(style_name);
+      console.log(style_attribute_value);
+      if ('' === style_attribute_value) return false;
+      if (style_attribute_value.includes('%')) {
+        return style_attribute_value.replace('%', '');
+      } else if (style_attribute_value.includes('px')) {
+        return style_attribute_value.replace('px', '');
+      }
+    }
+
+  }
+});
