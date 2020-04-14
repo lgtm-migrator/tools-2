@@ -13,7 +13,7 @@
       <label class="mb-1 d-inline-block min-w-100 text-align-last" for="signIn_password">密码</label>
     </div>
     <div class="col-12 col-sm-10 input-group">
-      <input class="form-control" type="password" id="signIn_password" placeholder="请输入密码" minlength="5" maxlength="20"
+      <input class="form-control" type="password" id="signIn_password" placeholder="请输入密码" minlength="8" maxlength="16"
              autocomplete="off" required>
       <div class="input-group-append">
         <div class="input-group-text">
