@@ -43,9 +43,7 @@
     </div>
     <div class="col-12 col-sm-10 input-group">
       <div class="input-group-prepend">
-        <div class="input-group-text">
-          <div id="captcha">123456</div>
-        </div>
+        <div class="input-group-text" id="captcha">123456</div>
       </div>
       <input class="form-control" type="text" id="modal_login_captcha" placeholder="请输入验证码" minlength="4"
              maxlength="6" autocomplete="off" required>
