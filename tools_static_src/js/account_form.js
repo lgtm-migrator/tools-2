@@ -75,14 +75,14 @@ $().ready(function () {
 $().ready(function () {
   let recaptcha_status = document.querySelector('#recaptcha_status');
   if (recaptcha_status) {
-    let recaptcha_check = document.querySelector('#recaptcha_check');
-    let recaptcha_check_text = document.querySelector('#recaptcha_check_text');
-    let recaptcha_check_retry = document.querySelector('#recaptcha_check_retry');
-    let recaptcha_progress = document.querySelector('#recaptcha_progress');
+    // let recaptcha_check = document.querySelector('#recaptcha_check');
+    // let recaptcha_check_text = document.querySelector('#recaptcha_check_text');
+    // let recaptcha_check_retry = document.querySelector('#recaptcha_check_retry');
+    // let recaptcha_progress = document.querySelector('#recaptcha_progress');
     let recaptcha_progress_bar = document.querySelector('#recaptcha_progress_bar');
-    let recaptcha_result = document.querySelector('#recaptcha_result');
-    let recaptcha_result_success = document.querySelector('#recaptcha_result_success');
-    let recaptcha_result_failure = document.querySelector('#recaptcha_result_failure');
+    // let recaptcha_result = document.querySelector('#recaptcha_result');
+    // let recaptcha_result_success = document.querySelector('#recaptcha_result_success');
+    // let recaptcha_result_failure = document.querySelector('#recaptcha_result_failure');
 
     show_element(recaptcha_status);
     progress_bar_revise(recaptcha_progress_bar);
@@ -101,7 +101,7 @@ $().ready(function () {
         max_width = 100,
         gap_width = max_width - element_current_width;
 
-
+      console.log(max_time + gap_width);
     }
 
     function get_element_style_number(element, style_name) {
