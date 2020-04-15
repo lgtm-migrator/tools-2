@@ -4,9 +4,8 @@
       <label class="mb-1 d-inline-block min-w-100 text-align-last" for="signUp_user_name">用户名</label>
     </div>
     <div class="col-12 col-sm-10 input-group">
-      <input class="form-control" type="text" id="signUp_user_name" placeholder="请输入要注册的用户名" minlength="5"
-             maxlength="20"
-             autocomplete="off" required>
+      <input class="form-control" type="text" id="signUp_user_name" placeholder="请设置你的用户名" minlength="5"
+             maxlength="20" autocomplete="off" required>
     </div>
   </div>
   <div class="form-group form-row align-items-center">
@@ -23,7 +22,7 @@
       <label class="mb-1 d-inline-block min-w-100 text-align-last" for="signUp_password">密码</label>
     </div>
     <div class="col-12 col-sm-10 input-group">
-      <input class="form-control" type="password" id="signUp_password" placeholder="请设定您的密码" minlength="8"
+      <input class="form-control" type="password" id="signUp_password" placeholder="设置你的登录密码" minlength="8"
              maxlength="16"
              autocomplete="off" required>
       <div class="input-group-append">
@@ -35,12 +34,11 @@
   </div>
   <div class="form-group form-row align-items-center">
     <div class="col-auto col-sm-2">
-      <label class="mb-1 d-inline-block min-w-100 text-align-last" for="signUp_password_again">密码</label>
+      <label class="mb-1 d-inline-block min-w-100 text-align-last" for="signUp_rePassword">密码</label>
     </div>
     <div class="col-12 col-sm-10 input-group">
-      <input class="form-control" type="password" id="signUp_password_again" placeholder="请再输入一次密码" minlength="8"
-             maxlength="16"
-             autocomplete="off" required>
+      <input class="form-control" type="password" id="signUp_rePassword" placeholder="请再次输入你的密码" minlength="8"
+             maxlength="16" autocomplete="off" required>
       <div class="input-group-append">
         <div class="input-group-text">
           <i class="fas fa-fw fa-lg fa-eye" title="显示密码" id="password_switch"></i>
