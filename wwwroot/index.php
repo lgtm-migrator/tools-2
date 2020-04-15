@@ -1,6 +1,6 @@
 <?php
 define('title', '在线小工具');
-require_once './header.php';
+require_once dirname(__FILE__) . '/header.php';
 ?>
 <link rel="stylesheet" href="static/css/index.min.css">
 
@@ -51,15 +51,13 @@ require_once './header.php';
             </div>
         </div>
     </div>
-
 </div>
-
-<div>
-    <?php require_once "javascript.php"; ?>
+<div class="d-none">
+  <?php require_once dirname(__FILE__) . "/javascript.php"; ?>
     <script src="static/js/index.min.js"></script>
     <script src="static/js/survey.min.js"></script>
 </div>
 
 <?php
-require_once './footer.php';
+require_once dirname(__FILE__) . '/footer.php';
 ?>
