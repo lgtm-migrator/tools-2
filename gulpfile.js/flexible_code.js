@@ -76,6 +76,7 @@ function terser_flexible_code(done) {
 
 function copy_flexible_code_css(done) {
   src([flexible_code_css_path], {since: lastRun(copy_flexible_code_css)})
+    .pipe(postcss([autoPreFixer()]))
     .pipe(dest(static_css));
   done();
 }
