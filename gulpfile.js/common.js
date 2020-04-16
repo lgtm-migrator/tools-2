@@ -28,7 +28,7 @@ const
   bootstrap_all_js_path = "./node_modules/bootstrap/dist/js/*",
   bootstrap_all_css_path = "./node_modules/bootstrap/dist/css/*",
   /** Bootstrap-master-dist **/
-  bootstrap_master_dist_all_path = "./tools_static_src/bootstrap-master-dist/**/*",
+  bootstrap_master_dist_all_path = "./node_modules/bootstrap-master/dist/**/*",
   /** bootstrap-table **/
   bootstrap_table_js_path = "./node_modules/bootstrap-table/dist/bootstrap-table.js",
   bootstrap_table_js_min_path = "./node_modules/bootstrap-table/dist/bootstrap-table.min.js",
