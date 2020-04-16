@@ -73,18 +73,18 @@ $().ready(function () {
 
 // reCaptcha状态检测
 $().ready(function () {
-  let recaptcha_status = document.querySelector('#recaptcha_status');
-  if (recaptcha_status) {
+  let recaptcha_tools = document.querySelector('#recaptcha_tools');
+  if (recaptcha_tools) {
     // let recaptcha_check = document.querySelector('#recaptcha_check');
     // let recaptcha_check_text = document.querySelector('#recaptcha_check_text');
-    // let recaptcha_check_retry = document.querySelector('#recaptcha_check_retry');
-    // let recaptcha_progress = document.querySelector('#recaptcha_progress');
-    let recaptcha_progress_bar = document.querySelector('#recaptcha_progress_bar');
+    // let recaptcha_recheck = document.querySelector('#recaptcha_check_retry');
+    let recaptcha_progress = document.querySelector('#recaptcha_progress');
+    let recaptcha_progress_bar = recaptcha_progress.querySelector('#recaptcha_progress_bar');
     // let recaptcha_result = document.querySelector('#recaptcha_result');
     // let recaptcha_result_success = document.querySelector('#recaptcha_result_success');
     // let recaptcha_result_failure = document.querySelector('#recaptcha_result_failure');
 
-    show_element(recaptcha_status);
+    show_element(recaptcha_tools);
     progress_bar_revise(recaptcha_progress_bar);
 
     function show_element(element) {
