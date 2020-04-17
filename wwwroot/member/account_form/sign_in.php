@@ -57,12 +57,8 @@
   <div class="d-flex justify-content-center">
     <button class="w-50 btn btn-secondary" type="button" id="signIn_submit">登录</button>
   </div>
-  <div class="my-2 d-flex justify-content-end">
-    <button class="mx-1 btn btn-sm btn-link text-decoration-none text-secondary sign_tab" type="button"
-            data-target="tab-sign_in_phone">手机号登录
-    </button>
-    <button class="mx-1 btn btn-sm btn-link text-decoration-none text-secondary sign_tab" type="button"
-            data-target="tab-password_reset">忘记密码
-    </button>
+  <div class="my-2 d-flex justify-content-end small">
+    <a class="mx-1 text-decoration-none text-reset sign_tab" href="javascript:" data-target="#tab-sign_in_phone">手机号登录</a>
+    <a class="mx-1 text-decoration-none text-reset sign_tab" href="javascript:" data-target="#tab-password_reset">忘记密码</a>
   </div>
 </div>

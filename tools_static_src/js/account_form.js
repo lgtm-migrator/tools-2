@@ -13,38 +13,22 @@
   }
 })();
 
-// 登录切换
-(function () {
-  let sign_tab = document.querySelector('#sign_tab');
-  if (sign_tab) {
-    sign_tab.addEventListener('click', function (e) {
-      let e_target = e.target;
-      if ('BUTTON' === e_target.tagName) {
+// 账号表单切换
+$().ready(function () {
+  let sign_tabs = document.querySelectorAll('.sign_tab');
+  if (sign_tabs) {
+    for (let x = sign_tabs.length, i = 0; i < x; i++) {
+      sign_tabs[i].addEventListener('click', function (e) {
+        e.preventDefault();
+        let e_target = e.target;
         $(e_target).tab('show');
-      }
-    });
-
-    let $sign_tab_btn = $('#sign_tab button');
-    $sign_tab_btn.on('show.bs.tab', function (e) {
-      let e_target = e.target;
-      let e_relatedTarget = e.relatedTarget;
-      console.log($(e_target));
-      console.log(e_target);
-      console.log($(e_relatedTarget));
-      console.log(e_relatedTarget);
-    });
-
-    $sign_tab_btn.on('shown.bs.tab', function (e) {
-      let e_target = e.target;
-      let e_relatedTarget = e.relatedTarget;
-      console.log($(e_target));
-      console.log(e_target);
-      console.log($(e_relatedTarget));
-      console.log(e_relatedTarget);
-    });
-
+        if (e_target.classList.contains('active')) {
+          e_target.classList.remove('active');
+        }
+      });
+    }
   }
-})();
+});
 
 // 密码明文显示
 $().ready(function () {
