@@ -88,12 +88,12 @@ set_session_cookie('logged_in', $_SESSION['logged_in']);
             <i class="fas fa-user mr-1"></i>
           </button>
           <div class="pb-0 dropdown-menu shadow-lg dropdown-menu-right">
-            <div class="px-2 d-flex justify-content-between text-center">
+            <div class="px-2 d-flex justify-content-between">
               <a href="javascript:" class="min-w-rem-9 text-decoration-none text-reset">
                 <i class="fas fa-user-alt"></i>
                 <span>用户名</span>
               </a>
-              <a href="javascript:" class="min-w-rem-6 text-decoration-none text-danger">
+              <a href="javascript:" class="text-decoration-none text-danger">
                 <i class="fas fa-sign-out-alt"></i>
                 <span>退出</span>
               </a>
@@ -101,21 +101,21 @@ set_session_cookie('logged_in', $_SESSION['logged_in']);
             <div class="dropdown-divider"></div>
             <div class="px-2 d-flex justify-content-between">
               <div class="d-flex align-items-center flex-column">
-                <a href="javascript:" class="px-4 border-0 rounded-circle btn btn-outline-secondary">
+                <a href="javascript:" class="mb-2 px-4 border rounded-circle btn btn-outline-secondary">
                   <i class="fas fa-2x fa-user-lock"></i>
                   <span class="d-block">我的资料</span>
                 </a>
-                <a href="javascript:" class="px-4 border-0 rounded-circle btn btn-outline-secondary">
+                <a href="javascript:" class="mb-2 px-4 border rounded-circle btn btn-outline-secondary">
                   <i class="fas fa-2x fa-user-cog"></i>
                   <span class="d-block">个人设置</span>
                 </a>
               </div>
               <div class="d-flex align-items-center flex-column">
-                <a href="javascript:" class="px-4 border-0 rounded-circle btn btn-outline-secondary">
+                <a href="javascript:" class="mb-2 px-4 border rounded-circle btn btn-outline-secondary">
                   <i class="fas fa-2x fa-user-secret"></i>
                   <span class="d-block">隐私设置</span>
                 </a>
-                <a href="javascript:" class="px-4 border-0 rounded-circle btn btn-outline-secondary">
+                <a href="javascript:" class="mb-2 px-4 border rounded-circle btn btn-outline-secondary">
                   <i class="fas fa-2x fa-cog"></i>
                   <span class="d-block">网站设置</span>
                 </a>

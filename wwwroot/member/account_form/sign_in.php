@@ -25,7 +25,7 @@
   <div class="d-flex flex-column align-items-center" style="display: none!important;" id="recaptcha_tools">
     <div class="w-75 w-sm-50 progress bg-light-50" id="recaptcha_progress">
       <span id="recaptcha_progress_bar"
-            class="progress-bar progress-bar-striped bg-secondary progress-bar-animated transition-timing_ease-in-out transition-property-width transition-duration-2s w-0"></span>
+            class="progress-bar progress-bar-striped bg-secondary progress-bar-animated transition-timing_ease-in-out transition-property-width transition-duration-2s w-100"></span>
     </div>
     <div id="recaptcha_check">
       <span class="text-danger" id="recaptcha_check_text">正在检测您的运行环境</span>
