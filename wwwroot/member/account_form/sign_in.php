@@ -55,14 +55,14 @@
     </div>
   </div>
   <div class="d-flex justify-content-center">
-    <button class="btn btn-secondary" type="button" id="signIn_submit">登录</button>
+    <button class="w-50 btn btn-secondary" type="button" id="signIn_submit">登录</button>
   </div>
-  <div class="mb-2 d-flex justify-content-end">
-    <button class="ml-2 btn btn-sm btn-link text-decoration-none text-secondary sign_tab" type="button"
-            data-target="sign_in_phone">手机号登录
+  <div class="my-2 d-flex justify-content-end">
+    <button class="mx-1 btn btn-sm btn-link text-decoration-none text-secondary sign_tab" type="button"
+            data-target="tab-sign_in_phone">手机号登录
     </button>
-    <button class="ml-2 btn btn-sm btn-link text-decoration-none text-secondary sign_tab" type="button"
-            data-target="password_reset">忘记密码
+    <button class="mx-1 btn btn-sm btn-link text-decoration-none text-secondary sign_tab" type="button"
+            data-target="tab-password_reset">忘记密码
     </button>
   </div>
 </div>

@@ -28,6 +28,6 @@
     </div>
   </div>
   <div class="d-flex justify-content-center">
-    <button class="btn btn-secondary" type="button" id="sign_in_phone_submit">登录</button>
+    <button class="w-50 btn btn-secondary" type="button" id="sign_in_phone_submit">登录</button>
   </div>
 </div>

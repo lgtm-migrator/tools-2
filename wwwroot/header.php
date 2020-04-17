@@ -31,6 +31,7 @@ set_session_cookie('logged_in', $_SESSION['logged_in']);
   <link rel="stylesheet" href="/static/css/bootstrap-table.min.css">
   <link rel="stylesheet" href="/static/font/css/all.min.css">
   <link rel="stylesheet" href="/static/css/tools.min.css">
+  <link rel="stylesheet" href="/static/css/account_form.min.css">
 
   <noscript>
     <div class="container mx-auto" style="cursor: pointer;">
@@ -69,25 +70,30 @@ set_session_cookie('logged_in', $_SESSION['logged_in']);
         </h1>
       </div>
       <div class="d-flex w-50 justify-content-between" id="account">
-        <div class="btn-group btn-group-sm" id="account_sign">
-          <button class="btn btn-outline-secondary" type="button" data-toggle="modal" data-target="#sign" data-modaltab="sign_in">
+        <div class="btn-group-sm" id="account_sign">
+          <button class="btn border btn-outline-secondary" type="button" data-toggle="modal" data-target="#sign" data-modaltab="sign_in">
             <i class="fas fa-fw fa-sign-in-alt"></i>
             <span>登录</span>
           </button>
-          <button class="btn btn-outline-secondary" type="button" data-toggle="modal" data-target="#sign" data-modaltab="sign_up">
+          <button class="btn border btn-outline-secondary" type="button" data-toggle="modal" data-target="#sign" data-modaltab="sign_up">
             <i class="fas fa-fw fa-user-plus"></i>
             <span>注册</span>
           </button>
         </div>
         <div id="account_sign_out">
-          <button type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle dropdown-toggle-split"
+          <button type="button" class="btn border btn-sm btn-outline-secondary dropdown-toggle dropdown-toggle-split"
                   data-toggle="dropdown">
-            <i class="fas fa-user mr-1 mr-lg-2"></i>
+            <i class="fas fa-user mr-1"></i>
           </button>
-          <div class="dropdown-menu min-w-rem-7 shadow text-center dropdown-menu-right">
-            <div class="btn-group-sm btn-group-vertical">
-              <a href="javascript:" class="min-w-rem-9 border-0 rounded-0 btn btn-outline-secondary">
+          <div class="px-3 dropdown-menu shadow text-center dropdown-menu-right">
+            <div class="d-flex justify-content-between small">
+              <a href="javascript:" class="text-decoration-none text-reset">
+                <i class="fas fa-user-alt"></i>
                 <span>用户名</span>
+              </a>
+              <a href="javascript:" class="text-decoration-none text-danger">
+                <i class="fas fa-sign-out-alt"></i>
+                <span>退出</span>
               </a>
             </div>
             <div class="dropdown-divider"></div>
@@ -95,10 +101,6 @@ set_session_cookie('logged_in', $_SESSION['logged_in']);
               <a href="javascript:" class="min-w-rem-9 border-0 rounded-0 btn btn-outline-secondary">
                 <i class="fas fa-cog"></i>
                 <span>设置</span>
-              </a>
-              <a href="javascript:" class="min-w-rem-9 border-0 rounded-0 btn btn-outline-secondary">
-                <i class="fas fa-sign-out-alt"></i>
-                <span>退出</span>
               </a>
             </div>
           </div>

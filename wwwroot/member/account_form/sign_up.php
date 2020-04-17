@@ -53,6 +53,6 @@
     </div>
   </div>
   <div class="d-flex justify-content-center">
-    <button class="btn btn-secondary" type="button" id="signUp_submit">注册</button>
+    <button class="w-50 btn btn-secondary" type="button" id="signUp_submit">注册</button>
   </div>
 </div>
