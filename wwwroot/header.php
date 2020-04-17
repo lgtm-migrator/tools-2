@@ -71,11 +71,13 @@ set_session_cookie('logged_in', $_SESSION['logged_in']);
       </div>
       <div class="d-flex w-50 justify-content-between" id="account">
         <div class="btn-group-sm" id="account_sign">
-          <button class="btn border btn-outline-secondary" type="button" data-toggle="modal" data-target="#sign" data-modaltab="sign_in">
+          <button class="btn border btn-outline-secondary" type="button" data-toggle="modal" data-target="#sign"
+                  data-modaltab="sign_in">
             <i class="fas fa-fw fa-sign-in-alt"></i>
             <span>登录</span>
           </button>
-          <button class="btn border btn-outline-secondary" type="button" data-toggle="modal" data-target="#sign" data-modaltab="sign_up">
+          <button class="btn border btn-outline-secondary" type="button" data-toggle="modal" data-target="#sign"
+                  data-modaltab="sign_up">
             <i class="fas fa-fw fa-user-plus"></i>
             <span>注册</span>
           </button>
@@ -85,23 +87,46 @@ set_session_cookie('logged_in', $_SESSION['logged_in']);
                   data-toggle="dropdown">
             <i class="fas fa-user mr-1"></i>
           </button>
-          <div class="px-3 dropdown-menu shadow text-center dropdown-menu-right">
-            <div class="d-flex justify-content-between small">
-              <a href="javascript:" class="text-decoration-none text-reset">
+          <div class="pb-0 dropdown-menu shadow-lg dropdown-menu-right">
+            <div class="px-2 d-flex justify-content-between text-center">
+              <a href="javascript:" class="min-w-rem-9 text-decoration-none text-reset">
                 <i class="fas fa-user-alt"></i>
                 <span>用户名</span>
               </a>
-              <a href="javascript:" class="text-decoration-none text-danger">
+              <a href="javascript:" class="min-w-rem-6 text-decoration-none text-danger">
                 <i class="fas fa-sign-out-alt"></i>
                 <span>退出</span>
               </a>
             </div>
             <div class="dropdown-divider"></div>
-            <div class="btn-group-sm btn-group-vertical">
-              <a href="javascript:" class="min-w-rem-9 border-0 rounded-0 btn btn-outline-secondary">
-                <i class="fas fa-cog"></i>
-                <span>设置</span>
-              </a>
+            <div class="px-2 d-flex justify-content-between">
+              <div class="d-flex align-items-center flex-column">
+                <a href="javascript:" class="px-4 border-0 rounded-circle btn btn-outline-secondary">
+                  <i class="fas fa-2x fa-user-lock"></i>
+                  <span class="d-block">我的资料</span>
+                </a>
+                <a href="javascript:" class="px-4 border-0 rounded-circle btn btn-outline-secondary">
+                  <i class="fas fa-2x fa-user-cog"></i>
+                  <span class="d-block">个人设置</span>
+                </a>
+              </div>
+              <div class="d-flex align-items-center flex-column">
+                <a href="javascript:" class="px-4 border-0 rounded-circle btn btn-outline-secondary">
+                  <i class="fas fa-2x fa-user-secret"></i>
+                  <span class="d-block">隐私设置</span>
+                </a>
+                <a href="javascript:" class="px-4 border-0 rounded-circle btn btn-outline-secondary">
+                  <i class="fas fa-2x fa-cog"></i>
+                  <span class="d-block">网站设置</span>
+                </a>
+              </div>
+            </div>
+            <div class="dropdown-divider"></div>
+            <div class="p-2 bg-dark-50 d-flex justify-content-between text-center small">
+              <a class="min-w-rem-5 text-white-50" href="javascript:" target="_blank">建议反馈</a>
+              <a class="min-w-rem-5 text-white-50" href="javascript:" target="_blank">宣传合作</a>
+              <a class="min-w-rem-5 text-white-50" href="javascript:" target="_blank">技术合作</a>
+              <a class="min-w-rem-5 text-white-50" href="javascript:" target="_blank">邀请朋友</a>
             </div>
           </div>
         </div>
