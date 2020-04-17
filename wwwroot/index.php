@@ -6,7 +6,7 @@ require_once dirname(__FILE__) . '/header.php';
 
 <div class="pt-3 pt-md-4 pt-lg-5 container" id="jt_index">
   <div class="mb-3 d-flex justify-content-center" id="jt_category">
-    <div class="mx-auto w-50 w-sm-50 w-lg-25 btn-group btn-group-sm bg-white">
+    <div class="mx-auto w-100 w-sm-75 w-lg-50 btn-group btn-group-sm bg-white">
       <a class="btn border btn-outline-secondary active" id="tools-collapse">所有</a>
       <a class="btn border btn-outline-secondary" id="collapse-enquiry">查询</a>
       <a class="btn border btn-outline-secondary" id="collapse-conversion">转换</a>
