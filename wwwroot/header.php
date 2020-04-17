@@ -61,15 +61,51 @@ set_session_cookie('logged_in', $_SESSION['logged_in']);
 <body>
 <div id="body" hidden>
   <div class="bg-white" id="jt_header">
-    <div class="py-1 py-lg-2 container" id="logo">
-      <a class="text-decoration-none" href="/" title="在线小工具">
-        <span class="mr-1 logo-img hvr-icon-spin">
-          <i class="mb-0 text-warning h4 fa-fw fas fa-tools hvr-icon"></i>
-        </span>
-        <span class="logo-name"><h1 class="mb-0 d-inline text-info h5">在线小工具</h1></span>
-      </a>
-      <span class="py-1 position-relative badge badge-pill badge-danger" style="bottom:5px;font-size: 75%;">测试版不保存数据 欢迎反馈</span>
-    </div>
+    <nav class="container d-flex justify-content-between align-items-center">
+      <div>
+        <h1 class="position-relative h4 d-flex align-items-center hvr-icon-spin">
+          <i class="text-warning fas fa-fw fa-tools hvr-icon"></i>
+          <a class="ml-1 stretched-link text-decoration-none text-info" href="/" title="小工具">小工具</a>
+        </h1>
+      </div>
+      <div class="d-flex w-50 justify-content-between" id="account">
+        <div class="btn-group btn-group-sm" id="account_sign">
+          <button class="btn btn-outline-secondary" type="button" data-toggle="modal" data-target="#sign" data-modaltab="sign_in">
+            <i class="fas fa-fw fa-sign-in-alt"></i>
+            <span>登录</span>
+          </button>
+          <button class="btn btn-outline-secondary" type="button" data-toggle="modal" data-target="#sign" data-modaltab="sign_up">
+            <i class="fas fa-fw fa-user-plus"></i>
+            <span>注册</span>
+          </button>
+        </div>
+        <div id="account_sign_out">
+          <button type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle dropdown-toggle-split"
+                  data-toggle="dropdown">
+            <i class="fas fa-user mr-1 mr-lg-2"></i>
+          </button>
+          <div class="dropdown-menu min-w-rem-7 shadow text-center dropdown-menu-right">
+            <div class="btn-group-sm btn-group-vertical">
+              <a href="javascript:" class="min-w-rem-9 border-0 rounded-0 btn btn-outline-secondary">
+                <span>用户名</span>
+              </a>
+            </div>
+            <div class="dropdown-divider"></div>
+            <div class="btn-group-sm btn-group-vertical">
+              <a href="javascript:" class="min-w-rem-9 border-0 rounded-0 btn btn-outline-secondary">
+                <i class="fas fa-cog"></i>
+                <span>设置</span>
+              </a>
+              <a href="javascript:" class="min-w-rem-9 border-0 rounded-0 btn btn-outline-secondary">
+                <i class="fas fa-sign-out-alt"></i>
+                <span>退出</span>
+              </a>
+            </div>
+          </div>
+        </div>
+        <?php require_once dirname(__FILE__) . '/member/account_form/panel_user.php'; ?>
+      </div>
+    </nav>
     <div class="border-bottom"></div>
   </div>
   <div id="jt_content" class="min-vh-100">
