@@ -13,6 +13,31 @@
   }
 })();
 
+// 账号模态框切换选项卡tab
+$().ready(function () {
+  let account_sign = document.querySelector('#account_sign');
+  if (account_sign) {
+    let modal_tabs = account_sign.querySelectorAll('button[class*="modal_tab"]');
+    for (let x = modal_tabs.length, i = 0; i < x; i++) {
+      modal_tabs[i].addEventListener('click', function (e) {
+        let e_target = e.target;
+        if ('I' === e_target.tagName || 'SPAN' === e_target.tagName) {
+          let modal_tab = e_target.parentElement,
+            modal_tab_modal = modal_tab.getAttribute('data-modal_target'),
+            modal_tab_tab = modal_tab.getAttribute('data-tab_target');
+
+          if (modal_tab_tab && modal_tab_modal) {
+            $(modal_tab_modal).on('shown.bs.modal', function (e) {
+              $(modal_tab_tab).tab('show');
+            });
+            $(modal_tab_modal).modal('show');
+          }
+        }
+      });
+    }
+  }
+});
+
 // 账号表单切换
 $().ready(function () {
   let sign_tabs = document.querySelectorAll('.sign_tab');
@@ -22,9 +47,7 @@ $().ready(function () {
         e.preventDefault();
         let e_target = e.target;
         $(e_target).tab('show');
-        if (e_target.classList.contains('active')) {
-          e_target.classList.remove('active');
-        }
+        e_target.classList.toggle('active');
       });
     }
   }

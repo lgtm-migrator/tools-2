@@ -62,27 +62,28 @@ set_session_cookie('logged_in', $_SESSION['logged_in']);
 <body>
 <div id="body" hidden>
   <div class="bg-white" id="jt_header">
-    <nav class="container d-flex justify-content-between align-items-center">
+    <nav class="py-1 container d-flex justify-content-between align-items-center">
       <div>
-        <h1 class="position-relative h4 d-flex align-items-center hvr-icon-spin">
+        <h1 class="position-relative mb-0 h4 d-flex align-items-center hvr-icon-spin">
           <i class="text-warning fas fa-fw fa-tools hvr-icon"></i>
           <a class="ml-1 stretched-link text-decoration-none text-info" href="/" title="小工具">小工具</a>
         </h1>
       </div>
-      <div class="d-flex w-50 justify-content-between" id="account">
-        <div class="btn-group-sm" id="account_sign">
-          <button class="btn border btn-outline-secondary" type="button" data-toggle="modal" data-target="#sign"
-                  data-modaltab="sign_in">
-            <i class="fas fa-fw fa-sign-in-alt"></i>
-            <span>登录</span>
+<!--      <div>菜单</div>-->
+      <div class="position-absolute d-flex justify-content-between" id="account" style="right: 0;">
+        <div class="btn-group btn-group-sm" id="account_sign">
+          <button class="btn border btn-outline-secondary modal_tab" type="button" data-modal_target="#sign"
+                  data-tab_target="#tab-sign_in">
+            <i class="fas fa-lg fa-sign-in-alt"></i>
+            <span class="d-none d-xl-unset">登录</span>
           </button>
-          <button class="btn border btn-outline-secondary" type="button" data-toggle="modal" data-target="#sign"
-                  data-modaltab="sign_up">
-            <i class="fas fa-fw fa-user-plus"></i>
-            <span>注册</span>
+          <button class="btn border btn-outline-secondary modal_tab" type="button" data-modal_target="#sign"
+                  data-tab_target="#tab-sign_up">
+            <i class="fas fa-lg fa-user-plus"></i>
+            <span class="d-none d-xl-unset">注册</span>
           </button>
         </div>
-        <div id="account_sign_out">
+        <div class="ml-1 ml-sm-3" id="account_sign_out">
           <button type="button" class="btn border btn-sm btn-outline-secondary dropdown-toggle dropdown-toggle-split"
                   data-toggle="dropdown">
             <i class="fas fa-user mr-1"></i>
