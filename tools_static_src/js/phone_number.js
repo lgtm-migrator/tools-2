@@ -1,6 +1,5 @@
 /** 搜索号码 **/
 create_search_number_tools();
-// create_search_result();
 
 function create_search_number_tools() {
   let search_number_tools = document.createElement("div");
@@ -44,18 +43,23 @@ function create_search_regional_form() {
 }
 
 function create_search_regional_dropdown_menu() {
-  let search_regional = document.createElement("button");
+  let search_regional = document.createElement("div");
+  let search_dropdown_toggle_split = document.createElement("div");
   let i = document.createElement("i");
   let search_regional_dropdown_menu = document.createElement("div");
   let input_group_prepend = document.createElement("div");
+  let input_group_text = document.createElement("div");
 
   input_group_prepend.className = 'input-group-prepend';
+  input_group_text.className = 'py-0 pl-3 pr-2 input-group-text btn-group';
 
-  search_regional.type = 'button';
-  search_regional.className = 'btn btn-light border text-success';
+  search_regional.className = 'text-success';
   search_regional.id = 'search_regional';
   search_regional.title = '区域';
-  search_regional.setAttribute('data-toggle', 'dropdown');
+
+  search_dropdown_toggle_split.className = 'ml-1 px-1 btn-outline-secondary dropdown-toggle';
+  search_dropdown_toggle_split.id = 'search_dropdown_toggle_split';
+  search_dropdown_toggle_split.setAttribute('data-toggle', 'dropdown');
 
   search_regional_dropdown_menu.className = 'dropdown-menu min-w-rem-7 shadow text-center';
   search_regional_dropdown_menu.id = 'search_regional_dropdown_menu';
@@ -66,14 +70,16 @@ function create_search_regional_dropdown_menu() {
     }
   });
 
-  i.className = 'text-danger fa-lg fa-fw fas fa-map-signs';
+  i.className = 'text-danger fas fa-lg fa-map-signs';
 
   search_regional.appendChild(i);
   search_regional_dropdown_menu.appendChild(create_search_regional_buttons());
   search_regional_dropdown_menu.appendChild(create_dropdown_divider('border-secondary'));
   search_regional_dropdown_menu.appendChild(create_search_regional_buttons_ext());
-  input_group_prepend.appendChild(search_regional);
-  input_group_prepend.appendChild(search_regional_dropdown_menu);
+  input_group_text.appendChild(search_regional);
+  input_group_text.appendChild(search_dropdown_toggle_split);
+  input_group_text.appendChild(search_regional_dropdown_menu);
+  input_group_prepend.appendChild(input_group_text);
 
   return input_group_prepend;
 }

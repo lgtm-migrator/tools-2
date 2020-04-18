@@ -1,40 +1,58 @@
 <div id="account_sign_up">
-  <div class="form-group form-row justify-content-center">
-    <label for="modal_register_user_login" class="col-sm-2 text-dark">用户名</label>
-    <div class="col-sm-6">
-      <input type="text" name="user_login" id="modal_register_user_login"
-             class="form-control form-control-sm border border-secondary text-success" minlength="5" maxlength="20"
-             required="required" autocomplete="off" placeholder="用户名" title="请输入要注册的用户名">
+  <div class="form-group form-row align-items-center">
+    <div class="col-auto col-sm-2">
+      <label class="mb-1 d-inline-block min-w-100 text-align-last" for="signUp_user_name">用户名</label>
+    </div>
+    <div class="col-12 col-sm-10 input-group">
+      <input class="form-control" type="text" id="signUp_user_name" placeholder="请设置你的用户名" minlength="5"
+             maxlength="20" autocomplete="off" required>
     </div>
   </div>
-  <div class="form-group form-row justify-content-center">
-    <label for="modal_register_user_email" class="col-sm-2 text-dark">Email</label>
-    <div class="col-sm-6">
-      <input type="email" name="user_email" id="modal_register_user_email"
-             class="form-control form-control-sm border border-secondary text-success" minlength="5" maxlength="20"
-             required="required" autocomplete="off" placeholder="邮箱" title="请输入您的邮箱">
+  <div class="form-group form-row align-items-center">
+    <div class="col-auto col-sm-2">
+      <label class="mb-1 d-inline-block min-w-100 text-align-last" for="signUp_email">邮箱</label>
+    </div>
+    <div class="col-12 col-sm-10 input-group">
+      <input class="form-control" type="text" id="signUp_email" placeholder="请输入您的Email" minlength="5" maxlength="20"
+             autocomplete="off" required>
     </div>
   </div>
-  <div class="form-group form-row justify-content-center">
-    <div class="col-sm-2"><p class="sr-only">服务条款</p></div>
-    <div class="col-sm-10">
-      <div class="form-check text-dark">
-        <label class="form-check-label" for="modal_register_tos">
-          <input type="checkbox" class="form-check-input" name="modal_register_tos"
-                 id="modal_register_tos" required>
-          <span>如果同意并接受</span>
-          <a class="text-dark" href="javascript:" title="服务条款" target="_blank">《服务条款》</a>
-          <span>请勾选</span>
-        </label>
+  <div class="form-group form-row align-items-center">
+    <div class="col-auto col-sm-2">
+      <label class="mb-1 d-inline-block min-w-100 text-align-last" for="signUp_password">密码</label>
+    </div>
+    <div class="col-12 col-sm-10 input-group">
+      <input class="form-control" type="password" id="signUp_password" placeholder="设置你的登录密码" minlength="8"
+             maxlength="16"
+             autocomplete="off" required>
+      <div class="input-group-append">
+        <div class="input-group-text">
+          <i class="fas fa-fw fa-lg fa-eye" title="显示密码" id="password_switch"></i>
+        </div>
       </div>
     </div>
   </div>
-  <div class="form-group form-row justify-content-center">
-    <div class="col-sm-4 text-center">
-      <input type="hidden" name="redirect_to">
-      <label for="modal_register_submit" class="sr-only">注册</label>
-      <input type="submit" class="btn btn-sm btn-outline-success" name="modal_register_submit" formaction=""
-             formmethod="post" id="modal_register_submit" value="注册">
+  <div class="form-group form-row align-items-center">
+    <div class="col-auto col-sm-2">
+      <label class="mb-1 d-inline-block min-w-100 text-align-last" for="signUp_rePassword">密码</label>
     </div>
+    <div class="col-12 col-sm-10 input-group">
+      <input class="form-control" type="password" id="signUp_rePassword" placeholder="请再次输入你的密码" minlength="8"
+             maxlength="16" autocomplete="off" required>
+      <div class="input-group-append">
+        <div class="input-group-text">
+          <i class="fas fa-fw fa-lg fa-eye" title="显示密码" id="password_switch"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="d-flex justify-content-center custom-control custom-checkbox">
+      <input type="checkbox" class="custom-control-input" id="signUp_tos">
+      <label class="custom-control-label" for="signUp_tos">同意服务条款</label>
+    </div>
+  </div>
+  <div class="d-flex justify-content-center">
+    <button class="w-50 btn btn-secondary" type="button" id="signUp_submit">注册</button>
   </div>
 </div>

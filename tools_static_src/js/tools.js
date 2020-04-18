@@ -28,6 +28,19 @@ function remove_class(element, class_name) {
   element.classList.remove(class_name);
 }
 
+function replace_class(element, old_class_name, new_class_name) {
+  if (element.classList.contains(old_class_name)) {
+    element.classList.remove(old_class_name);
+    element.classList.add(new_class_name);
+  } else if (element.classList.contains(new_class_name)) {
+    element.classList.remove(new_class_name);
+    element.classList.add(old_class_name);
+  } else {
+    return false;
+  }
+  return true;
+}
+
 function get_element_attribute(element, attribute_name) {
   return element.getAttribute(attribute_name);
 }

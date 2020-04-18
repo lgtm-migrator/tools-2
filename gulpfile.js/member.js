@@ -70,6 +70,7 @@ function copy_member_js(done) {
 
 function copy_member_css(done) {
   src([user_index_css_path, account_form_css_path], {since: lastRun(copy_member_css)})
+    .pipe(postcss([autoPreFixer()]))
     .pipe(dest(static_css));
   done();
 }

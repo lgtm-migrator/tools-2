@@ -6,71 +6,124 @@
       let e_target = e.target;
       if (e_target.dataset['title']) {
         let e_title = e_target.dataset["title"];
-        let tip = `<div class="text-center text-warning">${e_title}功能正在开发中</div>`;
+        let tip = `<div class="text-center text-info">${e_title}功能正在开发中</div>`;
         bootstrapModalJs('', tip, '', 'sm', true);
       }
     })
   }
 })();
 
-// 更多登录方式
-(function () {
-  let collapse_oauth_login = document.querySelector("#collapse_oauth_login");
-  let oauth_login_list = document.querySelector("#oauth_login_list");
-  if (collapse_oauth_login) {
-    collapse_oauth_login.addEventListener("click", collapse_oauth_login_toggle);
-    collapse_oauth_login.addEventListener("click", collapse_oauth_login_toggle_icon);
-  }
+// 账号模态框切换选项卡tab
+$().ready(function () {
+  let account_sign = document.querySelector('#account_sign');
+  if (account_sign) {
+    let modal_tabs = account_sign.querySelectorAll('button[class*="modal_tab"]');
+    for (let x = modal_tabs.length, i = 0; i < x; i++) {
+      modal_tabs[i].addEventListener('click', function (e) {
+        let e_target = e.target;
+        if ('I' === e_target.tagName || 'SPAN' === e_target.tagName) {
+          let modal_tab = e_target.parentElement,
+            modal_tab_modal = modal_tab.getAttribute('data-modal_target'),
+            modal_tab_tab = modal_tab.getAttribute('data-tab_target');
 
-  function collapse_oauth_login_toggle() {
-    if (oauth_login_list) {
-      $("#oauth_login_list").collapse("toggle");
+          if (modal_tab_tab && modal_tab_modal) {
+            $(modal_tab_modal).on('shown.bs.modal', function (e) {
+              $(modal_tab_tab).tab('show');
+            });
+            $(modal_tab_modal).on('hidden.bs.modal', function (e) {
+              document.querySelector(modal_tab_tab).classList.remove('active', 'show');
+            });
+            $(modal_tab_modal).modal('show');
+          }
+        }
+      });
     }
   }
+});
 
-  function collapse_oauth_login_toggle_icon() {
-    let i = collapse_oauth_login.querySelector("i");
-    let $oauth_login_list = $("#oauth_login_list");
-    $oauth_login_list.on('hidden.bs.collapse', function () {
-      i.classList.remove("fa-chevron-down");
-      i.classList.add("fa-chevron-up");
-    });
-    $oauth_login_list.on('shown.bs.collapse', function () {
-      i.classList.remove("fa-chevron-up");
-      i.classList.add("fa-chevron-down");
-    });
-  }
-})();
-
-// 登录切换
-(function () {
-  let sign_tab = document.querySelector('#sign_tab');
-  if (sign_tab) {
-    sign_tab.addEventListener('click', function (e) {
-      let e_target = e.target;
-      if ('BUTTON' === e_target.tagName) {
+// 账号表单切换
+$().ready(function () {
+  let sign_tabs = document.querySelectorAll('.sign_tab');
+  if (sign_tabs) {
+    for (let x = sign_tabs.length, i = 0; i < x; i++) {
+      sign_tabs[i].addEventListener('click', function (e) {
+        e.preventDefault();
+        let e_target = e.target;
         $(e_target).tab('show');
+        e_target.classList.toggle('active');
+      });
+    }
+  }
+});
+
+// 密码明文显示
+$().ready(function () {
+  let password_switch = document.querySelector('#password_switch');
+  if (password_switch) {
+    password_switch.addEventListener('click', function (e) {
+      let e_target = e.target;
+      console.log(e_target);
+      if ('INPUT' === e_target.parentElement.parentElement.previousElementSibling.tagName) {
+        let password_input = e_target.parentElement.parentElement.previousElementSibling;
+        let type = password_input.type;
+        switch (type) {
+          case 'text':
+            password_input.setAttribute('type', 'password');
+            break;
+          case 'password':
+          default:
+            password_input.setAttribute('type', 'text');
+        }
       }
-    });
+      replace_class(e_target, 'fa-eye-slash', 'fa-eye');
 
-    let $sign_tab_btn = $('#sign_tab button');
-    $sign_tab_btn.on('show.bs.tab', function (e) {
-      let e_target = e.target;
-      let e_relatedTarget = e.relatedTarget;
-      console.log($(e_target));
-      console.log(e_target);
-      console.log($(e_relatedTarget));
-      console.log(e_relatedTarget);
-    });
+    })
+  }
+});
 
-    $sign_tab_btn.on('shown.bs.tab', function (e) {
-      let e_target = e.target;
-      let e_relatedTarget = e.relatedTarget;
-      console.log($(e_target));
-      console.log(e_target);
-      console.log($(e_relatedTarget));
-      console.log(e_relatedTarget);
-    });
+// reCaptcha状态检测
+$().ready(function () {
+  let recaptcha_tools = document.querySelector('#recaptcha_tools');
+  if (recaptcha_tools) {
+    // let recaptcha_check = document.querySelector('#recaptcha_check');
+    // let recaptcha_check_text = document.querySelector('#recaptcha_check_text');
+    // let recaptcha_recheck = document.querySelector('#recaptcha_check_retry');
+    let recaptcha_progress = document.querySelector('#recaptcha_progress');
+    let recaptcha_progress_bar = recaptcha_progress.querySelector('#recaptcha_progress_bar');
+    // let recaptcha_result = document.querySelector('#recaptcha_result');
+    // let recaptcha_result_success = document.querySelector('#recaptcha_result_success');
+    // let recaptcha_result_failure = document.querySelector('#recaptcha_result_failure');
+
+    show_element(recaptcha_tools);
+    progress_bar_revise(recaptcha_progress_bar);
+
+    function show_element(element) {
+      if (element.classList.contains('d-none')) {
+        element.classList.remove('d-none');
+      } else {
+        element.style.display = '';
+      }
+    }
+
+    function progress_bar_revise(bar_element) {
+      let element_current_width = get_element_style_number(bar_element, 'width');
+      let max_time = 6,
+        max_width = 100,
+        gap_width = max_width - element_current_width;
+
+      console.log(max_time + gap_width);
+    }
+
+    function get_element_style_number(element, style_name) {
+      let style_attribute_value = window.getComputedStyle(element, null).getPropertyValue(style_name);
+      console.log(style_attribute_value);
+      if ('' === style_attribute_value) return false;
+      if (style_attribute_value.includes('%')) {
+        return style_attribute_value.replace('%', '');
+      } else if (style_attribute_value.includes('px')) {
+        return style_attribute_value.replace('px', '');
+      }
+    }
 
   }
-})();
+});

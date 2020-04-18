@@ -77,6 +77,7 @@ task("build_tools",
 // 任务函数
 function copy_tools_css(done) {
   src([tools_css_path, index_css_path, survey_css_path, phone_number_css_path, photo_info_css_path, bootstrap_next_css_path], {since: lastRun(copy_tools_css)})
+    .pipe(postcss([autoPreFixer()]))
     .pipe(dest(static_css));
   done();
 }

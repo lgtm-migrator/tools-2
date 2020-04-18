@@ -70,6 +70,7 @@ function copy_sms_js(done) {
 
 function copy_sms_css(done) {
   src([sms_index_css_path, sms_query_css_path], {since: lastRun(copy_sms_css)})
+    .pipe(postcss([autoPreFixer()]))
     .pipe(dest(static_css));
   done();
 }

@@ -27,6 +27,8 @@ const
   /** Bootstrap **/
   bootstrap_all_js_path = "./node_modules/bootstrap/dist/js/*",
   bootstrap_all_css_path = "./node_modules/bootstrap/dist/css/*",
+  /** Bootstrap-master-dist **/
+  bootstrap_master_dist_all_path = "./node_modules/bootstrap-master/dist/**/*",
   /** bootstrap-table **/
   bootstrap_table_js_path = "./node_modules/bootstrap-table/dist/bootstrap-table.js",
   bootstrap_table_js_min_path = "./node_modules/bootstrap-table/dist/bootstrap-table.min.js",
@@ -65,6 +67,7 @@ task(copy_js_cookie);
 task(copy_jquery);
 task(copy_popper);
 task(copy_bootstrap);
+task(copy_bootstrap_master_dist);
 task(copy_bootstrap_table);
 task(copy_animate_css);
 task(copy_aqua_css);
@@ -90,6 +93,7 @@ task("copy_common",
     copy_jquery,
     copy_popper,
     copy_bootstrap,
+    copy_bootstrap_master_dist,
     copy_bootstrap_table,
     copy_animate_css,
     copy_aqua_css,
@@ -166,6 +170,12 @@ function copy_bootstrap(done) {
     .pipe(dest(static_js));
   src([bootstrap_all_css_path], {since: lastRun(copy_bootstrap)})
     .pipe(dest(static_css));
+  done();
+}
+
+function copy_bootstrap_master_dist(done) {
+  src([bootstrap_master_dist_all_path], {since: lastRun(copy_bootstrap_master_dist)})
+    .pipe(dest(static_path + 'bootstrap-master-dist/'));
   done();
 }
 

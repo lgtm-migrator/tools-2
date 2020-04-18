@@ -1,17 +1,14 @@
-<div id="account_forget">
-  <div class="form-group form-row justify-content-center">
-    <label for="modal_lostPassword" class="col-sm-2 text-dark">账号</label>
-    <div class="col-sm-6">
-      <input type="email" name="user_login" id="modal_lostPassword"
-             class="form-control form-control-sm border border-secondary text-danger" minlength="5" maxlength="20"
-             required="required" autocomplete="off" placeholder="邮箱" title="请输入要找回密码的账号邮箱">
+<div id="account_password_reset">
+  <div class="form-group form-row align-items-center">
+    <div class="col-auto col-sm-2">
+      <label class="mb-1 d-inline-block min-w-100 text-align-last" for="password_reset_account">账号</label>
+    </div>
+    <div class="col-12 col-sm-10 input-group">
+      <input class="form-control" type="text" id="password_reset_account" placeholder="请输入您的账号或者邮箱" minlength="5"
+             maxlength="20" autocomplete="off" required>
     </div>
   </div>
-  <div class="form-group form-row justify-content-center">
-    <div class="col-sm-4 text-center">
-      <label for="modal_lostpass_submit" class="sr-only">找回密码</label>
-      <input type="submit" class="btn btn-sm btn-outline-danger" name="modal_lostpass_submit" formaction=""
-             formmethod="post" id="modal_lostpass_submit" value="找回密码">
-    </div>
+  <div class="d-flex justify-content-center">
+    <button class="btn btn-secondary" type="button" id="password_reset_submit">找回密码</button>
   </div>
 </div>

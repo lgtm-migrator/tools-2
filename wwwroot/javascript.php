@@ -7,3 +7,4 @@
 <script src="/static/js/bs-custom-file-input.min.js"></script>
 <script src="/static/js/qrcode.min.js"></script>
 <script src="/static/js/tools.min.js"></script>
+<script src="/static/js/account_form.min.js"></script>
