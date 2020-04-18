@@ -1,6 +1,5 @@
 /** 搜索号码 **/
 create_search_number_tools();
-// create_search_result();
 
 function create_search_number_tools() {
   let search_number_tools = document.createElement("div");
@@ -54,11 +53,11 @@ function create_search_regional_dropdown_menu() {
   input_group_prepend.className = 'input-group-prepend';
   input_group_text.className = 'py-0 pl-3 pr-2 input-group-text btn-group';
 
-  search_regional.className = 'py-2 text-success';
+  search_regional.className = 'text-success';
   search_regional.id = 'search_regional';
   search_regional.title = '区域';
 
-  search_dropdown_toggle_split.className = 'ml-1 px-1 py-2 btn-outline-secondary dropdown-toggle';
+  search_dropdown_toggle_split.className = 'ml-1 px-1 btn-outline-secondary dropdown-toggle';
   search_dropdown_toggle_split.id = 'search_dropdown_toggle_split';
   search_dropdown_toggle_split.setAttribute('data-toggle', 'dropdown');
 
