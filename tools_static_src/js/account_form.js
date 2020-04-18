@@ -30,6 +30,9 @@ $().ready(function () {
             $(modal_tab_modal).on('shown.bs.modal', function (e) {
               $(modal_tab_tab).tab('show');
             });
+            $(modal_tab_modal).on('hidden.bs.modal', function (e) {
+              document.querySelector(modal_tab_tab).classList.remove('active', 'show');
+            });
             $(modal_tab_modal).modal('show');
           }
         }
