@@ -41,7 +41,7 @@ $().ready(function () {
   }
 });
 
-// 账号表单切换
+// 账号表单类型切换
 $().ready(function () {
   let sign_tabs = document.querySelectorAll('.sign_tab');
   if (sign_tabs) {
@@ -125,5 +125,23 @@ $().ready(function () {
       }
     }
 
+  }
+});
+
+//主导航菜单 下拉菜单
+$().ready(function () {
+  let account_sign_out = document.querySelector('#account_sign_out');
+  if (account_sign_out) {
+    let notices_nav_tabs = account_sign_out.querySelector('#notices_nav_tabs');
+    notices_nav_tabs.addEventListener('click', function (e) {
+      e.preventDefault();
+    });
+    notices_nav_tabs.addEventListener('mouseover', function (e) {
+      let e_target = e.target;
+      if ('A' === e_target.tagName && e_target.classList.contains('nav-link')) {
+        $(e_target).tab('show');
+        e_target.classList.toggle('text-dark');
+      }
+    });
   }
 });

@@ -11,28 +11,32 @@
       <span class="ml-1 fa-lg">注册</span>
     </button>
   </div>
-  <div class="ml-1 ml-sm-3" id="account_sign_out">
-    <div class="btn-group">
-      <button type="button" class="btn border-0 btn-sm btn-outline-secondary d-flex align-items-center dropdown-toggle dropdown-toggle-split" data-toggle="dropdown">
+  <div class="ml-1 ml-sm-3 d-flex" id="account_sign_out">
+    <div class="dropdown">
+      <button class="btn border-0 btn-sm btn-outline-secondary d-flex align-items-center dropdown-toggle dropdown-toggle-split" type="button" id="dropdown_notices" data-toggle="dropdown">
         <i class="mr-n1 fas fa-2x fa-bell text-dodgerblue"></i>
         <span class="badge badge-danger badge-pill border" style="top: -.5rem;right: .2rem;">1</span>
         <span class="d-none mx-xl-1 d-xl-unset fa-lg">提醒</span>
       </button>
-      <div class="dropdown-menu shadow-lg dropdown-menu-right">
-        <div id="notices">
-          <div class="nav nav-tabs row-cols-2">
-            <button class="nav-item nav-link active" type="button" data-toggle="tab" data-target="#notices_message">
-              <i class="fab fa-lg fa-facebook-messenger"></i>
+      <div class="mt-2 dropdown-menu shadow-lg dropdown-menu-right">
+        <div class="mt-n2 border border-top-0" id="notices">
+          <div class="nav nav-tabs row-cols-2" id="notices_nav_tabs">
+            <a class="nav-item nav-link text-center text-reset active" href="/notifications/notices/message.php" data-target="#notices_message">
+              <i class="fas fa-lg fa-mail-bulk"></i>
               <span>消息</span>
-            </button>
-            <button class="nav-item nav-link" type="button" data-toggle="tab" data-target="#notices_info">
-              <i class="fas fa-lg fa-user"></i>
+            </a>
+            <a class="nav-item nav-link text-center text-reset" href="/notifications/notices/info.php" data-target="#notices_info">
+              <i class="fas fa-lg fa-"></i>
               <span>提醒</span>
-            </button>
+            </a>
           </div>
           <div class="px-2 py-1 tab-content">
-            <div class="tab-pane fade show active" id="notices_message">当前没有新消息</div>
-            <div class="tab-pane fade" id="notices_info">当前没有新提醒</div>
+            <div class="tab-pane fade show active" id="notices_message">
+              <div class="text-center">当前没有新消息</div>
+            </div>
+            <div class="tab-pane fade" id="notices_info">
+              <div class="text-center">当前没有新提醒</div>
+            </div>
           </div>
         </div>
         <div class="dropdown-divider"></div>
@@ -42,12 +46,12 @@
         </div>
       </div>
     </div>
-    <div class="btn-group">
-      <button type="button" class="btn border-0 btn-sm btn-outline-secondary d-flex align-items-center dropdown-toggle dropdown-toggle-split" data-toggle="dropdown">
+    <div class="dropdown">
+      <button class="btn border-0 btn-sm btn-outline-secondary d-flex align-items-center dropdown-toggle dropdown-toggle-split" type="button" id="dropdown_account" data-toggle="dropdown">
         <i class="fas fa-2x fa-user text-crimson"></i>
         <span class="d-none mx-xl-1 d-xl-unset fa-lg">账号</span>
       </button>
-      <div class="dropdown-menu shadow-lg dropdown-menu-right">
+      <div class="mt-2 dropdown-menu shadow-lg dropdown-menu-right">
         <div class="px-2 d-flex justify-content-between">
           <a href="javascript:" class="min-w-rem-9 text-decoration-none text-reset">
             <i class="fas fa-user-alt"></i>
