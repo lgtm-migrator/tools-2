@@ -15,7 +15,7 @@
     <div class="btn-group">
       <button type="button" class="btn border-0 btn-sm btn-outline-secondary d-flex align-items-center dropdown-toggle dropdown-toggle-split" data-toggle="dropdown">
         <i class="mr-n1 fas fa-2x fa-bell text-dodgerblue"></i>
-        <span class="badge badge-danger badge-pill border" style="top: -.6rem;right: .2rem;">1</span>
+        <span class="badge badge-danger badge-pill border" style="top: -.5rem;right: .2rem;">1</span>
         <span class="d-none mx-xl-1 d-xl-unset fa-lg">提醒</span>
       </button>
       <div class="dropdown-menu shadow-lg dropdown-menu-right">
