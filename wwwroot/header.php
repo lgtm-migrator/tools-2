@@ -74,7 +74,7 @@ set_session_cookie('logged_in', $_SESSION['logged_in']);
       </button>
       <div class="mt-2 mt-lg-0 navbar-collapse collapse" id="navBar">
         <div class="w-100 d-flex justify-content-between align-items-sm-start align-items-lg-center">
-          <ul class="navbar-nav mr-auto">
+          <ul class="navbar-nav">
             <li class="nav-item">
               <a class="nav-link" href="//jzeg.net/">首页</a>
             </li>
@@ -82,7 +82,7 @@ set_session_cookie('logged_in', $_SESSION['logged_in']);
               <a class="nav-link" href="//tools.jzeg.net/">小工具</a>
             </li>
           </ul>
-          <div class="">
+          <div>
             <div class="btn-group btn-group-sm" id="account_sign">
               <button class="btn border btn-outline-secondary modal_tab" type="button" data-modal_target="#sign"
                       data-tab_target="#tab-sign_in">
