@@ -162,6 +162,7 @@ set_session_cookie('logged_in', $_SESSION['logged_in']);
         </div>
       </div>
     </nav>
+    <?php require_once dirname(__FILE__) . '/member/account_form/panel_user.php'; ?>
     <div class="border-bottom"></div>
   </div>
   <div id="jt_content" class="min-vh-100">
