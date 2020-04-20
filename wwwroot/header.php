@@ -73,7 +73,7 @@ set_session_cookie('logged_in', $_SESSION['logged_in']);
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="mt-2 mt-lg-0 navbar-collapse collapse" id="navBar">
-        <div class="w-100 d-flex justify-content-between align-items-sm-start align-items-lg-center">
+        <div class="w-lg-100 d-flex justify-content-between align-items-lg-center">
           <ul class="navbar-nav">
             <li class="nav-item">
               <a class="nav-link" href="//jzeg.net/">首页</a>
