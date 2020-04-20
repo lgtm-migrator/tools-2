@@ -215,6 +215,16 @@
 /* 文本 */
 .text-align-last {text-align-last: justify;}
 
+.text-yellowgreen {color: yellowgreen;}
+.text-greenyellow {color: greenyellow;}
+.text-orangered {color: orangered;}
+.text-darkorange {color: darkorange;}
+.text-orange {color: orange;}
+.text-mediumvioletred {color: mediumvioletred;}
+.text-indianred {color: indianred;}
+.text-palevioletred {color: palevioletred;}
+.text-lightcoral {color: lightcoral;}
+
 /* transition动画 */
 .transition-property-all {transition-property: width;}
 .transition-property-width {transition-property: width;}
