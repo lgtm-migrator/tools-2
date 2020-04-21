@@ -53,12 +53,12 @@
       </button>
       <div class="mt-2 dropdown-menu shadow-lg dropdown-menu-right">
         <div class="px-2 d-flex justify-content-between">
-          <a href="javascript:" class="min-w-rem-9 text-decoration-none text-reset">
-            <i class="fas fa-user-alt"></i>
+          <a href="javascript:" class="d-flex align-items-center min-w-rem-9 text-decoration-none text-reset">
+            <i class="pr-1 fas fa-lg fa-user-alt text-muted"></i>
             <span>用户名</span>
           </a>
-          <a href="javascript:" class="text-decoration-none text-danger" id="account_sign_exit">
-            <i class="fas fa-sign-out-alt"></i>
+          <a href="javascript:" class="d-flex align-items-center text-decoration-none text-reset" id="account_sign_exit">
+            <i class="pr-1 fas fa-lg fa-sign-out-alt text-danger"></i>
             <span>退出</span>
           </a>
         </div>
