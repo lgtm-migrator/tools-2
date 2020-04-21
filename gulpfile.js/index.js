@@ -3,6 +3,7 @@ require('./member');
 require('./sms');
 require('./tools_static');
 require('./flexible_code');
+require('./debug');
 
 const {task, series, parallel} = require('gulp');
 
@@ -15,6 +16,7 @@ task("build_static",
     "build_tools",
     "build_common",
     "build_flexible_code",
+    "build_debug",
   )
 );
 task('watch_change',
@@ -24,6 +26,7 @@ task('watch_change',
     'watch_tools',
     'watch_config_json',
     'watch_flexible_code',
+    'watch_debug',
   )
 );
 task('copy',
@@ -33,5 +36,6 @@ task('copy',
     'copy_common',
     'copy_tools',
     'copy_flexible_code',
+    'copy_debug',
   )
 );
