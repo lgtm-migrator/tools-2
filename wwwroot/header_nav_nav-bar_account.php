@@ -11,7 +11,7 @@
       <span class="ml-1 fa-lg">注册</span>
     </button>
   </div>
-  <div class="ml-1 ml-sm-3 d-flex" id="account_sign_out">
+  <div class="d-flex" id="account_sign_out">
     <div class="dropdown">
       <button class="btn border-0 btn-sm btn-outline-secondary d-flex align-items-center dropdown-toggle dropdown-toggle-split" type="button" id="dropdown_notices" data-toggle="dropdown">
         <i class="mr-n1 fas fa-2x fa-bell text-dodgerblue"></i>
@@ -57,7 +57,7 @@
             <i class="fas fa-user-alt"></i>
             <span>用户名</span>
           </a>
-          <a href="javascript:" class="text-decoration-none text-danger">
+          <a href="javascript:" class="text-decoration-none text-danger" id="account_sign_exit">
             <i class="fas fa-sign-out-alt"></i>
             <span>退出</span>
           </a>

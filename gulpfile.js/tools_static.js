@@ -119,6 +119,6 @@ function watch_tools(done) {
     photo_info_css_path,
     bootstrap_next_css_path,
   ];
-  watch([all_watch_files], task("build_tools"));
+  watch(all_watch_files, task("build_tools"));
   done();
 }
