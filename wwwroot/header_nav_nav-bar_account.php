@@ -2,13 +2,13 @@
   <div class="d-flex" id="account_sign">
     <button class="btn btn-sm border-0 btn-outline-secondary d-flex align-items-center modal_tab" type="button" data-modal_target="#sign"
             data-tab_target="#tab-sign_in">
-      <i class="fas fa-2x fa-sign-in-alt text-darkorange"></i>
-      <span class="ml-1 fa-lg">登录</span>
+      <i class="px-1 px-md-0 fas fa-2x fa-sign-in-alt text-darkorange"></i>
+      <span class="ml-1 d-none d-md-block fa-lg">登录</span>
     </button>
     <button class="btn btn-sm border-0 btn-outline-secondary d-flex align-items-center modal_tab" type="button" data-modal_target="#sign"
             data-tab_target="#tab-sign_up">
-      <i class="fas fa-2x fa-user-plus text-yellowgreen"></i>
-      <span class="ml-1 fa-lg">注册</span>
+      <i class="px-1 px-md-0 fas fa-2x fa-user-plus text-yellowgreen"></i>
+      <span class="ml-1 d-none d-md-block fa-lg">注册</span>
     </button>
   </div>
   <div class="d-flex" id="account_sign_out">
