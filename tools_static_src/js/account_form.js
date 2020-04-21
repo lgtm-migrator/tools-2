@@ -21,20 +21,27 @@ $().ready(function () {
     for (let x = modal_tabs.length, i = 0; i < x; i++) {
       modal_tabs[i].addEventListener('click', function (e) {
         let e_target = e.target;
-        if ('I' === e_target.tagName || 'SPAN' === e_target.tagName) {
-          let modal_tab = e_target.parentElement,
-            modal_tab_modal = modal_tab.getAttribute('data-modal_target'),
-            modal_tab_tab = modal_tab.getAttribute('data-tab_target');
+        let modal_tab;
 
-          if (modal_tab_tab && modal_tab_modal) {
-            $(modal_tab_modal).on('shown.bs.modal', function () {
-              $(modal_tab_tab).tab('show');
-            });
-            $(modal_tab_modal).on('hidden.bs.modal', function () {
-              document.querySelector(modal_tab_tab).classList.remove('active', 'show');
-            });
-            $(modal_tab_modal).modal('show');
-          }
+        if ('I' === e_target.tagName || 'SPAN' === e_target.tagName) {
+          modal_tab = e_target.parentElement;
+        } else if ('BUTTON' === e_target.tagName) {
+          modal_tab = e_target;
+        } else {
+          return;
+        }
+
+        let modal_tab_modal = modal_tab.getAttribute('data-modal_target');
+        let modal_tab_tab = modal_tab.getAttribute('data-tab_target');
+
+        if (modal_tab_tab && modal_tab_modal) {
+          $(modal_tab_modal).on('shown.bs.modal', function () {
+            $(modal_tab_tab).tab('show');
+          });
+          $(modal_tab_modal).on('hidden.bs.modal', function () {
+            document.querySelector(modal_tab_tab).classList.remove('active', 'show');
+          });
+          $(modal_tab_modal).modal('show');
         }
       });
     }
@@ -47,10 +54,22 @@ $().ready(function () {
   if (sign_tabs) {
     for (let x = sign_tabs.length, i = 0; i < x; i++) {
       sign_tabs[i].addEventListener('click', function (e) {
-        e.preventDefault();
         let e_target = e.target;
-        $(e_target).tab('show');
-        e_target.classList.toggle('active');
+        let current_sign_tab;
+
+        if ('I' === e_target.tagName || 'SPAN' === e_target.tagName) {
+          current_sign_tab = e_target.parentElement;
+        } else if ('A' === e_target.tagName) {
+          e.preventDefault();
+          current_sign_tab = e_target;
+        } else if ('BUTTON' === e_target.tagName) {
+          current_sign_tab = e_target;
+        } else {
+          return;
+        }
+
+        $(current_sign_tab).tab('show');
+        current_sign_tab.classList.toggle('active');
       });
     }
   }
