@@ -32,6 +32,7 @@ set_session_cookie('logged_in', $_SESSION['logged_in']);
   <link rel="stylesheet" href="/static/font/css/all.min.css">
   <link rel="stylesheet" href="/static/css/tools.min.css">
   <link rel="stylesheet" href="/static/css/account_form.min.css">
+  <link rel="stylesheet" href="/static/css/debug.min.css">
 
   <noscript>
     <div class="container mx-auto" style="cursor: pointer;">
