@@ -663,9 +663,7 @@ $().ready(function () {
 
 function anti_mirror() {
   setTimeout(function () {
-    if (document.location.host !== 'tools.jzeg.org' &&
-      document.location.host !== 'test.jzeg.net' &&
-      document.location.host !== 'tools.jzeg.net') {
+    if (domain_check()) {
       if (fundebug) {
         fundebug.notify('发现镜像', document.location.href, {
           metaData: {
@@ -678,6 +676,20 @@ function anti_mirror() {
       }, 3000);
     }
   }, 1000);
+}
+
+function domain_check() {
+  let result = true;
+  let current_host = document.location.host;
+  let hosts = [
+    'tools.jzeg.org',
+    'test.jzeg.net',
+    'tools.jzeg.net',
+  ];
+
+  if (hosts.includes(current_host)) result = false;
+
+  return result;
 }
 
 /** 右下侧固定栏 **/
@@ -693,9 +705,9 @@ function fixed_tools() {
   div.id = 'fixed_tools';
   div.style.right = '1rem';
   div.style.bottom = '1rem';
+  div.style.zIndex = '999';
 
   div.appendChild(fixed_tools_to_top());
-
   jt_footer.appendChild(div);
 }
 
