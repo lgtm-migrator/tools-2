@@ -27,10 +27,10 @@ $().ready(function () {
             modal_tab_tab = modal_tab.getAttribute('data-tab_target');
 
           if (modal_tab_tab && modal_tab_modal) {
-            $(modal_tab_modal).on('shown.bs.modal', function (e) {
+            $(modal_tab_modal).on('shown.bs.modal', function () {
               $(modal_tab_tab).tab('show');
             });
-            $(modal_tab_modal).on('hidden.bs.modal', function (e) {
+            $(modal_tab_modal).on('hidden.bs.modal', function () {
               document.querySelector(modal_tab_tab).classList.remove('active', 'show');
             });
             $(modal_tab_modal).modal('show');
