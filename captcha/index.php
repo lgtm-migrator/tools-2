@@ -12,7 +12,7 @@ $captcha
   ->setBackgroundColor(255, 255, 255)
   ->setIgnoreAllEffects(true)
   ->build(100, 24)
-  ->save('captcha.jpg', 20);
+  ->save('captcha.jpg', 50);
 
 header('Content-type: image/jpeg');
 
