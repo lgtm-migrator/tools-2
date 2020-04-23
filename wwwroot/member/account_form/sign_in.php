@@ -53,7 +53,7 @@
     </div>
   </div>
   <div class="form-group">
-    <div class="d-flex justify-content-center custom-control custom-checkbox">
+    <div class="ml-2 ml-sm-0 pl-sm-0 d-flex justify-content-start justify-content-sm-center custom-control custom-checkbox">
       <input type="checkbox" class="custom-control-input" id="signIn_rememberMe">
       <label class="custom-control-label" for="signIn_rememberMe">30天内免登录</label>
     </div>
