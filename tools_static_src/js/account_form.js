@@ -164,3 +164,23 @@ $().ready(function () {
     });
   }
 });
+
+// 刷新验证码方法之一
+$().ready(function() {
+  let captcha = document.querySelector('#captcha');
+  if (captcha) {
+    let reVerify = captcha.querySelector('#reVerify');
+    reVerify.addEventListener('click', function(e) {
+      let e_target = e.target;
+      if ('IMG' === e_target.tagName) {
+        let timestamp = new Date().getTime();
+        let img_src = '/captcha/captcha.jpg' + '?timestamp=' + timestamp;
+        refresh_captcha_img(e_target, img_src);
+      }
+    });
+  }
+});
+
+function refresh_captcha_img(img_element, img_src) {
+  img_element.src = img_src;
+}
