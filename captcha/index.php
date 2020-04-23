@@ -8,7 +8,7 @@ $captcha
 //    ->setBackgroundImages(array())
   ->setBackgroundColor(255, 255, 255)
   ->setIgnoreAllEffects(true)
-  ->build(100, 24)
+  ->build(100, 36)
   ->save($captcha_dir . '/captcha.jpg', 50);
 
 //$captcha->get(90);
