@@ -1,25 +1,25 @@
 // 第三方登录提示
-(function () {
-  let oauth_sign_in = document.querySelector("#oauth_sign_in");
+(function() {
+  let oauth_sign_in = document.querySelector('#oauth_sign_in');
   if (oauth_sign_in) {
-    oauth_sign_in.addEventListener('click', function (e) {
+    oauth_sign_in.addEventListener('click', function(e) {
       let e_target = e.target;
       if (e_target.dataset['title']) {
-        let e_title = e_target.dataset["title"];
+        let e_title = e_target.dataset['title'];
         let tip = `<div class="text-center text-info">${e_title}功能正在开发中</div>`;
         bootstrapModalJs('', tip, '', 'sm', true);
       }
-    })
+    });
   }
 })();
 
 // 账号模态框切换选项卡tab
-$().ready(function () {
+$().ready(function() {
   let account_sign = document.querySelector('#account_sign');
   if (account_sign) {
     let modal_tabs = account_sign.querySelectorAll('button[class*="modal_tab"]');
     for (let x = modal_tabs.length, i = 0; i < x; i++) {
-      modal_tabs[i].addEventListener('click', function (e) {
+      modal_tabs[i].addEventListener('click', function(e) {
         let e_target = e.target;
         let modal_tab;
 
@@ -35,10 +35,10 @@ $().ready(function () {
         let modal_tab_tab = modal_tab.getAttribute('data-tab_target');
 
         if (modal_tab_tab && modal_tab_modal) {
-          $(modal_tab_modal).on('shown.bs.modal', function () {
+          $(modal_tab_modal).on('shown.bs.modal', function() {
             $(modal_tab_tab).tab('show');
           });
-          $(modal_tab_modal).on('hidden.bs.modal', function () {
+          $(modal_tab_modal).on('hidden.bs.modal', function() {
             document.querySelector(modal_tab_tab).classList.remove('active', 'show');
           });
           $(modal_tab_modal).modal('show');
@@ -49,11 +49,11 @@ $().ready(function () {
 });
 
 // 账号表单类型切换
-$().ready(function () {
+$().ready(function() {
   let sign_tabs = document.querySelectorAll('.sign_tab');
   if (sign_tabs) {
     for (let x = sign_tabs.length, i = 0; i < x; i++) {
-      sign_tabs[i].addEventListener('click', function (e) {
+      sign_tabs[i].addEventListener('click', function(e) {
         let e_target = e.target;
         let current_sign_tab;
 
@@ -76,12 +76,11 @@ $().ready(function () {
 });
 
 // 密码明文显示
-$().ready(function () {
+$().ready(function() {
   let password_switch = document.querySelector('#password_switch');
   if (password_switch) {
-    password_switch.addEventListener('click', function (e) {
+    password_switch.addEventListener('click', function(e) {
       let e_target = e.target;
-      console.log(e_target);
       if ('INPUT' === e_target.parentElement.parentElement.previousElementSibling.tagName) {
         let password_input = e_target.parentElement.parentElement.previousElementSibling;
         let type = password_input.type;
@@ -95,13 +94,12 @@ $().ready(function () {
         }
       }
       replace_class(e_target, 'fa-eye-slash', 'fa-eye');
-
-    })
+    });
   }
 });
 
 // reCaptcha状态检测
-$().ready(function () {
+$().ready(function() {
   let recaptcha_tools = document.querySelector('#recaptcha_tools');
   if (recaptcha_tools) {
     // let recaptcha_check = document.querySelector('#recaptcha_check');
@@ -114,7 +112,7 @@ $().ready(function () {
     // let recaptcha_result_failure = document.querySelector('#recaptcha_result_failure');
 
     show_element(recaptcha_tools);
-    progress_bar_revise(recaptcha_progress_bar);
+    // progress_bar_revise(recaptcha_progress_bar);
 
     function show_element(element) {
       if (element.classList.contains('d-none')) {
@@ -126,16 +124,12 @@ $().ready(function () {
 
     function progress_bar_revise(bar_element) {
       let element_current_width = get_element_style_number(bar_element, 'width');
-      let max_time = 6,
-        max_width = 100,
-        gap_width = max_width - element_current_width;
-
-      console.log(max_time + gap_width);
+      let max_time = 6;
+      let max_width = 100;
     }
 
     function get_element_style_number(element, style_name) {
       let style_attribute_value = window.getComputedStyle(element, null).getPropertyValue(style_name);
-      console.log(style_attribute_value);
       if ('' === style_attribute_value) return false;
       if (style_attribute_value.includes('%')) {
         return style_attribute_value.replace('%', '');
@@ -148,14 +142,14 @@ $().ready(function () {
 });
 
 //主导航菜单 下拉菜单
-$().ready(function () {
+$().ready(function() {
   let account_sign_out = document.querySelector('#account_sign_out');
   if (account_sign_out) {
     let notices_nav_tabs = account_sign_out.querySelector('#notices_nav_tabs');
-    notices_nav_tabs.addEventListener('click', function (e) {
+    notices_nav_tabs.addEventListener('click', function(e) {
       e.preventDefault();
     });
-    notices_nav_tabs.addEventListener('mouseover', function (e) {
+    notices_nav_tabs.addEventListener('mouseover', function(e) {
       let e_target = e.target;
       if ('A' === e_target.tagName && e_target.classList.contains('nav-link')) {
         $(e_target).tab('show');
