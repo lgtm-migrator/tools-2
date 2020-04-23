@@ -1,20 +1,14 @@
 <?php
-require_once dirname(__DIR__) . "/vendor/autoload.php";
+require_once dirname(__FILE__) . "/captcha.php";
 
-use Gregwar\Captcha\CaptchaBuilder;
-use Gregwar\Captcha\PhraseBuilder;
-
-$phraseBuilder = new PhraseBuilder(4,);
-$captcha = new CaptchaBuilder(null, $phraseBuilder);
+//global $captcha;
 
 $captcha
 //    ->setBackgroundImages(array())
   ->setBackgroundColor(255, 255, 255)
   ->setIgnoreAllEffects(true)
   ->build(100, 24)
-  ->save('captcha.jpg', 50);
-
-header('Content-type: image/jpeg');
+  ->save(dirname(__DIR__) . '/wwwroot/captcha/captcha.jpg', 50);
 
 //$captcha->get(90);
 //$captcha->output(90);

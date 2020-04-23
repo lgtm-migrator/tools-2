@@ -43,7 +43,9 @@
     <div class="col-12 col-sm-10 input-group">
       <div class="input-group-prepend">
         <div class="input-group-text" id="captcha">
-          <img width="100" height="24" alt="验证码" id="reVerify" src="/captcha.jpg?n=<?php echo time(); ?>">
+          <img width="100" height="24" alt="验证码" id="reVerify"
+               src="/captcha/captcha.jpg<?php require_once dirname(dirname(dirname(__DIR__))) . "/captcha/index.php";
+               echo '?n=' . time(); ?>">
         </div>
       </div>
       <input class="form-control" type="text" id="modal_login_captcha" placeholder="请输入验证码" minlength="4"
