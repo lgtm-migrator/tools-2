@@ -663,9 +663,7 @@ $().ready(function () {
 
 function anti_mirror() {
   setTimeout(function () {
-    if (document.location.host !== 'tools.jzeg.org' &&
-      document.location.host !== 'test.jzeg.net' &&
-      document.location.host !== 'tools.jzeg.net') {
+    if (domain_check()) {
       if (fundebug) {
         fundebug.notify('发现镜像', document.location.href, {
           metaData: {
@@ -678,6 +676,20 @@ function anti_mirror() {
       }, 3000);
     }
   }, 1000);
+}
+
+function domain_check() {
+  let result = true;
+  let current_host = document.location.host;
+  let hosts = [
+    'tools.jzeg.org',
+    'test.jzeg.net',
+    'tools.jzeg.net',
+  ];
+
+  if (hosts.includes(current_host)) result = false;
+
+  return result;
 }
 
 /** 右下侧固定栏 **/
@@ -693,9 +705,9 @@ function fixed_tools() {
   div.id = 'fixed_tools';
   div.style.right = '1rem';
   div.style.bottom = '1rem';
+  div.style.zIndex = '999';
 
   div.appendChild(fixed_tools_to_top());
-
   jt_footer.appendChild(div);
 }
 
@@ -783,8 +795,12 @@ $().ready(function () {
 /**
  * 隐藏显示全部选项时出现的滚动条
  * 本功能只在PC端有效果
+ * 相关联的是CSS样式 overflow = 'overlay'
+ * overlay行为与auto相同，但滚动条绘制在内容之上而不是占用空间。 仅在基于WebKit（例如，Safari）和基于Blink的（例如，Chrome或Opera）浏览器中受支持。
+ * https://developer.mozilla.org/zh-CN/docs/Web/CSS/overflow
  * 忽略select可能存在的其他类型无效子元素可能造成的影响
  * 添加时的chrome版本 80.0.3987.132
+ * 最后一次验证时的chrome版本 81.0.4044.113（正式版本） （64 位）
  **/
 $().ready(function () {
   let all_select_elements = document.querySelectorAll('select');
@@ -798,8 +814,8 @@ $().ready(function () {
 });
 
 /**
- * 动态同步文本输入框元素和滑动条元素的值
- */
+ * 动态同步数字类型的文本输入框元素的值和滑动条输入框元素的值
+ **/
 function dynamic_synchronization_element(source_element, target_element, event_type) {
   source_element.addEventListener(event_type, function () {
     target_element.value = source_element.value;

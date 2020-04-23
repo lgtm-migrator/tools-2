@@ -106,6 +106,19 @@ function terser_tools(done) {
 }
 
 function watch_tools(done) {
-  watch([tools_static_src_path + "**/*"], task("build_tools"));
+  let all_watch_files = [
+    tools_js_path,
+    index_js_path,
+    survey_js_path,
+    phone_number_js_path,
+    photo_info_js_path,
+    tools_css_path,
+    index_css_path,
+    survey_css_path,
+    phone_number_css_path,
+    photo_info_css_path,
+    bootstrap_next_css_path,
+  ];
+  watch(all_watch_files, task("build_tools"));
   done();
 }

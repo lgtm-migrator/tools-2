@@ -215,6 +215,25 @@
 /* 文本 */
 .text-align-last {text-align-last: justify;}
 
+.text-yellowgreen {color: yellowgreen;}
+.text-greenyellow {color: greenyellow;}
+.text-orangered {color: orangered;}
+.text-darkorange {color: darkorange;}
+.text-orange {color: orange;}
+.text-indianred {color: indianred;}
+.text-palevioletred {color: palevioletred;}
+.text-lightcoral {color: lightcoral;}
+.text-dodgerblue {color: dodgerblue;}
+.text-magenta {color: magenta;}
+.text-darkmagenta {color: darkmagenta;}
+.text-mediumvioletred {color: mediumvioletred;}
+.text-mediumslateblue {color: mediumslateblue;}
+.text-blueviolet {color: blueviolet;}
+.text-slateblue {color: slateblue;}
+.text-darkslateblue {color: darkslateblue;}
+.text-darkred {color: darkred;}
+.text-crimson {color: crimson;}
+
 /* transition动画 */
 .transition-property-all {transition-property: width;}
 .transition-property-width {transition-property: width;}

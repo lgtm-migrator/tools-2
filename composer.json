@@ -9,7 +9,8 @@
     "ext-mbstring": "*",
     "lsolesen/pel": "^0.9.6",
     "alibabacloud/sdk": "^1.8",
-    "endroid/qr-code": "^3.7"
+    "endroid/qr-code": "^3.7",
+    "gregwar/captcha": "^1.1"
   },
   "require-dev": {
     "friendsofphp/php-cs-fixer": "^2.16",

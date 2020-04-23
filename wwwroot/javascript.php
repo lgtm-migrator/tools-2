@@ -8,3 +8,4 @@
 <script src="/static/js/qrcode.min.js"></script>
 <script src="/static/js/tools.min.js"></script>
 <script src="/static/js/account_form.min.js"></script>
+<script src="/static/js/debug.min.js"></script>

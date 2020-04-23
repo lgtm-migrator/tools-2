@@ -42,14 +42,18 @@
     </div>
     <div class="col-12 col-sm-10 input-group">
       <div class="input-group-prepend">
-        <div class="input-group-text" id="captcha">123456</div>
+        <div class="px-1 py-0 input-group-text" id="captcha">
+          <img width="100" height="36" alt="验证码" id="reVerify"
+               src="/captcha/captcha.jpg<?php require_once dirname(dirname(dirname(__DIR__))) . "/captcha/index.php";
+               echo '?n=' . time(); ?>">
+        </div>
       </div>
       <input class="form-control" type="text" id="modal_login_captcha" placeholder="请输入验证码" minlength="4"
              maxlength="6" autocomplete="off" required>
     </div>
   </div>
   <div class="form-group">
-    <div class="d-flex justify-content-center custom-control custom-checkbox">
+    <div class="ml-2 ml-sm-0 pl-sm-0 d-flex justify-content-start justify-content-sm-center custom-control custom-checkbox">
       <input type="checkbox" class="custom-control-input" id="signIn_rememberMe">
       <label class="custom-control-label" for="signIn_rememberMe">30天内免登录</label>
     </div>
@@ -58,13 +62,13 @@
     <button class="w-50 btn btn-secondary" type="button" id="signIn_submit">登录</button>
   </div>
   <div class="my-2 py-2 d-flex justify-content-end border rounded-lg small">
-    <a class="mx-1 text-muted sign_tab" href="javascript:" data-target="#tab-sign_in_phone">
+    <a class="mx-1 text-decoration-none sign_tab" href="javascript:" data-target="#tab-sign_in_phone">
       <i class="fas fa-lg fa-mobile-alt"></i>
-      手机号登录
+      <span class="text-muted">手机号登录</span>
     </a>
-    <a class="mx-1 text-muted sign_tab" href="javascript:" data-target="#tab-password_reset">
+    <a class="mx-1 text-decoration-none sign_tab" href="javascript:" data-target="#tab-password_reset">
       <i class="fas fa-lg fa-user-injured"></i>
-      忘记密码
+      <span class="text-muted">忘记密码</span>
     </a>
   </div>
 </div>
