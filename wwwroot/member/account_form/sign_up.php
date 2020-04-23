@@ -47,7 +47,7 @@
     </div>
   </div>
   <div class="form-group">
-    <div class="d-flex justify-content-center custom-control custom-checkbox">
+    <div class="d-flex justify-content-end justify-content-sm-center custom-control custom-checkbox">
       <input type="checkbox" class="custom-control-input" id="signUp_tos">
       <label class="custom-control-label" for="signUp_tos">同意服务条款</label>
     </div>
