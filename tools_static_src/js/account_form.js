@@ -118,7 +118,7 @@ $().ready(function() {
     // let recaptcha_result_failure = document.querySelector('#recaptcha_result_failure');
 
     show_element(recaptcha_tools);
-    // progress_bar_revise(recaptcha_progress_bar);
+    progress_bar_revise(recaptcha_progress_bar);
 
     function show_element(element) {
       if (element.classList.contains('d-none')) {
@@ -132,6 +132,7 @@ $().ready(function() {
       let element_current_width = get_element_style_number(bar_element, 'width');
       let max_time = 6;
       let max_width = 100;
+      console.log(max_time + max_width + element_current_width);//fixme:未完成
     }
 
     function get_element_style_number(element, style_name) {
