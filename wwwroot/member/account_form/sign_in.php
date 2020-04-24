@@ -17,7 +17,7 @@
              autocomplete="off" required>
       <div class="input-group-append">
         <div class="input-group-text">
-          <i class="fas fa-fw fa-lg fa-eye" title="显示密码" id="password_switch"></i>
+          <i class="fas fa-fw fa-lg fa-eye password_switch" title="显示密码"></i>
         </div>
       </div>
     </div>
@@ -42,7 +42,7 @@
     </div>
     <div class="col-12 col-sm-10 input-group">
       <div class="input-group-prepend">
-        <div class="px-1 py-0 input-group-text" id="captcha">
+        <div class="px-0 py-0 input-group-text" id="captcha">
           <img width="100" height="36" alt="验证码" id="reVerify"
                src="/captcha/captcha.jpg<?php require_once dirname(dirname(dirname(__DIR__))) . "/captcha/index.php";
                echo '?timestamp=' . time(); ?>">

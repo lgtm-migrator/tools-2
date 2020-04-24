@@ -77,23 +77,29 @@ $().ready(function() {
 
 // 密码明文显示
 $().ready(function() {
-  let password_switch = document.querySelector('#password_switch');
-  if (password_switch) {
-    password_switch.addEventListener('click', function(e) {
+  let password_switch = document.querySelectorAll('.password_switch');
+  for (let x = password_switch.length, i = 0; i < x; i++) {
+    password_switch[i].addEventListener('click', function(e) {
       let e_target = e.target;
+      let password_input;
       if ('INPUT' === e_target.parentElement.parentElement.previousElementSibling.tagName) {
-        let password_input = e_target.parentElement.parentElement.previousElementSibling;
-        let type = password_input.type;
-        switch (type) {
-          case 'text':
-            password_input.setAttribute('type', 'password');
-            break;
-          case 'password':
-          default:
-            password_input.setAttribute('type', 'text');
-        }
+        password_input = e_target.parentElement.parentElement.previousElementSibling;
+      } else if ('INPUT' === e_target.parentElement.previousElementSibling.tagName) {
+        password_input = e_target.parentElement.previousElementSibling;
+      } else {
+        return;
+      }
+      let type = password_input.type;
+      switch (type) {
+        case 'text':
+          password_input.setAttribute('type', 'password');
+          break;
+        case 'password':
+        default:
+          password_input.setAttribute('type', 'text');
       }
       replace_class(e_target, 'fa-eye-slash', 'fa-eye');
+      replace_title(e_target, '显示密码', '隐藏密码');
     });
   }
 });

@@ -41,6 +41,19 @@ function replace_class(element, old_class_name, new_class_name) {
   return true;
 }
 
+function replace_title(element, old_title, new_title) {
+  let e_title = element.title;
+  if (undefined === e_title) return false;
+  if (old_title === e_title) {
+    element.setAttribute('title', new_title);
+  } else if (new_title === e_title) {
+    element.setAttribute('title', old_title);
+  } else {
+    return false;
+  }
+  return true;
+}
+
 function get_element_attribute(element, attribute_name) {
   return element.getAttribute(attribute_name);
 }
