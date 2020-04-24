@@ -1,4 +1,4 @@
-<div class="jz-divider border-secondary border-dashed"></div>
+<div class="dropdown-divider border-top-dotted"></div>
 <div class="mt-3 d-flex flex-column align-items-center">
   <?php include_once dirname(__FILE__) . '/sign_tab.php' ?>
 </div>

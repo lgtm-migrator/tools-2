@@ -201,16 +201,16 @@
 }
 
 /* 边框 */
-.border-none {border-top-style: none !important;}
-.border-hidden {border-top-style: hidden !important;}
-.border-dotted {border-top-style: dotted !important;}
-.border-dashed {border-top-style: dashed !important;}
-.border-solid {border-top-style: solid !important;}
-.border-double {border-top-style: double !important;}
-.border-groove {border-top-style: groove !important;}
-.border-ridge {border-top-style: ridge !important;}
-.border-inset {border-top-style: inset !important;}
-.border-outset {border-top-style: outset !important;}
+.border-top-none {border-top-style: none !important;}
+.border-top-hidden {border-top-style: hidden !important;}
+.border-top-dotted {border-top-style: dotted !important;}
+.border-top-dashed {border-top-style: dashed !important;}
+.border-top-solid {border-top-style: solid !important;}
+.border-top-double {border-top-style: double !important;}
+.border-top-groove {border-top-style: groove !important;}
+.border-top-ridge {border-top-style: ridge !important;}
+.border-top-inset {border-top-style: inset !important;}
+.border-top-outset {border-top-style: outset !important;}
 
 /* 文本 */
 .text-align-last {text-align-last: justify;}
