@@ -172,25 +172,23 @@ $().ready(function() {
   if (captcha) {
     let reVerify = captcha.querySelector('#reVerify');
     reVerify.addEventListener('click', function(e) {
-      let url='/captcha/index.php';
+      let url = '/captcha/index.php';
+      let data = '';
       $.ajax({
         type: 'post',
         url: url,
-        data: '1',
+        data: data,
         // dataType: 'json',
-        success: function (data) {
+        success: function(data) {
           console.log(data);
-
-          reVerify.addEventListener('click', function(e) {
-            let e_target = e.target;
-            if ('IMG' === e_target.tagName) {
-              let timestamp = new Date().getTime();
-              let img_src = '/captcha/captcha.jpg' + '?timestamp=' + timestamp;
-              refresh_captcha_img(e_target, img_src);
-            }
-          });
+          let e_target = e.target;
+          if ('IMG' === e_target.tagName) {
+            let timestamp = new Date().getTime();
+            let img_src = '/captcha/captcha.jpg' + '?timestamp=' + timestamp;
+            refresh_captcha_img(e_target, img_src);
+          }
         },
-        error: function (data) {
+        error: function(data) {
         },
       });
 
