@@ -1,17 +1,17 @@
 // 第三方登录提示
-(function() {
+$().ready(function() {
   let oauth_sign_in = document.querySelector('#oauth_sign_in');
   if (oauth_sign_in) {
     oauth_sign_in.addEventListener('click', function(e) {
       let e_target = e.target;
-      if (e_target.dataset['title']) {
+      if ('BUTTON' === e_target.tagName && undefined !== e_target.dataset['title']) {
         let e_title = e_target.dataset['title'];
         let tip = `<div class="text-center text-info">${e_title}功能正在开发中</div>`;
         bootstrapModalJs('', tip, '', 'sm', true);
       }
     });
   }
-})();
+});
 
 // 账号模态框切换选项卡tab
 $().ready(function() {
