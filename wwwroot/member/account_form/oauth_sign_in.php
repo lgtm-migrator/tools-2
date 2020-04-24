@@ -1,5 +1,5 @@
 <button class="btn btn-sm btn-outline-secondary" type="button" data-toggle="collapse" data-target="#oauth_sign_in">第三方社交账号登录</button>
-<div class="mt-1 px-1 pb-5 collapse" id="oauth_sign_in">
+<div class="mt-1 px-1 collapse" id="oauth_sign_in">
   <button type="button" class="p-2 border-0 btn btn-outline-secondary fab fa-lg fa-alipay" data-title="支付宝登录"></button>
   <button type="button" class="p-2 border-0 btn btn-outline-secondary fab fa-lg fa-weixin" data-title="微信登录"></button>
   <button type="button" class="p-2 border-0 btn btn-outline-secondary fab fa-lg fa-qq" data-title="QQ登录"></button>
