@@ -148,24 +148,6 @@ $().ready(function() {
   }
 });
 
-//主导航菜单 下拉菜单
-$().ready(function() {
-  let account_sign_out = document.querySelector('#account_sign_out');
-  if (account_sign_out) {
-    let notices_nav_tabs = account_sign_out.querySelector('#notices_nav_tabs');
-    notices_nav_tabs.addEventListener('click', function(e) {
-      e.preventDefault();
-    });
-    notices_nav_tabs.addEventListener('mouseover', function(e) {
-      let e_target = e.target;
-      if ('A' === e_target.tagName && e_target.classList.contains('nav-link')) {
-        $(e_target).tab('show');
-        e_target.classList.toggle('text-dark');
-      }
-    });
-  }
-});
-
 // 刷新验证码方法之一
 $().ready(function() {
   let captcha = document.querySelector('#captcha');
@@ -200,14 +182,3 @@ $().ready(function() {
 function refresh_captcha_img(img_element, img_src) {
   img_element.src = img_src;
 }
-
-// 回弹主导航菜单collapse内容
-$().ready(function() {
-  let collapse_navBar = document.querySelector('#collapse_navBar');
-  let navBar = document.querySelector('#navBar');
-  if (collapse_navBar && navBar) {
-    jt_header.addEventListener('mouseleave', function() {
-      $(navBar).collapse('hide');
-    });
-  }
-});
