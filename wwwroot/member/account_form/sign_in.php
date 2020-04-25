@@ -30,8 +30,7 @@
       <div class="input-group-prepend">
         <div class="px-0 py-0 input-group-text" id="captcha">
           <img width="100" height="36" alt="验证码" id="reVerify"
-               src="/captcha/captcha.jpg<?php require_once dirname(dirname(dirname(__DIR__))) . "/captcha/index.php";
-               echo '?timestamp=' . time(); ?>">
+               src="<?php require_once dirname(dirname(dirname(__DIR__))) . "/wwwroot/captcha/index.php";?>">
         </div>
       </div>
       <input class="form-control" type="text" id="modal_login_captcha" placeholder="请输入验证码" minlength="4"

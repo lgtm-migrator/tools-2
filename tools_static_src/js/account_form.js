@@ -150,34 +150,37 @@ $().ready(function() {
 
 // 刷新验证码方法之一
 $().ready(function() {
-  let captcha = document.querySelector('#captcha');
-  if (captcha) {
-    let reVerify = captcha.querySelector('#reVerify');
+  let reVerify = document.querySelector('#reVerify');
+  if (reVerify) {
     reVerify.addEventListener('click', function(e) {
       let url = '/captcha/index.php';
-      let data = '';
+      let data = {'reVerify': '1'};
       $.ajax({
         type: 'post',
         url: url,
+        cache: false,
+        timeout: 4000,
         data: data,
-        // dataType: 'json',
+        dataType: 'json',
         success: function(data) {
-          console.log(data);
           let e_target = e.target;
           if ('IMG' === e_target.tagName) {
-            let timestamp = new Date().getTime();
-            let img_src = '/captcha/captcha.jpg' + '?timestamp=' + timestamp;
-            refresh_captcha_img(e_target, img_src);
+            reVerify_captcha_result(data, e_target);
           }
         },
-        error: function(data) {
+        error: function(error) {
+          console.log('验证码出错：====' + error);
         },
       });
-
     });
-
   }
 });
+
+function reVerify_captcha_result(verify_result, captcha_img_element) {
+  let img_src = verify_result['captcha']['img_base64'];
+  console.log('img_src======' + img_src);
+  refresh_captcha_img(captcha_img_element, img_src);
+}
 
 function refresh_captcha_img(img_element, img_src) {
   img_element.src = img_src;
