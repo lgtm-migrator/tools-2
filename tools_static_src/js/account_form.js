@@ -200,3 +200,14 @@ $().ready(function() {
 function refresh_captcha_img(img_element, img_src) {
   img_element.src = img_src;
 }
+
+// 回弹主导航菜单collapse内容
+$().ready(function() {
+  let collapse_navBar = document.querySelector('#collapse_navBar');
+  let navBar = document.querySelector('#navBar');
+  if (collapse_navBar && navBar) {
+    jt_header.addEventListener('mouseleave', function() {
+      $(navBar).collapse('hide');
+    });
+  }
+});
