@@ -1,4 +1,4 @@
-/** 公用 **/
+// 公用
 let a_body = document.body.querySelector('#body');
 if (a_body) a_body.removeAttribute('hidden');
 
@@ -13,13 +13,13 @@ let RegExp_rules = {
   'zh_cn_number': new RegExp(/^((?:[\u3400-\u4DB5\u4E00-\u9FEA\uFA0E\uFA0F\uFA11\uFA13\uFA14\uFA1F\uFA21\uFA23\uFA24\uFA27-\uFA29]|[\uD840-\uD868\uD86A-\uD86C\uD86F-\uD872\uD874-\uD879][\uDC00-\uDFFF]|\uD869[\uDC00-\uDED6\uDF00-\uDFFF]|\uD86D[\uDC00-\uDF34\uDF40-\uDFFF]|\uD86E[\uDC00-\uDC1D\uDC20-\uDFFF]|\uD873[\uDC00-\uDEA1\uDEB0-\uDFFF]|\uD87A[\uDC00-\uDFE0])|(\d))+$/),
 };
 
-/** 公共元素变量名 **/
+// 公共元素变量名
 let jt_header = document.querySelector('#jt_header');
 let jt_content = document.querySelector('#jt_content');
 let jt_container = document.querySelector('#jt_container');
 let jt_footer = document.querySelector('#jt_footer');
 
-/** 封装方法 **/
+// 封装方法
 function add_class(element, class_name) {
   element.classList.add(class_name);
 }
@@ -35,6 +35,19 @@ function replace_class(element, old_class_name, new_class_name) {
   } else if (element.classList.contains(new_class_name)) {
     element.classList.remove(new_class_name);
     element.classList.add(old_class_name);
+  } else {
+    return false;
+  }
+  return true;
+}
+
+function replace_title(element, old_title, new_title) {
+  let e_title = element.title;
+  if (undefined === e_title) return false;
+  if (old_title === e_title) {
+    element.setAttribute('title', new_title);
+  } else if (new_title === e_title) {
+    element.setAttribute('title', old_title);
   } else {
     return false;
   }
@@ -63,8 +76,8 @@ function create_small_center_text(text, color = '') {
 }
 
 function create_close_btn(fun_name, class_name) {
-  let close_button = document.createElement("button");
-  let close_span = document.createElement("span");
+  let close_button = document.createElement('button');
+  let close_span = document.createElement('span');
 
   close_button.type = 'button';
   close_button.className = class_name ? 'close ' + class_name : 'close';
@@ -74,11 +87,11 @@ function create_close_btn(fun_name, class_name) {
   close_span.title = '关闭';
   close_span.innerHTML = '&times;';
   close_span.addEventListener('click', fun_name);
-  close_span.addEventListener('mouseover', function (e) {
+  close_span.addEventListener('mouseover', function(e) {
     let e_target = e.target;
     e_target.classList.toggle('text-danger');
   });
-  close_span.addEventListener('mouseleave', function (e) {
+  close_span.addEventListener('mouseleave', function(e) {
     let e_target = e.target;
     e_target.classList.toggle('text-danger');
   });
@@ -88,7 +101,7 @@ function create_close_btn(fun_name, class_name) {
 }
 
 function create_dropdown_divider(border) {
-  let div = document.createElement("div");
+  let div = document.createElement('div');
   div.className = border ? 'dropdown-divider ' + border : 'dropdown-divider';
 
   return div;
@@ -112,14 +125,14 @@ function get_file_size(file_size) {
   return file_size;
 }
 
-/** tooltip **/
-$().ready(function () {
+// tooltip
+$().ready(function() {
   $('span[title]').tooltip({
     placement: 'right',
   });
 });
 
-/** js.cookie **/
+// js.cookie
 let js_cookies = window.Cookies.noConflict();
 
 function set_cookie(key, value = 1, attributes, secure = true) {
@@ -149,12 +162,12 @@ function remove_cookie(key) {
   js_cookies.remove(key);
 }
 
-/** bsCustomFileInput **/
-$().ready(function () {
+// bsCustomFileInput
+$().ready(function() {
   bsCustomFileInput.init();
 });
 
-/** 表单验证 **/
+// 表单验证
 function validation_invalid_div(element, text, type = 'tooltip') {
   if (remove_validation_div(element)) {
     let div = document.createElement('div');
@@ -259,22 +272,22 @@ function toggle_disabled_element(element) {
   }
 }
 
-/** ReCAPTCHA **/
+// ReCAPTCHA
 function set_recaptcha_action(Action = null) {
   const v3_site_key = '6LcvIcEUAAAAAEUgtbN0VFiH_n2VHw-luW3rdZFv';
   const url = 'https://www.recaptcha.net/recaptcha/api.js?render=';
 
   Action = Action ? Action : 'unset';
 
-  $.getScript(url + v3_site_key, function () {
+  $.getScript(url + v3_site_key, function() {
     set_recaptcha_token(v3_site_key, Action);
   });
 }
 
 function set_recaptcha_token(site_key, action) {
-  grecaptcha.ready(function () {
+  grecaptcha.ready(function() {
     grecaptcha.execute(site_key, {action: action})
-      .then(function (token) {
+      .then(function(token) {
         // console.log(token);
         get_recaptcha_verify(token, action);
       });
@@ -294,19 +307,47 @@ function get_recaptcha_verify(token_key, pageAction) {
     data: data,
     timeout: 5000,
     dataType: 'json',
-    success: function (data) {
+    success: function(data) {
       console.log('提交验证成功');
       console.log(data);
     },
-    error: function (data) {
+    error: function(data) {
       console.log('提交验证失败');
       console.log(data);
     },
   });
 }
 
-/** 页脚文案 **/
-$().ready(function () {
+//主导航菜单 下拉菜单
+$().ready(function() {
+  let account_sign_out = document.querySelector('#account_sign_out');
+  if (account_sign_out) {
+    let notices_nav_tabs = account_sign_out.querySelector('#notices_nav_tabs');
+    notices_nav_tabs.addEventListener('click', function(e) {
+      e.preventDefault();
+    });
+    notices_nav_tabs.addEventListener('mouseover', function(e) {
+      let e_target = e.target;
+      if ('A' === e_target.tagName && e_target.classList.contains('nav-link')) {
+        $(e_target).tab('show');
+        e_target.classList.toggle('text-dark');
+      }
+    });
+  }
+});
+
+// 回弹主导航菜单collapse内容
+$().ready(function() {
+  let navBar = document.querySelector('#navBar');
+  if (navBar) {
+    jt_header.addEventListener('mouseleave', function() {
+      $(navBar).collapse('hide');
+    });
+  }
+});
+
+// 页脚文案
+$().ready(function() {
   footer_add_x();
 });
 
@@ -320,7 +361,7 @@ function footer_add_x() {
   footer_x.appendChild(footer_qr_code());
 }
 
-/** 页脚时间 **/
+// 页脚时间
 function footer_current_time() {
   let span = document.createElement('span');
   span.className = 'd-block text-nowrap small';
@@ -328,14 +369,14 @@ function footer_current_time() {
   span.innerHTML = '&nbsp;';
 
   dayjs.locale('zh-cn');
-  setInterval(function () {
+  setInterval(function() {
     span.innerHTML = dayjs().format('YYYY年M月D日 dddA H点mm分s秒');
   }, 1000);
 
   return span;
 }
 
-/** 页脚ReCAPTCHA说明 **/
+// 页脚ReCAPTCHA说明
 function footer_recaptcha_text_badge() {
   let div = document.createElement('div');
   let span_1 = document.createElement('span');
@@ -369,7 +410,7 @@ function footer_recaptcha_text_badge() {
   return div;
 }
 
-/** ICP备案和公网安备 **/
+// ICP备案和公网安备
 function footer_record() {
   let div = document.createElement('div');
   let span = document.createElement('span');
@@ -411,7 +452,7 @@ function footer_record_code(code_number = '', code_area = '') {
   return a;
 }
 
-/** 页脚二维码 **/
+// 页脚二维码
 //fixme:待完善
 function footer_qr_code() {
   let div = document.createElement('div');
@@ -426,7 +467,7 @@ function footer_qr_code() {
   span.style.cursor = 'pointer';
 
   i.className = 'fa-2x fa-fw fas fa-qrcode hvr-icon';
-  i.addEventListener('click', function () {
+  i.addEventListener('click', function() {
     let url = document.location.href;
     let url_param = {'from': 'clipboard'};
     let div = document.createElement('div');
@@ -434,7 +475,7 @@ function footer_qr_code() {
     let i_copy = document.createElement('i');
     let i_question = document.createElement('i');
 
-    let img = document.createElement("img");
+    let img = document.createElement('img');
     let qrcode_option = {
       errorCorrectionLevel: 'H',
       type: 'image/jpeg',
@@ -453,7 +494,7 @@ function footer_qr_code() {
     i_copy.innerHTML = '&nbsp;&nbsp;复制网址';
     i_copy.title = '复制当前页面的网址  需要操作2次才能复制成功';
     i_copy.style.cursor = 'pointer';
-    i_copy.addEventListener('click', function (e) {
+    i_copy.addEventListener('click', function(e) {
       copy_url(e.target, addUrlParam(url, url_param));
     });
 
@@ -474,7 +515,7 @@ function footer_qr_code() {
     div.appendChild(i_copy);
     div.appendChild(span);
 
-    QRCode.toDataURL(addUrlParam(url, url_param), qrcode_option, function (err, url) {
+    QRCode.toDataURL(addUrlParam(url, url_param), qrcode_option, function(err, url) {
       if (err) throw err;
       img.src = url;
     });
@@ -489,15 +530,15 @@ function footer_qr_code() {
 
 function copy_url(event, url) {
   let clipboard = new ClipboardJS(event, {
-    text: function () {
+    text: function() {
       return url;
     },
   });
-  clipboard.on('success', function () {
+  clipboard.on('success', function() {
     bootstrapModalJs('', '<span class="d-block text-center text-success small">复制成功</span>', '', 'sm', true);
     clipboard.destroy();
   });
-  clipboard.on('error', function () {
+  clipboard.on('error', function() {
     bootstrapModalJs('', '<span class="d-block text-center text-danger small">复制失败</span>', '', 'sm', true);
     clipboard.destroy();
   });
@@ -519,7 +560,7 @@ function addUrlParam(url, name, value = null) {
   return url;
 }
 
-/** 免责声明 **/
+// 免责声明
 function disclaimer() {
   let div = document.createElement('div');
   let i = document.createElement('i');
@@ -538,29 +579,29 @@ function disclaimer() {
   return div;
 }
 
-/** 增加阴影 **/
-$().ready(function () {
+// 增加阴影
+$().ready(function() {
   let btn_all = document.querySelectorAll('[class*="btn"]');
   let input_all = document.querySelectorAll('input[class*="form-control"]');
 
   for (let x = btn_all.length, i = 0; i < x; i++) {
-    btn_all[i].addEventListener('mouseover', function (e) {
+    btn_all[i].addEventListener('mouseover', function(e) {
       let e_target = e.target;
       let tagNames = ['BUTTON', 'A'];
       if (tagNames.includes(e_target.tagName)) {
         add_shadow(e_target);
       }
     });
-    btn_all[i].addEventListener('mouseleave', function (e) {
+    btn_all[i].addEventListener('mouseleave', function(e) {
       remove_shadow(e.target);
     });
   }
 
   for (let x = input_all.length, i = 0; i < x; i++) {
-    input_all[i].addEventListener('focus', function (e) {
+    input_all[i].addEventListener('focus', function(e) {
       add_shadow(e.target);
     });
-    input_all[i].addEventListener('blur', function (e) {
+    input_all[i].addEventListener('blur', function(e) {
       remove_shadow(e.target);
     });
   }
@@ -599,7 +640,7 @@ function get_href_url(target, class_name) {
 }
 
 function create_img(options, alt, className) {
-  let img = document.createElement("img");
+  let img = document.createElement('img');
 
   img.className = options.className ? options.className : className;
   img.src = options.src ? options.src : options;
@@ -608,7 +649,7 @@ function create_img(options, alt, className) {
   return img;
 }
 
-/** bootstrapModalJs-alert **/
+// bootstrapModalJs-alert
 function bootstrapModalJs_alert(alert_array = {}) {
   let bootstrapModalJs_options = {'backdrop': 'static', 'keyboard': false};
   let div = document.createElement('div');
@@ -656,13 +697,13 @@ function bootstrapModalJs_alert(alert_array = {}) {
   modalBody.classList.add('p-0');
 }
 
-/** 防镜像 **/
-$().ready(function () {
+// 防镜像
+$().ready(function() {
   anti_mirror();
 });
 
 function anti_mirror() {
-  setTimeout(function () {
+  setTimeout(function() {
     if (domain_check()) {
       if (fundebug) {
         fundebug.notify('发现镜像', document.location.href, {
@@ -671,7 +712,7 @@ function anti_mirror() {
           },
         });
       }
-      setTimeout(function () {
+      setTimeout(function() {
         location.href = location.href.replace(document.location.host, 'tools.jzeg.net');
       }, 3000);
     }
@@ -692,8 +733,8 @@ function domain_check() {
   return result;
 }
 
-/** 右下侧固定栏 **/
-$().ready(function () {
+// 右下侧固定栏
+$().ready(function() {
   fixed_tools();
 });
 
@@ -711,7 +752,7 @@ function fixed_tools() {
   jt_footer.appendChild(div);
 }
 
-/** 返回顶部 **/
+// 返回顶部
 function fixed_tools_to_top() {
   let a = document.createElement('a');
   let i = document.createElement('i');
@@ -733,8 +774,8 @@ function topControl(e) {
   $('html,body').animate({scrollTop: '0px'}, 1000);
 }
 
-/** 滚动监听 **/
-$().ready(function () {
+// 滚动监听
+$().ready(function() {
   let jt_header = document.querySelector('#jt_header');
   let fixed_tools = document.querySelector('#fixed_tools');
   let to_top = document.querySelector('#to_top');
@@ -779,7 +820,7 @@ $().ready(function () {
         }
       }
     } else if (new_scroll_position < last_scroll_position) {
-      setTimeout(function () {
+      setTimeout(function() {
         fixed_tools.classList.add('d-none');
       }, 200);
       if (to_top.classList.contains('zoomIn')) to_top.classList.remove('zoomIn');
@@ -802,7 +843,7 @@ $().ready(function () {
  * 添加时的chrome版本 80.0.3987.132
  * 最后一次验证时的chrome版本 81.0.4044.113（正式版本） （64 位）
  **/
-$().ready(function () {
+$().ready(function() {
   let all_select_elements = document.querySelectorAll('select');
   for (let x = all_select_elements.length, i = 0; i < x; i++) {
     let elements_size_value = all_select_elements[i].size;
@@ -817,7 +858,7 @@ $().ready(function () {
  * 动态同步数字类型的文本输入框元素的值和滑动条输入框元素的值
  **/
 function dynamic_synchronization_element(source_element, target_element, event_type) {
-  source_element.addEventListener(event_type, function () {
+  source_element.addEventListener(event_type, function() {
     target_element.value = source_element.value;
-  })
+  });
 }

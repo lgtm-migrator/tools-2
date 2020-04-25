@@ -13,3 +13,4 @@
 # 排除项目运行生成路径
 /session_files/
 /wwwroot/upload/
+/wwwroot/captcha/captcha.jpg

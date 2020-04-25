@@ -1,4 +1,4 @@
-/** 搜索号码 **/
+// 搜索号码
 create_search_number_tools();
 
 function create_search_number_tools() {
@@ -55,9 +55,9 @@ function create_search_regional_dropdown_menu() {
 
   search_regional.className = 'text-success';
   search_regional.id = 'search_regional';
-  search_regional.title = '区域';
+  search_regional.title = '搜索的区域';
 
-  search_dropdown_toggle_split.className = 'ml-1 px-1 btn-outline-secondary dropdown-toggle';
+  search_dropdown_toggle_split.className = 'ml-1 px-1 rounded-pill btn-outline-secondary dropdown-toggle';
   search_dropdown_toggle_split.id = 'search_dropdown_toggle_split';
   search_dropdown_toggle_split.setAttribute('data-toggle', 'dropdown');
 
@@ -157,6 +157,7 @@ function create_search_submit_name() {
   search_name_a.className = 'mx-2 btn btn-success name';
   search_name_a.href = 'javascript:';
   search_name_a.innerHTML = '&nbsp;搜名称';
+  search_name_a.title = '根据名称进行搜索';
   search_name_a.addEventListener('click', click_search_submits);
 
   search_name_i.className = 'fa-lg fas fa-home';
@@ -175,6 +176,7 @@ function create_search_submit_number() {
   search_number_a.className = 'mx-2 btn btn-danger number';
   search_number_a.href = 'javascript:';
   search_number_a.innerHTML = '&nbsp;搜号码';
+  search_number_a.title = '根据号码进行搜索';
   search_number_a.addEventListener('click', click_search_submits);
 
   search_number_i_1.className = 'fa-lg fas fa-phone';
@@ -288,7 +290,7 @@ function ajax_search(search_data, clicked_btn) {
 }
 
 
-/** 搜索号码结果 **/
+// 搜索号码结果
 // let search_result_number_list = document.querySelector('#search_result_number_list');
 
 function get_search_result(data) {
@@ -511,7 +513,7 @@ function copy_search_result_number() {
 }
 
 
-/** 增加号码 **/
+// 增加号码
 let add_new_number = document.querySelector('#add_new_number');
 let add_number_submit;
 let add_number_form;
@@ -527,7 +529,7 @@ function show_add_number_form() {
   number_stored = document.querySelector('#number_stored');
 
   create_add_form_init();
-  create_add_regional('radio');
+  create_add_regional('button');
   create_add_number_form_close();
 }
 
@@ -1135,7 +1137,7 @@ function input_form_control_remove_shadow(e) {
 }
 
 
-/** 获取存储数量 **/
+// 获取存储数量
 function get_number_stored() {
   add_spinner_icon(number_stored, 'border', 'primary', 'left');
   $.ajax({
@@ -1157,7 +1159,7 @@ function get_number_stored() {
 }
 
 
-/** ReCAPTCHA **/
+// ReCAPTCHA
 // if (phone_number_submit) phone_number_submit.addEventListener("click", function () {
 //     set_recaptcha_action("test11");
 // });

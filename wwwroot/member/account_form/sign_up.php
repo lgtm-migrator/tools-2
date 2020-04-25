@@ -23,11 +23,10 @@
     </div>
     <div class="col-12 col-sm-10 input-group">
       <input class="form-control" type="password" id="signUp_password" placeholder="设置你的登录密码" minlength="8"
-             maxlength="16"
-             autocomplete="off" required>
+             maxlength="16" autocomplete="off" required>
       <div class="input-group-append">
         <div class="input-group-text">
-          <i class="fas fa-fw fa-lg fa-eye" title="显示密码" id="password_switch"></i>
+          <i class="fas fa-fw fa-lg fa-eye password_switch" title="显示密码"></i>
         </div>
       </div>
     </div>
@@ -41,13 +40,13 @@
              maxlength="16" autocomplete="off" required>
       <div class="input-group-append">
         <div class="input-group-text">
-          <i class="fas fa-fw fa-lg fa-eye" title="显示密码" id="password_switch"></i>
+          <i class="fas fa-fw fa-lg fa-eye password_switch" title="显示密码"></i>
         </div>
       </div>
     </div>
   </div>
   <div class="form-group">
-    <div class="d-flex justify-content-center custom-control custom-checkbox">
+    <div class="d-flex justify-content-end justify-content-sm-center custom-control custom-checkbox">
       <input type="checkbox" class="custom-control-input" id="signUp_tos">
       <label class="custom-control-label" for="signUp_tos">同意服务条款</label>
     </div>

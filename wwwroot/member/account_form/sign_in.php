@@ -17,9 +17,24 @@
              autocomplete="off" required>
       <div class="input-group-append">
         <div class="input-group-text">
-          <i class="fas fa-fw fa-lg fa-eye" title="显示密码" id="password_switch"></i>
+          <i class="fas fa-fw fa-lg fa-eye password_switch" title="显示密码"></i>
         </div>
       </div>
+    </div>
+  </div>
+  <div class="form-group form-row align-items-center">
+    <div class="col-auto col-sm-2">
+      <label class="mb-1 d-inline-block min-w-100 text-align-last text-dark" for="modal_login_captcha">验证码</label>
+    </div>
+    <div class="col-12 col-sm-10 input-group">
+      <div class="input-group-prepend">
+        <div class="px-0 py-0 input-group-text" id="captcha">
+          <img width="100" height="36" alt="验证码" id="reVerify"
+               src="<?php require_once dirname(dirname(dirname(__DIR__))) . "/wwwroot/captcha/index.php";?>">
+        </div>
+      </div>
+      <input class="form-control" type="text" id="modal_login_captcha" placeholder="请输入验证码" minlength="4"
+             maxlength="6" autocomplete="off" required>
     </div>
   </div>
   <div class="d-flex flex-column align-items-center" style="display: none!important;" id="recaptcha_tools">
@@ -36,24 +51,8 @@
       <span class="text-danger" id="recaptcha_result_failure">您没有通过验证</span>
     </div>
   </div>
-  <div class="form-group form-row align-items-center">
-    <div class="col-auto col-sm-2">
-      <label class="mb-1 d-inline-block min-w-100 text-align-last text-dark" for="modal_login_captcha">验证码</label>
-    </div>
-    <div class="col-12 col-sm-10 input-group">
-      <div class="input-group-prepend">
-        <div class="px-1 py-0 input-group-text" id="captcha">
-          <img width="100" height="36" alt="验证码" id="reVerify"
-               src="/captcha/captcha.jpg<?php require_once dirname(dirname(dirname(__DIR__))) . "/captcha/index.php";
-               echo '?n=' . time(); ?>">
-        </div>
-      </div>
-      <input class="form-control" type="text" id="modal_login_captcha" placeholder="请输入验证码" minlength="4"
-             maxlength="6" autocomplete="off" required>
-    </div>
-  </div>
   <div class="form-group">
-    <div class="ml-2 ml-sm-0 pl-sm-0 d-flex justify-content-start justify-content-sm-center custom-control custom-checkbox">
+    <div class="d-flex justify-content-end justify-content-sm-center custom-control custom-checkbox">
       <input type="checkbox" class="custom-control-input" id="signIn_rememberMe">
       <label class="custom-control-label" for="signIn_rememberMe">30天内免登录</label>
     </div>
