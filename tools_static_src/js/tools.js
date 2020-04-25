@@ -76,8 +76,8 @@ function create_small_center_text(text, color = '') {
 }
 
 function create_close_btn(fun_name, class_name) {
-  let close_button = document.createElement("button");
-  let close_span = document.createElement("span");
+  let close_button = document.createElement('button');
+  let close_span = document.createElement('span');
 
   close_button.type = 'button';
   close_button.className = class_name ? 'close ' + class_name : 'close';
@@ -87,11 +87,11 @@ function create_close_btn(fun_name, class_name) {
   close_span.title = '关闭';
   close_span.innerHTML = '&times;';
   close_span.addEventListener('click', fun_name);
-  close_span.addEventListener('mouseover', function (e) {
+  close_span.addEventListener('mouseover', function(e) {
     let e_target = e.target;
     e_target.classList.toggle('text-danger');
   });
-  close_span.addEventListener('mouseleave', function (e) {
+  close_span.addEventListener('mouseleave', function(e) {
     let e_target = e.target;
     e_target.classList.toggle('text-danger');
   });
@@ -101,7 +101,7 @@ function create_close_btn(fun_name, class_name) {
 }
 
 function create_dropdown_divider(border) {
-  let div = document.createElement("div");
+  let div = document.createElement('div');
   div.className = border ? 'dropdown-divider ' + border : 'dropdown-divider';
 
   return div;
@@ -126,7 +126,7 @@ function get_file_size(file_size) {
 }
 
 // tooltip
-$().ready(function () {
+$().ready(function() {
   $('span[title]').tooltip({
     placement: 'right',
   });
@@ -163,7 +163,7 @@ function remove_cookie(key) {
 }
 
 // bsCustomFileInput
-$().ready(function () {
+$().ready(function() {
   bsCustomFileInput.init();
 });
 
@@ -279,15 +279,15 @@ function set_recaptcha_action(Action = null) {
 
   Action = Action ? Action : 'unset';
 
-  $.getScript(url + v3_site_key, function () {
+  $.getScript(url + v3_site_key, function() {
     set_recaptcha_token(v3_site_key, Action);
   });
 }
 
 function set_recaptcha_token(site_key, action) {
-  grecaptcha.ready(function () {
+  grecaptcha.ready(function() {
     grecaptcha.execute(site_key, {action: action})
-      .then(function (token) {
+      .then(function(token) {
         // console.log(token);
         get_recaptcha_verify(token, action);
       });
@@ -307,11 +307,11 @@ function get_recaptcha_verify(token_key, pageAction) {
     data: data,
     timeout: 5000,
     dataType: 'json',
-    success: function (data) {
+    success: function(data) {
       console.log('提交验证成功');
       console.log(data);
     },
-    error: function (data) {
+    error: function(data) {
       console.log('提交验证失败');
       console.log(data);
     },
@@ -338,9 +338,8 @@ $().ready(function() {
 
 // 回弹主导航菜单collapse内容
 $().ready(function() {
-  let collapse_navBar = document.querySelector('#collapse_navBar');
   let navBar = document.querySelector('#navBar');
-  if (collapse_navBar && navBar) {
+  if (navBar) {
     jt_header.addEventListener('mouseleave', function() {
       $(navBar).collapse('hide');
     });
@@ -348,7 +347,7 @@ $().ready(function() {
 });
 
 // 页脚文案
-$().ready(function () {
+$().ready(function() {
   footer_add_x();
 });
 
@@ -370,7 +369,7 @@ function footer_current_time() {
   span.innerHTML = '&nbsp;';
 
   dayjs.locale('zh-cn');
-  setInterval(function () {
+  setInterval(function() {
     span.innerHTML = dayjs().format('YYYY年M月D日 dddA H点mm分s秒');
   }, 1000);
 
@@ -468,7 +467,7 @@ function footer_qr_code() {
   span.style.cursor = 'pointer';
 
   i.className = 'fa-2x fa-fw fas fa-qrcode hvr-icon';
-  i.addEventListener('click', function () {
+  i.addEventListener('click', function() {
     let url = document.location.href;
     let url_param = {'from': 'clipboard'};
     let div = document.createElement('div');
@@ -476,7 +475,7 @@ function footer_qr_code() {
     let i_copy = document.createElement('i');
     let i_question = document.createElement('i');
 
-    let img = document.createElement("img");
+    let img = document.createElement('img');
     let qrcode_option = {
       errorCorrectionLevel: 'H',
       type: 'image/jpeg',
@@ -495,7 +494,7 @@ function footer_qr_code() {
     i_copy.innerHTML = '&nbsp;&nbsp;复制网址';
     i_copy.title = '复制当前页面的网址  需要操作2次才能复制成功';
     i_copy.style.cursor = 'pointer';
-    i_copy.addEventListener('click', function (e) {
+    i_copy.addEventListener('click', function(e) {
       copy_url(e.target, addUrlParam(url, url_param));
     });
 
@@ -516,7 +515,7 @@ function footer_qr_code() {
     div.appendChild(i_copy);
     div.appendChild(span);
 
-    QRCode.toDataURL(addUrlParam(url, url_param), qrcode_option, function (err, url) {
+    QRCode.toDataURL(addUrlParam(url, url_param), qrcode_option, function(err, url) {
       if (err) throw err;
       img.src = url;
     });
@@ -531,15 +530,15 @@ function footer_qr_code() {
 
 function copy_url(event, url) {
   let clipboard = new ClipboardJS(event, {
-    text: function () {
+    text: function() {
       return url;
     },
   });
-  clipboard.on('success', function () {
+  clipboard.on('success', function() {
     bootstrapModalJs('', '<span class="d-block text-center text-success small">复制成功</span>', '', 'sm', true);
     clipboard.destroy();
   });
-  clipboard.on('error', function () {
+  clipboard.on('error', function() {
     bootstrapModalJs('', '<span class="d-block text-center text-danger small">复制失败</span>', '', 'sm', true);
     clipboard.destroy();
   });
@@ -581,28 +580,28 @@ function disclaimer() {
 }
 
 // 增加阴影
-$().ready(function () {
+$().ready(function() {
   let btn_all = document.querySelectorAll('[class*="btn"]');
   let input_all = document.querySelectorAll('input[class*="form-control"]');
 
   for (let x = btn_all.length, i = 0; i < x; i++) {
-    btn_all[i].addEventListener('mouseover', function (e) {
+    btn_all[i].addEventListener('mouseover', function(e) {
       let e_target = e.target;
       let tagNames = ['BUTTON', 'A'];
       if (tagNames.includes(e_target.tagName)) {
         add_shadow(e_target);
       }
     });
-    btn_all[i].addEventListener('mouseleave', function (e) {
+    btn_all[i].addEventListener('mouseleave', function(e) {
       remove_shadow(e.target);
     });
   }
 
   for (let x = input_all.length, i = 0; i < x; i++) {
-    input_all[i].addEventListener('focus', function (e) {
+    input_all[i].addEventListener('focus', function(e) {
       add_shadow(e.target);
     });
-    input_all[i].addEventListener('blur', function (e) {
+    input_all[i].addEventListener('blur', function(e) {
       remove_shadow(e.target);
     });
   }
@@ -641,7 +640,7 @@ function get_href_url(target, class_name) {
 }
 
 function create_img(options, alt, className) {
-  let img = document.createElement("img");
+  let img = document.createElement('img');
 
   img.className = options.className ? options.className : className;
   img.src = options.src ? options.src : options;
@@ -699,12 +698,12 @@ function bootstrapModalJs_alert(alert_array = {}) {
 }
 
 // 防镜像
-$().ready(function () {
+$().ready(function() {
   anti_mirror();
 });
 
 function anti_mirror() {
-  setTimeout(function () {
+  setTimeout(function() {
     if (domain_check()) {
       if (fundebug) {
         fundebug.notify('发现镜像', document.location.href, {
@@ -713,7 +712,7 @@ function anti_mirror() {
           },
         });
       }
-      setTimeout(function () {
+      setTimeout(function() {
         location.href = location.href.replace(document.location.host, 'tools.jzeg.net');
       }, 3000);
     }
@@ -735,7 +734,7 @@ function domain_check() {
 }
 
 // 右下侧固定栏
-$().ready(function () {
+$().ready(function() {
   fixed_tools();
 });
 
@@ -776,7 +775,7 @@ function topControl(e) {
 }
 
 // 滚动监听
-$().ready(function () {
+$().ready(function() {
   let jt_header = document.querySelector('#jt_header');
   let fixed_tools = document.querySelector('#fixed_tools');
   let to_top = document.querySelector('#to_top');
@@ -821,7 +820,7 @@ $().ready(function () {
         }
       }
     } else if (new_scroll_position < last_scroll_position) {
-      setTimeout(function () {
+      setTimeout(function() {
         fixed_tools.classList.add('d-none');
       }, 200);
       if (to_top.classList.contains('zoomIn')) to_top.classList.remove('zoomIn');
@@ -844,7 +843,7 @@ $().ready(function () {
  * 添加时的chrome版本 80.0.3987.132
  * 最后一次验证时的chrome版本 81.0.4044.113（正式版本） （64 位）
  **/
-$().ready(function () {
+$().ready(function() {
   let all_select_elements = document.querySelectorAll('select');
   for (let x = all_select_elements.length, i = 0; i < x; i++) {
     let elements_size_value = all_select_elements[i].size;
@@ -859,7 +858,7 @@ $().ready(function () {
  * 动态同步数字类型的文本输入框元素的值和滑动条输入框元素的值
  **/
 function dynamic_synchronization_element(source_element, target_element, event_type) {
-  source_element.addEventListener(event_type, function () {
+  source_element.addEventListener(event_type, function() {
     target_element.value = source_element.value;
-  })
+  });
 }
