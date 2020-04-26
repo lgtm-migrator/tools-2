@@ -8,7 +8,6 @@
         <img width="100" height="36" alt="验证码" class="reVerify" src="<?php include dirname(dirname(dirname(__DIR__))) . "/wwwroot/captcha/index.php"; ?>">
       </div>
     </div>
-    <input class="form-control" type="text" id="modal_login_captcha" placeholder="请输入验证码" minlength="4"
-           maxlength="6" autocomplete="off" required>
+    <input class="form-control captcha_input" type="text" placeholder="请输入验证码" minlength="4" maxlength="6" autocomplete="off" required>
   </div>
 </div>

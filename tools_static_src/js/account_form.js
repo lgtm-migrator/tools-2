@@ -182,10 +182,38 @@ $().ready(function () {
 
 function reVerify_captcha_result(verify_result, captcha_img_element) {
   let img_src = verify_result['captcha']['img_base64'];
-  console.log('img_src======' + img_src);
+  console.log(verify_result['captcha']['phrase']);
   refresh_captcha_img(captcha_img_element, img_src);
 }
 
 function refresh_captcha_img(img_element, img_src) {
   img_element.src = img_src;
 }
+
+// 检查验证码hash有效性
+$().ready(function () {
+  let captcha_input = document.querySelectorAll('.captcha_input');
+  if (0 < captcha_input.length) {
+    let captcha_input_length = captcha_input.length;
+
+    let captcha_value;
+    let captcha_hash;
+    for (let i = 0; i < captcha_input_length; i++) {
+      captcha_input[i].addEventListener('input', function (e) {
+        let e_target = e.target;
+        let e_target_value = e_target.value;
+        let captcha_size = get_cookie('captcha_size');
+        if (Number(captcha_size) === e_target_value.length) {
+          captcha_value = e_target.value;
+          captcha_hash = get_cookie('captcha_hash');
+          for (let j = 0; j <= 1000; j++) {
+            captcha_value = md5(e_target.value);
+          }
+          console.log(captcha_value);
+          console.log(captcha_hash);
+        }
+      });
+    }
+  }
+
+});

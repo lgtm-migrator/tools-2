@@ -128,9 +128,9 @@ function set_timestamp()
   $_SESSION['timestamp'] = $timestamp;
 }
 
-function for_md5(int $number, array $value_array)
+function for_md5(int $number, $array_or_string)
 {
-  $value = (is_array($value_array)) ? implode('', $value_array) : false;
+  $value = (is_array($array_or_string)) ? implode('', $array_or_string) : $array_or_string;
   if ($value === false) return false;
   $result = '';
   for ($i = 0; $i <= $number; $i++) {
