@@ -61,6 +61,7 @@
     "@alphardex/aqua.css": "^1.1.4",
     "@fortawesome/fontawesome-free": "^5.13.0",
     "animate.css": "^3.7.2",
+    "blueimp-md5": "^2.13.0",
     "bootstrap": "^4.4.1",
     "bootstrap-colorpicker": "^3.2.0",
     "bootstrap-modal-js": "^1.0.1",
