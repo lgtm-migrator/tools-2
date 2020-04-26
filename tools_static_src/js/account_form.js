@@ -1,8 +1,8 @@
 // 第三方登录提示
-$().ready(function() {
+$().ready(function () {
   let oauth_sign_in = document.querySelector('#oauth_sign_in');
   if (oauth_sign_in) {
-    oauth_sign_in.addEventListener('click', function(e) {
+    oauth_sign_in.addEventListener('click', function (e) {
       let e_target = e.target;
       if ('BUTTON' === e_target.tagName && undefined !== e_target.dataset['title']) {
         let e_title = e_target.dataset['title'];
@@ -14,12 +14,12 @@ $().ready(function() {
 });
 
 // 账号模态框切换选项卡tab
-$().ready(function() {
+$().ready(function () {
   let account_sign = document.querySelector('#account_sign');
   if (account_sign) {
     let modal_tabs = account_sign.querySelectorAll('button[class*="modal_tab"]');
     for (let x = modal_tabs.length, i = 0; i < x; i++) {
-      modal_tabs[i].addEventListener('click', function(e) {
+      modal_tabs[i].addEventListener('click', function (e) {
         let e_target = e.target;
         let modal_tab;
 
@@ -35,10 +35,10 @@ $().ready(function() {
         let modal_tab_tab = modal_tab.getAttribute('data-tab_target');
 
         if (modal_tab_tab && modal_tab_modal) {
-          $(modal_tab_modal).on('shown.bs.modal', function() {
+          $(modal_tab_modal).on('shown.bs.modal', function () {
             $(modal_tab_tab).tab('show');
           });
-          $(modal_tab_modal).on('hidden.bs.modal', function() {
+          $(modal_tab_modal).on('hidden.bs.modal', function () {
             document.querySelector(modal_tab_tab).classList.remove('active', 'show');
           });
           $(modal_tab_modal).modal('show');
@@ -49,11 +49,11 @@ $().ready(function() {
 });
 
 // 账号表单类型切换
-$().ready(function() {
+$().ready(function () {
   let sign_tabs = document.querySelectorAll('.sign_tab');
   if (sign_tabs) {
     for (let x = sign_tabs.length, i = 0; i < x; i++) {
-      sign_tabs[i].addEventListener('click', function(e) {
+      sign_tabs[i].addEventListener('click', function (e) {
         let e_target = e.target;
         let current_sign_tab;
 
@@ -76,10 +76,10 @@ $().ready(function() {
 });
 
 // 密码明文显示
-$().ready(function() {
+$().ready(function () {
   let password_switch = document.querySelectorAll('.password_switch');
   for (let x = password_switch.length, i = 0; i < x; i++) {
-    password_switch[i].addEventListener('click', function(e) {
+    password_switch[i].addEventListener('click', function (e) {
       let e_target = e.target;
       let password_input;
       if ('INPUT' === e_target.parentElement.parentElement.previousElementSibling.tagName) {
@@ -105,7 +105,7 @@ $().ready(function() {
 });
 
 // reCaptcha状态检测
-$().ready(function() {
+$().ready(function () {
   let recaptcha_tools = document.querySelector('#recaptcha_tools');
   if (recaptcha_tools) {
     // let recaptcha_check = document.querySelector('#recaptcha_check');
