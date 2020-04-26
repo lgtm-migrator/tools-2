@@ -27,6 +27,7 @@
              autocomplete="off" required>
     </div>
   </div>
+  <?php include dirname(__FILE__) . "/captcha_form-group.php"; ?>
   <div class="d-flex justify-content-center">
     <button class="w-50 btn btn-secondary" type="button" id="sign_in_phone_submit">登录</button>
   </div>

@@ -45,6 +45,7 @@
       </div>
     </div>
   </div>
+  <?php include dirname(__FILE__) . "/captcha_form-group.php"; ?>
   <div class="form-group">
     <div class="d-flex justify-content-end justify-content-sm-center custom-control custom-checkbox">
       <input type="checkbox" class="custom-control-input" id="signUp_tos">

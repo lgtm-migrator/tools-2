@@ -149,30 +149,34 @@ $().ready(function() {
 });
 
 // 刷新验证码方法之一
-$().ready(function() {
-  let reVerify = document.querySelector('#reVerify');
-  if (reVerify) {
-    reVerify.addEventListener('click', function(e) {
-      let url = '/captcha/index.php';
-      let data = {'reVerify': '1'};
-      $.ajax({
-        type: 'post',
-        url: url,
-        cache: false,
-        timeout: 4000,
-        data: data,
-        dataType: 'json',
-        success: function(data) {
-          let e_target = e.target;
-          if ('IMG' === e_target.tagName) {
-            reVerify_captcha_result(data, e_target);
-          }
-        },
-        error: function(error) {
-          console.log('验证码出错：====' + error);
-        },
+$().ready(function () {
+  let reVerify = document.querySelectorAll('.reVerify');
+  let reVerify_length = reVerify.length;
+  if (0 < reVerify_length) {
+    let url = '/captcha/index.php';
+    let data = {'reVerify': '1'};
+
+    for (let i = 0; i < reVerify_length; i++) {
+      reVerify[i].addEventListener('click', function (e) {
+        $.ajax({
+          type: 'post',
+          url: url,
+          cache: false,
+          timeout: 4000,
+          data: data,
+          dataType: 'json',
+          success: function (data) {
+            let e_target = e.target;
+            if ('IMG' === e_target.tagName) {
+              reVerify_captcha_result(data, e_target);
+            }
+          },
+          error: function (error) {
+            console.log('验证码出错：====' + error);
+          },
+        });
       });
-    });
+    }
   }
 });
 
