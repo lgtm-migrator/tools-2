@@ -55,6 +55,8 @@ const
   hamburgers_all_css_path = "./node_modules/hamburgers/dist/*.css",
   /** node-qrcode **/
   qrcode_build_path = "./node_modules/qrcode/build/*",
+  /** blueimp-md5 **/
+  md5_all_js_path = "./node_modules/blueimp-md5/js/*",
   /** bootstrap-colorpicker.js **/
   bootstrap_color_picker_all_js_path = "./node_modules/bootstrap-colorpicker/dist/js/*",
   bootstrap_color_picker_all_css_path = "./node_modules/bootstrap-colorpicker/dist/css/*",
@@ -78,6 +80,7 @@ task(copy_bs_custom_file_input);
 task(copy_dayjs);
 task(copy_clipboard);
 task(copy_qrcode);
+task(copy_md5);
 task(copy_bootstrap_colorPicker);
 
 /** task("add_header"); **/
@@ -104,6 +107,7 @@ task("copy_common",
     copy_dayjs,
     copy_clipboard,
     copy_qrcode,
+    copy_md5,
     copy_bootstrap_colorPicker,
   )
 );
@@ -161,6 +165,12 @@ function copy_bootstrap_colorPicker(done) {
 
 function copy_qrcode(done) {
   src([qrcode_build_path], {since: lastRun(copy_qrcode)})
+    .pipe(dest(static_js));
+  done();
+}
+
+function copy_md5(done) {
+  src([md5_all_js_path], {since: lastRun(copy_md5)})
     .pipe(dest(static_js));
   done();
 }
