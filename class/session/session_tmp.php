@@ -38,7 +38,7 @@ function set_session()
 function set_session_cookie($session_name, $session_value)
 {
   $params = set_cookie_params();
-  setcookie($session_name, $session_value, $params);
+  setcookie($session_name, $session_value, $params);//fixme: 修复session报错php
 }
 
 //清除时
