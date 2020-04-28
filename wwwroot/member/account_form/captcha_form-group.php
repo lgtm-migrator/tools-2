@@ -2,7 +2,7 @@
   <div class="col-auto col-sm-2">
     <label class="mb-1 d-inline-block min-w-100 text-align-last text-dark">验证码</label>
   </div>
-  <div class="col-12 col-sm-10 input-group needs-validation was-validated">
+  <div class="col-12 col-sm-10 input-group needs-validation">
     <div class="input-group-prepend">
       <div class="px-0 py-0 input-group-text">
         <img width="100" height="36" alt="验证码" class="reVerify" src="<?php include dirname(dirname(dirname(__DIR__))) . "/wwwroot/captcha/index.php"; ?>">
