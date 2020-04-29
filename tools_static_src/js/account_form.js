@@ -203,7 +203,9 @@ $().ready(function () {
         let e_target = e.target;
         let e_target_value = e_target.value;
         let captcha_size = get_cookie('captcha_size');
+
         if (Number(captcha_size) === e_target_value.length) {
+          e_target.parentElement.classList.add('was-validated');
           captcha_value = e_target.value;
           captcha_hash = get_cookie('captcha_hash');
           for (let j = 0; j <= 1000; j++) {
@@ -211,6 +213,8 @@ $().ready(function () {
           }
           console.log(captcha_value);
           console.log(captcha_hash);
+        } else {
+          e_target.parentElement.classList.remove('was-validated');
         }
       });
     }
