@@ -13,16 +13,16 @@ function session_init()
   session_set_cookie_params(set_session_params());
 
 //设置session存储到数据库中
-  $cookie_data = session_get_cookie_params();
-  $session_data = array(
-    'session_lifetime' => $cookie_data['lifetime'],
-    'session_expires' => '',
-    'session_path' => $cookie_data['path'],
-    'session_domain' => $cookie_data['domain'],
-    'session_secure' => $cookie_data['secure'],
-    'session_httpOnly' => $cookie_data['httponly'],
-    'session_sameSite' => $cookie_data['samesite'],
-  );
+//  $cookie_data = session_get_cookie_params();
+//  $session_data = array(
+//    'session_lifetime' => $cookie_data['lifetime'],
+//    'session_expires' => '',
+//    'session_path' => $cookie_data['path'],
+//    'session_domain' => $cookie_data['domain'],
+//    'session_secure' => $cookie_data['secure'],
+//    'session_httpOnly' => $cookie_data['httponly'],
+//    'session_sameSite' => $cookie_data['samesite'],
+//  );
 
 //session_set_save_handler();
 
@@ -132,9 +132,20 @@ function for_md5(int $number, $array_or_string)
 {
   $value = (is_array($array_or_string)) ? implode('', $array_or_string) : $array_or_string;
   if ($value === false) return false;
+  $result = $value;
+  for ($i = 0; $i <= $number; $i++) {
+    $result = md5($result);
+  }
+  return $result;
+}
+
+function for_crypt(int $number, $array_or_string, $salt = null)
+{
+  $value = (is_array($array_or_string)) ? implode('', $array_or_string) : $array_or_string;
+  if ($value === false) return false;
   $result = '';
   for ($i = 0; $i <= $number; $i++) {
-    $result = md5($value);
+    $result = crypt($value, $salt);
   }
   return $result;
 }

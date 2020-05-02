@@ -182,7 +182,10 @@ $().ready(function () {
 
 function reVerify_captcha_result(verify_result, captcha_img_element) {
   let img_src = verify_result['captcha']['img_base64'];
-  console.log(verify_result['captcha']['phrase']);
+  let hash = verify_result['captcha']['hash'];
+  let size = verify_result['captcha']['size'];
+  set_cookie('captcha_hash', hash);
+  set_cookie('captcha_size', size);
   refresh_captcha_img(captcha_img_element, img_src);
 }
 
@@ -194,26 +197,34 @@ function refresh_captcha_img(img_element, img_src) {
 $().ready(function () {
   let captcha_input = document.querySelectorAll('.captcha_input');
   if (0 < captcha_input.length) {
-    let captcha_input_length = captcha_input.length;
+    validation_captcha_hash(captcha_input);
+  }
 
+  function validation_captcha_hash(captcha_input) {
+    let captcha_input_length = captcha_input.length;
     let captcha_value;
     let captcha_hash;
+    let captcha_size;
+
     for (let i = 0; i < captcha_input_length; i++) {
       captcha_input[i].addEventListener('input', function (e) {
+        let pattern = captcha_input[i].pattern;
         let e_target = e.target;
         let e_target_value = e_target.value;
-        let captcha_size = get_cookie('captcha_size');
+        captcha_size = get_cookie('captcha_size');
 
         if (Number(captcha_size) === e_target_value.length) {
-          e_target.parentElement.classList.add('was-validated');
-          captcha_value = e_target.value;
           captcha_hash = get_cookie('captcha_hash');
+          captcha_value = e_target.value;
           for (let j = 0; j <= 1000; j++) {
-            captcha_value = md5(e_target.value);
+            captcha_value = md5(captcha_value);
           }
+          captcha_input[i].pattern = '{0|' + captcha_hash + '}';
           console.log(captcha_value);
-          console.log(captcha_hash);
+          console.log(captcha_hash + '  captcha_hash=====');
+          e_target.parentElement.classList.add('was-validated');
         } else {
+          captcha_input[i].pattern = pattern;
           e_target.parentElement.classList.remove('was-validated');
         }
       });
