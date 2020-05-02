@@ -150,37 +150,44 @@ $().ready(function () {
 
 // 刷新验证码方法之一
 $().ready(function () {
+  $('#sign').on('shown.bs.modal', function () {
+    get_all_reVerify();
+  });
+});
+
+function get_all_reVerify() {
   let reVerify = document.querySelectorAll('.reVerify');
   let reVerify_length = reVerify.length;
   if (0 < reVerify_length) {
-    let url = '/captcha/index.php';
-    let data = {'reVerify': '1'};
-
     for (let i = 0; i < reVerify_length; i++) {
-      reVerify[i].addEventListener('click', function (e) {
-        $.ajax({
-          type: 'post',
-          url: url,
-          cache: false,
-          timeout: 4000,
-          data: data,
-          dataType: 'json',
-          success: function (data) {
-            let e_target = e.target;
-            if ('IMG' === e_target.tagName) {
-              reVerify_captcha_result(data, e_target);
-            }
-          },
-          error: function (error) {
-            console.log('验证码出错：====' + error);
-          },
-        });
-      });
+      ajax_get_captcha(reVerify[i]);
     }
   }
-});
+}
 
-function reVerify_captcha_result(verify_result, captcha_img_element) {
+function ajax_get_captcha(reVerify) {
+  reVerify.addEventListener('click', function (e) {
+    let url = '/captcha/index.php';
+    let data = {'reVerify': '1'};
+    $.ajax({
+      type: 'post',
+      url: url,
+      cache: false,
+      timeout: 4000,
+      data: data,
+      dataType: 'json',
+      success: function (data) {
+        let e_target = e.target;
+        if ('IMG' === e_target.tagName) get_captcha_result(data, e_target);
+      },
+      error: function (error) {
+        if (fundebug) fundebug.notify('验证码出错', error);
+      },
+    });
+  });
+}
+
+function get_captcha_result(verify_result, captcha_img_element) {
   let img_src = verify_result['captcha']['img_base64'];
   let hash = verify_result['captcha']['hash'];
   let size = verify_result['captcha']['size'];
@@ -197,38 +204,36 @@ function refresh_captcha_img(img_element, img_src) {
 $().ready(function () {
   let captcha_input = document.querySelectorAll('.captcha_input');
   if (0 < captcha_input.length) {
-    validation_captcha_hash(captcha_input);
+    let captcha_input_length = captcha_input.length;
+    for (let i = 0; i < captcha_input_length; i++) {
+      validation_captcha_hash(captcha_input[i]);
+    }
   }
 
   function validation_captcha_hash(captcha_input) {
-    let captcha_input_length = captcha_input.length;
     let captcha_value;
     let captcha_hash;
     let captcha_size;
 
-    for (let i = 0; i < captcha_input_length; i++) {
-      captcha_input[i].addEventListener('input', function (e) {
-        let pattern = captcha_input[i].pattern;
-        let e_target = e.target;
-        let e_target_value = e_target.value;
-        captcha_size = get_cookie('captcha_size');
+    captcha_input.addEventListener('input', function (e) {
+      let pattern = captcha_input.pattern;
+      let e_target = e.target;
+      let e_target_value = e_target.value;
+      captcha_size = get_cookie('captcha_size');
 
-        if (Number(captcha_size) === e_target_value.length) {
-          captcha_hash = get_cookie('captcha_hash');
-          captcha_value = e_target.value;
-          for (let j = 0; j <= 1000; j++) {
-            captcha_value = md5(captcha_value);
-          }
-          captcha_input[i].pattern = '{0|' + captcha_hash + '}';
-          console.log(captcha_value);
-          console.log(captcha_hash + '  captcha_hash=====');
-          e_target.parentElement.classList.add('was-validated');
-        } else {
-          captcha_input[i].pattern = pattern;
-          e_target.parentElement.classList.remove('was-validated');
+      if (Number(captcha_size) === e_target_value.length) {
+        captcha_hash = get_cookie('captcha_hash');
+        captcha_value = e_target.value;
+        for (let j = 0; j <= 1000; j++) {
+          captcha_value = md5(captcha_value);
         }
-      });
-    }
+        captcha_input.pattern = '{' + captcha_hash + '}';
+        e_target.parentElement.classList.add('was-validated');
+      } else {
+        captcha_input.pattern = pattern;
+        e_target.parentElement.classList.remove('was-validated');
+      }
+    });
   }
 
 });
