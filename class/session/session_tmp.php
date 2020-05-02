@@ -13,16 +13,16 @@ function session_init()
   session_set_cookie_params(set_session_params());
 
 //设置session存储到数据库中
-  $cookie_data = session_get_cookie_params();
-  $session_data = array(
-    'session_lifetime' => $cookie_data['lifetime'],
-    'session_expires' => '',
-    'session_path' => $cookie_data['path'],
-    'session_domain' => $cookie_data['domain'],
-    'session_secure' => $cookie_data['secure'],
-    'session_httpOnly' => $cookie_data['httponly'],
-    'session_sameSite' => $cookie_data['samesite'],
-  );
+//  $cookie_data = session_get_cookie_params();
+//  $session_data = array(
+//    'session_lifetime' => $cookie_data['lifetime'],
+//    'session_expires' => '',
+//    'session_path' => $cookie_data['path'],
+//    'session_domain' => $cookie_data['domain'],
+//    'session_secure' => $cookie_data['secure'],
+//    'session_httpOnly' => $cookie_data['httponly'],
+//    'session_sameSite' => $cookie_data['samesite'],
+//  );
 
 //session_set_save_handler();
 
@@ -38,7 +38,7 @@ function set_session()
 function set_session_cookie($session_name, $session_value)
 {
   $params = set_cookie_params();
-  setcookie($session_name, $session_value, $params);
+  setcookie($session_name, $session_value, $params);//fixme: 修复session报错php
 }
 
 //清除时
@@ -128,13 +128,24 @@ function set_timestamp()
   $_SESSION['timestamp'] = $timestamp;
 }
 
-function for_md5(int $number, array $value_array)
+function for_md5(int $number, $array_or_string)
 {
-  $value = (is_array($value_array)) ? implode('', $value_array) : false;
+  $value = (is_array($array_or_string)) ? implode('', $array_or_string) : $array_or_string;
+  if ($value === false) return false;
+  $result = $value;
+  for ($i = 0; $i <= $number; $i++) {
+    $result = md5($result);
+  }
+  return $result;
+}
+
+function for_crypt(int $number, $array_or_string, $salt = null)
+{
+  $value = (is_array($array_or_string)) ? implode('', $array_or_string) : $array_or_string;
   if ($value === false) return false;
   $result = '';
   for ($i = 0; $i <= $number; $i++) {
-    $result = md5($value);
+    $result = crypt($value, $salt);
   }
   return $result;
 }

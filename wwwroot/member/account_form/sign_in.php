@@ -22,21 +22,7 @@
       </div>
     </div>
   </div>
-  <div class="form-group form-row align-items-center">
-    <div class="col-auto col-sm-2">
-      <label class="mb-1 d-inline-block min-w-100 text-align-last text-dark" for="modal_login_captcha">验证码</label>
-    </div>
-    <div class="col-12 col-sm-10 input-group">
-      <div class="input-group-prepend">
-        <div class="px-0 py-0 input-group-text" id="captcha">
-          <img width="100" height="36" alt="验证码" id="reVerify"
-               src="<?php require_once dirname(dirname(dirname(__DIR__))) . "/wwwroot/captcha/index.php";?>">
-        </div>
-      </div>
-      <input class="form-control" type="text" id="modal_login_captcha" placeholder="请输入验证码" minlength="4"
-             maxlength="6" autocomplete="off" required>
-    </div>
-  </div>
+  <?php include dirname(__FILE__) . "/captcha_form-group.php"; ?>
   <div class="d-flex flex-column align-items-center" style="display: none!important;" id="recaptcha_tools">
     <div class="w-75 w-sm-50 progress bg-light-50" id="recaptcha_progress">
       <span id="recaptcha_progress_bar"

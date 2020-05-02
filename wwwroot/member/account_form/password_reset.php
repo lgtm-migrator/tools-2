@@ -8,6 +8,7 @@
              maxlength="20" autocomplete="off" required>
     </div>
   </div>
+  <?php include dirname(__FILE__) . "/captcha_form-group.php"; ?>
   <div class="d-flex justify-content-center">
     <button class="btn btn-secondary" type="button" id="password_reset_submit">找回密码</button>
   </div>
