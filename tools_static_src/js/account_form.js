@@ -203,8 +203,8 @@ function refresh_captcha_img(img_element, img_src) {
 // 检查验证码hash有效性
 $().ready(function () {
   let captcha_input = document.querySelectorAll('.captcha_input');
-  if (0 < captcha_input.length) {
-    let captcha_input_length = captcha_input.length;
+  let captcha_input_length = captcha_input.length;
+  if (0 < captcha_input_length) {
     for (let i = 0; i < captcha_input_length; i++) {
       validation_captcha_hash(captcha_input[i]);
     }
@@ -236,4 +236,22 @@ $().ready(function () {
     });
   }
 
+});
+
+// 表单校验
+$().ready(function () {
+  let needs_validations = document.querySelectorAll('.needs-validation');
+  let needs_validations_length = needs_validations.length;
+  if (0 < needs_validations_length) {
+    for (let i = 0; i < needs_validations_length; i++) {
+      _was_validated(needs_validations[i]);
+    }
+  }
+
+  function _was_validated(needs_validtation_input) {
+    let add_was_validated = needs_validtation_input.parentElement;
+    needs_validtation_input.addEventListener('input', function (e) {
+      add_was_validated.classList.add('was-validated');
+    });
+  }
 });

@@ -1,5 +1,5 @@
 <div class="my-2 collapse" id="oauth_sign_in">
-  <div class="d-flex justify-content-sm-center flex-row" style="overflow-x: scroll;">
+  <div class="d-flex justify-content-between justify-content-sm-center flex-row" style="overflow-x: scroll;">
     <button type="button" class="p-2 border-0 btn btn-outline-secondary fab fa-lg fa-alipay" data-title="支付宝登录"></button>
     <button type="button" class="p-2 border-0 btn btn-outline-secondary fab fa-lg fa-weixin" data-title="微信登录"></button>
     <button type="button" class="p-2 border-0 btn btn-outline-secondary fab fa-lg fa-qq" data-title="QQ登录"></button>

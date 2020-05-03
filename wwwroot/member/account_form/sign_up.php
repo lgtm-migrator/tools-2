@@ -5,7 +5,7 @@
     </div>
     <div class="col-12 col-sm-10 input-group">
       <input class="form-control rounded-right needs-validation" type="text" id="signUp_user_name" placeholder="请设置你的用户名" minlength="5" maxlength="20" pattern="^[a-zA-Z]\w{4,19}$" autocomplete="off" required>
-      <div class="invalid-feedback">请以字母开头</div>
+      <div class="invalid-feedback">字母开头的5-20位字母或数字</div>
     </div>
   </div>
   <div class="form-group form-row align-items-center">
