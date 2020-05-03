@@ -23,12 +23,11 @@
           </div>
         </div>
       </div>
-      <input class="form-control" type="text" id="signIn_phone" placeholder="手机号码" minlength="11" maxlength="11"
-             autocomplete="off" required>
+      <input class="form-control needs-validation" type="text" id="signIn_phone" placeholder="手机号码" minlength="11" maxlength="11" pattern="^(?:(?:\+|00)86)?1(?:(?:3[\d])|(?:4[5-7|9])|(?:5[0-3|5-9])|(?:6[5-7])|(?:7[0-8])|(?:8[\d])|(?:9[1|8|9]))\d{8}$" autocomplete="off" required>
     </div>
   </div>
   <?php include dirname(__FILE__) . "/captcha_form-group.php"; ?>
   <div class="d-flex justify-content-center">
-    <button class="w-50 btn btn-secondary" type="button" id="sign_in_phone_submit">登录</button>
+    <button class="w-50 btn btn-secondary" type="button" id="sign_in_phone_submit" disabled>登录</button>
   </div>
 </div>
