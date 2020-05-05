@@ -30,7 +30,7 @@
               <span>提醒</span>
             </a>
           </div>
-          <div class="px-2 py-1 tab-content">
+          <div class="px-2 py-1 min-h-rem-8 tab-content">
             <div class="tab-pane fade show active" id="notices_message">
               <div class="text-center">当前没有新消息</div>
             </div>
@@ -39,7 +39,6 @@
             </div>
           </div>
         </div>
-        <div class="dropdown-divider"></div>
         <div class="mb-n2 p-2 bg-dark-50 rounded-bottom d-flex justify-content-between text-center small">
           <a class="min-w-rem-8 text-white-50" href="javascript:" target="_blank">标记当前全部已读</a>
           <a class="min-w-rem-8 text-white-50" href="/notifications/notices" target="_blank">查看全部</a>
@@ -53,11 +52,11 @@
       </button>
       <div class="mt-2 dropdown-menu shadow-lg dropdown-menu-right">
         <div class="px-2 d-flex justify-content-between">
-          <a href="javascript:" class="d-flex align-items-center min-w-rem-9 text-decoration-none text-reset">
+          <a href="javascript:" class="px-2 py-1 d-flex align-items-center min-w-rem-9 border rounded-pill text-decoration-none text-reset">
             <i class="pr-1 fas fa-lg fa-user-alt text-muted"></i>
             <span>用户名</span>
           </a>
-          <a href="javascript:" class="d-flex align-items-center text-decoration-none text-reset" id="account_sign_exit">
+          <a href="javascript:" class="px-2 py-1 d-flex align-items-center border rounded-pill text-decoration-none text-reset" id="account_sign_exit">
             <i class="pr-1 fas fa-lg fa-sign-out-alt text-danger"></i>
             <span>退出</span>
           </a>
@@ -85,7 +84,6 @@
             </a>
           </div>
         </div>
-        <div class="dropdown-divider"></div>
         <div class="mb-n2 p-2 bg-dark-50 rounded-bottom d-flex justify-content-between text-center small">
           <a class="min-w-rem-5 text-white-50" href="javascript:" target="_blank">建议反馈</a>
           <a class="min-w-rem-5 text-white-50" href="javascript:" target="_blank">宣传合作</a>
