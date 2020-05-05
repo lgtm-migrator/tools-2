@@ -5,7 +5,7 @@
   <div class="col-12 col-sm-10 input-group">
     <div class="input-group-prepend">
       <div class="px-0 py-0 input-group-text">
-        <img width="100" height="36" alt="验证码" class="reVerify">
+        <img width="110" height="36" alt="验证码" class="reVerify">
       </div>
     </div>
     <input class="form-control rounded-right captcha_input needs-validation" type="text" placeholder="请输入验证码" minlength="4" maxlength="6" pattern="[a-z0-9]" autocomplete="off" required>
