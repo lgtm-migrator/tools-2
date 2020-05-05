@@ -250,8 +250,59 @@ $().ready(function () {
 
   function _was_validated(needs_validtation_input) {
     let add_was_validated = needs_validtation_input.parentElement;
-    needs_validtation_input.addEventListener('input', function (e) {
+    needs_validtation_input.addEventListener('input', function () {
       add_was_validated.classList.add('was-validated');
     });
   }
 });
+
+// ReCAPTCHA
+$().ready(function () {
+  let recaptcha_tools = document.querySelector('#recaptcha_tools');
+  if (recaptcha_tools) {
+    $('#recaptcha_tip').popover({
+      trigger: 'hover click',
+      boundary: 'viewport',
+      placement: 'auto',
+      html: true,
+      content: popover_content_recaptcha,
+      template: '<div class="popover rounded-pill overflow-hidden" role="tooltip"><div class="arrow"></div><h3 class="popover-header"></h3><div class="popover-body bg_square_x bg-dark-50 text-white-50"></div></div>',
+    });
+  }
+});
+
+// 悬浮弹出框 ReCAPTCHA内容
+function popover_content_recaptcha() {
+  let div = document.createElement('div');
+  let span_text = document.createElement('span');
+  let span_and = document.createElement('span');
+  let span_privacy = document.createElement('span');
+  let span_terms = document.createElement('span');
+
+  div.className = 'text-center';
+  div.id = 'recaptcha_text_badge';
+
+  span_text.innerHTML = '由&nbsp;reCAPTCHA&nbsp;提供保护，并适用Google';
+  span_and.innerHTML = '和';
+
+  span_privacy.className = 'text-reset text-decoration-none';
+  span_privacy.title = '谷歌隐私权';
+  span_privacy.innerHTML = '&nbsp;隐私权&nbsp;';
+  span_privacy.addEventListener('click', function () {
+    window.open('https://www.google.cn/intl/zh-CN/policies/privacy/', '_blank');
+  });
+
+  span_terms.className = 'text-reset text-decoration-none';
+  span_terms.title = '谷歌服务条款';
+  span_terms.innerHTML = '&nbsp;服务条款&nbsp;';
+  span_terms.addEventListener('click', function () {
+    window.open('https://www.google.cn/intl/zh-CN/policies/terms/', '_blank');
+  });
+
+  div.appendChild(span_text);
+  div.appendChild(span_privacy);
+  div.appendChild(span_and);
+  div.appendChild(span_terms);
+
+  return div;
+}
