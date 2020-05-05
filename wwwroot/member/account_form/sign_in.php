@@ -42,7 +42,7 @@
     </div>
   </div>
   <div class="d-flex justify-content-center">
-    <button class="w-50 btn btn-secondary" type="button" id="signIn_submit" disabled>登录</button>
+    <button class="w-50 rounded-pill btn btn-secondary" type="button" id="signIn_submit" disabled>登录</button>
   </div>
   <div class="my-2 py-2 d-flex justify-content-end border rounded-lg small">
     <a class="mx-1 text-decoration-none sign_tab" href="javascript:" data-target="#tab-sign_in_phone">

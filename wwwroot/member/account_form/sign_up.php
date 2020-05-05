@@ -53,6 +53,6 @@
     </div>
   </div>
   <div class="d-flex justify-content-center">
-    <button class="w-50 btn btn-secondary" type="button" id="signUp_submit" disabled>注册</button>
+    <button class="w-50 rounded-pill btn btn-secondary" type="button" id="signUp_submit" disabled>注册</button>
   </div>
 </div>

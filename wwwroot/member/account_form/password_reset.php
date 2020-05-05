@@ -9,6 +9,6 @@
   </div>
   <?php include dirname(__FILE__) . "/captcha_form-group.php"; ?>
   <div class="d-flex justify-content-center">
-    <button class="btn btn-secondary" type="button" id="password_reset_submit" disabled>找回密码</button>
+    <button class="rounded-pill btn btn-secondary" type="button" id="password_reset_submit" disabled>找回密码</button>
   </div>
 </div>
