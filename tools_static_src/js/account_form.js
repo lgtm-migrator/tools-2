@@ -266,7 +266,7 @@ $().ready(function () {
       placement: 'auto',
       html: true,
       content: popover_content_recaptcha,
-      template: '<div class="popover rounded-pill overflow-hidden" role="tooltip"><div class="arrow"></div><h3 class="popover-header"></h3><div class="popover-body bg_square_x bg-dark-50 text-white-50"></div></div>',
+      template: '<div class="popover shadow rounded-pill overflow-hidden" role="tooltip"><div class="arrow"></div><h3 class="popover-header"></h3><div class="popover-body bg_square_x bg-dark-50 text-white-50"></div></div>',
     });
   }
 });
