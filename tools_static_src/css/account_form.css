@@ -1,0 +1,7 @@
+#sign label {color: var(--teal);}
+#sign input {letter-spacing: .2rem;color: var(--teal);}
+#sign input::placeholder {color: var(--cyan);font-size: 0.85rem;}
+#sign input:placeholder-shown {letter-spacing: .2rem;}
+
+#sign input[type=password] {letter-spacing: .1rem;color: var(--indigo);}
+#sign input[type=password]:placeholder-shown {letter-spacing: .2rem;}
