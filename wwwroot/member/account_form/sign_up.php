@@ -25,7 +25,7 @@
       <input class="form-control needs-validation" type="password" id="signUp_password" placeholder="设置你的登录密码" minlength="8" maxlength="16" pattern="^\S*(?=\S{8,})(?=\S*\d)(?=\S*[a-zA-Z])(?=\S*[`.~!@#$%^&*? ])\S*$" autocomplete="off" required>
       <div class="input-group-append">
         <div class="input-group-text rounded-right">
-          <i class="fas fa-fw fa-lg fa-eye password_switch" title="显示密码"></i>
+          <i class="text-muted fas fa-fw fa-lg fa-eye password_switch" title="显示密码"></i>
         </div>
       </div>
       <div class="invalid-feedback">大于8位，包含字母、数字、字符3种格式</div>
@@ -39,7 +39,7 @@
       <input class="form-control needs-validation" type="password" id="signUp_rePassword" placeholder="请再次输入你的密码" minlength="8" maxlength="16" pattern="^\S*(?=\S{8,})(?=\S*\d)(?=\S*[a-zA-Z])(?=\S*[`.~!@#$%^&*? ])\S*$" autocomplete="off" required>
       <div class="input-group-append">
         <div class="input-group-text rounded-right">
-          <i class="fas fa-fw fa-lg fa-eye password_switch" title="显示密码"></i>
+          <i class="text-muted fas fa-fw fa-lg fa-eye password_switch" title="显示密码"></i>
         </div>
       </div>
       <div class="invalid-feedback">两次的密码不一致</div>

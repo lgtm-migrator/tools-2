@@ -15,7 +15,7 @@
       <input class="form-control" type="password" id="signIn_password" placeholder="请输入密码" minlength="8" maxlength="16" pattern="" autocomplete="off" required>
       <div class="input-group-append">
         <div class="input-group-text">
-          <i class="fas fa-fw fa-lg fa-eye password_switch" title="显示密码"></i>
+          <i class="text-muted fas fa-fw fa-lg fa-eye password_switch" title="显示密码"></i>
         </div>
       </div>
     </div>
