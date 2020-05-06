@@ -337,10 +337,16 @@ $().ready(function () {
     });
     notices_nav_tabs.addEventListener('mouseover', function (e) {
       let e_target = e.target;
-      if ('A' === e_target.tagName && e_target.classList.contains('nav-link')) {
-        $(e_target).tab('show');
-        e_target.classList.toggle('text-dark');
+      let a_tab;
+      if ('A' === e_target.tagName) {
+        a_tab = e_target;
+      } else if ('I' === e_target.tagName || 'SPAN' === e_target.tagName) {
+        a_tab = e_target.parentElement;
+      } else {
+        return;
       }
+      $(a_tab).tab('show');
+      a_tab.classList.remove('active');
     });
   }
 });
