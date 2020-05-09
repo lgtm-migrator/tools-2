@@ -33,6 +33,8 @@ function set_session()
 {
   set_session_id();
   set_timestamp();
+  set_user_loggedIn();
+  set_token();
 }
 
 function set_session_cookie($session_name, $session_value)
