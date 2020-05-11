@@ -18,12 +18,12 @@
       </button>
       <div class="py-0 shadow-lg dropdown-menu dropdown-menu-right" style="width: 250px;">
         <div class="card border-0">
-          <div class="card-header border-0 bg-dark-50 bg_square_x btn-block btn-group btn-group-sm" id="notices_nav_tabs">
-            <a class="btn btn-outline-light active" href="/notifications/notices/message.php" target="_blank" data-target="#notices_message">
+          <div class="px-2 py-1 card-header border-0 btn-block btn-group" id="notices_nav_tabs">
+            <a class="btn btn-outline-secondary active" href="/notifications/notices/message.php" target="_blank" data-target="#notices_message">
               <i class="fas fa-lg fa-mail-bulk"></i>
               <span>消息</span>
             </a>
-            <a class="btn btn-outline-light" href="/notifications/notices/info.php" target="_blank" data-target="#notices_info">
+            <a class="btn btn-outline-secondary" href="/notifications/notices/info.php" target="_blank" data-target="#notices_info">
               <i class="fas fa-lg fa-mail-bulk"></i>
               <span>提醒</span>
             </a>
