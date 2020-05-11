@@ -1,4 +1,4 @@
-#sign label {color: var(--teal);}
+/*#sign label {color: var(--teal);}*/
 #sign input {letter-spacing: .2rem;color: var(--teal);}
 #sign input::placeholder {color: var(--cyan);font-size: 0.85rem;}
 #sign input:placeholder-shown {letter-spacing: .2rem;}
