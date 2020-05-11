@@ -1,6 +1,6 @@
 <div class="form-group form-row align-items-center align-items-sm-stretch">
   <div class="col-auto col-sm-2">
-    <label class="mb-1 d-inline-block min-w-100 text-align-last">验证码</label>
+    <label class="mb-1 mb-sm-0 pt-0 pt-sm-1 d-inline-block min-w-100 text-align-last">验证码</label>
   </div>
   <div class="col-12 col-sm-10 input-group">
     <div class="input-group-prepend">
