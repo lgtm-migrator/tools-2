@@ -45,7 +45,7 @@
   "devDependencies": {
     "autoprefixer": "^9.7.6",
     "del": "^5.1.0",
-    "eslint": "^6.8.0",
+    "eslint": "^7.0.0",
     "eslint-config-google": "^0.14.0",
     "gulp": "^4.0.2",
     "gulp-clean-css": "^4.3.0",
@@ -58,10 +58,10 @@
     "stylelint": "^13.3.3"
   },
   "dependencies": {
-    "@alphardex/aqua.css": "^1.2.5",
+    "@alphardex/aqua.css": "^1.2.6",
     "@fortawesome/fontawesome-free": "^5.13.0",
-    "animate.css": "^3.7.2",
-    "blueimp-md5": "^2.14.0",
+    "animate.css": "^4.0.0",
+    "blueimp-md5": "^2.15.0",
     "bootstrap": "^4.4.1",
     "bootstrap-colorpicker": "^3.2.0",
     "bootstrap-modal-js": "^1.0.1",
@@ -72,7 +72,7 @@
     "fundebug-javascript": "^2.4.0",
     "hamburgers": "^1.1.3",
     "hover.css": "^2.3.2",
-    "jquery": "3.4.1",
+    "jquery": "^3.5.1",
     "js-cookie": "^3.0.0-rc.0",
     "popper.js": "^1.16.1",
     "qrcode": "^1.4.4"
