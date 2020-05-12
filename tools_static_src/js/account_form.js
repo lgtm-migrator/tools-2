@@ -250,9 +250,9 @@ $().ready(function () {
     }
   }
 
-  function _was_validated(needs_validtation_input) {
-    let add_was_validated = needs_validtation_input.parentElement;
-    needs_validtation_input.addEventListener('input', function () {
+  function _was_validated(needs_validation_input) {
+    let add_was_validated = needs_validation_input.parentElement;
+    needs_validation_input.addEventListener('input', function () {
       add_was_validated.classList.add('was-validated');
     });
   }
