@@ -252,8 +252,12 @@ $().ready(function () {
 
   function _was_validated(needs_validation_input) {
     let add_was_validated = needs_validation_input.parentElement;
-    needs_validation_input.addEventListener('input', function () {
-      add_was_validated.classList.add('was-validated');
+    needs_validation_input.addEventListener('input', function (e) {
+      if (0 < e.target.value.length) {
+        add_was_validated.classList.add('was-validated');
+      } else {
+        add_was_validated.classList.remove('was-validated');
+      }
     });
   }
 });
