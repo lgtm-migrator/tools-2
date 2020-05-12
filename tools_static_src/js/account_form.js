@@ -151,39 +151,41 @@ $().ready(function () {
 // 刷新验证码方法之一
 $().ready(function () {
   $('#sign').on('shown.bs.modal', function () {
-    get_all_reVerify();
+    listener_all_reVerify_click();
   });
 });
 
-function get_all_reVerify() {
+function listener_all_reVerify_click() {
   let reVerify = document.querySelectorAll('.reVerify');
   let reVerify_length = reVerify.length;
   if (0 < reVerify_length) {
     for (let i = 0; i < reVerify_length; i++) {
-      ajax_get_captcha(reVerify[i]);
+      if (!reVerify[i].getAttribute('src')) {
+        ajax_get_captcha(reVerify[i]);
+      }
+      reVerify[i].addEventListener('click', function (e) {
+        ajax_get_captcha(e.target);
+      });
     }
   }
 }
 
-function ajax_get_captcha(reVerify) {
-  reVerify.addEventListener('click', function (e) {
-    let url = '/captcha/index.php';
-    let data = {'reVerify': '1'};
-    $.ajax({
-      type: 'post',
-      url: url,
-      cache: false,
-      timeout: 4000,
-      data: data,
-      dataType: 'json',
-      success: function (data) {
-        let e_target = e.target;
-        if ('IMG' === e_target.tagName) get_captcha_result(data, e_target);
-      },
-      error: function (error) {
-        if (fundebug) fundebug.notify('验证码出错', error);
-      },
-    });
+function ajax_get_captcha(captcha_element) {
+  let url = '/captcha/index.php';
+  let data = {'reVerify': '1'};
+  $.ajax({
+    type: 'post',
+    url: url,
+    cache: false,
+    timeout: 4000,
+    data: data,
+    dataType: 'json',
+    success: function (data) {
+      if ('IMG' === captcha_element.tagName) get_captcha_result(data, captcha_element);
+    },
+    error: function (error) {
+      if (fundebug) fundebug.notify('验证码出错', error);
+    },
   });
 }
 
