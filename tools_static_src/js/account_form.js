@@ -312,3 +312,90 @@ function popover_content_recaptcha() {
 
   return div;
 }
+
+
+// 登录
+$().ready(function () {
+  let tab_sign_in = document.querySelector('#tab-sign_in');
+  if (tab_sign_in) {
+    let signIn_user_name = document.querySelector('#signIn_user_name');
+    let signIn_password = document.querySelector('#signIn_password');
+    let signIn_rememberMe = document.querySelector('#signIn_rememberMe');
+    let signIn_submit = document.querySelector('#signIn_submit');
+
+    signIn_submit.addEventListener('click', function (e) {
+      let e_target = e.target;
+      console.log(e_target);
+      console.log(signIn_user_name.validity.valid);
+      console.log(signIn_password.validity.valid);
+      console.log(signIn_rememberMe.checked);
+    });
+  }
+});
+
+// 手机号登录
+$().ready(function () {
+});
+
+// 注册
+$().ready(function () {
+  let tab_sign_up = document.querySelector('#tab-sign_up');
+  if (tab_sign_up) {
+    let signUp_user_name = document.querySelector('#signUp_user_name');
+    let signUp_email = document.querySelector('#signUp_email');
+    let signUp_password = document.querySelector('#signUp_password');
+    let signUp_rePassword = document.querySelector('#signUp_rePassword');
+    let signUp_tos = document.querySelector('#signUp_tos');
+    let signUp_submit = document.querySelector('#signUp_submit');
+
+    signUp_submit.addEventListener('click', function (e) {
+      let e_target = e.target;
+      let signUp_user_name_validity_valid = signUp_user_name.validity.valid;
+      let signUp_email_validity_valid = signUp_email.validity.valid;
+      let signUp_password_validity_valid = signUp_password.validity.valid;
+      let signUp_rePassword_validity_valid = signUp_rePassword.validity.valid;
+      let signUp_Passwords_validity_valid = signUp_password.value === signUp_rePassword.value;
+      let signUp_tos_validity_valid = signUp_tos.validity.valid;
+
+      if (true === signUp_user_name_validity_valid &&
+        true === signUp_email_validity_valid &&
+        true === signUp_password_validity_valid &&
+        true === signUp_rePassword_validity_valid &&
+        true === signUp_Passwords_validity_valid &&
+        true === signUp_tos_validity_valid) {
+        add_spinner_icon(e_target);
+        let sign_up_data = {
+          'signUp_user_name': signUp_user_name.value,
+          'signUp_email': signUp_email.value,
+          'signUp_password': signUp_password.value,
+          'signUp_tos': signUp_tos.value,
+        };
+        ajax_sign_up(sign_up_data, e_target);
+      } else {
+        bootstrapModalJs('', '格式错误', '', 'sm', true);
+      }
+    });
+
+    function ajax_sign_up(ajax_data, element) {
+      $.ajax({
+        type: 'post',
+        url: '/user/register.php',
+        dataType: 'json',
+        timeout: 3000,
+        data: ajax_data,
+        success: function (data) {
+          remove_spinner_icon(element);
+          console.log(data);
+        },
+        error: function (error) {
+          remove_spinner_icon(element);
+          console.log(error);
+        }
+      });
+    }
+  }
+});
+
+// 找回密码
+$().ready(function () {
+});
