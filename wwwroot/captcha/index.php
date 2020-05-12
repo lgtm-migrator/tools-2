@@ -1,5 +1,5 @@
 <?php
-require_once dirname(dirname(__DIR__)) . '/class/session/session_tmp.php';
+require_once dirname(dirname(__DIR__)) . '/config/functions.php';
 require_once dirname(dirname(__DIR__)) . '/captcha/index.php';
 
 $captcha_phrase = for_md5(1000, $captcha->getPhrase());
