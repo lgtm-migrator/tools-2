@@ -163,9 +163,7 @@ function listener_all_reVerify_click() {
       if (!reVerify[i].getAttribute('src')) {
         ajax_get_captcha(reVerify[i]);
       }
-      reVerify[i].addEventListener('click', function (e) {
-        ajax_get_captcha(e.target);
-      });
+      reVerify[i].addEventListener('click', (e) => ajax_get_captcha(e.target), {once: true});
     }
   }
 }
