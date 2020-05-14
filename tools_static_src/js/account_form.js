@@ -151,39 +151,39 @@ $().ready(function () {
 // 刷新验证码方法之一
 $().ready(function () {
   $('#sign').on('shown.bs.modal', function () {
-    listener_all_reVerify_click();
+    get_all_reVerify();
   });
 });
 
-function listener_all_reVerify_click() {
+function get_all_reVerify() {
   let reVerify = document.querySelectorAll('.reVerify');
   let reVerify_length = reVerify.length;
   if (0 < reVerify_length) {
     for (let i = 0; i < reVerify_length; i++) {
-      if (!reVerify[i].getAttribute('src')) {
-        ajax_get_captcha(reVerify[i]);
-      }
-      reVerify[i].addEventListener('click', (e) => ajax_get_captcha(e.target), {once: true});
+      ajax_get_captcha(reVerify[i]);
     }
   }
 }
 
-function ajax_get_captcha(captcha_element) {
-  let url = '/captcha/index.php';
-  let data = {'reVerify': '1'};
-  $.ajax({
-    type: 'post',
-    url: url,
-    cache: false,
-    timeout: 4000,
-    data: data,
-    dataType: 'json',
-    success: function (data) {
-      if ('IMG' === captcha_element.tagName) get_captcha_result(data, captcha_element);
-    },
-    error: function (error) {
-      if (fundebug) fundebug.notify('验证码出错', error);
-    },
+function ajax_get_captcha(reVerify) {
+  reVerify.addEventListener('click', function (e) {
+    let url = '/captcha/index.php';
+    let data = {'reVerify': '1'};
+    $.ajax({
+      type: 'post',
+      url: url,
+      cache: false,
+      timeout: 4000,
+      data: data,
+      dataType: 'json',
+      success: function (data) {
+        let e_target = e.target;
+        if ('IMG' === e_target.tagName) get_captcha_result(data, e_target);
+      },
+      error: function (error) {
+        if (fundebug) fundebug.notify('验证码出错', error);
+      },
+    });
   });
 }
 
@@ -203,8 +203,8 @@ function refresh_captcha_img(img_element, img_src) {
 // 检查验证码hash有效性
 $().ready(function () {
   let captcha_input = document.querySelectorAll('.captcha_input');
-  let captcha_input_length = captcha_input.length;
-  if (0 < captcha_input_length) {
+  if (0 < captcha_input.length) {
+    let captcha_input_length = captcha_input.length;
     for (let i = 0; i < captcha_input_length; i++) {
       validation_captcha_hash(captcha_input[i]);
     }
@@ -236,164 +236,4 @@ $().ready(function () {
     });
   }
 
-});
-
-// 表单校验
-$().ready(function () {
-  let needs_validations = document.querySelectorAll('.needs-validation');
-  let needs_validations_length = needs_validations.length;
-  if (0 < needs_validations_length) {
-    for (let i = 0; i < needs_validations_length; i++) {
-      _was_validated(needs_validations[i]);
-    }
-  }
-
-  function _was_validated(needs_validation_input) {
-    let add_was_validated = needs_validation_input.parentElement;
-    needs_validation_input.addEventListener('input', function (e) {
-      if (0 < e.target.value.length) {
-        add_was_validated.classList.add('was-validated');
-      } else {
-        add_was_validated.classList.remove('was-validated');
-      }
-    });
-  }
-});
-
-// ReCAPTCHA
-$().ready(function () {
-  let recaptcha_tools = document.querySelector('#recaptcha_tools');
-  if (recaptcha_tools) {
-    $('#recaptcha_tip').popover({
-      trigger: 'hover click',
-      boundary: 'viewport',
-      placement: 'auto',
-      html: true,
-      content: popover_content_recaptcha,
-      template: '<div class="popover shadow rounded-pill overflow-hidden" role="tooltip"><div class="arrow"></div><h3 class="popover-header"></h3><div class="popover-body bg_square_x bg-dark-50 text-white-50"></div></div>',
-    });
-  }
-});
-
-// 悬浮弹出框 ReCAPTCHA内容
-function popover_content_recaptcha() {
-  let div = document.createElement('div');
-  let span_text = document.createElement('span');
-  let span_and = document.createElement('span');
-  let span_privacy = document.createElement('span');
-  let span_terms = document.createElement('span');
-
-  div.className = 'text-center';
-  div.id = 'recaptcha_text_badge';
-
-  span_text.innerHTML = '由&nbsp;reCAPTCHA&nbsp;提供保护，并适用Google';
-  span_and.innerHTML = '和';
-
-  span_privacy.className = 'text-reset text-decoration-none';
-  span_privacy.title = '谷歌隐私权';
-  span_privacy.innerHTML = '&nbsp;隐私权&nbsp;';
-  span_privacy.addEventListener('click', function () {
-    window.open('https://www.google.cn/intl/zh-CN/policies/privacy/', '_blank');
-  });
-
-  span_terms.className = 'text-reset text-decoration-none';
-  span_terms.title = '谷歌服务条款';
-  span_terms.innerHTML = '&nbsp;服务条款&nbsp;';
-  span_terms.addEventListener('click', function () {
-    window.open('https://www.google.cn/intl/zh-CN/policies/terms/', '_blank');
-  });
-
-  div.appendChild(span_text);
-  div.appendChild(span_privacy);
-  div.appendChild(span_and);
-  div.appendChild(span_terms);
-
-  return div;
-}
-
-
-// 登录
-$().ready(function () {
-  let tab_sign_in = document.querySelector('#tab-sign_in');
-  if (tab_sign_in) {
-    let signIn_user_name = document.querySelector('#signIn_user_name');
-    let signIn_password = document.querySelector('#signIn_password');
-    let signIn_rememberMe = document.querySelector('#signIn_rememberMe');
-    let signIn_submit = document.querySelector('#signIn_submit');
-
-    signIn_submit.addEventListener('click', function (e) {
-      let e_target = e.target;
-      console.log(e_target);
-      console.log(signIn_user_name.validity.valid);
-      console.log(signIn_password.validity.valid);
-      console.log(signIn_rememberMe.checked);
-    });
-  }
-});
-
-// 手机号登录
-$().ready(function () {
-});
-
-// 注册
-$().ready(function () {
-  let tab_sign_up = document.querySelector('#tab-sign_up');
-  if (tab_sign_up) {
-    let signUp_user_name = document.querySelector('#signUp_user_name');
-    let signUp_email = document.querySelector('#signUp_email');
-    let signUp_password = document.querySelector('#signUp_password');
-    let signUp_rePassword = document.querySelector('#signUp_rePassword');
-    let signUp_tos = document.querySelector('#signUp_tos');
-    let signUp_submit = document.querySelector('#signUp_submit');
-
-    signUp_submit.addEventListener('click', function (e) {
-      let e_target = e.target;
-      let signUp_user_name_validity_valid = signUp_user_name.validity.valid;
-      let signUp_email_validity_valid = signUp_email.validity.valid;
-      let signUp_password_validity_valid = signUp_password.validity.valid;
-      let signUp_rePassword_validity_valid = signUp_rePassword.validity.valid;
-      let signUp_Passwords_validity_valid = signUp_password.value === signUp_rePassword.value;
-      let signUp_tos_validity_valid = signUp_tos.validity.valid;
-
-      if (true === signUp_user_name_validity_valid &&
-        true === signUp_email_validity_valid &&
-        true === signUp_password_validity_valid &&
-        true === signUp_rePassword_validity_valid &&
-        true === signUp_Passwords_validity_valid &&
-        true === signUp_tos_validity_valid) {
-        add_spinner_icon(e_target);
-        let sign_up_data = {
-          'signUp_user_name': signUp_user_name.value,
-          'signUp_email': signUp_email.value,
-          'signUp_password': signUp_password.value,
-          'signUp_tos': signUp_tos.value,
-        };
-        ajax_sign_up(sign_up_data, e_target);
-      } else {
-        bootstrapModalJs('', '格式错误', '', 'sm', true);
-      }
-    });
-
-    function ajax_sign_up(ajax_data, element) {
-      $.ajax({
-        type: 'post',
-        url: '/user/register.php',
-        dataType: 'json',
-        timeout: 3000,
-        data: ajax_data,
-        success: function (data) {
-          remove_spinner_icon(element);
-          console.log(data);
-        },
-        error: function (error) {
-          remove_spinner_icon(element);
-          console.log(error);
-        }
-      });
-    }
-  }
-});
-
-// 找回密码
-$().ready(function () {
 });

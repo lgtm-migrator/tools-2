@@ -1,8 +1,104 @@
-/* 背景和禁用选取 */
+:root {
+  --000: #000000;
+  --111: #111111;
+  --222: #222222;
+  --333: #333333;
+  --444: #444444;
+  --555: #555555;
+  --666: #666666;
+  --777: #777777;
+  --888: #888888;
+  --999: #999999;
+  --aaa: #aaaaaa;
+  --bbb: #bbbbbb;
+  --ccc: #cccccc;
+  --ddd: #dddddd;
+  --eee: #eeeeee;
+  --fff: #ffffff;
+  --f00: #ff0000;
+  --f11: #ff1111;
+  --f22: #ff2222;
+  --f33: #ff3333;
+  --f44: #ff4444;
+  --f55: #ff5555;
+  --f66: #ff6666;
+  --f77: #ff7777;
+  --f88: #ff8888;
+  --f99: #ff9999;
+  --faa: #ffaaaa;
+  --fbb: #ffbbbb;
+  --fcc: #ffcccc;
+  --fdd: #ffdddd;
+  --fee: #ffeeee;
+  --0f0: #00ff00;
+  --1f1: #11ff11;
+  --2f2: #22ff22;
+  --3f3: #33ff33;
+  --4f4: #44ff44;
+  --5f5: #55ff55;
+  --6f6: #66ff66;
+  --7f7: #77ff77;
+  --8f8: #88ff88;
+  --9f9: #99ff99;
+  --afa: #aaffaa;
+  --bfb: #bbffbb;
+  --cfc: #ccffcc;
+  --dfd: #ddffdd;
+  --efe: #eeffee;
+  --00f: #0000ff;
+  --11f: #1111ff;
+  --22f: #2222ff;
+  --33f: #3333ff;
+  --44f: #4444ff;
+  --55f: #5555ff;
+  --66f: #6666ff;
+  --77f: #7777ff;
+  --88f: #8888ff;
+  --99f: #9999ff;
+  --aaf: #aaaaff;
+  --bbf: #bbbbff;
+  --ccf: #ccccff;
+  --ddf: #ddddff;
+  --eef: #eeeeff;
+  --ff0: #ffff00;
+  --ff1: #ffff11;
+  --ff2: #ffff22;
+  --ff3: #ffff33;
+  --ff4: #ffff44;
+  --ff5: #ffff55;
+  --ff6: #ffff66;
+  --ff7: #ffff77;
+  --ff8: #ffff88;
+  --ff9: #ffff99;
+  --ffa: #ffffaa;
+  --ffb: #ffffbb;
+  --ffc: #ffffcc;
+  --ffd: #ffffdd;
+  --ffe: #ffffee;
+  --f0f: #ff00ff;
+  --f1f: #ff11ff;
+  --f2f: #ff22ff;
+  --f3f: #ff33ff;
+  --f4f: #ff44ff;
+  --f5f: #ff55ff;
+  --f6f: #ff66ff;
+  --f7f: #ff77ff;
+  --f8f: #ff88ff;
+  --f9f: #ff99ff;
+  --faf: #ffaaff;
+  --fbf: #ffbbff;
+  --fcf: #ffccff;
+  --fdf: #ffddff;
+  --fef: #ffeeff;
+}
+
+/* ReCAPTCHA 图标 */
+.grecaptcha-badge {
+  visibility: hidden;
+}
 #body { background-image: linear-gradient(180deg, hsla(0, 0%, 100%, 0) 60%, #fff), linear-gradient(70deg, #dbedff 32%, #ebfff0);}
 #body, body > div[id^='Modal_'] {user-select: none;}
 
-/* ReCAPTCHA 图标 */
 .grecaptcha-badge { visibility: hidden;}
 
 /* 响应式宽度 */
@@ -17,30 +113,14 @@
 .min-w-rem-8 {min-width: 8rem;}
 .min-w-rem-9 {min-width: 9rem;}
 
-/* 响应式高度 */
-.min-h-100 {min-height: 100%;}
-.min-h-rem-1 {min-height: 1rem;}
-.min-h-rem-2 {min-height: 2rem;}
-.min-h-rem-3 {min-height: 3rem;}
-.min-h-rem-4 {min-height: 4rem;}
-.min-h-rem-5 {min-height: 5rem;}
-.min-h-rem-6 {min-height: 6rem;}
-.min-h-rem-7 {min-height: 7rem;}
-.min-h-rem-8 {min-height: 8rem;}
-.min-h-rem-9 {min-height: 9rem;}
-
 /* 滚动 */
 .slideUp { transform: translateY(-100px); transition: transform .5s ease-out;}
 .slideDown { transform: translateY(0); transition: all .5s ease-out;}
 
 /* 背景色 */
-.bg-white-50 {background-color: rgba(255, 255, 255, .5);}
-.bg-light-50 {background-color: rgba(128, 128, 128, .5);}
-.bg-dark-50 {background-color: rgba(0, 0, 0, .5);}
-
-.bg-img-purple { background-image: linear-gradient(180deg, rgba(214, 51, 132, .6), rgba(111, 66, 193, .6))}
-.bg-img-blue { background-image: linear-gradient(180deg, rgba(0, 123, 255, .6), rgba(40, 167, 69, .44))}
-.bg-img-yellow { background-image: linear-gradient(180deg, rgba(255, 193, 7, .6), rgba(253, 126, 20, .6))}
+.bg-white-50 {background-color: rgba(255, 255, 255, 0.5);}
+.bg-light-50 {background-color: rgba(128, 128, 128, 0.5);}
+.bg-dark-50 {background-color: rgba(0, 0, 0, 0.5);}
 
 /* 图形背景 */
 .bg_square {
@@ -48,6 +128,7 @@
   background-size: 24px 24px;
   background-position: 0 0, 0 12px, 12px -12px, -12px 0;
 }
+
 .bg_square_x {
   background-image: linear-gradient(45deg, rgba(0, 0, 0, .06) 25%, transparent 0), linear-gradient(-45deg, rgba(0, 0, 0, .06) 25%, transparent 0), linear-gradient(45deg, transparent 75%, rgba(0, 0, 0, .06) 0), linear-gradient(-45deg, transparent 75%, rgba(0, 0, 0, .06) 0);
   background-size: 20px 20px;
@@ -60,7 +141,7 @@
 .d-unset {display: unset !important;}
 @media (min-width: 576px) {
   .d-sm-unset {display: unset !important;}
-  .w-sm-0 {width: 0 !important;}
+  .w-sm-25 {width: 0 !important;}
   .w-sm-25 {width: 25% !important;}
   .w-sm-50 {width: 50% !important;}
   .w-sm-75 {width: 75% !important;}
@@ -69,7 +150,7 @@
 }
 @media (min-width: 768px) {
   .d-md-unset {display: unset !important;}
-  .w-md-0 {width: 0 !important;}
+  .w-md-25 {width: 0 !important;}
   .w-md-25 {width: 25% !important;}
   .w-md-50 {width: 50% !important;}
   .w-md-75 {width: 75% !important;}
@@ -78,7 +159,7 @@
 }
 @media (min-width: 992px) {
   .d-lg-unset {display: unset !important;}
-  .w-lg-0 {width: 0 !important;}
+  .w-lg-25 {width: 0 !important;}
   .w-lg-25 {width: 25% !important;}
   .w-lg-50 {width: 50% !important;}
   .w-lg-75 {width: 75% !important;}
@@ -87,13 +168,17 @@
 }
 @media (min-width: 1200px) {
   .d-xl-unset {display: unset !important;}
-  .w-xl-0 {width: 0 !important;}
+  .w-xl-25 {width: 0 !important;}
   .w-xl-25 {width: 25% !important;}
   .w-xl-50 {width: 50% !important;}
   .w-xl-75 {width: 75% !important;}
   .w-xl-100 {width: 100% !important;}
   .row-cols-xl-auto > * {flex: auto;max-width: none;}
 }
+
+.bg-img-purple { background-image: linear-gradient(180deg, #d6338499, #6f42c199)}
+.bg-img-blue { background-image: linear-gradient(180deg, #007bff99, #28a74570)}
+.bg-img-yellow { background-image: linear-gradient(180deg, #ffc10799, #fd7e1499)}
 
 /* icon图标颜色 */
 .fa-alipay {}
@@ -178,7 +263,7 @@
 /* animate动画 */
 .animation-state-run {animation-play-state: running;}
 .animation-state-pause {animation-play-state: paused;}
-.animation-state-pause {transition: width 2s ease 2s;}
+.nimation-state-pause {transition: width 2s ease 2s;}
 
 @keyframes width_stretch {
   from {

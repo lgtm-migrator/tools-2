@@ -1,4 +1,4 @@
 node_modules
 **/vendor/
-tools_static_src
+tools_static
 wwwroot/static
