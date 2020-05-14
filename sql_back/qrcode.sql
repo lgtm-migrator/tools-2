@@ -3,15 +3,15 @@
 
  Source Server         : 本地数据库8.0
  Source Server Type    : MySQL
- Source Server Version : 80019
+ Source Server Version : 80020
  Source Host           : localhost:3306
  Source Schema         : jzeg_tools
 
  Target Server Type    : MySQL
- Target Server Version : 80019
+ Target Server Version : 80020
  File Encoding         : 65001
 
- Date: 27/02/2020 00:00:00
+ Date: 01/05/2020 00:00:00
 */
 
 SET NAMES utf8mb4;
@@ -35,6 +35,11 @@ CREATE TABLE `qrcode`  (
   `static` varchar(6) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '状态（yes,no,updated）',
   PRIMARY KEY (`id`) USING BTREE,
   UNIQUE INDEX `identifier`(`identifier`, `static`) USING BTREE COMMENT '识别码控制去重'
-) ENGINE = InnoDB AUTO_INCREMENT = 62 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '灵活码' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of qrcode
+-- ----------------------------
+INSERT INTO `qrcode` VALUES (1, 'img_qrcode', '默认标题', '默认介绍', '/static/img/lhm-manage.png', 'LHM-manage', '1', '1', NULL, '000000', 'yes');
 
 SET FOREIGN_KEY_CHECKS = 1;

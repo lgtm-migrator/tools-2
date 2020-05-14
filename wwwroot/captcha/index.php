@@ -1,9 +1,9 @@
 <?php
-require_once dirname(dirname(__DIR__)) . '/class/session/session_tmp.php';
+require_once dirname(dirname(__DIR__)) . '/config/functions.php';
 require_once dirname(dirname(__DIR__)) . '/captcha/index.php';
 
 $captcha_phrase = for_md5(1000, $captcha->getPhrase());
-$captcha_img_base64 = $captcha->inline(20);
+$captcha_img_base64 = $captcha->inline(30);
 
 $result = array(
   'success' => 'true',
