@@ -1,5 +1,5 @@
-#search_result_number_list > div:nth-child(odd) {background-color: #ff000040;}
-#search_result_number_list > div:nth-child(even) {background-color: #00ff0040;}
+#search_result_number_list > div:nth-child(odd) {background-color: rgba(255, 0, 0, .25);}
+#search_result_number_list > div:nth-child(even) {background-color: rgba(0, 255, 0, .25);}
 
 input[type=search] {letter-spacing: .3rem;}
 input[type=search]::placeholder {color: var(--danger);}

@@ -3,8 +3,6 @@ date_default_timezone_set('Asia/Shanghai');
 require_once dirname(__DIR__) . '/class/session/session_tmp.php';
 session_init();
 set_session();
-set_user_loggedIn();
-set_token();
 set_session_cookie('_token', $_SESSION['_token']);
 set_session_cookie('logged_in', $_SESSION['logged_in']);
 ?>
@@ -47,17 +45,17 @@ set_session_cookie('logged_in', $_SESSION['logged_in']);
 
   <title><?php echo title; ?></title>
   <!-- Global Site Tag (gtag.js) - Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-158181386-2"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-
-    function gtag() {
-      dataLayer.push(arguments);
-    }
-
-    gtag('js', new Date());
-    gtag('config', 'UA-158181386-2');
-  </script>
+<!--  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-158181386-2"></script>-->
+<!--  <script>-->
+<!--    window.dataLayer = window.dataLayer || [];-->
+<!---->
+<!--    function gtag() {-->
+<!--      dataLayer.push(arguments);-->
+<!--    }-->
+<!---->
+<!--    gtag('js', new Date());-->
+<!--    gtag('config', 'UA-158181386-2');-->
+<!--  </script>-->
   <script src="/static/js/fundebug.min.js"></script>
 </head>
 <body>
