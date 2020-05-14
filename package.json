@@ -58,7 +58,6 @@
     "stylelint": "^13.3.3"
   },
   "dependencies": {
-    "@alphardex/aqua.css": "^1.2.7",
     "@fortawesome/fontawesome-free": "^5.13.0",
     "animate.css": "^4.1.0",
     "blueimp-md5": "^2.16.0",
