@@ -33,8 +33,6 @@ function set_session()
 {
   set_session_id();
   set_timestamp();
-  set_user_loggedIn();
-  set_token();
 }
 
 function set_session_cookie($session_name, $session_value)
@@ -128,4 +126,26 @@ function set_timestamp()
 {
   $timestamp = time();
   $_SESSION['timestamp'] = $timestamp;
+}
+
+function for_md5(int $number, $array_or_string)
+{
+  $value = (is_array($array_or_string)) ? implode('', $array_or_string) : $array_or_string;
+  if ($value === false) return false;
+  $result = $value;
+  for ($i = 0; $i <= $number; $i++) {
+    $result = md5($result);
+  }
+  return $result;
+}
+
+function for_crypt(int $number, $array_or_string, $salt = null)
+{
+  $value = (is_array($array_or_string)) ? implode('', $array_or_string) : $array_or_string;
+  if ($value === false) return false;
+  $result = '';
+  for ($i = 0; $i <= $number; $i++) {
+    $result = crypt($value, $salt);
+  }
+  return $result;
 }
