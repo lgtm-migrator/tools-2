@@ -21,6 +21,9 @@ const
   tools_static_src_path = "./tools_static_src/",
   tools_static_src_js = tools_static_src_path + "js/",
   tools_static_src_css = tools_static_src_path + "css/",
+  /** user_payroll **/
+  payroll_js_path = tools_static_src_js + "payroll.js",
+  payroll_css_path = tools_static_src_css + "payroll.css",
   /** user_index **/
   user_index_js_path = tools_static_src_js + "user_index.js",
   user_index_css_path = tools_static_src_css + "user_index.css",
@@ -63,20 +66,20 @@ task("build_member",
 );
 
 function copy_member_js(done) {
-  src([user_index_js_path, account_form_js_path], {since: lastRun(copy_member_js)})
+  src([user_index_js_path, account_form_js_path, payroll_js_path], {since: lastRun(copy_member_js)})
     .pipe(dest(static_js));
   done();
 }
 
 function copy_member_css(done) {
-  src([user_index_css_path, account_form_css_path], {since: lastRun(copy_member_css)})
+  src([user_index_css_path, account_form_css_path, payroll_css_path], {since: lastRun(copy_member_css)})
     .pipe(postcss([autoPreFixer()]))
     .pipe(dest(static_css));
   done();
 }
 
 function terser_member(done) {
-  src([user_index_js_path, account_form_js_path], {since: lastRun(terser_member)})
+  src([user_index_js_path, account_form_js_path, payroll_js_path], {since: lastRun(terser_member)})
     .pipe(terser())
     .pipe(rename({suffix: ".min"}))
     .pipe(dest(static_js));
@@ -84,7 +87,7 @@ function terser_member(done) {
 }
 
 function cleanCSS_member(done) {
-  src([user_index_css_path, account_form_css_path], {since: lastRun(cleanCSS_member)})
+  src([user_index_css_path, account_form_css_path, payroll_css_path], {since: lastRun(cleanCSS_member)})
     .pipe(postcss([autoPreFixer()]))
     .pipe(cleanCSS())
     .pipe(rename({suffix: ".min"}))
@@ -93,6 +96,6 @@ function cleanCSS_member(done) {
 }
 
 function watch_member(done) {
-  watch([user_index_js_path, user_index_css_path, account_form_js_path, account_form_css_path], task("build_member"));
+  watch([user_index_js_path, user_index_css_path, payroll_css_path, account_form_js_path, account_form_css_path, payroll_css_path], task("build_member"));
   done();
 }
