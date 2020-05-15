@@ -1,6 +1,6 @@
 <?php
 if (!defined('title')) define('title', '工资单');
-require_once dirname(__DIR__) . '/header.php';
+require_once dirname(dirname(__DIR__)) . '/header.php';
 if (!defined('JZEG_NET')) die();
 ?>
   <link rel="stylesheet" href="/static/css/payroll.min.css">
@@ -13,8 +13,8 @@ if (!defined('JZEG_NET')) die();
     </form>
   </div>
   <div class="d-none">
-    <?php require_once dirname(__DIR__) . "/javascript.php"; ?>
+    <?php require_once dirname(dirname(__DIR__)) . "/javascript.php"; ?>
     <script src="/static/js/payroll.min.js"></script>
   </div>
 <?php
-require_once dirname(__DIR__) . '/footer.php';
+require_once dirname(dirname(__DIR__)) . '/footer.php';
