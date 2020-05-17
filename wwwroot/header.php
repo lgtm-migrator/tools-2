@@ -59,7 +59,7 @@ set_session_cookie('logged_in', $_SESSION['logged_in']);
   <script src="/static/js/fundebug.min.js"></script>
 </head>
 <body>
-<div id="body" hidden>
+<div id="body" class="user-select-none" hidden>
   <div class="bg-white" id="jt_header">
     <?php include_once dirname(__FILE__) . '/header_nav.php'; ?>
     <div class="border-bottom"></div>
