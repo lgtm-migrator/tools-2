@@ -96,6 +96,6 @@ function cleanCSS_member(done) {
 }
 
 function watch_member(done) {
-  watch([user_index_js_path, user_index_css_path, payroll_css_path, account_form_js_path, account_form_css_path, payroll_css_path], task("build_member"));
+  watch([user_index_js_path, user_index_css_path, account_form_js_path, account_form_css_path, payroll_js_path, payroll_css_path], task("build_member"));
   done();
 }
