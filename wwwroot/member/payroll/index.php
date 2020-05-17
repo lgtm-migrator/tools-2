@@ -6,14 +6,28 @@ if (!defined('JZEG_NET')) die();
   <link rel="stylesheet" href="/static/css/payroll.min.css">
   <div class="py-2 container" id="jt_payroll">
     <div class="mb-2 font-weight-bolder">工资单</div>
-    <form class="px-3 py-2 rounded border" action="/member/payroll/payroll.php" method="post" enctype="multipart/form-data">
+    <div class="px-3 py-2 rounded border">
       <div class="form-row form-group">
         <div class="col-12 col-md-6 mb-2 mb-md-0">
           <div class="input-group">
             <div class="input-group-prepend">
-              <label class="input-group-text" for="jt_payroll_name">日期</label>
+              <label class="input-group-text" for="jt_payroll_month">工资月份</label>
             </div>
-            <input type="date" class="form-control" id="jt_payroll_date">
+            <select class="custom-select" id="jt_payroll_month" required style="overflow: auto;">
+              <option value="0" selected>请选择月份</option>
+              <option value="1">一月份的工资</option>
+              <option value="2">二月份的工资</option>
+              <option value="3">三月份的工资</option>
+              <option value="4">四月份的工资</option>
+              <option value="5">五月份的工资</option>
+              <option value="6">六月份的工资</option>
+              <option value="7">七月份的工资</option>
+              <option value="8">八月份的工资</option>
+              <option value="9">九月份的工资</option>
+              <option value="10">十月份的工资</option>
+              <option value="11">十一月份的工资</option>
+              <option value="12">十二月份的工资</option>
+            </select>
           </div>
           <div class="small text-muted">
             <span class="small">几月份的工资</span>
@@ -22,7 +36,7 @@ if (!defined('JZEG_NET')) die();
         <div class="col-12 col-md-6 mb-2 mb-md-0">
           <div class="input-group">
             <div class="input-group-prepend">
-              <label class="input-group-text" for="jt_payroll_name">日期</label>
+              <label class="input-group-text" for="jt_payroll_date">到账日期</label>
             </div>
             <input type="date" class="form-control" id="jt_payroll_date">
           </div>
@@ -100,7 +114,8 @@ if (!defined('JZEG_NET')) die();
             </div>
             <input type="number" class="form-control text-center" min="1" max="10" step="1" value="2" id="jt_payroll_medical_insurance_number" readonly>
             <div class="input-group-append">
-              <span class="input-group-text">%  +</span>
+              <span class="input-group-text">%</span>
+              <label class="input-group-text" for="jt_payroll_medical_insurance_number_push">+</label>
             </div>
             <input type="number" class="form-control text-center" min="1" max="10" step="1" value="3" id="jt_payroll_medical_insurance_number_push">
             <div class="input-group-append">
@@ -207,12 +222,11 @@ if (!defined('JZEG_NET')) die();
           <div class="input-group-prepend">
             <label class="input-group-text" for="jt_payroll_pension_adjustment_difference">养老保险调差额</label>
           </div>
-          <input type="number" class="form-control text-right" placeholder="养老保险调差额"
-                 id="jt_payroll_pension_adjustment_difference">
+          <input type="number" class="form-control text-right" placeholder="养老保险调差额" id="jt_payroll_pension_adjustment_difference">
           <div class="input-group-append">
             <span class="input-group-text">元</span>
             <span class="input-group-text">
-                <i class="fas fa-question-circle" id="jt_payroll_pension_adjustment_difference_icon"></i>
+              <i class="fas fa-question-circle" id="jt_payroll_pension_adjustment_difference_icon"></i>
             </span>
           </div>
         </div>
@@ -268,7 +282,7 @@ if (!defined('JZEG_NET')) die();
         <button type="button" class="btn btn-outline-success" id="jt_payroll_compute">计算工资</button>
         <button type="submit" class="btn btn-outline-primary" id="jt_payroll_submit">上传保存</button>
       </div>
-    </form>
+    </div>
   </div>
   <div class="d-none">
     <?php require_once dirname(dirname(__DIR__)) . "/javascript.php"; ?>

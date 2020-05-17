@@ -3,6 +3,7 @@ $().ready(function () {
   let jt_payroll_pension_icon = document.querySelector('#jt_payroll_pension_icon');
   let jt_payroll_actual_salary_icon = document.querySelector('#jt_payroll_actual_salary_icon');
   let jt_payroll_housing_fund_icon = document.querySelector('#jt_payroll_housing_fund_icon');
+  let jt_payroll_pension_adjustment_difference_icon = document.querySelector('#jt_payroll_pension_adjustment_difference_icon');
   if (jt_payroll_pension_icon) {
     $('#jt_payroll_pension_icon').popover({
       trigger: 'hover',
@@ -30,6 +31,15 @@ $().ready(function () {
       content: popover_content_jt_payroll_housing_fund_icon,
     });
   }
+  if (jt_payroll_pension_adjustment_difference_icon) {
+    $('#jt_payroll_pension_adjustment_difference_icon').popover({
+      trigger: 'hover',
+      boundary: 'viewport',
+      placement: 'auto',
+      html: true,
+      content: popover_content_jt_payroll_pension_adjustment_difference_icon,
+    });
+  }
 });
 
 function popover_content_jt_payroll_pension_icon() {
@@ -54,5 +64,13 @@ function popover_content_jt_payroll_housing_fund_icon() {
 
   span.className = 'small';
   span.innerHTML = '公积金缴费比例：根据企业的实际情况，选择住房公积金缴费比例。但原则上最高缴费额不得超过北京市职工平均工资的10%。2009年下半年起，北京市统一规定所有用人单位按工资的12%办理缴纳住房公积金。单位和个人都是工资的12%。';
+  return span;
+}
+
+function popover_content_jt_payroll_pension_adjustment_difference_icon() {
+  let span = document.createElement("span");
+
+  span.className = 'small';
+  span.innerHTML = '一般出现在每年七月份或者八月份，用来调整上一年度缴纳养老保险的差额。';
   return span;
 }
