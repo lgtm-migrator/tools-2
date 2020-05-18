@@ -19,20 +19,22 @@ if (!defined('JZEG_NET')) die();
           <div class="card-body">
             <div class="d-flex flex-column align-items-center">
               <i class="position-absolute align-self-end text-black-50 fas fa-edit"></i>
-              <span>nick_name</span>
+              <span>昵称</span>
               <span>abc@xyz.com</span>
             </div>
           </div>
         </div>
       </div>
       <div class="col-12 col-sm-8 col-md-9">
-        <div class="mb-2 list-group flex-row text-center text-nowrap" style="overflow-x: auto;">
-          <span class="list-group-item list-group-item-action active" data-toggle="tab" data-target="#profile">轮廓</span>
-          <span class="list-group-item list-group-item-action" data-toggle="tab" data-target="#preference">偏好</span>
-          <span class="list-group-item list-group-item-action" data-toggle="tab" data-target="#password">密码</span>
-          <span class="list-group-item list-group-item-action" data-toggle="tab" data-target="#Bind_account">绑定账号</span>
-          <span class="list-group-item list-group-item-action" data-toggle="tab" data-target="#TwoFactorAuthentication">双重验证</span>
-          <span class="list-group-item list-group-item-action" data-toggle="tab" data-target="#PersonalData">个人数据</span>
+        <div class="mb-2 card">
+          <div class="nav nav-pills nav-justified flex-nowrap text-nowrap" style="overflow-x: auto;">
+            <a class="nav-item border rounded-0 text-reset nav-link active" href="#profile" data-toggle="tab">轮廓</a>
+            <a class="nav-item border rounded-0 text-reset nav-link" href="#preference" data-toggle="tab">偏好</a>
+            <a class="nav-item border rounded-0 text-reset nav-link" href="#password" data-toggle="tab">密码</a>
+            <a class="nav-item border rounded-0 text-reset nav-link" href="#Bind_account" data-toggle="tab">绑定账号</a>
+            <a class="nav-item border rounded-0 text-reset nav-link" href="#TwoFactorAuthentication" data-toggle="tab">双重验证</a>
+            <a class="nav-item border rounded-0 text-reset nav-link" href="#PersonalData" data-toggle="tab">个人数据</a>
+          </div>
         </div>
         <div class="card">
           <div class="tab-content">
