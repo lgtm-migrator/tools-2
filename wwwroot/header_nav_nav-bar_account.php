@@ -66,7 +66,7 @@
               <i class="fas fa-2x fa-user-lock"></i>
               <span class="d-block">我的资料</span>
             </a>
-            <a href="javascript:" class="mb-2 px-4 border rounded-circle btn btn-outline-secondary">
+            <a href="/account/manage/index.php" class="mb-2 px-4 border rounded-circle btn btn-outline-secondary">
               <i class="fas fa-2x fa-user-cog"></i>
               <span class="d-block">个人设置</span>
             </a>
