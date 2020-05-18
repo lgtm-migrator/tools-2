@@ -9,7 +9,7 @@ if (!defined('JZEG_NET')) die();
     <div class="px-3 py-2 rounded border">
       <div class="form-row form-group">
         <div class="col-12 col-md-6 mb-2 mb-md-0">
-          <div class="input-group">
+          <div class="mb-1 input-group">
             <div class="input-group-prepend">
               <label class="input-group-text" for="jt_payroll_month">工资月份</label>
             </div>
@@ -34,7 +34,7 @@ if (!defined('JZEG_NET')) die();
           </div>
         </div>
         <div class="col-12 col-md-6 mb-2 mb-md-0">
-          <div class="input-group">
+          <div class="mb-1 input-group">
             <div class="input-group-prepend">
               <label class="input-group-text" for="jt_payroll_date">到账日期</label>
             </div>
@@ -79,25 +79,32 @@ if (!defined('JZEG_NET')) die();
       </div>
       <div class="form-row form-group">
         <div class="col-12 col-md-6 mb-2 mb-md-0">
-          <div class="input-group">
+          <div class="mb-1 input-group">
             <div class="input-group-prepend">
               <label class="input-group-text" for="jt_payroll_payable">应发工资</label>
             </div>
             <input type="text" class="form-control rounded-right" id="jt_payroll_payable" placeholder="应发工资">
+            <div class="input-group-append">
+              <span class="input-group-text">元</span>
+              <span class="input-group-text">
+                <i class="text-muted fas fa-question-circle" id="jt_payroll_payable_icon"></i>
+              </span>
+            </div>
           </div>
           <div class="small text-muted">
             <span class="small">未扣五险一金和各种代扣费用之前</span>
           </div>
         </div>
         <div class="col-12 col-md-6">
-          <div class="input-group">
+          <div class="mb-1 input-group">
             <div class="input-group-prepend">
               <label class="input-group-text" for="jt_payroll_actual_salary">实发工资</label>
             </div>
             <input type="text" class="form-control" id="jt_payroll_actual_salary" placeholder="自动计算出结果" readonly>
             <div class="input-group-append">
+              <span class="input-group-text">元</span>
               <span class="input-group-text">
-                <i class="fas fa-question-circle" id="jt_payroll_actual_salary_icon"></i>
+                <i class="text-muted fas fa-question-circle" id="jt_payroll_actual_salary_icon"></i>
               </span>
             </div>
           </div>
@@ -110,42 +117,35 @@ if (!defined('JZEG_NET')) die();
         <div class="col-12 col-md-6 mb-2">
           <div class="mb-1 input-group">
             <div class="input-group-prepend">
-              <label class="input-group-text" for="jt_payroll_medical_insurance_number">医疗保险比例</label>
+              <label class="input-group-text" for="jt_payroll_excess_wage_one_number">超额工资一</label>
             </div>
-            <input type="number" class="form-control text-center" min="1" max="10" step="1" value="2" id="jt_payroll_medical_insurance_number" readonly>
-            <div class="input-group-append">
-              <span class="input-group-text">%</span>
-              <label class="input-group-text" for="jt_payroll_medical_insurance_number_push">+</label>
-            </div>
-            <input type="number" class="form-control text-center" min="1" max="10" step="1" value="3" id="jt_payroll_medical_insurance_number_push">
+            <input type="number" class="form-control text-right" placeholder="超额工资一" id="jt_payroll_excess_wage_one_number">
             <div class="input-group-append">
               <span class="input-group-text">元</span>
+              <span class="input-group-text">
+                <i class="text-muted fas fa-question-circle" id="jt_payroll_excess_wage_one_icon"></i>
+              </span>
             </div>
           </div>
           <div class="small text-muted">
-            <span>医疗保险缴费比例：单位10%，个人2%+3元</span>
-          </div>
-          <div>
-            <label class="sr-only" for="jt_payroll_medical_insurance_range">医疗保险比例</label>
-            <input type="range" class="custom-range" min="1" max="10" step="1" value="2" id="jt_payroll_medical_insurance_range">
+            <span>超额工资一</span>
           </div>
         </div>
         <div class="col-12 col-md-6 mb-2">
           <div class="mb-1 input-group">
             <div class="input-group-prepend">
-              <label class="input-group-text" for="jt_payroll_medical_insurance_number">失业保险比例</label>
+              <label class="input-group-text" for="jt_payroll_excess_wage_two_number">超额工资二</label>
             </div>
-            <input type="number" class="form-control text-right" min="0" max="1.5" step="0.5" value="0.5" id="jt_payroll_medical_insurance_number" readonly>
+            <input type="number" class="form-control text-right" placeholder="超额工资二" id="jt_payroll_excess_wage_two_number">
             <div class="input-group-append">
-              <span class="input-group-text">%</span>
+              <span class="input-group-text">元</span>
+              <span class="input-group-text">
+                <i class="text-muted fas fa-question-circle" id="jt_payroll_excess_wage_two_icon"></i>
+              </span>
             </div>
           </div>
           <div class="small text-muted">
-            <span>失业保险缴费比例：单位1.5%，个人0.5%</span>
-          </div>
-          <div>
-            <label class="sr-only" for="jt_payroll_medical_insurance_range">失业保险比例</label>
-            <input type="range" class="custom-range" min="0" max="1.5" step="0.5" value="0.5" id="jt_payroll_medical_insurance_range">
+            <span>超额工资二</span>
           </div>
         </div>
       </div>
@@ -153,37 +153,121 @@ if (!defined('JZEG_NET')) die();
         <div class="col-12 col-md-6 mb-2">
           <div class="mb-1 input-group">
             <div class="input-group-prepend">
-              <label class="input-group-text" for="jt_payroll_medical_insurance_number">工伤保险比例</label>
+              <label class="input-group-text" for="jt_payroll_other_salary_one_number">其他工资一</label>
             </div>
-            <input type="number" class="form-control text-right" min="0" max="2" step="0.1" value="0" id="jt_payroll_medical_insurance_number" readonly>
+            <input type="number" class="form-control text-right" placeholder="其他工资一" id="jt_payroll_other_salary_one_number">
             <div class="input-group-append">
-              <span class="input-group-text">%</span>
+              <span class="input-group-text">元</span>
+              <span class="input-group-text">
+                <i class="text-muted fas fa-question-circle" id="jt_payroll_other_salary_one_icon"></i>
+              </span>
             </div>
           </div>
           <div class="small text-muted">
-            <span>工伤保险缴费比例：单位0.5%~2%，个人0</span>
-          </div>
-          <div>
-            <label class="sr-only" for="jt_payroll_medical_insurance_range">工伤保险比例</label>
-            <input type="range" class="custom-range" min="0" max="2" step="0.1" value="0" id="jt_payroll_medical_insurance_range">
+            <span>其他工资一</span>
           </div>
         </div>
         <div class="col-12 col-md-6 mb-2">
           <div class="mb-1 input-group">
             <div class="input-group-prepend">
-              <label class="input-group-text" for="jt_payroll_medical_insurance_number">生育保险比例</label>
+              <label class="input-group-text" for="jt_payroll_other_salary_two_number">其他工资二</label>
             </div>
-            <input type="number" class="form-control text-right" min="1" max="10" step="1" value="8" id="jt_payroll_medical_insurance_number" readonly>
+            <input type="number" class="form-control text-right" placeholder="其他工资二" id="jt_payroll_other_salary_two_number">
             <div class="input-group-append">
-              <span class="input-group-text">%</span>
+              <span class="input-group-text">元</span>
+              <span class="input-group-text">
+                <i class="text-muted fas fa-question-circle" id="jt_payroll_other_salary_two_icon"></i>
+              </span>
             </div>
           </div>
           <div class="small text-muted">
-            <span>生育保险缴费比例：单位0.8%，个人不交钱</span>
+            <span>其他工资二</span>
           </div>
-          <div>
-            <label class="sr-only" for="jt_payroll_medical_insurance_range">生育保险比例</label>
-            <input type="range" class="custom-range" min="1" max="10" step="1" value="8" id="jt_payroll_medical_insurance_range">
+        </div>
+      </div>
+      <div class="form-row form-group">
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <label class="input-group-text" for="jt_payroll_personal_income_tax">个人所得税</label>
+          </div>
+          <input type="number" class="form-control text-right" placeholder="个人所得税" id="jt_payroll_personal_income_tax">
+          <div class="input-group-append">
+            <span class="input-group-text">元</span>
+            <span class="input-group-text">
+              <i class="text-muted fas fa-question-circle" id="jt_payroll_personal_income_tax_icon"></i>
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="form-row form-group">
+        <div class="col-12 col-md-6 mb-2">
+          <div class="mb-1 input-group">
+            <div class="input-group-prepend">
+              <label class="input-group-text" for="jt_payroll_medical_insurance_number">医疗保险金额</label>
+            </div>
+            <input type="number" class="form-control text-right" placeholder="医疗保险金额" id="jt_payroll_medical_insurance_number">
+            <div class="input-group-append">
+              <span class="input-group-text">元</span>
+              <span class="input-group-text">
+                <i class="text-muted fas fa-question-circle" id="jt_payroll_medical_insurance_icon"></i>
+              </span>
+            </div>
+          </div>
+          <div class="small text-muted">
+            <span>医疗保险缴费比例：单位10%，个人2%+3元</span>
+          </div>
+        </div>
+        <div class="col-12 col-md-6 mb-2">
+          <div class="mb-1 input-group">
+            <div class="input-group-prepend">
+              <label class="input-group-text" for="jt_payroll_unemployment_insurance_number">失业保险金额</label>
+            </div>
+            <input type="number" class="form-control text-right" placeholder="失业保险金额" id="jt_payroll_unemployment_insurance_number">
+            <div class="input-group-append">
+              <span class="input-group-text">元</span>
+              <span class="input-group-text">
+                <i class="text-muted fas fa-question-circle" id="jt_payroll_unemployment_insurance_icon"></i>
+              </span>
+            </div>
+          </div>
+          <div class="small text-muted">
+            <span>失业保险缴费比例：单位1.5%，个人0.5%</span>
+          </div>
+        </div>
+      </div>
+      <div class="form-row form-group">
+        <div class="col-12 col-md-6 mb-2">
+          <div class="mb-1 input-group">
+            <div class="input-group-prepend">
+              <label class="input-group-text" for="jt_payroll_injury_insurance_number">工伤保险金额</label>
+            </div>
+            <input type="number" class="form-control text-right" placeholder="工伤保险金额" id="jt_payroll_injury_insurance_number">
+            <div class="input-group-append">
+              <span class="input-group-text">元</span>
+              <span class="input-group-text">
+                <i class="text-muted fas fa-question-circle" id="jt_payroll_injury_insurance_icon"></i>
+              </span>
+            </div>
+          </div>
+          <div class="small text-muted">
+            <span>工伤保险缴费比例：单位0.5%~2%，个人0</span>
+          </div>
+        </div>
+        <div class="col-12 col-md-6 mb-2">
+          <div class="mb-1 input-group">
+            <div class="input-group-prepend">
+              <label class="input-group-text" for="jt_payroll_maternity_insurance_number">生育保险金额</label>
+            </div>
+            <input type="number" class="form-control text-right" placeholder="生育保险金额" id="jt_payroll_maternity_insurance_number">
+            <div class="input-group-append">
+              <span class="input-group-text">元</span>
+              <span class="input-group-text">
+                <i class="text-muted fas fa-question-circle" id="jt_payroll_maternity_insurance_icon"></i>
+              </span>
+            </div>
+          </div>
+          <div class="small text-muted">
+            <span>生育保险缴费比例：单位0.8%，个人0</span>
           </div>
         </div>
       </div>
@@ -197,7 +281,7 @@ if (!defined('JZEG_NET')) die();
             <div class="input-group-append">
               <span class="input-group-text">元</span>
               <span class="input-group-text">
-                <i class="fas fa-question-circle" id="jt_payroll_pension_icon"></i>
+                <i class="text-muted fas fa-question-circle" id="jt_payroll_pension_icon"></i>
               </span>
             </div>
           </div>
@@ -211,7 +295,7 @@ if (!defined('JZEG_NET')) die();
             <div class="input-group-append">
               <span class="input-group-text">元</span>
               <span class="input-group-text">
-                <i class="fas fa-question-circle" id="jt_payroll_housing_fund_icon"></i>
+                <i class="text-muted fas fa-question-circle" id="jt_payroll_housing_fund_icon"></i>
               </span>
             </div>
           </div>
@@ -226,7 +310,7 @@ if (!defined('JZEG_NET')) die();
           <div class="input-group-append">
             <span class="input-group-text">元</span>
             <span class="input-group-text">
-              <i class="fas fa-question-circle" id="jt_payroll_pension_adjustment_difference_icon"></i>
+              <i class="text-muted fas fa-question-circle" id="jt_payroll_pension_adjustment_difference_icon"></i>
             </span>
           </div>
         </div>
