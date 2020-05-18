@@ -1,4 +1,5 @@
 require('./common');
+require('./account_manage');
 require('./member');
 require('./sms');
 require('./tools_static');
@@ -11,6 +12,7 @@ const {task, series, parallel} = require('gulp');
 // 合并任务
 task("build_static",
   series(
+    "build_account",
     "build_member",
     "build_sms",
     "build_tools",
@@ -21,6 +23,7 @@ task("build_static",
 );
 task('watch_change',
   parallel(
+    'watch_account',
     'watch_member',
     'watch_sms',
     'watch_tools',
@@ -31,6 +34,7 @@ task('watch_change',
 );
 task('copy',
   parallel(
+    'copy_account',
     'copy_member',
     'copy_sms',
     'copy_common',
