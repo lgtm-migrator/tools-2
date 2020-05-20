@@ -14,9 +14,8 @@ $().ready(function () {
       {'jt_payroll_housing_fund_icon': '公积金缴费比例：根据企业的实际情况，选择住房公积金缴费比例。但原则上最高缴费额不得超过北京市职工平均工资的10%。2009年下半年起，北京市统一规定所有用人单位按工资的12%办理缴纳住房公积金。单位和个人都是工资的12%。'},
       {'jt_payroll_pension_adjustment_difference_icon': '一般出现在每年七月份或者八月份，用来调整上一年度缴纳养老保险的差额。'},
     ];
-    let payroll_icon_length = payroll_icon.length;
 
-    for (let i = 0; i < payroll_icon_length; i++) {
+    for (let i = 0, payroll_icon_length = payroll_icon.length; i < payroll_icon_length; i++) {
       for (let index in payroll_icon[i]) {
         let x = document.querySelector('#' + index);
 

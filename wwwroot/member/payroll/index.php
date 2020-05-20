@@ -13,21 +13,24 @@ if (!defined('JZEG_NET')) die();
             <div class="input-group-prepend">
               <label class="input-group-text" for="jt_payroll_year">工资年份</label>
             </div>
-            <select class="custom-select" id="jt_payroll_year" required>
-              <option value="2010">2010年</option>
-              <option value="2011">2011年</option>
-              <option value="2012">2012年</option>
-              <option value="2013">2013年</option>
-              <option value="2014">2014年</option>
-              <option value="2015">2015年</option>
-              <option value="2016">2016年</option>
-              <option value="2017">2017年</option>
-              <option value="2018">2018年</option>
-              <option value="2019">2019年</option>
-              <option value="2020" selected>2020年</option>
-              <option value="2022">2021年</option>
-              <option value="2022">2022年</option>
+            <select class="custom-select" id="jt_payroll_year" required style="direction: rtl;">
+              <option value="2010">2010</option>
+              <option value="2011">2011</option>
+              <option value="2012">2012</option>
+              <option value="2013">2013</option>
+              <option value="2014">2014</option>
+              <option value="2015">2015</option>
+              <option value="2016">2016</option>
+              <option value="2017">2017</option>
+              <option value="2018">2018</option>
+              <option value="2019">2019</option>
+              <option value="2020" selected>2020</option>
+              <option value="2022">2021</option>
+              <option value="2022">2022</option>
             </select>
+            <div class="input-group-append">
+              <span class="input-group-text">年</span>
+            </div>
           </div>
           <div class="small text-muted">
             <span class="small">哪一年的工资</span>
@@ -38,7 +41,7 @@ if (!defined('JZEG_NET')) die();
             <div class="input-group-prepend">
               <label class="input-group-text" for="jt_payroll_month">工资月份</label>
             </div>
-            <select class="custom-select" id="jt_payroll_month" required>
+            <select class="custom-select" id="jt_payroll_month" required style="direction: rtl;">
               <option value="0" selected>请选择月份</option>
               <option value="1">一</option>
               <option value="2">二</option>
@@ -55,9 +58,6 @@ if (!defined('JZEG_NET')) die();
             </select>
             <div class="input-group-append">
               <span class="input-group-text">月</span>
-              <span class="input-group-text">
-                <i class="text-muted fas fa-question-circle" id="jt_payroll_month_icon"></i>
-              </span>
             </div>
           </div>
           <div class="small text-muted">
@@ -69,10 +69,10 @@ if (!defined('JZEG_NET')) die();
             <div class="input-group-prepend">
               <label class="input-group-text" for="jt_payroll_date">到账日期</label>
             </div>
-            <input type="date" class="form-control" id="jt_payroll_date">
+            <input type="date" class="form-control text-right" id="jt_payroll_date">
           </div>
           <div class="small text-muted">
-            <span class="small">工资到账时间</span>
+            <span class="small">工资到账日期</span>
           </div>
         </div>
       </div>
@@ -82,7 +82,7 @@ if (!defined('JZEG_NET')) die();
             <div class="input-group-prepend">
               <label class="input-group-text" for="jt_payroll_name">姓名</label>
             </div>
-            <input type="text" class="form-control needs-validation" id="jt_payroll_name" placeholder="姓名" minlength="2" maxlength="16" pattern="^(?:[\u4e00-\u9fa5·]{2,16})$">
+            <input type="text" class="form-control needs-validation" id="jt_payroll_name" placeholder="可不填写" minlength="2" maxlength="16" pattern="^(?:[\u4e00-\u9fa5·]{2,16})$">
           </div>
         </div>
         <div class="col-12 col-md-4 mb-2 mb-md-0">
@@ -111,6 +111,9 @@ if (!defined('JZEG_NET')) die();
             </div>
           </div>
         </div>
+      </div>
+      <div class="form-group">
+        <div class="dropdown-divider"></div>
       </div>
       <div class="form-row form-group">
         <div class="col-12 col-md-6 mb-2 mb-md-0">
@@ -329,6 +332,9 @@ if (!defined('JZEG_NET')) die();
             </div>
           </div>
         </div>
+      </div>
+      <div class="form-group">
+        <div class="dropdown-divider"></div>
       </div>
       <div class="form-row form-group">
         <div class="col-12 col-md-4 mb-2 mb-md-0">
