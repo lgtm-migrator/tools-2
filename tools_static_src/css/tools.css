@@ -1,6 +1,6 @@
 /* 背景和禁用选取 */
 #body { background-image: linear-gradient(180deg, hsla(0, 0%, 100%, 0) 60%, #fff), linear-gradient(70deg, #dbedff 32%, #ebfff0);}
-#body, body > div[id^='Modal_'] {user-select: none;}
+body > div[id^='Modal_'] {user-select: none;}
 
 /* ReCAPTCHA 图标 */
 .grecaptcha-badge { visibility: hidden;}

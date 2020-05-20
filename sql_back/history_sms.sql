@@ -3,15 +3,15 @@
 
  Source Server         : 本地数据库8.0
  Source Server Type    : MySQL
- Source Server Version : 80019
+ Source Server Version : 80020
  Source Host           : localhost:3306
  Source Schema         : jzeg_tools
 
  Target Server Type    : MySQL
- Target Server Version : 80019
+ Target Server Version : 80020
  File Encoding         : 65001
 
- Date: 01/03/2020 00:00:00
+ Date: 15/05/2020 00:00:00
 */
 
 SET NAMES utf8mb4;
@@ -42,7 +42,7 @@ CREATE TABLE `history_sms`  (
   `Scheme` varchar(5) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '通信协议，生产使用https',
   `Method` varchar(4) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '发送方式，默认POST',
   `Version` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'SDK版本，初始2017-05-25',
-  `Product` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `Product` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '阿里云产品名',
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `version`(`Version`) USING BTREE,
   INDEX `host`(`Host`) USING BTREE,

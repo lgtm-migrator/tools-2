@@ -150,16 +150,16 @@
         },
         {
             "name": "alibabacloud/sdk",
-            "version": "1.8.291",
+            "version": "1.8.303",
             "source": {
                 "type": "git",
                 "url": "https://github.com/aliyun/openapi-sdk-php.git",
-                "reference": "413387f1513e6a95d345527a2232ae4e2752c0de"
+                "reference": "acd01c56e0d55f56b78791346835fe81c097718b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/aliyun/openapi-sdk-php/zipball/413387f1513e6a95d345527a2232ae4e2752c0de",
-                "reference": "413387f1513e6a95d345527a2232ae4e2752c0de",
+                "url": "https://api.github.com/repos/aliyun/openapi-sdk-php/zipball/acd01c56e0d55f56b78791346835fe81c097718b",
+                "reference": "acd01c56e0d55f56b78791346835fe81c097718b",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -386,7 +386,7 @@
                 "library",
                 "sdk"
             ],
-            "time": "2020-05-14T09:31:37+00:00"
+            "time": "2020-05-20T09:33:03+00:00"
         },
         {
             "name": "bacon/bacon-qr-code",

@@ -240,23 +240,12 @@ $().ready(function () {
 
 // 表单校验
 $().ready(function () {
-  let needs_validations = document.querySelectorAll('.needs-validation');
+  let needs_validations = document.querySelectorAll('.needs-validation');//fixme:等到全局动态化后调整为仅限模态框生成后触发
   let needs_validations_length = needs_validations.length;
   if (0 < needs_validations_length) {
     for (let i = 0; i < needs_validations_length; i++) {
-      _was_validated(needs_validations[i]);
+      _was_needs_validations(needs_validations[i]);
     }
-  }
-
-  function _was_validated(needs_validation_input) {
-    let add_was_validated = needs_validation_input.parentElement;
-    needs_validation_input.addEventListener('input', function (e) {
-      if (0 < e.target.value.length) {
-        add_was_validated.classList.add('was-validated');
-      } else {
-        add_was_validated.classList.remove('was-validated');
-      }
-    });
   }
 });
 

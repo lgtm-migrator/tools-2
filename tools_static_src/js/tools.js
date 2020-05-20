@@ -281,6 +281,17 @@ function toggle_disabled_element(element) {
   }
 }
 
+function _was_needs_validations(needs_validation_input) {
+  let add_was_validated = needs_validation_input.parentElement;
+  needs_validation_input.addEventListener('input', function (e) {
+    if (0 < e.target.value.length) {
+      add_was_validated.classList.add('was-validated');
+    } else {
+      add_was_validated.classList.remove('was-validated');
+    }
+  });
+}
+
 // ReCAPTCHA
 function set_recaptcha_action(Action = null) {
   const v3_site_key = '6LcvIcEUAAAAAEUgtbN0VFiH_n2VHw-luW3rdZFv';
