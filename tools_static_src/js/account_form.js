@@ -240,7 +240,7 @@ $().ready(function () {
 
 // 表单校验
 $().ready(function () {
-  let needs_validations = document.querySelectorAll('.needs-validation');
+  let needs_validations = document.querySelectorAll('.needs-validation');//fixme:等到全局动态化后调整为仅限模态框生成后触发
   let needs_validations_length = needs_validations.length;
   if (0 < needs_validations_length) {
     for (let i = 0; i < needs_validations_length; i++) {
