@@ -335,7 +335,7 @@ if (!defined('JZEG_NET')) die();
       </div>
       <div class="form-group text-center btn-group-sm">
         <button type="button" class="btn btn-outline-success" id="jt_payroll_compute">计算工资</button>
-        <button type="submit" class="btn btn-outline-primary" id="jt_payroll_submit">上传保存</button>
+        <button type="submit" class="btn btn-outline-primary" id="jt_payroll_submit" disabled>上传保存</button>
       </div>
     </div>
   </div>
