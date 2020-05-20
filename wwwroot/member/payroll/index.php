@@ -33,7 +33,7 @@ if (!defined('JZEG_NET')) die();
             <span class="small">几月份的工资</span>
           </div>
         </div>
-        <div class="col-12 col-md-6 mb-2 mb-md-0">
+        <div class="col-12 col-md-6">
           <div class="mb-1 input-group">
             <div class="input-group-prepend">
               <label class="input-group-text" for="jt_payroll_date">到账日期</label>
@@ -61,9 +61,6 @@ if (!defined('JZEG_NET')) die();
             </div>
             <input type="text" class="form-control" id="jt_payroll_job_number" placeholder="工号">
           </div>
-          <div class="small text-muted">
-            <span class="small">工号</span>
-          </div>
         </div>
         <div class="col-12 col-md-4">
           <div class="mb-1 input-group">
@@ -71,9 +68,6 @@ if (!defined('JZEG_NET')) die();
               <label class="input-group-text" for="jt_payroll_personnel_number">人员编号</label>
             </div>
             <input type="text" class="form-control" id="jt_payroll_personnel_number" placeholder="人员编号">
-          </div>
-          <div class="small text-muted">
-            <span class="small">单位人员编号</span>
           </div>
         </div>
       </div>
@@ -83,7 +77,7 @@ if (!defined('JZEG_NET')) die();
             <div class="input-group-prepend">
               <label class="input-group-text" for="jt_payroll_payable">应发工资</label>
             </div>
-            <input type="text" class="form-control rounded-right" id="jt_payroll_payable" placeholder="应发工资">
+            <input type="text" class="form-control text-right" id="jt_payroll_payable" placeholder="应发工资">
             <div class="input-group-append">
               <span class="input-group-text">元</span>
               <span class="input-group-text">
@@ -100,7 +94,7 @@ if (!defined('JZEG_NET')) die();
             <div class="input-group-prepend">
               <label class="input-group-text" for="jt_payroll_actual_salary">实发工资</label>
             </div>
-            <input type="text" class="form-control" id="jt_payroll_actual_salary" placeholder="自动计算出结果" readonly>
+            <input type="text" class="form-control text-right" id="jt_payroll_actual_salary" placeholder="自动计算出结果" readonly>
             <div class="input-group-append">
               <span class="input-group-text">元</span>
               <span class="input-group-text">
@@ -114,7 +108,7 @@ if (!defined('JZEG_NET')) die();
         </div>
       </div>
       <div class="form-row form-group">
-        <div class="col-12 col-md-6 mb-2">
+        <div class="col-12 col-md-6 mb-2 mb-md-0">
           <div class="mb-1 input-group">
             <div class="input-group-prepend">
               <label class="input-group-text" for="jt_payroll_excess_wage_one_number">超额工资一</label>
@@ -127,11 +121,8 @@ if (!defined('JZEG_NET')) die();
               </span>
             </div>
           </div>
-          <div class="small text-muted">
-            <span>超额工资一</span>
-          </div>
         </div>
-        <div class="col-12 col-md-6 mb-2">
+        <div class="col-12 col-md-6">
           <div class="mb-1 input-group">
             <div class="input-group-prepend">
               <label class="input-group-text" for="jt_payroll_excess_wage_two_number">超额工资二</label>
@@ -144,13 +135,10 @@ if (!defined('JZEG_NET')) die();
               </span>
             </div>
           </div>
-          <div class="small text-muted">
-            <span>超额工资二</span>
-          </div>
         </div>
       </div>
       <div class="form-row form-group">
-        <div class="col-12 col-md-6 mb-2">
+        <div class="col-12 col-md-6 mb-2 mb-md-0">
           <div class="mb-1 input-group">
             <div class="input-group-prepend">
               <label class="input-group-text" for="jt_payroll_other_salary_one_number">其他工资一</label>
@@ -163,11 +151,8 @@ if (!defined('JZEG_NET')) die();
               </span>
             </div>
           </div>
-          <div class="small text-muted">
-            <span>其他工资一</span>
-          </div>
         </div>
-        <div class="col-12 col-md-6 mb-2">
+        <div class="col-12 col-md-6">
           <div class="mb-1 input-group">
             <div class="input-group-prepend">
               <label class="input-group-text" for="jt_payroll_other_salary_two_number">其他工资二</label>
@@ -180,27 +165,26 @@ if (!defined('JZEG_NET')) die();
               </span>
             </div>
           </div>
-          <div class="small text-muted">
-            <span>其他工资二</span>
-          </div>
         </div>
       </div>
       <div class="form-row form-group">
-        <div class="input-group">
-          <div class="input-group-prepend">
-            <label class="input-group-text" for="jt_payroll_personal_income_tax">个人所得税</label>
-          </div>
-          <input type="number" class="form-control text-right" placeholder="个人所得税" id="jt_payroll_personal_income_tax">
-          <div class="input-group-append">
-            <span class="input-group-text">元</span>
-            <span class="input-group-text">
+        <div class="col-12">
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <label class="input-group-text" for="jt_payroll_personal_income_tax">个人所得税</label>
+            </div>
+            <input type="number" class="form-control text-right" placeholder="个人所得税" id="jt_payroll_personal_income_tax">
+            <div class="input-group-append">
+              <span class="input-group-text">元</span>
+              <span class="input-group-text">
               <i class="text-muted fas fa-question-circle" id="jt_payroll_personal_income_tax_icon"></i>
             </span>
+            </div>
           </div>
         </div>
       </div>
       <div class="form-row form-group">
-        <div class="col-12 col-md-6 mb-2">
+        <div class="col-12 col-md-6 mb-2 mb-md-0">
           <div class="mb-1 input-group">
             <div class="input-group-prepend">
               <label class="input-group-text" for="jt_payroll_medical_insurance_number">医疗保险金额</label>
@@ -217,7 +201,7 @@ if (!defined('JZEG_NET')) die();
             <span>医疗保险缴费比例：单位10%，个人2%+3元</span>
           </div>
         </div>
-        <div class="col-12 col-md-6 mb-2">
+        <div class="col-12 col-md-6">
           <div class="mb-1 input-group">
             <div class="input-group-prepend">
               <label class="input-group-text" for="jt_payroll_unemployment_insurance_number">失业保险金额</label>
@@ -236,7 +220,7 @@ if (!defined('JZEG_NET')) die();
         </div>
       </div>
       <div class="form-row form-group">
-        <div class="col-12 col-md-6 mb-2">
+        <div class="col-12 col-md-6 mb-2 mb-md-0">
           <div class="mb-1 input-group">
             <div class="input-group-prepend">
               <label class="input-group-text" for="jt_payroll_injury_insurance_number">工伤保险金额</label>
@@ -253,7 +237,7 @@ if (!defined('JZEG_NET')) die();
             <span>工伤保险缴费比例：单位0.5%~2%，个人0</span>
           </div>
         </div>
-        <div class="col-12 col-md-6 mb-2">
+        <div class="col-12 col-md-6">
           <div class="mb-1 input-group">
             <div class="input-group-prepend">
               <label class="input-group-text" for="jt_payroll_maternity_insurance_number">生育保险金额</label>
@@ -272,7 +256,7 @@ if (!defined('JZEG_NET')) die();
         </div>
       </div>
       <div class="form-row form-group">
-        <div class="col-12 col-md-6 mb-2">
+        <div class="col-12 col-md-6 mb-2 mb-md-0">
           <div class="input-group">
             <div class="input-group-prepend">
               <label class="input-group-text" for="jt_payroll_pension_number">养老保险金额</label>
@@ -286,7 +270,7 @@ if (!defined('JZEG_NET')) die();
             </div>
           </div>
         </div>
-        <div class="col-12 col-md-6 mb-2">
+        <div class="col-12 col-md-6">
           <div class="input-group">
             <div class="input-group-prepend">
               <label class="input-group-text" for="jt_payroll_housing_fund">住房公积金金额</label>
@@ -302,21 +286,23 @@ if (!defined('JZEG_NET')) die();
         </div>
       </div>
       <div class="form-row form-group">
-        <div class="input-group">
-          <div class="input-group-prepend">
-            <label class="input-group-text" for="jt_payroll_pension_adjustment_difference">养老保险调差额</label>
-          </div>
-          <input type="number" class="form-control text-right" placeholder="养老保险调差额" id="jt_payroll_pension_adjustment_difference">
-          <div class="input-group-append">
-            <span class="input-group-text">元</span>
-            <span class="input-group-text">
+        <div class="col-12">
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <label class="input-group-text" for="jt_payroll_pension_adjustment_difference">养老保险调差额</label>
+            </div>
+            <input type="number" class="form-control text-right" placeholder="养老保险调差额" id="jt_payroll_pension_adjustment_difference">
+            <div class="input-group-append">
+              <span class="input-group-text">元</span>
+              <span class="input-group-text">
               <i class="text-muted fas fa-question-circle" id="jt_payroll_pension_adjustment_difference_icon"></i>
             </span>
+            </div>
           </div>
         </div>
       </div>
       <div class="form-row form-group">
-        <div class="col-12 col-md-4 mb-2">
+        <div class="col-12 col-md-4 mb-2 mb-md-0">
           <div class="mb-1 input-group">
             <div class="input-group-prepend">
               <label class="input-group-text" for="jt_payroll_telephone_fee_number">电话费</label>
@@ -330,8 +316,7 @@ if (!defined('JZEG_NET')) die();
             <span class="small">代扣电话费金额</span>
           </div>
         </div>
-
-        <div class="col-12 col-md-4 mb-2">
+        <div class="col-12 col-md-4 mb-2 mb-md-0">
           <div class="mb-1 input-group">
             <div class="input-group-prepend">
               <label class="input-group-text" for="jt_payroll_accommodation_fee_number">标宿费</label>
@@ -345,8 +330,7 @@ if (!defined('JZEG_NET')) die();
             <span class="small">代扣标宿费金额</span>
           </div>
         </div>
-
-        <div class="col-12 col-md-4 mb-2">
+        <div class="col-12 col-md-4">
           <div class="mb-1 input-group">
             <div class="input-group-prepend">
               <label class="input-group-text" for="jt_payroll_utilities_number">水电费</label>
