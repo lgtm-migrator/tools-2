@@ -1,21 +1,21 @@
 // 悬浮弹出框
 $().ready(function () {
-  let jt_payroll_pension_icon = document.querySelector('#jt_payroll_pension_icon');
+  let jt_payroll_actual_salary_icon = document.querySelector('#jt_payroll_actual_salary_icon');
   let jt_payroll_medical_insurance_icon = document.querySelector('#jt_payroll_medical_insurance_icon');
   let jt_payroll_unemployment_insurance_icon = document.querySelector('#jt_payroll_unemployment_insurance_icon');
   let jt_payroll_injury_insurance_icon = document.querySelector('#jt_payroll_injury_insurance_icon');
   let jt_payroll_maternity_insurance_icon = document.querySelector('#jt_payroll_maternity_insurance_icon');
-  let jt_payroll_actual_salary_icon = document.querySelector('#jt_payroll_actual_salary_icon');
+  let jt_payroll_pension_icon = document.querySelector('#jt_payroll_pension_icon');
   let jt_payroll_housing_fund_icon = document.querySelector('#jt_payroll_housing_fund_icon');
   let jt_payroll_pension_adjustment_difference_icon = document.querySelector('#jt_payroll_pension_adjustment_difference_icon');
 
-  if (jt_payroll_pension_icon) {
-    $('#jt_payroll_pension_icon').popover({
+  if (jt_payroll_actual_salary_icon) {
+    $('#jt_payroll_actual_salary_icon').popover({
       trigger: 'hover',
       boundary: 'viewport',
       placement: 'auto',
       html: true,
-      content: popover_content_jt_payroll_pension_icon,
+      content: popover_content_jt_payroll_actual_salary_icon,
     });
   }
   if (jt_payroll_medical_insurance_icon) {
@@ -54,13 +54,13 @@ $().ready(function () {
       content: popover_content_jt_payroll_maternity_insurance_icon,
     });
   }
-  if (jt_payroll_actual_salary_icon) {
-    $('#jt_payroll_actual_salary_icon').popover({
+  if (jt_payroll_pension_icon) {
+    $('#jt_payroll_pension_icon').popover({
       trigger: 'hover',
       boundary: 'viewport',
       placement: 'auto',
       html: true,
-      content: popover_content_jt_payroll_actual_salary_icon,
+      content: popover_content_jt_payroll_pension_icon,
     });
   }
   if (jt_payroll_housing_fund_icon) {

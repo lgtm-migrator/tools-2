@@ -1,12 +1,12 @@
 <?php
-if (!defined('title')) define('title', '工资单');
+if (!defined('title')) define('title', '云工资记录器');
 require_once dirname(dirname(__DIR__)) . '/header.php';
 if (!defined('JZEG_NET')) die();
 ?>
   <link rel="stylesheet" href="/static/css/payroll.min.css">
   <div class="py-2 container" id="jt_payroll">
-    <div class="mb-2 font-weight-bolder">工资单</div>
-    <div class="px-3 py-2 rounded border">
+    <div class="mb-2 font-weight-bolder">云工资记录器</div>
+    <div class="px-3 py-4 rounded border">
       <div class="form-row form-group">
         <div class="col-12 col-md-6 mb-2 mb-md-0">
           <div class="mb-1 input-group">
