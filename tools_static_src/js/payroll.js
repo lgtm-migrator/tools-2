@@ -17,9 +17,10 @@ $().ready(function () {
     for (let i = 0; i < payroll_icon_length; i++) {
       for (let index in payroll_icon[i]) {
         let x = document.querySelector('#' + index);
-        let text = payroll_icon[i].hasOwnProperty(index) ? payroll_icon[i][index] : '';
 
         if (x) {
+          let text = payroll_icon[i].hasOwnProperty(index) ? payroll_icon[i][index] : '';
+
           $('#' + index).popover({
             trigger: 'hover',
             boundary: 'viewport',
