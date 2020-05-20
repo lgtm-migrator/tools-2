@@ -197,9 +197,6 @@ if (!defined('JZEG_NET')) die();
               </span>
             </div>
           </div>
-          <div class="small text-muted">
-            <span>医疗保险缴费比例：单位10%，个人2%+3元</span>
-          </div>
         </div>
         <div class="col-12 col-md-6">
           <div class="mb-1 input-group">
@@ -213,9 +210,6 @@ if (!defined('JZEG_NET')) die();
                 <i class="text-muted fas fa-question-circle" id="jt_payroll_unemployment_insurance_icon"></i>
               </span>
             </div>
-          </div>
-          <div class="small text-muted">
-            <span>失业保险缴费比例：单位1.5%，个人0.5%</span>
           </div>
         </div>
       </div>
@@ -233,9 +227,6 @@ if (!defined('JZEG_NET')) die();
               </span>
             </div>
           </div>
-          <div class="small text-muted">
-            <span>工伤保险缴费比例：单位0.5%~2%，个人0</span>
-          </div>
         </div>
         <div class="col-12 col-md-6">
           <div class="mb-1 input-group">
@@ -249,9 +240,6 @@ if (!defined('JZEG_NET')) die();
                 <i class="text-muted fas fa-question-circle" id="jt_payroll_maternity_insurance_icon"></i>
               </span>
             </div>
-          </div>
-          <div class="small text-muted">
-            <span>生育保险缴费比例：单位0.8%，个人0</span>
           </div>
         </div>
       </div>
@@ -346,7 +334,6 @@ if (!defined('JZEG_NET')) die();
         </div>
       </div>
       <div class="form-group text-center btn-group-sm">
-        <button type="reset" class="btn btn-outline-secondary" id="jt_payroll_reset">重置</button>
         <button type="button" class="btn btn-outline-success" id="jt_payroll_compute">计算工资</button>
         <button type="submit" class="btn btn-outline-primary" id="jt_payroll_submit">上传保存</button>
       </div>
