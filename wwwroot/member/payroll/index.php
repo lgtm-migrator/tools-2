@@ -8,67 +8,6 @@ if (!defined('JZEG_NET')) die();
     <div class="mb-2 font-weight-bolder">工资云备忘录</div>
     <div class="px-3 py-4 rounded border">
       <div class="form-row form-group">
-        <div class="col-12 col-md-8 mb-2 mb-md-0">
-          <div class="mb-1 input-group">
-            <div class="input-group-prepend">
-              <span class="input-group-text">
-                <i class="text-muted fas fa-question-circle" id="jt_payroll_month_icon"></i>
-              </span>
-            </div>
-            <select class="custom-select" id="jt_payroll_year" required>
-              <option value="2010">2010</option>
-              <option value="2011">2011</option>
-              <option value="2012">2012</option>
-              <option value="2013">2013</option>
-              <option value="2014">2014</option>
-              <option value="2015">2015</option>
-              <option value="2016">2016</option>
-              <option value="2017">2017</option>
-              <option value="2018">2018</option>
-              <option value="2019">2019</option>
-              <option value="2020" selected>2020</option>
-              <option value="2022">2021</option>
-              <option value="2022">2022</option>
-            </select>
-            <div class="input-group-append">
-              <label class="input-group-text" for="jt_payroll_year">年</label>
-            </div>
-            <select class="custom-select" id="jt_payroll_month" required>
-              <option value="0" selected>月份</option>
-              <option value="1">一</option>
-              <option value="2">二</option>
-              <option value="3">三</option>
-              <option value="4">四</option>
-              <option value="5">五</option>
-              <option value="6">六</option>
-              <option value="7">七</option>
-              <option value="8">八</option>
-              <option value="9">九</option>
-              <option value="10">十</option>
-              <option value="11">十一</option>
-              <option value="12">十二</option>
-            </select>
-            <div class="input-group-append">
-              <label class="input-group-text" for="jt_payroll_month">月</label>
-            </div>
-          </div>
-          <div class="small text-muted">
-            <span class="small">哪一年的工资</span>
-          </div>
-        </div>
-        <div class="col-12 col-md-4">
-          <div class="mb-1 input-group">
-            <div class="input-group-prepend">
-              <label class="input-group-text" for="jt_payroll_date">到账日期</label>
-            </div>
-            <input type="date" class="form-control" id="jt_payroll_date">
-          </div>
-          <div class="small text-muted">
-            <span class="small">工资到账时间</span>
-          </div>
-        </div>
-      </div>
-      <div class="form-row form-group">
         <div class="col-12 col-md-4 mb-2 mb-md-0">
           <div class="mb-1 input-group">
             <div class="input-group-prepend">
