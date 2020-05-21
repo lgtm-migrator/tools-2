@@ -1,3 +1,6 @@
+<?php
+if (!defined('SITE_HEAD')) die();
+?>
 <ul class="navbar-nav" id="navBar-menu">
   <li class="nav-item">
     <a class="nav-link" href="//jzeg.net/">首页</a>
