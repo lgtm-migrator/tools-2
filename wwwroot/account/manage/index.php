@@ -28,33 +28,37 @@ if (!defined('JZEG_NET')) die();
       <div class="col-12 col-sm-8 col-md-9">
         <div class="mb-2 card">
           <div class="nav nav-pills nav-justified flex-nowrap text-nowrap" style="overflow-x: auto;">
-            <a class="nav-item border rounded-0 text-reset nav-link active" href="#profile" data-toggle="tab">轮廓</a>
-            <a class="nav-item border rounded-0 text-reset nav-link" href="#preference" data-toggle="tab">偏好</a>
-            <a class="nav-item border rounded-0 text-reset nav-link" href="#password" data-toggle="tab">密码</a>
-            <a class="nav-item border rounded-0 text-reset nav-link" href="#Bind_account" data-toggle="tab">绑定账号</a>
-            <a class="nav-item border rounded-0 text-reset nav-link" href="#TwoFactorAuthentication" data-toggle="tab">双重验证</a>
-            <a class="nav-item border rounded-0 text-reset nav-link" href="#PersonalData" data-toggle="tab">个人数据</a>
+            <a class="nav-item rounded-0 text-reset nav-link active" href="#profile" data-toggle="tab">轮廓</a>
+            <a class="nav-item rounded-0 text-reset nav-link" href="#preference" data-toggle="tab">偏好</a>
+            <a class="nav-item rounded-0 text-reset nav-link" href="#cloudMemo" data-toggle="tab">云备忘</a>
+            <a class="nav-item rounded-0 text-reset nav-link" href="#password" data-toggle="tab">密码</a>
+            <a class="nav-item rounded-0 text-reset nav-link" href="#bindAccount" data-toggle="tab">绑定账号</a>
+            <a class="nav-item rounded-0 text-reset nav-link" href="#twoFactorAuthentication" data-toggle="tab">双重验证</a>
+            <a class="nav-item rounded-0 text-reset nav-link" href="#personalData" data-toggle="tab">个人数据</a>
           </div>
         </div>
         <div class="card">
           <div class="tab-content">
             <div class="tab-pane fade active show" id="profile">
-              <div class="card-body">用户基本信息</div>
+              <?php include_once dirname(__FILE__) . '/content-profile.php'; ?>
             </div>
             <div class="tab-pane fade" id="preference">
-              <div class="card-body">网站偏好</div>
+              <?php include_once dirname(__FILE__) . '/content-preference.php'; ?>
+            </div>
+            <div class="tab-pane fade" id="cloudMemo">
+              <?php include_once dirname(__FILE__) . '/content-cloudMemo.php'; ?>
             </div>
             <div class="tab-pane fade" id="password">
-              <div class="card-body">用户密码</div>
+              <?php include_once dirname(__FILE__) . '/content-password.php'; ?>
             </div>
-            <div class="tab-pane fade" id="Bind_account">
-              <div class="card-body">账号绑定</div>
+            <div class="tab-pane fade" id="bindAccount">
+              <?php include_once dirname(__FILE__) . '/content-bindAccount.php'; ?>
             </div>
-            <div class="tab-pane fade" id="TwoFactorAuthentication">
-              <div class="card-body">两步验证</div>
+            <div class="tab-pane fade" id="twoFactorAuthentication">
+              <?php include_once dirname(__FILE__) . '/content-twoFactorAuthentication.php'; ?>
             </div>
-            <div class="tab-pane fade" id="PersonalData">
-              <div class="card-body">注销账号，删除个人数据</div>
+            <div class="tab-pane fade" id="personalData">
+              <?php include_once dirname(__FILE__) . '/content-personalData.php'; ?>
             </div>
           </div>
         </div>
