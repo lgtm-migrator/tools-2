@@ -1,3 +1,6 @@
+<?php
+if (!defined('SITE_HEAD')) die();
+?>
 <div class="d-flex align-items-center" id="navBar-account">
   <div class="d-flex" id="account_sign">
     <button class="ml-1 btn btn-sm border btn-outline-secondary d-flex align-items-center modal_tab" type="button" data-modal_target="#sign" data-tab_target="#tab-sign_in">

@@ -1,6 +1,7 @@
 <?php
 define('title', '在线小工具');
 require_once dirname(__FILE__) . '/header.php';
+if (!defined('SITE_HEAD')) die();
 ?>
 <link rel="stylesheet" href="static/css/index.min.css">
 

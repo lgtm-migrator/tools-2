@@ -3,6 +3,7 @@
   "description": "杰格网便民小工具",
   "version": "0.0.5",
   "main": "",
+  "private": true,
   "repository": {
     "type": "git",
     "url": "git+https://github.com/jzeg-net/tools.git"
