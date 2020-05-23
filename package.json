@@ -26,7 +26,7 @@
     "张成林 <admin@jzeg.net> (https://zhangchenglin.github.io)"
   ],
   "scripts": {
-    "run_only_on_first_use": "npm run install_nrm_use_taobao && npm run install_ncu",
+    "run_only_on_first_use": "npm run install_nrm_use_taobao && npm run install_globl_packages",
     "default": "npm run build",
     "build": "npm i && npm run build_npm && npm run build_composer",
     "build_npm": "npm i && npm run gulp_static",
@@ -40,7 +40,10 @@
     "composer_install": "composer i",
     "composer_update": "composer update",
     "install_nrm_use_taobao": "npm i -g nrm --registry=https://registry.npm.taobao.org && nrm use taobao && nrm ls",
-    "install_ncu": "npm i -g npm-check-updates"
+    "install_globl_packages": "npm run install_ncu && npm run install_eslint && npm run install_gulp-cli",
+    "install_ncu": "npm i -g npm-check-updates",
+    "install_eslint": "npm i -g eslint",
+    "install_gulp-cli": "npm i -g gulp-cli"
   },
   "peerDependencies": {},
   "devDependencies": {
