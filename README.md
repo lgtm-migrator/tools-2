@@ -10,7 +10,7 @@
 [![Packagist](https://img.shields.io/packagist/v/jzeg-net/tools.svg)](https://packagist.org/packages/jzeg-net/tools)
 
 [![GitHub repo size in bytes](https://img.shields.io/github/repo-size/jzeg-net/tools.svg)](https://github.com/GoSheng/gosheng/archive/master.zip)
-[Packagist download quantity](https://img.shields.io/packagist/dt/jzeg-net/tools.svg)
+![Packagist download quantity](https://img.shields.io/packagist/dt/jzeg-net/tools.svg)
 
 
 ## License
