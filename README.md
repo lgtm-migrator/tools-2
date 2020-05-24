@@ -7,6 +7,9 @@
 [![Dev Dependencies](https://img.shields.io/david/dev/jzeg-net/tools.svg)](https://david-dm.org/jzeg-net/tools?type=dev)
 
 
+[![Packagist](https://img.shields.io/packagist/v/jzeg-net/tools.svg)](https://packagist.org/packages/jzeg-net/tools)
+
+
 ## License
 #### Current License
 AGPL-3.0 (GNU Affero General Public License v3.0)
