@@ -28,7 +28,7 @@
   "scripts": {
     "run_only_on_first_use": "npm run install_nrm_use_taobao && npm run install_globl_packages",
     "default": "npm run build",
-    "build": "npm i && npm run build_npm && npm run build_composer",
+    "build": "npm run build_npm && npm run build_composer",
     "build_npm": "npm i && npm run gulp_static",
     "build_composer": "npm run composer_install",
     "watch": "npm run watch_change",
