@@ -61,7 +61,7 @@ set_session_cookie('logged_in', $_SESSION['logged_in']);
 </head>
 <body>
 <div id="body" class="user-select-none" hidden>
-  <div class="bg-white" id="jt_header">
+  <div class="bg-white transition_property-transform transition_timing-ease_in transition_duration-05s" id="jt_header">
     <?php include_once dirname(__FILE__) . '/header_nav.php'; ?>
     <div class="border-bottom"></div>
   </div>

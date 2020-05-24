@@ -792,9 +792,6 @@ $().ready(function () {
       }
     }
     /** 右下角浮动工具栏 **/
-    // console.log("new_scroll_position:== " + new_scroll_position);
-    // console.log("last_scroll_position:== " + last_scroll_position);
-    // console.log(last_scroll_position > new_scroll_position ? "last_scroll_position" : "new_scroll_position");
     if (new_scroll_position > last_scroll_position) {
       if (last_scroll_position > 400) {
         fixed_tools.classList.remove('d-none');
