@@ -380,9 +380,16 @@ if (!defined('JZEG_NET')) die();
           </div>
         </div>
       </div>
-      <div class="form-group text-center btn-group-sm">
-        <button type="button" class="btn btn-outline-success" id="jt_payroll_compute">计算工资</button>
-        <button type="submit" class="btn btn-outline-primary" id="jt_payroll_submit" disabled>上传保存</button>
+      <div class="form-group d-flex flex-column align-items-center">
+        <button type="button" class="mb-4 btn btn-sm btn-outline-success" id="jt_payroll_compute">计算工资</button>
+        <div class="mb-3 custom-control custom-checkbox align-self-end align-self-sm-center">
+          <input type="checkbox" class="custom-control-input" id="jt_payroll_tos" required disabled>
+          <label class="custom-control-label" for="jt_payroll_tos">
+            <span>同意</span>
+            <a class="text-reset" href="javascript:" id="jt_payroll_tos_link" title="查看规则">《工资云备忘录服务条款》</a>
+          </label>
+        </div>
+        <button type="submit" class="btn btn-sm btn-outline-primary" id="jt_payroll_submit" disabled>上传保存</button>
       </div>
     </div>
   </div>
