@@ -474,12 +474,12 @@ function footer_qr_code() {
       width: 300,
       quality: 0.3,
       color: {
-        dark: '#1E90FF',
+        dark: '#222222',
         light: '#ffffff',
       },
     };
 
-    div.className = 'text-center small text-success';
+    div.className = 'text-center small text-secondary';
 
     i_copy.className = 'my-2 d-block fas fa-copy';
     i_copy.innerHTML = '&nbsp;&nbsp;复制网址';
@@ -506,9 +506,10 @@ function footer_qr_code() {
     div.appendChild(i_copy);
     div.appendChild(span);
 
-    QRCode.toDataURL(addUrlParam(url, url_param), qrcode_option, function (err, url) {
+    QRCode.toDataURL(addUrlParam(url, url_param), qrcode_option, function (err, img_base64) {
       if (err) throw err;
-      img.src = url;
+      img.src = img_base64;
+      img.alt = document.title + '页面地址二维码';
     });
     bootstrapModalJs('', div, '', '', true);
   });
