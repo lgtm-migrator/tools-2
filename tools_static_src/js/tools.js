@@ -389,7 +389,7 @@ function footer_add_x() {
 // 页脚时间
 function footer_current_time() {
   let span = document.createElement('span');
-  span.className = 'd-block text-nowrap small';
+  span.className = 'd-block text-secondary text-nowrap small';
   span.id = 'current_time';
   span.innerHTML = '&nbsp;';
 
@@ -420,7 +420,7 @@ function footer_record() {
 function footer_record_icp_no(icp_no = '') {
   let a = document.createElement('a');
 
-  a.className = 'small text-reset text-decoration-none';
+  a.className = 'small text-secondary text-decoration-none';
   a.href = 'http://www.beian.miit.gov.cn/';
   a.target = '_blank';
   a.rel = 'noreferrer nofollow';
@@ -433,7 +433,7 @@ function footer_record_icp_no(icp_no = '') {
 function footer_record_code(code_number = '', code_area = '') {
   let a = document.createElement('a');
 
-  a.className = 'small text-reset text-decoration-none';
+  a.className = 'small text-secondary text-decoration-none';
   a.href = 'http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=' + code_number;
   a.target = '_blank';
   a.rel = 'noreferrer nofollow';
@@ -453,7 +453,7 @@ function footer_qr_code() {
   div.className = 'my-2';
   div.id = 'current_page_QR_code';
 
-  span.className = 'text-light hvr-icon-spin';
+  span.className = 'text-secondary hvr-icon-spin';
   span.title = '当前页面二维码';
   span.style.cursor = 'pointer';
 
