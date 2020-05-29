@@ -493,9 +493,10 @@ function footer_modal_qr_code() {
 
   div.className = 'd-flex flex-column align-items-center small text-secondary';
 
-  img.addEventListener('click', function (e) {
-    copy_location_href(e.target);
-  });
+  copy_location_href(img);
+  // img.addEventListener('click', function (e) {
+  //   copy_location_href(e.target);
+  // });
 
   div.appendChild(img);
   div.appendChild(footer_modal_qr_code_tip());
@@ -523,7 +524,7 @@ function footer_modal_qr_code_tip() {
     boundary: 'viewport',
     placement: 'top',
     html: true,
-    content: popover_content_inner('1.截屏或者保存二维码图片，通过扫一扫功能，快速打开当前页面。<br>2.点击二维码图片，复制本页地址。复制当前页面的网址，需要操作2次才能复制成功'),
+    content: popover_content_inner('1.截屏或者保存二维码图片，通过扫一扫功能，快速打开当前页面。<br>2.点击二维码图片，复制本页地址。复制当前页面的网址，需要操作2次网址才能复制成功'),
   });
 
   div.appendChild(i);
@@ -538,9 +539,9 @@ function copy_location_href(event) {
       return addUrlParam(url, url_param);
     },
   });
-  clipboard.on('success', function () {
+  clipboard.on('success', function (e) {
     bootstrapModalJs('', '<span class="d-block text-center text-success small">网址复制成功</span>', '', 'sm', true);
-    clipboard.destroy();
+    console.log(e);
   });
   clipboard.on('error', function () {
     bootstrapModalJs('', '<span class="d-block text-center text-danger small">网址复制失败</span>', '', 'sm', true);
