@@ -125,6 +125,14 @@ function get_file_size(file_size) {
   return file_size;
 }
 
+function popover_content_inner(innerHTML) {
+  let span = document.createElement("span");
+
+  span.className = 'small';
+  span.innerHTML = innerHTML;
+  return span;
+}
+
 // tooltip
 $().ready(function () {
   $('span[title]').tooltip({
@@ -458,61 +466,7 @@ function footer_qr_code() {
   span.style.cursor = 'pointer';
 
   i.className = 'fa-2x fa-fw fas fa-qrcode hvr-icon';
-  i.addEventListener('click', function () {
-    let url = document.location.href;
-    let url_param = {'from': 'clipboard'};
-    let div = document.createElement('div');
-    let span = document.createElement('span');
-    let i_copy = document.createElement('i');
-    let i_question = document.createElement('i');
-
-    let img = document.createElement('img');
-    let qrcode_option = {
-      errorCorrectionLevel: 'H',
-      type: 'image/jpeg',
-      margin: 2,
-      width: 300,
-      quality: 0.3,
-      color: {
-        dark: '#222222',
-        light: '#ffffff',
-      },
-    };
-
-    div.className = 'text-center small text-secondary';
-
-    i_copy.className = 'my-2 d-block fas fa-copy';
-    i_copy.innerHTML = '&nbsp;&nbsp;复制网址';
-    i_copy.title = '复制当前页面的网址  需要操作2次才能复制成功';
-    i_copy.style.cursor = 'pointer';
-    i_copy.addEventListener('click', function (e) {
-      copy_url(e.target, addUrlParam(url, url_param));
-    });
-
-    span.className = 'd-block';
-    span.innerHTML = '通过二维码,在移动端打开当前页面';
-
-    i_question.className = 'd-block mt-2 fas fa-question-circle';
-    i_question.innerHTML = '&nbsp;&nbsp;使用方法';
-    i_question.title = '截屏或者保存二维码图片，通过扫一扫功能，快速打开当前页面';
-    i_question.style.cursor = 'pointer';
-
-    $([i_question, i_copy]).tooltip({
-      placement: 'bottom',
-    });
-
-    span.appendChild(i_question);
-    div.appendChild(img);
-    div.appendChild(i_copy);
-    div.appendChild(span);
-
-    QRCode.toDataURL(addUrlParam(url, url_param), qrcode_option, function (err, img_base64) {
-      if (err) throw err;
-      img.src = img_base64;
-      img.alt = document.title + '页面地址二维码';
-    });
-    bootstrapModalJs('', div, '', '', true);
-  });
+  i.addEventListener('click', footer_modal_qr_code);
 
   span.appendChild(i);
   div.appendChild(span);
@@ -520,18 +474,76 @@ function footer_qr_code() {
   return div;
 }
 
-function copy_url(event, url) {
+function footer_modal_qr_code() {
+  let url = document.location.href;
+  let url_param = {'from': 'clipboard'};
+  let div = document.createElement('div');
+  let img = document.createElement('img');
+  let qrcode_option = {
+    errorCorrectionLevel: 'H',
+    type: 'image/jpeg',
+    margin: 2,
+    width: 300,
+    quality: 0.3,
+    color: {
+      dark: '#222222',
+      light: '#ffffff',
+    },
+  };
+
+  div.className = 'd-flex flex-column align-items-center small text-secondary';
+
+  img.addEventListener('click', function (e) {
+    copy_location_href(e.target);
+  });
+
+  div.appendChild(img);
+  div.appendChild(footer_modal_qr_code_tip());
+
+  QRCode.toDataURL(addUrlParam(url, url_param), qrcode_option, function (err, img_base64) {
+    if (err) throw err;
+    img.src = img_base64;
+    img.alt = document.title + '页面地址二维码';
+  });
+  bootstrapModalJs('', div, '', '', true);
+}
+
+function footer_modal_qr_code_tip() {
+  let div = document.createElement('div');
+  let i = document.createElement('i');
+
+  div.className='mt-2';
+
+  i.className = 'fas fa-lg fa-question-circle';
+  i.innerHTML = '&nbsp;说明';
+  i.style.cursor = 'pointer';
+
+  $(i).popover({
+    trigger: 'hover',
+    boundary: 'viewport',
+    placement: 'top',
+    html: true,
+    content: popover_content_inner('1.截屏或者保存二维码图片，通过扫一扫功能，快速打开当前页面。<br>2.点击二维码图片，复制本页地址。复制当前页面的网址，需要操作2次才能复制成功'),
+  });
+
+  div.appendChild(i);
+  return div;
+}
+
+function copy_location_href(event) {
+  let url = document.location.href;
+  let url_param = {'from': 'clipboard'};
   let clipboard = new ClipboardJS(event, {
     text: function () {
-      return url;
+      return addUrlParam(url, url_param);
     },
   });
   clipboard.on('success', function () {
-    bootstrapModalJs('', '<span class="d-block text-center text-success small">复制成功</span>', '', 'sm', true);
+    bootstrapModalJs('', '<span class="d-block text-center text-success small">网址复制成功</span>', '', 'sm', true);
     clipboard.destroy();
   });
   clipboard.on('error', function () {
-    bootstrapModalJs('', '<span class="d-block text-center text-danger small">复制失败</span>', '', 'sm', true);
+    bootstrapModalJs('', '<span class="d-block text-center text-danger small">网址复制失败</span>', '', 'sm', true);
     clipboard.destroy();
   });
 }
