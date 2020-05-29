@@ -491,12 +491,9 @@ function footer_modal_qr_code() {
     },
   };
 
-  div.className = 'd-flex flex-column align-items-center small text-secondary';
+  div.className = 'text-center';
 
   copy_location_href(img);
-  // img.addEventListener('click', function (e) {
-  //   copy_location_href(e.target);
-  // });
 
   div.appendChild(img);
   div.appendChild(footer_modal_qr_code_tip());
@@ -515,7 +512,7 @@ function footer_modal_qr_code_tip() {
 
   div.className='mt-2';
 
-  i.className = 'fas fa-lg fa-question-circle';
+  i.className = 'text-secondary fas fa-lg fa-question-circle';
   i.innerHTML = '&nbsp;说明';
   i.style.cursor = 'pointer';
 
