@@ -11,6 +11,136 @@ if (!defined('JZEG_NET')) die();
         <div class="col-12 col-md-4 mb-2 mb-md-0">
           <div class="mb-1 input-group">
             <div class="input-group-prepend">
+              <label class="input-group-text" for="jt_payroll_name">姓名</label>
+            </div>
+            <input type="text" class="form-control needs-validation" id="jt_payroll_name" placeholder="可不填写"
+                   minlength="2" maxlength="16" pattern="^(?:[\u4e00-\u9fa5·]{2,16})$">
+          </div>
+        </div>
+        <div class="col-12 col-md-4 mb-2 mb-md-0">
+          <div class="mb-1 input-group">
+            <div class="input-group-prepend">
+              <label class="input-group-text" for="jt_payroll_job_number">工号</label>
+            </div>
+            <input type="text" class="form-control" id="jt_payroll_job_number" placeholder="工号" minlength="3"
+                   maxlength="6" pattern="">
+            <div class="input-group-append">
+              <span class="input-group-text">
+                <i class="text-muted fas fa-question-circle" id="jt_payroll_job_number_icon"></i>
+              </span>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-md-4">
+          <div class="mb-1 input-group">
+            <div class="input-group-prepend">
+              <label class="input-group-text" for="jt_payroll_personnel_number">人员编号</label>
+            </div>
+            <input type="number" class="form-control" id="jt_payroll_personnel_number" placeholder="人员编号" minlength="3"
+                   maxlength="6" pattern="">
+            <div class="input-group-append">
+              <span class="input-group-text">
+                <i class="text-muted fas fa-question-circle" id="jt_payroll_personnel_number_icon"></i>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="form-row form-group">
+        <div class="col-12 col-md-4 mb-2 mb-md-0">
+          <div class="mb-1 input-group">
+            <div class="input-group-prepend">
+              <label class="input-group-text" for="jt_payroll_Job_title_or_job_type">职务或工种</label>
+            </div>
+            <input type="text" class="form-control needs-validation" id="jt_payroll_Job_title_or_job_type"
+                   placeholder="职务或工种" minlength="7" maxlength="16" pattern="">
+            <div class="input-group-append">
+              <span class="input-group-text">
+                <i class="text-muted fas fa-question-circle" id="jt_payroll_Job_title_or_job_type_icon"></i>
+              </span>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-md-4 mb-2 mb-md-0">
+          <div class="mb-1 input-group">
+            <div class="input-group-prepend">
+              <label class="input-group-text" for="jt_payroll_job_salary_base">工资基数</label>
+            </div>
+            <input type="number" class="form-control" id="jt_payroll_job_salary_base" placeholder="工资基数" minlength="3"
+                   maxlength="6" pattern="">
+            <div class="input-group-append">
+              <span class="input-group-text">
+                <i class="text-muted fas fa-question-circle" id="jt_payroll_job_salary_base_icon"></i>
+              </span>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-md-4">
+          <div class="mb-1 input-group">
+            <div class="input-group-prepend">
+              <label class="input-group-text" for="jt_payroll_basic_salary_standard">基础工资标准</label>
+            </div>
+            <input type="number" class="form-control" id="jt_payroll_basic_salary_standard" placeholder="基础工资标准"
+                   minlength="3" maxlength="6" pattern="">
+            <div class="input-group-append">
+              <span class="input-group-text">
+                <i class="text-muted fas fa-question-circle" id="jt_payroll_basic_salary_standard_icon"></i>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="form-row form-group">
+        <div class="col-12 col-md-4 mb-2 mb-md-0">
+          <div class="mb-1 input-group">
+            <div class="input-group-prepend">
+              <label class="input-group-text" for="jt_payroll_daily_base_salary">日基础工资</label>
+            </div>
+            <input type="number" class="form-control needs-validation" id="jt_payroll_daily_base_salary"
+                   placeholder="日基础工资" minlength="2" maxlength="4" pattern="">
+            <div class="input-group-append">
+              <span class="input-group-text">
+                <i class="text-muted fas fa-question-circle" id="jt_payroll_daily_base_salary_icon"></i>
+              </span>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-md-4 mb-2 mb-md-0">
+          <div class="mb-1 input-group">
+            <div class="input-group-prepend">
+              <label class="input-group-text" for="jt_payroll_floating_salary_standard">浮动工资标准</label>
+            </div>
+            <input type="number" class="form-control" id="jt_payroll_floating_salary_standard" placeholder="浮动工资标准" minlength="3"
+                   maxlength="6" pattern="">
+            <div class="input-group-append">
+              <span class="input-group-text">
+                <i class="text-muted fas fa-question-circle" id="jt_payroll_floating_salary_standard_icon"></i>
+              </span>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-md-4">
+          <div class="mb-1 input-group">
+            <div class="input-group-prepend">
+              <label class="input-group-text" for="jt_payroll_job_coefficient">岗位系数</label>
+            </div>
+            <input type="number" class="form-control" id="jt_payroll_job_coefficient" placeholder="岗位系数"
+                   minlength="3" maxlength="6" pattern="">
+            <div class="input-group-append">
+              <span class="input-group-text">
+                <i class="text-muted fas fa-question-circle" id="jt_payroll_job_coefficient_icon"></i>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="dropdown-divider"></div>
+      </div>
+      <div class="form-row form-group">
+        <div class="col-12 col-md-4 mb-2 mb-md-0">
+          <div class="mb-1 input-group">
+            <div class="input-group-prepend">
               <label class="input-group-text" for="jt_payroll_year">工资年份</label>
             </div>
             <select class="custom-select" id="jt_payroll_year" required style="direction: rtl;">
@@ -75,48 +205,6 @@ if (!defined('JZEG_NET')) die();
             <span class="small">工资到账日期</span>
           </div>
         </div>
-      </div>
-      <div class="form-row form-group">
-        <div class="col-12 col-md-4 mb-2 mb-md-0">
-          <div class="mb-1 input-group">
-            <div class="input-group-prepend">
-              <label class="input-group-text" for="jt_payroll_name">姓名</label>
-            </div>
-            <input type="text" class="form-control needs-validation" id="jt_payroll_name" placeholder="可不填写"
-                   minlength="2" maxlength="16" pattern="^(?:[\u4e00-\u9fa5·]{2,16})$">
-          </div>
-        </div>
-        <div class="col-12 col-md-4 mb-2 mb-md-0">
-          <div class="mb-1 input-group">
-            <div class="input-group-prepend">
-              <label class="input-group-text" for="jt_payroll_job_number">工号</label>
-            </div>
-            <input type="text" class="form-control" id="jt_payroll_job_number" placeholder="工号" minlength="3"
-                   maxlength="6" pattern="">
-            <div class="input-group-append">
-              <span class="input-group-text">
-                <i class="text-muted fas fa-question-circle" id="jt_payroll_job_number_icon"></i>
-              </span>
-            </div>
-          </div>
-        </div>
-        <div class="col-12 col-md-4">
-          <div class="mb-1 input-group">
-            <div class="input-group-prepend">
-              <label class="input-group-text" for="jt_payroll_personnel_number">人员编号</label>
-            </div>
-            <input type="number" class="form-control" id="jt_payroll_personnel_number" placeholder="人员编号" minlength="3"
-                   maxlength="6" pattern="">
-            <div class="input-group-append">
-              <span class="input-group-text">
-                <i class="text-muted fas fa-question-circle" id="jt_payroll_personnel_number_icon"></i>
-              </span>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="form-group">
-        <div class="dropdown-divider"></div>
       </div>
       <div class="form-row form-group">
         <div class="col-12 col-md-6 mb-2 mb-md-0">
