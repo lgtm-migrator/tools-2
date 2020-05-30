@@ -50,13 +50,13 @@ if (!defined('JZEG_NET')) die();
         <div class="col-12 col-md-4 mb-2 mb-md-0">
           <div class="mb-1 input-group">
             <div class="input-group-prepend">
-              <label class="input-group-text" for="jt_payroll_Job_title_or_job_type">职务或工种</label>
+              <label class="input-group-text" for="jt_payroll_job_title_or_job_type">职务或工种</label>
             </div>
-            <input type="text" class="form-control needs-validation" id="jt_payroll_Job_title_or_job_type"
+            <input type="text" class="form-control needs-validation" id="jt_payroll_job_title_or_job_type"
                    placeholder="职务或工种" minlength="7" maxlength="16" pattern="">
             <div class="input-group-append">
               <span class="input-group-text">
-                <i class="text-muted fas fa-question-circle" id="jt_payroll_Job_title_or_job_type_icon"></i>
+                <i class="text-muted fas fa-question-circle" id="jt_payroll_job_title_or_job_type_icon"></i>
               </span>
             </div>
           </div>
