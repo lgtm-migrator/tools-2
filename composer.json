@@ -17,6 +17,7 @@
     "ext-json": "*",
     "ext-gd": "*",
     "ext-mbstring": "*",
+    "ext-openssl": "*",
     "lsolesen/pel": "^0.9.6",
     "alibabacloud/sdk": "^1.8",
     "endroid/qr-code": "^3.7",
