@@ -179,11 +179,6 @@ function remove_cookie(key) {
   js_cookies.remove(key);
 }
 
-// bsCustomFileInput
-$().ready(function () {
-  bsCustomFileInput.init();
-});
-
 // 表单验证
 function validation_invalid_div(element, text, type = 'tooltip') {
   if (remove_validation_div(element)) {

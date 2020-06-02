@@ -1,3 +1,8 @@
+// bsCustomFileInput
+$().ready(function () {
+  bsCustomFileInput.init();
+});
+
 /** 提交图片 **/
 let photo_input = document.body.querySelector('#photo_input');
 let photo_submit = document.body.querySelector('#photo_submit');

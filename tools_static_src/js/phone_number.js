@@ -1,3 +1,8 @@
+// bsCustomFileInput
+$().ready(function () {
+  bsCustomFileInput.init();
+});
+
 // 搜索号码
 create_search_number_tools();
 
