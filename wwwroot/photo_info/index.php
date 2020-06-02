@@ -55,6 +55,7 @@ require_once dirname(__DIR__) . "/header.php";
 </div>
 <div class="d-none">
   <?php require_once dirname(__DIR__) . "/javascript.php"; ?>
+  <script src="/static/js/bs-custom-file-input.min.js"></script>
   <script src="/static/js/photo_info.min.js"></script>
 </div>
 

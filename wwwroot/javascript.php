@@ -8,7 +8,6 @@ if (!defined('SITE_HEAD')) die();
 <script src="/static/js/md5.min.js"></script>
 <script src="/static/js/clipboard.min.js"></script>
 <script src="/static/js/bootstrap-modal-js.min.js"></script>
-<script src="/static/js/bs-custom-file-input.min.js"></script>
 <script src="/static/js/qrcode.min.js"></script>
 <script src="/static/js/tools.min.js"></script>
 <script src="/static/js/account_form.min.js"></script>
