@@ -1,6 +1,6 @@
 <?php
-define('title', '在线小工具');
-require_once dirname(__FILE__) . '/header.php';
+define('title', '登录 - 杰格网');
+require_once dirname(__FILE__) . '/common/blank/header.php';
 if (!defined('SITE_HEAD')) die();
 ?>
 
@@ -29,10 +29,10 @@ if (!defined('SITE_HEAD')) die();
 </div>
 
 <div class="d-none">
-  <?php require_once dirname(__FILE__) . "/javascript.php"; ?>
+  <?php require_once dirname(__FILE__) . "/common/blank/javascript.php"; ?>
 </div>
 
 <?php
-require_once dirname(__FILE__) . '/footer.php';
+require_once dirname(__FILE__) . '/common/blank/footer.php';
 ?>
 
