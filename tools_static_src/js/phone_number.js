@@ -747,6 +747,10 @@ function create_add_tel_number(id_timestamp) {
   input.addEventListener('input', function () {
     check_regexp_input_value(RegExp_rules.tel_number, '请输入当地正确格式的座机号码 例如：<br>0319-2061234<br>0319-2089123<br>······ 等更多正确格式', this);
   });
+  new Cleave(input, {
+    delimiter: '-',
+    blocks: [4, 7]
+  });
 
   label.className = 'sr-only';
   label.setAttribute('for', input.id);
@@ -777,6 +781,9 @@ function create_add_mobile_number(id_timestamp) {
   input.placeholder = '手机电话号码 ';
   input.addEventListener('input', function () {
     check_regexp_input_value(RegExp_rules.mobile_number, '请输入正确格式的手机号 例如：<br>13812345678<br>+8613812345678<br>008613812345678', this);
+  });
+  new Cleave(input, {
+    blocks: [3, 4, 4]
   });
 
   label.className = 'sr-only';
