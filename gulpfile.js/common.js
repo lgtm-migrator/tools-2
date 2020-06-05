@@ -53,6 +53,9 @@ const
   hover_min_css_path = "./node_modules/hover.css/css/hover-min.css",
   /** hamburgers.css **/
   hamburgers_all_css_path = "./node_modules/hamburgers/dist/*.css",
+  /** cleave.js **/
+  cleave_js_path = "./node_modules/cleave.js/dist/cleave.js",
+  cleave_min_js_path = "./node_modules/cleave.js/dist/cleave.min.js",
   /** node-qrcode **/
   qrcode_build_path = "./node_modules/qrcode/build/*",
   /** blueimp-md5 **/
@@ -74,6 +77,7 @@ task(copy_bootstrap_table);
 task(copy_animate_css);
 task(copy_aqua_css);
 task(copy_hover_css);
+task(copy_cleave_js);
 task(copy_hamburgers_css);
 task(copy_bootstrap_modal_js);
 task(copy_bs_custom_file_input);
@@ -101,6 +105,7 @@ task("copy_common",
     copy_animate_css,
     copy_aqua_css,
     copy_hover_css,
+    copy_cleave_js,
     copy_hamburgers_css,
     copy_bootstrap_modal_js,
     copy_bs_custom_file_input,
@@ -215,6 +220,15 @@ function copy_hover_css(done) {
     .pipe(dest(static_css));
   src([hover_css_path, hover_css_map_path], {since: lastRun(copy_hover_css)})
     .pipe(dest(static_css));
+  done();
+}
+
+function copy_cleave_js(done) {
+  src([cleave_min_js_path], {since: lastRun(copy_cleave_js)})
+    .pipe(rename("hover.min.css"))
+    .pipe(dest(static_js));
+  src([cleave_js_path], {since: lastRun(copy_cleave_js)})
+    .pipe(dest(static_js));
   done();
 }
 
