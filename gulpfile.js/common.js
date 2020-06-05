@@ -1,6 +1,7 @@
 const config_file = './config.json',
   common_config = require(config_file),
   {task, src, dest, parallel, lastRun, watch} = require('gulp'),
+  terser = require('gulp-terser'),
   concat = require('gulp-concat'),
   footer = require('gulp-footer'),
   rename = require("gulp-rename");
@@ -54,6 +55,7 @@ const
   /** hamburgers.css **/
   hamburgers_all_css_path = "./node_modules/hamburgers/dist/*.css",
   /** cleave.js **/
+  cleave_addons_phone_js_all_path = "./node_modules/cleave.js/dist/addons/cleave-phone.*.js",
   cleave_js_path = "./node_modules/cleave.js/dist/cleave.js",
   cleave_min_js_path = "./node_modules/cleave.js/dist/cleave.min.js",
   /** node-qrcode **/
@@ -224,6 +226,11 @@ function copy_hover_css(done) {
 }
 
 function copy_cleave_js(done) {
+  src([cleave_addons_phone_js_all_path], {since: lastRun(copy_cleave_js)})
+    .pipe(dest(static_js + 'cleave_addons'))
+    .pipe(terser())
+    .pipe(rename({suffix: ".min"}))
+    .pipe(dest(static_js + 'cleave_addons/'));
   src([cleave_min_js_path], {since: lastRun(copy_cleave_js)})
     .pipe(dest(static_js));
   src([cleave_js_path], {since: lastRun(copy_cleave_js)})
