@@ -15,6 +15,7 @@ require_once dirname(__DIR__) . "/header.php";
   <?php require_once dirname(__DIR__) . "/javascript.php"; ?>
   <script src="/static/js/bs-custom-file-input.min.js"></script>
   <script src="/static/js/cleave.min.js"></script>
+  <script src="/static/js/cleave_addons/cleave-phone.cn.min.js"></script>
   <script src="/static/js/phone_number.min.js"></script>
 </div>
 <?php

@@ -778,6 +778,8 @@ function create_add_mobile_number(id_timestamp) {
   input.pattern = '';
   input.placeholder = '手机电话号码 ';
   new Cleave(input, {
+    // phone: true,
+    // phoneRegionCode: 'cn',
     blocks: [3, 4, 4]
   });
   input.addEventListener('input', function () {
