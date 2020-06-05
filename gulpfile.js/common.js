@@ -225,7 +225,6 @@ function copy_hover_css(done) {
 
 function copy_cleave_js(done) {
   src([cleave_min_js_path], {since: lastRun(copy_cleave_js)})
-    .pipe(rename("hover.min.css"))
     .pipe(dest(static_js));
   src([cleave_js_path], {since: lastRun(copy_cleave_js)})
     .pipe(dest(static_js));
