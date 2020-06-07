@@ -2,8 +2,11 @@
 if (!defined('SITE_HEAD')) die();
 ?>
 <div class="card-body">
-  <div class="mb-2 text-muted font-weight-bold">基本信息</div>
-  <div class="ml-2">
+  <div class="mb-2 d-flex justify-content-between text-muted">
+    <span class="font-weight-bold">基本信息</span>
+    <i class="fas fa-minus" data-toggle="collapse" data-target="#base_information"></i>
+  </div>
+  <div class="ml-2 collapse show" id="base_information">
     <div class="form-group form-row">
       <div class="col-auto col-sm-3 col-md-2">
         <label class="mb-0 px-0 px-md-2 px-lg-3 min-w-100 text-align-last col-form-label-sm" for="user_name">用户名</label>
@@ -46,5 +49,18 @@ if (!defined('SITE_HEAD')) die();
     </div>
   </div>
   <hr class="my-4 border-secondary border-top-dotted">
-  <div class="mb-2 text-muted font-weight-bold">社交信息</div>
+  <div class="mb-2 d-flex justify-content-between text-muted">
+    <span class="font-weight-bold">社交信息</span>
+    <i class="fas fa-plus" data-toggle="collapse" data-target="#social_information"></i>
+  </div>
+  <div class="ml-2 collapse" id="social_information">
+    <div class="form-group form-row">
+      <div class="col-auto col-sm-3 col-md-2">
+        <label class="mb-0 px-0 px-md-2 px-lg-3 min-w-100 text-align-last col-form-label-sm" for="dingtalk">钉钉</label>
+      </div>
+      <div class="col-12 col-sm-9 col-md-10">
+        <input class="border form-control form-control-sm" type="text" id="dingtalk" value="ding123">
+      </div>
+    </div>
+  </div>
 </div>
