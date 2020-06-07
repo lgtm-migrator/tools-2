@@ -29,6 +29,10 @@ body > div[id^='Modal_'] {user-select: none;}
 .min-h-rem-8 {min-height: 8rem;}
 .min-h-rem-9 {min-height: 9rem;}
 
+.min-vh-25 {min-height: 25vh;}
+.min-vh-50 {min-height: 50vh;}
+.min-vh-75 {min-height: 75vh;}
+
 /* 滚动 */
 .slideUp { transform: translateY(-4rem); }
 .slideDown { transform: translateY(0); }
