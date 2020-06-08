@@ -10,6 +10,7 @@ if (!defined('SITE_HEAD')) die();
     <div class="p-5 shadow rounded bg-white">
       <?php include_once dirname(__FILE__) . '/member/account_form/sign_up.php'; ?>
       <?php include_once dirname(__FILE__) . '/member/account_form/oauth_sign_in.php'; ?>
+      <?php include_once dirname(__FILE__) . '/member/account_form/footer_join.php'; ?>
     </div>
   </div>
 </div>
