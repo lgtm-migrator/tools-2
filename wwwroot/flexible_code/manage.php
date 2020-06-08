@@ -1,5 +1,8 @@
 <?php
-
+if (1 === 1) {
+  require_once dirname(dirname(__DIR__)) . '/config/functions.php';
+  redirect_header_302_login();
+}
 define('title', '管理灵活码');
 require_once dirname(__DIR__) . '/header.php';
 ?>

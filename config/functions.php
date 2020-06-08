@@ -5,6 +5,18 @@ function custom_header_404($Context = 'No input file specified.')
     die($Context);
 }
 
+function redirect_header_302_login()
+{
+  header('location: /login.php');
+  exit();
+}
+
+function redirect_header_302_join()
+{
+  header('location: /join.php');
+  exit();
+}
+
 function mk_dir($pathname, $mode = 0744, $recursive = true)
 {
     mkdir($pathname, $mode, $recursive);
