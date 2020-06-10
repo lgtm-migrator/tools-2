@@ -2,6 +2,10 @@
 .DS_Store
 .idea
 
+# 排除env生产文件
+.env
+.env.backup
+
 # 排除PHP错误日志
 /**/php_errors.log
 
