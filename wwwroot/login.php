@@ -5,7 +5,7 @@ if (!defined('SITE_HEAD')) die();
 ?>
 
 <div class="container">
-  <div class="d-flex align-items-center justify-content-center flex-column-reverse flex-md-row min-vh-90">
+  <div class="d-flex align-items-center justify-content-center flex-column-reverse flex-md-row min-vh-75">
     <?php include_once dirname(__FILE__) . '/common/ad/member_sign_ad.php'; ?>
     <div class="p-5 shadow rounded bg-white">
       <?php include_once dirname(__FILE__) . '/member/account_form/sign_in.php'; ?>
