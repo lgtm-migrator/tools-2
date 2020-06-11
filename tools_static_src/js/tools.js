@@ -125,6 +125,14 @@ function get_file_size(file_size) {
   return file_size;
 }
 
+function popover_content_inner(innerHTML) {
+  let span = document.createElement("span");
+
+  span.className = 'small';
+  span.innerHTML = innerHTML;
+  return span;
+}
+
 // tooltip
 $().ready(function () {
   $('span[title]').tooltip({
@@ -170,11 +178,6 @@ function get_cookie(key) {
 function remove_cookie(key) {
   js_cookies.remove(key);
 }
-
-// bsCustomFileInput
-$().ready(function () {
-  bsCustomFileInput.init();
-});
 
 // 表单验证
 function validation_invalid_div(element, text, type = 'tooltip') {
@@ -389,7 +392,7 @@ function footer_add_x() {
 // 页脚时间
 function footer_current_time() {
   let span = document.createElement('span');
-  span.className = 'd-block text-nowrap small';
+  span.className = 'd-block text-secondary text-nowrap small';
   span.id = 'current_time';
   span.innerHTML = '&nbsp;';
 
@@ -420,7 +423,7 @@ function footer_record() {
 function footer_record_icp_no(icp_no = '') {
   let a = document.createElement('a');
 
-  a.className = 'small text-reset text-decoration-none';
+  a.className = 'small text-secondary text-decoration-none';
   a.href = 'http://www.beian.miit.gov.cn/';
   a.target = '_blank';
   a.rel = 'noreferrer nofollow';
@@ -433,7 +436,7 @@ function footer_record_icp_no(icp_no = '') {
 function footer_record_code(code_number = '', code_area = '') {
   let a = document.createElement('a');
 
-  a.className = 'small text-reset text-decoration-none';
+  a.className = 'small text-secondary text-decoration-none';
   a.href = 'http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=' + code_number;
   a.target = '_blank';
   a.rel = 'noreferrer nofollow';
@@ -453,65 +456,12 @@ function footer_qr_code() {
   div.className = 'my-2';
   div.id = 'current_page_QR_code';
 
-  span.className = 'text-light hvr-icon-spin';
+  span.className = 'text-secondary hvr-icon-spin';
   span.title = '当前页面二维码';
   span.style.cursor = 'pointer';
 
   i.className = 'fa-2x fa-fw fas fa-qrcode hvr-icon';
-  i.addEventListener('click', function () {
-    let url = document.location.href;
-    let url_param = {'from': 'clipboard'};
-    let div = document.createElement('div');
-    let span = document.createElement('span');
-    let i_copy = document.createElement('i');
-    let i_question = document.createElement('i');
-
-    let img = document.createElement('img');
-    let qrcode_option = {
-      errorCorrectionLevel: 'H',
-      type: 'image/jpeg',
-      margin: 2,
-      width: 300,
-      quality: 0.3,
-      color: {
-        dark: '#1E90FF',
-        light: '#ffffff',
-      },
-    };
-
-    div.className = 'text-center small text-success';
-
-    i_copy.className = 'my-2 d-block fas fa-copy';
-    i_copy.innerHTML = '&nbsp;&nbsp;复制网址';
-    i_copy.title = '复制当前页面的网址  需要操作2次才能复制成功';
-    i_copy.style.cursor = 'pointer';
-    i_copy.addEventListener('click', function (e) {
-      copy_url(e.target, addUrlParam(url, url_param));
-    });
-
-    span.className = 'd-block';
-    span.innerHTML = '通过二维码,在移动端打开当前页面';
-
-    i_question.className = 'd-block mt-2 fas fa-question-circle';
-    i_question.innerHTML = '&nbsp;&nbsp;使用方法';
-    i_question.title = '截屏或者保存二维码图片，通过扫一扫功能，快速打开当前页面';
-    i_question.style.cursor = 'pointer';
-
-    $([i_question, i_copy]).tooltip({
-      placement: 'bottom',
-    });
-
-    span.appendChild(i_question);
-    div.appendChild(img);
-    div.appendChild(i_copy);
-    div.appendChild(span);
-
-    QRCode.toDataURL(addUrlParam(url, url_param), qrcode_option, function (err, url) {
-      if (err) throw err;
-      img.src = url;
-    });
-    bootstrapModalJs('', div, '', '', true);
-  });
+  i.addEventListener('click', footer_modal_qr_code);
 
   span.appendChild(i);
   div.appendChild(span);
@@ -519,18 +469,74 @@ function footer_qr_code() {
   return div;
 }
 
-function copy_url(event, url) {
+function footer_modal_qr_code() {
+  let url = document.location.href;
+  let url_param = {'from': 'clipboard'};
+  let div = document.createElement('div');
+  let img = document.createElement('img');
+  let qrcode_option = {
+    errorCorrectionLevel: 'H',
+    type: 'image/jpeg',
+    margin: 2,
+    width: 300,
+    quality: 0.3,
+    color: {
+      dark: '#222222',
+      light: '#ffffff',
+    },
+  };
+
+  div.className = 'text-center';
+
+  copy_location_href(img);
+
+  div.appendChild(img);
+  div.appendChild(footer_modal_qr_code_tip());
+
+  QRCode.toDataURL(addUrlParam(url, url_param), qrcode_option, function (err, img_base64) {
+    if (err) throw err;
+    img.src = img_base64;
+    img.alt = document.title + '页面地址二维码';
+  });
+  bootstrapModalJs('', div, '', '', true);
+}
+
+function footer_modal_qr_code_tip() {
+  let div = document.createElement('div');
+  let i = document.createElement('i');
+
+  div.className='mt-2';
+
+  i.className = 'text-secondary fas fa-lg fa-question-circle';
+  i.innerHTML = '&nbsp;说明';
+  i.style.cursor = 'pointer';
+
+  $(i).popover({
+    trigger: 'hover',
+    boundary: 'viewport',
+    placement: 'top',
+    html: true,
+    content: popover_content_inner('1.截屏或者保存二维码图片，通过扫一扫功能，快速打开当前页面。<br>2.点击二维码图片，复制本页地址。复制当前页面的网址，需要操作2次网址才能复制成功'),
+  });
+
+  div.appendChild(i);
+  return div;
+}
+
+function copy_location_href(event) {
+  let url = document.location.href;
+  let url_param = {'from': 'clipboard'};
   let clipboard = new ClipboardJS(event, {
     text: function () {
-      return url;
+      return addUrlParam(url, url_param);
     },
   });
-  clipboard.on('success', function () {
-    bootstrapModalJs('', '<span class="d-block text-center text-success small">复制成功</span>', '', 'sm', true);
-    clipboard.destroy();
+  clipboard.on('success', function (e) {
+    bootstrapModalJs('', '<span class="d-block text-center text-success small">网址复制成功</span>', '', 'sm', true);
+    console.log(e);
   });
   clipboard.on('error', function () {
-    bootstrapModalJs('', '<span class="d-block text-center text-danger small">复制失败</span>', '', 'sm', true);
+    bootstrapModalJs('', '<span class="d-block text-center text-danger small">网址复制失败</span>', '', 'sm', true);
     clipboard.destroy();
   });
 }
@@ -792,9 +798,6 @@ $().ready(function () {
       }
     }
     /** 右下角浮动工具栏 **/
-    // console.log("new_scroll_position:== " + new_scroll_position);
-    // console.log("last_scroll_position:== " + last_scroll_position);
-    // console.log(last_scroll_position > new_scroll_position ? "last_scroll_position" : "new_scroll_position");
     if (new_scroll_position > last_scroll_position) {
       if (last_scroll_position > 400) {
         fixed_tools.classList.remove('d-none');

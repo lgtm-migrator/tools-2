@@ -153,6 +153,7 @@ $().ready(function () {
   $('#sign').on('shown.bs.modal', function () {
     listener_all_reVerify_click();
   });
+  listener_all_reVerify_click();
 });
 
 function listener_all_reVerify_click() {

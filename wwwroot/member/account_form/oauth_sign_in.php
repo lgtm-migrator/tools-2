@@ -11,7 +11,7 @@
     <button type="button" class="p-2 border-0 btn btn-outline-secondary fab fa-lg fa-linkedin" data-title="领英登录"></button>
   </div>
 </div>
-<button class="ml-auto mt-2 rounded-pill btn btn-sm border d-flex align-items-center" data-toggle="collapse" data-target="#oauth_sign_in">
+<button class="mt-3 rounded-pill btn btn-sm border-orangered d-flex align-items-center" data-toggle="collapse" data-target="#oauth_sign_in">
   <i class="mr-1 fas fa-lg fa-sign-in-alt text-orangered"></i>
   <span class="text-orangered">第三方社交账号登录</span>
 </button>

@@ -1,3 +1,8 @@
+// bsCustomFileInput
+$().ready(function () {
+  bsCustomFileInput.init();
+});
+
 // 搜索号码
 create_search_number_tools();
 
@@ -736,9 +741,12 @@ function create_add_tel_number(id_timestamp) {
   input.className = 'form-control form-control-sm fas text-success text-center tel_number';
   input.id = 'tel_number_' + id_timestamp;
   input.type = 'text';
-  input.setAttribute('minlength', '12');
-  input.setAttribute('maxlength', '12');
+  input.pattern = '';
   input.placeholder = '座机电话号码 ';
+  new Cleave(input, {
+    delimiter: '-',
+    blocks: [4, 7]
+  });
   input.addEventListener('input', function () {
     check_regexp_input_value(RegExp_rules.tel_number, '请输入当地正确格式的座机号码 例如：<br>0319-2061234<br>0319-2089123<br>······ 等更多正确格式', this);
   });
@@ -767,9 +775,13 @@ function create_add_mobile_number(id_timestamp) {
   input.className = 'form-control form-control-sm fas text-success text-center mobile_number';
   input.id = 'mobile_number_' + id_timestamp;
   input.type = 'text';
-  input.setAttribute('minlength', '11');
-  input.setAttribute('maxlength', '15');
+  input.pattern = '';
   input.placeholder = '手机电话号码 ';
+  new Cleave(input, {
+    // phone: true,
+    // phoneRegionCode: 'cn',
+    blocks: [3, 4, 4]
+  });
   input.addEventListener('input', function () {
     check_regexp_input_value(RegExp_rules.mobile_number, '请输入正确格式的手机号 例如：<br>13812345678<br>+8613812345678<br>008613812345678', this);
   });

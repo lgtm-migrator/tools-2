@@ -34,11 +34,3 @@ $().ready(function () {
     }
   }
 });
-
-function popover_content_inner(innerHTML) {
-  let span = document.createElement("span");
-
-  span.className = 'small';
-  span.innerHTML = innerHTML;
-  return span;
-}

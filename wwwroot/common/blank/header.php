@@ -1,7 +1,7 @@
 <?php
-require_once dirname(__FILE__) . '/_head.php';
+require_once dirname(dirname(__DIR__)) . '/_head.php';
 date_default_timezone_set('Asia/Shanghai');
-require_once dirname(__DIR__) . '/class/session/session_tmp.php';
+require_once dirname(dirname(dirname(__DIR__))) . '/class/session/session_tmp.php';
 session_init();
 set_session();
 set_session_cookie('_token', $_SESSION['_token']);
@@ -22,12 +22,9 @@ set_session_cookie('logged_in', $_SESSION['logged_in']);
 
   <!--    <link rel="apple-touch-icon" href="">-->
   <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
-  <link rel="stylesheet" href="/static/css/animate.min.css">
   <link rel="stylesheet" href="/static/css/hover.min.css">
-  <link rel="stylesheet" href="/static/css/hamburgers.min.css">
   <link rel="stylesheet" href="/static/css/bootstrap_next.min.css">
   <link rel="stylesheet" href="/static/css/bootstrap.min.css">
-  <link rel="stylesheet" href="/static/css/bootstrap-table.min.css">
   <link rel="stylesheet" href="/static/font/css/all.min.css">
   <link rel="stylesheet" href="/static/css/tools.min.css">
   <link rel="stylesheet" href="/static/css/account_form.min.css">

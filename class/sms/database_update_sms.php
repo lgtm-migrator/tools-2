@@ -1,7 +1,7 @@
 <?php
 if (!defined('JZEG_NET_SMS')) die();
 
-require_once dirname(dirname(dirname(__DIR__))) . '/mysqli/mysqli.php';
+require_once dirname(dirname(__DIR__)) . '/mysqli/mysqli.php';
 
 $db->addConnection("sms", $db_addConnection_params);
 

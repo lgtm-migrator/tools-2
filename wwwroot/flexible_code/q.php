@@ -19,6 +19,19 @@ if ($_POST) {
   <!--    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css">-->
   <link rel="stylesheet" href="/static/css/bootstrap.min.css">
   <title>灵活码结果</title>
+  Global Site Tag (gtag.js) - Google Analytics
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-158181386-2"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+    gtag('config', 'UA-158181386-2');
+  </script>
+  <script src="/static/js/fundebug.min.js"></script>
 </head>
 <body class="min-vh-100"
       style="background-image: linear-gradient(180deg,hsla(0,0%,100%,0) 60%,#ffebb2),linear-gradient(70deg,#dbedff 32%,#d2ffde);">

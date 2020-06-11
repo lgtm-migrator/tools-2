@@ -32,6 +32,7 @@ if (!defined('SITE_HEAD')) die();
             <a class="nav-item rounded-0 text-reset nav-link" href="#preference" data-toggle="tab">偏好</a>
             <a class="nav-item rounded-0 text-reset nav-link" href="#cloudMemo" data-toggle="tab">云备忘</a>
             <a class="nav-item rounded-0 text-reset nav-link" href="#password" data-toggle="tab">密码</a>
+            <a class="nav-item rounded-0 text-reset nav-link" href="#email" data-toggle="tab">邮箱</a>
             <a class="nav-item rounded-0 text-reset nav-link" href="#bindAccount" data-toggle="tab">绑定账号</a>
             <a class="nav-item rounded-0 text-reset nav-link" href="#twoFactorAuthentication" data-toggle="tab">双重验证</a>
             <a class="nav-item rounded-0 text-reset nav-link" href="#personalData" data-toggle="tab">个人数据</a>
@@ -50,6 +51,9 @@ if (!defined('SITE_HEAD')) die();
             </div>
             <div class="tab-pane fade" id="password">
               <?php include_once dirname(__FILE__) . '/content-password.php'; ?>
+            </div>
+            <div class="tab-pane fade" id="email">
+              <?php include_once dirname(__FILE__) . '/content-email.php'; ?>
             </div>
             <div class="tab-pane fade" id="bindAccount">
               <?php include_once dirname(__FILE__) . '/content-bindAccount.php'; ?>

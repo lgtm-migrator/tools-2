@@ -1,5 +1,8 @@
 <?php
-
+if (1 === 1) {
+  require_once dirname(dirname(__DIR__)) . '/config/functions.php';
+  redirect_header_302_login();
+}
 define('title', '管理灵活码');
 require_once dirname(__DIR__) . '/header.php';
 ?>
@@ -99,6 +102,7 @@ require_once dirname(__DIR__) . '/header.php';
 </div>
 <div class="d-none">
   <?php require_once dirname(__DIR__) . "/javascript.php"; ?>
+  <script src="/static/js/bs-custom-file-input.min.js"></script>
   <script src="/static/js/flexible_code.min.js"></script>
 
   <script>

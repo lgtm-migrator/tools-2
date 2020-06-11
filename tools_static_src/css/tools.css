@@ -29,9 +29,14 @@ body > div[id^='Modal_'] {user-select: none;}
 .min-h-rem-8 {min-height: 8rem;}
 .min-h-rem-9 {min-height: 9rem;}
 
+.min-vh-25 {min-height: 25vh;}
+.min-vh-50 {min-height: 50vh;}
+.min-vh-75 {min-height: 75vh;}
+.min-vh-90 {min-height: 90vh;}
+
 /* 滚动 */
-.slideUp { transform: translateY(-100px); transition: transform .5s ease-out;}
-.slideDown { transform: translateY(0); transition: all .5s ease-out;}
+.slideUp { transform: translateY(-4rem); }
+.slideDown { transform: translateY(0); }
 
 /* 背景色 */
 .bg-white-50 {background-color: rgba(255, 255, 255, .5);}
@@ -149,31 +154,54 @@ body > div[id^='Modal_'] {user-select: none;}
 .text-darkred {color: darkred;}
 .text-crimson {color: crimson;}
 
+/* 边框颜色 */
+.border-yellowgreen {border: 1px solid yellowgreen;}
+.border-greenyellow {border: 1px solid greenyellow;}
+.border-orangered {border: 1px solid orangered;}
+.border-darkorange {border: 1px solid darkorange;}
+.border-orange {border: 1px solid orange;}
+.border-indianred {border: 1px solid indianred;}
+.border-palevioletred {border: 1px solid palevioletred;}
+.border-lightcoral {border: 1px solid lightcoral;}
+.border-dodgerblue {border: 1px solid dodgerblue;}
+.border-magenta {border: 1px solid magenta;}
+.border-darkmagenta {border: 1px solid darkmagenta;}
+.border-mediumvioletred {border: 1px solid mediumvioletred;}
+.border-mediumslateblue {border: 1px solid mediumslateblue;}
+.border-blueviolet {border: 1px solid blueviolet;}
+.border-slateblue {border: 1px solid slateblue;}
+.border-darkslateblue {border: 1px solid darkslateblue;}
+.border-darkred {border: 1px solid darkred;}
+.border-crimson {border: 1px solid crimson;}
+
 /* transition动画 */
-.transition-property-all {transition-property: width;}
-.transition-property-width {transition-property: width;}
-.transition-property-height {transition-property: height;}
+.transition_property-all {transition-property: width;}
+.transition_property-transform { transition-property: transform; }
+.transition_property-width {transition-property: width;}
+.transition_property-height {transition-property: height;}
 
-.transition-timing_ease {transition-timing-function: ease;}
-.transition-timing_ease-in {transition-timing-function: ease-in;}
-.transition-timing_ease-in-out {transition-timing-function: ease-in-out;}
-.transition-timing_ease-out {transition-timing-function: ease-out;}
-.transition-timing_linear {transition-timing-function: linear;}
-.transition-timing_step-start {transition-timing-function: step-start;}
-.transition-timing_step-end {transition-timing-function: step-end;}
-.transition-timing_unset {transition-timing-function: unset;}
+.transition_timing-ease {transition-timing-function: ease;}
+.transition_timing-ease_in {transition-timing-function: ease-in;}
+.transition_timing-ease_in_out {transition-timing-function: ease-in-out;}
+.transition_timing-ease_out {transition-timing-function: ease-out;}
+.transition_timing-linear {transition-timing-function: linear;}
+.transition_timing-step_start {transition-timing-function: step-start;}
+.transition_timing-step_end {transition-timing-function: step-end;}
+.transition_timing-unset {transition-timing-function: unset;}
 
-.transition-duration-1s {transition-duration: 1s;}
-.transition-duration-2s {transition-duration: 2s;}
-.transition-duration-3s {transition-duration: 3s;}
-.transition-duration-4s {transition-duration: 4s;}
-.transition-duration-5s {transition-duration: 5s;}
+.transition_duration-05s {transition-duration: .5s;}
+.transition_duration-1s {transition-duration: 1s;}
+.transition_duration-2s {transition-duration: 2s;}
+.transition_duration-3s {transition-duration: 3s;}
+.transition_duration-4s {transition-duration: 4s;}
+.transition_duration-5s {transition-duration: 5s;}
 
-.transition-delay-1s {transition-delay: 1s;}
-.transition-delay-2s {transition-delay: 2s;}
-.transition-delay-3s {transition-delay: 3s;}
-.transition-delay-4s {transition-delay: 4s;}
-.transition-delay-5s {transition-delay: 5s;}
+.transition_delay-05s {transition-delay: .5s;}
+.transition_delay-1s {transition-delay: 1s;}
+.transition_delay-2s {transition-delay: 2s;}
+.transition_delay-3s {transition-delay: 3s;}
+.transition_delay-4s {transition-delay: 4s;}
+.transition_delay-5s {transition-delay: 5s;}
 
 /* animate动画 */
 .animation-state-run {animation-play-state: running;}

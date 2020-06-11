@@ -1,10 +1,17 @@
 
 ### [JZEG_tools](https://github.com/jzeg-net/tools)
+[![GitHub repo size in bytes](https://img.shields.io/github/repo-size/jzeg-net/tools.svg)](https://github.com/GoSheng/gosheng/archive/master.zip)
+
 [![Total alerts](https://img.shields.io/lgtm/alerts/g/jzeg-net/tools.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/jzeg-net/tools/alerts/)
 [![Language grade: JavaScript](https://img.shields.io/lgtm/grade/javascript/g/jzeg-net/tools.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/jzeg-net/tools/context:javascript)
 
 [![Dependencies](https://img.shields.io/david/jzeg-net/tools.svg)](https://david-dm.org/jzeg-net/tools)
 [![Dev Dependencies](https://img.shields.io/david/dev/jzeg-net/tools.svg)](https://david-dm.org/jzeg-net/tools?type=dev)
+
+
+[![Packagist](https://img.shields.io/packagist/v/jzeg-net/tools.svg)](https://packagist.org/packages/jzeg-net/tools)
+![Packagist download quantity](https://img.shields.io/packagist/dt/jzeg-net/tools.svg)
+
 
 
 ## License

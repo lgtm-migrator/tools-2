@@ -11,7 +11,7 @@
  Target Server Version : 80020
  File Encoding         : 65001
 
- Date: 18/05/2020 00:00:00
+ Date: 31/05/2020 00:00:00
 */
 
 SET NAMES utf8mb4;
@@ -30,7 +30,7 @@ CREATE TABLE `payroll`  (
   `payable` bigint(0) NOT NULL COMMENT '应发工资',
   `actual_salary` bigint(0) NOT NULL COMMENT '实发工资',
   `personnel_number` int(0) NOT NULL COMMENT '人员编号',
-  `Job_title_or_job_type` varchar(8) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '职务或工种',
+  `job_title_or_job_type` varchar(8) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '职务或工种',
   `salary_base` int(0) NULL DEFAULT NULL COMMENT '工资基数',
   `basic_salary_standard` int(0) NULL DEFAULT NULL COMMENT '基础工资标准',
   `daily_base_salary` float(2, 2) NULL DEFAULT NULL COMMENT '日基础工资',

@@ -11,7 +11,7 @@
  Target Server Version : 80020
  File Encoding         : 65001
 
- Date: 15/05/2020 00:00:00
+ Date: 11/06/2020 00:00:00
 */
 
 SET NAMES utf8mb4;
@@ -43,6 +43,8 @@ CREATE TABLE `history_sms`  (
   `Method` varchar(4) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '发送方式，默认POST',
   `Version` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'SDK版本，初始2017-05-25',
   `Product` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '阿里云产品名',
+  `create_time` datetime(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0) COMMENT '创建时间',
+  `update_time` datetime(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0) ON UPDATE CURRENT_TIMESTAMP(0) COMMENT '更新时间',
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `version`(`Version`) USING BTREE,
   INDEX `host`(`Host`) USING BTREE,
@@ -52,6 +54,6 @@ CREATE TABLE `history_sms`  (
   CONSTRAINT `host` FOREIGN KEY (`Host`) REFERENCES `aliyun_openapi_sms` (`Host_list`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   CONSTRAINT `template_name` FOREIGN KEY (`TemplateName`) REFERENCES `aliyun_openapi_sms` (`TemplateName`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   CONSTRAINT `version` FOREIGN KEY (`Version`) REFERENCES `aliyun_openapi_sms` (`Version_list`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB AUTO_INCREMENT = 0 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '历史短信' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 15 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '历史短信' ROW_FORMAT = Dynamic;
 
 SET FOREIGN_KEY_CHECKS = 1;
