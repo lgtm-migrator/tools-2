@@ -1,5 +1,5 @@
 <?php
-require_once dirname(__FILE__) . "/template.php";
+require_once  dirname(dirname(dirname(__DIR__))) . "/class/sms/template.php";
 global $template_json;
 
 $action_types = array_keys($template_json);
