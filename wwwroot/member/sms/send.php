@@ -64,9 +64,9 @@ $SmsUpExtendCode = null;
 $OutId = null;
 
 if (true === $batch_send_sms) {
-  require_once dirname(__FILE__) . '/SendBatchSms.php';
+  require_once dirname(dirname(dirname(__DIR__))) . '/class/sms/SendBatchSms.php';
 } else {
-  require_once dirname(__FILE__) . '/SendSms.php';
+  require_once dirname(dirname(dirname(__DIR__))) . '/class/sms/SendSms.php';
 }
 
 
@@ -95,7 +95,7 @@ $sql_add_data['BizId'] = (isset($request_result['BizId'])) ? $request_result['Bi
 $sql_add_data['Message'] = (isset($request_result['Message'])) ? $request_result['Message'] : null;
 
 $sms_data = $sql_add_data;
-require_once dirname(__FILE__) . "/database_add_sms.php";
+require_once dirname(dirname(dirname(__DIR__))) . "/class/sms/database_add_sms.php";
 
 
 /**

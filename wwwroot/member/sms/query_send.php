@@ -46,7 +46,7 @@ $RegionId = 'cn-hangzhou';
 //短信签名名称
 $SignName = '杰格网';
 
-require_once dirname(__FILE__) . '/QuerySendDetails.php';
+require_once dirname(dirname(dirname(__DIR__))) . '/class/sms/QuerySendDetails.php';
 
 /**
  * 数据库操作
