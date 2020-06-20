@@ -98,7 +98,7 @@ function create_search_regional_buttons() {
   };
 
   div.className = 'btn-group-vertical';
-  div.setAttribute('data-toggle', 'button');
+  // div.setAttribute('data-toggle', 'button');
 
   for (let index in regional_array) {
     let label = document.createElement("label");
@@ -652,7 +652,7 @@ function create_add_form() {
 
 function create_add_form_div() {
   let div = document.createElement('div');
-  div.className = 'mb-5 mb-sm-4 mb-md-3 form-row add_phone_number_form';
+  div.className = 'mb-5 mb-sm-4 mb-md-3 row add_phone_number_form';
   add_number_form.insertBefore(div, add_number_submit);
 }
 
@@ -667,7 +667,7 @@ function create_add_btn_add() {
   i.className = 'position-absolute text-success fa-fw fas fa-plus-circle hvr-icon phone_number_add';
   i.title = '添加新的一行';
   i.style.top = '8px';
-  i.style.right = '-3px';
+  i.style.left = '-10px';
   $(i).tooltip();
 
   a.appendChild(i);
@@ -686,7 +686,7 @@ function create_add_btn_del() {
   i.className = 'position-absolute text-danger fa-fw fas fa-minus-circle hvr-icon phone_number_del';
   i.title = '删除当前行';
   i.style.top = '8px';
-  i.style.right = '-3px';
+  i.style.left = '-10px';
   $(i).tooltip();
 
   a.appendChild(i);
@@ -703,7 +703,7 @@ function create_add_phone_name(id_timestamp) {
   let input = document.createElement('input');
   let i = document.createElement('i');
 
-  div.className = 'form-group col-12 col-sm-12 col-md-3';
+  div.className = 'mb-3 col-12 col-sm-12 col-md-3';
 
   input.className = 'form-control form-control-sm fas text-success text-center phone_name';
   input.id = 'phone_name_' + id_timestamp;
@@ -734,7 +734,7 @@ function create_add_tel_number(id_timestamp) {
   let input = document.createElement('input');
   let i = document.createElement('i');
 
-  div.className = 'form-group col-12 col-sm-6 col-md-3';
+  div.className = 'mb-3 col-12 col-sm-6 col-md-3';
 
   input.className = 'form-control form-control-sm fas text-success text-center tel_number';
   input.id = 'tel_number_' + id_timestamp;
@@ -768,7 +768,7 @@ function create_add_mobile_number(id_timestamp) {
   let input = document.createElement('input');
   let i = document.createElement('i');
 
-  div.className = 'form-group col-12 col-sm-6 col-md-3';
+  div.className = 'mb-3 col-12 col-sm-6 col-md-3';
 
   input.className = 'form-control form-control-sm fas text-success text-center mobile_number';
   input.id = 'mobile_number_' + id_timestamp;
@@ -855,7 +855,7 @@ function create_add_regional(type) {
   if (type === 'radio') {
     div.className = 'row no-gutters mx-auto mb-3 mb-sm-4 mb-md-4 py-2 w-100 w-md-75 w-lg-50 bg-white border rounded row-cols-2 row-cols-sm-3 row-cols-md-auto';
   } else if (type === 'button') {
-    div.className = 'mb-3 mb-sm-4 mb-md-4 w-100 w-md-75 w-lg-50 bg-white btn-group btn-group-sm btn-group-toggle';
+    div.className = 'mb-3 mb-sm-4 mb-md-4 w-100 w-md-75 w-lg-50 bg-white btn-group btn-group-sm';
     div.setAttribute('data-toggle', 'buttons');
   }
   div.id = 'add_regional';
@@ -906,6 +906,7 @@ function create_add_regional_button_group_radio(input_value, label_text, check_s
   let label = document.createElement('label');
   let input = document.createElement('input');
 
+  input.className = 'btn-check';
   input.type = 'radio';
   input.id = 'add_regional_' + input_value;
   input.name = 'add_regional';
