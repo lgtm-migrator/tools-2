@@ -39,15 +39,15 @@
     "watch_change": "gulp watch_change",
     "composer_install": "composer i",
     "composer_update": "composer update",
-    "install_nrm_use_taobao": "npm i -g nrm --registry=https://registry.npm.taobao.org && nrm use taobao && nrm ls",
+    "install_nrm_use_taobao": "npm -g i nrm --registry=https://registry.npm.taobao.org && nrm use taobao && nrm ls",
     "install_globl_packages": "npm run install_ncu && npm run install_eslint && npm run install_gulp-cli",
-    "install_ncu": "npm i -g npm-check-updates",
-    "install_eslint": "npm i -g eslint",
-    "install_gulp-cli": "npm i -g gulp-cli"
+    "install_ncu": "npm -g i npm-check-updates@7.0.1",
+    "install_eslint": "npm -g i eslint@7.3.0",
+    "install_gulp-cli": "npm -g i gulp-cli@2.3.0"
   },
   "peerDependencies": {},
   "devDependencies": {
-    "autoprefixer": "^9.8.0",
+    "autoprefixer": "^9.8.1",
     "del": "^5.1.0",
     "eslint-config-google": "^0.14.0",
     "gulp": "^4.0.2",
@@ -58,10 +58,10 @@
     "gulp-postcss": "^8.0.0",
     "gulp-rename": "^2.0.0",
     "gulp-terser": "^1.2.0",
-    "stylelint": "^13.6.0"
+    "stylelint": "^13.6.1"
   },
   "dependencies": {
-    "@fortawesome/fontawesome-free": "^5.13.0",
+    "@fortawesome/fontawesome-free": "^5.13.1",
     "animate.css": "^4.1.0",
     "blueimp-md5": "^2.16.0",
     "bootstrap": "^5.0.0-alpha1",
