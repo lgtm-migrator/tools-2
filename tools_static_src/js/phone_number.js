@@ -52,10 +52,8 @@ function create_search_regional_dropdown_menu() {
   let search_dropdown_toggle_split = document.createElement("div");
   let i = document.createElement("i");
   let search_regional_dropdown_menu = document.createElement("div");
-  let input_group_prepend = document.createElement("div");
   let input_group_text = document.createElement("div");
 
-  input_group_prepend.className = 'input-group-prepend';
   input_group_text.className = 'py-0 pl-3 pr-2 input-group-text btn-group';
 
   search_regional.className = 'text-success';
@@ -84,9 +82,8 @@ function create_search_regional_dropdown_menu() {
   input_group_text.appendChild(search_regional);
   input_group_text.appendChild(search_dropdown_toggle_split);
   input_group_text.appendChild(search_regional_dropdown_menu);
-  input_group_prepend.appendChild(input_group_text);
 
-  return input_group_prepend;
+  return input_group_text;
 }
 
 function create_search_regional_buttons() {
@@ -100,13 +97,14 @@ function create_search_regional_buttons() {
     'zc': '章村',
   };
 
-  div.className = 'btn-group-vertical btn-group-toggle';
-  div.setAttribute('data-toggle', 'buttons');
+  div.className = 'btn-group-vertical';
+  div.setAttribute('data-toggle', 'button');
 
   for (let index in regional_array) {
     let label = document.createElement("label");
     let input = document.createElement("input");
 
+    input.className = 'btn-check';
     input.type = 'radio';
     input.name = 'search_regional';
     input.id = 'search_regional_' + index;
