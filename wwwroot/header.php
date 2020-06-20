@@ -25,7 +25,7 @@ set_session_cookie('logged_in', $_SESSION['logged_in']);
   <link rel="stylesheet" href="/static/css/animate.min.css">
   <link rel="stylesheet" href="/static/css/hover.min.css">
   <link rel="stylesheet" href="/static/css/hamburgers.min.css">
-  <link rel="stylesheet" href="/static/css/bootstrap_next.min.css">
+<!--  <link rel="stylesheet" href="/static/css/bootstrap_next.min.css">-->
   <link rel="stylesheet" href="/static/css/bootstrap.min.css">
   <link rel="stylesheet" href="/static/css/bootstrap-table.min.css">
   <link rel="stylesheet" href="/static/font/css/all.min.css">
