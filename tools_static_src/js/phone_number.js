@@ -17,15 +17,18 @@ function create_search_number_tools() {
 }
 
 function create_search_regional_form() {
-  let form_row = document.createElement("div");
+  let d_flex = document.createElement("div");
+  let col_ = document.createElement("div");
   let input_group = document.createElement("div");
   let label = document.createElement("label");
   let input = document.createElement("input");
   let tmp = document.createElement("div");
 
-  form_row.className = 'form-row justify-content-center';
+  d_flex.className = 'mb-3 d-flex justify-content-center';
 
-  input_group.className = 'mb-3 input-group input-group-lg col-11 col-sm-10 col-md-8 col-lg-6';
+  col_.className='col-11 col-sm-10 col-md-8 col-lg-6 col-xl-5 col-xxl-4';
+
+  input_group.className = 'input-group input-group-lg';
 
   input.className = 'border form-control fas text-center';
   input.id = 'phone_number_input';
@@ -42,9 +45,10 @@ function create_search_regional_form() {
   input_group.appendChild(create_search_regional_dropdown_menu());
   input_group.appendChild(label);
   input_group.appendChild(input);
-  form_row.appendChild(input_group);
+  col_.appendChild(input_group);
+  d_flex.appendChild(col_);
 
-  return form_row;
+  return d_flex;
 }
 
 function create_search_regional_dropdown_menu() {
