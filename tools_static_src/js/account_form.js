@@ -13,6 +13,38 @@ $().ready(function () {
   }
 });
 
+// 账号表单类型切换
+window.onload = function () {
+  let sign = document.querySelector('#sign');
+  if (sign) {
+    let sign_tabs = [].slice.call(sign.querySelectorAll('.sign_tab'));
+    sign_tabs.forEach(function (tabTriggerEL) {
+      let x = new bootstrap.Tab(tabTriggerEL);//fixme:xx
+
+      tabTriggerEL.addEventListener('click', function (e) {
+        let e_target = e.target;
+        let current_sign_tab;
+
+        if ('I' === e_target.tagName || 'SPAN' === e_target.tagName) {
+          current_sign_tab = e_target.parentElement;
+        } else if ('A' === e_target.tagName) {
+          e.preventDefault();
+          current_sign_tab = e_target;
+        } else if ('BUTTON' === e_target.tagName) {
+          current_sign_tab = e_target;
+        } else {
+          return;
+        }
+
+        // x.show();
+        bootstrap.Tab.getInstance(current_sign_tab).show();
+        // current_sign_tab.classList.toggle('active');
+      });
+    });
+  }
+}
+
+
 // 账号模态框切换选项卡tab
 let account_sign = document.querySelector('#account_sign');
 if (account_sign) {
@@ -31,41 +63,14 @@ if (account_sign) {
       }
 
       let modal_tab_modal = modal_tab.getAttribute('data-modal_target');
-      let modal_tab_tab = modal_tab.getAttribute('data-tab_target');
+      // let modal_tab_tab = modal_tab.getAttribute('data-tab_target');
       let modal_id = document.querySelector(modal_tab_modal);
-      let tab_id = document.querySelector(modal_tab_tab);
+      // let tab_id = document.querySelector(modal_tab_tab);
 
       new bootstrap.Modal(modal_id).show();
     });
   });
 }
-
-// 账号表单类型切换
-$().ready(function () {
-  let sign_tabs = document.querySelectorAll('.sign_tab');
-  if (sign_tabs) {
-    for (let x = sign_tabs.length, i = 0; i < x; i++) {
-      sign_tabs[i].addEventListener('click', function (e) {
-        let e_target = e.target;
-        let current_sign_tab;
-
-        if ('I' === e_target.tagName || 'SPAN' === e_target.tagName) {
-          current_sign_tab = e_target.parentElement;
-        } else if ('A' === e_target.tagName) {
-          e.preventDefault();
-          current_sign_tab = e_target;
-        } else if ('BUTTON' === e_target.tagName) {
-          current_sign_tab = e_target;
-        } else {
-          return;
-        }
-
-        $(current_sign_tab).tab('show');
-        current_sign_tab.classList.toggle('active');
-      });
-    }
-  }
-});
 
 // 密码明文显示
 $().ready(function () {
