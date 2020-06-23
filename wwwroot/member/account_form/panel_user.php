@@ -1,4 +1,4 @@
-<div class="modal" id="sign" tabindex="-1">
+<div class="modal fade" id="sign" tabindex="-1">
   <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
     <div class="modal-content">
       <div class="modal-body">
