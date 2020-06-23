@@ -26,7 +26,7 @@ function create_search_regional_form() {
 
   d_flex.className = 'mb-3 d-flex justify-content-center';
 
-  col_.className='col-11 col-sm-10 col-md-8 col-lg-6 col-xl-5 col-xxl-4';
+  col_.className = 'col-11 col-sm-10 col-md-8 col-lg-6 col-xl-5 col-xxl-4';
 
   input_group.className = 'input-group input-group-lg';
 
@@ -339,7 +339,7 @@ function create_search_result() {
 
   search_result.appendChild(span);
   search_result.appendChild(search_result_number_list);
-  search_result.insertBefore(create_close_btn(remove_search_result), search_result.firstElementChild);
+  search_result.insertBefore(create_close_btn(remove_search_result, 'float-right'), search_result.firstElementChild);
   jt_container.appendChild(search_result);
 }
 
@@ -628,8 +628,14 @@ function create_add_number_form() {
 }
 
 function create_add_number_form_close() {
-  let close_btn = create_close_btn(dispose_add_number_form);
-  add_number_form.insertBefore(close_btn, add_number_form.firstChild);
+  let div = document.createElement("div");
+  let close_btn = create_close_btn(dispose_add_number_form, 'float-right pb-2 pb-md-0');
+
+  div.className = 'clearfix';
+
+  div.appendChild(close_btn);
+
+  add_number_form.insertBefore(div, add_number_form.firstChild);
 }
 
 function create_add_form_init() {
