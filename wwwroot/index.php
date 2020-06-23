@@ -56,7 +56,7 @@ if (!defined('SITE_HEAD')) die();
 <div class="d-none">
   <?php require_once dirname(__FILE__) . "/javascript.php"; ?>
   <script src="static/js/index.min.js"></script>
-  <script src="static/js/survey.min.js"></script>
+<!--  <script src="static/js/survey.min.js"></script>-->
 </div>
 
 <?php
