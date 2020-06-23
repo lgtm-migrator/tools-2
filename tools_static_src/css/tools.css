@@ -5,6 +5,19 @@ body > div[id^='Modal_'] {user-select: none;}
 /* ReCAPTCHA 图标 */
 .grecaptcha-badge { visibility: hidden;}
 
+/* 响应式距离 */
+.l-rem-1 {left: 1rem;}
+.l-rem-2 {left: 2rem;}
+
+.r-rem-1 {right: 1rem;}
+.r-rem-2 {right: 2rem;}
+
+.t-rem-1 {top: 1rem;}
+.t-rem-2 {top: 2rem;}
+
+.b-rem-1 {bottom: 1rem;}
+.b-rem-2 {bottom: 2rem;}
+
 /* 响应式宽度 */
 .min-w-100 {min-width: 100%;}
 .min-w-rem-1 {min-width: 1rem;}
