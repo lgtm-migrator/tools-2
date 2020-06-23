@@ -14,39 +14,31 @@ $().ready(function () {
 });
 
 // 账号模态框切换选项卡tab
-$().ready(function () {
-  let account_sign = document.querySelector('#account_sign');
-  if (account_sign) {
-    let modal_tabs = account_sign.querySelectorAll('button[class*="modal_tab"]');
-    for (let x = modal_tabs.length, i = 0; i < x; i++) {
-      modal_tabs[i].addEventListener('click', function (e) {
-        let e_target = e.target;
-        let modal_tab;
+let account_sign = document.querySelector('#account_sign');
+if (account_sign) {
+  let modal_tabs = [].slice.call(account_sign.querySelectorAll('.modal_tab'));
+  modal_tabs.forEach(function (modalTriggerEL) {
+    modalTriggerEL.addEventListener('click', function (e) {
+      let e_target = e.target;
+      let modal_tab;
 
-        if ('I' === e_target.tagName || 'SPAN' === e_target.tagName) {
-          modal_tab = e_target.parentElement;
-        } else if ('BUTTON' === e_target.tagName) {
-          modal_tab = e_target;
-        } else {
-          return;
-        }
+      if ('I' === e_target.tagName || 'SPAN' === e_target.tagName) {
+        modal_tab = e_target.parentElement;
+      } else if ('BUTTON' === e_target.tagName) {
+        modal_tab = e_target;
+      } else {
+        return;
+      }
 
-        let modal_tab_modal = modal_tab.getAttribute('data-modal_target');
-        let modal_tab_tab = modal_tab.getAttribute('data-tab_target');
+      let modal_tab_modal = modal_tab.getAttribute('data-modal_target');
+      let modal_tab_tab = modal_tab.getAttribute('data-tab_target');
+      let modal_id = document.querySelector(modal_tab_modal);
+      let tab_id = document.querySelector(modal_tab_tab);
 
-        if (modal_tab_tab && modal_tab_modal) {
-          $(modal_tab_modal).on('shown.bs.modal', function () {
-            $(modal_tab_tab).tab('show');
-          });
-          $(modal_tab_modal).on('hidden.bs.modal', function () {
-            document.querySelector(modal_tab_tab).classList.remove('active', 'show');
-          });
-          $(modal_tab_modal).modal('show');
-        }
-      });
-    }
-  }
-});
+      new bootstrap.Modal(modal_id).show();
+    });
+  });
+}
 
 // 账号表单类型切换
 $().ready(function () {
