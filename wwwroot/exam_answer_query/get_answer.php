@@ -52,7 +52,7 @@ require_once dirname(__DIR__) . '/header.php';
     </div>
   </div>
   <div class="mb-5 pt-5 d-flex justify-content-center flex-column align-items-center">
-    <button class="shadow btn btn-lg btn-outline-success" type="button" id="ajax_get_examcoo">抓取参考信息到服务器</button>
+    <button class="shadow btn btn-lg btn-outline-success" type="button" id="get_answer">抓取参考信息到服务器</button>
     <div class="my-4 px-4 py-2 border border-secondary shadow rounded-lg d-flex align-items-center user-select-none"
          id="crawlStatus">
       <span>抓取状态：</span>

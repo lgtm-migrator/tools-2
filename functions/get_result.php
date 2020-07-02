@@ -2,7 +2,7 @@
 
 if ($_GET) exit('方式错误');
 
-if (isset($_POST['data']) && $_POST['data'] === 'get_examcoo_editor') {
+if (isset($_POST['data']) && $_POST['data'] === 'get_answer_result') {
   require_once dirname(__DIR__) . '/config/init.php';
 } else {
   exit('方式错误');

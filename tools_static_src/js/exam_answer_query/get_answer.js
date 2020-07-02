@@ -1,11 +1,13 @@
 $().ready(function () {
-  let ajax_get_examcoo = document.querySelector('#ajax_get_examcoo');
+  let get_answer = document.querySelector('#get_answer');
 
-  ajax_get_examcoo.addEventListener('click', get_examcoo);
-
+  get_answer.addEventListener('click', function () {
+    add_spinner_icon(get_answer);
+    ajax_get('get_answer_result', get_answer);
+  });
 });
 
-function get_examcoo() {
+function ajax_get(query_data, trigger_element) {
   let url = '/exam_answer_query/get_answer.php';
   $.ajax({
     method: 'post',
@@ -14,13 +16,17 @@ function get_examcoo() {
     dataType: 'json',
     timeout: 5000,
     data: {
-      data: 'get_examcoo_editor',
+      data: query_data,
     },
     success: function (data) {
+      setTimeout(function () {
+        remove_spinner_icon(trigger_element);
+      }, 5000);
       console.log(data);
       // extract_answers(data);
     },
     error: function (error) {
+      remove_spinner_icon(trigger_element);
       console.log(error);
     },
   });

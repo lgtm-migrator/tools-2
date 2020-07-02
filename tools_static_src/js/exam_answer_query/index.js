@@ -19,11 +19,12 @@ $().ready(function () {
       bootstrapModalJs('', create_small_center_text('请选择要搜索的题的类型'), '', 'sm', true);
       return;
     }
-    ajax_query(data);
+    add_spinner_icon(get_query);
+    ajax_query(data, get_query);
   });
 });
 
-function ajax_query(query_data) {
+function ajax_query(query_data, trigger_element) {
   let url = '/exam_answer_query/index.php';
   $.ajax({
     method: 'post',
@@ -37,9 +38,14 @@ function ajax_query(query_data) {
       category: query_data['category'],
     },
     success: function (data) {
+      setTimeout(function () {
+        remove_spinner_icon(trigger_element);
+      }, 1000);
+
       console.log(data);
     },
     error: function (error) {
+      remove_spinner_icon(trigger_element);
       console.log(error);
     },
   });
