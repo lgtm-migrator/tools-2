@@ -45,18 +45,19 @@ task(watch_exam_answer_query);
 task('copy_exam_answer_query',
   parallel(
     'copy_exam_answer_query_js',
-    'copy_exam_answer_query_css',
-  ));
+    'copy_exam_answer_query_css'
+  )
+);
 task("minimize_exam_answer_query",
   parallel(
     "terser_exam_answer_query",
-    "cleanCSS_exam_answer_query",
+    "cleanCSS_exam_answer_query"
   )
 );
 task("build_exam_answer_query",
   parallel(
     "minimize_exam_answer_query",
-    "copy_exam_answer_query",
+    "copy_exam_answer_query"
   )
 );
 
