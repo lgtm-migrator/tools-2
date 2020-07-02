@@ -3,6 +3,7 @@ $().ready(function () {
 
   get_answer.addEventListener('click', function () {
     add_spinner_icon(get_answer);
+    set_crawlStatus('text-warning');
     ajax_get('get_answer_result', get_answer);
   });
 });
@@ -21,27 +22,24 @@ function ajax_get(query_data, trigger_element) {
     success: function (data) {
       setTimeout(function () {
         remove_spinner_icon(trigger_element);
-      }, 5000);
+        set_crawlStatus('text-success');
+      }, 3000);
       console.log(data);
       // extract_answers(data);
     },
     error: function (error) {
       remove_spinner_icon(trigger_element);
+      set_crawlStatus('text-danger');
       console.log(error);
     },
   });
 }
 
-set_crawlStatus();
-
-function set_crawlStatus() {
+function set_crawlStatus(status_code) {
   let crawlStatus = document.querySelector('#crawlStatus > i');
-  // console.log(crawlStatus);
-  // crawlStatus.classList.remove('text-black-50', 'text-danger', 'text-warning', 'text-success');
-  // crawlStatus.classList.add('text-black-50');
-  // crawlStatus.classList.add('text-danger');
-  // crawlStatus.classList.add('text-warning');
-  // crawlStatus.classList.add('text-success');
+  crawlStatus.removeAttribute('class');
+  crawlStatus.classList.add('mx-2', 'fa-lg', 'fas', 'fa-circle');
+  crawlStatus.classList.add(status_code);
 }
 
 function extract_answers(answers) {

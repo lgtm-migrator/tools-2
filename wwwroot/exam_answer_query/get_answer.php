@@ -11,7 +11,7 @@ require_once dirname(__DIR__) . '/header.php';
 ?>
 <link rel="stylesheet" href="/static/css/exam_answer_query/get_answer.min.css">
 <div class="mt-5 container-fluid">
-  <div class="mt-5 container">
+  <div class="mt-5 py-4 container rounded border">
     <div class="mb-3 g-0 input-group">
       <label class="input-group-text" for="mode">访问模式 MODE</label>
       <select class="form-select" id="mode">
@@ -50,49 +50,55 @@ require_once dirname(__DIR__) . '/header.php';
         </div>
       </div>
     </div>
+    <div class="text-center">
+      <button class="py-2 btn btn-sm btn-secondary" type="button" id="get_answer">抓取参考信息到服务器</button>
+    </div>
   </div>
-  <div class="mb-5 pt-5 d-flex justify-content-center flex-column align-items-center">
-    <button class="shadow btn btn-lg btn-outline-success" type="button" id="get_answer">抓取参考信息到服务器</button>
-    <div class="my-4 px-4 py-2 border border-secondary shadow rounded-lg d-flex align-items-center user-select-none"
-         id="crawlStatus">
+  <div class="mb-3 pt-5 d-flex justify-content-center flex-column align-items-center">
+    <div class="px-4 py-2 border border-secondary shadow rounded-lg d-flex align-items-center user-select-none"
+         id="crawlStatus" data-toggle="collapse" data-target="#help_color_circle">
       <span>抓取状态：</span>
       <i class="mx-2 text-black-50 fa-lg fas fa-circle"></i>
     </div>
-    <div class="my-4 user-select-none">
-      <table class="text-center table table-sm table-bordered table-info table-striped table-hover table-responsive">
-        <thead>
-        <tr>
-          <th>图形</th>
-          <th>含义</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-          <td><i class="px-4 text-dark fas fa-circle"></i></td>
-          <td class="px-3">服务器故障，不可抓取</td>
-        </tr>
-        <tr>
-          <td><i class="px-4 text-black-50 fas fa-circle"></i></td>
-          <td class="px-3">等待抓取</td>
-        </tr>
-        <tr>
-          <td><i class="px-4 text-warning fas fa-circle"></i></td>
-          <td class="px-3">抓取中</td>
-        </tr>
-        <tr>
-          <td><i class="px-4 text-primary fas fa-circle"></i></td>
-          <td class="px-3">抓取故障</td>
-        </tr>
-        <tr>
-          <td><i class="px-4 text-danger fas fa-circle"></i></td>
-          <td class="px-3">抓取失败</td>
-        </tr>
-        <tr>
-          <td><i class="px-4 text-success fas fa-circle"></i></td>
-          <td class="px-3">抓取成功</td>
-        </tr>
-        </tbody>
-      </table>
+  </div>
+  <div class="collapse" id="help_color_circle">
+    <div class="d-flex justify-content-center">
+      <div class="my-4 user-select-none" data-toggle="collapse" data-target="#help_color_circle">
+        <table class="text-center table table-sm table-bordered table-info table-striped table-hover table-responsive">
+          <thead>
+          <tr>
+            <th>图形</th>
+            <th>含义</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td><i class="px-4 text-dark fas fa-circle"></i></td>
+            <td class="px-3">服务器故障，不可抓取</td>
+          </tr>
+          <tr>
+            <td><i class="px-4 text-black-50 fas fa-circle"></i></td>
+            <td class="px-3">等待抓取</td>
+          </tr>
+          <tr>
+            <td><i class="px-4 text-warning fas fa-circle"></i></td>
+            <td class="px-3">抓取中</td>
+          </tr>
+          <tr>
+            <td><i class="px-4 text-primary fas fa-circle"></i></td>
+            <td class="px-3">抓取故障</td>
+          </tr>
+          <tr>
+            <td><i class="px-4 text-danger fas fa-circle"></i></td>
+            <td class="px-3">抓取失败</td>
+          </tr>
+          <tr>
+            <td><i class="px-4 text-success fas fa-circle"></i></td>
+            <td class="px-3">抓取成功</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
   <div>
