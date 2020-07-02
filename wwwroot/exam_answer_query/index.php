@@ -39,6 +39,10 @@ require_once dirname(__DIR__) . '/header.php';
     </button>
   </div>
 </div>
+<div class="mt-5 container">
+  <div class="">结果：</div>
+  <div class="px-3 py-4 rounded border border-secondary" id="query_result"></div>
+</div>
 <div class="mt-5 py-5 border rounded-lg container">
   <div class="d-flex justify-content-center row row-cols-1 row-cols-sm-3 row-cols-md-5 row-cols-lg-6 text-center">
     <div class="mb-5 mb-sm-0 d-flex flex-column align-items-center">

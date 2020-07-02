@@ -41,7 +41,7 @@ function ajax_query(query_data, trigger_element) {
       setTimeout(function () {
         remove_spinner_icon(trigger_element);
       }, 1000);
-
+      set_query_result(data);
       console.log(data);
     },
     error: function (error) {
@@ -61,4 +61,16 @@ function get_radio_id(radio_name) {
     }
   }
   return radio_id;
+}
+
+function set_query_result(data) {
+  let query_result = document.querySelector('#query_result');
+
+  query_result.innerHTML = '';
+  for (let x = data.length, i = 0; i < x; i++) {
+    query_result.innerHTML += '<div class="my-2 text-dark">' + data[i]['text'] + '</div>';
+    query_result.innerHTML += '<div class="my-2 text-success">' + data[i]['result_text'] + '</div>';
+    query_result.innerHTML += '<br>';
+  }
+
 }
