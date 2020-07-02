@@ -47,7 +47,7 @@
   },
   "peerDependencies": {},
   "devDependencies": {
-    "autoprefixer": "^9.8.3",
+    "autoprefixer": "^9.8.4",
     "del": "^5.1.0",
     "eslint-config-google": "^0.14.0",
     "gulp": "^4.0.2",
@@ -72,7 +72,7 @@
     "cleave.js": "^1.6.0",
     "clipboard": "^2.0.6",
     "dayjs": "^1.8.28",
-    "fundebug-javascript": "^2.4.0",
+    "fundebug-javascript": "^2.4.1",
     "hamburgers": "^1.1.3",
     "hover.css": "^2.3.2",
     "jquery": "^3.5.1",
