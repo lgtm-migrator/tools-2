@@ -9,7 +9,7 @@ if ($_POST) {
 define('title', '查询参考');
 require_once dirname(__DIR__) . '/header.php';
 ?>
-<link rel="stylesheet" href="/static/css/exam_answer_query.min.css">
+<link rel="stylesheet" href="/static/css/exam_answer_query/index.min.css">
 <div class="mt-5 py-5 border rounded-lg container">
   <div class="mb-4 d-flex flex-column flex-sm-row">
     <div class="mx-0 mx-sm-1 mb-3 mb-sm-0 btn-group flex-fill">
@@ -99,7 +99,7 @@ require_once dirname(__DIR__) . '/header.php';
 
 <div class="d-none">
   <?php require_once dirname(__DIR__) . "/javascript.php"; ?>
-  <script src="/static/js/exam_answer_query.min.js"></script>
+  <script src="/static/js/exam_answer_query/index.min.js"></script>
 </div>
 
 <?php
