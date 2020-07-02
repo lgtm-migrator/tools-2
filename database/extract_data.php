@@ -52,7 +52,7 @@ for ($i = 1; $i < $response_array_count; $i++) {
 }
 
 $database_data = array(
-  'table_name' => 'examcoo_answer',
+  'table_name' => 'exam_answer_query_answer',
   'new_data' => $new_data,
 );
 

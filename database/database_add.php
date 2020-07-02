@@ -7,7 +7,7 @@ try {
 } catch (Exception $e) {
   $database_result['error']['getMessage'][] = $e->getMessage();
 }
-
+$id = false;
 try {
   global $database_data;
   $id = $db_exam_answer_query->insertMulti($database_data['table_name'], $database_data['new_data']);

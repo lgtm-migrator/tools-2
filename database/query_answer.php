@@ -20,7 +20,7 @@ $category = $_POST['category'];
 
 
 $database_data = array(
-  'table_name' => 'examcoo_answer',
+  'table_name' => 'exam_answer_query_answer',
   'where' => array(
     'category' => $category,
   ),
