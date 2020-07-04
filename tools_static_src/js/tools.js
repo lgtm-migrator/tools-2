@@ -183,7 +183,6 @@ function get_cookie(key) {
 }
 
 function remove_cookie(key) {
-  console.log(js_cookies.get(key));
   if (js_cookies.get(key) === undefined) {
     return true;
   }
