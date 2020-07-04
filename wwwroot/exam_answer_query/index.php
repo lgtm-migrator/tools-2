@@ -10,16 +10,20 @@ define('title', '查询参考');
 require_once dirname(__DIR__) . '/header.php';
 ?>
 <link rel="stylesheet" href="/static/css/exam_answer_query/index.min.css">
-<div class="mt-5 py-5 border rounded-lg container">
-  <div class="mb-3 input-group">
+<div class="mt-4 py-4 container">
+  <div class="input-group">
     <label class="input-group-text" for="answer_id_lock">试卷编号</label>
-    <input class="form-control" type="number" id="answer_id_lock" placeholder="要查询的试卷编号" maxlength="8">
+    <input class="form-control" type="number" id="answer_id_lock" placeholder="要查询的试卷编号" pattern="">
   </div>
-  <div class="text-center">
+  <div class="mb-4 small text-muted">
+    <span class="small">提示：有助于提高结果准确性和查询速度。</span>
+  </div>
+  <div class="d-flex flex-column flex-sm-row justify-content-center align-items-center">
     <button class="px-5 btn btn-dark" id="lock_id">
-      <i class="fas fa-lock"></i>
-      <span class="ml-1">锁定试卷</span>
+      <i class="fas"></i>
+      <span class="ml-1">锁定编号</span>
     </button>
+    <a class="ml-0 ml-sm-4 mt-3 mt-sm-0 small text-decoration-none text-muted" href="javascript:" id="lock_open_id">解除锁定</a>
   </div>
 </div>
 <div class="mt-5 py-5 border rounded-lg container">
