@@ -61,7 +61,7 @@ require_once dirname(__DIR__) . '/header.php';
       <i class="mx-2 text-black-50 fa-lg fas fa-circle"></i>
     </div>
   </div>
-  <div class="collapse" id="help_color_circle">
+  <div class="collapse show" id="help_color_circle">
     <div class="d-flex justify-content-center">
       <div class="my-4 user-select-none" data-toggle="collapse" data-target="#help_color_circle">
         <table class="text-center table table-sm table-bordered table-info table-striped table-hover table-responsive">

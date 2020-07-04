@@ -11,6 +11,18 @@ require_once dirname(__DIR__) . '/header.php';
 ?>
 <link rel="stylesheet" href="/static/css/exam_answer_query/index.min.css">
 <div class="mt-5 py-5 border rounded-lg container">
+  <div class="mb-3 input-group">
+    <label class="input-group-text" for="answer_id_lock">试卷编号</label>
+    <input class="form-control" type="number" id="answer_id_lock" placeholder="要查询的试卷编号" maxlength="8">
+  </div>
+  <div class="text-center">
+    <button class="px-5 btn btn-dark" id="lock_id">
+      <i class="fas fa-lock"></i>
+      <span class="ml-1">锁定试卷</span>
+    </button>
+  </div>
+</div>
+<div class="mt-5 py-5 border rounded-lg container">
   <div class="mb-4 d-flex flex-column flex-sm-row">
     <div class="mx-0 mx-sm-1 mb-3 mb-sm-0 btn-group flex-fill">
       <input type="radio" class="btn-check" name="category" id="determine" autocomplete="off">
@@ -63,7 +75,7 @@ require_once dirname(__DIR__) . '/header.php';
   </div>
 </div>
 <div class="mt-5">
-  <div class="collapse" id="help_microphone">
+  <div class="collapse show" id="help_microphone">
     <div class="d-flex justify-content-center">
       <div class="user-select-none" data-toggle="collapse" data-target="#help_microphone">
         <table
