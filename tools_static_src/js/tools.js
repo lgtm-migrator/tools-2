@@ -471,7 +471,6 @@ function footer_qr_code() {
 
 function footer_modal_qr_code() {
   let url = document.location.href;
-  let url_param = {'from': 'clipboard'};
   let div = document.createElement('div');
   let img = document.createElement('img');
   let qrcode_option = {
@@ -488,12 +487,12 @@ function footer_modal_qr_code() {
 
   div.className = 'text-center';
 
-  copy_location_href(img);
+  ClipboardJS_location_href(img);
 
   div.appendChild(img);
-  div.appendChild(footer_modal_qr_code_tip());
+  div.appendChild(footer_qr_code_modal_tip());
 
-  QRCode.toDataURL(addUrlParam(url, url_param), qrcode_option, function (err, img_base64) {
+  QRCode.toDataURL(url, qrcode_option, function (err, img_base64) {
     if (err) throw err;
     img.src = img_base64;
     img.alt = document.title + '页面地址二维码';
@@ -501,11 +500,11 @@ function footer_modal_qr_code() {
   bootstrapModalJs('', div, '', '', true);
 }
 
-function footer_modal_qr_code_tip() {
+function footer_qr_code_modal_tip() {
   let div = document.createElement('div');
   let i = document.createElement('i');
 
-  div.className='mt-2';
+  div.className = 'mt-2';
 
   i.className = 'text-secondary fas fa-lg fa-question-circle';
   i.innerHTML = '&nbsp;说明';
@@ -523,16 +522,14 @@ function footer_modal_qr_code_tip() {
   return div;
 }
 
-function copy_location_href(event) {
+function ClipboardJS_location_href(event) {
   let url = document.location.href;
-  let url_param = {'from': 'clipboard'};
+  console.log(url);
   let clipboard = new ClipboardJS(event, {
-    text: function () {
-      return addUrlParam(url, url_param);
-    },
+    text: url,
   });
   clipboard.on('success', function (e) {
-    bootstrapModalJs('', '<span class="d-block text-center text-success small">网址复制成功</span>', '', 'sm', true);
+    bootstrapModalJs('', create_small_center_text('网址复制成功', 'asfasdf'), '', 'sm', true);
     console.log(e);
   });
   clipboard.on('error', function () {
