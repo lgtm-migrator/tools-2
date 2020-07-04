@@ -144,26 +144,27 @@ $().ready(function () {
 let js_cookies = window.Cookies.noConflict();
 
 function set_cookie(key, value = 1, attributes, secure = true) {
+  let js_cookies_attributes;
+  if (window.location.protocol === 'https') {
+    js_cookies_attributes = {
+      secure: true,
+      expires: 30,
+      // httpOnly: true,
+      // domain: "",
+      // path: "",
+      sameSite: 'Strict',//fixme:sameSite值后期待调整
+    };
+  } else {
+    js_cookies_attributes = {
+      expires: 30,
+      // httpOnly: true,
+      // domain: "",
+      // path: "",
+      sameSite: 'Strict',
+    };
+  }
+
   if (secure === true) {
-    let js_cookies_attributes;
-    if (window.location.protocol.includes('https')) {
-      js_cookies_attributes = {
-        secure: true,
-        expires: 30,
-        // httpOnly: true,
-        // domain: "",
-        // path: "",
-        sameSite: 'lax',//fixme:sameSite值后期待调整
-      };
-    } else {
-      js_cookies_attributes = {
-        expires: 30,
-        // httpOnly: true,
-        // domain: "",
-        // path: "",
-        sameSite: 'lax',
-      };
-    }
     let secure_js_cookies = js_cookies.withAttributes(js_cookies_attributes);
     secure_js_cookies.set(key, value, attributes);
   } else {
