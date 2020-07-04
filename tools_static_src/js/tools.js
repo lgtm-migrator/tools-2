@@ -170,14 +170,25 @@ function set_cookie(key, value = 1, attributes, secure = true) {
   } else {
     js_cookies.set(key, value, attributes);
   }
+
+  return js_cookies.get(key) !== undefined;
+
 }
 
 function get_cookie(key) {
+  if (js_cookies.get(key) === undefined) {
+    return false;
+  }
   return js_cookies.get(key);
 }
 
 function remove_cookie(key) {
+  console.log(js_cookies.get(key));
+  if (js_cookies.get(key) === undefined) {
+    return true;
+  }
   js_cookies.remove(key);
+  return true;
 }
 
 // 表单验证
