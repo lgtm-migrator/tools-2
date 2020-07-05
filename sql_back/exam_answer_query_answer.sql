@@ -5,13 +5,13 @@
  Source Server Type    : MySQL
  Source Server Version : 80020
  Source Host           : localhost:3306
- Source Schema         : examcoo
+ Source Schema         : jzeg_tools
 
  Target Server Type    : MySQL
  Target Server Version : 80020
  File Encoding         : 65001
 
- Date: 02/07/2020 16:13:50
+ Date: 05/07/2020 14:44:17
 */
 
 SET NAMES utf8mb4;
@@ -24,6 +24,7 @@ DROP TABLE IF EXISTS `exam_answer_query_answer`;
 CREATE TABLE `exam_answer_query_answer`  (
   `id` int(0) NOT NULL AUTO_INCREMENT COMMENT '自增编号',
   `sid` bigint(0) NOT NULL COMMENT '问题ID',
+  `aid` int(0) NOT NULL COMMENT '所属试卷id',
   `category` varchar(9) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '题型类别',
   `score` float(2, 1) NOT NULL COMMENT '分值',
   `result` int(0) NOT NULL COMMENT '结果数',
