@@ -4,6 +4,17 @@ $raw_response = object2array($response);
 $response_array = $raw_response['b'];
 $response_array_count = count($response_array);
 
+
+require_once dirname(__FILE__) . '/cache/table_answers_id_list_field.php';
+
+//$database_data = array(
+//  'table_name' => 'answers_id_list',
+//  'new_data' => $answers_list_fields,
+//);
+//
+//include dirname(__DIR__) . '/database/database_add.php';
+//unset($database_data);
+
 $category_array = array(
   's1' => 'single',
   's2' => 'multiple',
@@ -38,7 +49,8 @@ for ($i = 1; $i < $response_array_count; $i++) {
 
     $new_data[$i] = array(
       'sid' => (int)$s_id,
-      'options' => $response_array_i_b,
+      'aid' => (int)$a_id,
+      'options' => (string)$response_array_i_b,
       'result' => (int)$result,
       'result_text' => (string)$result_text,
       'category' => (string)$category,
