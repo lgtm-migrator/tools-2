@@ -11,7 +11,7 @@
  Target Server Version : 80020
  File Encoding         : 65001
 
- Date: 02/07/2020 19:42:59
+ Date: 05/07/2020 14:45:29
 */
 
 SET NAMES utf8mb4;
@@ -22,7 +22,7 @@ SET FOREIGN_KEY_CHECKS = 0;
 -- ----------------------------
 DROP TABLE IF EXISTS `answers_id_list`;
 CREATE TABLE `answers_id_list`  (
-  `id` int(0) NOT NULL COMMENT '自增编号',
+  `id` int(0) NOT NULL AUTO_INCREMENT COMMENT '自增编号',
   `a_id` int(0) NOT NULL COMMENT 'id 试卷编号',
   `title` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'a 标题',
   `b` int(0) NULL DEFAULT NULL COMMENT 'b',
