@@ -1,12 +1,13 @@
 <?php
 
 
-namespace JZEG_NET\MYSQL\DB_CONN;
+namespace JZEG_NET\MySQL\DbConnection;
 
+use \Exception;
 use MysqliDb;
 
 
-class DB_CONNECTION extends MysqliDb
+class DataBaseConnection extends MysqliDb
 {
   private $host;
   private $db_username;
@@ -51,7 +52,7 @@ class DB_CONNECTION extends MysqliDb
   {
     try {
       return parent::connection($name);
-    } catch (\Exception $e) {
+    } catch (Exception $e) {
       exit($e->getMessage());
     }
   }
