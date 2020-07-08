@@ -22,7 +22,7 @@ class DbGet extends DataBaseConnection
   private $having;
   private $orHaving;
 
-  private $queryResult;
+  private $queryData;
 
   public function __construct(array $conn_params, string $query_key = null, string $table_name = null, array $where = null, array $having = null, array $orWhere = null, array $orHaving = null, array $result_columns = null)
   {
@@ -60,22 +60,30 @@ class DbGet extends DataBaseConnection
     parent::having("text", "%" . $LikeHaving_data['key'] . "%", 'LIKE');
   }
 
-  public function setQueryResult(array $query_data)
+  public function getQueryResult()
   {
-    self::setWhere($query_data['conditions']['where']);
-
-//    self::setLikeHaving($query_data['likeHaving']);
-    self::setLikeWhere($query_data['conditions']['likeWhere']);
-
     try {
-      $this->queryResult = parent::get($query_data['table_name'], null, $query_data['result_columns']);
+      return parent::get($this->queryData['table_name'], null, $this->queryData['result_columns']);
     } catch (Exception $e) {
       die($e->getMessage());
     }
   }
 
-  public function getQueryResult()
+  public function setQueryResult(array $query_data)
   {
-    return $this->queryResult;
+    $this->queryData = $query_data;
+    self::setWhere($this->queryData['conditions']['where']);
+
+    self::setLikeHaving($this->queryData['conditions']['likeHaving']);
+    self::setLikeWhere($this->queryData['conditions']['likeWhere']);
+  }
+
+  public function connection($name)
+  {
+    try {
+      parent::connection($name);
+    } catch (Exception $e) {
+      exit($e->getMessage());
+    }
   }
 }

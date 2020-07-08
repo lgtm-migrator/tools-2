@@ -44,8 +44,6 @@ class DataBaseConnection extends MysqliDb
 
     parent::addConnection('add', self::getConnectParams());
 
-    self::connection('add');
-
   }
 
   public function connection($name)
