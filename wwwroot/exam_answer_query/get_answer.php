@@ -1,6 +1,6 @@
 <?php
 if ($_POST) {
-  require_once dirname(dirname(__DIR__)) . '/functions/get_result.php';
+  require_once dirname(dirname(__DIR__)) . '/functions/exam_answer_query/get_result.php';
   exit();
 } elseif ($_GET) {
   exit('当前不认为需要支持此方式进行查询');
