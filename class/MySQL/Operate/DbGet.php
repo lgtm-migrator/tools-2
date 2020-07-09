@@ -41,8 +41,8 @@ class DbGet extends DataBaseConnection
     $this->orWhere = $orWhere;
     $this->orHaving = $orHaving;
 
-    $this->db = parent::__construct($this->conn_params);
-
+    parent::__construct($this->conn_params);
+    parent::addConnection('add', parent::getConnectParams());
   }
 
   public function setWhere(array $where_data)
@@ -80,10 +80,6 @@ class DbGet extends DataBaseConnection
 
   public function connection($name)
   {
-    try {
-      parent::connection($name);
-    } catch (Exception $e) {
-      exit($e->getMessage());
-    }
+    parent::connection($name);
   }
 }
