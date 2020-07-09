@@ -1,7 +1,7 @@
 <?php
 if (!defined('title')) define('title', '查询发送短信的相关信息');
 require_once dirname(dirname(__DIR__)) . '/header.php';
-if (!defined('JZEG_NET')) die();
+if (!defined('JZEG-NET')) die();
 ?>
   <link rel="stylesheet" href="/static/css/sms_query.min.css">
   <div class="py-2 container" id="jt_sms_query">

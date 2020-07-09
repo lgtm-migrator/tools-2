@@ -1,5 +1,5 @@
 <?php
-if (!defined('JZEG_NET_SMS')) die();
+if (!defined('JZEG-NET-SMS')) die();
 
 require_once dirname(dirname(__DIR__)) . '/mysqli/mysqli.php';
 

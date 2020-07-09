@@ -1,5 +1,5 @@
 <?php
-if (!defined('JZEG_NET_SMS')) define('JZEG_NET_SMS', 0);
+if (!defined('JZEG-NET-SMS')) define('JZEG-NET-SMS', true);
 if ($_GET) die();
 
 if (isset($_POST['_token'])) {

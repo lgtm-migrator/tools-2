@@ -4,9 +4,7 @@ if ($_GET) exit('方式错误');
 
 if (isset($_POST['q']) && isset($_POST['action']) && $_POST['action'] === 'query_answer') {
   $category_list = ['single', 'multiple', 'determine'];
-  if (isset($_POST['category']) && in_array($_POST['category'], $category_list)) {
-    require_once dirname(dirname(__DIR__)) . '/config/init.php';
-  } else {
+  if (!isset($_POST['category']) || !in_array($_POST['category'], $category_list)) {
     exit('查询参数错误');
   }
 } else {

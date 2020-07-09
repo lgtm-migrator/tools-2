@@ -1,7 +1,7 @@
 <?php
 if (!defined('title')) define('title', '工资云备忘录');
 require_once dirname(dirname(__DIR__)) . '/header.php';
-if (!defined('JZEG_NET')) die();
+if (!defined('JZEG-NET')) die();
 ?>
   <link rel="stylesheet" href="/static/css/payroll.min.css">
   <div class="py-2 container" id="jt_payroll">

@@ -2,7 +2,7 @@
 
 //namespace JZEG_NET\Member\Sms\QuerySendDetails;
 
-if (!defined('JZEG_NET_SMS')) die();
+if (!defined('JZEG-NET-SMS')) die();
 
 require_once dirname(dirname(__DIR__)) . '/vendor/autoload.php';
 global $accessKeyId,

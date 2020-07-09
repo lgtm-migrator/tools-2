@@ -2,9 +2,7 @@
 
 if ($_GET) exit('方式错误');
 
-if (isset($_POST['data']) && $_POST['data'] === 'get_answer_result') {
-  require_once dirname(dirname(__DIR__)) . '/config/init.php';
-} else {
+if (!isset($_POST['data']) || $_POST['data'] !== 'get_answer_result') {
   exit('方式错误');
 }
 

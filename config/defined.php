@@ -1,5 +1,6 @@
 <?php
-if (!defined('JZEG_NET')) define('JZEG_NET', '');
+if (defined('JZEG-NET')) exit();
+define('JZEG-NET', true);
 
 $wwwRoot = dirname(__DIR__) . '/wwwroot/';
 $yyyy_mm_dd = date('Y/m/d/');

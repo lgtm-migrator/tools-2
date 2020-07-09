@@ -1,7 +1,7 @@
 <?php
 if (!defined('title')) define('title', '用户信息');
 require_once dirname(dirname(__DIR__)) . '/header.php';
-if (!defined('JZEG_NET')) die();
+if (!defined('JZEG-NET')) die();
 ?>
   <link rel="stylesheet" href="/static/css/user_index.min.css">
   <div class="py-2 container" id="user_info">
