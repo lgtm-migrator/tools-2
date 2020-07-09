@@ -1,5 +1,5 @@
 <?php
-require_once dirname(dirname(__DIR__)) . '/mysqli/mysqli.php';
+require_once dirname(dirname(dirname(__DIR__))) . '/mysqli/mysqli.php';
 
 try {
   $db_exam_answer_query->connection('query');

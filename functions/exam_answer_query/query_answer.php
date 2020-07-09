@@ -27,6 +27,6 @@ $database_data = array(
   'query_key' => $query_key,
   'result_columns' => array("id", "category", "result", "result_text", "text", "options"),
 );
-require_once dirname(dirname(__DIR__)) . '/database/exam_answer_query/database_query.php';
+require_once dirname(__FILE__) . '/database/database_query.php';
 
 echo json_encode($query_result);

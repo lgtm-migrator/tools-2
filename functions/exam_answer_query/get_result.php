@@ -27,7 +27,7 @@ if ('view' === $exam_answer_query_mode) {
 require_once dirname(__FILE__) . '/request_remote.php';
 $response = $url_response;
 
-require_once dirname(dirname(__DIR__)) . '/functions/exam_answer_query/extract_data.php';
+require_once dirname(__FILE__) . '/extract_data.php';
 global $database_result;
 $database = $database_result;
 
