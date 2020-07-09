@@ -52,3 +52,8 @@ function for_crypt(int $number, $array_or_string, $salt = null)
   }
   return $result;
 }
+
+function object2array($object)
+{
+  return json_decode(json_encode($object), true);
+}

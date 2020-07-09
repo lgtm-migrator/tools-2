@@ -11,7 +11,7 @@ if (isset($_POST['data']) && $_POST['data'] === 'get_answer_result') {
 if (!defined('JZEG-NET')) exit('版权保护');
 
 require_once dirname(__DIR__) . '/vendor/autoload.php';
-require_once dirname(__DIR__) . "/functions/common.php";
+require_once dirname(__DIR__) . "/config/functions.php";
 require_once dirname(__DIR__) . "/config/env.php";
 
 //模式判断
