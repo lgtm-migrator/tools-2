@@ -5,7 +5,7 @@ $response_array = $raw_response['b'];
 $response_array_count = count($response_array);
 
 
-require_once dirname(__FILE__) . '/cache/table_answers_id_list_field.php';
+require_once dirname(dirname(__DIR__)) . '/database/exam_answer_query/cache/table_answers_id_list_field.php';
 
 //$database_data = array(
 //  'table_name' => 'answers_id_list',
@@ -21,7 +21,7 @@ $category_array = array(
   's3' => 'determine',
 );
 
-require_once dirname(__FILE__) . '/cache/index.php';
+require_once dirname(dirname(__DIR__)) . '/database/exam_answer_query/cache/index.php';
 
 for ($i = 1; $i < $response_array_count; $i++) {
   $response_array_i = $response_array[$i];
@@ -68,4 +68,4 @@ $database_data = array(
   'new_data' => $new_data,
 );
 
-require_once dirname(__DIR__) . '/database/database_add.php';
+require_once dirname(dirname(__DIR__)) . '/database/exam_answer_query/database_add.php';
