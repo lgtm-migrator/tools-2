@@ -5,7 +5,7 @@ if ($_GET) exit('方式错误');
 if (isset($_POST['q']) && isset($_POST['action']) && $_POST['action'] === 'query_answer') {
   $category_list = ['single', 'multiple', 'determine'];
   if (isset($_POST['category']) && in_array($_POST['category'], $category_list)) {
-    require_once dirname(__DIR__) . '/config/init.php';
+    require_once dirname(dirname(__DIR__)) . '/config/init.php';
   } else {
     exit('查询参数错误');
   }
@@ -27,6 +27,6 @@ $database_data = array(
   'query_key' => $query_key,
   'result_columns' => array("id", "category", "result", "result_text", "text", "options"),
 );
-require_once dirname(__DIR__) . '/database/database_query.php';
+require_once dirname(dirname(__DIR__)) . '/database/exam_answer_query/database_query.php';
 
 echo json_encode($query_result);
