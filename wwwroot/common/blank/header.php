@@ -1,6 +1,5 @@
 <?php
 require_once dirname(dirname(__DIR__)) . '/_head.php';
-date_default_timezone_set('Asia/Shanghai');
 require_once dirname(dirname(dirname(__DIR__))) . '/class/session/session_tmp.php';
 session_init();
 set_session();

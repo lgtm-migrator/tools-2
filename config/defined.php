@@ -2,6 +2,8 @@
 if (defined('JZEG-NET')) exit();
 define('JZEG-NET', true);
 
+date_default_timezone_set('Asia/Shanghai');
+
 $wwwRoot = dirname(__DIR__) . '/wwwroot/';
 $yyyy_mm_dd = date('Y/m/d/');
 $upload_dir = $wwwRoot . '/upload/';
