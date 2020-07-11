@@ -15,7 +15,7 @@ if (!defined('SITE_HEAD')) die();
     </div>
   </div>
   <div class="row justify-content-center row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4" id="jt_list">
-    <div class="col mb-3 tools-collapse collapse-enquiry collapse show">
+    <div class="col mb-3 tools-collapse collapse-enquiry collapse">
       <div class="card h-100 hvr-wobble-bottom">
         <div class="d-flex justify-content-between card-header py-2">
           <a class="stretched-link text-dark font-weight-bold text-decoration-none" href="/phone_number/"
@@ -27,7 +27,7 @@ if (!defined('SITE_HEAD')) die();
         </div>
       </div>
     </div>
-    <div class="col mb-3 tools-collapse collapse-conversion collapse show">
+    <div class="col mb-3 tools-collapse collapse-conversion collapse">
       <div class="card h-100 hvr-wobble-bottom">
         <div class="d-flex justify-content-between card-header py-2">
           <a class="stretched-link text-dark font-weight-bold text-decoration-none" href="/flexible_code/"
@@ -39,7 +39,7 @@ if (!defined('SITE_HEAD')) die();
         </div>
       </div>
     </div>
-    <div class="col mb-3 tools-collapse collapse-enquiry collapse show">
+    <div class="col mb-3 tools-collapse collapse-enquiry collapse">
       <div class="card h-100 hvr-wobble-bottom">
         <div class="d-flex justify-content-between card-header py-2">
           <a class="stretched-link text-dark font-weight-bold text-decoration-none" href="/exam_answer_query/"
