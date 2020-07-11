@@ -39,7 +39,7 @@ if (!defined('SITE_HEAD')) die();
         </div>
       </div>
     </div>
-    <div class="col mb-3 tools-collapse collapse-other collapse show">
+    <div class="col mb-3 tools-collapse collapse-enquiry collapse show">
       <div class="card h-100 hvr-wobble-bottom">
         <div class="d-flex justify-content-between card-header py-2">
           <a class="stretched-link text-dark font-weight-bold text-decoration-none" href="/exam_answer_query/"
