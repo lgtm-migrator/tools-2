@@ -1,6 +1,5 @@
 /** 分类列表导航 **/
 let jt_category = document.querySelector('#jt_category');
-let jt_list = document.querySelector('#jt_list');
 let allCollapses = [].slice.call(document.querySelectorAll('#jt_list>[class*="collapse-"]'));
 
 allCollapses.map(function (collapseEL) {
