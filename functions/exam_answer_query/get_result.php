@@ -3,10 +3,12 @@
 if ($_GET) exit('方式错误');
 
 if (!isset($_POST['data']) || $_POST['data'] !== 'get_answer_result') {
-  exit('方式错误');
+  exit('参数错误');
+} else {
+  require_once dirname(dirname(__DIR__)) . '/config/init_site_head.php';
 }
 
-if (!defined('JZEG-NET')) exit('版权保护');
+if (!defined('SITE_HEAD')) exit('版权保护');
 
 require_once dirname(dirname(__DIR__)) . '/vendor/autoload.php';
 require_once dirname(dirname(__DIR__)) . "/config/functions.php";

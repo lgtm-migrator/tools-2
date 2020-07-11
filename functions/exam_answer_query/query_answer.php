@@ -2,16 +2,18 @@
 
 if ($_GET) exit('方式错误');
 
-if (isset($_POST['q']) && isset($_POST['action']) && $_POST['action'] === 'query_answer') {
+if (!isset($_POST['q']) || !isset($_POST['action']) || $_POST['action'] !== 'query_answer') {
+  exit('参数错误');
+} else {
   $category_list = ['single', 'multiple', 'determine'];
   if (!isset($_POST['category']) || !in_array($_POST['category'], $category_list)) {
     exit('查询参数错误');
+  } else {
+    require_once dirname(dirname(__DIR__)) . '/config/init_site_head.php';
   }
-} else {
-  exit('参数错误');
 }
 
-if (!defined('JZEG-NET')) exit('版权保护');
+if (!defined('SITE_HEAD')) exit('版权保护');
 
 $query_key = $_POST['q'];
 $category = $_POST['category'];
