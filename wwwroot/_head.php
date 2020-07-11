@@ -1,4 +1,3 @@
 <?php
-require_once dirname(__DIR__) . '/config/init.php';
 
-define('SITE_HEAD', true);
+require_once dirname(__DIR__) . '/config/init_site_head.php';
