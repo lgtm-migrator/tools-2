@@ -7,6 +7,6 @@ if (!defined('JZEG-NET')) die();
   <div class="container text-center small text-white-50" id="footer_x"></div>
 </div>
 </div><!--id=body-->
-<?php require_once dirname(__FILE__) . '/member/account_form/panel_user.php'; ?>
+<?php require_once dirname(__FILE__) . '/member/account_form/modal_sign.php'; ?>
 </body>
 </html>
