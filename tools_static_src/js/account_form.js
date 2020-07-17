@@ -13,54 +13,49 @@ $().ready(function () {
   }
 });
 
+
 // 账号表单类型切换
-$().ready(function () {
-  let sign_tabs = [].slice.call(document.querySelectorAll('.sign_tab'));
+let sign_modal_tab = [].slice.call(document.querySelectorAll('.sign_modal_tab'));
+if (sign_modal_tab.length > 0) {
+  sign_modal_tab.forEach(function (modalTabTriggerEL) {
+    new bootstrap.Tab(modalTabTriggerEL);
 
-  sign_tabs.forEach(function (tabTriggerEL) {
-    let tabTriggerEL_dataTarget = document.querySelector(tabTriggerEL.dataset['target']);
-    new bootstrap.Tab(tabTriggerEL);
-    // console.log(tabTriggerEL);
+    // console.log(modalTabTriggerEL);
+    // modalTabTriggerEL.addEventListener('click', function (e) {
+    //   if (modalTabTriggerEL.tagName === 'A') e.preventDefault();
+    //   console.log(modalTabTriggerEL);
+    //
+    //   bootstrap.Tab.getInstance(modalTabTriggerEL).show();
+    // });
   });
-
-  sign_tabs.forEach(function (tabTriggerEL) {
-    // let tabTriggerEL_dataTarget = document.querySelector(tabTriggerEL.dataset['target']);
-
-    tabTriggerEL.addEventListener('click', function (e) {
-      if (tabTriggerEL.tagName === 'A') e.preventDefault();
-      console.log(tabTriggerEL);
-      console.log(tabTriggerEL.dataset['target']);
-
-      // bootstrap.Tab.getInstance(tabTriggerEL).show();//fixme:show
-    });
-  });
-
-});
+}
 
 
 // 账号模态框切换选项卡tab
-$().ready(function () {
+let accountSignBtn = document.querySelectorAll('#account_sign button');
+let accountSignBtnList = [].slice.call(accountSignBtn);
+// console.log(accountSignBtnList);
+if (accountSignBtnList.length > 0) {
   let sign = document.querySelector('#sign');
-  if (sign) {
-    let account_sign = document.querySelector('#account_sign');
-    let modal_tabs = [].slice.call(account_sign.querySelectorAll('.modal_tab'));
+  new bootstrap.Modal(sign);
 
-    new bootstrap.Modal(sign);
+  accountSignBtnList.forEach(function (accountSignBtnTriggerEL) {
+    // console.log(accountSignBtnTriggerEL);
+    accountSignBtnTriggerEL.addEventListener('click', function () {
+      let btnTabTarget = accountSignBtnTriggerEL.dataset['tabTarget'];
+      let btnTabTriggerEL = sign.querySelector('[data-target="' + btnTabTarget + '"]');
 
-    modal_tabs.forEach(function (modalTriggerEL) {
-      let tab_target = document.querySelector(modalTriggerEL.dataset['tab_target']);
-      let modal_target = document.querySelector(modalTriggerEL.dataset['modal_target']);
-
-      console.log(modalTriggerEL);
-
-      modalTriggerEL.addEventListener('click', function () {
-
-        bootstrap.Modal.getInstance(modal_target).show();
-      });
+      console.log(btnTabTarget);
+      console.log(btnTabTriggerEL);
+      if (btnTabTriggerEL) {
+        bootstrap.Modal.getInstance(sign).show();
+        bootstrap.Tab.getInstance(btnTabTriggerEL).show();
+      }
     });
-  }
 
-});
+  });
+}
+
 
 // 密码明文显示
 $().ready(function () {
