@@ -16,51 +16,50 @@ $().ready(function () {
 // 账号表单类型切换
 $().ready(function () {
   let sign_tabs = [].slice.call(document.querySelectorAll('.sign_tab'));
+
   sign_tabs.forEach(function (tabTriggerEL) {
     let tabTriggerEL_dataTarget = document.querySelector(tabTriggerEL.dataset['target']);
-    console.log(tabTriggerEL_dataTarget);
+    new bootstrap.Tab(tabTriggerEL);
+    // console.log(tabTriggerEL);
+  });
 
-    new bootstrap.Tab(tabTriggerEL_dataTarget);//fixme:xx
+  sign_tabs.forEach(function (tabTriggerEL) {
+    // let tabTriggerEL_dataTarget = document.querySelector(tabTriggerEL.dataset['target']);
 
     tabTriggerEL.addEventListener('click', function (e) {
       if (tabTriggerEL.tagName === 'A') e.preventDefault();
-
+      console.log(tabTriggerEL);
       console.log(tabTriggerEL.dataset['target']);
 
-      bootstrap.Tab.getInstance(tabTriggerEL_dataTarget).show();
-      // tabTriggerEL_dataTarget.classList.toggle('active');
-      // tabTriggerEL_dataTarget.classList.toggle('show');
+      // bootstrap.Tab.getInstance(tabTriggerEL).show();//fixme:show
     });
   });
+
 });
 
 
 // 账号模态框切换选项卡tab
-let account_sign = document.querySelector('#account_sign');
-if (account_sign) {
-  let modal_tabs = [].slice.call(account_sign.querySelectorAll('.modal_tab'));
-  modal_tabs.forEach(function (modalTriggerEL) {
-    modalTriggerEL.addEventListener('click', function (e) {
-      let e_target = e.target;
-      let modal_tab;
+$().ready(function () {
+  let sign = document.querySelector('#sign');
+  if (sign) {
+    let account_sign = document.querySelector('#account_sign');
+    let modal_tabs = [].slice.call(account_sign.querySelectorAll('.modal_tab'));
 
-      if ('I' === e_target.tagName || 'SPAN' === e_target.tagName) {
-        modal_tab = e_target.parentElement;
-      } else if ('BUTTON' === e_target.tagName) {
-        modal_tab = e_target;
-      } else {
-        return;
-      }
+    new bootstrap.Modal(sign);
 
-      let modal_tab_modal = modal_tab.getAttribute('data-modal_target');
-      // let modal_tab_tab = modal_tab.getAttribute('data-tab_target');
-      let modal_id = document.querySelector(modal_tab_modal);
-      // let tab_id = document.querySelector(modal_tab_tab);
+    modal_tabs.forEach(function (modalTriggerEL) {
+      let tab_target = document.querySelector(modalTriggerEL.dataset['tab_target']);
+      console.log(modalTriggerEL);
 
-      new bootstrap.Modal(modal_id).show();
+      modalTriggerEL.addEventListener('click', function () {
+        let modal_target = document.querySelector(modalTriggerEL.dataset['modal_target']);
+
+        bootstrap.Modal.getInstance(modal_target).show();
+      });
     });
-  });
-}
+  }
+
+});
 
 // 密码明文显示
 $().ready(function () {
