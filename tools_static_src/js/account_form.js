@@ -49,10 +49,11 @@ $().ready(function () {
 
     modal_tabs.forEach(function (modalTriggerEL) {
       let tab_target = document.querySelector(modalTriggerEL.dataset['tab_target']);
+      let modal_target = document.querySelector(modalTriggerEL.dataset['modal_target']);
+
       console.log(modalTriggerEL);
 
       modalTriggerEL.addEventListener('click', function () {
-        let modal_target = document.querySelector(modalTriggerEL.dataset['modal_target']);
 
         bootstrap.Modal.getInstance(modal_target).show();
       });
