@@ -134,8 +134,9 @@ function popover_content_inner(innerHTML) {
 }
 
 // tooltip
-$().ready(function () {
-  $('span[title]').tooltip({
+let xa = document.querySelectorAll('span[title]');
+[].slice.call(xa).forEach(function (xaTriggerEL) {
+  new bootstrap.Tooltip(xaTriggerEL, {
     placement: 'right',
   });
 });
@@ -353,43 +354,37 @@ function get_recaptcha_verify(token_key, pageAction) {
 }
 
 //主导航菜单 下拉菜单
-$().ready(function () {
-  let account_sign_out = document.querySelector('#account_sign_out');
-  if (account_sign_out) {
-    let notices_nav_tabs = account_sign_out.querySelector('#notices_nav_tabs');
-    notices_nav_tabs.addEventListener('click', function (e) {
-      e.preventDefault();
-    });
-    notices_nav_tabs.addEventListener('mouseover', function (e) {
-      let e_target = e.target;
-      let a_tab;
-      if ('A' === e_target.tagName) {
-        a_tab = e_target;
-      } else if ('I' === e_target.tagName || 'SPAN' === e_target.tagName) {
-        a_tab = e_target.parentElement;
-      } else {
-        return;
-      }
-      $(a_tab).tab('show');
-      a_tab.classList.remove('active');
-    });
-  }
-});
+let account_sign_out = document.querySelector('#account_sign_out');
+if (account_sign_out) {
+  let notices_nav_tabs = account_sign_out.querySelector('#notices_nav_tabs');
+  notices_nav_tabs.addEventListener('click', function (e) {
+    e.preventDefault();
+  });
+  notices_nav_tabs.addEventListener('mouseover', function (e) {
+    let e_target = e.target;
+    let a_tab;
+    if ('A' === e_target.tagName) {
+      a_tab = e_target;
+    } else if ('I' === e_target.tagName || 'SPAN' === e_target.tagName) {
+      a_tab = e_target.parentElement;
+    } else {
+      return;
+    }
+    $(a_tab).tab('show');
+    a_tab.classList.remove('active');
+  });
+}
 
 // 回弹主导航菜单collapse内容
-$().ready(function () {
-  let navBar = document.querySelector('#navBar');
-  if (navBar) {
-    jt_header.addEventListener('mouseleave', function () {
-      $(navBar).collapse('hide');
-    });
-  }
-});
+let navBar = document.querySelector('#navBar');
+if (navBar) {
+  jt_header.addEventListener('mouseleave', function () {
+    new bootstrap.Collapse(navBar).hide();
+  });
+}
 
 // 页脚文案
-$().ready(function () {
-  footer_add_x();
-});
+footer_add_x();
 
 function footer_add_x() {
   let footer_x = document.querySelector('#footer_x');
