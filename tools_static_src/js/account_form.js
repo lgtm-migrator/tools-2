@@ -14,35 +14,25 @@ $().ready(function () {
 });
 
 // 账号表单类型切换
-window.onload = function () {
-  let sign = document.querySelector('#sign');
-  if (sign) {
-    let sign_tabs = [].slice.call(sign.querySelectorAll('.sign_tab'));
-    sign_tabs.forEach(function (tabTriggerEL) {
-      let x = new bootstrap.Tab(tabTriggerEL);//fixme:xx
+$().ready(function () {
+  let sign_tabs = [].slice.call(document.querySelectorAll('.sign_tab'));
+  sign_tabs.forEach(function (tabTriggerEL) {
+    let tabTriggerEL_dataTarget = document.querySelector(tabTriggerEL.dataset['target']);
+    console.log(tabTriggerEL_dataTarget);
 
-      tabTriggerEL.addEventListener('click', function (e) {
-        let e_target = e.target;
-        let current_sign_tab;
+    new bootstrap.Tab(tabTriggerEL_dataTarget);//fixme:xx
 
-        if ('I' === e_target.tagName || 'SPAN' === e_target.tagName) {
-          current_sign_tab = e_target.parentElement;
-        } else if ('A' === e_target.tagName) {
-          e.preventDefault();
-          current_sign_tab = e_target;
-        } else if ('BUTTON' === e_target.tagName) {
-          current_sign_tab = e_target;
-        } else {
-          return;
-        }
+    tabTriggerEL.addEventListener('click', function (e) {
+      if (tabTriggerEL.tagName === 'A') e.preventDefault();
 
-        // x.show();
-        bootstrap.Tab.getInstance(current_sign_tab).show();
-        // current_sign_tab.classList.toggle('active');
-      });
+      console.log(tabTriggerEL.dataset['target']);
+
+      bootstrap.Tab.getInstance(tabTriggerEL_dataTarget).show();
+      // tabTriggerEL_dataTarget.classList.toggle('active');
+      // tabTriggerEL_dataTarget.classList.toggle('show');
     });
-  }
-}
+  });
+});
 
 
 // 账号模态框切换选项卡tab
