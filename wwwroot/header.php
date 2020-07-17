@@ -6,7 +6,7 @@ set_session();
 set_session_cookie('_token', $_SESSION['_token']);
 set_session_cookie('logged_in', $_SESSION['logged_in']);
 ?>
-<!DOCTYPE html>
+<!doctype html>
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
