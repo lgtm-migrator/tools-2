@@ -17,14 +17,14 @@ require_once dirname(dirname(__DIR__)) . '/header.php';
     </div>
   </div>
   <div class="mt-5 mb-3 container px-2 py-2 rounded border">
-    <span>参考答案：</span>
-    <div class="d-" id="tip">
-      <span class="text-info" id="category">题目类别</span>
+    <div class="small d-none" id="tip">
+      <span class="text-info" id="category"></span>
       <span>题目数量为</span>
-      <span class="text-primary" id="quantity">500</span>
+      <span class="text-primary" id="quantity"></span>
       <span>道题</span>
       <hr>
     </div>
+    <span class="d-flex justify-content-center small text-danger">如果答题时发现有错误答案，请及时通过钉钉群或者QQ群联系管理员。</span>
     <div id="answer"></div>
   </div>
 </div>
