@@ -32,26 +32,20 @@ const
 
 // Task
 // 任务
-task(copy_exam_answer_query_js);
-task(copy_exam_answer_query_css);
-
-task(terser_exam_answer_query);
-task(cleanCSS_exam_answer_query);
-
 task(watch_exam_answer_query);
 
 // Combined tasks
 // 合并任务
 task('copy_exam_answer_query',
   parallel(
-    'copy_exam_answer_query_js',
-    'copy_exam_answer_query_css'
+    copy_exam_answer_query_js,
+    copy_exam_answer_query_css
   )
 );
 task("minimize_exam_answer_query",
   parallel(
-    "terser_exam_answer_query",
-    "cleanCSS_exam_answer_query"
+    terser_exam_answer_query,
+    cleanCSS_exam_answer_query
   )
 );
 task("build_exam_answer_query",
@@ -67,18 +61,18 @@ function copy_exam_answer_query_js(done) {
   done();
 }
 
+function copy_exam_answer_query_css(done) {
+  src([index_css_path, get_answer_css_path], {since: lastRun(copy_exam_answer_query_css)})
+    .pipe(postcss([autoPreFixer()]))
+    .pipe(dest(item_static_css_path));
+  done();
+}
+
 function terser_exam_answer_query(done) {
   src([index_js_path, get_answer_js_path], {since: lastRun(terser_exam_answer_query)})
     .pipe(terser())
     .pipe(rename({suffix: ".min"}))
     .pipe(dest(item_static_js_path));
-  done();
-}
-
-function copy_exam_answer_query_css(done) {
-  src([index_css_path, get_answer_css_path], {since: lastRun(copy_exam_answer_query_css)})
-    .pipe(postcss([autoPreFixer()]))
-    .pipe(dest(item_static_css_path));
   done();
 }
 

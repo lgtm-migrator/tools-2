@@ -30,27 +30,20 @@ const
 
 // Task
 // 任务
-task(copy_jt_qrcode_js);
-task(copy_jt_qrcode_css);
-task(copy_jt_qrcode_img_manage);
-
-task(terser_jt_qrcode);
-task(cleanCSS_jt_qrcode);
-
 task(watch_jt_qrcode);
 
 // Combined tasks
 // 合并任务
 task('copy_jt_qrcode',
   parallel(
-    'copy_jt_qrcode_js',
-    'copy_jt_qrcode_css',
-    'copy_jt_qrcode_img_manage',
+    copy_jt_qrcode_js,
+    copy_jt_qrcode_css,
+    copy_jt_qrcode_img_manage,
   ));
 task("minimize_jt_qrcode",
   parallel(
-    "terser_jt_qrcode",
-    "cleanCSS_jt_qrcode",
+    terser_jt_qrcode,
+    cleanCSS_jt_qrcode,
   )
 );
 task("build_jt_qrcode",
@@ -66,14 +59,6 @@ function copy_jt_qrcode_js(done) {
   done();
 }
 
-function terser_jt_qrcode(done) {
-  src([jt_qrcode_js_path], {since: lastRun(terser_jt_qrcode)})
-    .pipe(terser())
-    .pipe(rename({suffix: ".min"}))
-    .pipe(dest(static_js));
-  done();
-}
-
 function copy_jt_qrcode_css(done) {
   src([jt_qrcode_css_path], {since: lastRun(copy_jt_qrcode_css)})
     .pipe(dest(static_css));
@@ -83,6 +68,14 @@ function copy_jt_qrcode_css(done) {
 function copy_jt_qrcode_img_manage(done) {
   src([jt_qrcode_img_manage_path], {since: lastRun(copy_jt_qrcode_img_manage)})
     .pipe(dest(static_img));
+  done();
+}
+
+function terser_jt_qrcode(done) {
+  src([jt_qrcode_js_path], {since: lastRun(terser_jt_qrcode)})
+    .pipe(terser())
+    .pipe(rename({suffix: ".min"}))
+    .pipe(dest(static_js));
   done();
 }
 

@@ -25,20 +25,12 @@ const
   debug_js_path = tools_static_src_js + "debug.js",
   debug_css_path = tools_static_src_css + "debug.css";
 
-/**
- * Task
- * 任务
- */
-task(copy_debug_css);
-task(copy_debug_js);
-task(cleanCSS_debug);
-task(terser_debug);
+// Task
+// 任务
 task(watch_debug);
 
-/**
- * Combined tasks
- * 合并任务
- */
+// Combined tasks
+// 合并任务
 task("copy_debug",
   parallel(
     copy_debug_css,
@@ -47,8 +39,8 @@ task("copy_debug",
 );
 task("minimize_debug",
   parallel(
-    "cleanCSS_debug",
-    "terser_debug",
+    cleanCSS_debug,
+    terser_debug,
   )
 );
 task("build_debug",

@@ -36,10 +36,6 @@ const
  * Task
  * 任务
  */
-task(copy_member_js);
-task(copy_member_css);
-task(terser_member);
-task(cleanCSS_member);
 task(watch_member);
 
 
@@ -49,13 +45,13 @@ task(watch_member);
  */
 task('copy_member',
   parallel(
-    'copy_member_js',
-    'copy_member_css',
+    copy_member_js,
+    copy_member_css,
   ));
 task("minimize_member",
   parallel(
-    "terser_member",
-    "cleanCSS_member",
+    terser_member,
+    cleanCSS_member,
   )
 );
 task("build_member",

@@ -30,10 +30,6 @@ const
  * Task
  * 任务
  */
-task(copy_account_js);
-task(copy_account_css);
-task(terser_account);
-task(cleanCSS_account);
 task(watch_account);
 
 
@@ -43,13 +39,13 @@ task(watch_account);
  */
 task('copy_account',
   parallel(
-    'copy_account_js',
-    'copy_account_css',
+    copy_account_js,
+    copy_account_css,
   ));
 task("minimize_account",
   parallel(
-    "terser_account",
-    "cleanCSS_account",
+    terser_account,
+    cleanCSS_account,
   )
 );
 task("build_account",
