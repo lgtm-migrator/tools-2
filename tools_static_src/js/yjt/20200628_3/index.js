@@ -15,23 +15,28 @@ if (categoryList) {
   });
 }
 
+// 检查结果结构
 function check_questions(questions = []) {
-  if (!Array.isArray(questions)) return;
+  if (!Array.isArray(questions)) throw bootstrapModalJs('', create_small_center_text('获取答案出错，请尝试请空浏览器的本页面缓存后重试，如仍出现本提示，那么暂时不能提供服务。'), '', 'sm', true);
   set_quantity(questions.length);
   questions.forEach(function (questionEL) {
     if (!Array.isArray(questionEL)) fundebug.notify('yjt-20200628_3 BUG', questionEL);
     if (questionEL.length !== 8) fundebug.notify('yjt-20200628_3 BUG Length', questionEL.length);
   });
+  return true;
 }
 
+// 题目数量
 function set_quantity(quantity) {
   document.querySelector('#quantity').innerText = quantity;
 }
 
+// 题目分类
 function set_category_text(category) {
   document.querySelector('#category').textContent = category.textContent;
 }
 
+// 整理结果
 function question_bank(question_bank) {
   check_questions(eval(question_bank));
   let question_bank_code = eval(question_bank).map(function (e, t) {

@@ -1,5 +1,5 @@
 <?php
-define('title', '2020-yjt');
+define('title', '河北省2020年应急安全知识网络竞赛');
 require_once dirname(dirname(__DIR__)) . '/header.php';
 ?>
 <link rel="stylesheet" href="/static/css/yjt/20200628_3/index.min.css">
@@ -18,7 +18,7 @@ require_once dirname(dirname(__DIR__)) . '/header.php';
   </div>
   <div class="mt-5 mb-3 container px-2 py-2 rounded border">
     <span>参考答案：</span>
-    <div class="d-none" id="tip">
+    <div class="d-" id="tip">
       <span class="text-info" id="category">题目类别</span>
       <span>题目数量为</span>
       <span class="text-primary" id="quantity">500</span>
