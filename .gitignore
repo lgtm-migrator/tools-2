@@ -18,3 +18,6 @@
 /session_files/
 /wwwroot/upload/
 /wwwroot/captcha/captcha.jpg
+
+# 排除本地临时备份文件
+/tools_static_src/**/backTmp/
