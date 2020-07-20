@@ -378,7 +378,7 @@ if (account_sign_out) {
 }
 
 // 回弹主导航菜单collapse内容
-$.ready(function () {
+$().ready(function () {
   let navBar = document.querySelector('#navBar');
   if (navBar) {
     jt_header.addEventListener('mouseleave', function () {
@@ -387,8 +387,11 @@ $.ready(function () {
   }
 });
 
-
 // 页脚文案
+$().ready(function () {
+  footer_add_x();
+});
+
 function footer_add_x() {
   let footer_x = document.querySelector('#footer_x');
 
@@ -581,10 +584,6 @@ function disclaimer() {
 
   return div;
 }
-
-$.ready(function () {
-  footer_add_x();
-});
 
 // 增加阴影
 $().ready(function () {
