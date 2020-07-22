@@ -525,9 +525,8 @@ function ClipboardJS_location_href(event) {
       return url;
     },
   });
-  clipboard.on('success', function (e) {
+  clipboard.on('success', function () {
     bootstrapModalJs('', create_small_center_text('网址复制成功', 'asfasdf'), '', 'sm', true);
-    console.log(e);
   });
   clipboard.on('error', function () {
     bootstrapModalJs('', '<span class="d-block text-center text-danger small">网址复制失败</span>', '', 'sm', true);
