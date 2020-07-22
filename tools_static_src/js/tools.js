@@ -130,7 +130,7 @@ function get_file_size(file_size) {
 function popover_content_inner(innerHTML) {
   let span = document.createElement("span");
 
-  span.className = 'small';
+  span.className = '';
   span.innerHTML = innerHTML;
   return span;
 }
@@ -506,7 +506,7 @@ function footer_qr_code_modal_tip() {
   i.innerHTML = '&nbsp;说明';
   i.style.cursor = 'pointer';
 
-  $(i).popover({
+  new bootstrap.Popover(i, {
     trigger: 'hover',
     boundary: 'viewport',
     placement: 'top',
@@ -520,9 +520,10 @@ function footer_qr_code_modal_tip() {
 
 function ClipboardJS_location_href(event) {
   let url = document.location.href;
-  console.log(url);
   let clipboard = new ClipboardJS(event, {
-    text: url,
+    text: function () {
+      return url;
+    },
   });
   clipboard.on('success', function (e) {
     bootstrapModalJs('', create_small_center_text('网址复制成功', 'asfasdf'), '', 'sm', true);
@@ -852,19 +853,16 @@ function dynamic_synchronization_element(source_element, target_element, event_t
 
 // 全局tooltip提示设置
 $().ready(function () {
-  let title_spans = [].slice.call(document.querySelectorAll('span[title]'));
-  if (xa.length > 0) {
-    title_spans.forEach(function (xaTriggerEL) {
-      new bootstrap.Tooltip(xaTriggerEL, {
-        placement: 'right',
-        trigger: 'manual',
-      });
-      xaTriggerEL.addEventListener('mouseover', function () {
-        bootstrap.Tooltip.getInstance(xaTriggerEL).show();
-      });
-      xaTriggerEL.addEventListener('mouseleave', function () {
-        bootstrap.Tooltip.getInstance(xaTriggerEL).hide();
-      });
+  [].slice.call(document.querySelectorAll('span[title]')).forEach(function (titleTriggerEL) {
+    let titleElement = new bootstrap.Tooltip(titleTriggerEL, {
+      placement: 'right',
+      trigger: 'manual',
     });
-  }
+    titleTriggerEL.addEventListener('mouseover', function () {
+      titleElement.show();
+    });
+    titleTriggerEL.addEventListener('mouseleave', function () {
+      titleElement.hide();
+    });
+  });
 });
