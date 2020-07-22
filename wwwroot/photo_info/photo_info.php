@@ -21,7 +21,7 @@ require_once dirname(dirname(__DIR__)) . "/config/defined.php";
 require_once dirname(dirname(__DIR__)) . "/config/functions.php";
 require_once "photo_info_fun.php";
 
-$allowed_extension_name = array("jfif", "pjpeg", "jpeg", "pjp", "jpg", "tiff", "tif");
+$allowed_extension_name = array("jfif", "pjpeg", "jpeg", "pjp", "jpg", "tiff", "tif", "png");
 
 
 foreach ($image_files["error"] as $k => $error) {

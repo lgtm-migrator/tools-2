@@ -7,7 +7,7 @@ $().ready(function () {
 let photo_input = document.body.querySelector('#photo_input');
 let photo_submit = document.body.querySelector('#photo_submit');
 let max_file_size_value = 1048576 * 15;
-let allowed_extension_name = ['jpeg', 'jpg', 'tiff', 'tif'];
+let allowed_extension_name = ['png', 'jpeg', 'jpg', 'tiff', 'tif'];
 
 let photo_url = '/photo_info/photo_info.php';
 let rule = document.body.querySelector('#rule');
