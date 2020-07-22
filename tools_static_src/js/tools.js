@@ -135,14 +135,6 @@ function popover_content_inner(innerHTML) {
   return span;
 }
 
-// tooltip
-let xa = document.querySelectorAll('span[title]');
-[].slice.call(xa).forEach(function (xaTriggerEL) {
-  new bootstrap.Tooltip(xaTriggerEL, {
-    placement: 'right',
-  });
-});
-
 // js.cookie
 let js_cookies = window.Cookies.noConflict();
 
@@ -356,33 +348,25 @@ function get_recaptcha_verify(token_key, pageAction) {
 }
 
 //主导航菜单 下拉菜单
-let account_sign_out = document.querySelector('#account_sign_out');
-if (account_sign_out) {
-  let notices_nav_tabs = account_sign_out.querySelector('#notices_nav_tabs');
-  notices_nav_tabs.addEventListener('click', function (e) {
-    e.preventDefault();
-  });
-  notices_nav_tabs.addEventListener('mouseover', function (e) {
-    let e_target = e.target;
-    let a_tab;
-    if ('A' === e_target.tagName) {
-      a_tab = e_target;
-    } else if ('I' === e_target.tagName || 'SPAN' === e_target.tagName) {
-      a_tab = e_target.parentElement;
-    } else {
-      return;
-    }
-    $(a_tab).tab('show');
-    a_tab.classList.remove('active');
-  });
-}
-
-// 回弹主导航菜单collapse内容
 $().ready(function () {
-  let navBar = document.querySelector('#navBar');
-  if (navBar) {
-    jt_header.addEventListener('mouseleave', function () {
-      new bootstrap.Collapse(navBar).hide();
+  let account_sign_out = document.querySelector('#account_sign_out');
+  if (account_sign_out) {
+    let notices_nav_tabs = account_sign_out.querySelector('#notices_nav_tabs');
+    notices_nav_tabs.addEventListener('click', function (e) {
+      e.preventDefault();
+    });
+    notices_nav_tabs.addEventListener('mouseover', function (e) {
+      let e_target = e.target;
+      let a_tab;
+      if ('A' === e_target.tagName) {
+        a_tab = e_target;
+      } else if ('I' === e_target.tagName || 'SPAN' === e_target.tagName) {
+        a_tab = e_target.parentElement;
+      } else {
+        return;
+      }
+      $(a_tab).tab('show');
+      a_tab.classList.remove('active');
     });
   }
 });
@@ -865,3 +849,22 @@ function dynamic_synchronization_element(source_element, target_element, event_t
     target_element.value = source_element.value;
   });
 }
+
+// 全局tooltip提示设置
+$().ready(function () {
+  let title_spans = [].slice.call(document.querySelectorAll('span[title]'));
+  if (xa.length > 0) {
+    title_spans.forEach(function (xaTriggerEL) {
+      new bootstrap.Tooltip(xaTriggerEL, {
+        placement: 'right',
+        trigger: 'manual',
+      });
+      xaTriggerEL.addEventListener('mouseover', function () {
+        bootstrap.Tooltip.getInstance(xaTriggerEL).show();
+      });
+      xaTriggerEL.addEventListener('mouseleave', function () {
+        bootstrap.Tooltip.getInstance(xaTriggerEL).hide();
+      });
+    });
+  }
+});
