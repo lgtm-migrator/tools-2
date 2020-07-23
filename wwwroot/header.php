@@ -24,7 +24,7 @@ set_session_cookie('logged_in', $_SESSION['logged_in']);
   <link rel="stylesheet" href="/static/css/animate.min.css">
   <link rel="stylesheet" href="/static/css/hover.min.css">
   <link rel="stylesheet" href="/static/css/hamburgers.min.css">
-<!--  <link rel="stylesheet" href="/static/css/bootstrap_next.min.css">-->
+  <!--  <link rel="stylesheet" href="/static/css/bootstrap_next.min.css">-->
   <link rel="stylesheet" href="/static/css/bootstrap.min.css">
   <link rel="stylesheet" href="/static/css/bootstrap-table.min.css">
   <link rel="stylesheet" href="/static/font/css/all.min.css">
@@ -45,17 +45,17 @@ set_session_cookie('logged_in', $_SESSION['logged_in']);
 
   <title><?php echo (defined('title')) ? title : '' ?></title>
   <!-- Global Site Tag (gtag.js) - Google Analytics -->
-  <!--  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-158181386-2"></script>-->
-  <!--  <script>-->
-  <!--    window.dataLayer = window.dataLayer || [];-->
-  <!---->
-  <!--    function gtag() {-->
-  <!--      dataLayer.push(arguments);-->
-  <!--    }-->
-  <!---->
-  <!--    gtag('js', new Date());-->
-  <!--    gtag('config', 'UA-158181386-2');-->
-  <!--  </script>-->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-158181386-2"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+    gtag('config', 'UA-158181386-2');
+  </script>
   <script src="/static/js/fundebug.min.js"></script>
 </head>
 <body>
