@@ -41,18 +41,7 @@ set_session_cookie('logged_in', $_SESSION['logged_in']);
   </noscript>
 
   <title><?php echo (defined('title')) ? title : '' ?></title>
-  <!-- Global Site Tag (gtag.js) - Google Analytics -->
-  <!--  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-158181386-2"></script>-->
-  <!--  <script>-->
-  <!--    window.dataLayer = window.dataLayer || [];-->
-  <!---->
-  <!--    function gtag() {-->
-  <!--      dataLayer.push(arguments);-->
-  <!--    }-->
-  <!---->
-  <!--    gtag('js', new Date());-->
-  <!--    gtag('config', 'UA-158181386-2');-->
-  <!--  </script>-->
+  <?php require_once dirname(dirname(dirname(__DIR__))) . '/googleAnalytics/gtag_js.php'; ?>
   <script src="/static/js/fundebug.min.js"></script>
 </head>
 <body>
