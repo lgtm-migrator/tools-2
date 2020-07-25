@@ -108,10 +108,10 @@ if (recaptcha_tools) {
   }
 
   function progress_bar_revise(bar_element) {
-    let element_current_width = get_element_style_number(bar_element, 'width');
-    let max_time = 6;
-    let max_width = 100;
-    if (1 > 2) console.log(max_time + max_width + element_current_width);//fixme:未完成
+    // let element_current_width = get_element_style_number(bar_element, 'width');
+    // let max_time = 6;
+    // let max_width = 100;
+    // console.log(max_time + max_width + element_current_width);//fixme:未完成
   }
 
   function get_element_style_number(element, style_name) {
