@@ -1,4 +1,4 @@
-const {task, series, parallel} = require('gulp');
+const {task, parallel} = require('gulp');
 require('./20200628_3');
 
 // Combined tasks

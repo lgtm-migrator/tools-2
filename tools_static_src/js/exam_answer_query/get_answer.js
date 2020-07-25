@@ -216,7 +216,7 @@ function table_tr(answers_data) {
   let td_e = document.createElement("td");
   let td_f = document.createElement("td");
   let td_h = document.createElement("td");
-  let th_sss = [th_num, td_id, td_result, td_text, td_score, td_options, td_e, td_f, td_h];
+  // let th_sss = [th_num, td_id, td_result, td_text, td_score, td_options, td_e, td_f, td_h];
 
   th_num.scope = 'row';
   console.log(answers_data);
@@ -225,7 +225,7 @@ function table_tr(answers_data) {
     for (let answersTriggerELElement in answersTriggerEL) {
       let x;
       if (answersTriggerEL.hasOwnProperty(answersTriggerELElement)) x = answersTriggerEL[answersTriggerELElement];
-      // console.log(answersTriggerELElement+' ===== '+x);
+      console.log(answersTriggerELElement + ' ===== ' + x);
     }
   });
 
