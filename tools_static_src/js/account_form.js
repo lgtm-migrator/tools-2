@@ -111,7 +111,7 @@ if (recaptcha_tools) {
     let element_current_width = get_element_style_number(bar_element, 'width');
     let max_time = 6;
     let max_width = 100;
-    console.log(max_time + max_width + element_current_width);//fixme:未完成
+    if (1 > 2) console.log(max_time + max_width + element_current_width);//fixme:未完成
   }
 
   function get_element_style_number(element, style_name) {
@@ -127,7 +127,7 @@ if (recaptcha_tools) {
 }
 
 // 刷新验证码方法之一
-if(document.querySelector('#sign')){
+if (document.querySelector('#sign')) {
   document.querySelector('#sign').addEventListener('shown.bs.modal', function () {
     listener_all_reVerify_click();
   });
