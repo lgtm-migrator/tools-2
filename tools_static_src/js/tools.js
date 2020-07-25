@@ -7,6 +7,8 @@ let RegExp_rules = {
   'tel_number': new RegExp(/^0319-2(06|08|11)(\d{4})$/),
   'mysqli_1045': new RegExp(/(1045)/),
   'imei': new RegExp(/^\d{15,17}$/),
+  'image': new RegExp(/^https?:\/\/(.+\/)+.+(\.(gif|png|jpg|jpeg|webp|svg|psd|bmp|tif))$/i),
+  'video': new RegExp(/^https?:\/\/(.+\/)+.+(\.(swf|avi|flv|mpg|rm|mov|wav|asf|3gp|mkv|rmvb|mp4))$/i),
   'mobile_number': new RegExp(/^(?:(?:\+|00)86)?1(?:(?:3[\d])|(?:4[5-7|9])|(?:5[0-3|5-9])|(?:6[5-7])|(?:7[0-8])|(?:8[\d])|(?:9[1|8-9]))\d{8}$/),
   'ip_v4': new RegExp(/^(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/),
   'ip_v6': new RegExp(/^((([0-9A-Fa-f]{1,4}:){7}[0-9A-Fa-f]{1,4})|(([0-9A-Fa-f]{1,4}:){6}:[0-9A-Fa-f]{1,4})|(([0-9A-Fa-f]{1,4}:){5}:([0-9A-Fa-f]{1,4}:)?[0-9A-Fa-f]{1,4})|(([0-9A-Fa-f]{1,4}:){4}:([0-9A-Fa-f]{1,4}:){0,2}[0-9A-Fa-f]{1,4})|(([0-9A-Fa-f]{1,4}:){3}:([0-9A-Fa-f]{1,4}:){0,3}[0-9A-Fa-f]{1,4})|(([0-9A-Fa-f]{1,4}:){2}:([0-9A-Fa-f]{1,4}:){0,4}[0-9A-Fa-f]{1,4})|(([0-9A-Fa-f]{1,4}:){6}((\b((25[0-5])|(1\d{2})|(2[0-4]\d)|(\d{1,2}))\b)\.){3}(\b((25[0-5])|(1\d{2})|(2[0-4]\d)|(\d{1,2}))\b))|(([0-9A-Fa-f]{1,4}:){0,5}:((\b((25[0-5])|(1\d{2})|(2[0-4]\d)|(\d{1,2}))\b)\.){3}(\b((25[0-5])|(1\d{2})|(2[0-4]\d)|(\d{1,2}))\b))|(::([0-9A-Fa-f]{1,4}:){0,5}((\b((25[0-5])|(1\d{2})|(2[0-4]\d)|(\d{1,2}))\b)\.){3}(\b((25[0-5])|(1\d{2})|(2[0-4]\d)|(\d{1,2}))\b))|([0-9A-Fa-f]{1,4}::([0-9A-Fa-f]{1,4}:){0,5}[0-9A-Fa-f]{1,4})|(::([0-9A-Fa-f]{1,4}:){0,6}[0-9A-Fa-f]{1,4})|(([0-9A-Fa-f]{1,4}:){1,7}:))$/i),
@@ -128,55 +130,59 @@ function get_file_size(file_size) {
 function popover_content_inner(innerHTML) {
   let span = document.createElement("span");
 
-  span.className = 'small';
+  span.className = '';
   span.innerHTML = innerHTML;
   return span;
 }
-
-// tooltip
-$().ready(function () {
-  $('span[title]').tooltip({
-    placement: 'right',
-  });
-});
 
 // js.cookie
 let js_cookies = window.Cookies.noConflict();
 
 function set_cookie(key, value = 1, attributes, secure = true) {
+  let js_cookies_attributes;
+  if (window.location.protocol === 'https') {
+    js_cookies_attributes = {
+      secure: true,
+      expires: 30,
+      // httpOnly: true,
+      // domain: "",
+      // path: "",
+      sameSite: 'Strict',//fixme:sameSite值后期待调整
+    };
+  } else {
+    js_cookies_attributes = {
+      expires: 30,
+      // httpOnly: true,
+      // domain: "",
+      // path: "",
+      sameSite: 'Strict',
+    };
+  }
+
   if (secure === true) {
-    let js_cookies_attributes;
-    if (window.location.protocol.includes('https')) {
-      js_cookies_attributes = {
-        secure: true,
-        expires: 30,
-        // httpOnly: true,
-        // domain: "",
-        // path: "",
-        sameSite: 'lax',//fixme:sameSite值后期待调整
-      };
-    } else {
-      js_cookies_attributes = {
-        expires: 30,
-        // httpOnly: true,
-        // domain: "",
-        // path: "",
-        sameSite: 'lax',
-      };
-    }
     let secure_js_cookies = js_cookies.withAttributes(js_cookies_attributes);
     secure_js_cookies.set(key, value, attributes);
   } else {
     js_cookies.set(key, value, attributes);
   }
+
+  return js_cookies.get(key) !== undefined;
+
 }
 
 function get_cookie(key) {
+  if (js_cookies.get(key) === undefined) {
+    return false;
+  }
   return js_cookies.get(key);
 }
 
 function remove_cookie(key) {
+  if (js_cookies.get(key) === undefined) {
+    return true;
+  }
   js_cookies.remove(key);
+  return true;
 }
 
 // 表单验证
@@ -365,16 +371,6 @@ $().ready(function () {
   }
 });
 
-// 回弹主导航菜单collapse内容
-$().ready(function () {
-  let navBar = document.querySelector('#navBar');
-  if (navBar) {
-    jt_header.addEventListener('mouseleave', function () {
-      $(navBar).collapse('hide');
-    });
-  }
-});
-
 // 页脚文案
 $().ready(function () {
   footer_add_x();
@@ -471,7 +467,6 @@ function footer_qr_code() {
 
 function footer_modal_qr_code() {
   let url = document.location.href;
-  let url_param = {'from': 'clipboard'};
   let div = document.createElement('div');
   let img = document.createElement('img');
   let qrcode_option = {
@@ -488,12 +483,12 @@ function footer_modal_qr_code() {
 
   div.className = 'text-center';
 
-  copy_location_href(img);
+  ClipboardJS_location_href(img);
 
   div.appendChild(img);
-  div.appendChild(footer_modal_qr_code_tip());
+  div.appendChild(footer_qr_code_modal_tip());
 
-  QRCode.toDataURL(addUrlParam(url, url_param), qrcode_option, function (err, img_base64) {
+  QRCode.toDataURL(url, qrcode_option, function (err, img_base64) {
     if (err) throw err;
     img.src = img_base64;
     img.alt = document.title + '页面地址二维码';
@@ -501,17 +496,17 @@ function footer_modal_qr_code() {
   bootstrapModalJs('', div, '', '', true);
 }
 
-function footer_modal_qr_code_tip() {
+function footer_qr_code_modal_tip() {
   let div = document.createElement('div');
   let i = document.createElement('i');
 
-  div.className='mt-2';
+  div.className = 'mt-2';
 
   i.className = 'text-secondary fas fa-lg fa-question-circle';
   i.innerHTML = '&nbsp;说明';
   i.style.cursor = 'pointer';
 
-  $(i).popover({
+  new bootstrap.Popover(i, {
     trigger: 'hover',
     boundary: 'viewport',
     placement: 'top',
@@ -523,17 +518,15 @@ function footer_modal_qr_code_tip() {
   return div;
 }
 
-function copy_location_href(event) {
+function ClipboardJS_location_href(event) {
   let url = document.location.href;
-  let url_param = {'from': 'clipboard'};
   let clipboard = new ClipboardJS(event, {
     text: function () {
-      return addUrlParam(url, url_param);
+      return url;
     },
   });
-  clipboard.on('success', function (e) {
-    bootstrapModalJs('', '<span class="d-block text-center text-success small">网址复制成功</span>', '', 'sm', true);
-    console.log(e);
+  clipboard.on('success', function () {
+    bootstrapModalJs('', create_small_center_text('网址复制成功', 'asfasdf'), '', 'sm', true);
   });
   clipboard.on('error', function () {
     bootstrapModalJs('', '<span class="d-block text-center text-danger small">网址复制失败</span>', '', 'sm', true);
@@ -856,3 +849,19 @@ function dynamic_synchronization_element(source_element, target_element, event_t
     target_element.value = source_element.value;
   });
 }
+
+// 全局tooltip提示设置
+$().ready(function () {
+  [].slice.call(document.querySelectorAll('span[title]')).forEach(function (titleTriggerEL) {
+    let titleElement = new bootstrap.Tooltip(titleTriggerEL, {
+      placement: 'right',
+      trigger: 'manual',
+    });
+    titleTriggerEL.addEventListener('mouseover', function () {
+      titleElement.show();
+    });
+    titleTriggerEL.addEventListener('mouseleave', function () {
+      titleElement.hide();
+    });
+  });
+});

@@ -30,27 +30,20 @@ const
 
 // Task
 // 任务
-task(copy_flexible_code_js);
-task(copy_flexible_code_css);
-task(copy_flexible_code_img_manage);
-
-task(terser_flexible_code);
-task(cleanCSS_flexible_code);
-
 task(watch_flexible_code);
 
 // Combined tasks
 // 合并任务
 task('copy_flexible_code',
   parallel(
-    'copy_flexible_code_js',
-    'copy_flexible_code_css',
-    'copy_flexible_code_img_manage',
+    copy_flexible_code_js,
+    copy_flexible_code_css,
+    copy_flexible_code_img_manage,
   ));
 task("minimize_flexible_code",
   parallel(
-    "terser_flexible_code",
-    "cleanCSS_flexible_code",
+    terser_flexible_code,
+    cleanCSS_flexible_code,
   )
 );
 task("build_flexible_code",
@@ -66,14 +59,6 @@ function copy_flexible_code_js(done) {
   done();
 }
 
-function terser_flexible_code(done) {
-  src([flexible_code_js_path], {since: lastRun(terser_flexible_code)})
-    .pipe(terser())
-    .pipe(rename({suffix: ".min"}))
-    .pipe(dest(static_js));
-  done();
-}
-
 function copy_flexible_code_css(done) {
   src([flexible_code_css_path], {since: lastRun(copy_flexible_code_css)})
     .pipe(postcss([autoPreFixer()]))
@@ -84,6 +69,14 @@ function copy_flexible_code_css(done) {
 function copy_flexible_code_img_manage(done) {
   src([flexible_code_img_manage_path], {since: lastRun(copy_flexible_code_img_manage)})
     .pipe(dest(static_img));
+  done();
+}
+
+function terser_flexible_code(done) {
+  src([flexible_code_js_path], {since: lastRun(terser_flexible_code)})
+    .pipe(terser())
+    .pipe(rename({suffix: ".min"}))
+    .pipe(dest(static_js));
   done();
 }
 

@@ -44,10 +44,6 @@ const
  * Task
  * 任务
  */
-task(copy_tools_css);
-task(copy_tools_js);
-task(cleanCSS_tools);
-task(terser_tools);
 task(watch_tools);
 
 /**
@@ -62,8 +58,8 @@ task("copy_tools",
 );
 task("minimize_tools",
   parallel(
-    "cleanCSS_tools",
-    "terser_tools",
+    cleanCSS_tools,
+    terser_tools,
   )
 );
 task("build_tools",

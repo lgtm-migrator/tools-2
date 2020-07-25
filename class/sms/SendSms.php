@@ -2,7 +2,7 @@
 
 //namespace JZEG_NET\Member\Sms\SendSms;
 
-if (!defined('JZEG_NET_SMS')) die();
+if (!defined('JZEG-NET-SMS')) die();
 
 require_once dirname(dirname(__DIR__)) . '/vendor/autoload.php';
 global $accessKeyId,
@@ -50,8 +50,9 @@ try {
         'OutId' => $OutId,
       ],
     ])
-    ->request();
-  $sms_request_result = $request_result->toArray();
+    ->request()
+    ->toArray();
+  $sms_request_result = $request_result;
 } catch (ClientException $e) {
   $sms_request_result['error']['ClientException'] = $e->getErrorMessage() . PHP_EOL;
 } catch (ServerException $e) {

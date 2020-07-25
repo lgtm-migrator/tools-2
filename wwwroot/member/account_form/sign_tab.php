@@ -1,9 +1,9 @@
 <div class="w-50 w-lg-25 btn-group btn-group-sm" id="sign_tab">
-  <button class="btn btn-outline-secondary d-flex justify-content-center align-items-center sign_tab" type="button" data-target="#tab-sign_in">
+  <button class="btn btn-outline-secondary d-flex justify-content-center align-items-center sign_modal_tab" type="button" data-target="#tab-sign_in">
     <i class="fas fa-lg fa-sign-in-alt text-darkorange"></i>
     <span class="text-nowrap ml-sm-1">登录</span>
   </button>
-  <button class="btn btn-outline-secondary d-flex justify-content-center align-items-center sign_tab" type="button" data-target="#tab-sign_up">
+  <button class="btn btn-outline-secondary d-flex justify-content-center align-items-center sign_modal_tab" type="button" data-target="#tab-sign_up">
     <i class="fas fa-lg fa-user-plus text-yellowgreen"></i>
     <span class="text-nowrap ml-sm-1">注册</span>
   </button>

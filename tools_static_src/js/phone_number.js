@@ -17,15 +17,18 @@ function create_search_number_tools() {
 }
 
 function create_search_regional_form() {
-  let form_row = document.createElement("div");
+  let d_flex = document.createElement("div");
+  let col_ = document.createElement("div");
   let input_group = document.createElement("div");
   let label = document.createElement("label");
   let input = document.createElement("input");
   let tmp = document.createElement("div");
 
-  form_row.className = 'form-row justify-content-center';
+  d_flex.className = 'mb-3 d-flex justify-content-center';
 
-  input_group.className = 'mb-3 input-group input-group-lg col-11 col-sm-10 col-md-8 col-lg-6';
+  col_.className = 'col-11 col-sm-10 col-md-8 col-lg-6 col-xl-5 col-xxl-4';
+
+  input_group.className = 'input-group input-group-lg';
 
   input.className = 'border form-control fas text-center';
   input.id = 'phone_number_input';
@@ -42,9 +45,10 @@ function create_search_regional_form() {
   input_group.appendChild(create_search_regional_dropdown_menu());
   input_group.appendChild(label);
   input_group.appendChild(input);
-  form_row.appendChild(input_group);
+  col_.appendChild(input_group);
+  d_flex.appendChild(col_);
 
-  return form_row;
+  return d_flex;
 }
 
 function create_search_regional_dropdown_menu() {
@@ -52,10 +56,8 @@ function create_search_regional_dropdown_menu() {
   let search_dropdown_toggle_split = document.createElement("div");
   let i = document.createElement("i");
   let search_regional_dropdown_menu = document.createElement("div");
-  let input_group_prepend = document.createElement("div");
   let input_group_text = document.createElement("div");
 
-  input_group_prepend.className = 'input-group-prepend';
   input_group_text.className = 'py-0 pl-3 pr-2 input-group-text btn-group';
 
   search_regional.className = 'text-success';
@@ -84,9 +86,8 @@ function create_search_regional_dropdown_menu() {
   input_group_text.appendChild(search_regional);
   input_group_text.appendChild(search_dropdown_toggle_split);
   input_group_text.appendChild(search_regional_dropdown_menu);
-  input_group_prepend.appendChild(input_group_text);
 
-  return input_group_prepend;
+  return input_group_text;
 }
 
 function create_search_regional_buttons() {
@@ -100,13 +101,14 @@ function create_search_regional_buttons() {
     'zc': '章村',
   };
 
-  div.className = 'btn-group-vertical btn-group-toggle';
-  div.setAttribute('data-toggle', 'buttons');
+  div.className = 'btn-group-vertical';
+  // div.setAttribute('data-toggle', 'button');
 
   for (let index in regional_array) {
     let label = document.createElement("label");
     let input = document.createElement("input");
 
+    input.className = 'btn-check';
     input.type = 'radio';
     input.name = 'search_regional';
     input.id = 'search_regional_' + index;
@@ -337,7 +339,7 @@ function create_search_result() {
 
   search_result.appendChild(span);
   search_result.appendChild(search_result_number_list);
-  search_result.insertBefore(create_close_btn(remove_search_result), search_result.firstElementChild);
+  search_result.insertBefore(create_close_btn(remove_search_result, 'float-right'), search_result.firstElementChild);
   jt_container.appendChild(search_result);
 }
 
@@ -626,8 +628,14 @@ function create_add_number_form() {
 }
 
 function create_add_number_form_close() {
-  let close_btn = create_close_btn(dispose_add_number_form);
-  add_number_form.insertBefore(close_btn, add_number_form.firstChild);
+  let div = document.createElement("div");
+  let close_btn = create_close_btn(dispose_add_number_form, 'float-right pb-2 pb-md-0');
+
+  div.className = 'clearfix';
+
+  div.appendChild(close_btn);
+
+  add_number_form.insertBefore(div, add_number_form.firstChild);
 }
 
 function create_add_form_init() {
@@ -654,7 +662,7 @@ function create_add_form() {
 
 function create_add_form_div() {
   let div = document.createElement('div');
-  div.className = 'mb-5 mb-sm-4 mb-md-3 form-row add_phone_number_form';
+  div.className = 'mb-5 mb-sm-4 mb-md-3 row add_phone_number_form';
   add_number_form.insertBefore(div, add_number_submit);
 }
 
@@ -669,7 +677,7 @@ function create_add_btn_add() {
   i.className = 'position-absolute text-success fa-fw fas fa-plus-circle hvr-icon phone_number_add';
   i.title = '添加新的一行';
   i.style.top = '8px';
-  i.style.right = '-3px';
+  i.style.left = '-10px';
   $(i).tooltip();
 
   a.appendChild(i);
@@ -688,7 +696,7 @@ function create_add_btn_del() {
   i.className = 'position-absolute text-danger fa-fw fas fa-minus-circle hvr-icon phone_number_del';
   i.title = '删除当前行';
   i.style.top = '8px';
-  i.style.right = '-3px';
+  i.style.left = '-10px';
   $(i).tooltip();
 
   a.appendChild(i);
@@ -705,7 +713,7 @@ function create_add_phone_name(id_timestamp) {
   let input = document.createElement('input');
   let i = document.createElement('i');
 
-  div.className = 'form-group col-12 col-sm-12 col-md-3';
+  div.className = 'mb-3 col-12 col-sm-12 col-md-3';
 
   input.className = 'form-control form-control-sm fas text-success text-center phone_name';
   input.id = 'phone_name_' + id_timestamp;
@@ -736,7 +744,7 @@ function create_add_tel_number(id_timestamp) {
   let input = document.createElement('input');
   let i = document.createElement('i');
 
-  div.className = 'form-group col-12 col-sm-6 col-md-3';
+  div.className = 'mb-3 col-12 col-sm-6 col-md-3';
 
   input.className = 'form-control form-control-sm fas text-success text-center tel_number';
   input.id = 'tel_number_' + id_timestamp;
@@ -770,7 +778,7 @@ function create_add_mobile_number(id_timestamp) {
   let input = document.createElement('input');
   let i = document.createElement('i');
 
-  div.className = 'form-group col-12 col-sm-6 col-md-3';
+  div.className = 'mb-3 col-12 col-sm-6 col-md-3';
 
   input.className = 'form-control form-control-sm fas text-success text-center mobile_number';
   input.id = 'mobile_number_' + id_timestamp;
@@ -857,7 +865,7 @@ function create_add_regional(type) {
   if (type === 'radio') {
     div.className = 'row no-gutters mx-auto mb-3 mb-sm-4 mb-md-4 py-2 w-100 w-md-75 w-lg-50 bg-white border rounded row-cols-2 row-cols-sm-3 row-cols-md-auto';
   } else if (type === 'button') {
-    div.className = 'mb-3 mb-sm-4 mb-md-4 w-100 w-md-75 w-lg-50 bg-white btn-group btn-group-sm btn-group-toggle';
+    div.className = 'mb-3 mb-sm-4 mb-md-4 w-100 w-md-75 w-lg-50 bg-white btn-group btn-group-sm';
     div.setAttribute('data-toggle', 'buttons');
   }
   div.id = 'add_regional';
@@ -908,6 +916,7 @@ function create_add_regional_button_group_radio(input_value, label_text, check_s
   let label = document.createElement('label');
   let input = document.createElement('input');
 
+  input.className = 'btn-check';
   input.type = 'radio';
   input.id = 'add_regional_' + input_value;
   input.name = 'add_regional';

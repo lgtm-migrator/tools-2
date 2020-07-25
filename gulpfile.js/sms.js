@@ -33,10 +33,6 @@ const
  * Task
  * 任务
  */
-task(copy_sms_js);
-task(copy_sms_css);
-task(terser_sms);
-task(cleanCSS_sms);
 task(watch_sms);
 
 
@@ -46,13 +42,13 @@ task(watch_sms);
  */
 task('copy_sms',
   parallel(
-    'copy_sms_js',
-    'copy_sms_css',
+    copy_sms_js,
+    copy_sms_css,
   ));
 task("minimize_sms",
   parallel(
-    "terser_sms",
-    "cleanCSS_sms",
+    terser_sms,
+    cleanCSS_sms,
   )
 );
 task("build_sms",

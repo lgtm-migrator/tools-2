@@ -1,83 +1,63 @@
 // 第三方登录提示
-$().ready(function () {
-  let oauth_sign_in = document.querySelector('#oauth_sign_in');
-  if (oauth_sign_in) {
-    oauth_sign_in.addEventListener('click', function (e) {
-      let e_target = e.target;
-      if ('BUTTON' === e_target.tagName && undefined !== e_target.dataset['title']) {
-        let e_title = e_target.dataset['title'];
-        let tip = `<div class="text-center text-info">${e_title}功能正在开发中</div>`;
-        bootstrapModalJs('', tip, '', 'sm', true);
-      }
-    });
-  }
-});
-
-// 账号模态框切换选项卡tab
-$().ready(function () {
-  let account_sign = document.querySelector('#account_sign');
-  if (account_sign) {
-    let modal_tabs = account_sign.querySelectorAll('button[class*="modal_tab"]');
-    for (let x = modal_tabs.length, i = 0; i < x; i++) {
-      modal_tabs[i].addEventListener('click', function (e) {
-        let e_target = e.target;
-        let modal_tab;
-
-        if ('I' === e_target.tagName || 'SPAN' === e_target.tagName) {
-          modal_tab = e_target.parentElement;
-        } else if ('BUTTON' === e_target.tagName) {
-          modal_tab = e_target;
-        } else {
-          return;
-        }
-
-        let modal_tab_modal = modal_tab.getAttribute('data-modal_target');
-        let modal_tab_tab = modal_tab.getAttribute('data-tab_target');
-
-        if (modal_tab_tab && modal_tab_modal) {
-          $(modal_tab_modal).on('shown.bs.modal', function () {
-            $(modal_tab_tab).tab('show');
-          });
-          $(modal_tab_modal).on('hidden.bs.modal', function () {
-            document.querySelector(modal_tab_tab).classList.remove('active', 'show');
-          });
-          $(modal_tab_modal).modal('show');
-        }
-      });
+let oauth_sign_in = document.querySelector('#oauth_sign_in');
+if (oauth_sign_in) {
+  oauth_sign_in.addEventListener('click', function (e) {
+    let e_target = e.target;
+    if ('BUTTON' === e_target.tagName && undefined !== e_target.dataset['title']) {
+      let e_title = e_target.dataset['title'];
+      let tip = `<div class="text-center text-info">${e_title}功能正在开发中</div>`;
+      bootstrapModalJs('', tip, '', 'sm', true);
     }
-  }
-});
+  });
+}
+
 
 // 账号表单类型切换
-$().ready(function () {
-  let sign_tabs = document.querySelectorAll('.sign_tab');
-  if (sign_tabs) {
-    for (let x = sign_tabs.length, i = 0; i < x; i++) {
-      sign_tabs[i].addEventListener('click', function (e) {
-        let e_target = e.target;
-        let current_sign_tab;
+let sign_modal_tab = [].slice.call(document.querySelectorAll('.sign_modal_tab'));
+if (sign_modal_tab.length > 0) {
+  sign_modal_tab.forEach(function (modalTabTriggerEL) {
+    new bootstrap.Tab(modalTabTriggerEL);
 
-        if ('I' === e_target.tagName || 'SPAN' === e_target.tagName) {
-          current_sign_tab = e_target.parentElement;
-        } else if ('A' === e_target.tagName) {
-          e.preventDefault();
-          current_sign_tab = e_target;
-        } else if ('BUTTON' === e_target.tagName) {
-          current_sign_tab = e_target;
-        } else {
-          return;
-        }
+    // console.log(modalTabTriggerEL);
+    // modalTabTriggerEL.addEventListener('click', function (e) {
+    //   if (modalTabTriggerEL.tagName === 'A') e.preventDefault();
+    //   console.log(modalTabTriggerEL);
+    //
+    //   bootstrap.Tab.getInstance(modalTabTriggerEL).show();
+    // });
+  });
+}
 
-        $(current_sign_tab).tab('show');
-        current_sign_tab.classList.toggle('active');
-      });
-    }
-  }
-});
+
+// 账号模态框切换选项卡tab
+let accountSignBtn = document.querySelectorAll('#account_sign button');
+let accountSignBtnList = [].slice.call(accountSignBtn);
+// console.log(accountSignBtnList);
+if (accountSignBtnList.length > 0) {
+  let sign = document.querySelector('#sign');
+  new bootstrap.Modal(sign);
+
+  accountSignBtnList.forEach(function (accountSignBtnTriggerEL) {
+    // console.log(accountSignBtnTriggerEL);
+    accountSignBtnTriggerEL.addEventListener('click', function () {
+      let btnTabTarget = accountSignBtnTriggerEL.dataset['tabTarget'];
+      let btnTabTriggerEL = sign.querySelector('[data-target="' + btnTabTarget + '"]');
+
+      console.log(btnTabTarget);
+      console.log(btnTabTriggerEL);
+      if (btnTabTriggerEL) {
+        bootstrap.Modal.getInstance(sign).show();
+        bootstrap.Tab.getInstance(btnTabTriggerEL).show();
+      }
+    });
+
+  });
+}
+
 
 // 密码明文显示
-$().ready(function () {
-  let password_switch = document.querySelectorAll('.password_switch');
+let password_switch = document.querySelectorAll('.password_switch');
+if (password_switch.length > 0) {
   for (let x = password_switch.length, i = 0; i < x; i++) {
     password_switch[i].addEventListener('click', function (e) {
       let e_target = e.target;
@@ -102,59 +82,58 @@ $().ready(function () {
       replace_title(e_target, '显示密码', '隐藏密码');
     });
   }
-});
+}
 
 // reCaptcha状态检测
-$().ready(function () {
-  let recaptcha_tools = document.querySelector('#recaptcha_tools');
-  if (recaptcha_tools) {
-    // let recaptcha_check = document.querySelector('#recaptcha_check');
-    // let recaptcha_check_text = document.querySelector('#recaptcha_check_text');
-    // let recaptcha_recheck = document.querySelector('#recaptcha_check_retry');
-    let recaptcha_progress = document.querySelector('#recaptcha_progress');
-    let recaptcha_progress_bar = recaptcha_progress.querySelector('#recaptcha_progress_bar');
-    // let recaptcha_result = document.querySelector('#recaptcha_result');
-    // let recaptcha_result_success = document.querySelector('#recaptcha_result_success');
-    // let recaptcha_result_failure = document.querySelector('#recaptcha_result_failure');
+let recaptcha_tools = document.querySelector('#recaptcha_tools');
+if (recaptcha_tools) {
+  // let recaptcha_check = document.querySelector('#recaptcha_check');
+  // let recaptcha_check_text = document.querySelector('#recaptcha_check_text');
+  // let recaptcha_recheck = document.querySelector('#recaptcha_check_retry');
+  let recaptcha_progress = document.querySelector('#recaptcha_progress');
+  let recaptcha_progress_bar = recaptcha_progress.querySelector('#recaptcha_progress_bar');
+  // let recaptcha_result = document.querySelector('#recaptcha_result');
+  // let recaptcha_result_success = document.querySelector('#recaptcha_result_success');
+  // let recaptcha_result_failure = document.querySelector('#recaptcha_result_failure');
 
-    show_element(recaptcha_tools);
-    progress_bar_revise(recaptcha_progress_bar);
+  show_element(recaptcha_tools);
+  progress_bar_revise(recaptcha_progress_bar);
 
-    function show_element(element) {
-      if (element.classList.contains('d-none')) {
-        element.classList.remove('d-none');
-      } else {
-        element.style.display = '';
-      }
+  function show_element(element) {
+    if (element.classList.contains('d-none')) {
+      element.classList.remove('d-none');
+    } else {
+      element.style.display = '';
     }
-
-    function progress_bar_revise(bar_element) {
-      let element_current_width = get_element_style_number(bar_element, 'width');
-      let max_time = 6;
-      let max_width = 100;
-      console.log(max_time + max_width + element_current_width);//fixme:未完成
-    }
-
-    function get_element_style_number(element, style_name) {
-      let style_attribute_value = window.getComputedStyle(element, null).getPropertyValue(style_name);
-      if ('' === style_attribute_value) return false;
-      if (style_attribute_value.includes('%')) {
-        return style_attribute_value.replace('%', '');
-      } else if (style_attribute_value.includes('px')) {
-        return style_attribute_value.replace('px', '');
-      }
-    }
-
   }
-});
+
+  function progress_bar_revise(bar_element) {
+    // let element_current_width = get_element_style_number(bar_element, 'width');
+    // let max_time = 6;
+    // let max_width = 100;
+    // console.log(max_time + max_width + element_current_width);//fixme:未完成
+  }
+
+  function get_element_style_number(element, style_name) {
+    let style_attribute_value = window.getComputedStyle(element, null).getPropertyValue(style_name);
+    if ('' === style_attribute_value) return false;
+    if (style_attribute_value.includes('%')) {
+      return style_attribute_value.replace('%', '');
+    } else if (style_attribute_value.includes('px')) {
+      return style_attribute_value.replace('px', '');
+    }
+  }
+
+}
 
 // 刷新验证码方法之一
-$().ready(function () {
-  $('#sign').on('shown.bs.modal', function () {
+if (document.querySelector('#sign')) {
+  document.querySelector('#sign').addEventListener('shown.bs.modal', function () {
     listener_all_reVerify_click();
   });
-  listener_all_reVerify_click();
-});
+}
+
+// listener_all_reVerify_click();
 
 function listener_all_reVerify_click() {
   let reVerify = document.querySelectorAll('.reVerify');
@@ -202,68 +181,63 @@ function refresh_captcha_img(img_element, img_src) {
 }
 
 // 检查验证码hash有效性
-$().ready(function () {
-  let captcha_input = document.querySelectorAll('.captcha_input');
-  let captcha_input_length = captcha_input.length;
-  if (0 < captcha_input_length) {
-    for (let i = 0; i < captcha_input_length; i++) {
-      validation_captcha_hash(captcha_input[i]);
-    }
+let captcha_input = document.querySelectorAll('.captcha_input');
+let captcha_input_length = captcha_input.length;
+if (0 < captcha_input_length) {
+  for (let i = 0; i < captcha_input_length; i++) {
+    validation_captcha_hash(captcha_input[i]);
   }
+}
 
-  function validation_captcha_hash(captcha_input) {
-    let captcha_value;
-    let captcha_hash;
-    let captcha_size;
+function validation_captcha_hash(captcha_input) {
+  let captcha_value;
+  let captcha_hash;
+  let captcha_size;
 
-    captcha_input.addEventListener('input', function (e) {
-      let pattern = captcha_input.pattern;
-      let e_target = e.target;
-      let e_target_value = e_target.value;
-      captcha_size = get_cookie('captcha_size');
+  captcha_input.addEventListener('input', function (e) {
+    let pattern = captcha_input.pattern;
+    let e_target = e.target;
+    let e_target_value = e_target.value;
+    captcha_size = get_cookie('captcha_size');
 
-      if (Number(captcha_size) === e_target_value.length) {
-        captcha_hash = get_cookie('captcha_hash');
-        captcha_value = e_target.value;
-        for (let j = 0; j <= 1000; j++) {
-          captcha_value = md5(captcha_value);
-        }
-        captcha_input.pattern = '{' + captcha_hash + '}';
-        e_target.parentElement.classList.add('was-validated');
-      } else {
-        captcha_input.pattern = pattern;
-        e_target.parentElement.classList.remove('was-validated');
+    if (Number(captcha_size) === e_target_value.length) {
+      captcha_hash = get_cookie('captcha_hash');
+      captcha_value = e_target.value;
+      for (let j = 0; j <= 1000; j++) {
+        captcha_value = md5(captcha_value);
       }
-    });
-  }
+      captcha_input.pattern = '{' + captcha_hash + '}';
+      e_target.parentElement.classList.add('was-validated');
+    } else {
+      captcha_input.pattern = pattern;
+      e_target.parentElement.classList.remove('was-validated');
+    }
+  });
+}
 
-});
 
 // 表单校验
-$().ready(function () {
-  let needs_validations = document.querySelectorAll('.needs-validation');//fixme:等到全局动态化后调整为仅限模态框生成后触发
-  let needs_validations_length = needs_validations.length;
-  if (0 < needs_validations_length) {
-    for (let i = 0; i < needs_validations_length; i++) {
-      _was_needs_validations(needs_validations[i]);
-    }
+let needs_validations = document.querySelectorAll('.needs-validation');//fixme:等到全局动态化后调整为仅限模态框生成后触发
+let needs_validations_length = needs_validations.length;
+if (0 < needs_validations_length) {
+  for (let i = 0; i < needs_validations_length; i++) {
+    _was_needs_validations(needs_validations[i]);
   }
-});
+}
 
 // ReCAPTCHA
-$().ready(function () {
-  let recaptcha_tools = document.querySelector('#recaptcha_tools');
-  if (recaptcha_tools) {
-    $('#recaptcha_tip').popover({
-      trigger: 'hover click',
-      boundary: 'viewport',
-      placement: 'auto',
-      html: true,
-      content: popover_content_recaptcha,
-      template: '<div class="popover shadow rounded-pill overflow-hidden" role="tooltip"><div class="arrow"></div><h3 class="popover-header"></h3><div class="popover-body bg_square_x bg-dark-50 text-white-50"></div></div>',
-    });
-  }
-});
+// let recaptcha_tools = document.querySelector('#recaptcha_tools');
+if (document.querySelector('#recaptcha_tools')) {
+  // $('#recaptcha_tip').popover({
+  new bootstrap.Popover(document.querySelector('#recaptcha_tip'), {
+    trigger: 'hover click',
+    boundary: 'viewport',
+    placement: 'auto',
+    html: true,
+    content: popover_content_recaptcha,
+    template: '<div class="popover shadow rounded-pill overflow-hidden" role="tooltip"><div class="arrow"></div><h3 class="popover-header"></h3><div class="popover-body bg_square_x bg-dark-50 text-white-50"></div></div>',
+  });
+}
 
 // 悬浮弹出框 ReCAPTCHA内容
 function popover_content_recaptcha() {
@@ -303,87 +277,80 @@ function popover_content_recaptcha() {
 
 
 // 登录
-$().ready(function () {
-  let tab_sign_in = document.querySelector('#tab-sign_in');
-  if (tab_sign_in) {
-    let signIn_user_name = document.querySelector('#signIn_user_name');
-    let signIn_password = document.querySelector('#signIn_password');
-    let signIn_rememberMe = document.querySelector('#signIn_rememberMe');
-    let signIn_submit = document.querySelector('#signIn_submit');
+let tab_sign_in = document.querySelector('#tab-sign_in');
+if (tab_sign_in) {
+  let signIn_user_name = document.querySelector('#signIn_user_name');
+  let signIn_password = document.querySelector('#signIn_password');
+  let signIn_rememberMe = document.querySelector('#signIn_rememberMe');
+  let signIn_submit = document.querySelector('#signIn_submit');
 
-    signIn_submit.addEventListener('click', function (e) {
-      let e_target = e.target;
-      console.log(e_target);
-      console.log(signIn_user_name.validity.valid);
-      console.log(signIn_password.validity.valid);
-      console.log(signIn_rememberMe.checked);
-    });
-  }
-});
+  signIn_submit.addEventListener('click', function (e) {
+    let e_target = e.target;
+    console.log(e_target);
+    console.log(signIn_user_name.validity.valid);
+    console.log(signIn_password.validity.valid);
+    console.log(signIn_rememberMe.checked);
+  });
+}
 
 // 手机号登录
-$().ready(function () {
-});
+
 
 // 注册
-$().ready(function () {
-  let tab_sign_up = document.querySelector('#tab-sign_up');
-  if (tab_sign_up) {
-    let signUp_user_name = document.querySelector('#signUp_user_name');
-    let signUp_email = document.querySelector('#signUp_email');
-    let signUp_password = document.querySelector('#signUp_password');
-    let signUp_rePassword = document.querySelector('#signUp_rePassword');
-    let signUp_tos = document.querySelector('#signUp_tos');
-    let signUp_submit = document.querySelector('#signUp_submit');
+let tab_sign_up = document.querySelector('#tab-sign_up');
+if (tab_sign_up) {
+  let signUp_user_name = document.querySelector('#signUp_user_name');
+  let signUp_email = document.querySelector('#signUp_email');
+  let signUp_password = document.querySelector('#signUp_password');
+  let signUp_rePassword = document.querySelector('#signUp_rePassword');
+  let signUp_tos = document.querySelector('#signUp_tos');
+  let signUp_submit = document.querySelector('#signUp_submit');
 
-    signUp_submit.addEventListener('click', function (e) {
-      let e_target = e.target;
-      let signUp_user_name_validity_valid = signUp_user_name.validity.valid;
-      let signUp_email_validity_valid = signUp_email.validity.valid;
-      let signUp_password_validity_valid = signUp_password.validity.valid;
-      let signUp_rePassword_validity_valid = signUp_rePassword.validity.valid;
-      let signUp_Passwords_validity_valid = signUp_password.value === signUp_rePassword.value;
-      let signUp_tos_validity_valid = signUp_tos.validity.valid;
+  signUp_submit.addEventListener('click', function (e) {
+    let e_target = e.target;
+    let signUp_user_name_validity_valid = signUp_user_name.validity.valid;
+    let signUp_email_validity_valid = signUp_email.validity.valid;
+    let signUp_password_validity_valid = signUp_password.validity.valid;
+    let signUp_rePassword_validity_valid = signUp_rePassword.validity.valid;
+    let signUp_Passwords_validity_valid = signUp_password.value === signUp_rePassword.value;
+    let signUp_tos_validity_valid = signUp_tos.validity.valid;
 
-      if (true === signUp_user_name_validity_valid &&
-        true === signUp_email_validity_valid &&
-        true === signUp_password_validity_valid &&
-        true === signUp_rePassword_validity_valid &&
-        true === signUp_Passwords_validity_valid &&
-        true === signUp_tos_validity_valid) {
-        add_spinner_icon(e_target);
-        let sign_up_data = {
-          'signUp_user_name': signUp_user_name.value,
-          'signUp_email': signUp_email.value,
-          'signUp_password': signUp_password.value,
-          'signUp_tos': signUp_tos.value,
-        };
-        ajax_sign_up(sign_up_data, e_target);
-      } else {
-        bootstrapModalJs('', '格式错误', '', 'sm', true);
+    if (true === signUp_user_name_validity_valid &&
+      true === signUp_email_validity_valid &&
+      true === signUp_password_validity_valid &&
+      true === signUp_rePassword_validity_valid &&
+      true === signUp_Passwords_validity_valid &&
+      true === signUp_tos_validity_valid) {
+      add_spinner_icon(e_target);
+      let sign_up_data = {
+        'signUp_user_name': signUp_user_name.value,
+        'signUp_email': signUp_email.value,
+        'signUp_password': signUp_password.value,
+        'signUp_tos': signUp_tos.value,
+      };
+      ajax_sign_up(sign_up_data, e_target);
+    } else {
+      bootstrapModalJs('', '格式错误', '', 'sm', true);
+    }
+  });
+
+  function ajax_sign_up(ajax_data, element) {
+    $.ajax({
+      type: 'post',
+      url: '/user/register.php',
+      dataType: 'json',
+      timeout: 3000,
+      data: ajax_data,
+      success: function (data) {
+        remove_spinner_icon(element);
+        console.log(data);
+      },
+      error: function (error) {
+        remove_spinner_icon(element);
+        console.log(error);
       }
     });
-
-    function ajax_sign_up(ajax_data, element) {
-      $.ajax({
-        type: 'post',
-        url: '/user/register.php',
-        dataType: 'json',
-        timeout: 3000,
-        data: ajax_data,
-        success: function (data) {
-          remove_spinner_icon(element);
-          console.log(data);
-        },
-        error: function (error) {
-          remove_spinner_icon(element);
-          console.log(error);
-        }
-      });
-    }
   }
-});
+}
 
 // 找回密码
-$().ready(function () {
-});

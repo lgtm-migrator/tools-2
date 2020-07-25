@@ -69,32 +69,10 @@ const
   clipboard_min_js_path = "./node_modules/clipboard/dist/clipboard.min.js";
 
 //Task
-task(copy_fontawesome_free);
-task(copy_js_cookie);
-task(copy_jquery);
-task(copy_popper);
-task(copy_bootstrap);
-task(copy_bootstrap_master_dist);
-task(copy_bootstrap_table);
-task(copy_animate_css);
-task(copy_aqua_css);
-task(copy_hover_css);
-task(copy_cleave_js);
-task(copy_hamburgers_css);
-task(copy_bootstrap_modal_js);
-task(copy_bs_custom_file_input);
-task(copy_dayjs);
-task(copy_clipboard);
-task(copy_qrcode);
-task(copy_md5);
-task(copy_bootstrap_colorPicker);
-
-/** task("add_header"); **/
-task(add_footer_funDebug_api);
-
 task(watch_config_json);
 
-//Combined tasks
+// Combined tasks
+// 合并任务
 task("copy_common",
   parallel(
     copy_fontawesome_free,
@@ -125,6 +103,7 @@ task("add_footer",
 );
 task("build_common",
   parallel(
+    // "add_header",
     "add_footer",
     "copy_common",
   )
