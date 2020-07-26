@@ -16,15 +16,14 @@ if (oauth_sign_in) {
 let sign_modal_tab = [].slice.call(document.querySelectorAll('.sign_modal_tab'));
 if (sign_modal_tab.length > 0) {
   sign_modal_tab.forEach(function (modalTabTriggerEL) {
-    new bootstrap.Tab(modalTabTriggerEL);
+    let x = new bootstrap.Tab(modalTabTriggerEL);
 
     // console.log(modalTabTriggerEL);
-    // modalTabTriggerEL.addEventListener('click', function (e) {
-    //   if (modalTabTriggerEL.tagName === 'A') e.preventDefault();
-    //   console.log(modalTabTriggerEL);
-    //
-    //   bootstrap.Tab.getInstance(modalTabTriggerEL).show();
-    // });
+    modalTabTriggerEL.addEventListener('click', function (e) {
+      if (modalTabTriggerEL.tagName === 'A') e.preventDefault();
+      // console.log(modalTabTriggerEL);
+      x.show();
+    });
   });
 }
 
@@ -35,23 +34,21 @@ let accountSignBtnList = [].slice.call(accountSignBtn);
 // console.log(accountSignBtnList);
 if (accountSignBtnList.length > 0) {
   let sign = document.querySelector('#sign');
-  new bootstrap.Modal(sign);
+  sign.addEventListener('show.bs.modal', function (e) {
+    let e_relatedTarget = e.relatedTarget;
+    let tabTarget = e_relatedTarget.dataset['tabTarget'];
+    let tabTriggerEL = document.querySelector('[data-target="' + tabTarget + '"]');
+    // console.log(e_relatedTarget);
+    // console.log(tabTarget);
+    // console.log(tabTriggerEL);
+    bootstrap.Tab.getInstance(tabTriggerEL).show();
 
-  accountSignBtnList.forEach(function (accountSignBtnTriggerEL) {
-    // console.log(accountSignBtnTriggerEL);
-    accountSignBtnTriggerEL.addEventListener('click', function () {
-      let btnTabTarget = accountSignBtnTriggerEL.dataset['tabTarget'];
-      let btnTabTriggerEL = sign.querySelector('[data-target="' + btnTabTarget + '"]');
-
-      console.log(btnTabTarget);
-      console.log(btnTabTriggerEL);
-      if (btnTabTriggerEL) {
-        bootstrap.Modal.getInstance(sign).show();
-        bootstrap.Tab.getInstance(btnTabTriggerEL).show();
-      }
-    });
-
+    sign.addEventListener('hidden.bs.modal', function () {
+      let tabTriggerDivEL = document.querySelector(tabTarget);
+      tabTriggerDivEL.classList.remove('active', 'show');
+    }, {once: true});
   });
+
 }
 
 
