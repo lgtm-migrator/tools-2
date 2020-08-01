@@ -1,5 +1,5 @@
 <div id="account_password_reset">
-  <div class="form-group form-row align-items-center align-items-sm-stretch">
+  <div class="mb-3 form-row align-items-center align-items-sm-stretch">
     <div class="col-auto col-sm-2">
       <label class="mb-1 mb-sm-0 pt-0 pt-sm-1 d-inline-block min-w-100 text-align-last" for="password_reset_account">账号</label>
     </div>
