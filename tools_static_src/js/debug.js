@@ -13,18 +13,25 @@ $().ready(function () {
 
     account_sign_out.classList.remove('d-flex');
     account_sign_out.style.display = 'none';
-    signIn_submit.addEventListener('click', function () {
-      $('#sign').modal('hide');
-      account_sign.classList.remove('d-flex');
-      account_sign.style.display = 'none';
-      account_sign_out.classList.add('d-flex');
-      account_sign_out.style.display = '';
-    });
-    account_sign_exit.addEventListener('click', function () {
-      account_sign.classList.add('d-flex');
-      account_sign.style.display = '';
-      account_sign_out.classList.remove('d-flex');
-      account_sign_out.style.display = 'none';
-    });
+    if (signIn_submit) {
+      signIn_submit.addEventListener('click', function () {
+        $('#sign').modal('hide');
+        account_sign.classList.remove('d-flex');
+        account_sign.style.display = 'none';
+        account_sign_out.classList.add('d-flex');
+        account_sign_out.style.display = '';
+      });
+    }
+
+    if (account_sign_exit) {
+      account_sign_exit.addEventListener('click', function () {
+        account_sign.classList.add('d-flex');
+        account_sign.style.display = '';
+        account_sign_out.classList.remove('d-flex');
+        account_sign_out.style.display = 'none';
+      });
+    }
+
+
   }
 });
