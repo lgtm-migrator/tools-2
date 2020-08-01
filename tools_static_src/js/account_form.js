@@ -26,11 +26,11 @@ if (sign_modal_tab.length > 0) {
     });
 
     modalTabTriggerEL.addEventListener('show.bs.tab', function (e) {
-      console.log(e.target);
-      console.log(111);
+      // console.log(e.target);
+      // console.log(111);
     });
     modalTabTriggerEL.addEventListener('hidden.bs.tab', function () {
-      console.log(222);
+      // console.log(222);
     });
   });
 }
