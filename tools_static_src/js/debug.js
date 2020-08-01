@@ -15,7 +15,9 @@ $().ready(function () {
     account_sign_out.style.display = 'none';
     if (signIn_submit) {
       signIn_submit.addEventListener('click', function () {
-        $('#sign').modal('hide');
+        let sign = document.querySelector('#sign');
+
+        bootstrap.Modal.getInstance(sign).hide();
         account_sign.classList.remove('d-flex');
         account_sign.style.display = 'none';
         account_sign_out.classList.add('d-flex');
@@ -31,7 +33,5 @@ $().ready(function () {
         account_sign_out.style.display = 'none';
       });
     }
-
-
   }
 });
