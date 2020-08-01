@@ -24,6 +24,13 @@ if (sign_modal_tab.length > 0) {
       // console.log(modalTabTriggerEL);
       x.show();
     });
+
+    modalTabTriggerEL.addEventListener('show.bs.tab', function () {
+      console.log(111);
+    });
+    modalTabTriggerEL.addEventListener('shown.bs.tab', function () {
+      console.log(222);
+    });
   });
 }
 
@@ -44,8 +51,9 @@ if (accountSignBtnList.length > 0) {
     bootstrap.Tab.getInstance(tabTriggerEL).show();
 
     sign.addEventListener('hidden.bs.modal', function () {
-      let tabTriggerDivEL = document.querySelector(tabTarget);
-      tabTriggerDivEL.classList.remove('active', 'show');
+      // let tabTriggerDivEL = document.querySelector(tabTarget);
+      // tabTriggerDivEL.classList.remove('active', 'show');
+      // console.log(tabTriggerEL);
     }, {once: true});
   });
 
