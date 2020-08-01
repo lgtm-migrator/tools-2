@@ -1,4 +1,4 @@
-<div class="w-50 w-lg-25 btn-group btn-group-sm nav" id="sign_tab">
+<div class="w-50 w-lg-25 btn-group btn-group-sm list-group list-group-horizontal" id="sign_tab">
   <button class="btn btn-outline-secondary d-flex justify-content-center align-items-center sign_modal_tab" type="button" data-target="#tab-sign_in">
     <i class="fas fa-lg fa-sign-in-alt text-darkorange"></i>
     <span class="text-nowrap ml-sm-1">登录</span>
