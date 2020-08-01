@@ -150,16 +150,16 @@
         },
         {
             "name": "alibabacloud/sdk",
-            "version": "1.8.405",
+            "version": "1.8.413",
             "source": {
                 "type": "git",
                 "url": "https://github.com/aliyun/openapi-sdk-php.git",
-                "reference": "1595f44864b578f76fc5150906efb1926b20bdd2"
+                "reference": "e65e8f65a1fa7923093d866419d08979111c8f74"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/aliyun/openapi-sdk-php/zipball/1595f44864b578f76fc5150906efb1926b20bdd2",
-                "reference": "1595f44864b578f76fc5150906efb1926b20bdd2",
+                "url": "https://api.github.com/repos/aliyun/openapi-sdk-php/zipball/e65e8f65a1fa7923093d866419d08979111c8f74",
+                "reference": "e65e8f65a1fa7923093d866419d08979111c8f74",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -386,20 +386,20 @@
                 "library",
                 "sdk"
             ],
-            "time": "2020-07-29T09:40:46+00:00"
+            "time": "2020-07-31T03:37:35+00:00"
         },
         {
             "name": "bacon/bacon-qr-code",
-            "version": "2.0.1",
+            "version": "2.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Bacon/BaconQrCode.git",
-                "reference": "6e53ced3d2499cee4a0ef23a7c4d6449607ac7da"
+                "reference": "add6d9ff97336b62f95a3b94f75cea4e085465b2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Bacon/BaconQrCode/zipball/6e53ced3d2499cee4a0ef23a7c4d6449607ac7da",
-                "reference": "6e53ced3d2499cee4a0ef23a7c4d6449607ac7da",
+                "url": "https://api.github.com/repos/Bacon/BaconQrCode/zipball/add6d9ff97336b62f95a3b94f75cea4e085465b2",
+                "reference": "add6d9ff97336b62f95a3b94f75cea4e085465b2",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -415,8 +415,8 @@
             },
             "require-dev": {
                 "phly/keep-a-changelog": "^1.4",
-                "phpunit/phpunit": "^6.4",
-                "squizlabs/php_codesniffer": "^3.1"
+                "phpunit/phpunit": "^7 | ^8 | ^9",
+                "squizlabs/php_codesniffer": "^3.4"
             },
             "suggest": {
                 "ext-imagick": "to generate QR code images"
@@ -435,13 +435,13 @@
                 {
                     "name": "Ben Scholzen 'DASPRiD'",
                     "email": "mail@dasprids.de",
-                    "homepage": "http://www.dasprids.de",
+                    "homepage": "https://dasprids.de/",
                     "role": "Developer"
                 }
             ],
             "description": "BaconQrCode is a QR code generator for PHP.",
             "homepage": "https://github.com/Bacon/BaconQrCode",
-            "time": "2020-07-14T11:04:05+00:00"
+            "time": "2020-07-30T16:40:58+00:00"
         },
         {
             "name": "brick/math",
@@ -619,16 +619,16 @@
         },
         {
             "name": "dasprid/enum",
-            "version": "1.0.0",
+            "version": "1.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/DASPRiD/Enum.git",
-                "reference": "631ef6e638e9494b0310837fa531bedd908fc22b"
+                "reference": "6ccc0d7141a7f149e3c56cb0ce5f05d9152cfd07"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/DASPRiD/Enum/zipball/631ef6e638e9494b0310837fa531bedd908fc22b",
-                "reference": "631ef6e638e9494b0310837fa531bedd908fc22b",
+                "url": "https://api.github.com/repos/DASPRiD/Enum/zipball/6ccc0d7141a7f149e3c56cb0ce5f05d9152cfd07",
+                "reference": "6ccc0d7141a7f149e3c56cb0ce5f05d9152cfd07",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -638,8 +638,8 @@
                 ]
             },
             "require-dev": {
-                "phpunit/phpunit": "^6.4",
-                "squizlabs/php_codesniffer": "^3.1"
+                "phpunit/phpunit": "^7 | ^8 | ^9",
+                "squizlabs/php_codesniffer": "^3.4"
             },
             "type": "library",
             "autoload": {
@@ -655,7 +655,8 @@
                 {
                     "name": "Ben Scholzen 'DASPRiD'",
                     "email": "mail@dasprids.de",
-                    "homepage": "https://dasprids.de/"
+                    "homepage": "https://dasprids.de/",
+                    "role": "Developer"
                 }
             ],
             "description": "PHP 7.1 enum implementation",
@@ -663,7 +664,7 @@
                 "enum",
                 "map"
             ],
-            "time": "2017-10-25T22:45:27+00:00"
+            "time": "2020-07-30T16:37:13+00:00"
         },
         {
             "name": "endroid/qr-code",
@@ -1381,16 +1382,16 @@
         },
         {
             "name": "mtdowling/jmespath.php",
-            "version": "2.5.0",
+            "version": "2.6.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/jmespath/jmespath.php.git",
-                "reference": "52168cb9472de06979613d365c7f1ab8798be895"
+                "reference": "42dae2cbd13154083ca6d70099692fef8ca84bfb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/jmespath/jmespath.php/zipball/52168cb9472de06979613d365c7f1ab8798be895",
-                "reference": "52168cb9472de06979613d365c7f1ab8798be895",
+                "url": "https://api.github.com/repos/jmespath/jmespath.php/zipball/42dae2cbd13154083ca6d70099692fef8ca84bfb",
+                "reference": "42dae2cbd13154083ca6d70099692fef8ca84bfb",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -1400,12 +1401,12 @@
                 ]
             },
             "require": {
-                "php": ">=5.4.0",
-                "symfony/polyfill-mbstring": "^1.4"
+                "php": "^5.4 || ^7.0 || ^8.0",
+                "symfony/polyfill-mbstring": "^1.17"
             },
             "require-dev": {
-                "composer/xdebug-handler": "^1.2",
-                "phpunit/phpunit": "^4.8.36|^7.5.15"
+                "composer/xdebug-handler": "^1.4",
+                "phpunit/phpunit": "^4.8.36 || ^7.5.15"
             },
             "bin": [
                 "bin/jp.php"
@@ -1413,7 +1414,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.5-dev"
+                    "dev-master": "2.6-dev"
                 }
             },
             "autoload": {
@@ -1440,7 +1441,7 @@
                 "json",
                 "jsonpath"
             ],
-            "time": "2019-12-30T18:03:34+00:00"
+            "time": "2020-07-31T21:01:56+00:00"
         },
         {
             "name": "myclabs/php-enum",

@@ -47,7 +47,7 @@
   },
   "peerDependencies": {},
   "devDependencies": {
-    "autoprefixer": "^9.8.5",
+    "autoprefixer": "^9.8.6",
     "del": "^5.1.0",
     "eslint-config-google": "^0.14.0",
     "gulp": "^4.0.2",
