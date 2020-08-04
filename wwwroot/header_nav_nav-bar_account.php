@@ -3,11 +3,11 @@ if (!defined('SITE_HEAD')) die();
 ?>
 <div class="d-flex align-items-center" id="navBar-account">
   <div class="d-flex" id="account_sign">
-    <button class="ml-1 btn btn-sm border btn-outline-secondary d-flex align-items-center" type="button" data-toggle="modal" data-target="#sign" data-tab-target="#tab-sign_in">
+    <button class="ml-1 btn btn-sm border btn-outline-secondary d-flex align-items-center" type="button" data-tab-target="#tab-sign_in">
       <i class="px-1 px-md-0 fas fa-2x fa-sign-in-alt text-darkorange"></i>
       <span class="ml-1 d-none d-md-block fa-lg">登录</span>
     </button>
-    <button class="ml-1 btn btn-sm border btn-outline-secondary d-flex align-items-center" type="button" data-toggle="modal" data-target="#sign" data-tab-target="#tab-sign_up">
+    <button class="ml-1 btn btn-sm border btn-outline-secondary d-flex align-items-center" type="button" data-tab-target="#tab-sign_up">
       <i class="px-1 px-md-0 fas fa-2x fa-user-plus text-yellowgreen"></i>
       <span class="ml-1 d-none d-md-block fa-lg">注册</span>
     </button>

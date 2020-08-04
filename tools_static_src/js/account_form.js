@@ -39,22 +39,28 @@ if (sign_modal_tab.length > 0) {
 // 账号模态框切换选项卡tab
 let accountSignBtn = document.querySelectorAll('#account_sign button');
 let accountSignBtnList = [].slice.call(accountSignBtn);
-// console.log(accountSignBtnList);
 if (accountSignBtnList.length > 0) {
   let sign = document.querySelector('#sign');
-  sign.addEventListener('show.bs.modal', function (e) {
-    let e_relatedTarget = e.relatedTarget;
-    let tabTarget = e_relatedTarget.dataset['tabTarget'];
-    let tabTriggerEL = document.querySelector('[data-target="' + tabTarget + '"]');
-    // console.log(e_relatedTarget);
-    // console.log(tabTarget);
-    // console.log(tabTriggerEL);
-    bootstrap.Tab.getInstance(tabTriggerEL).show();
 
-    sign.addEventListener('hidden.bs.modal', function () {
+  accountSignBtnList.forEach(function (accountSignBtnTriggerEL) {
+    accountSignBtnTriggerEL.addEventListener('click', function () {
+      // console.log(accountSignBtnTriggerEL);
+      sign.addEventListener('show.bs.modal', function () {
+        let tabTarget = accountSignBtnTriggerEL.dataset['tabTarget'];
+        let tabTriggerEL = document.querySelector('[data-target="' + tabTarget + '"]');
+        // console.log(e_relatedTarget);
+        // console.log(tabTarget);
+        // console.log(tabTriggerEL);
+        bootstrap.Tab.getInstance(tabTriggerEL).show();
 
-    }, {once: true});
-  });
+        sign.addEventListener('hidden.bs.modal', function () {}, {once: true});
+      }, {once: true});
+
+      new bootstrap.Modal(sign).show();
+
+    });
+  })
+
 
 }
 
