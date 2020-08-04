@@ -65,6 +65,10 @@ const
   /** bootstrap-colorpicker.js **/
   bootstrap_color_picker_all_js_path = "./node_modules/bootstrap-colorpicker/dist/js/*",
   bootstrap_color_picker_all_css_path = "./node_modules/bootstrap-colorpicker/dist/css/*",
+  /** flatpickr.js **/
+  flatpickr_all_js_path = "./node_modules/flatpickr/dist/*.js",
+  flatpickr_all_css_path = "./node_modules/flatpickr/dist/*.css",
+  flatpickr_all_l10n_js_path = "./node_modules/flatpickr/dist/l10n/*.js",
   /** clipboard.js **/
   clipboard_min_js_path = "./node_modules/clipboard/dist/clipboard.min.js";
 
@@ -94,6 +98,7 @@ task("copy_common",
     copy_qrcode,
     copy_md5,
     copy_bootstrap_colorPicker,
+    copy_flatpickr,
   )
 );
 task("add_footer",
@@ -145,6 +150,17 @@ function copy_bootstrap_colorPicker(done) {
   src([bootstrap_color_picker_all_js_path], {since: lastRun(copy_bootstrap_colorPicker)})
     .pipe(dest(static_js));
   src([bootstrap_color_picker_all_css_path], {since: lastRun(copy_bootstrap_colorPicker)})
+    .pipe(dest(static_css));
+  done();
+}
+
+function copy_flatpickr(done) {
+  src([flatpickr_all_js_path], {since: lastRun(copy_flatpickr)})
+    .pipe(dest(static_js));
+  src([flatpickr_all_l10n_js_path], {since: lastRun(copy_flatpickr)})
+    .pipe(rename({prefix:'flatpickr-'}))
+    .pipe(dest(static_js));
+  src([flatpickr_all_css_path], {since: lastRun(copy_flatpickr)})
     .pipe(dest(static_css));
   done();
 }
