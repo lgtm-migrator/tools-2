@@ -18,7 +18,7 @@
       </div>
     </div>
   </div>
-  <?php include dirname(__FILE__) . "/recaptcha_tools.php"; ?>
+<!--  --><?php //include dirname(__FILE__) . "/recaptcha_tools.php"; ?>
   <?php include dirname(__FILE__) . "/captcha_form-group.php"; ?>
   <div class="mb-3">
     <div class="d-flex align-items-center justify-content-end justify-content-sm-center custom-control custom-checkbox">
