@@ -1,3 +1,19 @@
+// 时间框;
+flatpickr.localize(flatpickr.l10ns.zh);
+flatpickr.l10ns.default.firstDayOfWeek = 1;
+
+
+flatpickr(document.querySelector('#jt_payroll_year'),{
+  dateFormat:'Y',
+});
+flatpickr(document.querySelector('#jt_payroll_month'),{
+  dateFormat:'F'
+});
+flatpickr(document.querySelector('#jt_payroll_date'),{
+  dateFormat:'Y年n月j日'
+});
+
+
 // 悬浮弹出框
 $().ready(function () {
   let jt_payroll = document.querySelector('#jt_payroll');
@@ -7,6 +23,7 @@ $().ready(function () {
       {'jt_payroll_personnel_number_icon': '格式为纯数字，示例：18888、16666、55555等。'},
       {'jt_payroll_actual_salary_icon': '输入完税前工资和各种保险和代扣费用后，点击下方计算按钮即可算出实际工资金额。'},
       {'jt_payroll_medical_insurance_icon': '医疗保险缴费比例：单位10%，个人2%+3元'},
+      {'jt_payroll_month_icon': '几月份的工资'},
       {'jt_payroll_unemployment_insurance_icon': '失业保险缴费比例：单位1.5%，个人0.5%'},
       {'jt_payroll_injury_insurance_icon': '工伤保险缴费比例：单位0.5%~2%，个人0'},
       {'jt_payroll_maternity_insurance_icon': '生育保险缴费比例：单位0.8%，个人0'},

@@ -3,11 +3,12 @@ if (!defined('title')) define('title', '工资云备忘录');
 require_once dirname(dirname(__DIR__)) . '/header.php';
 if (!defined('JZEG-NET')) die();
 ?>
+  <link rel="stylesheet" href="/static/css/flatpickr.min.css">
   <link rel="stylesheet" href="/static/css/payroll.min.css">
   <div class="py-2 container" id="jt_payroll">
     <div class="mb-2 font-weight-bolder">工资云备忘录</div>
     <div class="px-3 py-4 rounded border">
-      <div class="form-row form-group">
+      <div class="mb-1 row">
         <div class="col-12 col-md-4 mb-2 mb-md-0">
           <div class="mb-1 input-group">
             <div class="input-group-prepend">
@@ -46,7 +47,7 @@ if (!defined('JZEG-NET')) die();
           </div>
         </div>
       </div>
-      <div class="form-row form-group">
+      <div class="mb-1 row">
         <div class="col-12 col-md-4 mb-2 mb-md-0">
           <div class="mb-1 input-group">
             <div class="input-group-prepend">
@@ -90,7 +91,7 @@ if (!defined('JZEG-NET')) die();
           </div>
         </div>
       </div>
-      <div class="form-row form-group">
+      <div class="mb-1 row">
         <div class="col-12 col-md-4 mb-2 mb-md-0">
           <div class="mb-1 input-group">
             <div class="input-group-prepend">
@@ -134,30 +135,16 @@ if (!defined('JZEG-NET')) die();
           </div>
         </div>
       </div>
-      <div class="form-group">
+      <div class="mb-2">
         <div class="dropdown-divider"></div>
       </div>
-      <div class="form-row form-group">
+      <div class="mb-1 row">
         <div class="col-12 col-md-4 mb-2 mb-md-0">
           <div class="mb-1 input-group">
             <div class="input-group-prepend">
               <label class="input-group-text" for="jt_payroll_year">工资年份</label>
             </div>
-            <select class="custom-select" id="jt_payroll_year" required style="direction: rtl;">
-              <option value="2010">2010</option>
-              <option value="2011">2011</option>
-              <option value="2012">2012</option>
-              <option value="2013">2013</option>
-              <option value="2014">2014</option>
-              <option value="2015">2015</option>
-              <option value="2016">2016</option>
-              <option value="2017">2017</option>
-              <option value="2018">2018</option>
-              <option value="2019">2019</option>
-              <option value="2020" selected>2020</option>
-              <option value="2022">2021</option>
-              <option value="2022">2022</option>
-            </select>
+            <input type="text" class="form-control text-right" id="jt_payroll_year">
             <div class="input-group-append">
               <span class="input-group-text">年</span>
             </div>
@@ -171,23 +158,9 @@ if (!defined('JZEG-NET')) die();
             <div class="input-group-prepend">
               <label class="input-group-text" for="jt_payroll_month">工资月份</label>
             </div>
-            <select class="custom-select" id="jt_payroll_month" required style="direction: rtl;">
-              <option value="0" selected>请选择月份</option>
-              <option value="1">一</option>
-              <option value="2">二</option>
-              <option value="3">三</option>
-              <option value="4">四</option>
-              <option value="5">五</option>
-              <option value="6">六</option>
-              <option value="7">七</option>
-              <option value="8">八</option>
-              <option value="9">九</option>
-              <option value="10">十</option>
-              <option value="11">十一</option>
-              <option value="12">十二</option>
-            </select>
-            <div class="input-group-append">
-              <span class="input-group-text">月</span>
+            <input type="text" class="form-control text-right" id="jt_payroll_month">
+            <div class="input-group-text">
+              <i class="text-muted fas fa-question-circle" id="jt_payroll_month_icon"></i>
             </div>
           </div>
           <div class="small text-muted">
@@ -199,14 +172,14 @@ if (!defined('JZEG-NET')) die();
             <div class="input-group-prepend">
               <label class="input-group-text" for="jt_payroll_date">到账日期</label>
             </div>
-            <input type="date" class="form-control text-right" id="jt_payroll_date">
+            <input type="text" class="form-control text-right" id="jt_payroll_date">
           </div>
           <div class="small text-muted">
             <span class="small">工资到账日期</span>
           </div>
         </div>
       </div>
-      <div class="form-row form-group">
+      <div class="mb-1 row">
         <div class="col-12 col-md-6 mb-2 mb-md-0">
           <div class="mb-1 input-group">
             <div class="input-group-prepend">
@@ -243,7 +216,7 @@ if (!defined('JZEG-NET')) die();
           </div>
         </div>
       </div>
-      <div class="form-row form-group">
+      <div class="mb-1 row">
         <div class="col-12 col-md-6 mb-2 mb-md-0">
           <div class="mb-1 input-group">
             <div class="input-group-prepend">
@@ -275,7 +248,7 @@ if (!defined('JZEG-NET')) die();
           </div>
         </div>
       </div>
-      <div class="form-row form-group">
+      <div class="mb-1 row">
         <div class="col-12 col-md-6 mb-2 mb-md-0">
           <div class="mb-1 input-group">
             <div class="input-group-prepend">
@@ -307,7 +280,7 @@ if (!defined('JZEG-NET')) die();
           </div>
         </div>
       </div>
-      <div class="form-row form-group">
+      <div class="mb-1 row">
         <div class="col-12">
           <div class="input-group">
             <div class="input-group-prepend">
@@ -324,7 +297,7 @@ if (!defined('JZEG-NET')) die();
           </div>
         </div>
       </div>
-      <div class="form-row form-group">
+      <div class="mb-1 row">
         <div class="col-12 col-md-6 mb-2 mb-md-0">
           <div class="mb-1 input-group">
             <div class="input-group-prepend">
@@ -356,7 +329,7 @@ if (!defined('JZEG-NET')) die();
           </div>
         </div>
       </div>
-      <div class="form-row form-group">
+      <div class="mb-1 row">
         <div class="col-12 col-md-6 mb-2 mb-md-0">
           <div class="mb-1 input-group">
             <div class="input-group-prepend">
@@ -388,7 +361,7 @@ if (!defined('JZEG-NET')) die();
           </div>
         </div>
       </div>
-      <div class="form-row form-group">
+      <div class="mb-1 row">
         <div class="col-12 col-md-6 mb-2 mb-md-0">
           <div class="input-group">
             <div class="input-group-prepend">
@@ -418,7 +391,7 @@ if (!defined('JZEG-NET')) die();
           </div>
         </div>
       </div>
-      <div class="form-row form-group">
+      <div class="mb-1 row">
         <div class="col-12">
           <div class="input-group">
             <div class="input-group-prepend">
@@ -435,10 +408,10 @@ if (!defined('JZEG-NET')) die();
           </div>
         </div>
       </div>
-      <div class="form-group">
+      <div class="mb-2">
         <div class="dropdown-divider"></div>
       </div>
-      <div class="form-row form-group">
+      <div class="mb-1 row">
         <div class="col-12 col-md-4 mb-2 mb-md-0">
           <div class="mb-1 input-group">
             <div class="input-group-prepend">
@@ -483,7 +456,7 @@ if (!defined('JZEG-NET')) die();
           </div>
         </div>
       </div>
-      <div class="form-group d-flex flex-column align-items-center">
+      <div class="mb-3 d-flex flex-column align-items-center">
         <button type="button" class="mb-4 btn btn-sm btn-outline-success" id="jt_payroll_compute">计算工资</button>
         <div class="mb-3 custom-control custom-checkbox align-self-end align-self-sm-center">
           <input type="checkbox" class="custom-control-input" id="jt_payroll_tos" required disabled>
@@ -498,6 +471,8 @@ if (!defined('JZEG-NET')) die();
   </div>
   <div class="d-none">
     <?php require_once dirname(dirname(__DIR__)) . "/javascript.php"; ?>
+    <script src="/static/js/flatpickr.min.js"></script>
+    <script src="/static/js/flatpickr-zh.js"></script>
     <script src="/static/js/payroll.min.js"></script>
   </div>
 <?php
