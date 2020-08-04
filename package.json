@@ -72,6 +72,7 @@
     "cleave.js": "^1.6.0",
     "clipboard": "^2.0.6",
     "dayjs": "^1.8.31",
+    "flatpickr": "^4.6.3",
     "fundebug-javascript": "^2.4.2",
     "hamburgers": "^1.1.3",
     "hover.css": "^2.3.2",
