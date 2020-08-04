@@ -1,4 +1,4 @@
-<div class="my-2 py-2 d-flex justify-content-end border rounded-lg small">
+<div class="my-2 py-2 justify-content-end list-group list-group-horizontal small">
   <a class="mx-1 text-decoration-none sign_modal_tab" href="javascript:" data-target="#tab-sign_in_phone">
     <i class="fas fa-lg fa-mobile-alt"></i>
     <span class="text-muted">手机号登录</span>
