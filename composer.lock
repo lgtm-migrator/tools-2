@@ -63,16 +63,16 @@
         },
         {
             "name": "alibabacloud/client",
-            "version": "1.5.27",
+            "version": "1.5.29",
             "source": {
                 "type": "git",
                 "url": "https://github.com/aliyun/openapi-sdk-php-client.git",
-                "reference": "bdeef67f03a27e398f90193e6ea7a7ea06194086"
+                "reference": "2d0137828ef5c44664dcb8cc90eac4f545dd3301"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/aliyun/openapi-sdk-php-client/zipball/bdeef67f03a27e398f90193e6ea7a7ea06194086",
-                "reference": "bdeef67f03a27e398f90193e6ea7a7ea06194086",
+                "url": "https://api.github.com/repos/aliyun/openapi-sdk-php-client/zipball/2d0137828ef5c44664dcb8cc90eac4f545dd3301",
+                "reference": "2d0137828ef5c44664dcb8cc90eac4f545dd3301",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -146,20 +146,20 @@
                 "sdk",
                 "tool"
             ],
-            "time": "2020-07-17T12:16:14+00:00"
+            "time": "2020-08-03T06:19:07+00:00"
         },
         {
             "name": "alibabacloud/sdk",
-            "version": "1.8.413",
+            "version": "1.8.418",
             "source": {
                 "type": "git",
                 "url": "https://github.com/aliyun/openapi-sdk-php.git",
-                "reference": "e65e8f65a1fa7923093d866419d08979111c8f74"
+                "reference": "1092156e30995f966252ff25e1ef1732ba77b169"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/aliyun/openapi-sdk-php/zipball/e65e8f65a1fa7923093d866419d08979111c8f74",
-                "reference": "e65e8f65a1fa7923093d866419d08979111c8f74",
+                "url": "https://api.github.com/repos/aliyun/openapi-sdk-php/zipball/1092156e30995f966252ff25e1ef1732ba77b169",
+                "reference": "1092156e30995f966252ff25e1ef1732ba77b169",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -386,7 +386,7 @@
                 "library",
                 "sdk"
             ],
-            "time": "2020-07-31T03:37:35+00:00"
+            "time": "2020-08-04T03:41:19+00:00"
         },
         {
             "name": "bacon/bacon-qr-code",
