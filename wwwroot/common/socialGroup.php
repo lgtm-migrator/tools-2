@@ -38,7 +38,7 @@
       <div class="collapse" id="socialGroupCollapse_wechat" data-parent="#socialGroup">
         <div class="card-body">
           <ul class="list-group list-group-horizontal-sm text-center">
-            <li class="px-1 list-group-item list-group-item-action bg-transparent text-reset">JZEG_ORG</li>
+            <li class="px-1 list-group-item list-group-item-action bg-transparent text-reset">JZEG_NET</li>
           </ul>
         </div>
       </div>
