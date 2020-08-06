@@ -850,7 +850,7 @@ function dynamic_synchronization_element(source_element, target_element, event_t
   });
 }
 
-// 全局tooltip提示设置
+// 全局 tooltip 提示设置
 $().ready(function () {
   [].slice.call(document.querySelectorAll('span[title]')).forEach(function (titleTriggerEL) {
     let titleElement = new bootstrap.Tooltip(titleTriggerEL, {
@@ -862,6 +862,40 @@ $().ready(function () {
     });
     titleTriggerEL.addEventListener('mouseleave', function () {
       titleElement.hide();
+    });
+  });
+});
+
+
+// 页脚社群信息 popovers 设置
+$().ready(function () {
+  [].slice.call(document.querySelectorAll('a[data-toggle="popover"]')).forEach(function (popoverTriggerEL) {
+    let popoverElement = new bootstrap.Popover(popoverTriggerEL, {
+      template: '' +
+        '<div class="popover bg-secondary text-white-50" role="tooltip">' +
+        '  <div class="popover-arrow"></div>' +
+        '  <h3 class="popover-header bg-transparent"></h3>' +
+        '  <div class="popover-body card bg-transparent"></div>' +
+        '  <div class="popover-footer"></div>' +
+        '</div>',
+      container: 'body',
+      trigger: 'manual',
+      // html: true,
+      placement: 'top',
+      content: function () {
+        let x = popoverTriggerEL.dataset['target'];
+        return document.querySelector(x);
+      },
+    });
+
+    popoverTriggerEL.addEventListener('click', function () {
+      popoverElement.show();
+    });
+    popoverTriggerEL.addEventListener('mouseover', function () {
+      popoverElement.show();
+    });
+    popoverTriggerEL.addEventListener('mouseleave', function () {
+      popoverElement.hide();
     });
   });
 });
