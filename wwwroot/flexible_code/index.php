@@ -15,29 +15,23 @@ require_once dirname(__DIR__) . '/header.php';
     <div class="mb-3 row no-gutters">
       <div class="col-12">
         <div class="mb-2 justify-content-center d-flex btn-toolbar" id="lhm_tabs_link">
-          <div class="btn-group btn-group-sm">
+          <div class="btn-group btn-group-sm nav">
             <a class="btn btn-outline-warning" href="#lhm_scrollspy-definition">定义</a>
             <a class="btn btn-outline-warning" href="#lhm_scrollspy-description">简介</a>
             <a class="btn btn-outline-warning" href="#lhm_scrollspy-supportList">支持列表</a>
             <div class="btn-group btn-group-sm">
-              <button type="button" class="btn btn-outline-warning dropdown-toggle" data-toggle="dropdown">
-                安全保障
-              </button>
+              <button type="button" class="btn btn-outline-warning dropdown-toggle" data-toggle="dropdown">安全保障</button>
               <div class="dropdown-menu dropdown-menu-right">
                 <a class="d-block border-0 rounded-0 btn btn-outline-warning" href="#lhm_scrollspy-safety">安全</a>
                 <a class="d-block border-0 rounded-0 btn btn-outline-warning" href="#lhm_scrollspy-guarantee">保障</a>
               </div>
             </div>
             <div class="btn-group btn-group-sm">
-              <button type="button" class="btn btn-outline-warning dropdown-toggle" data-toggle="dropdown">
-                定价
-              </button>
+              <button type="button" class="btn btn-outline-warning dropdown-toggle" data-toggle="dropdown">定价</button>
               <div class="dropdown-menu dropdown-menu-right">
                 <a class="d-block border-0 rounded-0 btn btn-outline-warning" href="#lhm_scrollspy-price">价格</a>
-                <a class="d-block border-0 rounded-0 btn btn-outline-warning"
-                   href="#lhm_scrollspy-price-methods">扣费方式</a>
-                <a class="d-block border-0 rounded-0 btn btn-outline-warning"
-                   href="#lhm_scrollspy-price-discount">折扣</a>
+                <a class="d-block border-0 rounded-0 btn btn-outline-warning" href="#lhm_scrollspy-price-methods">扣费方式</a>
+                <a class="d-block border-0 rounded-0 btn btn-outline-warning" href="#lhm_scrollspy-price-discount">折扣</a>
                 <a class="d-block border-0 rounded-0 btn btn-outline-warning" href="#lhm_scrollspy-price-renew">续费</a>
               </div>
             </div>
@@ -45,8 +39,7 @@ require_once dirname(__DIR__) . '/header.php';
         </div>
       </div>
       <div class="col-12">
-        <div class="px-2 py-3 rounded bg-dark bg_square tab-content small text-white-50" id="lhm_tabs_pane"
-             style="height: 10rem;overflow: auto;overflow: overlay;">
+        <div class="px-2 py-3 rounded bg-dark bg_square tab-content small text-white-50" id="lhm_tabs_pane" style="height: 10rem;overflow: auto;overflow: overlay;">
           <div class="mb-3 tab-pane fade" id="lhm_scrollspy-definition">
             <h6 class="font-weight-bolder">定义</h6>
             <div>
@@ -127,53 +120,47 @@ require_once dirname(__DIR__) . '/header.php';
     <div class="mb-3 p-3 border rounded" id="lhm_make">
       <div class="mb-1 font-weight-bolder text-warning">制作灵活码</div>
       <form action="img.php" method="post" enctype="multipart/form-data">
-        <div class="form-group">
-          <div class="custom-file">
-            <input class="custom-file-input" type="file" name="qrcode_img" id="qrcode_img" accept="image/jpeg,image/png"
-                   required>
-            <label class="custom-file-label text-truncate" for="qrcode_img" data-browse="浏览">二维码图片</label>
+        <div class="mb-3">
+          <div class="form-file">
+            <input type="file" class="form-file-input" name="qrcode_img" id="qrcode_img" accept="image/jpeg,image/png" required>
+            <label class="form-file-label" for="qrcode_img">
+              <span class="form-file-text">二维码图片...</span>
+              <span class="form-file-button">浏览</span>
+            </label>
           </div>
-          <div class="form-text small text-muted">
+          <div class="form-text text-muted">
             <span>提示：上传要转到的二维码图片文件</span>
             <span class="d-block">查看图片要求</span>
           </div>
         </div>
-        <div class="form-group">
+        <div class="mb-3">
           <div class="input-group">
-            <div class="input-group-prepend">
-              <label class="input-group-text" for="qrcode_title">灵活码标题</label>
-            </div>
-            <input class="form-control" type="text" name="qrcode_title" id="qrcode_title" placeholder="灵活码标题"
-                   maxlength="10" value="默认标题" required>
+            <label class="input-group-text" for="qrcode_title">灵活码标题</label>
+            <input class="form-control" type="text" name="qrcode_title" id="qrcode_title" placeholder="灵活码标题" maxlength="10" value="默认标题" required>
           </div>
-          <div class="form-text small text-muted">
+          <div class="form-text text-muted">
             <span>提示：文字上限15个</span>
           </div>
         </div>
-        <div class="form-group">
+        <div class="mb-3">
           <div class="input-group">
-            <div class="input-group-prepend">
-              <label class="input-group-text" for="qrcode_description">灵活码介绍</label>
-            </div>
-            <textarea class="form-control" type="text" name="qrcode_description" id="qrcode_description" rows="6"
-                      cols="" wrap="soft" maxlength="150" placeholder="灵活码介绍" required>默认介绍</textarea>
+            <label class="input-group-text" for="qrcode_description">灵活码介绍</label>
+            <textarea class="form-control" type="text" name="qrcode_description" id="qrcode_description" rows="6" cols="" wrap="soft" maxlength="150" placeholder="灵活码介绍" required>默认介绍</textarea>
           </div>
-          <div class="form-text small text-muted">
+          <div class="form-text text-muted">
             <span>提示：文字上限150个</span>
           </div>
         </div>
-        <div class="form-group">
+        <div class="mb-3">
           <div class="input-group">
-            <div class="input-group-prepend">
-              <label class="input-group-text" for="qrcode_password">管理密码</label>
-            </div>
+            <label class="input-group-text" for="qrcode_password">管理密码</label>
             <input class="form-control" type="password" name="qrcode_password" id="qrcode_password" value="000000" required placeholder="复杂并牢记密码">
           </div>
-          <div class="form-text small text-muted">
+          <div class="form-text text-muted">
             <span>提示：请务必牢记这个密码，密码是您唯一调整灵活码信息的方式。</span>
           </div>
         </div>
-        <div class="form-group text-center">
+        <div class="mb-3 text-center">
           <input class="btn btn-sm btn-outline-success" type="submit" name="" id="submit" value="生成灵活码">
         </div>
       </form>
@@ -188,7 +175,7 @@ require_once dirname(__DIR__) . '/header.php';
 <div class="d-none">
   <?php require_once dirname(__DIR__) . "/javascript.php"; ?>
   <script src="/static/js/bs-custom-file-input.min.js"></script>
-  <script src="/static/js/flexible_code.min.js"></script>
+  <script src="/static/js/flexible_code.js"></script>
 </div>
 
 <?php

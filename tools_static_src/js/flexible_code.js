@@ -1,8 +1,3 @@
-// bsCustomFileInput
-$().ready(function () {
-  bsCustomFileInput.init();
-});
-
 $().ready(function () {
   let lhm_tabs_link = document.querySelector('#lhm_tabs_link');
   if (lhm_tabs_link) {
@@ -10,8 +5,10 @@ $().ready(function () {
       let e_target = e.target;
       e.preventDefault();
       if ('A' === e_target.tagName) {
-        $(e_target).tab('show');
-        $(e_target).button('toggle');
+        // $(e_target).tab('show');
+        new bootstrap.Tab(e_target).show();
+        // $(e_target).button('toggle');
+        new bootstrap.Button(e_target).toggle();
       }
     });
   }

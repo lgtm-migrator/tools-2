@@ -9,7 +9,7 @@ require_once dirname(__DIR__) . '/header.php';
   <div class="mb-4" id="jt_lhm_toolbar">
     <div class="mb-3 px-4 py-3 border rounded" id="lhm_editor">
       <div class="mb-3 font-weight-bolder text-warning">灵活码样式编辑</div>
-      <div class="mb-2">
+      <div class="mb-3">
         <div class="mb-1 input-group">
           <label class="input-group-text" for="lhm_editor_size_number">尺寸</label>
           <input type="number" class="form-control text-right" min="100" max="3000" step="10" value="250" id="lhm_editor_size_number">
@@ -19,9 +19,9 @@ require_once dirname(__DIR__) . '/header.php';
           <span>生成的灵活码图片是正方形。</span>
         </div>
         <label class="sr-only" for="lhm_editor_size_range">尺寸范围</label>
-        <input type="range" class="custom-range" min="100" max="3000" step="10" value="250" id="lhm_editor_size_range">
+        <input type="range" class="form-range" min="100" max="3000" step="10" value="250" id="lhm_editor_size_range">
       </div>
-      <div class="mb-2">
+      <div class="mb-3">
         <div class="mb-1 input-group">
           <label class="input-group-text" for="lhm_editor_margin_number">边距</label>
           <input type="number" class="form-control text-right" min="0" max="10" step="0.1" value="0" id="lhm_editor_margin_number">
@@ -32,9 +32,9 @@ require_once dirname(__DIR__) . '/header.php';
           <span class="d-block">不影响尺寸大小。</span>
         </div>
         <label class="sr-only" for="lhm_editor_margin_range">边距范围</label>
-        <input type="range" class="custom-range" min="0" max="10" step="0.1" value="0" id="lhm_editor_margin_range">
+        <input type="range" class="form-range" min="0" max="10" step="0.1" value="0" id="lhm_editor_margin_range">
       </div>
-      <div class="mb-2 form-row">
+      <div class="mb-3 form-row">
         <div class="mb-2 mb-md-auto col-12 col-md-6 input-group" id="lhm_editor_color_dark_colorPicker">
           <label class="input-group-text" for="lhm_editor_color_dark">前景色</label>
           <input type="text" class="form-control text-center" value="#000000" id="lhm_editor_color_dark">
@@ -49,10 +49,10 @@ require_once dirname(__DIR__) . '/header.php';
           <span>默认情况下，前景色是黑色，背景色是白色。</span>
         </div>
       </div>
-      <div class="mb-2">
+      <div class="mb-3">
         <div class="input-group">
           <label class="input-group-text" for="lhm_editor_errorCorrectionLevel">容错级别</label>
-          <select class="p-0 custom-select" size="4" id="lhm_editor_errorCorrectionLevel">
+          <select class="p-0 form-select" size="4" id="lhm_editor_errorCorrectionLevel">
             <option class="px-3 py-1" value="l">低（≈7%）</option>
             <option class="px-3 py-1" value="m">中（≈15%）</option>
             <option class="px-3 py-1" value="q">1/4（≈25%）</option>
@@ -63,10 +63,10 @@ require_once dirname(__DIR__) . '/header.php';
           <span>数值是指可遮挡范围的比例。</span>
         </div>
       </div>
-      <div class="mb-2">
+      <div class="mb-3">
         <div class="input-group">
           <label class="input-group-text" for="lhm_editor_img_format">格式</label>
-          <select class="p-0 custom-select" size="2" id="lhm_editor_img_format">
+          <select class="p-0 form-select" size="2" id="lhm_editor_img_format">
             <option class="px-3 py-1" value="png" selected>PNG&nbsp;(32位)</option>
             <option class="px-3 py-1" value="jpeg">JPEG&nbsp;(24位)</option>
           </select>
@@ -75,7 +75,7 @@ require_once dirname(__DIR__) . '/header.php';
           <span>生成的图片文件格式。</span>
         </div>
       </div>
-      <div class="mb-2">
+      <div class="mb-3">
         <div class="mb-1 input-group">
           <label class="input-group-text" for="lhm_editor_quality_number">图片质量</label>
           <input type="number" class="form-control text-right" min="1" max="100" step="1" value="90"
@@ -86,7 +86,7 @@ require_once dirname(__DIR__) . '/header.php';
           <span>数值越高，清晰度越高，生成的文件越大。</span>
         </div>
         <label class="sr-only" for="lhm_editor_quality_range">质量范围</label>
-        <input type="range" class="custom-range" min="1" max="100" step="1" value="90" id="lhm_editor_quality_range">
+        <input type="range" class="form-range" min="1" max="100" step="1" value="90" id="lhm_editor_quality_range">
       </div>
     </div>
     <div class="position-sticky mb-3 px-4 pt-3 pb-4 border rounded bg-white" id="lhm_preview" style="bottom: 0;">
