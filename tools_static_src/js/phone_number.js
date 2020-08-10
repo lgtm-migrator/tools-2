@@ -317,7 +317,7 @@ function processing_search_result(data) {
   for (let index in data) {
     if (data.hasOwnProperty(index)) create_search_result_number_list(data[index]);
   }
-  $('.number i').tooltip();
+
   dial_search_result_number();
   copy_search_result_number();
 }
@@ -399,7 +399,7 @@ function create_search_result_number_list_name(name) {
 
   li.insertBefore(i, li.firstChild);
   li.append(span_name);
-  li.append(create_search_result_qrcode_popover('https://www.baidu.com/img/PCpad_bc531b595cf1e37c3907d14b69e3a2dd.png'));
+  li.append(create_search_result_qrcode_popover('.'));
   ul.appendChild(li);
   span.appendChild(ul);
 
@@ -409,16 +409,18 @@ function create_search_result_number_list_name(name) {
 function create_search_result_qrcode_popover(img_src) {
   let i = document.createElement("i");
   let img = create_img_qrcode(img_src);
-  console.log('img---' + img);
+  // console.log('img---' + img);
 
   i.className = 'btn btn-outline-secondary fas fa-qrcode';
   cursor_pointer(i);
-  i.dataset.toggle = 'popover';
-  i.dataset.trigger = 'hover focus';
-  i.dataset.placement = 'bottom';
-  i.dataset.content = img;
-  i.dataset.title = '微信';
-  $('[data-toggle="popover"]').popover();
+  new bootstrap.Popover(i, {
+    trigger: 'hover click',
+    placement: 'bottom',
+    title: '微信',
+    content: function () {
+      return img;
+    },
+  });
 
   return i;
 }
@@ -429,7 +431,7 @@ function create_img_qrcode(img_src) {
     alt: '二维码',
     className: 'img-thumbnail',
   };
-  console.log(create_img(options));
+  // console.log(create_img(options));
   return create_img(options);
 }
 
@@ -449,12 +451,16 @@ function create_search_result_number_list_number(number, number_type) {
   number_type === 'tel' ? li.className = 'hvr-icon-grow-rotate number mb-2' : li.className = 'hvr-icon-grow-rotate number mb-2 text-none text-sm-right';
 
   i_dial_number_icon.className = 'ml-2 fa-fw fas fa-phone-volume text-success hvr-icon dial_number';
-  i_dial_number_icon.title = '拨打号码';
   i_dial_number_icon.style.cursor = 'pointer';
+  new bootstrap.Tooltip(i_dial_number_icon, {
+    title: '拨打号码',
+  });
 
   i_clipboard_copy_icon.className = 'ml-3 fa-fw far fa-copy text-success hvr-icon clipboard_copy';
-  i_clipboard_copy_icon.title = '复制号码';
   i_clipboard_copy_icon.style.cursor = 'pointer';
+  new bootstrap.Tooltip(i_clipboard_copy_icon, {
+    title: '复制号码',
+  });
 
   li.appendChild(span_number);
   li.appendChild(i_clipboard_copy_icon);
@@ -678,7 +684,7 @@ function create_add_btn_add() {
   i.title = '添加新的一行';
   i.style.top = '8px';
   i.style.left = '-10px';
-  $(i).tooltip();
+  new bootstrap.Tooltip(i);
 
   a.appendChild(i);
   add_number_submit.previousElementSibling.appendChild(a);
@@ -697,7 +703,7 @@ function create_add_btn_del() {
   i.title = '删除当前行';
   i.style.top = '8px';
   i.style.left = '-10px';
-  $(i).tooltip();
+  new bootstrap.Tooltip(i);
 
   a.appendChild(i);
   add_number_submit.previousElementSibling.appendChild(a);
