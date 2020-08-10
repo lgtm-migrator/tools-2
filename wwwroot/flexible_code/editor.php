@@ -15,7 +15,7 @@ require_once dirname(__DIR__) . '/header.php';
           <input type="number" class="form-control text-right" min="100" max="3000" step="10" value="250" id="lhm_editor_size_number">
           <span class="input-group-text">px</span>
         </div>
-        <div class="form-text small text-muted">
+        <div class="form-text text-muted">
           <span>生成的灵活码图片是正方形。</span>
         </div>
         <label class="sr-only" for="lhm_editor_size_range">尺寸范围</label>
@@ -27,7 +27,7 @@ require_once dirname(__DIR__) . '/header.php';
           <input type="number" class="form-control text-right" min="0" max="10" step="0.1" value="0" id="lhm_editor_margin_number">
           <span class="input-group-text">%</span>
         </div>
-        <div class="form-text small text-muted">
+        <div class="form-text text-muted">
           <span>生成的灵活码图片四边的空白区域宽度。</span>
           <span class="d-block">不影响尺寸大小。</span>
         </div>
@@ -45,7 +45,7 @@ require_once dirname(__DIR__) . '/header.php';
           <input type="text" class="form-control text-center" value="#ffffff" id="lhm_editor_color_light">
           <span class="input-group-text colorpicker-input-addon"><i></i></span>
         </div>
-        <div class="col-auto form-text small text-muted">
+        <div class="col-auto form-text text-muted">
           <span>默认情况下，前景色是黑色，背景色是白色。</span>
         </div>
       </div>
@@ -59,7 +59,7 @@ require_once dirname(__DIR__) . '/header.php';
             <option class="px-3 py-1" value="h">高（≈30%）</option>
           </select>
         </div>
-        <div class="form-text small text-muted">
+        <div class="form-text text-muted">
           <span>数值是指可遮挡范围的比例。</span>
         </div>
       </div>
@@ -71,7 +71,7 @@ require_once dirname(__DIR__) . '/header.php';
             <option class="px-3 py-1" value="jpeg">JPEG&nbsp;(24位)</option>
           </select>
         </div>
-        <div class="form-text small text-muted">
+        <div class="form-text text-muted">
           <span>生成的图片文件格式。</span>
         </div>
       </div>
@@ -82,7 +82,7 @@ require_once dirname(__DIR__) . '/header.php';
                  id="lhm_editor_quality_number">
           <span class="input-group-text">%</span>
         </div>
-        <div class="form-text small text-muted">
+        <div class="form-text text-muted">
           <span>数值越高，清晰度越高，生成的文件越大。</span>
         </div>
         <label class="sr-only" for="lhm_editor_quality_range">质量范围</label>
@@ -124,7 +124,6 @@ require_once dirname(__DIR__) . '/header.php';
   <script src="/static/js/bootstrap-colorpicker.min.js"></script>
   <script src="/static/js/flexible_code.min.js"></script>
 </div>
-
 <?php
 require_once dirname(__DIR__) . '/footer.php';
 ?>
