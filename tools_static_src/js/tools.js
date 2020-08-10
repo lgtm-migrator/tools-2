@@ -403,15 +403,11 @@ function footer_current_time() {
 // ICP备案和公网安备
 function footer_record() {
   let div = document.createElement('div');
-  let span = document.createElement('span');
 
-  div.className = 'small';
+  div.className = 'd-flex flex-column flex-sm-row align-items-center small';
   div.id = 'footer_record';
 
-  span.innerHTML = '&nbsp;&nbsp;';
-
   div.appendChild(footer_record_icp_no('冀ICP备12018851号-7'));
-  div.appendChild(span);
   div.appendChild(footer_record_code('13050002001901', '冀'));
   return div;
 }
@@ -419,7 +415,7 @@ function footer_record() {
 function footer_record_icp_no(icp_no = '') {
   let a = document.createElement('a');
 
-  a.className = 'small text-secondary text-decoration-none';
+  a.className = 'mx-sm-2 small text-secondary text-decoration-none';
   a.href = 'http://www.beian.miit.gov.cn/';
   a.target = '_blank';
   a.rel = 'noreferrer nofollow';
@@ -432,7 +428,7 @@ function footer_record_icp_no(icp_no = '') {
 function footer_record_code(code_number = '', code_area = '') {
   let a = document.createElement('a');
 
-  a.className = 'small text-secondary text-decoration-none';
+  a.className = 'mx-sm-2 small text-secondary text-decoration-none';
   a.href = 'http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=' + code_number;
   a.target = '_blank';
   a.rel = 'noreferrer nofollow';
@@ -468,6 +464,7 @@ function footer_qr_code() {
 function footer_modal_qr_code() {
   let url = document.location.href;
   let div = document.createElement('div');
+  let title = document.createElement('div');
   let img = document.createElement('img');
   let qrcode_option = {
     errorCorrectionLevel: 'H',
@@ -483,15 +480,19 @@ function footer_modal_qr_code() {
 
   div.className = 'text-center';
 
+  title.innerHTML = '二维码直达【' + document.title + '】';
+  title.className = 'text-success';
+
   ClipboardJS_location_href(img);
 
+  div.appendChild(title);
   div.appendChild(img);
   div.appendChild(footer_qr_code_modal_tip());
 
   QRCode.toDataURL(url, qrcode_option, function (err, img_base64) {
     if (err) throw err;
     img.src = img_base64;
-    img.alt = document.title + '页面地址二维码';
+    img.alt = document.title + '地址二维码';
   });
   bootstrapModalJs('', div, '', '', true);
 }
@@ -526,10 +527,10 @@ function ClipboardJS_location_href(event) {
     },
   });
   clipboard.on('success', function () {
-    bootstrapModalJs('', create_small_center_text('网址复制成功', 'asfasdf'), '', 'sm', true);
+    bootstrapModalJs('', create_small_center_text('网址文本复制成功', 'success'), '', 'sm', true);
   });
   clipboard.on('error', function () {
-    bootstrapModalJs('', '<span class="d-block text-center text-danger small">网址复制失败</span>', '', 'sm', true);
+    bootstrapModalJs('', create_small_center_text('网址文本复制失败', 'danger'), '', 'sm', true);
     clipboard.destroy();
   });
 }
