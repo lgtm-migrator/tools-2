@@ -46,6 +46,9 @@ const
   dayjs_locale_zh_cn_js_path = "./node_modules/dayjs/locale/zh-cn.js",
   /** animate.css **/
   animate_all_css_path = "./node_modules/animate.css/animate.*css",
+  /** animejs **/
+  animejs_js_path = "./node_modules/animejs/lib/anime.js",
+  animejs_min_js_path = "./node_modules/animejs/lib/anime.min.js",
   /** aqua.css **/
   aqua_all_css_path = "./node_modules/@alphardex/aqua.css/dist/*",
   /** hover.css **/
@@ -87,6 +90,7 @@ task("copy_common",
     copy_bootstrap_master_dist,
     copy_bootstrap_table,
     copy_animate_css,
+    copy_animejs,
     copy_aqua_css,
     copy_hover_css,
     copy_cleave_js,
@@ -202,6 +206,12 @@ function copy_bootstrap_table(done) {
 function copy_animate_css(done) {
   src([animate_all_css_path], {since: lastRun(copy_animate_css)})
     .pipe(dest(static_css));
+  done();
+}
+
+function copy_animejs(done) {
+  src([animejs_js_path,animejs_min_js_path], {since: lastRun(copy_animejs)})
+    .pipe(dest(static_js));
   done();
 }
 
