@@ -110,13 +110,6 @@ task("add_footer",
     add_footer_funDebug_api,
   )
 );
-task("build_common",
-  parallel(
-    // "add_header",
-    "add_footer",
-    "copy_common",
-  )
-);
 
 //Tasks function
 function copy_fontawesome_free(done) {

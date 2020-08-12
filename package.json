@@ -29,7 +29,7 @@
     "run_only_on_first_use": "npm run install_nrm_use_taobao && npm run install_globl_packages",
     "default": "npm run build",
     "build": "npm run build_npm && npm run build_composer",
-    "build_npm": "npm i && npm run gulp_static",
+    "build_npm": "npm i && npm run gulp_static && npm run gulp_copy",
     "build_composer": "npm run composer_install",
     "gulp_static": "gulp build_static",
     "gulp_copy": "gulp add_footer copy",
