@@ -53,15 +53,14 @@ if (accountSignBtnList.length > 0) {
         // console.log(tabTriggerEL);
         bootstrap.Tab.getInstance(tabTriggerEL).show();
 
-        sign.addEventListener('hidden.bs.modal', function () {}, {once: true});
+        sign.addEventListener('hidden.bs.modal', function () {
+        }, {once: true});
       }, {once: true});
 
       new bootstrap.Modal(sign).show();
 
     });
   })
-
-
 }
 
 
