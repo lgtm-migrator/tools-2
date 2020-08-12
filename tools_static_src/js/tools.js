@@ -870,8 +870,9 @@ $().ready(function () {
 
 // 页脚社群信息 popovers 设置
 $().ready(function () {
-  [].slice.call(document.querySelectorAll('a[data-toggle="popover"]')).forEach(function (popoverTriggerEL) {
-    let popoverElement = new bootstrap.Popover(popoverTriggerEL, {
+  [].slice.call(document.querySelectorAll('#socialGroup a')).forEach(function (popoverTriggerEL) {
+    new bootstrap.Popover(popoverTriggerEL, {
+      html: true,
       template: '' +
         '<div class="popover bg-secondary text-white-50" role="tooltip">' +
         '  <div class="popover-arrow"></div>' +
@@ -881,7 +882,6 @@ $().ready(function () {
         '</div>',
       container: 'body',
       trigger: 'manual',
-      // html: true,
       placement: 'top',
       content: function () {
         let x = popoverTriggerEL.dataset['target'];
@@ -890,13 +890,8 @@ $().ready(function () {
     });
 
     popoverTriggerEL.addEventListener('click', function () {
-      popoverElement.show();
+      bootstrap.Popover.getInstance(popoverTriggerEL).toggle();
     });
-    popoverTriggerEL.addEventListener('mouseover', function () {
-      popoverElement.show();
-    });
-    popoverTriggerEL.addEventListener('mouseleave', function () {
-      popoverElement.hide();
-    });
+
   });
 });
