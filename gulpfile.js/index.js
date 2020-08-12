@@ -1,4 +1,5 @@
 require('./common');
+require('./img');
 require('./account_manage');
 require('./member');
 require('./sms');
@@ -28,6 +29,7 @@ task("build_static",
 task('watch_change',
   parallel(
     'watch_account',
+    'watch_all_img',
     'watch_member',
     'watch_sms',
     'watch_tools',
@@ -41,8 +43,9 @@ task('watch_change',
 task('copy',
   parallel(
     'copy_account',
-    'copy_member',
+    'copy_all_img',
     'copy_sms',
+    'copy_common',
     'copy_common',
     'copy_tools',
     'copy_flexible_code',
