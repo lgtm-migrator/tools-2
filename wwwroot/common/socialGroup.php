@@ -20,6 +20,7 @@
         </a>
       </li>
     </ul>
+    <div id="qrcode_test"></div>
     <div class="d-none">
       <div class="d-flex flex-column align-items-center" id="socialGroupCollapse_dingTalk">
         <img class="mb-2 img-thumbnail" width="150" src="/static/img/socialGroupQrcode_dingTalk.jpg" alt="">
