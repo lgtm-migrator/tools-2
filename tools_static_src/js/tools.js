@@ -895,3 +895,65 @@ $().ready(function () {
 
   });
 });
+
+
+// 底部二维码图片生成
+$().ready(function () {
+  let socialGroupQrcode = document.querySelector('#socialGroupQrcode');
+  if (socialGroupQrcode) {
+    let socialGroupCollapse_dingTalk = document.querySelector('#socialGroupCollapse_dingTalk');
+    let socialGroupCollapse_qq = document.querySelector('#socialGroupCollapse_qq');
+    let socialGroupCollapse_wechat = document.querySelector('#socialGroupCollapse_wechat');
+    let dingTalk_img = document.createElement("img");
+    let qq_img = document.createElement("img");
+    let wechat_img = document.createElement("img");
+
+    let dingTalk_url_parameters = {
+      'corpId': 'ding893bad2d4e569096fac3b26d3f309cdb',
+      'ab55e19': '00f6ed1',
+      'cbdbhh': 'qwertyuiop',
+      'origin': '0',
+    };
+    let qq_url_parameters = {
+      'k': 'Ud6pogcHJ1ioQR_8qtPTHkXr48QRmtd4',
+      'authKey': 'dSaugxZBNfcmo4T9bg+ltEY5VeRbqvtCoo99VxHHxLv4/wWLDuejiKc+nbTJCY0d',
+      'noverify': '0',
+    };
+    let wechat_url_parameters = {};
+    let dingtalk_url = create_url('https://h5.dingtalk.com/', 'circle/healthCheckin.html', dingTalk_url_parameters);
+    let qq_url = create_url('https://qm.qq.com/', 'cgi-bin/qm/qr', qq_url_parameters);
+    let wechat_url = create_url('https://weixin.qq.com/', 'g/AQYAADnWmR9tHL01ktpbeg2T69yCdP6wRAh2sRBbpFYoMk6oY3igS9hAnhKIfBXa', wechat_url_parameters);
+
+    create_socialGroup_qrcode(dingtalk_url, dingTalk_img, socialGroupCollapse_dingTalk);
+    create_socialGroup_qrcode(qq_url, qq_img, socialGroupCollapse_qq);
+    create_socialGroup_qrcode(wechat_url, wechat_img, socialGroupCollapse_wechat);
+
+  }
+})
+
+function create_url(baseDomain = '', pathname = '', parameters = []) {
+  return baseDomain + pathname;
+}
+
+function create_socialGroup_qrcode(socialGroupUrl = '', socialGroupElement, parentElement) {
+  let qrcode_option = {
+    errorCorrectionLevel: 'H',
+    type: 'image/jpeg',
+    margin: 0.5,
+    width: 150,
+    quality: 0.2,
+    color: {
+      dark: '#222222',
+      light: '#ffffff',
+    },
+  };
+
+  QRCode.toDataURL(socialGroupUrl, qrcode_option, function (err, img_base64) {
+    if (err) throw err;
+    socialGroupElement.className = 'mb-2 img-thumbnail';
+    socialGroupElement.src = img_base64;
+    socialGroupElement.alt = '钉钉群二维码';
+    socialGroupElement.title = '钉钉群二维码';
+    parentElement.appendChild(socialGroupElement);
+  });
+}

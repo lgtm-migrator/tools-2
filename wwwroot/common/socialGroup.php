@@ -20,18 +20,14 @@
         </a>
       </li>
     </ul>
-    <div id="qrcode_test"></div>
-    <div class="d-none">
+    <div class="d-none" id="socialGroupQrcode">
       <div class="d-flex flex-column align-items-center" id="socialGroupCollapse_dingTalk">
-        <img class="mb-2 img-thumbnail" width="150" src="/static/img/socialGroupQrcode_dingTalk.jpg" alt="">
         <div>群号码：30207213</div>
       </div>
       <div class="d-flex flex-column align-items-center" id="socialGroupCollapse_qq">
-        <img class="mb-2 img-thumbnail" width="150" src="/static/img/socialGroupQrcode_qq.jpg" alt="">
         <div>群号码：480073883</div>
       </div>
       <div class="d-flex flex-column align-items-center" id="socialGroupCollapse_wechat">
-        <img class="mb-2 img-thumbnail" width="150" src="/static/img/socialGroupQrcode_wechat.jpg" alt="">
         <div>微信号：JZEG-NET</div>
       </div>
     </div>
