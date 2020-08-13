@@ -6,8 +6,8 @@ const
   root = "./wwwroot/",
   static_path = root + "static/",
   static_img = static_path + "img/",
-  /** footer_img **/
-  socialGroupQrcode_all_jpg_path = "./tools_static_src/img/footer_img/socialGroupQrcode_*.jpg";
+  /** all_img **/
+  all_img_path = "./tools_static_src/img/**/*";
 
 //Task
 task(watch_all_img);
@@ -22,12 +22,12 @@ task("copy_all_img",
 
 //Tasks function
 function copy_all_jpg(done) {
-  src([socialGroupQrcode_all_jpg_path], {since: lastRun(copy_all_jpg)})
+  src([all_img_path], {since: lastRun(copy_all_jpg)})
     .pipe(dest(static_img));
   done();
 }
 
 function watch_all_img(done) {
-  watch([socialGroupQrcode_all_jpg_path], task('copy_all_img'));
+  watch([all_img_path], task('copy_all_img'));
   done();
 }
