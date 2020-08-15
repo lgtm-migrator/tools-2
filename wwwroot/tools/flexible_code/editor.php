@@ -1,7 +1,7 @@
 <?php
 
 define('title', '灵活码样式编辑');
-require_once dirname(__DIR__) . '/header.php';
+require_once dirname(dirname(__DIR__)) . '/header.php';
 ?>
 <link rel="stylesheet" href="/static/css/bootstrap-colorpicker.min.css">
 <link rel="stylesheet" href="/static/css/flexible_code.min.css">
@@ -119,11 +119,11 @@ require_once dirname(__DIR__) . '/header.php';
   </div>
 </div>
 <div class="d-none">
-  <?php require_once dirname(__DIR__) . "/javascript.php"; ?>
+  <?php require_once dirname(dirname(__DIR__)) . "/javascript.php"; ?>
   <script src="/static/js/bs-custom-file-input.min.js"></script>
   <script src="/static/js/bootstrap-colorpicker.min.js"></script>
   <script src="/static/js/flexible_code.min.js"></script>
 </div>
 <?php
-require_once dirname(__DIR__) . '/footer.php';
+require_once dirname(dirname(__DIR__)) . '/footer.php';
 ?>

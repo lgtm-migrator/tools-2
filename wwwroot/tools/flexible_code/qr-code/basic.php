@@ -1,7 +1,7 @@
 <?php
 if (!defined('JT_QRCODE')) die();
 
-require_once dirname(dirname(dirname(__DIR__))) . "/vendor/autoload.php";
+require_once dirname(dirname(dirname(dirname(__DIR__)))) . "/vendor/autoload.php";
 
 use Endroid\QrCode\ErrorCorrectionLevel;
 use Endroid\QrCode\LabelAlignment;
