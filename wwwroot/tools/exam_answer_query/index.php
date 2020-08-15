@@ -6,7 +6,7 @@ if ($_POST) {
   exit('当前不认为需要支持此方式进行查询');
 }
 
-define('title', '查询参考');
+define('title', '考试信息参考');
 require_once dirname(dirname(__DIR__)) . '/header.php';
 ?>
 <link rel="stylesheet" href="/static/css/exam_answer_query/index.min.css">

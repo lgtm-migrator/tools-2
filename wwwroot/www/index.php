@@ -1,5 +1,4 @@
 <?php
-define('title', '在线小工具');
 require_once dirname(__DIR__) . '/header.php';
 if (!defined('SITE_HEAD')) die();
 ?>
@@ -10,7 +9,7 @@ if (!defined('SITE_HEAD')) die();
         <span class="h5 mb-0">欢迎光临杰格网</span>
       </div>
       <div class="card-body">
-        <span>杰格网正在建设中，请先加入页面底部的钉钉群进行讨论，微信群和QQ群为辅助群讨论。</span>
+        <span>杰格网正在建设中，请先加入页面底部的钉钉群进行主讨论，微信群和QQ群为辅助讨论。</span>
         <span class="mt-2 d-flex justify-content-end">2020.08.16</span>
       </div>
     </div>
