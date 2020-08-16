@@ -4,6 +4,7 @@ require('./img');
 require('./account_manage');
 require('./member');
 require('./sms');
+require('./www_static');
 require('./tools_static');
 require('./flexible_code');
 require('./phone_number');
@@ -26,6 +27,7 @@ task("build_static",
     "build_survey",
     "build_member",
     "build_sms",
+    "build_www",
     "build_tools",
     "build_flexible_code",
     "build_exam_answer_query",
@@ -43,6 +45,7 @@ task('watch_change',
     'watch_all_img',
     'watch_member',
     'watch_sms',
+    'watch_www',
     'watch_tools',
     'watch_config_json',
     'watch_flexible_code',
@@ -53,6 +56,7 @@ task('watch_change',
 );
 task('copy',
   parallel(
+    'copy_common',
     'copy_account',
     'copy_bootstrap_next',
     'copy_phone_number',
@@ -60,7 +64,7 @@ task('copy',
     'copy_survey',
     'copy_all_img',
     'copy_sms',
-    'copy_common',
+    'copy_www',
     'copy_tools',
     'copy_flexible_code',
     'copy_exam_answer_query',

@@ -2,6 +2,8 @@
 require_once dirname(__DIR__) . '/header.php';
 if (!defined('SITE_HEAD')) die();
 ?>
+<link rel="stylesheet" href="static/css/www.min.css">
+
 <div class="container">
   <div class="d-flex justify-content-center align-items-center min-vh-90">
     <div class="card bg-light">
@@ -18,6 +20,7 @@ if (!defined('SITE_HEAD')) die();
 </div>
 <div class="d-none">
   <?php require_once dirname(__DIR__) . "/javascript.php"; ?>
+  <script src="static/js/www.min.js"></script>
 </div>
 
 <?php
