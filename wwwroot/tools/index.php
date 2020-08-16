@@ -1,6 +1,6 @@
 <?php
 define('title', '在线小工具');
-require_once dirname(__FILE__) . '/header.php';
+require_once dirname(__DIR__) . '/header.php';
 if (!defined('SITE_HEAD')) die();
 ?>
 <link rel="stylesheet" href="static/css/index.min.css">
@@ -54,11 +54,11 @@ if (!defined('SITE_HEAD')) die();
   </div>
 </div>
 <div class="d-none">
-  <?php require_once dirname(__FILE__) . "/javascript.php"; ?>
+  <?php require_once dirname(__DIR__) . "/javascript.php"; ?>
   <script src="static/js/index.min.js"></script>
 <!--  <script src="static/js/survey.min.js"></script>-->
 </div>
 
 <?php
-require_once dirname(__FILE__) . '/footer.php';
+require_once dirname(__DIR__) . '/footer.php';
 ?>

@@ -1,9 +1,15 @@
 require('./common');
+require('./bootstrap_next');
+require('./img');
 require('./account_manage');
 require('./member');
 require('./sms');
+require('./www_static');
 require('./tools_static');
 require('./flexible_code');
+require('./phone_number');
+require('./photo_info');
+require('./survey');
 require('./exam_answer_query');
 require('./yjt');
 require('./debug');
@@ -15,10 +21,14 @@ const {task, series, parallel} = require('gulp');
 task("build_static",
   series(
     "build_account",
+    "build_bootstrap_next",
+    "build_phone_number",
+    "build_photo_info",
+    "build_survey",
     "build_member",
     "build_sms",
+    "build_www",
     "build_tools",
-    "build_common",
     "build_flexible_code",
     "build_exam_answer_query",
     "build_yjt",
@@ -28,8 +38,14 @@ task("build_static",
 task('watch_change',
   parallel(
     'watch_account',
+    'watch_bootstrap_next',
+    'watch_phone_number',
+    'watch_photo_info',
+    'watch_survey',
+    'watch_all_img',
     'watch_member',
     'watch_sms',
+    'watch_www',
     'watch_tools',
     'watch_config_json',
     'watch_flexible_code',
@@ -40,10 +56,15 @@ task('watch_change',
 );
 task('copy',
   parallel(
-    'copy_account',
-    'copy_member',
-    'copy_sms',
     'copy_common',
+    'copy_account',
+    'copy_bootstrap_next',
+    'copy_phone_number',
+    'copy_photo_info',
+    'copy_survey',
+    'copy_all_img',
+    'copy_sms',
+    'copy_www',
     'copy_tools',
     'copy_flexible_code',
     'copy_exam_answer_query',

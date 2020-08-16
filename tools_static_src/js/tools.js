@@ -403,15 +403,11 @@ function footer_current_time() {
 // ICP备案和公网安备
 function footer_record() {
   let div = document.createElement('div');
-  let span = document.createElement('span');
 
-  div.className = 'small';
+  div.className = 'd-flex flex-column flex-sm-row align-items-center small';
   div.id = 'footer_record';
 
-  span.innerHTML = '&nbsp;&nbsp;';
-
   div.appendChild(footer_record_icp_no('冀ICP备12018851号-7'));
-  div.appendChild(span);
   div.appendChild(footer_record_code('13050002001901', '冀'));
   return div;
 }
@@ -419,7 +415,7 @@ function footer_record() {
 function footer_record_icp_no(icp_no = '') {
   let a = document.createElement('a');
 
-  a.className = 'small text-secondary text-decoration-none';
+  a.className = 'mx-sm-2 small text-secondary text-decoration-none';
   a.href = 'http://www.beian.miit.gov.cn/';
   a.target = '_blank';
   a.rel = 'noreferrer nofollow';
@@ -432,7 +428,7 @@ function footer_record_icp_no(icp_no = '') {
 function footer_record_code(code_number = '', code_area = '') {
   let a = document.createElement('a');
 
-  a.className = 'small text-secondary text-decoration-none';
+  a.className = 'mx-sm-2 small text-secondary text-decoration-none';
   a.href = 'http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=' + code_number;
   a.target = '_blank';
   a.rel = 'noreferrer nofollow';
@@ -468,6 +464,7 @@ function footer_qr_code() {
 function footer_modal_qr_code() {
   let url = document.location.href;
   let div = document.createElement('div');
+  let title = document.createElement('div');
   let img = document.createElement('img');
   let qrcode_option = {
     errorCorrectionLevel: 'H',
@@ -483,15 +480,19 @@ function footer_modal_qr_code() {
 
   div.className = 'text-center';
 
+  title.innerHTML = '二维码直达【' + document.title + '】';
+  title.className = 'text-success';
+
   ClipboardJS_location_href(img);
 
+  div.appendChild(title);
   div.appendChild(img);
   div.appendChild(footer_qr_code_modal_tip());
 
   QRCode.toDataURL(url, qrcode_option, function (err, img_base64) {
     if (err) throw err;
     img.src = img_base64;
-    img.alt = document.title + '页面地址二维码';
+    img.alt = document.title + '地址二维码';
   });
   bootstrapModalJs('', div, '', '', true);
 }
@@ -526,10 +527,10 @@ function ClipboardJS_location_href(event) {
     },
   });
   clipboard.on('success', function () {
-    bootstrapModalJs('', create_small_center_text('网址复制成功', 'asfasdf'), '', 'sm', true);
+    bootstrapModalJs('', create_small_center_text('网址文本复制成功', 'success'), '', 'sm', true);
   });
   clipboard.on('error', function () {
-    bootstrapModalJs('', '<span class="d-block text-center text-danger small">网址复制失败</span>', '', 'sm', true);
+    bootstrapModalJs('', create_small_center_text('网址文本复制失败', 'danger'), '', 'sm', true);
     clipboard.destroy();
   });
 }
@@ -713,6 +714,8 @@ function domain_check() {
   let result = true;
   let current_host = document.location.host;
   let hosts = [
+    'jzeg.org',
+    'jzeg.net',
     'tools.jzeg.org',
     'test.jzeg.net',
     'tools.jzeg.net',
@@ -850,7 +853,7 @@ function dynamic_synchronization_element(source_element, target_element, event_t
   });
 }
 
-// 全局tooltip提示设置
+// 全局 tooltip 提示设置
 $().ready(function () {
   [].slice.call(document.querySelectorAll('span[title]')).forEach(function (titleTriggerEL) {
     let titleElement = new bootstrap.Tooltip(titleTriggerEL, {
@@ -865,3 +868,83 @@ $().ready(function () {
     });
   });
 });
+
+
+// 页脚社群信息 popovers 设置
+$().ready(function () {
+  [].slice.call(document.querySelectorAll('#socialGroup a')).forEach(function (popoverTriggerEL) {
+    new bootstrap.Popover(popoverTriggerEL, {
+      html: true,
+      template: '' +
+        '<div class="popover bg-secondary text-white-50" role="tooltip">' +
+        '  <div class="popover-arrow"></div>' +
+        '  <h3 class="popover-header bg-transparent"></h3>' +
+        '  <div class="popover-body card bg-transparent"></div>' +
+        '  <div class="popover-footer"></div>' +
+        '</div>',
+      container: 'body',
+      trigger: 'manual',
+      placement: 'top',
+      content: function () {
+        let x = popoverTriggerEL.dataset['target'];
+        return document.querySelector(x);
+      },
+    });
+
+    popoverTriggerEL.addEventListener('click', function () {
+      bootstrap.Popover.getInstance(popoverTriggerEL).toggle();
+    });
+
+  });
+});
+
+
+// 底部二维码图片生成
+$().ready(function () {
+  let socialGroupQrcode = document.querySelector('#socialGroupQrcode');
+  if (socialGroupQrcode) {
+    let dingTalk_img = document.createElement("img");
+    let qq_img = document.createElement("img");
+    let wechat_img = document.createElement("img");
+    let socialGroup_dingTalk = document.querySelector('#socialGroup_dingTalk');
+    let socialGroup_qq = document.querySelector('#socialGroup_qq');
+    let socialGroup_wechat = document.querySelector('#socialGroup_wechat');
+
+    let dingTalk_url_parameters = '?corpId=ding893bad2d4e569096fac3b26d3f309cdb&ab55e19=00f6ed1&cbdbhh=qwertyuiop&origin=0';
+    let qq_url_parameters = '?k=Ud6pogcHJ1ioQR_8qtPTHkXr48QRmtd4&authKey=dSaugxZBNfcmo4T9bg+ltEY5VeRbqvtCoo99VxHHxLv4/wWLDuejiKc+nbTJCY0d&noverify=0';
+    let wechat_url_parameters = '';
+    let dingTalk_url = create_url('https://h5.dingtalk.com/', 'circle/healthCheckin.html', dingTalk_url_parameters);
+    let qq_url = create_url('https://qm.qq.com/', 'cgi-bin/qm/qr', qq_url_parameters);
+    let wechat_url = create_url('https://weixin.qq.com/', 'g/AQYAADnWmR9tHL01ktpbeg2T69yCdP6wRAh2sRBbpFYoMk6oY3igS9hAnhKIfBXa', wechat_url_parameters);
+
+    create_socialGroup_qrcode(dingTalk_url, dingTalk_img, socialGroup_dingTalk);
+    create_socialGroup_qrcode(qq_url, qq_img, socialGroup_qq);
+    create_socialGroup_qrcode(wechat_url, wechat_img, socialGroup_wechat);
+  }
+})
+
+function create_url(baseDomain = '', pathname = '', parameters = '') {
+  return baseDomain + pathname + parameters;
+}
+
+function create_socialGroup_qrcode(socialGroupUrl = '', socialGroupElement, parentElement) {
+  let qrcode_option = {
+    errorCorrectionLevel: 'H',
+    type: 'image/jpeg',
+    margin: 0.5,
+    width: 150,
+    quality: 0.2,
+    color: {
+      dark: '#222222',
+      light: '#ffffff',
+    },
+  };
+
+  QRCode.toDataURL(socialGroupUrl, qrcode_option, function (err, img_base64) {
+    if (err) throw err;
+    socialGroupElement.className = 'mb-2 img-thumbnail';
+    socialGroupElement.src = img_base64;
+    socialGroupElement.alt = '二维码';
+    parentElement ? parentElement.appendChild(socialGroupElement) : '';
+  });
+}

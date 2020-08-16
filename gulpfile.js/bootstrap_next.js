@@ -17,60 +17,57 @@ const
   tools_static_src_path = "./tools_static_src/",
   tools_static_src_js = tools_static_src_path + "js/",
   tools_static_src_css = tools_static_src_path + "css/",
-  /** tools **/
-  tools_js_path = tools_static_src_js + "tools.js",
-  tools_css_path = tools_static_src_css + "tools.css",
-  /** index **/
-  index_js_path = tools_static_src_js + "index.js",
-  index_css_path = tools_static_src_css + "index.css";
+  /** bootstrap_next **/
+  bootstrap_next_js_path = tools_static_src_js + "bootstrap_next.js",
+  bootstrap_next_css_path = tools_static_src_css + "bootstrap_next.css";
 
 
 /**
  * Task
  * 任务
  */
-task(watch_tools);
+task(watch_bootstrap_next);
 
 /**
  * Combined tasks
  * 合并任务
  */
-task("copy_tools",
+task("copy_bootstrap_next",
   parallel(
-    copy_tools_css,
-    copy_tools_js,
+    copy_bootstrap_next_css,
+    copy_bootstrap_next_js,
   )
 );
-task("minimize_tools",
+task("minimize_bootstrap_next",
   parallel(
-    cleanCSS_tools,
-    terser_tools,
+    cleanCSS_bootstrap_next,
+    terser_bootstrap_next,
   )
 );
-task("build_tools",
+task("build_bootstrap_next",
   parallel(
-    "copy_tools",
-    "minimize_tools",
+    "copy_bootstrap_next",
+    "minimize_bootstrap_next",
   )
 );
 
 // Tasks function
 // 任务函数
-function copy_tools_css(done) {
-  src([tools_css_path, index_css_path], {since: lastRun(copy_tools_css)})
+function copy_bootstrap_next_css(done) {
+  src([bootstrap_next_css_path], {since: lastRun(copy_bootstrap_next_css)})
     .pipe(postcss([autoPreFixer()]))
     .pipe(dest(static_css));
   done();
 }
 
-function copy_tools_js(done) {
-  src([tools_js_path, index_js_path], {since: lastRun(copy_tools_js)})
+function copy_bootstrap_next_js(done) {
+  src([bootstrap_next_js_path], {since: lastRun(copy_bootstrap_next_js)})
     .pipe(dest(static_js));
   done();
 }
 
-function cleanCSS_tools(done) {
-  src([tools_css_path, index_css_path], {since: lastRun(cleanCSS_tools)})
+function cleanCSS_bootstrap_next(done) {
+  src([bootstrap_next_css_path], {since: lastRun(cleanCSS_bootstrap_next)})
     .pipe(postcss([autoPreFixer()]))
     .pipe(cleanCSS())
     .pipe(rename({suffix: ".min"}))
@@ -78,21 +75,15 @@ function cleanCSS_tools(done) {
   done();
 }
 
-function terser_tools(done) {
-  src([tools_js_path, index_js_path], {since: lastRun(terser_tools)})
+function terser_bootstrap_next(done) {
+  src([bootstrap_next_js_path], {since: lastRun(terser_bootstrap_next)})
     .pipe(terser())
     .pipe(rename({suffix: ".min"}))
     .pipe(dest(static_js));
   done();
 }
 
-function watch_tools(done) {
-  let all_watch_files = [
-    tools_js_path,
-    index_js_path,
-    tools_css_path,
-    index_css_path,
-  ];
-  watch(all_watch_files, task("build_tools"));
+function watch_bootstrap_next(done) {
+  watch([bootstrap_next_js_path,bootstrap_next_css_path], task("build_bootstrap_next"));
   done();
 }

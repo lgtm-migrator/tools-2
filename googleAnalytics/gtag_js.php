@@ -1,15 +1,11 @@
 <?php
-require_once dirname(__DIR__) . '/config/env.php';
-?>
-<!-- Global Site Tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=<?php echo $_ENV['GOOGLE_ANALYTICS_CONFIG']; ?>"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-
-  function gtag() {
-    dataLayer.push(arguments);
-  }
-
-  gtag('js', new Date());
-  gtag('config', "<?php echo $_ENV['GOOGLE_ANALYTICS_CONFIG']; ?>");
-</script>
+$host = $_SERVER["HTTP_HOST"];
+if (0 === strpos($host, 'policies')) {
+  require_once dirname(__FILE__) . '/gtag_js_policies.php';
+} elseif (0 === strpos($host, 'tools')) {
+  require_once dirname(__FILE__) . '/gtag_js_tools.php';
+} elseif (strlen($host) === 8 || 0 === strpos($host, 'www')) {
+  require_once dirname(__FILE__) . '/gtag_js_www.php';
+} else {
+  require_once dirname(__FILE__) . '/gtag_js_unknown.php';
+}

@@ -46,6 +46,9 @@ const
   dayjs_locale_zh_cn_js_path = "./node_modules/dayjs/locale/zh-cn.js",
   /** animate.css **/
   animate_all_css_path = "./node_modules/animate.css/animate.*css",
+  /** animejs **/
+  animejs_js_path = "./node_modules/animejs/lib/anime.js",
+  animejs_min_js_path = "./node_modules/animejs/lib/anime.min.js",
   /** aqua.css **/
   aqua_all_css_path = "./node_modules/@alphardex/aqua.css/dist/*",
   /** hover.css **/
@@ -65,6 +68,10 @@ const
   /** bootstrap-colorpicker.js **/
   bootstrap_color_picker_all_js_path = "./node_modules/bootstrap-colorpicker/dist/js/*",
   bootstrap_color_picker_all_css_path = "./node_modules/bootstrap-colorpicker/dist/css/*",
+  /** flatpickr.js **/
+  flatpickr_all_js_path = "./node_modules/flatpickr/dist/*.js",
+  flatpickr_all_css_path = "./node_modules/flatpickr/dist/*.css",
+  flatpickr_all_l10n_js_path = "./node_modules/flatpickr/dist/l10n/*.js",
   /** clipboard.js **/
   clipboard_min_js_path = "./node_modules/clipboard/dist/clipboard.min.js";
 
@@ -83,6 +90,7 @@ task("copy_common",
     copy_bootstrap_master_dist,
     copy_bootstrap_table,
     copy_animate_css,
+    copy_animejs,
     copy_aqua_css,
     copy_hover_css,
     copy_cleave_js,
@@ -94,18 +102,12 @@ task("copy_common",
     copy_qrcode,
     copy_md5,
     copy_bootstrap_colorPicker,
+    copy_flatpickr,
   )
 );
 task("add_footer",
   parallel(
     add_footer_funDebug_api,
-  )
-);
-task("build_common",
-  parallel(
-    // "add_header",
-    "add_footer",
-    "copy_common",
   )
 );
 
@@ -149,6 +151,17 @@ function copy_bootstrap_colorPicker(done) {
   done();
 }
 
+function copy_flatpickr(done) {
+  src([flatpickr_all_js_path], {since: lastRun(copy_flatpickr)})
+    .pipe(dest(static_js));
+  src([flatpickr_all_l10n_js_path], {since: lastRun(copy_flatpickr)})
+    .pipe(rename({prefix:'flatpickr-'}))
+    .pipe(dest(static_js));
+  src([flatpickr_all_css_path], {since: lastRun(copy_flatpickr)})
+    .pipe(dest(static_css));
+  done();
+}
+
 function copy_qrcode(done) {
   src([qrcode_build_path], {since: lastRun(copy_qrcode)})
     .pipe(dest(static_js));
@@ -186,6 +199,12 @@ function copy_bootstrap_table(done) {
 function copy_animate_css(done) {
   src([animate_all_css_path], {since: lastRun(copy_animate_css)})
     .pipe(dest(static_css));
+  done();
+}
+
+function copy_animejs(done) {
+  src([animejs_js_path,animejs_min_js_path], {since: lastRun(copy_animejs)})
+    .pipe(dest(static_js));
   done();
 }
 

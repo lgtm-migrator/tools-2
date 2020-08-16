@@ -17,60 +17,57 @@ const
   tools_static_src_path = "./tools_static_src/",
   tools_static_src_js = tools_static_src_path + "js/",
   tools_static_src_css = tools_static_src_path + "css/",
-  /** tools **/
-  tools_js_path = tools_static_src_js + "tools.js",
-  tools_css_path = tools_static_src_css + "tools.css",
-  /** index **/
-  index_js_path = tools_static_src_js + "index.js",
-  index_css_path = tools_static_src_css + "index.css";
+  /** phone_number **/
+  phone_number_js_path = tools_static_src_js + "phone_number.js",
+  phone_number_css_path = tools_static_src_css + "phone_number.css";
 
 
 /**
  * Task
  * 任务
  */
-task(watch_tools);
+task(watch_phone_number);
 
 /**
  * Combined tasks
  * 合并任务
  */
-task("copy_tools",
+task("copy_phone_number",
   parallel(
-    copy_tools_css,
-    copy_tools_js,
+    copy_phone_number_css,
+    copy_phone_number_js,
   )
 );
-task("minimize_tools",
+task("minimize_phone_number",
   parallel(
-    cleanCSS_tools,
-    terser_tools,
+    cleanCSS_phone_number,
+    terser_phone_number,
   )
 );
-task("build_tools",
+task("build_phone_number",
   parallel(
-    "copy_tools",
-    "minimize_tools",
+    "copy_phone_number",
+    "minimize_phone_number",
   )
 );
 
 // Tasks function
 // 任务函数
-function copy_tools_css(done) {
-  src([tools_css_path, index_css_path], {since: lastRun(copy_tools_css)})
+function copy_phone_number_css(done) {
+  src([phone_number_css_path], {since: lastRun(copy_phone_number_css)})
     .pipe(postcss([autoPreFixer()]))
     .pipe(dest(static_css));
   done();
 }
 
-function copy_tools_js(done) {
-  src([tools_js_path, index_js_path], {since: lastRun(copy_tools_js)})
+function copy_phone_number_js(done) {
+  src([phone_number_js_path], {since: lastRun(copy_phone_number_js)})
     .pipe(dest(static_js));
   done();
 }
 
-function cleanCSS_tools(done) {
-  src([tools_css_path, index_css_path], {since: lastRun(cleanCSS_tools)})
+function cleanCSS_phone_number(done) {
+  src([phone_number_css_path], {since: lastRun(cleanCSS_phone_number)})
     .pipe(postcss([autoPreFixer()]))
     .pipe(cleanCSS())
     .pipe(rename({suffix: ".min"}))
@@ -78,21 +75,15 @@ function cleanCSS_tools(done) {
   done();
 }
 
-function terser_tools(done) {
-  src([tools_js_path, index_js_path], {since: lastRun(terser_tools)})
+function terser_phone_number(done) {
+  src([phone_number_js_path], {since: lastRun(terser_phone_number)})
     .pipe(terser())
     .pipe(rename({suffix: ".min"}))
     .pipe(dest(static_js));
   done();
 }
 
-function watch_tools(done) {
-  let all_watch_files = [
-    tools_js_path,
-    index_js_path,
-    tools_css_path,
-    index_css_path,
-  ];
-  watch(all_watch_files, task("build_tools"));
+function watch_phone_number(done) {
+  watch([phone_number_js_path, phone_number_css_path], task("build_phone_number"));
   done();
 }

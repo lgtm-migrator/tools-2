@@ -1,13 +1,13 @@
 <?php
 if ($_POST) {
-  require_once dirname(dirname(__DIR__)) . '/functions/exam_answer_query/query_answer.php';
+  require_once dirname(dirname(dirname(__DIR__))) . '/functions/exam_answer_query/query_answer.php';
   exit();
 } elseif ($_GET) {
   exit('当前不认为需要支持此方式进行查询');
 }
 
-define('title', '查询参考');
-require_once dirname(__DIR__) . '/header.php';
+define('title', '考试信息参考');
+require_once dirname(dirname(__DIR__)) . '/header.php';
 ?>
 <link rel="stylesheet" href="/static/css/exam_answer_query/index.min.css">
 <div class="mt-4 py-4 container">
@@ -118,10 +118,10 @@ require_once dirname(__DIR__) . '/header.php';
 </div>
 
 <div class="d-none">
-  <?php require_once dirname(__DIR__) . "/javascript.php"; ?>
+  <?php require_once dirname(dirname(__DIR__)) . "/javascript.php"; ?>
   <script src="/static/js/exam_answer_query/index.min.js"></script>
 </div>
 
 <?php
-require_once dirname(__DIR__) . '/footer.php';
+require_once dirname(dirname(__DIR__)) . '/footer.php';
 ?>

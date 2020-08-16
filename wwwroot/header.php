@@ -43,7 +43,7 @@ set_session_cookie('logged_in', $_SESSION['logged_in']);
     </div>
   </noscript>
 
-  <title><?php echo (defined('title')) ? title : '' ?></title>
+  <title><?php require_once dirname(__FILE__).'/common/title.php'; ?></title>
   <?php require_once dirname(__DIR__) . '/googleAnalytics/gtag_js.php'; ?>
   <script src="/static/js/fundebug.min.js"></script>
 </head>
