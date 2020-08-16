@@ -1,4 +1,5 @@
 require('./common');
+require('./bootstrap_next');
 require('./img');
 require('./account_manage');
 require('./member');
@@ -19,6 +20,7 @@ const {task, series, parallel} = require('gulp');
 task("build_static",
   series(
     "build_account",
+    "build_bootstrap_next",
     "build_phone_number",
     "build_photo_info",
     "build_survey",
@@ -34,6 +36,7 @@ task("build_static",
 task('watch_change',
   parallel(
     'watch_account',
+    'watch_bootstrap_next',
     'watch_phone_number',
     'watch_photo_info',
     'watch_survey',
@@ -51,6 +54,7 @@ task('watch_change',
 task('copy',
   parallel(
     'copy_account',
+    'copy_bootstrap_next',
     'copy_phone_number',
     'copy_photo_info',
     'copy_survey',
