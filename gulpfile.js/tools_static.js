@@ -3,11 +3,7 @@ const {task, src, dest, parallel, lastRun, watch} = require('gulp'),
   autoPreFixer = require("autoprefixer"),
   postcss = require("gulp-postcss"),
   terser = require("gulp-terser"),
-  // concat = require('gulp-concat'),
   rename = require("gulp-rename");
-// header = require('gulp-header'),
-// footer = require('gulp-footer'),
-// del = require("del");
 
 // Static Files Path
 // 静态文件路径
@@ -26,18 +22,9 @@ const
   /** tools **/
   tools_js_path = tools_static_src_js + "tools.js",
   tools_css_path = tools_static_src_css + "tools.css",
-  /** survey **/
-  survey_js_path = tools_static_src_js + "survey.js",
-  survey_css_path = tools_static_src_css + "survey.css",
   /** index **/
   index_js_path = tools_static_src_js + "index.js",
-  index_css_path = tools_static_src_css + "index.css",
-  /** phone_number **/
-  phone_number_js_path = tools_static_src_js + "phone_number.js",
-  phone_number_css_path = tools_static_src_css + "phone_number.css",
-  /** photo_info **/
-  photo_info_js_path = tools_static_src_js + "photo_info.js",
-  photo_info_css_path = tools_static_src_css + "photo_info.css";
+  index_css_path = tools_static_src_css + "index.css";
 
 
 /**
@@ -72,20 +59,20 @@ task("build_tools",
 // Tasks function
 // 任务函数
 function copy_tools_css(done) {
-  src([tools_css_path, index_css_path, survey_css_path, phone_number_css_path, photo_info_css_path, bootstrap_next_css_path], {since: lastRun(copy_tools_css)})
+  src([tools_css_path, index_css_path, bootstrap_next_css_path], {since: lastRun(copy_tools_css)})
     .pipe(postcss([autoPreFixer()]))
     .pipe(dest(static_css));
   done();
 }
 
 function copy_tools_js(done) {
-  src([tools_js_path, index_js_path, survey_js_path, phone_number_js_path, photo_info_js_path], {since: lastRun(copy_tools_js)})
+  src([tools_js_path, index_js_path], {since: lastRun(copy_tools_js)})
     .pipe(dest(static_js));
   done();
 }
 
 function cleanCSS_tools(done) {
-  src([tools_css_path, index_css_path, survey_css_path, phone_number_css_path, photo_info_css_path, bootstrap_next_css_path], {since: lastRun(cleanCSS_tools)})
+  src([tools_css_path, index_css_path, bootstrap_next_css_path], {since: lastRun(cleanCSS_tools)})
     .pipe(postcss([autoPreFixer()]))
     .pipe(cleanCSS())
     .pipe(rename({suffix: ".min"}))
@@ -94,7 +81,7 @@ function cleanCSS_tools(done) {
 }
 
 function terser_tools(done) {
-  src([tools_js_path, index_js_path, survey_js_path, phone_number_js_path, photo_info_js_path], {since: lastRun(terser_tools)})
+  src([tools_js_path, index_js_path], {since: lastRun(terser_tools)})
     .pipe(terser())
     .pipe(rename({suffix: ".min"}))
     .pipe(dest(static_js));
@@ -105,14 +92,8 @@ function watch_tools(done) {
   let all_watch_files = [
     tools_js_path,
     index_js_path,
-    survey_js_path,
-    phone_number_js_path,
-    photo_info_js_path,
     tools_css_path,
     index_css_path,
-    survey_css_path,
-    phone_number_css_path,
-    photo_info_css_path,
     bootstrap_next_css_path,
   ];
   watch(all_watch_files, task("build_tools"));

@@ -5,6 +5,9 @@ require('./member');
 require('./sms');
 require('./tools_static');
 require('./flexible_code');
+require('./phone_number');
+require('./photo_info');
+require('./survey');
 require('./exam_answer_query');
 require('./yjt');
 require('./debug');
@@ -16,6 +19,9 @@ const {task, series, parallel} = require('gulp');
 task("build_static",
   series(
     "build_account",
+    "build_phone_number",
+    "build_photo_info",
+    "build_survey",
     "build_member",
     "build_sms",
     "build_tools",
@@ -28,6 +34,9 @@ task("build_static",
 task('watch_change',
   parallel(
     'watch_account',
+    'watch_phone_number',
+    'watch_photo_info',
+    'watch_survey',
     'watch_all_img',
     'watch_member',
     'watch_sms',
@@ -42,6 +51,9 @@ task('watch_change',
 task('copy',
   parallel(
     'copy_account',
+    'copy_phone_number',
+    'copy_photo_info',
+    'copy_survey',
     'copy_all_img',
     'copy_sms',
     'copy_common',
