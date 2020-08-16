@@ -2,11 +2,11 @@
 require_once dirname(__DIR__) . '/config/env.php';
 $siteName = $_ENV['SITE_NAME'];
 $host = $_SERVER["HTTP_HOST"];
-if (0 === strpos($host, 'policies') || 0 === strpos($host, 'test_policies')) {
+if (0 === strpos($host, 'policies') || 0 === strpos($host, 'test-policies')) {
   ?>
   <a class="ml-1 stretched-link text-decoration-none text-nowrap text-info" href="/" title="<?php echo $siteName; ?>政策"><?php echo $siteName; ?><span class="small">政策</span></a>
   <?php
-} elseif (0 === strpos($host, 'tools') || 0 === strpos($host, 'test_tools')) {
+} elseif (0 === strpos($host, 'tools') || 0 === strpos($host, 'test-tools')|| 0 === strpos($host, 'test')) {
   ?>
   <i class="py-2 text-warning fas fa-fw fa-tools hvr-icon"></i>
   <a class="ml-1 stretched-link text-decoration-none text-nowrap text-info" href="/" title="<?php echo $siteName; ?>小工具">小工具</a>
