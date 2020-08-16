@@ -6,11 +6,12 @@ if (!defined('SITE_HEAD')) die();
   <div class="d-flex justify-content-center align-items-center min-vh-90">
     <div class="card bg-light">
       <div class="card-header">
-        <span class="h5 mb-0">欢迎光临杰格网</span>
+        <strong class="text-dodgerblue">欢迎光临杰格网</strong>
       </div>
-      <div class="card-body">
-        <span>杰格网正在建设中，请先加入页面底部的钉钉群进行主讨论，微信群和QQ群为辅助讨论。</span>
-        <span class="mt-2 d-flex justify-content-end">2020.08.16</span>
+      <div class="card-body small">
+        <div>杰格网正在建设中，请先加入页面底部的钉钉群进行主讨论，微信群和QQ群为辅助讨论。</div>
+        <div>账号暂未开放，目前无需注册，内容访问不受影响。</div>
+        <div class="mt-2 d-flex justify-content-end">2020.08.16</div>
       </div>
     </div>
   </div>
