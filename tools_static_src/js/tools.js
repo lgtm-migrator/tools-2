@@ -714,11 +714,15 @@ function domain_check() {
   let result = true;
   let current_host = document.location.host;
   let hosts = [
-    'jzeg.org',
     'jzeg.net',
-    'tools.jzeg.org',
-    'test.jzeg.net',
     'tools.jzeg.net',
+    'policies.jzeg.net',
+    'jzeg.org',
+    'tools.jzeg.org',
+    'policies.jzeg.org',
+    'test.jzeg.net',
+    'test-policies.jzeg.net',
+    'test-tools.jzeg.net',
   ];
 
   if (hosts.includes(current_host)) result = false;
