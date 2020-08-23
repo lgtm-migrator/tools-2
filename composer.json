@@ -19,6 +19,7 @@
     "ext-gd": "^7.3",
     "ext-mbstring": "^7.3",
     "ext-openssl": "^7.3",
+    "ext-curl": "*",
     "lsolesen/pel": "^0.9.8",
     "alibabacloud/sdk": "^1.8",
     "endroid/qr-code": "^3.7",
