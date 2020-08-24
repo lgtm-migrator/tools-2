@@ -1,4 +1,7 @@
 $().ready(function () {
+});
+
+function getLine() {
   let data = {
     type: 'line',
     cmd: '103',
@@ -6,4 +9,4 @@ $().ready(function () {
     direction: '1',
   };
   common_ajax(data);
-});
+}
