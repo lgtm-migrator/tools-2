@@ -9,6 +9,7 @@ require_once dirname(dirname(__DIR__)) . "/header.php";
 
 <div class="d-none">
   <?php require_once dirname(dirname(__DIR__)) . "/javascript.php"; ?>
+  <script src="/static/js/xtBus/index.min.js"></script>
   <script src="/static/js/xtBus/line.min.js"></script>
 </div>
 <?php

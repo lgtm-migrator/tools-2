@@ -5,18 +5,5 @@ $().ready(function () {
     lineName: '3路',
     direction: '1',
   };
-  $.ajax({
-    url: 'q.php',
-    type: 'post',
-    cache: false,
-    data: data,
-    timeout: 4000,
-    dataType: 'json',
-    success: function (data) {
-      console.log(data);
-    },
-    error: function (errorData) {
-      console.log(errorData);
-    },
-  });
+  common_ajax(data);
 });
