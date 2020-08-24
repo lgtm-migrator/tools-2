@@ -3,8 +3,10 @@ require_once dirname(__FILE__) . '/config.php';
 
 global $cityKey;
 
+$cmd = $_POST['cmd'];
+
 $post_data = array(
-    'CMD' => '205',
+    'CMD' => $cmd,
     'CITYKEY' => $cityKey,
 );
 

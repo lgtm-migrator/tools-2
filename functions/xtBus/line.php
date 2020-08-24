@@ -3,11 +3,12 @@ require_once dirname(__FILE__) . '/config.php';
 
 global $cityName, $cityKey;
 
-$lineName = '3路';
-$direction = '1';
+$lineName = $_POST['lineName'];
+$direction = $_POST['direction'];
+$cmd = $_POST['cmd'];
 
 $post_data = array(
-    'CMD' => '103',
+    'CMD' => $cmd,
     'CITYNAME' => $cityName,
     'CITYKEY' => $cityKey,
     'LINENAME' => $lineName,
