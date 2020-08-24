@@ -332,6 +332,7 @@ function get_recaptcha_verify(token_key, pageAction) {
 
   $.ajax({
     type: 'post',
+    cache: false,
     url: url,
     data: data,
     timeout: 5000,
