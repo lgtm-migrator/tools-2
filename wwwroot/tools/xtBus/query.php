@@ -1,5 +1,5 @@
 <?php
-define('title', 'query');
+define('title', '查询');
 require_once dirname(dirname(__DIR__)) . "/header.php";
 ?>
 <link rel="stylesheet" href="/static/css/xtBus/query.min.css">

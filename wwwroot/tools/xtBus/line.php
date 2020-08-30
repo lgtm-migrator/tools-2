@@ -1,14 +1,14 @@
 <?php
-define('title', 'line');
+define('title', '信息查询');
 require_once dirname(dirname(__DIR__)) . "/header.php";
 ?>
 <link rel="stylesheet" href="/static/css/xtBus/line.min.css">
 
 <div class="container mt-5" id="jt_container">
-  <div>
-    <div class="mb-3 font-weight-bolder">线路查询</div>
-    <div class="mb-3">
-      <div class="mb-1 text-orange">正向与反向</div>
+  <div class="mb-3">
+    <div class="mb-2 font-weight-bolder">公交线路实时查询</div>
+    <div class="mb-2">
+      <div class="text-orange">正向与反向</div>
       <div class="d-flex align-items-center" id="routeUpperOrDown">
         <div class="btn-group btn-group-sm">
           <input type="radio" class="btn-check" name="UpperOrDown" id="routeUpper" value="1" checked>
@@ -18,8 +18,8 @@ require_once dirname(dirname(__DIR__)) . "/header.php";
         </div>
       </div>
     </div>
-    <div class="mb-3">
-      <div class="mb-1 text-orange">所有路线</div>
+    <div class="mb-2">
+      <div class="text-orange">所有路线</div>
       <div class="d-flex align-items-center">
         <div class="btn-group btn-group-sm" id="routeNameList">
           <input type="radio" class="btn-check" name="routeName" id="routeName_1" value="1路">
