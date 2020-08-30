@@ -22,7 +22,23 @@ $().ready(function () {
 $().ready(function () {
   let bus = document.querySelector('#bus');
   if (bus) {
+    let busQuery = document.querySelector('#busQuery');
+    let busQueryCategory = busQuery.querySelectorAll('button[data-target]');
+
     getInit(busPageInit);
+    [].slice.call(busQueryCategory).forEach(function (buttonTriggerEL) {
+      let buttonTab = new bootstrap.Tab(buttonTriggerEL);
+      let buttonButtonToggle = new bootstrap.Button(buttonTriggerEL);
+      buttonTriggerEL.addEventListener('click', function () {
+        buttonTab.show();
+      })
+      buttonTriggerEL.addEventListener('show.bs.tab', function () {
+        buttonButtonToggle.toggle();
+      })
+      buttonTriggerEL.addEventListener('hide.bs.tab', function () {
+        buttonButtonToggle.toggle();
+      })
+    })
   }
 });
 
@@ -51,7 +67,6 @@ function common_ajax(data = {}, fn) {
 
 function busPageInit(data = {}) {
   console.log(data);
-  let bus = document.querySelector('#bus');
   let busArea = document.querySelector('#busArea');
   if (1 === data['status'] && 'success' === data['msg']) {
     busArea.innerHTML = data['city']['showName'];
