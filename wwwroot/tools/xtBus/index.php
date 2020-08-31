@@ -42,7 +42,7 @@ require_once dirname(dirname(__DIR__)) . "/header.php";
           <div class="tab-pane fade show active" id="lines">
             <div class="input-group">
               <span class="input-group-text">线路数字</span>
-              <input type="text" class="form-control form-control-lg" placeholder="例如：3" id="getRelatedLines" aria-label="线路名称">
+              <input type="number" class="form-control form-control-lg" placeholder="例如：3" id="getRelatedLines" aria-label="线路名称">
               <span class="input-group-text">路车</span>
             </div>
           </div>

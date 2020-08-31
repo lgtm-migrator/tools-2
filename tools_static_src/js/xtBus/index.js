@@ -22,10 +22,11 @@ $().ready(function () {
 $().ready(function () {
   let bus = document.querySelector('#bus');
   if (bus) {
+    getInit(busPageInit);
+
+    // 分类查询线路和站牌
     let busQuery = document.querySelector('#busQuery');
     let busQueryCategory = busQuery.querySelectorAll('button[data-target]');
-
-    getInit(busPageInit);
     [].slice.call(busQueryCategory).forEach(function (buttonTriggerEL) {
       let buttonTab = new bootstrap.Tab(buttonTriggerEL);
       let buttonButtonToggle = new bootstrap.Button(buttonTriggerEL);
@@ -38,6 +39,24 @@ $().ready(function () {
       buttonTriggerEL.addEventListener('hide.bs.tab', function () {
         buttonButtonToggle.toggle();
       })
+    })
+
+    // 监听输入
+    let getRelatedLines = document.querySelector('#getRelatedLines');
+    let getRelatedStations = document.querySelector('#getRelatedStations');
+    getRelatedLines.addEventListener('input', function () {
+      let searchValue = this.value;
+      if (searchValue.length >= 1) {
+        console.log(this.value);
+        getQuery(searchValue);
+      }
+    })
+    getRelatedStations.addEventListener('input', function () {
+      let searchValue = this.value;
+      if (searchValue.length >= 2) {
+        console.log(this.value);
+        getQuery(searchValue);
+      }
     })
   }
 });
@@ -54,9 +73,7 @@ function common_ajax(data = {}, fn) {
       if (undefined !== fn) {
         fn(data);
       } else {
-        console.log(11);
         console.log(data);
-        console.log(22);
       }
     },
     error: function (errorData) {
