@@ -47,15 +47,13 @@ $().ready(function () {
     getRelatedLines.addEventListener('input', function () {
       let searchValue = this.value;
       if (searchValue.length >= 1) {
-        console.log(this.value);
-        getQuery(searchValue);
+        queryLines(searchValue);
       }
     })
     getRelatedStations.addEventListener('input', function () {
       let searchValue = this.value;
       if (searchValue.length >= 2) {
-        console.log(this.value);
-        getQuery(searchValue);
+        queryStations(searchValue);
       }
     })
   }

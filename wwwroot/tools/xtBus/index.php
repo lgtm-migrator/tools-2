@@ -11,7 +11,7 @@ require_once dirname(dirname(__DIR__)) . "/header.php";
     <div class="card">
       <div class="card-header">
         <div class="nav justify-content-between justify-content-sm-around justify-content-md-evenly" id="busQuery">
-          <div class="btn-group btn-group-sm dropdown">
+          <div class="btn-group dropdown">
             <button class="btn btn-outline-secondary active" type="button" role="tab" data-target="#lines" aria-controls="lines" aria-selected="true" aria-pressed="true">查询线路</button>
             <button class="btn btn-outline-dark dropdown-toggle dropdown-toggle-split" type="button" data-toggle="dropdown" aria-expanded="true">
               <span class="sr-only">切换下拉菜单</span>
@@ -23,7 +23,7 @@ require_once dirname(dirname(__DIR__)) . "/header.php";
               <a class="d-block text-center btn btn-sm btn-secondary" href="line.php" target="_blank">所有线路</a>
             </div>
           </div>
-          <div class="btn-group btn-group-sm dropdown">
+          <div class="btn-group dropdown">
             <button class="btn btn-outline-secondary" type="button" role="tab" data-target="#stations" aria-controls="stations" aria-selected="false" aria-pressed="false">查询站牌</button>
             <button class="btn btn-outline-dark dropdown-toggle dropdown-toggle-split" type="button" data-toggle="dropdown" aria-expanded="false">
               <span class="sr-only">切换下拉菜单</span>
