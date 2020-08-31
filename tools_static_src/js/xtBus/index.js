@@ -47,17 +47,59 @@ $().ready(function () {
     getRelatedLines.addEventListener('input', function () {
       let searchValue = this.value;
       if (searchValue.length >= 1) {
-        queryLines(searchValue);
+        queryLines(searchValue, setLineResult);
       }
     })
     getRelatedStations.addEventListener('input', function () {
       let searchValue = this.value;
       if (searchValue.length >= 2) {
-        queryStations(searchValue);
+        queryStations(searchValue, setStationResult);
       }
     })
+
+    // 结果
+    let searchResult = document.querySelector('#searchResult');
+    let lineResult = document.querySelector('#lineResult');
+    let stationResult = document.querySelector('#stationResult');
+    let transferResult = document.querySelector('#transferResult');
+
+    cleanInnerHTML(lineResult);
+    cleanInnerHTML(stationResult);
+    cleanInnerHTML(transferResult);
+    toggle_display_element(searchResult);
   }
 });
+
+function setLineResult(data) {
+  console.log(data['msg']);
+  console.log(data['status']);
+  console.log(data['buslines']);
+  console.log('lineName ==== ' + data['buslines'][0]['lineName']);
+  console.log('from ==== ' + data['buslines'][0]['from']);
+  console.log('to ==== ' + data['buslines'][0]['to']);
+  console.log('upperOrDown ==== ' + data['buslines'][0]['upperOrDown']);
+  console.log(typeof data);
+  data['buslines'].forEach(function (currentValue) {
+    console.log(currentValue['lineName']);
+  });
+}
+
+function setStationResult(data) {
+  console.log(data['msg']);
+  console.log(data['status']);
+  console.log(data['busstations']);
+  data['busstations'].forEach(function (currentValue, index) {
+    console.log(index + 1 + '  ' + currentValue['stationName']);
+  });
+}
+
+function toggle_display_element(element) {
+  element.classList.toggle('d-none');
+}
+
+function cleanInnerHTML(element) {
+  element.innerHTML = '';
+}
 
 function common_ajax(data = {}, fn) {
   $.ajax({

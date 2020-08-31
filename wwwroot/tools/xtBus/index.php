@@ -11,8 +11,8 @@ require_once dirname(dirname(__DIR__)) . "/header.php";
     <div class="card">
       <div class="card-header">
         <div class="nav justify-content-between justify-content-sm-around justify-content-md-evenly" id="busQuery">
-          <div class="btn-group dropdown">
-            <button class="btn btn-outline-secondary active" type="button" role="tab" data-target="#lines" aria-controls="lines" aria-selected="true" aria-pressed="true">查询线路</button>
+          <div class="btn-group btn-group-sm dropdown">
+            <button class="btn btn-outline-secondary active" type="button" role="tab" data-target="#lines" aria-controls="lines" aria-selected="true" aria-pressed="true">查线路</button>
             <button class="btn btn-outline-dark dropdown-toggle dropdown-toggle-split" type="button" data-toggle="dropdown" aria-expanded="true">
               <span class="sr-only">切换下拉菜单</span>
             </button>
@@ -23,8 +23,8 @@ require_once dirname(dirname(__DIR__)) . "/header.php";
               <a class="d-block text-center btn btn-sm btn-secondary" href="line.php" target="_blank">所有线路</a>
             </div>
           </div>
-          <div class="btn-group dropdown">
-            <button class="btn btn-outline-secondary" type="button" role="tab" data-target="#stations" aria-controls="stations" aria-selected="false" aria-pressed="false">查询站牌</button>
+          <div class="btn-group btn-group-sm dropdown">
+            <button class="btn btn-outline-secondary" type="button" role="tab" data-target="#stations" aria-controls="stations" aria-selected="false" aria-pressed="false">查站牌</button>
             <button class="btn btn-outline-dark dropdown-toggle dropdown-toggle-split" type="button" data-toggle="dropdown" aria-expanded="false">
               <span class="sr-only">切换下拉菜单</span>
             </button>
@@ -34,6 +34,9 @@ require_once dirname(dirname(__DIR__)) . "/header.php";
               </div>
               <a class="d-block text-center btn btn-sm btn-secondary" href="station.php" target="_blank">所有站牌</a>
             </div>
+          </div>
+          <div class="btn-group btn-group-sm dropdown">
+            <button class="btn btn-outline-secondary" type="button" role="tab" data-target="#transfer" aria-controls="transfer" aria-selected="false" aria-pressed="false">查换乘</button>
           </div>
         </div>
       </div>
@@ -52,9 +55,23 @@ require_once dirname(dirname(__DIR__)) . "/header.php";
               <input type="text" class="form-control form-control-lg" placeholder="例如：人民医院" id="getRelatedStations" aria-label="站牌名称">
             </div>
           </div>
+          <div class="tab-pane fade" id="transfer">
+            <div class="input-group mb-2">
+              <span class="input-group-text">起点站牌名称</span>
+              <input type="text" class="form-control form-control-lg" placeholder="例如：人民医院" id="startingStationName" aria-label="起点站牌名称">
+            </div>
+            <div class="input-group mb-2">
+              <span class="input-group-text">终点站牌名称</span>
+              <input type="text" class="form-control form-control-lg" placeholder="例如：医院" id="stopStationName" aria-label="终点站牌名称">
+            </div>
+          </div>
         </div>
       </div>
-      <div class="card-footer"></div>
+      <div class="card-footer bg-transparent d-none" id="searchResult">
+        <div class="d-none" id="lineResult"></div>
+        <div class="d-none" id="stationResult"></div>
+        <div class="d-none" id="transferResult"></div>
+      </div>
     </div>
   </div>
 </div>
