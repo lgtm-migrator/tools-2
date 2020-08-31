@@ -10,43 +10,46 @@ require_once dirname(dirname(__DIR__)) . "/header.php";
     <div></div>
     <div class="card">
       <div class="card-header">
-        <div class="nav justify-content-evenly" id="busQuery">
-          <div class="btn-group dropdown">
+        <div class="nav justify-content-between justify-content-sm-around justify-content-md-evenly" id="busQuery">
+          <div class="btn-group btn-group-sm dropdown">
             <button class="btn btn-outline-secondary active" type="button" role="tab" data-target="#lines" aria-controls="lines" aria-selected="true" aria-pressed="true">查询线路</button>
-            <button class="btn btn-outline-secondary dropdown-toggle dropdown-toggle-split" type="button" data-toggle="dropdown" aria-expanded="true">
+            <button class="btn btn-outline-dark dropdown-toggle dropdown-toggle-split" type="button" data-toggle="dropdown" aria-expanded="true">
               <span class="sr-only">切换下拉菜单</span>
             </button>
-            <ul class="dropdown-menu dropdown-menu-right">
-              <li><a class="dropdown-item" href="line.php" target="_blank" rel="noreferrer nofollow">所有线路</a></li>
-            </ul>
+            <div class="p-3 dropdown-menu dropdown-menu-right">
+              <div class="mb-1 text-muted small">
+                <span class="small">如果要查看所有公交线路，请点击下面的链接按钮进行查看。</span>
+              </div>
+              <a class="d-block text-center btn btn-sm btn-secondary" href="line.php" target="_blank">所有线路</a>
+            </div>
           </div>
-          <div class="btn-group dropdown">
+          <div class="btn-group btn-group-sm dropdown">
             <button class="btn btn-outline-secondary" type="button" role="tab" data-target="#stations" aria-controls="stations" aria-selected="false" aria-pressed="false">查询站牌</button>
-            <button class="btn btn-outline-secondary dropdown-toggle dropdown-toggle-split" type="button" data-toggle="dropdown" aria-expanded="false">
+            <button class="btn btn-outline-dark dropdown-toggle dropdown-toggle-split" type="button" data-toggle="dropdown" aria-expanded="false">
               <span class="sr-only">切换下拉菜单</span>
             </button>
-            <ul class="dropdown-menu dropdown-menu-right">
-              <li><a class="dropdown-item" href="station.php" target="_blank" rel="noreferrer nofollow">所有站牌</a></li>
-            </ul>
+            <div class="p-3 dropdown-menu dropdown-menu-right">
+              <div class="mb-1 text-muted small">
+                <span class="small">如果要查看所有站牌名称，请点击下面的链接按钮进行查看。</span>
+              </div>
+              <a class="d-block text-center btn btn-sm btn-secondary" href="station.php" target="_blank">所有站牌</a>
+            </div>
           </div>
         </div>
       </div>
       <div class="card-body">
         <div class="tab-content">
           <div class="tab-pane fade show active" id="lines">
-            <div>所有线路</div>
             <div class="input-group">
               <span class="input-group-text">线路数字</span>
-              <input type="text" class="form-control" placeholder="例如：3" aria-label="1">
+              <input type="text" class="form-control form-control-lg" placeholder="例如：3" id="getRelatedLines" aria-label="线路名称">
               <span class="input-group-text">路车</span>
             </div>
           </div>
           <div class="tab-pane fade" id="stations">
-            <div>所有站牌</div>
             <div class="input-group">
               <span class="input-group-text">站牌名称</span>
-              <input type="text" class="form-control" placeholder="例如：人民医院" aria-label="2">
-              <span class="input-group-text">站点</span>
+              <input type="text" class="form-control form-control-lg" placeholder="例如：人民医院" id="getRelatedStations" aria-label="站牌名称">
             </div>
           </div>
         </div>
