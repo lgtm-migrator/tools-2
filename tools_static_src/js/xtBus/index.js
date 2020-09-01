@@ -44,13 +44,13 @@ $().ready(function () {
     // 监听输入
     let getRelatedLines = document.querySelector('#getRelatedLines');
     let getRelatedStations = document.querySelector('#getRelatedStations');
-    getRelatedLines.addEventListener('input', function () {
+    getRelatedLines.addEventListener('blur', function () {
       let searchValue = this.value;
       if (searchValue.length >= 1) {
         queryLines(searchValue, setLineResult);
       }
     })
-    getRelatedStations.addEventListener('input', function () {
+    getRelatedStations.addEventListener('blur', function () {
       let searchValue = this.value;
       if (searchValue.length >= 2) {
         queryStations(searchValue, setStationResult);
@@ -71,17 +71,21 @@ $().ready(function () {
 });
 
 function setLineResult(data) {
-  console.log(data['msg']);
-  console.log(data['status']);
-  console.log(data['buslines']);
-  console.log('lineName ==== ' + data['buslines'][0]['lineName']);
-  console.log('from ==== ' + data['buslines'][0]['from']);
-  console.log('to ==== ' + data['buslines'][0]['to']);
-  console.log('upperOrDown ==== ' + data['buslines'][0]['upperOrDown']);
-  console.log(typeof data);
+  let msg = data['msg'];
+  let status = data['status'];
+  let allLines = [];
+
+  if (msg !== 'success' && status !== 1) {
+    console.log(222222222222222);
+    return;
+  }
   data['buslines'].forEach(function (currentValue) {
-    console.log(currentValue['lineName']);
+    if ('1' === currentValue['upperOrDown']) {
+      allLines.push(currentValue['lineName']);
+      console.log(currentValue['lineName'] + ' 开往 ' + currentValue['to']);
+    }
   });
+  console.log(allLines);
 }
 
 function setStationResult(data) {
