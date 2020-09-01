@@ -7,7 +7,6 @@ require_once dirname(dirname(__DIR__)) . "/header.php";
 <div class="container" id="jt_container">
   <div id="bus">
     <div class="font-weight-bolder text-text-dodgerblue" id="busArea"></div>
-    <div></div>
     <div class="card">
       <div class="card-header">
         <div class="nav justify-content-between justify-content-sm-around justify-content-md-evenly" id="busQuery">
@@ -45,29 +44,30 @@ require_once dirname(dirname(__DIR__)) . "/header.php";
           <div class="tab-pane fade show active" id="lines">
             <div class="input-group">
               <span class="input-group-text bg-primary text-white">线路数字</span>
-              <input type="text" class="form-control form-control-lg" placeholder="例如：3" id="getRelatedLines" pattern="/^\d{1,}$/" aria-label="线路名称">
+              <input type="text" class="form-control form-control-lg" placeholder="例如：3" id="getRelatedLines" pattern="/^\d{1,}$/" autocomplete="off" aria-label="线路名称">
               <span class="input-group-text">路车</span>
             </div>
           </div>
           <div class="tab-pane fade" id="stations">
             <div class="input-group">
               <span class="input-group-text bg-info text-white">站牌名称</span>
-              <input type="text" class="form-control form-control-lg" placeholder="例如：人民医院" id="getRelatedStations" maxlength="5" aria-label="站牌名称">
+              <input type="text" class="form-control form-control-lg" placeholder="例如：人民医院" id="getRelatedStations" autocomplete="off" maxlength="5" aria-label="站牌名称">
             </div>
           </div>
           <div class="tab-pane fade" id="transfer">
             <div class="input-group mb-2">
               <span class="input-group-text bg-success text-white">起点</span>
-              <input type="text" class="form-control form-control-lg" placeholder="例如：人民医院" id="startingStationName" aria-label="起点站牌名称">
+              <input type="text" class="form-control form-control-lg" placeholder="例如：人民医院" id="startingStationName" autocomplete="off" aria-label="起点站牌名称">
             </div>
             <div class="input-group mb-2">
               <span class="input-group-text bg-danger text-white">终点</span>
-              <input type="text" class="form-control form-control-lg" placeholder="例如：医院" id="stopStationName" aria-label="终点站牌名称">
+              <input type="text" class="form-control form-control-lg" placeholder="例如：医院" id="stopStationName" autocomplete="off" aria-label="终点站牌名称">
             </div>
           </div>
         </div>
       </div>
       <div class="card-footer bg-transparent d-none" id="searchResult">
+        <div class="mb-3 font-weight-bolder text-orange">结果</div>
         <div class="d-none" id="lineResult"></div>
         <div class="d-none" id="stationResult"></div>
         <div class="d-none" id="transferResult"></div>

@@ -58,47 +58,97 @@ $().ready(function () {
     })
 
     // 结果
-    let searchResult = document.querySelector('#searchResult');
-    let lineResult = document.querySelector('#lineResult');
-    let stationResult = document.querySelector('#stationResult');
-    let transferResult = document.querySelector('#transferResult');
 
-    cleanInnerHTML(lineResult);
-    cleanInnerHTML(stationResult);
-    cleanInnerHTML(transferResult);
-    toggle_display_element(searchResult);
+
+    // cleanInnerHTML(lineResult);
+    // cleanInnerHTML(stationResult);
+    // cleanInnerHTML(transferResult);
+
+    // toggle_display_element(lineResult);
+    // toggle_display_element(stationResult);
+    // toggle_display_element(transferResult);
+    //
+    // toggle_display_element(searchResult);
   }
 });
+
+let searchResult = document.querySelector('#searchResult');
+let lineResult = document.querySelector('#lineResult');
+let stationResult = document.querySelector('#stationResult');
+let transferResult = document.querySelector('#transferResult');
 
 function setLineResult(data) {
   let msg = data['msg'];
   let status = data['status'];
-  let allLines = [];
 
   if (msg !== 'success' && status !== 1) {
-    console.log(222222222222222);
+    console.log('获取失败');
     return;
   }
+
+  add_dNone(stationResult);
+  add_dNone(transferResult);
+  cleanInnerHTML(lineResult);
+  lineResult.appendChild(create_listGroup());
+
   data['buslines'].forEach(function (currentValue) {
     if ('1' === currentValue['upperOrDown']) {
-      allLines.push(currentValue['lineName']);
-      console.log(currentValue['lineName'] + ' 开往 ' + currentValue['to']);
+      let currentText = currentValue['lineName'] + ' 开往 ' + currentValue['to'];
+      lineResult.firstChild.appendChild(create_listGroupItem(currentText));
     }
   });
-  console.log(allLines);
+  remove_dNone(lineResult);
+  remove_dNone(searchResult);
 }
 
 function setStationResult(data) {
-  console.log(data['msg']);
-  console.log(data['status']);
-  console.log(data['busstations']);
-  data['busstations'].forEach(function (currentValue, index) {
-    console.log(index + 1 + '  ' + currentValue['stationName']);
+  let msg = data['msg'];
+  let status = data['status'];
+
+  if (msg !== 'success' && status !== 1) {
+    console.log('获取失败');
+    return;
+  }
+
+  add_dNone(lineResult);
+  add_dNone(transferResult);
+  cleanInnerHTML(stationResult);
+  stationResult.appendChild(create_listGroup());
+
+  data['busstations'].forEach(function (currentValue) {
+    let currentText = currentValue['stationName'];
+    stationResult.firstChild.appendChild(create_listGroupItem(currentText));
   });
+
+  remove_dNone(stationResult);
+  remove_dNone(searchResult);
 }
 
-function toggle_display_element(element) {
-  element.classList.toggle('d-none');
+function create_listGroup() {
+  let div = document.createElement("div");
+  div.className = "list-group list-group-flush";
+  div.role = "list";
+  return div;
+}
+
+function create_listGroupItem(data = '') {
+  let a = document.createElement("a");
+
+  a.className = "list-group-item list-group-item-action";
+  a.href = "javascript:";
+  // a.target = "_blank";
+  a.role = "link";
+  a.innerHTML = data;
+
+  return a;
+}
+
+function remove_dNone(element) {
+  element.classList.remove('d-none');
+}
+
+function add_dNone(element) {
+  element.classList.add('d-none');
 }
 
 function cleanInnerHTML(element) {
