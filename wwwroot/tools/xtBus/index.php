@@ -82,9 +82,16 @@ require_once dirname(dirname(__DIR__)) . "/header.php";
     <a href="query.php" target="_blank">query</a>
     <a href="station.php" target="_blank">station</a>
   </div>
-  <div class="mb-3 d-flex justify-content-around" id="xtBus_btn">
+  <div class="mb-3 d-flex justify-content-around align-items-center" id="xtBus_btn">
     <button type="button" class="btn btn-sm btn-outline-secondary" data-type="init">init</button>
-    <button type="button" class="btn btn-sm btn-outline-secondary" data-type="line">line</button>
+    <div>
+      <div class="my-3">
+        <button type="button" class="btn btn-sm btn-outline-secondary" data-type="line">line</button>
+      </div>
+      <div class="my-3">
+        <button type="button" class="btn btn-sm btn-outline-secondary" data-type="ReLine">ReLine</button>
+      </div>
+    </div>
     <button type="button" class="btn btn-sm btn-outline-secondary" data-type="query">query</button>
     <button type="button" class="btn btn-sm btn-outline-secondary" data-type="station">station</button>
   </div>

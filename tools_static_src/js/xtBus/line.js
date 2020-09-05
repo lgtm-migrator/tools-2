@@ -6,7 +6,17 @@ function getLine(fn) {
   let data = {
     type: 'line',
     cmd: '103',
-    lineName: '3路',
+    lineName: '13路',
+    direction: '1',
+  };
+  common_ajax(data, fn);
+}
+
+function getReLine(fn) {
+  let data = {
+    type: 'line',
+    cmd: '104',
+    lineName: '13路',
     direction: '1',
   };
   common_ajax(data, fn);

@@ -9,6 +9,8 @@ $().ready(function () {
           getInit(busPageInit);
         } else if ('line' === TriggerBtn.dataset['type']) {
           getLine();
+        } else if ('ReLine' === TriggerBtn.dataset['type']) {
+          getReLine();
         } else if ('query' === TriggerBtn.dataset['type']) {
           getQuery();
         } else if ('station' === TriggerBtn.dataset['type']) {
