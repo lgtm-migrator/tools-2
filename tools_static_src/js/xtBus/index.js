@@ -87,10 +87,11 @@ function setLineResult(data) {
   lineResult.appendChild(create_listGroup());
 
   data['buslines'].forEach(function (currentValue) {
-    if ('1' === currentValue['upperOrDown']) {
-      let currentText = currentValue['lineName'] + ' 开往 ' + currentValue['to'];
-      lineResult.firstChild.appendChild(create_listGroupItem(currentText));
-    }
+    let info = {
+      text: currentValue['lineName'] + ' 开往 ' + currentValue['to'],
+      upperOrDown: currentValue['upperOrDown'],
+    };
+    lineResult.firstChild.appendChild(create_listGroupItem(info));
   });
   remove_dNone(lineResult);
   remove_dNone(searchResult);
@@ -104,8 +105,11 @@ function setStationResult(data) {
   stationResult.appendChild(create_listGroup());
 
   data['busstations'].forEach(function (currentValue) {
-    let currentText = currentValue['stationName'];
-    stationResult.firstChild.appendChild(create_listGroupItem(currentText));
+    let info = {
+      text: currentValue['stationName'],
+      upperOrDown: currentValue['upperOrDown'],
+    };
+    stationResult.firstChild.appendChild(create_listGroupItem(info));
   });
 
   remove_dNone(stationResult);
@@ -119,14 +123,18 @@ function create_listGroup() {
   return div;
 }
 
-function create_listGroupItem(data = '') {
+function create_listGroupItem(data = {}) {
   let a = document.createElement("a");
 
   a.className = "list-group-item list-group-item-action";
   a.href = "javascript:";
   // a.target = "_blank";
   a.role = "link";
-  a.innerHTML = data;
+  a.innerHTML = data['text'];
+  a.addEventListener('click', function () {
+    console.log(a);
+    console.log(data['upperOrDown']);
+  })
 
   return a;
 }
@@ -154,6 +162,7 @@ function common_ajax(data = {}, fn) {
     success: function (data) {
       if (undefined !== fn) {
         fn(data);
+        console.log(data);
       } else {
         console.log(data);
       }
