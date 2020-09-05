@@ -78,14 +78,7 @@ let stationResult = document.querySelector('#stationResult');
 let transferResult = document.querySelector('#transferResult');
 
 function setLineResult(data) {
-  let msg = data['msg'];
-  let status = data['status'];
-
-  if (msg !== 'success' && status !== 1) {
-    console.log('获取失败');
-    return;
-  }
-
+  if (false === common_statusCode_check(data)) return;
   add_dNone(stationResult);
   add_dNone(transferResult);
   cleanInnerHTML(lineResult);
@@ -102,14 +95,7 @@ function setLineResult(data) {
 }
 
 function setStationResult(data) {
-  let msg = data['msg'];
-  let status = data['status'];
-
-  if (msg !== 'success' && status !== 1) {
-    console.log('获取失败');
-    return;
-  }
-
+  common_statusCode_check(data);
   add_dNone(lineResult);
   add_dNone(transferResult);
   cleanInnerHTML(stationResult);
@@ -184,4 +170,16 @@ function busPageInit(data = {}) {
   } else {
     busArea.innerHTML = '故障，不可用';
   }
+}
+
+function common_statusCode_check(data) {
+  let msg = data['msg'];
+  let status = data['status'];
+
+  if (msg === 'success' && status === 1) {
+    return true;
+  }
+  if (fundebug) funDebugFeedback('公交查询异常')
+  bootstrapModalJs('', create_small_center_text('信息异常，请删除页面缓存或者强制刷新页面后，重新尝试查询。', 'danger'), '', 'sm', true);
+  return false;
 }
