@@ -966,3 +966,25 @@ function create_socialGroup_qrcode(socialGroupUrl = '', socialGroupElement, pare
     parentElement ? parentElement.appendChild(socialGroupElement) : '';
   });
 }
+
+// 网络连接状态
+$().ready(function () {
+  setInterval(listenerConnectionState, 1000);
+});
+
+function listenerConnectionState() {
+  getOffLine();
+  getOnLine();
+}
+
+function getOffLine() {
+  window.addEventListener('offline', function () {
+    bootstrapModalJs('', create_small_center_text('您的网络已经断开，将不能正常使用本网站提供的服务。'), '', 'sm', true);
+  }, {once: true});
+}
+
+function getOnLine() {
+  window.addEventListener('online', function () {
+    bootstrapModalJs('', create_small_center_text('您的网络已经恢复连接，可以正常使用本网站提供的服务。'), '', 'sm', true);
+  }, {once: true});
+}
