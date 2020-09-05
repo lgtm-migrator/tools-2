@@ -3,14 +3,13 @@ require_once dirname(__FILE__) . '/config.php';
 
 global $cityName, $cityKey;
 
-$cmd = $_POST['cmd'];
 $stationName = $_POST['stationName'];
 $myLat = $_POST['myLat'];
 $myLng = $_POST['myLng'];
 
 
 $post_data = array(
-  'CMD' => $cmd,
+  'CMD' => 105,
   'CITYKEY' => $cityKey,
   'CITYNAME' => $cityName,
   'STATIONNAME' => $stationName,
