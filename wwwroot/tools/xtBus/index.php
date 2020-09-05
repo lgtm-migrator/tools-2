@@ -11,7 +11,7 @@ require_once dirname(dirname(__DIR__)) . "/header.php";
       <div class="card-header">
         <div class="nav justify-content-between justify-content-sm-around justify-content-md-evenly" id="busQuery">
           <div class="btn-group btn-group-sm dropdown">
-            <button class="btn btn-outline-primary active" type="button" role="tab" data-target="#lines" aria-controls="lines" aria-selected="true" aria-pressed="true">查线路</button>
+            <button class="btn btn-outline-primary active" type="button" role="tab" data-target="#lines" aria-controls="lines" aria-selected="true" aria-pressed="true"><i class="mr-1 fas fa-bus"></i>查线路</button>
             <button class="btn btn-outline-primary dropdown-toggle dropdown-toggle-split" type="button" data-toggle="dropdown" aria-expanded="true">
               <span class="sr-only">切换下拉菜单</span>
             </button>
@@ -19,11 +19,11 @@ require_once dirname(dirname(__DIR__)) . "/header.php";
               <div class="mb-1 text-muted small">
                 <span class="small">如果要查看所有公交线路，请点击下面的链接按钮进行查看。</span>
               </div>
-              <a class="d-block text-center btn btn-sm btn-secondary" href="line.php" target="_blank">所有线路</a>
+              <a class="d-block text-center btn btn-sm btn-primary" href="line.php" target="_blank">所有线路</a>
             </div>
           </div>
           <div class="btn-group btn-group-sm dropdown">
-            <button class="btn btn-outline-info" type="button" role="tab" data-target="#stations" aria-controls="stations" aria-selected="false" aria-pressed="false">查站牌</button>
+            <button class="btn btn-outline-info" type="button" role="tab" data-target="#stations" aria-controls="stations" aria-selected="false" aria-pressed="false"><i class="mr-1 fas fa-sign"></i>查站牌</button>
             <button class="btn btn-outline-info dropdown-toggle dropdown-toggle-split" type="button" data-toggle="dropdown" aria-expanded="false">
               <span class="sr-only">切换下拉菜单</span>
             </button>
@@ -31,11 +31,11 @@ require_once dirname(dirname(__DIR__)) . "/header.php";
               <div class="mb-1 text-muted small">
                 <span class="small">如果要查看所有站牌名称，请点击下面的链接按钮进行查看。</span>
               </div>
-              <a class="d-block text-center btn btn-sm btn-secondary" href="station.php" target="_blank">所有站牌</a>
+              <a class="d-block text-center btn btn-sm btn-info" href="station.php" target="_blank">所有站牌</a>
             </div>
           </div>
           <div class="btn-group btn-group-sm dropdown">
-            <button class="btn btn-outline-danger" type="button" role="tab" data-target="#transfer" aria-controls="transfer" aria-selected="false" aria-pressed="false">查换乘</button>
+            <button class="btn btn-outline-danger" type="button" role="tab" data-target="#transfer" aria-controls="transfer" aria-selected="false" aria-pressed="false"><i class="mr-1 fas fa-bus"></i>查换乘</button>
           </div>
         </div>
       </div>

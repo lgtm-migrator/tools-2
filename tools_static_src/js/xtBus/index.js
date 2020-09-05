@@ -89,6 +89,7 @@ function setLineResult(data) {
   data['buslines'].forEach(function (currentValue) {
     let info = {
       text: currentValue['lineName'] + ' 开往 ' + currentValue['to'],
+      type: 'line',
       upperOrDown: currentValue['upperOrDown'],
     };
     lineResult.firstChild.appendChild(create_listGroupItem(info));
@@ -107,6 +108,7 @@ function setStationResult(data) {
   data['busstations'].forEach(function (currentValue) {
     let info = {
       text: currentValue['stationName'],
+      type: 'station',
       upperOrDown: currentValue['upperOrDown'],
     };
     stationResult.firstChild.appendChild(create_listGroupItem(info));
@@ -125,6 +127,7 @@ function create_listGroup() {
 
 function create_listGroupItem(data = {}) {
   let a = document.createElement("a");
+  let i = document.createElement("i");
 
   a.className = "list-group-item list-group-item-action";
   a.href = "javascript:";
@@ -136,6 +139,21 @@ function create_listGroupItem(data = {}) {
     console.log(data['upperOrDown']);
   })
 
+  switch (data['type']) {
+    case 'line':
+      i.className = 'mr-2 text-secondary fas fa-bus';
+      break;
+    case 'station':
+      i.className = 'mr-2 text-secondary fas fa-sign';
+      break;
+    case 'place':
+      i.className = 'mr-2 text-secondary fas fa-map-marker-alt';
+      break;
+    default:
+      break;
+  }
+
+  a.insertBefore(i, a.firstChild);
   return a;
 }
 
