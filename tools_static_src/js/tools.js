@@ -185,6 +185,19 @@ function remove_cookie(key) {
   return true;
 }
 
+// funDebug反馈
+function funDebugFeedback(error_name, error_result) {
+  if (fundebug) {
+    let options = {
+      metaData: {
+        location: document.location,
+      }
+    };
+    fundebug.notify(error_name, JSON.stringify(error_result), options);
+    bootstrapModalJs('', create_small_center_text('本次异常已经自动反馈给管理员。', 'success'), '', 'sm', true);
+  }
+}
+
 // 表单验证
 function validation_invalid_div(element, text, type = 'tooltip') {
   if (remove_validation_div(element)) {
