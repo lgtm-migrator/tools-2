@@ -111,7 +111,6 @@ function setStationResult(data) {
       text: currentValue['stationName'],
       type: 'station',
       stationName: currentValue['stationName'],
-      upperOrDown: currentValue['upperOrDown'],
     };
     stationResult.firstChild.appendChild(create_listGroupItem(info));
   });
@@ -136,16 +135,25 @@ function create_listGroupItem(data = {}) {
   // a.target = "_blank";
   a.role = "link";
   a.innerHTML = data['text'];
-  a.addEventListener('click', function () {
-    console.log(a);
-    console.log(data['upperOrDown']);
-  })
 
   switch (data['type']) {
     case 'line':
+      a.addEventListener('click', function (e) {
+        e.preventDefault();
+        console.log('a.innerText ==== ' + a.innerText);
+        console.log('lineName ==== ' + data['lineName']);
+        console.log('upperOrDown ==== ' + data['upperOrDown']);
+        getLine({lineName: data['lineName'], direction: data['upperOrDown']});
+        console.log(data['upperOrDown']);
+      });
       i.className = 'mr-2 text-primary fas fa-bus';
       break;
     case 'station':
+      a.addEventListener('click', function (e) {
+        e.preventDefault();
+        getStation(data['stationName'], queryStationLines);
+        console.log('stationName ==== ' + data['stationName']);
+      });
       i.className = 'mr-2 text-info fas fa-sign';
       break;
     case 'place':
@@ -179,12 +187,12 @@ function common_ajax(data = {}, fn) {
     data: data,
     timeout: 4000,
     dataType: 'json',
-    success: function (data) {
+    success: function (successData) {
       if (undefined !== fn) {
-        fn(data);
-        console.log(data);
+        fn(successData);
+        console.log(successData);
       } else {
-        console.log(data);
+        console.log(successData);
       }
     },
     error: function (errorData) {
@@ -194,7 +202,6 @@ function common_ajax(data = {}, fn) {
 }
 
 function busPageInit(data = {}) {
-  console.log(data);
   let busArea = document.querySelector('#busArea');
   if (1 === data['status'] && 'success' === data['msg']) {
     busArea.innerHTML = data['city']['showName'];
@@ -213,4 +220,8 @@ function common_statusCode_check(data) {
   if (fundebug) funDebugFeedback('公交查询异常')
   bootstrapModalJs('', create_small_center_text('信息异常，请删除页面缓存或者强制刷新页面后，重新尝试查询。', 'danger'), '', 'sm', true);
   return false;
+}
+
+function queryStationLines(data = {}) {
+  // console.log(data);
 }
