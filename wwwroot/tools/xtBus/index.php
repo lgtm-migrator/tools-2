@@ -39,38 +39,63 @@ require_once dirname(dirname(__DIR__)) . "/header.php";
           </div>
         </div>
       </div>
-      <div class="card-body">
+      <div class="py-5 card-body">
         <div class="tab-content">
           <div class="tab-pane fade show active" id="lines">
             <div class="input-group">
-              <span class="input-group-text bg-primary text-white">线路数字</span>
-              <input type="text" class="form-control form-control-lg" placeholder="例如：3" id="getRelatedLines" pattern="/^\d{1,}$/" autocomplete="off" aria-label="线路名称">
+              <label class="input-group-text btn btn-lg btn-primary" for="getRelatedLines" data-toggle="collapse" data-target="#getRelatedLinesCollapse">线路</label>
+              <input type="text" class="form-control form-control-lg" placeholder="例如：3" id="getRelatedLines" pattern="/^\d{1,}$/" autocomplete="off" maxlength="15" aria-label="线路名称">
               <span class="input-group-text">路车</span>
+            </div>
+            <div class="fade collapse" id="getRelatedLinesCollapse">
+              <div class="my-2 text-muted small font-weight-bolder">
+                <div>要查询的公交线路，想乘坐2路车，输入数字 2</div>
+              </div>
             </div>
           </div>
           <div class="tab-pane fade" id="stations">
             <div class="input-group">
-              <span class="input-group-text bg-info text-white">站牌名称</span>
-              <input type="text" class="form-control form-control-lg" placeholder="例如：人民医院" id="getRelatedStations" autocomplete="off" maxlength="5" aria-label="站牌名称">
+              <label class="input-group-text btn btn-lg btn-info" for="getRelatedStations" data-toggle="collapse" data-target="#getRelatedStationsCollapse">站牌</label>
+              <input type="text" class="form-control form-control-lg" placeholder="例如：人民医院" id="getRelatedStations" autocomplete="off" maxlength="15" aria-label="站牌名称">
+            </div>
+            <div class="fade collapse" id="getRelatedStationsCollapse">
+              <div class="my-2 text-muted small font-weight-bolder">
+                <div>请输入站牌名称，例如想查看途经人民医院的线路，输入 人民医院。</div>
+                <div>输入完成后，在页面空白处点击一次即可开始查询。</div>
+              </div>
             </div>
           </div>
           <div class="tab-pane fade" id="transfer">
-            <div class="input-group mb-2">
-              <span class="input-group-text bg-success text-white">起点</span>
-              <input type="text" class="form-control form-control-lg" placeholder="例如：人民医院" id="startingStationName" autocomplete="off" aria-label="起点站牌名称">
+            <div class="mb-3">
+              <div class="input-group mb-1">
+                <label class="input-group-text btn btn-lg btn-success" for="startingStationName" data-toggle="collapse" data-target="#startingStationNameCollapse">起点</label>
+                <input type="text" class="form-control form-control-lg" placeholder="例如：人民医院" id="startingStationName" autocomplete="off" aria-label="起点站牌名称">
+              </div>
+              <div class="fade collapse" id="startingStationNameCollapse">
+                <div class="my-2 text-muted small font-weight-bolder">
+                  <div>请输入起始的站牌名称，例如想从市三院开始坐车，输入 市三院。</div>
+                </div>
+              </div>
             </div>
-            <div class="input-group mb-2">
-              <span class="input-group-text bg-danger text-white">终点</span>
-              <input type="text" class="form-control form-control-lg" placeholder="例如：医院" id="stopStationName" autocomplete="off" aria-label="终点站牌名称">
+            <div class="mb-3">
+              <div class="input-group mb-1">
+                <label class="input-group-text btn btn-lg btn-danger" for="stopStationName" data-toggle="collapse" data-target="#stopStationNameCollapse">终点</label>
+                <input type="text" class="form-control form-control-lg" placeholder="例如：医院" id="stopStationName" autocomplete="off" aria-label="终点站牌名称">
+              </div>
+              <div class="fade collapse" id="stopStationNameCollapse">
+                <div class="my-2 text-muted small font-weight-bolder">
+                  <div>请输入终止的站牌名称，例如想从人民医院下车，输入 人民医院。</div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
       <div class="card-footer bg-transparent d-none" id="searchResult">
         <div class="mb-3 font-weight-bolder text-orange">结果</div>
-        <div class="d-none" id="lineResult"></div>
-        <div class="d-none" id="stationResult"></div>
-        <div class="d-none" id="transferResult"></div>
+        <div class="d-none max-vh-60 overflow-auto" id="lineResult"></div>
+        <div class="d-none max-vh-60 overflow-auto" id="stationResult"></div>
+        <div class="d-none max-vh-60 overflow-auto" id="transferResult"></div>
       </div>
     </div>
   </div>
