@@ -143,13 +143,13 @@ function create_listGroupItem(data = {}) {
 
   switch (data['type']) {
     case 'line':
-      i.className = 'mr-2 text-secondary fas fa-bus';
+      i.className = 'mr-2 text-primary fas fa-bus';
       break;
     case 'station':
-      i.className = 'mr-2 text-secondary fas fa-sign';
+      i.className = 'mr-2 text-info fas fa-sign';
       break;
     case 'place':
-      i.className = 'mr-2 text-secondary fas fa-map-marker-alt';
+      i.className = 'mr-2 text-dark fas fa-map-marker-alt';
       break;
     default:
       break;
