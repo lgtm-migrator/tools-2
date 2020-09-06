@@ -1,10 +1,10 @@
 $().ready(function () {
 });
 
-function getStation(fn) {
+function getStation(stationName = '', fn) {
   let data = {
     type: 'station',
-    stationName: '人民医院',
+    stationName: stationName,
     myLat: '',
     myLng: '',
   };

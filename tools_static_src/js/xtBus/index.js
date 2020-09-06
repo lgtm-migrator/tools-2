@@ -8,13 +8,13 @@ $().ready(function () {
         if ('init' === TriggerBtn.dataset['type']) {
           getInit(busPageInit);
         } else if ('line' === TriggerBtn.dataset['type']) {
-          getLine();
+          getLine({lineName: '6路', direction: '1'});
         } else if ('ReLine' === TriggerBtn.dataset['type']) {
-          getReLine();
+          getReLine({lineName: '6路', direction: '1'});
         } else if ('query' === TriggerBtn.dataset['type']) {
-          getQuery();
+          getQuery('3');
         } else if ('station' === TriggerBtn.dataset['type']) {
-          getStation();
+          getStation('人民医院');
         }
       });
     });
@@ -90,6 +90,7 @@ function setLineResult(data) {
     let info = {
       text: currentValue['lineName'] + ' 开往 ' + currentValue['to'],
       type: 'line',
+      lineName: currentValue['lineName'],
       upperOrDown: currentValue['upperOrDown'],
     };
     lineResult.firstChild.appendChild(create_listGroupItem(info));
@@ -109,6 +110,7 @@ function setStationResult(data) {
     let info = {
       text: currentValue['stationName'],
       type: 'station',
+      stationName: currentValue['stationName'],
       upperOrDown: currentValue['upperOrDown'],
     };
     stationResult.firstChild.appendChild(create_listGroupItem(info));

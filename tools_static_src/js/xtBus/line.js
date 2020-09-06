@@ -2,22 +2,22 @@ $().ready(function () {
   get_route();
 });
 
-function getLine(fn) {
+function getLine(getInfo = {}, fn) {
   let data = {
     type: 'line',
     cmd: '103',
-    lineName: '13路',
-    direction: '1',
+    lineName: getInfo['lineName'],
+    direction: getInfo['direction'],
   };
   common_ajax(data, fn);
 }
 
-function getReLine(fn) {
+function getReLine(getReInfo = {}, fn) {
   let data = {
     type: 'line',
     cmd: '104',
-    lineName: '13路',
-    direction: '1',
+    lineName: getReInfo['lineName'],
+    direction: getReInfo['direction'],
   };
   common_ajax(data, fn);
 }
