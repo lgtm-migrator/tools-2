@@ -30,9 +30,9 @@ $curl->setOpt(CURLOPT_FOLLOWLOCATION, true);//TRUE 时将会根据服务器返�
 //$curl->setOpt(CURLOPT_REFERER, $opt_httpHeader_data['referer']);//在HTTP请求头中"Referer: "的内容。
 $curl->setOpt(CURLOPT_AUTOREFERER, true);//TRUE 时将根据 Location: 重定向时，自动设置 header 中的Referer:信息。
 
-$curl->setOpt(CURLOPT_DNS_CACHE_TIMEOUT, 120);//设置在内存中保存DNS信息的时间，默认为120秒。
+$curl->setOpt(CURLOPT_DNS_CACHE_TIMEOUT, 1200);//设置在内存中保存DNS信息的时间，默认为120秒。
 
-$curl->setOpt(CURLOPT_TIMEOUT_MS, 2000);//设置cURL允许执行的最长毫秒数
+$curl->setOpt(CURLOPT_TIMEOUT_MS, 3000);//设置cURL允许执行的最长毫秒数
 //$curl->setOpt(CURLOPT_TIMEOUT, 2);//设置cURL允许执行的最长秒数
 
 $curl->post($apiUrlRoot, $post_data);
