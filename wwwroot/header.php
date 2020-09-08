@@ -14,6 +14,8 @@ set_session_cookie('logged_in', $_SESSION['logged_in']);
         content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   <meta name="applicable-device" content="pc,mobile">
+  <?php require_once dirname(__FILE__) . '/common/description.php'; ?>
+  <?php require_once dirname(__FILE__) . '/common/keywords.php'; ?>
   <meta name="renderer" content="webkit">
   <meta name="referrer" content="always">
   <meta http-equiv="Cache-Control" content="no-siteapp">
@@ -43,7 +45,7 @@ set_session_cookie('logged_in', $_SESSION['logged_in']);
     </div>
   </noscript>
 
-  <title><?php require_once dirname(__FILE__).'/common/title.php'; ?></title>
+  <title><?php require_once dirname(__FILE__) . '/common/title.php'; ?></title>
   <?php require_once dirname(__DIR__) . '/googleAnalytics/gtag_js.php'; ?>
   <script src="/static/js/fundebug.min.js"></script>
 </head>
