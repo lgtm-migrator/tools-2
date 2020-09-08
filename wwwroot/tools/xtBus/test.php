@@ -1,5 +1,5 @@
 <?php
-define('title', '公交线路信息查询');
+define('title', '首页测试');
 require_once dirname(dirname(__DIR__)) . "/header.php";
 ?>
 <link rel="stylesheet" href="/static/css/xtBus/index.min.css">
@@ -98,6 +98,27 @@ require_once dirname(dirname(__DIR__)) . "/header.php";
         <div class="d-none max-vh-60 overflow-auto" id="transferResult"></div>
       </div>
     </div>
+  </div>
+</div>
+<div class="container mt-5" id="jt_container">
+  <div class="mb-3 d-flex justify-content-around">
+    <a href="init.php" target="_blank">init</a>
+    <a href="line.php" target="_blank">line</a>
+    <a href="query.php" target="_blank">query</a>
+    <a href="station.php" target="_blank">station</a>
+  </div>
+  <div class="mb-3 d-flex justify-content-around align-items-center" id="xtBus_btn">
+    <button type="button" class="btn btn-sm btn-outline-secondary" data-type="init">init</button>
+    <div>
+      <div class="my-3">
+        <button type="button" class="btn btn-sm btn-outline-secondary" data-type="line">line</button>
+      </div>
+      <div class="my-3">
+        <button type="button" class="btn btn-sm btn-outline-secondary" data-type="ReLine">ReLine</button>
+      </div>
+    </div>
+    <button type="button" class="btn btn-sm btn-outline-secondary" data-type="query">query</button>
+    <button type="button" class="btn btn-sm btn-outline-secondary" data-type="station">station</button>
   </div>
 </div>
 
