@@ -78,7 +78,7 @@
     "hamburgers": "^1.1.3",
     "hover.css": "^2.3.2",
     "jquery": "^3.5.1",
-    "js-cookie": "^3.0.0-rc.0",
+    "js-cookie": "^3.0.0-rc.1",
     "popper.js": "^1.16.1",
     "qrcode": "^1.4.4"
   },
