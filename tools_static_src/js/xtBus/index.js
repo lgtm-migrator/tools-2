@@ -24,7 +24,7 @@ $().ready(function () {
 $().ready(function () {
   let bus = document.querySelector('#bus');
   if (bus) {
-    getInit(busPageInit);
+    set_CityName();
 
     // 分类查询线路和站牌
     let busQuery = document.querySelector('#busQuery');
@@ -46,13 +46,31 @@ $().ready(function () {
     // 监听输入
     let getRelatedLines = document.querySelector('#getRelatedLines');
     let getRelatedStations = document.querySelector('#getRelatedStations');
-    getRelatedLines.addEventListener('click', function () {
+    getRelatedLines.addEventListener('focus', function () {
       if ('SPAN' === this.nextElementSibling.tagName) {
         let parent = this.parentElement;
         let thisWidth = window.getComputedStyle(this).getPropertyValue('width');
         let dropdownMenuStyle = {
           'width': thisWidth,
         };
+
+        let busArea = document.querySelector('#busArea');
+        let history = [];
+        history.push(
+          {
+            roundName: '1路',
+            direction: '1',
+            to: '公交三公司',
+          },
+          {
+            roundName: '2路西环',
+            direction: '1',
+            to: '火车站(站前街)',
+          },
+        );
+        console.log(JSON.stringify(history));
+        localStorage.setItem(busArea.innerHTML + '|history', JSON.stringify(history));
+
         let dropdownMenu = create_dropdownMenu(create_div('aaa', 'bbb'), 'dropdown-menu', 'getRelatedLinesDropdown', dropdownMenuStyle);
         parent.insertBefore(dropdownMenu, this.nextElementSibling);
         this.setAttribute('data-toggle', 'dropdown');
@@ -202,11 +220,22 @@ function common_ajax(data = {}, fn) {
 }
 
 function busPageInit(data = {}) {
-  let busArea = document.querySelector('#busArea');
   if (1 === data['status'] && 'success' === data['msg']) {
-    busArea.innerHTML = data['city']['showName'];
+    localStorage.setItem('CityName', data['city']['cityname']);
   } else {
-    busArea.innerHTML = '故障，不可用';
+    localStorage.setItem('CityName', '故障，不可用');
+  }
+  set_CityName();
+}
+
+function set_CityName() {
+  let busArea = document.querySelector('#busArea');
+  let localStorage_CityName = localStorage.getItem('CityName');
+
+  if (null !== localStorage_CityName) {
+    busArea.innerHTML = localStorage_CityName;
+  } else {
+    getInit(busPageInit);
   }
 }
 
