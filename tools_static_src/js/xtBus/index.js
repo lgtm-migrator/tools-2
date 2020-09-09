@@ -46,6 +46,19 @@ $().ready(function () {
     // 监听输入
     let getRelatedLines = document.querySelector('#getRelatedLines');
     let getRelatedStations = document.querySelector('#getRelatedStations');
+    getRelatedLines.addEventListener('click', function () {
+      if ('SPAN' === this.nextElementSibling.tagName) {
+        let parent = this.parentElement;
+        let thisWidth = window.getComputedStyle(this).getPropertyValue('width');
+        let dropdownMenuStyle = {
+          'width': thisWidth,
+        };
+        let dropdownMenu = create_dropdownMenu(create_div('aaa', 'bbb'), 'dropdown-menu', 'getRelatedLinesDropdown', dropdownMenuStyle);
+        parent.insertBefore(dropdownMenu, this.nextElementSibling);
+        this.setAttribute('data-toggle', 'dropdown');
+        this.setAttribute('data-target', 'getRelatedLinesDropdown');
+      }
+    })
     getRelatedLines.addEventListener('blur', function () {
       let searchValue = this.value;
       if (searchValue.length >= 1) {
@@ -58,19 +71,6 @@ $().ready(function () {
         queryStations(searchValue, setStationResult);
       }
     })
-
-    // 结果
-
-
-    // cleanInnerHTML(lineResult);
-    // cleanInnerHTML(stationResult);
-    // cleanInnerHTML(transferResult);
-
-    // toggle_display_element(lineResult);
-    // toggle_display_element(stationResult);
-    // toggle_display_element(transferResult);
-    //
-    // toggle_display_element(searchResult);
   }
 });
 
@@ -224,4 +224,28 @@ function common_statusCode_check(data) {
 
 function queryStationLines(data = {}) {
   // console.log(data);
+}
+
+function create_dropdownMenu(newChild, className = '', id = '', style = {}) {
+  let dropdownMenu = create_div(className, id);
+
+  if (undefined !== style) {
+    Object.keys(style).forEach(function (currentValue) {
+      dropdownMenu.style[currentValue] = style[currentValue];
+    });
+  }
+
+  dropdownMenu.appendChild(newChild);
+  return dropdownMenu;
+}
+
+function create_div(className = '', id = '', newChild) {
+  let div = document.createElement("div");
+
+  div.className = className;
+  div.id = id;
+
+  if (undefined !== newChild) div.appendChild(newChild);
+
+  return div;
 }

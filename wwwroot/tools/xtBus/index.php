@@ -44,7 +44,8 @@ require_once dirname(dirname(__DIR__)) . "/header.php";
           </div>
           <div class="btn-group btn-group-sm dropdown">
             <button class="btn btn-outline-danger" type="button" role="tab" data-target="#transfer"
-                    aria-controls="transfer" aria-selected="false" aria-pressed="false"><i class="mr-1 fas fa-map-signs"></i>查换乘
+                    aria-controls="transfer" aria-selected="false" aria-pressed="false">
+              <i class="mr-1 fas fa-map-signs"></i>查换乘
             </button>
           </div>
         </div>
@@ -57,6 +58,9 @@ require_once dirname(dirname(__DIR__)) . "/header.php";
                      data-target="#getRelatedLinesCollapse">线路</label>
               <input type="text" class="form-control form-control-lg" placeholder="例如：3" id="getRelatedLines"
                      pattern="/^\d{1,}$/" autocomplete="off" maxlength="15" aria-label="线路名称">
+<!--              <div class="dropdown-menu" id="getRelatedLinesDropdown">-->
+<!--                <div class="p-3">1111</div>-->
+<!--              </div>-->
               <span class="input-group-text">路车</span>
             </div>
             <div class="fade collapse" id="getRelatedLinesCollapse">
