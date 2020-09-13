@@ -46,6 +46,38 @@ $().ready(function () {
     // 监听输入
     let getRelatedLines = document.querySelector('#getRelatedLines');
     let getRelatedStations = document.querySelector('#getRelatedStations');
+
+    let CityKey = localStorage.getItem('CityKey');
+    let CityName = localStorage.getItem('CityName');
+    let BusLocalStorageArray = [];
+
+    BusLocalStorageArray.push({
+      CityName: CityName,
+      CityKey: CityKey,
+      LineHistory: [
+        {
+          roundName: '1路',
+          direction: '1',
+          to: '公交三公司',
+        },
+        {
+          roundName: '2路西环',
+          direction: '1',
+          to: '火车站(站前街)',
+        },
+      ],
+      StationHistory: ['114改装厂', '107路口', '天一城北站'],
+    });
+    BusLocalStorageArray.push([
+      {CityName1111: CityName,}
+    ]);
+    // console.log(BusLocalStorageArray[0]);
+    // BusLocalStorageArray.fill('CityName');
+    // console.log(BusLocalStorageArray);
+    console.log(JSON.stringify(BusLocalStorageArray));
+    localStorage.setItem('Bus', JSON.stringify(BusLocalStorageArray));
+    // localStorage.removeItem('Bus');
+
     getRelatedLines.addEventListener('focus', function () {
       if ('SPAN' === this.nextElementSibling.tagName) {
         let parent = this.parentElement;
@@ -54,41 +86,84 @@ $().ready(function () {
           'width': thisWidth,
         };
 
-        let busArea = document.querySelector('#busArea');
-        let history = [];
-        history.push(
-          {
-            roundName: '1路',
-            direction: '1',
-            to: '公交三公司',
-          },
-          {
-            roundName: '2路西环',
-            direction: '1',
-            to: '火车站(站前街)',
-          },
-        );
-        console.log(JSON.stringify(history));
-        localStorage.setItem(busArea.innerHTML + '|history', JSON.stringify(history));
+        let getBusLocalStorageArray = JSON.parse(localStorage.getItem('Bus'));
+        // console.log(getBusLocalStorageArray);
 
-        let dropdownMenu = create_dropdownMenu(create_div('aaa', 'bbb'), 'dropdown-menu', 'getRelatedLinesDropdown', dropdownMenuStyle);
+        let StationHistory = getBusLocalStorageArray[0]['StationHistory'];
+        let LineHistory = getBusLocalStorageArray[0]['LineHistory'];
+        LineHistory.push({
+          roundName: '3路',
+          direction: '1',
+          to: '火车站(站前街)',
+        });
+        console.log(LineHistory);
+        localStorage.setItem('Bus', JSON.stringify(getBusLocalStorageArray));
+
+        let historyHead = create_div('px-3 d-flex justify-content-between align-items-center', 'LineHistoryHead');
+        let dropdownMenu = create_dropdownMenu('dropdown-menu', 'getRelatedLinesDropdown', dropdownMenuStyle, historyHead);
         parent.insertBefore(dropdownMenu, this.nextElementSibling);
         this.setAttribute('data-toggle', 'dropdown');
         this.setAttribute('data-target', 'getRelatedLinesDropdown');
+
+
+        let LineHistoryHead = document.querySelector('#LineHistoryHead');
+        let text = document.createElement("div");
+        let clearHistory = document.createElement("i");
+        text.innerHTML = '历史记录';
+        clearHistory.className = 'far fa-trash-alt';
+        clearHistory.title = '清除历史记录';
+        clearHistory.addEventListener('click', function () {
+          bootstrapModalJs('', create_small_center_text('已经清空了历史记录', 'success'), '', 'sm', true);
+        });
+
+        LineHistoryHead.appendChild(text);
+        LineHistoryHead.appendChild(clearHistory);
+
+        for (let x = LineHistory.length, i = 0; i < x; i++) {
+          let getRelatedLinesDropdown = document.querySelector('#getRelatedLinesDropdown');
+          console.log(getRelatedLinesDropdown);
+          let a = document.createElement("a");
+          a.className = 'list-group-item list-group-item-action';
+          a.href = "javascript:";
+          // a.target = "_blank";
+          a.role = "link";
+          a.innerHTML = LineHistory[i]['roundName'] + ' 开往 ' + LineHistory[i]['to'];
+          a.addEventListener('click', function () {
+            console.log(LineHistory[i]);
+          });
+          getRelatedLinesDropdown.appendChild(a);
+        }
+        StationHistory.forEach(function (currentValue) {
+          let a = document.createElement("a");
+          a.className = 'list-group-item list-group-item-action';
+          a.href = "javascript:";
+          // a.target = "_blank";
+          a.role = "link";
+          a.innerHTML = currentValue;
+          // console.log(a);
+          a.addEventListener("click", function () {
+            console.log(a);
+          });
+        });
+
       }
-    })
+    });
+    getRelatedStations.addEventListener('focus', function () {
+      if ('SPAN' === this.nextElementSibling.tagName) {
+      }
+    });
     getRelatedLines.addEventListener('blur', function () {
       let searchValue = this.value;
       if (searchValue.length >= 1) {
         queryLines(searchValue, setLineResult);
       }
-    })
+    });
     getRelatedStations.addEventListener('blur', function () {
       let searchValue = this.value;
       if (searchValue.length >= 2) {
         queryStations(searchValue, setStationResult);
       }
-    })
+    });
   }
 });
 
@@ -222,8 +297,10 @@ function common_ajax(data = {}, fn) {
 function busPageInit(data = {}) {
   if (1 === data['status'] && 'success' === data['msg']) {
     localStorage.setItem('CityName', data['city']['cityname']);
+    localStorage.setItem('CityKey', 'xt042701');
   } else {
-    localStorage.setItem('CityName', '故障，不可用');
+    localStorage.setItem('CityName', 'error');
+    localStorage.setItem('CityKey', 'error');
   }
   set_CityName();
 }
@@ -255,7 +332,7 @@ function queryStationLines(data = {}) {
   // console.log(data);
 }
 
-function create_dropdownMenu(newChild, className = '', id = '', style = {}) {
+function create_dropdownMenu(className = '', id = '', style = {}, newChild) {
   let dropdownMenu = create_div(className, id);
 
   if (undefined !== style) {
@@ -264,17 +341,16 @@ function create_dropdownMenu(newChild, className = '', id = '', style = {}) {
     });
   }
 
-  dropdownMenu.appendChild(newChild);
+  if (undefined !== newChild) dropdownMenu.appendChild(newChild);
   return dropdownMenu;
 }
 
 function create_div(className = '', id = '', newChild) {
   let div = document.createElement("div");
 
-  div.className = className;
-  div.id = id;
-
-  if (undefined !== newChild) div.appendChild(newChild);
+  className ? div.className = className : '';
+  id ? div.id = id : '';
+  newChild ? ('string' === typeof newChild ? div.innerHTML = newChild : div.appendChild(newChild)) : '';
 
   return div;
 }
