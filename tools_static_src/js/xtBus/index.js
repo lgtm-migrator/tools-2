@@ -43,114 +43,115 @@ $().ready(function () {
       })
     })
 
-    // 监听输入
     let getRelatedLines = document.querySelector('#getRelatedLines');
     let getRelatedStations = document.querySelector('#getRelatedStations');
 
     let CityKey = localStorage.getItem('CityKey');
     let CityName = localStorage.getItem('CityName');
+    let Bus = localStorage.getItem('Bus');
     let BusLocalStorageArray = [];
-
     BusLocalStorageArray.push({
       CityName: CityName,
       CityKey: CityKey,
-      LineHistory: [
-        {
-          roundName: '1路',
-          direction: '1',
-          to: '公交三公司',
-        },
-        {
-          roundName: '2路西环',
-          direction: '1',
-          to: '火车站(站前街)',
-        },
-      ],
-      StationHistory: ['114改装厂', '107路口', '天一城北站'],
+      LineHistory: [],
+      StationHistory: [],
     });
-    BusLocalStorageArray.push([
-      {CityName1111: CityName,}
-    ]);
-    // console.log(BusLocalStorageArray[0]);
-    // BusLocalStorageArray.fill('CityName');
-    // console.log(BusLocalStorageArray);
-    console.log(JSON.stringify(BusLocalStorageArray));
-    localStorage.setItem('Bus', JSON.stringify(BusLocalStorageArray));
-    // localStorage.removeItem('Bus');
+    if (!Bus) localStorage.setItem('Bus', JSON.stringify(BusLocalStorageArray));
 
-    getRelatedLines.addEventListener('focus', function () {
+    // 监听输入
+    getRelatedLines.addEventListener('click', function () {
       if ('SPAN' === this.nextElementSibling.tagName) {
         let parent = this.parentElement;
         let thisWidth = window.getComputedStyle(this).getPropertyValue('width');
         let dropdownMenuStyle = {
           'width': thisWidth,
         };
-
-        let getBusLocalStorageArray = JSON.parse(localStorage.getItem('Bus'));
-        // console.log(getBusLocalStorageArray);
-
-        let StationHistory = getBusLocalStorageArray[0]['StationHistory'];
-        let LineHistory = getBusLocalStorageArray[0]['LineHistory'];
-        LineHistory.push({
-          roundName: '3路',
-          direction: '1',
-          to: '火车站(站前街)',
-        });
-        console.log(LineHistory);
-        localStorage.setItem('Bus', JSON.stringify(getBusLocalStorageArray));
-
         let historyHead = create_div('px-3 d-flex justify-content-between align-items-center', 'LineHistoryHead');
-        let dropdownMenu = create_dropdownMenu('dropdown-menu', 'getRelatedLinesDropdown', dropdownMenuStyle, historyHead);
+        let dropdownMenu = create_dropdownMenu('dropdown-menu max-vh-40 overflow-auto', 'getRelatedLinesDropdown', dropdownMenuStyle, historyHead);
         parent.insertBefore(dropdownMenu, this.nextElementSibling);
         this.setAttribute('data-toggle', 'dropdown');
         this.setAttribute('data-target', 'getRelatedLinesDropdown');
-
 
         let LineHistoryHead = document.querySelector('#LineHistoryHead');
         let text = document.createElement("div");
         let clearHistory = document.createElement("i");
         text.innerHTML = '历史记录';
         clearHistory.className = 'far fa-trash-alt';
-        clearHistory.title = '清除历史记录';
+        clearHistory.innerHTML = '清空';
+        clearHistory.title = '清空历史记录';
         clearHistory.addEventListener('click', function () {
           bootstrapModalJs('', create_small_center_text('已经清空了历史记录', 'success'), '', 'sm', true);
         });
-
         LineHistoryHead.appendChild(text);
         LineHistoryHead.appendChild(clearHistory);
 
-        for (let x = LineHistory.length, i = 0; i < x; i++) {
+        let getBusLocalStorageArray = JSON.parse(localStorage.getItem('Bus'));
+        console.log(getBusLocalStorageArray);
+        let LineHistory = getBusLocalStorageArray[0]['LineHistory'];
+        for (let x = LineHistory.length, index = 0; index < x; index++) {
           let getRelatedLinesDropdown = document.querySelector('#getRelatedLinesDropdown');
-          console.log(getRelatedLinesDropdown);
           let a = document.createElement("a");
+          let i = document.createElement("i");
           a.className = 'list-group-item list-group-item-action';
           a.href = "javascript:";
           // a.target = "_blank";
           a.role = "link";
-          a.innerHTML = LineHistory[i]['roundName'] + ' 开往 ' + LineHistory[i]['to'];
+          a.innerHTML = LineHistory[index]['roundName'] + ' 开往 ' + LineHistory[index]['to'];
           a.addEventListener('click', function () {
-            console.log(LineHistory[i]);
+            console.log(LineHistory[index]);
           });
+          i.className = 'mr-2 text-primary fas fa-bus';
+          a.insertBefore(i, a.firstChild);
           getRelatedLinesDropdown.appendChild(a);
         }
-        StationHistory.forEach(function (currentValue) {
-          let a = document.createElement("a");
-          a.className = 'list-group-item list-group-item-action';
-          a.href = "javascript:";
-          // a.target = "_blank";
-          a.role = "link";
-          a.innerHTML = currentValue;
-          // console.log(a);
-          a.addEventListener("click", function () {
-            console.log(a);
-          });
-        });
-
       }
     });
-    getRelatedStations.addEventListener('focus', function () {
-      if ('SPAN' === this.nextElementSibling.tagName) {
+    getRelatedStations.addEventListener('click', function () {
+      if (null === this.nextElementSibling) {
       }
+      let parent = this.parentElement;
+      let thisWidth = window.getComputedStyle(this).getPropertyValue('width');
+      let dropdownMenuStyle = {
+        'width': thisWidth,
+      };
+      let historyHead = create_div('px-3 d-flex justify-content-between align-items-center', 'StationHistoryHead');
+      let dropdownMenu = create_dropdownMenu('dropdown-menu max-vh-40 overflow-auto', 'getRelatedStationsDropdown', dropdownMenuStyle, historyHead);
+      parent.insertBefore(dropdownMenu, this.nextElementSibling);
+      this.setAttribute('data-toggle', 'dropdown');
+      this.setAttribute('data-target', 'getRelatedStationsDropdown');
+
+      let StationHistoryHead = document.querySelector('#StationHistoryHead');
+      let text = document.createElement("div");
+      let clearHistory = document.createElement("i");
+      text.innerHTML = '历史记录';
+      clearHistory.className = 'small far fa-trash-alt';
+      clearHistory.innerHTML = '清空';
+      clearHistory.title = '清空历史记录';
+      clearHistory.addEventListener('click', function () {
+        bootstrapModalJs('', create_small_center_text('已经清空了历史记录', 'success'), '', 'sm', true);
+      });
+      StationHistoryHead.appendChild(text);
+      StationHistoryHead.appendChild(clearHistory);
+
+      let getBusLocalStorageArray = JSON.parse(localStorage.getItem('Bus'));
+      let StationHistory = getBusLocalStorageArray[0]['StationHistory'];
+      StationHistory.forEach(function (currentValue) {
+        let getRelatedStationsDropdown = document.querySelector('#getRelatedStationsDropdown');
+        let a = document.createElement("a");
+        let i = document.createElement("i");
+        a.className = 'list-group-item list-group-item-action';
+        a.href = "javascript:";
+        // a.target = "_blank";
+        a.role = "link";
+        a.innerHTML = currentValue;
+        // console.log(a);
+        a.addEventListener("click", function () {
+          console.log(a);
+        });
+        i.className = 'mr-2 text-info fas fa-sign';
+        a.insertBefore(i, a.firstChild);
+        getRelatedStationsDropdown.appendChild(a);
+      });
     });
     getRelatedLines.addEventListener('blur', function () {
       let searchValue = this.value;
@@ -185,6 +186,7 @@ function setLineResult(data) {
       type: 'line',
       lineName: currentValue['lineName'],
       upperOrDown: currentValue['upperOrDown'],
+      to: currentValue['to'],
     };
     lineResult.firstChild.appendChild(create_listGroupItem(info));
   });
@@ -233,19 +235,32 @@ function create_listGroupItem(data = {}) {
     case 'line':
       a.addEventListener('click', function (e) {
         e.preventDefault();
-        console.log('a.innerText ==== ' + a.innerText);
-        console.log('lineName ==== ' + data['lineName']);
-        console.log('upperOrDown ==== ' + data['upperOrDown']);
+        // console.log('a.innerText ==== ' + a.innerText);
+        // console.log('lineName ==== ' + data['lineName']);
+        // console.log('upperOrDown ==== ' + data['upperOrDown']);
         getLine({lineName: data['lineName'], direction: data['upperOrDown']});
-        console.log(data['upperOrDown']);
+
+        let getBusLocalStorageArray = JSON.parse(localStorage.getItem('Bus'));
+        let LineHistory = getBusLocalStorageArray[0]['LineHistory'];
+        LineHistory.push({
+          roundName: data['lineName'],
+          direction: data['upperOrDown'],
+          to: data['to'],
+        });
+        localStorage.setItem('Bus', JSON.stringify(getBusLocalStorageArray));
       });
       i.className = 'mr-2 text-primary fas fa-bus';
       break;
     case 'station':
       a.addEventListener('click', function (e) {
         e.preventDefault();
+        // console.log('stationName ==== ' + data['stationName']);
         getStation(data['stationName'], queryStationLines);
-        console.log('stationName ==== ' + data['stationName']);
+
+        let getBusLocalStorageArray = JSON.parse(localStorage.getItem('Bus'));
+        let StationHistory = getBusLocalStorageArray[0]['StationHistory'];
+        StationHistory.push(data['stationName']);
+        localStorage.setItem('Bus', JSON.stringify(getBusLocalStorageArray));
       });
       i.className = 'mr-2 text-info fas fa-sign';
       break;
