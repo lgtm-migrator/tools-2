@@ -242,7 +242,7 @@ function create_listGroupItem(data = {}) {
 
         let getBusLocalStorageArray = JSON.parse(localStorage.getItem('Bus'));
         let LineHistory = getBusLocalStorageArray[0]['LineHistory'];
-        LineHistory.push({
+        LineHistory.unshift({
           roundName: data['lineName'],
           direction: data['upperOrDown'],
           to: data['to'],
@@ -259,7 +259,7 @@ function create_listGroupItem(data = {}) {
 
         let getBusLocalStorageArray = JSON.parse(localStorage.getItem('Bus'));
         let StationHistory = getBusLocalStorageArray[0]['StationHistory'];
-        StationHistory.push(data['stationName']);
+        StationHistory.unshift(data['stationName']);
         localStorage.setItem('Bus', JSON.stringify(getBusLocalStorageArray));
       });
       i.className = 'mr-2 text-info fas fa-sign';
