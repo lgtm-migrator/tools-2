@@ -933,7 +933,7 @@ $().ready(function () {
     let wechat_url_parameters = '';
     let dingTalk_url = create_url('https://h5.dingtalk.com/', 'circle/healthCheckin.html', dingTalk_url_parameters);
     let qq_url = create_url('https://qm.qq.com/', 'cgi-bin/qm/qr', qq_url_parameters);
-    let wechat_url = create_url('https://weixin.qq.com/', 'g/AQYAAIHcdxj0aKvqL1FSbPklF8WcEX78nFGUuHu9SX4Ep3aLfOBPS08Dy_RxJmIl', wechat_url_parameters);
+    let wechat_url = create_url('https://weixin.qq.com/', 'g/AQYAAIYdOinIazHz8dr_aQ2djWNkNGLuWvEeIyU96NJeh6o3CjP8I0dO7NehJvMD', wechat_url_parameters);
 
     create_socialGroup_qrcode(dingTalk_url, dingTalk_img, socialGroup_dingTalk);
     create_socialGroup_qrcode(qq_url, qq_img, socialGroup_qq);
