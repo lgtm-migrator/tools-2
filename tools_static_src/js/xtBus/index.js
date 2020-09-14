@@ -72,21 +72,8 @@ $().ready(function () {
         this.setAttribute('data-toggle', 'dropdown');
         this.setAttribute('data-target', 'getRelatedLinesDropdown');
 
-        let LineHistoryHead = document.querySelector('#LineHistoryHead');
-        let text = document.createElement("div");
-        let clearHistory = document.createElement("i");
-        text.innerHTML = '历史记录';
-        clearHistory.className = 'far fa-trash-alt';
-        clearHistory.innerHTML = '清空';
-        clearHistory.title = '清空历史记录';
-        clearHistory.addEventListener('click', function () {
-          bootstrapModalJs('', create_small_center_text('已经清空了历史记录', 'success'), '', 'sm', true);
-        });
-        LineHistoryHead.appendChild(text);
-        LineHistoryHead.appendChild(clearHistory);
-
+        // 创建路线历史列表
         let getBusLocalStorageArray = JSON.parse(localStorage.getItem('Bus'));
-        console.log(getBusLocalStorageArray);
         let LineHistory = getBusLocalStorageArray[0]['LineHistory'];
         for (let x = LineHistory.length, index = 0; index < x; index++) {
           let getRelatedLinesDropdown = document.querySelector('#getRelatedLinesDropdown');
@@ -104,6 +91,22 @@ $().ready(function () {
           a.insertBefore(i, a.firstChild);
           getRelatedLinesDropdown.appendChild(a);
         }
+
+        // 路线清除
+        let LineHistoryHead = document.querySelector('#LineHistoryHead');
+        let text = document.createElement("div");
+        let clearHistory = document.createElement("i");
+        text.innerHTML = '历史记录';
+        clearHistory.className = 'far fa-trash-alt';
+        clearHistory.innerHTML = '清空';
+        clearHistory.title = '清空历史记录';
+        clearHistory.addEventListener('click', function () {
+          getBusLocalStorageArray[0]['LineHistory'] = [];
+          localStorage.setItem('Bus', JSON.stringify(getBusLocalStorageArray));
+          bootstrapModalJs('', create_small_center_text('已经清空了线路历史记录', 'success'), '', 'sm', true);
+        });
+        LineHistoryHead.appendChild(text);
+        LineHistoryHead.appendChild(clearHistory);
       }
     });
     getRelatedStations.addEventListener('click', function () {
@@ -120,19 +123,7 @@ $().ready(function () {
       this.setAttribute('data-toggle', 'dropdown');
       this.setAttribute('data-target', 'getRelatedStationsDropdown');
 
-      let StationHistoryHead = document.querySelector('#StationHistoryHead');
-      let text = document.createElement("div");
-      let clearHistory = document.createElement("i");
-      text.innerHTML = '历史记录';
-      clearHistory.className = 'small far fa-trash-alt';
-      clearHistory.innerHTML = '清空';
-      clearHistory.title = '清空历史记录';
-      clearHistory.addEventListener('click', function () {
-        bootstrapModalJs('', create_small_center_text('已经清空了历史记录', 'success'), '', 'sm', true);
-      });
-      StationHistoryHead.appendChild(text);
-      StationHistoryHead.appendChild(clearHistory);
-
+      // 创建站牌历史列表
       let getBusLocalStorageArray = JSON.parse(localStorage.getItem('Bus'));
       let StationHistory = getBusLocalStorageArray[0]['StationHistory'];
       StationHistory.forEach(function (currentValue) {
@@ -147,11 +138,29 @@ $().ready(function () {
         // console.log(a);
         a.addEventListener("click", function () {
           console.log(a);
+          if ('INPUT' === getRelatedStationsDropdown.previousElementSibling.tagName) getRelatedStationsDropdown.previousElementSibling.value = currentValue;
         });
         i.className = 'mr-2 text-info fas fa-sign';
         a.insertBefore(i, a.firstChild);
         getRelatedStationsDropdown.appendChild(a);
       });
+
+      // 站牌清除
+      let StationHistoryHead = document.querySelector('#StationHistoryHead');
+      let text = document.createElement("div");
+      let clearHistory = document.createElement("i");
+      text.innerHTML = '历史记录';
+      clearHistory.className = 'small far fa-trash-alt';
+      clearHistory.innerHTML = '清空';
+      clearHistory.title = '清空历史记录';
+      clearHistory.addEventListener('click', function () {
+        getBusLocalStorageArray[0]['StationHistory'] = [];
+        localStorage.setItem('Bus', JSON.stringify(getBusLocalStorageArray));
+        bootstrapModalJs('', create_small_center_text('已经清空了站牌历史记录', 'success'), '', 'sm', true);
+      });
+      StationHistoryHead.appendChild(text);
+      StationHistoryHead.appendChild(clearHistory);
+
     });
     getRelatedLines.addEventListener('blur', function () {
       let searchValue = this.value;
