@@ -27,10 +27,10 @@ function ajax_get(query_data, trigger_element) {
       console.log(data);
       // extract_answers(data);
     },
-    error: function (error) {
+    error: function (errorData) {
       remove_spinner_icon(trigger_element);
       set_crawlStatus('text-danger');
-      console.log(error);
+      commonAjaxErrorFeedback(errorData);
     },
   });
 }

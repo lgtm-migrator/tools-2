@@ -288,10 +288,11 @@ function ajax_search(search_data, clicked_btn) {
       remove_spinner_icon(clicked_btn);
       get_search_result(data);
     },
-    error: function (data) {
+    error: function (errorData) {
       remove_spinner_icon(clicked_btn);
-      ajax_error(data);
-      ajax_error_fun_debug(data, 'search_number');
+      ajax_error(errorData);
+      ajax_error_fun_debug(errorData, 'search_number');
+      commonAjaxErrorFeedback(errorData);
     },
   });
 }
@@ -985,10 +986,11 @@ function ajax_phone_number(data, g_recaptcha_token, g_recaptcha_action) {
       get_ajax_result(data);
       get_number_stored();
     },
-    error: function (data) {
+    error: function (errorData) {
       remove_spinner_icon(add_number_submit);
-      ajax_error(data);
-      ajax_error_fun_debug(data, 'phone_number_error');
+      ajax_error(errorData);
+      ajax_error_fun_debug(errorData, 'phone_number_error');
+      commonAjaxErrorFeedback(errorData);
     },
   });
 
@@ -1179,8 +1181,9 @@ function get_number_stored() {
       remove_spinner_icon(number_stored);
       number_stored.innerHTML = '当前号码存储数量' + data + '条';
     },
-    error: function (data) {
-      number_stored.innerHTML = data.responseText;
+    error: function (errorData) {
+      number_stored.innerHTML = errorData.responseText;
+      commonAjaxErrorFeedback(errorData);
     },
   });
 }

@@ -16,8 +16,8 @@ function getXTBus(data = {}) {
     success: function (data) {
       console.log(data);
     },
-    error: function (error_data) {
-      console.log(error_data);
+    error: function (errorData) {
+      commonAjaxErrorFeedback(errorData);
     }
   });
 }

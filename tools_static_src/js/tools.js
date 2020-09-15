@@ -361,9 +361,9 @@ function get_recaptcha_verify(token_key, pageAction) {
       console.log('提交验证成功');
       console.log(data);
     },
-    error: function (data) {
+    error: function (errorData) {
       console.log('提交验证失败');
-      console.log(data);
+      commonAjaxErrorFeedback(errorData);
     },
   });
 }

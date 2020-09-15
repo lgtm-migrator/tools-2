@@ -135,11 +135,11 @@ function ajax_images() {
       remove_spinner_icon(photo_submit);
       ajax_result_success(data);
     },
-    error: function (error) {
-      ajax_result_failed(error);
-      if (error.length) bootstrapModalJs('', error, '', '', true);
+    error: function (errorData) {
+      ajax_result_failed(errorData);
+      if (errorData.length) bootstrapModalJs('', errorData, '', '', true);
       console.log('失败');
-      console.log(error);
+      commonAjaxErrorFeedback(errorData);
     },
   });
 }

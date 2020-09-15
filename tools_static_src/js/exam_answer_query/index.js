@@ -101,9 +101,9 @@ function ajax_query(query_data, trigger_element) {
       set_query_result(data);
       console.log(data);
     },
-    error: function (error) {
+    error: function (errorData) {
       remove_spinner_icon(trigger_element);
-      console.log(error);
+      commonAjaxErrorFeedback(errorData);
     },
   });
 }
