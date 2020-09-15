@@ -12,7 +12,7 @@ if (!defined('SITE_HEAD')) exit('版权保护');
 
 require_once dirname(dirname(__DIR__)) . '/vendor/autoload.php';
 require_once dirname(dirname(__DIR__)) . "/config/functions.php";
-require_once dirname(dirname(__DIR__)) . "/config/env.php";
+require_once dirname(dirname(__DIR__)) . "/config/env_exam.php";
 
 //模式判断
 $exam_answer_query_mode = $_ENV['EXAM_ANSWER_QUERY_MODE'];
@@ -25,6 +25,7 @@ if ('view' === $exam_answer_query_mode) {
 }
 
 require_once dirname(__FILE__) . '/request_remote.php';
+global $url_response;
 $response = $url_response;
 
 require_once dirname(__FILE__) . '/extract_data.php';
