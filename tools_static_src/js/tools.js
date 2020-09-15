@@ -191,11 +191,18 @@ function funDebugFeedback(error_name, error_result) {
     let options = {
       metaData: {
         location: document.location,
+        error_result: error_result,
       }
     };
-    fundebug.notify(error_name, JSON.stringify(error_result), options);
+    fundebug.notify(error_name, error_result, options);
     bootstrapModalJs('', create_small_center_text('本次异常已经自动反馈给管理员。', 'success'), '', 'sm', true);
   }
+}
+
+// 共用Ajax请求异常反馈
+function commonAjaxErrorFeedback(data) {
+  if (fundebug) funDebugFeedback('Ajax出现请求错误，请关注。', data);
+  if (fundebug) bootstrapModalJs('', create_small_center_text('抱歉，请求出错，请重新试一下。', 'danger'), '', 'sm', true);
 }
 
 // 表单验证

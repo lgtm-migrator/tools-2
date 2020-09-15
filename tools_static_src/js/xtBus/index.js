@@ -204,7 +204,7 @@ function setLineResult(data) {
 }
 
 function setStationResult(data) {
-  common_statusCode_check(data);
+  if (false === common_statusCode_check(data)) return;
   add_dNone(lineResult);
   add_dNone(transferResult);
   cleanInnerHTML(stationResult);
@@ -314,6 +314,7 @@ function common_ajax(data = {}, fn) {
     },
     error: function (errorData) {
       console.log(errorData);
+      commonAjaxErrorFeedback(errorData);
     },
   });
 }
@@ -347,8 +348,8 @@ function common_statusCode_check(data) {
   if (msg === 'success' && status === 1) {
     return true;
   }
-  if (fundebug) funDebugFeedback('公交查询异常')
-  bootstrapModalJs('', create_small_center_text('信息异常，请删除页面缓存或者强制刷新页面后，重新尝试查询。', 'danger'), '', 'sm', true);
+  if (fundebug) funDebugFeedback('公交查询异常', data)
+  if (fundebug) bootstrapModalJs('', create_small_center_text('信息异常，请删除页面缓存或者强制刷新页面后，重新尝试查询。', 'danger'), '', 'sm', true);
   return false;
 }
 
