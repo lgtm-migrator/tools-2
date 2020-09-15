@@ -2,6 +2,15 @@ $().ready(function () {
   let get_answer = document.querySelector('#get_answer');
 
   get_answer.addEventListener('click', function () {
+    let parameter = document.querySelector('#parameter');
+    [].slice.call(parameter.querySelectorAll("input")).forEach(function (currentInput) {
+      let id = currentInput.id;
+      let value = currentInput.value;
+      console.log(currentInput);
+      console.log(id);
+      console.log(value);
+    });
+
     add_spinner_icon(get_answer);
     set_crawlStatus('text-warning');
     ajax_get('get_answer_result', get_answer);
@@ -15,7 +24,7 @@ function ajax_get(query_data, trigger_element) {
     url: url,
     cache: false,
     dataType: 'json',
-    timeout: 5000,
+    timeout: 4000,
     data: {
       data: query_data,
     },
