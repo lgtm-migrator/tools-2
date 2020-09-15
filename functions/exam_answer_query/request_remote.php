@@ -10,7 +10,11 @@ $url = $request_url;
 $curl->get($url);
 
 if ($curl->error) {
-  exit('curl出错：' . $curl->errorCode . ': ' . $curl->errorMessage . "\n");
+  $error = array(
+    'curlError' => 'curl出错：' . $curl->errorCode . ': ' . $curl->errorMessage,
+    'success' => 'no',
+  );
+  exit(json_encode($error));
 }
 
 $url_response = $curl->response;

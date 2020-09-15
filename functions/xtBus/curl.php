@@ -40,9 +40,11 @@ $curl->post($apiUrlRoot, $post_data);
 
 
 if ($curl->error) {
-  $errorCode = '错误代码：' . $curl->errorCode . '<br>';
-  $errorMessage = '错误信息：' . $curl->errorMessage . '<br>';
-  exit($errorCode . $errorMessage . '<br>');
+  $curlError = array(
+    'errorCode' => '错误代码：' . $curl->errorCode,
+    'errorMessage' => '错误信息：' . $curl->errorMessage,
+  );
+  exit(json_encode($curlError));
 }
 
 $curl->close();
