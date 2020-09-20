@@ -6,6 +6,10 @@ $().ready(function () {
     let t_id = document.querySelector('#t_id');
     let token_t_id = document.querySelector('#token_t_id');
 
+    if (!t_id.value.length && !token_t_id.value.length) {
+      bootstrapModalJs('', create_small_center_text('请输入答卷编号和对应token','danger'), '', 'sm', true);
+      return;
+    }
     let data = {
       'tid': t_id.value,
       'tokenTid': token_t_id.value,
