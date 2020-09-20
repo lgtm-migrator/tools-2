@@ -11,7 +11,7 @@ require_once dirname(dirname(__DIR__)) . '/header.php';
 ?>
 <link rel="stylesheet" href="/static/css/exam_answer_query/get_answer.min.css">
 <div class="mt-5 container-fluid">
-  <div class="mb-3 py-4 container rounded border">
+  <div class="mb-3 py-4 container rounded border" id="parameter">
     <div class="mb-3">
       <div class="input-group">
         <label class="input-group-text" for="mode">访问模式 MODE</label>
@@ -26,7 +26,7 @@ require_once dirname(dirname(__DIR__)) . '/header.php';
         </select>
       </div>
     </div>
-    <div id="parameter">
+    <div>
       <div class="mb-2">
         <div class="mb-1 input-group">
           <label class="input-group-text" for="c_id">C_ID</label>
@@ -63,6 +63,10 @@ require_once dirname(dirname(__DIR__)) . '/header.php';
         <div class="mb-1 input-group">
           <label class="input-group-text" for="p_id">P_ID</label>
           <input class="form-control" type="text" id="p_id" placeholder="试卷编号">
+        </div>
+        <div class="mb-1 input-group">
+          <label class="input-group-text" for="token_p_id">TOKEN_P_ID</label>
+          <input class="form-control" type="text" id="token_p_id" placeholder="TOKEN_P_ID">
         </div>
       </div>
     </div>
