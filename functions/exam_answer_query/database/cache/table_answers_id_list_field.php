@@ -1,4 +1,5 @@
 <?php
+global $response_array;
 $response_array_0 = $response_array[0];
 $response_array_f_datetime = $response_array_0['f'];
 $a_id = $response_array_0['id'];

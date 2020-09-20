@@ -1,5 +1,5 @@
 <?php
-
+global $response;
 $raw_response = object2array($response);
 $response_array = $raw_response['b'];
 $response_array_count = count($response_array);
@@ -19,10 +19,13 @@ $category_array = array(
   's1' => 'single',
   's2' => 'multiple',
   's3' => 'determine',
+  's4' => 'fill',
+  's5' => 'text',
 );
 
 require_once dirname(__FILE__) . '/database/cache/index.php';
-
+global $a_id, $judgment_12, $choice_123;
+$new_data = [];
 for ($i = 1; $i < $response_array_count; $i++) {
   $response_array_i = $response_array[$i];
   if (gettype($response_array_i['c']) === 'string') {
@@ -37,12 +40,16 @@ for ($i = 1; $i < $response_array_count; $i++) {
     $pre_id = $x_id[0];
     $s_id = $x_id[1];
 
-    $category = $category_array[$pre_id];//题型
+    $category = $category_array[$pre_id];// 题型
 
     if ('determine' === $category) {
       $result_text = $judgment_12[$result];
     } elseif ('single' === $category || 'multiple' === $category) {
       $result_text = $choice_123[$result];
+    } elseif ('fill' === $category) {
+      $result_text = $result;
+    } elseif ('text' === $category) {
+      $result_text = $result;
     } else {
       $result_text = 'unset';
     }
