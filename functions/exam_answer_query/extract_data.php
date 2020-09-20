@@ -1,8 +1,8 @@
 <?php
 global $response;
 $raw_response = object2array($response);
-$response_array = $raw_response['b'];
-$response_array_count = count($response_array);
+$response_array_b = $raw_response['b'];
+$response_array_count = count($response_array_b);
 
 
 require_once dirname(__FILE__) . '/database/cache/table_answers_id_list_field.php';
@@ -27,16 +27,16 @@ require_once dirname(__FILE__) . '/database/cache/index.php';
 global $a_id, $judgment_12, $choice_123;
 $new_data = [];
 for ($i = 1; $i < $response_array_count; $i++) {
-  $response_array_i = $response_array[$i];
-  if (gettype($response_array_i['c']) === 'string') {
-    $response_array_i_b = isset($response_array_i['b']) ? $response_array_i['b'] : '';
-    $result = isset($response_array_i['c']) ? $response_array_i['c'] : '';
-    $response_array_i_h = isset($response_array_i['h']) ? $response_array_i['h'] : '';
+  $response_array_b_i = $response_array_b[$i];
+  if (gettype($response_array_b_i['c']) === 'string') {
+    $response_array_i_b = isset($response_array_b_i['b']) ? $response_array_b_i['b'] : '';
+    $result = isset($response_array_b_i['c']) ? $response_array_b_i['c'] : '';
+    $response_array_i_h = isset($response_array_b_i['h']) ? $response_array_b_i['h'] : '';
 
     //解析问题编号
-    $response_array_i_id = $response_array_i['id'];
+    $response_array_b_i_id = $response_array_b_i['id'];
     //拆分id
-    $x_id = explode('_', $response_array_i_id);
+    $x_id = explode('_', $response_array_b_i_id);
     $pre_id = $x_id[0];
     $s_id = $x_id[1];
 
@@ -47,9 +47,9 @@ for ($i = 1; $i < $response_array_count; $i++) {
     } elseif ('single' === $category || 'multiple' === $category) {
       $result_text = $choice_123[$result];
     } elseif ('fill' === $category) {
-      $result_text = $result;
+      $result_text = '';
     } elseif ('text' === $category) {
-      $result_text = $result;
+      $result_text = '';
     } else {
       $result_text = 'unset';
     }
@@ -58,13 +58,13 @@ for ($i = 1; $i < $response_array_count; $i++) {
       'sid' => (int)$s_id,
       'aid' => (int)$a_id,
       'options' => (string)$response_array_i_b,
-      'result' => (int)$result,
+      'result' => (string)$result,
       'result_text' => (string)$result_text,
       'category' => (string)$category,
-      'score' => (float)$response_array_i['d'],
-      'text' => (string)$response_array_i['a'],
-      'e' => (int)$response_array_i['e'],
-      'f' => (int)$response_array_i['f'],
+      'score' => (float)$response_array_b_i['d'],
+      'text' => (string)$response_array_b_i['a'],
+      'e' => (int)$response_array_b_i['e'],
+      'f' => (int)$response_array_b_i['f'],
       'h' => (int)$response_array_i_h,
     );
   }
