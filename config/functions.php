@@ -54,3 +54,24 @@ function object2array($object)
 {
   return json_decode(json_encode($object), true);
 }
+
+/* * php截取指定两个字符之间字符串 * */
+function get_between(string $string, string $start, string $end)
+{
+  return substr($string, strlen($start) + strpos($string, $start), (strlen($string) - strpos($string, $end)) * (-1));
+}
+
+function getBetween($string, $start = "", $end = "")
+{
+  if (strpos($string, $start)) { // required if $start not exist in $string
+    $startCharCount = strpos($string, $start) + strlen($start);
+    $firstSubStr = substr($string, $startCharCount, strlen($string));
+    $endCharCount = strpos($firstSubStr, $end);
+    if ($endCharCount == 0) {
+      $endCharCount = strlen($firstSubStr);
+    }
+    return substr($firstSubStr, 0, $endCharCount);
+  } else {
+    return '';
+  }
+}
