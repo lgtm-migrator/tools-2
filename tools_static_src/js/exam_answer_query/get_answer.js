@@ -7,7 +7,7 @@ $().ready(function () {
     let token_t_id = document.querySelector('#token_t_id');
 
     if (!t_id.value.length && !token_t_id.value.length) {
-      bootstrapModalJs('', create_small_center_text('请输入答卷编号和对应token','danger'), '', 'sm', true);
+      bootstrapModalJs('', create_small_center_text('请输入答卷编号和对应token', 'danger'), '', 'sm', true);
       return;
     }
     let data = {
@@ -38,13 +38,12 @@ $().ready(function () {
   });
   get_answer.addEventListener('click', function () {
     let parameter = document.querySelector('#parameter');
-    [].slice.call(parameter.querySelectorAll("input")).forEach(function (currentInput) {
-      let id = currentInput.id;
-      let value = currentInput.value;
+    let data = [];
+    [].slice.call(parameter.querySelectorAll("[id]")).forEach(function (currentInput) {
+      data[currentInput.id] = currentInput.value;
       console.log(currentInput);
-      console.log(id);
-      console.log(value);
     });
+    console.log(data);
 
     add_spinner_icon(get_answer);
     set_crawlStatus('text-warning');
