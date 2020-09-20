@@ -1,6 +1,37 @@
 $().ready(function () {
   let get_answer = document.querySelector('#get_answer');
+  let get_no_logout = document.querySelector('#get_no_logout');
 
+  get_no_logout.addEventListener('click', function () {
+    let t_id = document.querySelector('#t_id');
+    let token_t_id = document.querySelector('#token_t_id');
+
+    let data = {
+      'tid': t_id.value,
+      'tokenTid': token_t_id.value,
+    };
+    let url = '/exam_answer_query/get_no_logout.php';
+    $.ajax({
+      method: 'post',
+      url: url,
+      cache: false,
+      dataType: 'json',
+      timeout: 4000,
+      data: data,
+      success: function (data) {
+        console.log(data);
+        let le_id = document.querySelector('#le_id');
+        let token_le_id = document.querySelector('#token_le_id');
+
+        le_id.value = data['leId'];
+        token_le_id.value = data['tokenLeId'];
+      },
+      error: function (errorData) {
+        console.log(errorData);
+        commonAjaxErrorFeedback(errorData);
+      },
+    });
+  });
   get_answer.addEventListener('click', function () {
     let parameter = document.querySelector('#parameter');
     [].slice.call(parameter.querySelectorAll("input")).forEach(function (currentInput) {
