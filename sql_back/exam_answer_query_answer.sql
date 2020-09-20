@@ -3,15 +3,15 @@
 
  Source Server         : 本地数据库8.0
  Source Server Type    : MySQL
- Source Server Version : 80020
+ Source Server Version : 80021
  Source Host           : localhost:3306
  Source Schema         : jzeg_tools
 
  Target Server Type    : MySQL
- Target Server Version : 80020
+ Target Server Version : 80021
  File Encoding         : 65001
 
- Date: 05/07/2020 14:44:17
+ Date: 20/09/2020 23:00:00
 */
 
 SET NAMES utf8mb4;
@@ -27,7 +27,7 @@ CREATE TABLE `exam_answer_query_answer`  (
   `aid` int(0) NOT NULL COMMENT '所属试卷id',
   `category` varchar(9) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '题型类别',
   `score` float(2, 1) NOT NULL COMMENT '分值',
-  `result` int(0) NOT NULL COMMENT '结果数',
+  `result` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '结果数',
   `result_text` varchar(7) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '结果文本',
   `options` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL COMMENT '选项',
   `text` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '问题文本',
