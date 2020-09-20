@@ -12,46 +12,58 @@ require_once dirname(dirname(__DIR__)) . '/header.php';
 <link rel="stylesheet" href="/static/css/exam_answer_query/get_answer.min.css">
 <div class="mt-5 container-fluid">
   <div class="mb-3 py-4 container rounded border">
-    <div class="mb-2 g-0 input-group">
-      <label class="input-group-text" for="mode">访问模式 MODE</label>
-      <select class="form-select" id="mode">
-        <optgroup label="基础功能">
-          <option value="exercise" selected>逐题</option>
-        </optgroup>
-        <optgroup label="高级功能（当前不可用）">
-          <option value="view">查阅</option>
-          <option value="exam">测试</option>
-        </optgroup>
-      </select>
+    <div class="mb-3">
+      <div class="input-group">
+        <label class="input-group-text" for="mode">访问模式 MODE</label>
+        <select class="form-select" id="mode">
+          <optgroup label="基础功能">
+            <option value="view">查阅</option>
+            <option value="exam">测试</option>
+          </optgroup>
+          <optgroup label="免登录模式">
+            <option value="exercise" selected>逐题</option>
+          </optgroup>
+        </select>
+      </div>
     </div>
     <div id="parameter">
-      <div class="mb-1 input-group">
-        <label class="input-group-text" for="c_id">C_ID</label>
-        <input class="form-control" type="text" id="c_id" placeholder="班级编号">
+      <div class="mb-2">
+        <div class="mb-1 input-group">
+          <label class="input-group-text" for="c_id">C_ID</label>
+          <input class="form-control" type="text" id="c_id" placeholder="班级编号">
+        </div>
       </div>
-      <div class="mb-1 input-group">
-        <label class="input-group-text" for="k_id">K_ID</label>
-        <input class="form-control" type="text" id="k_id" placeholder="K_ID">
+      <div class="mb-2">
+        <div class="mb-1 input-group">
+          <label class="input-group-text" for="k_id">K_ID</label>
+          <input class="form-control" type="text" id="k_id" placeholder="K_ID">
+        </div>
       </div>
-      <div class="mb-1 input-group">
-        <label class="input-group-text" for="le_id">LE_ID</label>
-        <input class="form-control" type="text" id="le_id" placeholder="LE_ID">
+      <div class="mb-2">
+        <div class="mb-1 input-group">
+          <label class="input-group-text" for="le_id">LE_ID</label>
+          <input class="form-control" type="text" id="le_id" placeholder="答卷编号">
+        </div>
+        <div class="mb-1 input-group">
+          <label class="input-group-text" for="token_le_id">TOKEN_LE_ID</label>
+          <input class="form-control" type="text" id="token_le_id" placeholder="TOKEN_LE_ID">
+        </div>
       </div>
-      <div class="mb-1 input-group">
-        <label class="input-group-text" for="token_le_id">TOKEN_LE_ID</label>
-        <input class="form-control" type="text" id="token_le_id" placeholder="TOKEN_LE_ID">
+      <div class="mb-2">
+        <div class="mb-1 input-group">
+          <label class="input-group-text" for="t_id">T_ID</label>
+          <input class="form-control" type="text" id="t_id" placeholder="考试场次编号">
+        </div>
+        <div class="mb-1 input-group">
+          <label class="input-group-text" for="token_t_id">TOKEN_T_ID</label>
+          <input class="form-control" type="text" id="token_t_id" placeholder="TOKEN_T_ID">
+        </div>
       </div>
-      <div class="mb-1 input-group">
-        <label class="input-group-text" for="t_id">T_ID</label>
-        <input class="form-control" type="text" id="t_id" placeholder="考试场次编号">
-      </div>
-      <div class="mb-1 input-group">
-        <label class="input-group-text" for="token_t_id">TOKEN_T_ID</label>
-        <input class="form-control" type="text" id="token_t_id" placeholder="TOKEN_T_ID">
-      </div>
-      <div class="mb-1 input-group">
-        <label class="input-group-text" for="p_id">P_ID</label>
-        <input class="form-control" type="text" id="p_id" placeholder="试卷编号">
+      <div class="mb-2">
+        <div class="mb-1 input-group">
+          <label class="input-group-text" for="p_id">P_ID</label>
+          <input class="form-control" type="text" id="p_id" placeholder="试卷编号">
+        </div>
       </div>
     </div>
   </div>
