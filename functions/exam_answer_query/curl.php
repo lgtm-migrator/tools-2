@@ -3,14 +3,13 @@ require_once dirname(dirname(__DIR__)) . '/vendor/autoload.php';
 
 use Curl\Curl;
 
-global $url;
+global $RequestURL;
 
 $curl = new Curl();
-
-$curl->get($url);
+$curl->get($RequestURL);
 
 if ($curl->error) {
-  $curlResult = array(
+  $CurlResult = array(
     'result' => $curl->response,
     'success' => 'no',
     'error' => array(
@@ -18,10 +17,10 @@ if ($curl->error) {
       'msg' => $curl->errorMessage,
     ),
   );
-  exit(json_encode($curlResult));
+  exit(json_encode($CurlResult));
 }
 
-$curlResult = array(
+$CurlResult = array(
   'result' => $curl->response,
   'success' => 'yes',
   'error' => array(

@@ -1,11 +1,12 @@
 <?php
-global $get_url;
-$url = $get_url;
-
-require_once dirname(__FILE__) . '/curl.php';
 require_once dirname(dirname(__DIR__)) . "/config/functions.php";
 
-global $curlResult;
+global $RequestURL;
+$url = $RequestURL;
 
-$leId = getBetween($curlResult['result'], 'var leid = "', '";var vp4tokenleid =');
-$tokenLeId = getBetween($curlResult['result'], 'var vp4tokenleid = "', '";var tid =');
+require_once dirname(__FILE__) . '/curl.php';
+
+global $CurlResult;
+
+$leId = getBetween($CurlResult['result'], 'var leid = "', '";var vp4tokenleid =');
+$tokenLeId = getBetween($CurlResult['result'], 'var vp4tokenleid = "', '";var tid =');

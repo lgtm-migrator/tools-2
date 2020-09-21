@@ -17,16 +17,16 @@ require_once dirname(dirname(__DIR__)) . "/config/env_exam.php";
 //模式判断
 $exam_answer_query_mode = $_ENV['EXAM_ANSWER_QUERY_MODE'];
 if ('view' === $exam_answer_query_mode) {
-  $request_url = $_ENV['EXAM_ANSWER_QUERY_VIEW_REQUEST_URL'];
+  $RequestURL = $_ENV['EXAM_ANSWER_QUERY_VIEW_REQUEST_URL'];
 } elseif ('exam' === $exam_answer_query_mode) {
-  $request_url = $_ENV['EXAM_ANSWER_QUERY_EXAM_REQUEST_URL'];
+  $RequestURL = $_ENV['EXAM_ANSWER_QUERY_EXAM_REQUEST_URL'];
 } elseif ('exercise' === $exam_answer_query_mode) {
-  $request_url = $_ENV['EXAM_ANSWER_QUERY_EXERCISE_REQUEST_URL'];
+  $RequestURL = $_ENV['EXAM_ANSWER_QUERY_EXERCISE_REQUEST_URL'];
 }
 
-require_once dirname(__FILE__) . '/request_remote.php';
-global $url_response;
-$response = $url_response;
+require_once dirname(__FILE__) . '/curl.php';
+global $CurlResult;
+$response = $CurlResult['result'];
 
 require_once dirname(__FILE__) . '/extract_data.php';
 global $database_result;

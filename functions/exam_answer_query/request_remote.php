@@ -1,20 +1,19 @@
 <?php
+require_once dirname(dirname(__DIR__)) . '/vendor/autoload.php';
 
 use Curl\Curl;
 
+global $RequestURL;
+
 $curl = new Curl();
-
-global $request_url;
-$url = $request_url;
-
-$curl->get($url);
+$curl->get($RequestURL);
 
 if ($curl->error) {
-  $error = array(
+  $CurlResult = array(
     'curlError' => 'curl出错：' . $curl->errorCode . ': ' . $curl->errorMessage,
     'success' => 'no',
   );
-  exit(json_encode($error));
+  exit(json_encode($CurlResult));
 }
 
-$url_response = $curl->response;
+$CurlResult = $curl->response;
