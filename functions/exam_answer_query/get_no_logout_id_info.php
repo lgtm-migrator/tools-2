@@ -2,7 +2,6 @@
 require_once dirname(dirname(__DIR__)) . "/config/functions.php";
 
 global $RequestURL;
-$url = $RequestURL;
 
 require_once dirname(__FILE__) . '/curl.php';
 
