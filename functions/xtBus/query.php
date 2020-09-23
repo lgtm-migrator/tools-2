@@ -13,17 +13,21 @@ $post_data = array(
 );
 
 require_once dirname(__FILE__) . '/curl.php';
-global $curl;
+global $CurlResult;
 
-if ($_POST['type'] === 'query') {
-  $responseResult = $curl->getResponse();
-  echo $responseResult;
-} elseif ($_POST['type'] === 'queryLines') {
-  $responseResult = json_decode($curl->getResponse(), true);
-  unset($responseResult['busstations']);
-  echo json_encode($responseResult);
-} elseif ($_POST['type'] === 'queryStations') {
-  $responseResult = json_decode($curl->getResponse(), true);
-  unset($responseResult['buslines']);
-  echo json_encode($responseResult);
+$responseResult = $CurlResult['result'];
+
+switch ($_POST['type']) {
+  case 'queryLines':
+    $responseResult = json_decode($responseResult, true);
+    unset($responseResult['busstations']);
+    exit(json_encode($responseResult));
+  case 'queryStations':
+    $responseResult = json_decode($responseResult, true);
+    unset($responseResult['buslines']);
+    exit(json_encode($responseResult));
+  default:
+    break;
 }
+
+echo $responseResult;
