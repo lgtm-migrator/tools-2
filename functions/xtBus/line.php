@@ -16,8 +16,8 @@ $post_data = array(
 );
 
 require_once dirname(__FILE__) . '/curl.php';
-global $curl;
+global $CurlResult;
 
-$responseResult = $curl->getResponse();
+$responseResult = $CurlResult['result'];
 
 echo $responseResult;

@@ -37,17 +37,30 @@ $curl->setOpt(CURLOPT_TIMEOUT_MS, 3000);//设置cURL允许执行的最长毫秒�
 
 $curl->post($apiUrlRoot, $post_data);
 //$curl->get($apiUrlRoot, $post_data);
+$curl->close();
 
 
 if ($curl->error) {
-  $curlError = array(
-    'errorCode' => '错误代码：' . $curl->errorCode,
-    'errorMessage' => '错误信息：' . $curl->errorMessage,
+  $CurlResult = array(
+    'result' => $curl->response,
+    'success' => 'no',
+    'error' => array(
+      'code' => $curl->errorCode,
+      'msg' => $curl->errorMessage,
+    ),
   );
-  exit(json_encode($curlError));
+  exit(json_encode($CurlResult));
 }
 
-$curl->close();
+$CurlResult = array(
+  'result' => $curl->response,
+  'success' => 'yes',
+  'error' => array(
+    'code' => $curl->errorCode,
+    'msg' => $curl->errorMessage,
+  ),
+);
+
 
 
 //$reForeach = $curl->responseHeaders;
