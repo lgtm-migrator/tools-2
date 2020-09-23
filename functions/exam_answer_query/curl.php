@@ -7,6 +7,7 @@ global $RequestURL;
 
 $curl = new Curl();
 $curl->get($RequestURL);
+$curl->close();
 
 if ($curl->error) {
   $CurlResult = array(
