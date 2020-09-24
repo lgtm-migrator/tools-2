@@ -1,7 +1,28 @@
 $().ready(function () {
   let get_answer = document.querySelector('#get_answer');
   let get_no_logout = document.querySelector('#get_no_logout');
+  let recur = document.querySelector('#recur');
 
+  recur.addEventListener('click', function () {
+    let le_id = document.querySelector('#le_id');
+    let token_le_id = document.querySelector('#token_le_id');
+
+    if (le_id.value.length > 0 && token_le_id.value.length > 0) {
+      let iframeSrcUrl = 'https://www.examcoo.com/editor/do/recur/id/' + le_id.value + '/tokenleid/' + token_le_id.value;
+      let iframe = document.createElement("iframe");
+
+      iframe.src = iframeSrcUrl;
+      iframe.id = 'iframeViewResult';
+      iframe.className = 'mx-n-3';
+      iframe.style.border = 'none';
+      iframe.onload = adjustIframe(iframe);
+
+      bootstrapModalJs('查看成绩', iframe, '', 'modal-fullscreen');
+    } else {
+      bootstrapModalJs('', create_small_center_text('请输入答卷编号和答卷编号token', 'danger'), '', 'sm', true);
+    }
+
+  });
   get_no_logout.addEventListener('click', function () {
     let t_id = document.querySelector('#t_id');
     let token_t_id = document.querySelector('#token_t_id');
@@ -282,4 +303,9 @@ function table_tr(answers_data) {
   tr.appendChild(td_f);
   tr.appendChild(td_h);
   return tr;
+}
+
+function adjustIframe(iframe) {
+  iframe.height = document.documentElement.clientHeight;
+  iframe.width = document.documentElement.clientWidth;
 }

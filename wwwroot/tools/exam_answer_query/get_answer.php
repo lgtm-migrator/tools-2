@@ -29,6 +29,16 @@ require_once dirname(dirname(__DIR__)) . '/header.php';
     <div>
       <div class="mb-2">
         <div class="mb-1 input-group">
+          <label class="input-group-text" for="le_id">LE_ID</label>
+          <input class="form-control" type="text" id="le_id" placeholder="答卷编号">
+        </div>
+        <div class="mb-1 input-group">
+          <label class="input-group-text" for="token_le_id">TOKEN_LE_ID</label>
+          <input class="form-control" type="text" id="token_le_id" placeholder="TOKEN_LE_ID">
+        </div>
+      </div>
+      <div class="mb-2">
+        <div class="mb-1 input-group">
           <label class="input-group-text" for="c_id">C_ID</label>
           <input class="form-control" type="text" id="c_id" placeholder="班级编号">
         </div>
@@ -37,16 +47,6 @@ require_once dirname(dirname(__DIR__)) . '/header.php';
         <div class="mb-1 input-group">
           <label class="input-group-text" for="k_id">K_ID</label>
           <input class="form-control" type="text" id="k_id" placeholder="K_ID">
-        </div>
-      </div>
-      <div class="mb-2">
-        <div class="mb-1 input-group">
-          <label class="input-group-text" for="le_id">LE_ID</label>
-          <input class="form-control" type="text" id="le_id" placeholder="答卷编号">
-        </div>
-        <div class="mb-1 input-group">
-          <label class="input-group-text" for="token_le_id">TOKEN_LE_ID</label>
-          <input class="form-control" type="text" id="token_le_id" placeholder="TOKEN_LE_ID">
         </div>
       </div>
       <div class="mb-2">
@@ -74,22 +74,28 @@ require_once dirname(dirname(__DIR__)) . '/header.php';
   <div class="mb-3 px-0 container card">
     <div class="card-header">
       <nav class="nav nav-tabs card-header-tabs">
-        <a class="nav-link active" data-toggle="tab" href="#tabNumber">编号</a>
+        <a class="nav-link" data-toggle="tab" href="#tabNumber">编号</a>
         <a class="nav-link" data-toggle="tab" href="#tabInternetSite">网址</a>
+        <a class="nav-link" data-toggle="tab" href="#tabViewResult">成绩</a>
         <a class="nav-link small ml-auto text-muted fas fa-plus-square" data-toggle="collapse" href="#collapse" role="button" aria-expanded="true" aria-controls="collapse"></a>
       </nav>
     </div>
     <div class="collapse fade show" id="collapse">
       <div class="card-body">
         <div class="tab-content">
-          <div class="tab-pane fade active show" id="tabNumber" role="tabpanel">
+          <div class="tab-pane fade" id="tabNumber" role="tabpanel">
             <div class="d-flex flex-column align-items-center justify-content-center">
               <button class="mb-2 py-2 btn btn-sm btn-secondary" type="button" id="get_no_logout">抓取对应的免登录信息</button>
             </div>
           </div>
           <div class="tab-pane fade" id="tabInternetSite" role="tabpanel">
             <div class="d-flex flex-column align-items-center justify-content-center">
-              <button class="mb-2 py-2 btn btn-sm btn-secondary" type="button" id="get_no_logout">抓取对应的免登录信息2</button>
+              <button class="mb-2 py-2 btn btn-sm btn-secondary" type="button" id="">查看</button>
+            </div>
+          </div>
+          <div class="tab-pane fade" id="tabViewResult" role="tabpanel">
+            <div class="d-flex flex-column align-items-center justify-content-center">
+              <button class="mb-2 py-2 btn btn-sm btn-secondary" type="button" id="recur">查看成绩</button>
             </div>
           </div>
         </div>
