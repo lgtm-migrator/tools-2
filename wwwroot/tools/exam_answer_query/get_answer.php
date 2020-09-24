@@ -76,7 +76,7 @@ require_once dirname(dirname(__DIR__)) . '/header.php';
       <nav class="nav nav-tabs card-header-tabs">
         <a class="nav-link active" data-toggle="tab" href="#tabNumber">编号</a>
         <a class="nav-link" data-toggle="tab" href="#tabInternetSite">网址</a>
-        <a class="nav-link small ml-auto text-muted fas fa-plus-square" data-toggle="collapse" href="#collapse" role="button" aria-expanded="false" aria-controls="collapseExample"></a>
+        <a class="nav-link small ml-auto text-muted fas fa-plus-square" data-toggle="collapse" href="#collapse" role="button" aria-expanded="true" aria-controls="collapse"></a>
       </nav>
     </div>
     <div class="collapse fade show" id="collapse">
