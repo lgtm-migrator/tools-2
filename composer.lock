@@ -150,16 +150,16 @@
         },
         {
             "name": "alibabacloud/sdk",
-            "version": "1.8.491",
+            "version": "1.8.502",
             "source": {
                 "type": "git",
                 "url": "https://github.com/aliyun/openapi-sdk-php.git",
-                "reference": "906d6403b52036c82a9419b981c7f27c8ed244ff"
+                "reference": "3cbcfb4ea0a3568fe3fa2020c022f1b6522e7a7e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/aliyun/openapi-sdk-php/zipball/906d6403b52036c82a9419b981c7f27c8ed244ff",
-                "reference": "906d6403b52036c82a9419b981c7f27c8ed244ff",
+                "url": "https://api.github.com/repos/aliyun/openapi-sdk-php/zipball/3cbcfb4ea0a3568fe3fa2020c022f1b6522e7a7e",
+                "reference": "3cbcfb4ea0a3568fe3fa2020c022f1b6522e7a7e",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -386,7 +386,7 @@
                 "library",
                 "sdk"
             ],
-            "time": "2020-09-20T13:01:38+00:00"
+            "time": "2020-09-23T09:44:35+00:00"
         },
         {
             "name": "bacon/bacon-qr-code",
@@ -3805,16 +3805,16 @@
         },
         {
             "name": "nikic/php-parser",
-            "version": "v4.10.0",
+            "version": "v4.10.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nikic/PHP-Parser.git",
-                "reference": "1c13d05035deff45f1230ca68bd7d74d621762d9"
+                "reference": "1b479e7592812411c20c34d9ed33db3957bde66e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nikic/PHP-Parser/zipball/1c13d05035deff45f1230ca68bd7d74d621762d9",
-                "reference": "1c13d05035deff45f1230ca68bd7d74d621762d9",
+                "url": "https://api.github.com/repos/nikic/PHP-Parser/zipball/1b479e7592812411c20c34d9ed33db3957bde66e",
+                "reference": "1b479e7592812411c20c34d9ed33db3957bde66e",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -3859,7 +3859,7 @@
                 "parser",
                 "php"
             ],
-            "time": "2020-09-19T14:52:48+00:00"
+            "time": "2020-09-23T18:23:49+00:00"
         },
         {
             "name": "phar-io/manifest",
