@@ -48,7 +48,7 @@ $().ready(function () {
     let token_t_id = document.querySelector('#token_t_id');
 
     if (!t_id.value.length && !token_t_id.value.length) {
-      bootstrapModalJs('', create_small_center_text('请输入答卷编号和对应token', 'danger'), '', 'sm', true);
+      bootstrapModalJs('', create_small_center_text('请输入考试场次编号和对应token', 'danger'), '', 'sm', true);
       return;
     }
     let data = {
@@ -81,30 +81,30 @@ $().ready(function () {
     let le_id = document.querySelector('#le_id');
     let token_le_id = document.querySelector('#token_le_id');
 
-    if (le_id.value.length > 0 && token_le_id.value.length > 0) {
-      let url = '/exam_answer_query/get_exam_info.php';
-      let data = {
-        type: 'examInfo',
-        leId: le_id.value,
-        tokenLeId: token_le_id.value,
-      };
-      $.ajax({
-        method: 'post',
-        url: url,
-        cache: false,
-        dataType: 'json',
-        timeout: 4000,
-        data: data,
-        success: function (data) {
-          getExamInfoData(data);
-        },
-        error: function (errorData) {
-          commonAjaxErrorFeedback(errorData);
-        },
-      });
-    } else {
+    if (!le_id.value.length && !token_le_id.value.length) {
       bootstrapModalJs('', create_small_center_text('请输入答卷编号和答卷编号token', 'danger'), '', 'sm', true);
+      return;
     }
+    let url = '/exam_answer_query/get_exam_info.php';
+    let data = {
+      type: 'examInfo',
+      leId: le_id.value,
+      tokenLeId: token_le_id.value,
+    };
+    $.ajax({
+      method: 'post',
+      url: url,
+      cache: false,
+      dataType: 'json',
+      timeout: 4000,
+      data: data,
+      success: function (data) {
+        getExamInfoData(data);
+      },
+      error: function (errorData) {
+        commonAjaxErrorFeedback(errorData);
+      },
+    });
   });
 });
 $().ready(function () {
