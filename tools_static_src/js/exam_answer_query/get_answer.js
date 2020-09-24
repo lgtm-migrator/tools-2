@@ -42,6 +42,7 @@ $().ready(function () {
 $().ready(function () {
   let get_no_logout = document.querySelector('#get_no_logout');
   let get_exam_info = document.querySelector('#get_exam_info');
+  let get_exam_answer = document.querySelector('#get_exam_answer');
 
   get_no_logout.addEventListener('click', function () {
     let t_id = document.querySelector('#t_id');
@@ -105,6 +106,30 @@ $().ready(function () {
         commonAjaxErrorFeedback(errorData);
       },
     });
+  });
+  get_exam_answer.addEventListener('click', function () {
+    let parameter = document.querySelector('#parameter');
+    let data = {};
+    [].slice.call(parameter.querySelectorAll("[id]")).forEach(function (currentInput) {
+      data[currentInput.id] = currentInput.value;
+    });
+    console.log(data);
+    let url = '/exam_answer_query/get_exam_answer.php';
+    $.ajax({
+      method: 'post',
+      url: url,
+      cache: false,
+      dataType: 'json',
+      timeout: 4000,
+      data: data,
+      success: function (data) {
+        console.log(data);
+      },
+      error: function (errorData) {
+        commonAjaxErrorFeedback(errorData);
+      },
+    });
+
   });
 });
 $().ready(function () {

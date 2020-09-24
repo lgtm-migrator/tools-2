@@ -87,6 +87,7 @@ require_once dirname(dirname(__DIR__)) . '/header.php';
             <div class="d-flex flex-column align-items-center justify-content-center">
               <button class="mb-2 py-2 btn btn-sm btn-secondary" type="button" id="get_no_logout">抓取对应的免登录信息</button>
               <button class="mb-2 py-2 btn btn-sm btn-secondary" type="button" id="get_exam_info">读取对应的试卷信息</button>
+              <button class="mb-2 py-2 btn btn-sm btn-secondary" type="button" id="get_exam_answer">读取对应试卷的答案信息</button>
               <button class="mb-2 py-2 btn btn-sm btn-secondary" type="button" id="temp_save_exam">临时保存</button>
               <button class="mb-2 py-2 btn btn-sm btn-secondary" type="button" id="save_exam">提交试卷</button>
             </div>
