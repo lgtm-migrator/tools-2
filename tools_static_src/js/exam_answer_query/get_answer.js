@@ -96,7 +96,7 @@ $().ready(function () {
         timeout: 4000,
         data: data,
         success: function (data) {
-          console.log(data);
+          getExamInfoData(data);
         },
         error: function (errorData) {
           commonAjaxErrorFeedback(errorData);
@@ -107,6 +107,36 @@ $().ready(function () {
     }
   });
 });
+$().ready(function () {
+  let temp_save_exam = document.querySelector('#temp_save_exam');
+  let save_exam = document.querySelector('#save_exam');
+
+  temp_save_exam.addEventListener('click', function () {
+  });
+  save_exam.addEventListener('click', function () {
+  });
+});
+
+function getExamInfoData(data = '') {
+  if (0 > data['result']) {
+    switch (data['result']) {
+      case -2:
+        bootstrapModalJs('', create_small_center_text('试卷信息不存在，请尝试更换新的答卷编号', 'danger'), '', 'sm', true);
+        break;
+      case -3:
+        bootstrapModalJs('', create_small_center_text('试卷已经被删除，请尝试更换新的答卷编号', 'danger'), '', 'sm', true);
+        break;
+      default:
+        bootstrapModalJs('', create_small_center_text('试卷信息出错，请尝试更换新的答卷编号', 'danger'), '', 'sm', true);
+        break;
+    }
+    return;
+  }
+  console.log(data['result']['a']);
+  console.log(data['result']['b']);
+  console.log(data['result']['b'][0]['o']);
+  console.log(data['result']['c']);
+}
 
 function ajax_get(query_data, trigger_element) {
   let url = '/exam_answer_query/get_answer.php';
