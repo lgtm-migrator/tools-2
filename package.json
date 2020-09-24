@@ -1,7 +1,7 @@
 {
   "name": "jzeg_tools",
   "description": "杰格网便民小工具",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "main": "",
   "private": true,
   "repository": {
@@ -41,13 +41,13 @@
     "composer_update": "composer update",
     "install_nrm_use_taobao": "npm -g i nrm --registry=https://registry.npm.taobao.org && nrm use taobao && nrm ls",
     "install_globl_packages": "npm run install_ncu && npm run install_eslint && npm run install_gulp-cli",
-    "install_ncu": "npm -g i npm-check-updates@9.0.1",
+    "install_ncu": "npm -g i npm-check-updates@9.0.2",
     "install_eslint": "npm -g i eslint@7.9.0",
     "install_gulp-cli": "npm -g i gulp-cli@2.3.0"
   },
   "peerDependencies": {},
   "devDependencies": {
-    "autoprefixer": "^9.8.6",
+    "autoprefixer": "^10.0.0",
     "del": "^5.1.0",
     "eslint-config-google": "^0.14.0",
     "gulp": "^4.0.2",
@@ -55,9 +55,10 @@
     "gulp-concat": "^2.6.1",
     "gulp-footer": "^2.0.2",
     "gulp-header": "^2.0.9",
-    "gulp-postcss": "^8.0.0",
+    "gulp-postcss": "^9.0.0",
     "gulp-rename": "^2.0.0",
     "gulp-terser": "^1.4.0",
+    "postcss": "^8.0.9",
     "stylelint": "^13.7.1"
   },
   "dependencies": {
