@@ -1,6 +1,21 @@
 $().ready(function () {
   let get_answer = document.querySelector('#get_answer');
-  let get_no_logout = document.querySelector('#get_no_logout');
+
+  get_answer.addEventListener('click', function () {
+    let parameter = document.querySelector('#parameter');
+    let data = [];
+    [].slice.call(parameter.querySelectorAll("[id]")).forEach(function (currentInput) {
+      data[currentInput.id] = currentInput.value;
+      console.log(currentInput);
+    });
+    console.log(data);
+
+    add_spinner_icon(get_answer);
+    set_crawlStatus('text-warning');
+    ajax_get('get_answer_result', get_answer);
+  });
+});
+$().ready(function () {
   let recur = document.querySelector('#recur');
 
   recur.addEventListener('click', function () {
@@ -23,6 +38,11 @@ $().ready(function () {
     }
 
   });
+});
+$().ready(function () {
+  let get_no_logout = document.querySelector('#get_no_logout');
+  let get_exam_info = document.querySelector('#get_exam_info');
+
   get_no_logout.addEventListener('click', function () {
     let t_id = document.querySelector('#t_id');
     let token_t_id = document.querySelector('#token_t_id');
@@ -57,18 +77,34 @@ $().ready(function () {
       },
     });
   });
-  get_answer.addEventListener('click', function () {
-    let parameter = document.querySelector('#parameter');
-    let data = [];
-    [].slice.call(parameter.querySelectorAll("[id]")).forEach(function (currentInput) {
-      data[currentInput.id] = currentInput.value;
-      console.log(currentInput);
-    });
-    console.log(data);
+  get_exam_info.addEventListener('click', function () {
+    let le_id = document.querySelector('#le_id');
+    let token_le_id = document.querySelector('#token_le_id');
 
-    add_spinner_icon(get_answer);
-    set_crawlStatus('text-warning');
-    ajax_get('get_answer_result', get_answer);
+    if (le_id.value.length > 0 && token_le_id.value.length > 0) {
+      let url = '/exam_answer_query/get_exam_info.php';
+      let data = {
+        type: 'examInfo',
+        leId: le_id.value,
+        tokenLeId: token_le_id.value,
+      };
+      $.ajax({
+        method: 'post',
+        url: url,
+        cache: false,
+        dataType: 'json',
+        timeout: 4000,
+        data: data,
+        success: function (data) {
+          console.log(data);
+        },
+        error: function (errorData) {
+          commonAjaxErrorFeedback(errorData);
+        },
+      });
+    } else {
+      bootstrapModalJs('', create_small_center_text('请输入答卷编号和答卷编号token', 'danger'), '', 'sm', true);
+    }
   });
 });
 
