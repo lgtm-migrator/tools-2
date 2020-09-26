@@ -175,7 +175,7 @@ function examInfo(data) {
     Exam_Data_b_0_l = data_b_0['l'],// 未知
     Exam_Data_b_0_m = data_b_0['m'],// 未知
     Exam_Data_b_0_n = data_b_0['n'],// 未知
-    ExamStudentInfo = data_b_0['o'],// 考生信息
+    ExamStudentInfo = data_b_0['o'] ? JSON.parse(data_b_0['o']) : '',// 考生信息
     Exam_Data_b_0_p = data_b_0['p'];// 未知
   console.log(data);
   console.log('试卷编号  ' + ExamPaperNumber);
@@ -186,7 +186,66 @@ function examInfo(data) {
   console.log('试卷总分  ' + ExamTotalScore);
   console.log('出卷时间  ' + ExamUnwindingTime);
   console.log('答题时间  ' + ExamAnswerTime);
-  console.log('考生信息  ' + ExamStudentInfo);
+  if (ExamStudentInfo) create_ExamStudentInfo_inputElement(ExamStudentInfo);
+}
+
+function create_ExamStudentInfo_inputElement(ExamStudentInfoData) {
+  console.log('考生信息  ' + JSON.stringify(ExamStudentInfoData));
+
+  // 信息输入模态框
+  let modalLockOption = {backdrop: 'static', keyboard: false};
+  let x = bootstrapModalJs(create_small_center_text('请确认您的考试信息', 'danger'), '', ' ', 'sm', true, false, '', '', modalLockOption);
+  console.log(x);
+  let modalBody_Id = document.querySelector('#modalBody_' + x);
+  let modalFooter_Id = document.querySelector('#modalFooter_' + x);
+
+  // 考生信息输入
+  Object.keys(ExamStudentInfoData).forEach(function (currentValue) {
+    console.log(currentValue);
+    console.log(ExamStudentInfoData[currentValue]);
+    let div = document.createElement("div");
+    let label = document.createElement("label");
+    let input = document.createElement("input");
+
+    div.className = 'mb-2 input-group';
+
+    input.className = 'form-control';
+    input.type = 'text';
+    input.id = currentValue;
+
+    label.className = 'input-group-text';
+    label.setAttribute('for', input.id);
+    label.innerHTML = ExamStudentInfoData[currentValue];
+
+    div.appendChild(label);
+    div.appendChild(input);
+    modalBody_Id.appendChild(div);
+  });
+
+  // 保存按钮
+  let btn_save = document.createElement("button");
+  let btn_close = document.createElement("button");
+  btn_save.className = 'btn btn-sm btn-success';
+  btn_save.type = 'button';
+  btn_save.innerHTML = '保存';
+  btn_save.addEventListener('click', function () {
+    [].slice.call(modalBody_Id.querySelectorAll("input")).forEach(function (currentValue) {
+      console.log(currentValue.value);
+    });
+  });
+
+  btn_close.className = 'btn btn-sm btn-secondary';
+  btn_close.type = 'button';
+  btn_close.innerHTML = '退出';
+  btn_close.dataset['dismiss'] = 'modal';
+
+  modalFooter_Id.appendChild(btn_save);
+  modalFooter_Id.appendChild(btn_close);
+
+}
+
+function get_ExamStudentInfo_inputElementValue(id) {
+
 }
 
 function ajax_get(query_data, trigger_element) {

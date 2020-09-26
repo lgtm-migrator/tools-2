@@ -1,9 +1,21 @@
 <?php
-if ($_GET) exit('方式错误');
+if ($_GET) exit('请求方式错误');
 
-if (!isset($_POST['mode']) && !isset($_POST['le_id']) && !isset($_POST['token_le_id']) && !isset($_POST['p_id']) && !isset($_POST['token_p_id'])) exit('参数不完整');
+if (!isset($_POST['mode'])) exit('请求参数错误');
 
 $examMode = $_POST['mode'];
+
+switch ($examMode) {
+  case 'exercise':
+  case 'exam':
+    if (!isset($_POST['le_id']) && !isset($_POST['token_le_id'])) exit('参数不完整');
+    break;
+  case 'view':
+    if (!isset($_POST['p_id']) && !isset($_POST['token_p_id'])) exit('参数不完整');
+    break;
+  default:
+    exit('模式错误');
+}
 
 switch ($examMode) {
   case 'exercise':
