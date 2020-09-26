@@ -12,4 +12,4 @@ $RequestURL = 'https://www.examcoo.com/editor/rpc/getreexamcontent/leid/' . $leI
 require_once dirname(dirname(dirname(__DIR__))) . '/functions/exam_answer_query/curl.php';
 global $CurlResult;
 
-echo json_encode($CurlResult);
+echo json_encode($CurlResult['result']);

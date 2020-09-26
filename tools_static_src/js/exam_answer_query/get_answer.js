@@ -100,7 +100,7 @@ $().ready(function () {
       timeout: 4000,
       data: data,
       success: function (data) {
-        getExamInfoData(data);
+        verifyResultStatus(data);
       },
       error: function (errorData) {
         commonAjaxErrorFeedback(errorData);
@@ -123,7 +123,7 @@ $().ready(function () {
       timeout: 4000,
       data: data,
       success: function (data) {
-        console.log(data);
+        verifyResultStatus(data);
       },
       error: function (errorData) {
         commonAjaxErrorFeedback(errorData);
@@ -142,25 +142,51 @@ $().ready(function () {
   });
 });
 
-function getExamInfoData(data = '') {
-  if (0 > data['result']) {
-    switch (data['result']) {
+function verifyResultStatus(data = '') {
+  if (0 > data) {
+    switch (data) {
       case -2:
-        bootstrapModalJs('', create_small_center_text('试卷信息不存在，请尝试更换新的答卷编号', 'danger'), '', 'sm', true);
+        bootstrapModalJs('', create_small_center_text('试卷信息不存在或TOKEN错误，请尝试更换新的TOKEN', 'danger'), '', 'sm', true);
         break;
       case -3:
-        bootstrapModalJs('', create_small_center_text('试卷已经被删除，请尝试更换新的答卷编号', 'danger'), '', 'sm', true);
+        bootstrapModalJs('', create_small_center_text('试卷已经被删除或ID错误，请尝试更换新的ID', 'danger'), '', 'sm', true);
         break;
       default:
-        bootstrapModalJs('', create_small_center_text('试卷信息出错，请尝试更换新的答卷编号', 'danger'), '', 'sm', true);
+        bootstrapModalJs('', create_small_center_text('试卷信息出错，请尝试更换新的ID和TOKEN', 'danger'), '', 'sm', true);
         break;
     }
     return;
   }
-  console.log(data['result']['a']);
-  console.log(data['result']['b']);
-  console.log(data['result']['b'][0]['o']);
-  console.log(data['result']['c']);
+  examInfo(data);
+}
+
+function examInfo(data) {
+  let data_b_0 = data['b'][0];// 试卷信息列表
+  let ExamPaperNumber = data_b_0['id'],// 试卷编号
+    PaperName = data_b_0['a'],// 试卷名称
+    EditorById = data_b_0['b'],// 录入者ID
+    EditorByNickName = data_b_0['c'],// 录入者名称
+    EditorByDepartment = data_b_0['d'],// 录入者部门
+    ExamTotalScore = data_b_0['e'],// 试卷总分
+    ExamUnwindingTime = data_b_0['f'],// 出卷时间
+    ExamAnswerTime = data_b_0['h'],// 答题时间
+    Exam_Data_b_0_i = data_b_0['i'],// 未知
+    Exam_Data_b_0_j = data_b_0['j'],// 未知
+    Exam_Data_b_0_l = data_b_0['l'],// 未知
+    Exam_Data_b_0_m = data_b_0['m'],// 未知
+    Exam_Data_b_0_n = data_b_0['n'],// 未知
+    ExamStudentInfo = data_b_0['o'],// 考生信息
+    Exam_Data_b_0_p = data_b_0['p'];// 未知
+  console.log(data);
+  console.log('试卷编号  ' + ExamPaperNumber);
+  console.log('试卷名称  ' + PaperName);
+  console.log('录入者ID  ' + EditorById);
+  console.log('录入者名称  ' + EditorByNickName);
+  console.log('录入者部门  ' + EditorByDepartment);
+  console.log('试卷总分  ' + ExamTotalScore);
+  console.log('出卷时间  ' + ExamUnwindingTime);
+  console.log('答题时间  ' + ExamAnswerTime);
+  console.log('考生信息  ' + ExamStudentInfo);
 }
 
 function ajax_get(query_data, trigger_element) {
