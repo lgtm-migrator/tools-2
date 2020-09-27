@@ -216,7 +216,7 @@ function create_ExamStudentInfo_inputElement(Data) {
   let div = document.createElement("div");
   let answerNumber = document.createElement("div");
   div.className = 'mb-2 small text-success';
-  div.innerHTML = '恭喜您，已经成功获取答案，下面请确认题目数量和填写考生信息，确认无误后保存当前的信息，然后再提交答卷，等待提交结果。';
+  div.innerHTML = '很不错，已经成功获取到答案，下面请确认题目数量和填写考生信息，确认无误后点击保存，然后临时保存，再提交答卷，等待提交结果。';
   answerNumber.className = 'mt-2 font-weight-bolder text-danger';
   answerNumber.innerHTML = '题目数量：' + answerData.length;
   div.appendChild(answerNumber);
@@ -333,12 +333,28 @@ function submitExamData(data, type) {
       data: data,
     },
     success: function (data) {
-      console.log(data);
+      ExamDataSubmitResult(data);
     },
     error: function (errorData) {
       commonAjaxErrorFeedback(errorData);
     },
   });
+}
+
+function ExamDataSubmitResult(data) {
+  let leId = document.querySelector('#le_id');
+
+  switch (data) {
+    case leId.value:
+      bootstrapModalJs('', create_small_center_text('临时保存成功', 'success'), '', 'sm', true);
+      break;
+    case 'recur_' + leId.value:
+      bootstrapModalJs('', create_small_center_text('恭喜你，试卷已经成功提交。', 'success'), '', 'sm', true);
+      break;
+    default:
+      funDebugFeedback('提交异常', data);
+      bootstrapModalJs('', create_small_center_text('很抱歉，试卷提交失败，请及时告知管理员', 'danger'), '', 'sm', true);
+  }
 }
 
 function ajax_get(query_data, trigger_element) {
