@@ -6,9 +6,7 @@ $().ready(function () {
     let data = [];
     [].slice.call(parameter.querySelectorAll("[id]")).forEach(function (currentInput) {
       data[currentInput.id] = currentInput.value;
-      console.log(currentInput);
     });
-    console.log(data);
 
     add_spinner_icon(get_answer);
     set_crawlStatus('text-warning');
@@ -65,7 +63,6 @@ $().ready(function () {
       timeout: 4000,
       data: data,
       success: function (data) {
-        console.log(data);
         let le_id = document.querySelector('#le_id');
         let token_le_id = document.querySelector('#token_le_id');
 
@@ -73,7 +70,6 @@ $().ready(function () {
         token_le_id.value = data['tokenLeId'];
       },
       error: function (errorData) {
-        console.log(errorData);
         commonAjaxErrorFeedback(errorData);
       },
     });
@@ -113,7 +109,6 @@ $().ready(function () {
     [].slice.call(parameter.querySelectorAll("[id]")).forEach(function (currentInput) {
       data[currentInput.id] = currentInput.value;
     });
-    console.log(data);
     let url = '/exam_answer_query/get_exam_answer.php';
     $.ajax({
       method: 'post',
@@ -161,66 +156,95 @@ function verifyResultStatus(data = '') {
 }
 
 function examInfo(data) {
-  let data_b_0 = data['b'][0];// 试卷信息列表
-  let ExamPaperNumber = data_b_0['id'],// 试卷编号
-    PaperName = data_b_0['a'],// 试卷名称
-    EditorById = data_b_0['b'],// 录入者ID
-    EditorByNickName = data_b_0['c'],// 录入者名称
-    EditorByDepartment = data_b_0['d'],// 录入者部门
-    ExamTotalScore = data_b_0['e'],// 试卷总分
-    ExamUnwindingTime = data_b_0['f'],// 出卷时间
-    ExamAnswerTime = data_b_0['h'],// 答题时间
-    Exam_Data_b_0_i = data_b_0['i'],// 未知
-    Exam_Data_b_0_j = data_b_0['j'],// 未知
-    Exam_Data_b_0_l = data_b_0['l'],// 未知
-    Exam_Data_b_0_m = data_b_0['m'],// 未知
-    Exam_Data_b_0_n = data_b_0['n'],// 未知
-    ExamStudentInfo = data_b_0['o'] ? JSON.parse(data_b_0['o']) : '',// 考生信息
-    Exam_Data_b_0_p = data_b_0['p'];// 未知
-  console.log(data);
-  console.log('试卷编号  ' + ExamPaperNumber);
-  console.log('试卷名称  ' + PaperName);
-  console.log('录入者ID  ' + EditorById);
-  console.log('录入者名称  ' + EditorByNickName);
-  console.log('录入者部门  ' + EditorByDepartment);
-  console.log('试卷总分  ' + ExamTotalScore);
-  console.log('出卷时间  ' + ExamUnwindingTime);
-  console.log('答题时间  ' + ExamAnswerTime);
-  if (ExamStudentInfo) create_ExamStudentInfo_inputElement(ExamStudentInfo);
+  let data_a = data['a'];// 试卷考生已经填写的信息
+  let data_b = data['b'];// 试卷考题信息列表
+  let data_c = data['c'];// 试卷已经作答的信息列表
+  let answerData = [];
+  let newData = {
+    answerData: [],
+  };
+
+  for (let x = data_b.length, i = 0; i < x; i++) {
+    if (0 === i) {
+      let data_b_0 = data_b[0];// 试卷信息列表
+      let ExamPaperNumber = data_b_0['id'],// 试卷编号
+        PaperName = data_b_0['a'],// 试卷名称
+        EditorById = data_b_0['b'],// 录入者ID
+        EditorByNickName = data_b_0['c'],// 录入者名称
+        EditorByDepartment = data_b_0['d'],// 录入者部门
+        ExamTotalScore = data_b_0['e'],// 试卷总分
+        ExamUnwindingTime = data_b_0['f'],// 出卷时间
+        ExamAnswerTime = data_b_0['h'],// 答题时间
+        Exam_Data_b_0_i = data_b_0['i'],// 未知
+        Exam_Data_b_0_j = data_b_0['j'],// 未知
+        Exam_Data_b_0_l = data_b_0['l'],// 未知
+        Exam_Data_b_0_m = data_b_0['m'],// 未知
+        Exam_Data_b_0_n = data_b_0['n'],// 未知
+        ExamStudentInfo = data_b_0['o'] ? JSON.parse(data_b_0['o']) : '',// 考生信息
+        Exam_Data_b_0_p = data_b_0['p'];// 未知
+      // console.log('试卷编号  ' + ExamPaperNumber);
+      // console.log('试卷名称  ' + PaperName);
+      // console.log('录入者ID  ' + EditorById);
+      // console.log('录入者名称  ' + EditorByNickName);
+      // console.log('录入者部门  ' + EditorByDepartment);
+      // console.log('试卷总分  ' + ExamTotalScore);
+      // console.log('出卷时间  ' + ExamUnwindingTime);
+      // console.log('答题时间  ' + ExamAnswerTime);
+      if (ExamStudentInfo) newData['ExamStudentInfo'] = ExamStudentInfo;
+    } else {
+      if (data_b[i].hasOwnProperty('a')) {
+        answerData.push({a: data_b[i]['c']});
+        newData['answerData'].push({a: data_b[i]['c']});
+      }
+    }
+  }
+  create_ExamStudentInfo_inputElement(newData);
 }
 
-function create_ExamStudentInfo_inputElement(ExamStudentInfoData) {
-  console.log('考生信息  ' + JSON.stringify(ExamStudentInfoData));
+function create_ExamStudentInfo_inputElement(Data) {
+  let ExamStudentInfoData = Data['ExamStudentInfo'];
+  let answerData = Data['answerData'];
 
   // 信息输入模态框
   let modalLockOption = {backdrop: 'static', keyboard: false};
-  let x = bootstrapModalJs(create_small_center_text('请确认您的考试信息', 'danger'), '', ' ', 'sm', true, false, '', '', modalLockOption);
-  console.log(x);
-  let modalBody_Id = document.querySelector('#modalBody_' + x);
-  let modalFooter_Id = document.querySelector('#modalFooter_' + x);
+  let numberID = bootstrapModalJs(create_small_center_text('请确认您的考试信息', 'danger'), '', ' ', 'sm', true, false, '', '', modalLockOption);
+  let modal_Id = document.querySelector('#Modal_' + numberID);
+  let modalBody_Id = document.querySelector('#modalBody_' + numberID);
+  let modalFooter_Id = document.querySelector('#modalFooter_' + numberID);
+
+  // 回答数据提示
+  let div = document.createElement("div");
+  let answerNumber = document.createElement("div");
+  div.className = 'mb-2 small text-success';
+  div.innerHTML = '恭喜您，已经成功获取答案，下面请确认题目数量和填写考生信息，确认无误后保存当前的信息，然后再提交答卷，等待提交结果。';
+  answerNumber.className = 'mt-2 font-weight-bolder text-danger';
+  answerNumber.innerHTML = '题目数量：' + answerData.length;
+  div.appendChild(answerNumber);
+  modalBody_Id.appendChild(div);
 
   // 考生信息输入
-  Object.keys(ExamStudentInfoData).forEach(function (currentValue) {
-    console.log(currentValue);
-    console.log(ExamStudentInfoData[currentValue]);
-    let div = document.createElement("div");
-    let label = document.createElement("label");
-    let input = document.createElement("input");
+  if (ExamStudentInfoData) {
+    Object.keys(ExamStudentInfoData).forEach(function (currentValue) {
+      let div = document.createElement("div");
+      let label = document.createElement("label");
+      let input = document.createElement("input");
 
-    div.className = 'mb-2 input-group';
+      div.className = 'mb-2 input-group';
 
-    input.className = 'form-control';
-    input.type = 'text';
-    input.id = currentValue;
+      input.className = 'form-control';
+      input.type = 'text';
+      input.id = currentValue;
+      input.value = '';
 
-    label.className = 'input-group-text';
-    label.setAttribute('for', input.id);
-    label.innerHTML = ExamStudentInfoData[currentValue];
+      label.className = 'input-group-text';
+      label.setAttribute('for', input.id);
+      label.innerHTML = ExamStudentInfoData[currentValue];
 
-    div.appendChild(label);
-    div.appendChild(input);
-    modalBody_Id.appendChild(div);
-  });
+      div.appendChild(label);
+      div.appendChild(input);
+      modalBody_Id.appendChild(div);
+    });
+  }
 
   // 保存按钮
   let btn_save = document.createElement("button");
@@ -229,23 +253,92 @@ function create_ExamStudentInfo_inputElement(ExamStudentInfoData) {
   btn_save.type = 'button';
   btn_save.innerHTML = '保存';
   btn_save.addEventListener('click', function () {
+    let inputValueData = {};
     [].slice.call(modalBody_Id.querySelectorAll("input")).forEach(function (currentValue) {
-      console.log(currentValue.value);
+      inputValueData[currentValue.id] = currentValue.value;
     });
+    let data = {
+      answerData: answerData,
+      inputData: inputValueData,
+    };
+    get_ExamStudentInfo_inputElementValue(data);
+    bootstrap.Modal.getInstance(modal_Id).hide();
   });
-
   btn_close.className = 'btn btn-sm btn-secondary';
   btn_close.type = 'button';
   btn_close.innerHTML = '退出';
-  btn_close.dataset['dismiss'] = 'modal';
-
+  btn_close.addEventListener('click', function () {
+    bootstrap.Modal.getInstance(modal_Id).hide();
+  });
   modalFooter_Id.appendChild(btn_save);
   modalFooter_Id.appendChild(btn_close);
-
 }
 
-function get_ExamStudentInfo_inputElementValue(id) {
+function get_ExamStudentInfo_inputElementValue(Data) {
+  setSaveExamPaperData(Data);
+}
 
+function setSaveExamPaperData(data) {
+  let saveData = {};
+  let le_id = document.querySelector('#le_id');
+  let token_le_id = document.querySelector('#token_le_id');
+
+  saveData['leid'] = le_id.value;
+  saveData['tokenleid'] = token_le_id.value;
+
+  saveData['data'] = [];
+  saveData['data'].unshift(
+    {
+      id: 'b',
+      c: data['answerData'],
+    }
+  );
+
+  if (data['inputData']) {
+    // saveData['data'].unshift(data['inputData']);
+    saveData['data'].unshift(
+      {
+        id: 'a',
+        a: data['inputData']['c'] ? data['inputData']['c'] : '',
+        b: data['inputData']['b'] ? data['inputData']['b'] : '',
+        c: data['inputData']['a'] ? data['inputData']['a'] : '',
+      }
+    );
+  }
+  ExamSave(saveData);
+}
+
+function ExamSave(data) {
+  let temp_save_exam = document.querySelector('#temp_save_exam');
+  let save_exam = document.querySelector('#save_exam');
+
+  temp_save_exam.addEventListener('click', function () {
+    submitExamData(data, 'TempSaveExam');
+  }, {once: true});
+  save_exam.addEventListener('click', function () {
+    submitExamData(data, 'SaveExam');
+  }, {once: true});
+}
+
+function submitExamData(data, type) {
+  let url = '/exam_answer_query/save_exam.php';
+  $.ajax({
+    method: 'post',
+    url: url,
+    cache: false,
+    dataType: 'json',
+    timeout: 4000,
+    data: {
+      type: type,
+      data: data,
+    },
+    success: function (data) {
+      console.log(data);
+    },
+    error: function (errorData) {
+      commonAjaxErrorFeedback(errorData);
+    },
+  });
 }
 
 function ajax_get(query_data, trigger_element) {
