@@ -1,8 +1,9 @@
 <?php
 if ($_GET) exit('当前不认为需要支持此方式进行查询');
-
 if (!$_POST) exit('参数错误');
-if ('examInfo' !== $_POST['type'] && !isset($_POST['leId']) && !isset($_POST['tokenLeId'])) exit('参数出错');
+
+if ('examInfo' !== $_POST['type']) exit('模式类型错误');
+if (!isset($_POST['leId']) || !isset($_POST['tokenLeId'])) exit('参数不完整');
 
 
 $leId = $_POST['leId'];
