@@ -2,7 +2,7 @@
 define('title', '河北省2020年应急安全知识网络竞赛');
 require_once dirname(dirname(__DIR__)) . '/header.php';
 ?>
-<link rel="stylesheet" href="/static/css/yjt/20200628_3/index.min.css">
+<link rel="stylesheet" href="/static/css/yjt/index.min.css">
 <div class="mt-5 container">
   <div class="mb-3 d-flex justify-content-end align-items-center small">
     <a class="ml-3 rounded px-2 border text-decoration-none text-success" href="javascript:" data-toggle="collapse" data-target="#tool-explanation">说明</a>
