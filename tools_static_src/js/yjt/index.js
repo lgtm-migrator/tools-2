@@ -1,6 +1,6 @@
 let categoryList = document.querySelector('#categoryList');
 if (categoryList) {
-  $.getScript('/static/js/yjt/20200628_3/20200628_3.js');
+  $.getScript('/static/js/yjt/data.js');
   let categoryLabels = [].slice.call(categoryList.querySelectorAll('label'));
   categoryLabels.forEach(function (labelTriggerEL) {
   });
