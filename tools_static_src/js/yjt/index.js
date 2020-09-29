@@ -1,18 +1,24 @@
 let categoryList = document.querySelector('#categoryList');
 if (categoryList) {
   $.getScript('/static/js/yjt/data.min.js');
-  let categoryLabels = [].slice.call(categoryList.querySelectorAll('label'));
-  categoryLabels.forEach(function (labelTriggerEL) {
-  });
-
-  categoryList.addEventListener('click', function (e) {
-    let e_target = e.target;
-    if (e_target.tagName === 'LABEL') {
-      let question = e_target.dataset['question'];
-      set_category_text(e_target);
-      question_bank(question);
+  setTimeout(function () {
+    if ('undefined' === typeof QUESTION_BANK1 &&
+      'undefined' === typeof QUESTION_BANK2 &&
+      'undefined' === typeof QUESTION_BANK3 &&
+      'undefined' === typeof QUESTION_BANK4
+    ) {
+      bootstrapModalJs('', create_small_center_text('题库内容出错，请等待更新题库', 'danger'), '', 'sm', true);
+    } else {
+      categoryList.addEventListener('click', function (e) {
+        let e_target = e.target;
+        if (e_target.tagName === 'LABEL') {
+          let question = e_target.dataset['question'];
+          set_category_text(e_target);
+          question_bank(question);
+        }
+      });
     }
-  });
+  }, 1100);
 }
 
 // 检查结果结构
