@@ -1,5 +1,7 @@
 <?php
-define('title', '河北省2020年应急安全知识网络竞赛');
+define('title', '应急安全知识网络竞赛参考答案');
+define('descriptionContent', '传播应急安全知识、增强应急安全意识、提升应急避险能力。');
+define('keywordsContent', '应急安全知识网络竞赛,河北省,2020年,安全宣传咨询日,应急厅,应急管理,安全生产,防灾减灾救灾,参考答案,新浪,题库,解析,6月16日,传播应急安全知识,增强应急安全意识,提升应急避险能力');
 require_once dirname(dirname(__DIR__)) . '/header.php';
 ?>
 <link rel="stylesheet" href="/static/css/yjt/index.min.css">
