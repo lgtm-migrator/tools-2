@@ -2,11 +2,6 @@ $().ready(function () {
   let get_answer = document.querySelector('#get_answer');
 
   get_answer.addEventListener('click', function () {
-    let parameter = document.querySelector('#parameter');
-    let data = [];
-    [].slice.call(parameter.querySelectorAll("[id]")).forEach(function (currentInput) {
-      data[currentInput.id] = currentInput.value;
-    });
 
     add_spinner_icon(get_answer);
     set_crawlStatus('text-warning');
@@ -159,7 +154,6 @@ function examInfo(data) {
   // let data_a = data['a'];// 试卷考生已经填写的信息
   let data_b = data['b'];// 试卷考题信息列表
   // let data_c = data['c'];// 试卷已经作答的信息列表
-  let answerData = [];
   let newData = {
     answerData: [],
   };
@@ -194,7 +188,6 @@ function examInfo(data) {
       if (ExamStudentInfo) newData['ExamStudentInfo'] = ExamStudentInfo;
     } else {
       if (data_b[i].hasOwnProperty('a')) {
-        answerData.push({a: data_b[i]['c']});
         newData['answerData'].push({a: data_b[i]['c']});
       }
     }
