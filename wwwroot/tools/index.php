@@ -1,5 +1,7 @@
 <?php
 define('title', '在线小工具');
+define('descriptionContent', '');
+define('keywordsContent', '');
 require_once dirname(__DIR__) . '/header.php';
 if (!defined('SITE_HEAD')) die();
 ?>
@@ -43,7 +45,8 @@ if (!defined('SITE_HEAD')) die();
       <div class="card h-100 hvr-wobble-bottom">
         <div class="d-flex justify-content-between card-header py-2">
           <a class="stretched-link text-dark font-weight-bold text-decoration-none" href="/exam_answer_query/"
-             title="考试信息参考" style="font-size: 95%;"><i class="mr-2 text-success fa-lg fas fa-check-square"></i>考试信息参考</a>
+             title="考试信息参考" style="font-size: 95%;"><i
+              class="mr-2 text-success fa-lg fas fa-check-square"></i>考试信息参考</a>
           <div class="category_name text-muted small">[&nbsp;查询&nbsp;]</div>
         </div>
         <div class="card-body">
@@ -56,7 +59,7 @@ if (!defined('SITE_HEAD')) die();
 <div class="d-none">
   <?php require_once dirname(__DIR__) . "/javascript.php"; ?>
   <script src="static/js/index.min.js"></script>
-<!--  <script src="static/js/survey.min.js"></script>-->
+  <!--  <script src="static/js/survey.min.js"></script>-->
 </div>
 
 <?php

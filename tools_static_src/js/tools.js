@@ -88,7 +88,7 @@ function create_close_btn(fun_name, class_name) {
   close_span.setAttribute('aria-hidden', 'true');
   close_span.title = '关闭';
   close_span.innerHTML = '&times;';
-  close_span.addEventListener('click', fun_name);
+  ('undefined' !== typeof fun_name) ? close_span.addEventListener('click', fun_name) : '';
   close_span.addEventListener('mouseover', function (e) {
     let e_target = e.target;
     e_target.classList.toggle('text-danger');
@@ -183,6 +183,26 @@ function remove_cookie(key) {
   }
   js_cookies.remove(key);
   return true;
+}
+
+// funDebug反馈
+function funDebugFeedback(error_name, error_result) {
+  if (fundebug) {
+    let options = {
+      metaData: {
+        location: document.location,
+        error_result: error_result,
+      }
+    };
+    fundebug.notify(error_name, error_result, options);
+    bootstrapModalJs('', create_small_center_text('本次异常已经自动反馈给管理员。', 'success'), '', 'sm', true);
+  }
+}
+
+// 共用Ajax请求异常反馈
+function commonAjaxErrorFeedback(data) {
+  if (fundebug) funDebugFeedback('Ajax出现请求错误，请关注。', data);
+  if (fundebug) bootstrapModalJs('', create_small_center_text('抱歉，请求出错，请重新试一下。', 'danger'), '', 'sm', true);
 }
 
 // 表单验证
@@ -332,6 +352,7 @@ function get_recaptcha_verify(token_key, pageAction) {
 
   $.ajax({
     type: 'post',
+    cache: false,
     url: url,
     data: data,
     timeout: 5000,
@@ -340,9 +361,9 @@ function get_recaptcha_verify(token_key, pageAction) {
       console.log('提交验证成功');
       console.log(data);
     },
-    error: function (data) {
+    error: function (errorData) {
       console.log('提交验证失败');
-      console.log(data);
+      commonAjaxErrorFeedback(errorData);
     },
   });
 }
@@ -714,11 +735,15 @@ function domain_check() {
   let result = true;
   let current_host = document.location.host;
   let hosts = [
-    'jzeg.org',
     'jzeg.net',
-    'tools.jzeg.org',
-    'test.jzeg.net',
     'tools.jzeg.net',
+    'policies.jzeg.net',
+    'jzeg.org',
+    'tools.jzeg.org',
+    'policies.jzeg.org',
+    'test.jzeg.net',
+    'test-policies.jzeg.net',
+    'test-tools.jzeg.net',
   ];
 
   if (hosts.includes(current_host)) result = false;
@@ -894,7 +919,6 @@ $().ready(function () {
     popoverTriggerEL.addEventListener('click', function () {
       bootstrap.Popover.getInstance(popoverTriggerEL).toggle();
     });
-
   });
 });
 
@@ -915,7 +939,7 @@ $().ready(function () {
     let wechat_url_parameters = '';
     let dingTalk_url = create_url('https://h5.dingtalk.com/', 'circle/healthCheckin.html', dingTalk_url_parameters);
     let qq_url = create_url('https://qm.qq.com/', 'cgi-bin/qm/qr', qq_url_parameters);
-    let wechat_url = create_url('https://weixin.qq.com/', 'g/AQYAADnWmR9tHL01ktpbeg2T69yCdP6wRAh2sRBbpFYoMk6oY3igS9hAnhKIfBXa', wechat_url_parameters);
+    let wechat_url = create_url('https://weixin.qq.com/', 'g/AQYAAIYdOinIazHz8dr_aQ2djWNkNGLuWvEeIyU96NJeh6o3CjP8I0dO7NehJvMD', wechat_url_parameters);
 
     create_socialGroup_qrcode(dingTalk_url, dingTalk_img, socialGroup_dingTalk);
     create_socialGroup_qrcode(qq_url, qq_img, socialGroup_qq);
@@ -947,4 +971,26 @@ function create_socialGroup_qrcode(socialGroupUrl = '', socialGroupElement, pare
     socialGroupElement.alt = '二维码';
     parentElement ? parentElement.appendChild(socialGroupElement) : '';
   });
+}
+
+// 网络连接状态
+$().ready(function () {
+  setInterval(listenerConnectionState, 1000);
+});
+
+function listenerConnectionState() {
+  getOffLine();
+  getOnLine();
+}
+
+function getOffLine() {
+  window.addEventListener('offline', function () {
+    bootstrapModalJs('', create_small_center_text('您的网络已经断开，将不能正常使用本网站提供的服务。'), '', 'sm', true);
+  }, {once: true});
+}
+
+function getOnLine() {
+  window.addEventListener('online', function () {
+    bootstrapModalJs('', create_small_center_text('您的网络已经恢复连接，可以正常使用本网站提供的服务。'), '', 'sm', true);
+  }, {once: true});
 }

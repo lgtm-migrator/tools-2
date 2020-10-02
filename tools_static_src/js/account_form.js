@@ -59,8 +59,8 @@ if (accountSignBtnList.length > 0) {
 
       new bootstrap.Modal(sign).show();
 
-    });
-  })
+    })
+  });
 }
 
 
@@ -170,8 +170,8 @@ function ajax_get_captcha(captcha_element) {
     success: function (data) {
       if ('IMG' === captcha_element.tagName) get_captcha_result(data, captcha_element);
     },
-    error: function (error) {
-      if (fundebug) fundebug.notify('验证码出错', error);
+    error: function (errorData) {
+      commonAjaxErrorFeedback(errorData);
     },
   });
 }
@@ -354,9 +354,9 @@ if (tab_sign_up) {
         remove_spinner_icon(element);
         console.log(data);
       },
-      error: function (error) {
+      error: function (errorData) {
         remove_spinner_icon(element);
-        console.log(error);
+        commonAjaxErrorFeedback(errorData);
       }
     });
   }

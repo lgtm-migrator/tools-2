@@ -1,5 +1,6 @@
 <?php
-$response_array_0 = $response_array[0];
+global $response_array_b;
+$response_array_0 = $response_array_b[0];
 $response_array_f_datetime = $response_array_0['f'];
 $a_id = $response_array_0['id'];
 $response_array_f_datetime = date('Y-m-d h:i:s', $response_array_0['f']);

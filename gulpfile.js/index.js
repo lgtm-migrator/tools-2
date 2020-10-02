@@ -12,6 +12,7 @@ require('./photo_info');
 require('./survey');
 require('./exam_answer_query');
 require('./yjt');
+require('./xtBus');
 require('./debug');
 
 const {task, series, parallel} = require('gulp');
@@ -32,6 +33,7 @@ task("build_static",
     "build_flexible_code",
     "build_exam_answer_query",
     "build_yjt",
+    "build_xtBus",
     "build_debug",
   )
 );
@@ -51,6 +53,7 @@ task('watch_change',
     'watch_flexible_code',
     'watch_exam_answer_query',
     'watch_yjt',
+    'watch_xtBus',
     'watch_debug',
   )
 );
@@ -69,6 +72,7 @@ task('copy',
     'copy_flexible_code',
     'copy_exam_answer_query',
     'copy_yjt',
+    'copy_xtBus',
     'copy_debug',
   )
 );

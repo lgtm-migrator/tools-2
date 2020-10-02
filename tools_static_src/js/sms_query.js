@@ -111,8 +111,8 @@ $().ready(function () {
         }
         remove_spinner_icon(query_data['ajax']['e_target']);
       },
-      error: function (error) {
-        console.log(error);
+      error: function (errorData) {
+        commonAjaxErrorFeedback(errorData);
         remove_spinner_icon(query_data['ajax']['e_target']);
       },
     });

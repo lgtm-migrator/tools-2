@@ -1,8 +1,10 @@
 <?php
-define('title', '河北省2020年应急安全知识网络竞赛');
+define('title', '应急安全知识网络竞赛参考答案');
+define('descriptionContent', '传播应急安全知识、增强应急安全意识、提升应急避险能力。');
+define('keywordsContent', '应急安全知识网络竞赛,河北省,2020年,安全宣传咨询日,应急厅,应急管理,安全生产,防灾减灾救灾,参考答案,新浪,题库,解析,6月16日,传播应急安全知识,增强应急安全意识,提升应急避险能力');
 require_once dirname(dirname(__DIR__)) . '/header.php';
 ?>
-<link rel="stylesheet" href="/static/css/yjt/20200628_3/index.min.css">
+<link rel="stylesheet" href="/static/css/yjt/index.min.css">
 <div class="mt-5 container">
   <div class="mb-3 d-flex justify-content-end align-items-center small">
     <a class="ml-3 rounded px-2 border text-decoration-none text-success" href="javascript:" data-toggle="collapse" data-target="#tool-explanation">说明</a>
@@ -28,13 +30,13 @@ require_once dirname(dirname(__DIR__)) . '/header.php';
     </div>
   </div>
   <div class="px-1 btn-group d-flex text-nowrap" style="overflow-x: auto;" id="categoryList">
-    <input type="radio" class="btn-check" name="categories" id="categories_Public" autocomplete="off">
+    <input type="radio" class="btn-check" name="categories" id="categories_Public">
     <label class="btn btn-outline-secondary" for="categories_Public" data-question="QUESTION_BANK1">公共安全</label>
-    <input type="radio" class="btn-check" name="categories" id="categories_Chemicals" autocomplete="off">
+    <input type="radio" class="btn-check" name="categories" id="categories_Chemicals">
     <label class="btn btn-outline-secondary" for="categories_Chemicals" data-question="QUESTION_BANK2">自然灾害防范</label>
-    <input type="radio" class="btn-check" name="categories" id="categories_mine" autocomplete="off">
+    <input type="radio" class="btn-check" name="categories" id="categories_mine">
     <label class="btn btn-outline-secondary" for="categories_mine" data-question="QUESTION_BANK3">危险品化学</label>
-    <input type="radio" class="btn-check" name="categories" id="categories_Limited" autocomplete="off">
+    <input type="radio" class="btn-check" name="categories" id="categories_Limited">
     <label class="btn btn-outline-secondary" for="categories_Limited" data-question="QUESTION_BANK4">有限空间作业</label>
   </div>
   <div class="mt-5 mb-3 py-2 rounded border">
@@ -53,7 +55,7 @@ require_once dirname(dirname(__DIR__)) . '/header.php';
 
 <div class="d-none">
   <?php require_once dirname(dirname(__DIR__)) . "/javascript.php"; ?>
-  <script src="/static/js/yjt/20200628_3/index.min.js"></script>
+  <script src="/static/js/yjt/index.min.js"></script>
 </div>
 <?php
 require_once dirname(dirname(__DIR__)) . '/footer.php';
