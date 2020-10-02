@@ -919,7 +919,6 @@ $().ready(function () {
     popoverTriggerEL.addEventListener('click', function () {
       bootstrap.Popover.getInstance(popoverTriggerEL).toggle();
     });
-
   });
 });
 

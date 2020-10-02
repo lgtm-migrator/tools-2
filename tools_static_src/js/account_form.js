@@ -60,7 +60,7 @@ if (accountSignBtnList.length > 0) {
       new bootstrap.Modal(sign).show();
 
     })
-  })
+  });
 }
 
 
