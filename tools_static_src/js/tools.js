@@ -88,7 +88,7 @@ function create_close_btn(fun_name, class_name) {
   close_span.setAttribute('aria-hidden', 'true');
   close_span.title = '关闭';
   close_span.innerHTML = '&times;';
-  (undefined !== typeof fun_name) ? close_span.addEventListener('click', fun_name) : '';
+  ('undefined' !== typeof fun_name) ? close_span.addEventListener('click', fun_name) : '';
   close_span.addEventListener('mouseover', function (e) {
     let e_target = e.target;
     e_target.classList.toggle('text-danger');
