@@ -156,9 +156,9 @@ function verifyResultStatus(data = '') {
 }
 
 function examInfo(data) {
-  let data_a = data['a'];// 试卷考生已经填写的信息
+  // let data_a = data['a'];// 试卷考生已经填写的信息
   let data_b = data['b'];// 试卷考题信息列表
-  let data_c = data['c'];// 试卷已经作答的信息列表
+  // let data_c = data['c'];// 试卷已经作答的信息列表
   let answerData = [];
   let newData = {
     answerData: [],
@@ -167,21 +167,22 @@ function examInfo(data) {
   for (let x = data_b.length, i = 0; i < x; i++) {
     if (0 === i) {
       let data_b_0 = data_b[0];// 试卷信息列表
-      let ExamPaperNumber = data_b_0['id'],// 试卷编号
-        PaperName = data_b_0['a'],// 试卷名称
-        EditorById = data_b_0['b'],// 录入者ID
-        EditorByNickName = data_b_0['c'],// 录入者名称
-        EditorByDepartment = data_b_0['d'],// 录入者部门
-        ExamTotalScore = data_b_0['e'],// 试卷总分
-        ExamUnwindingTime = data_b_0['f'],// 出卷时间
-        ExamAnswerTime = data_b_0['h'],// 答题时间
-        Exam_Data_b_0_i = data_b_0['i'],// 未知
-        Exam_Data_b_0_j = data_b_0['j'],// 未知
-        Exam_Data_b_0_l = data_b_0['l'],// 未知
-        Exam_Data_b_0_m = data_b_0['m'],// 未知
-        Exam_Data_b_0_n = data_b_0['n'],// 未知
-        ExamStudentInfo = data_b_0['o'] ? JSON.parse(data_b_0['o']) : '',// 考生信息
-        Exam_Data_b_0_p = data_b_0['p'];// 未知
+      // let ExamPaperNumber = data_b_0['id']; // 试卷编号
+      // let PaperName = data_b_0['a']; // 试卷名称
+      // let EditorById = data_b_0['b']; // 录入者ID
+      // let EditorByNickName = data_b_0['c']; // 录入者名称
+      // let EditorByDepartment = data_b_0['d']; // 录入者部门
+      // let ExamTotalScore = data_b_0['e']; // 试卷总分
+      // let ExamUnwindingTime = data_b_0['f']; // 出卷时间
+      // let ExamAnswerTime = data_b_0['h']; // 答题时间
+      // let Exam_Data_b_0_i = data_b_0['i']; // 未知
+      // let Exam_Data_b_0_j = data_b_0['j']; // 未知
+      // let Exam_Data_b_0_l = data_b_0['l']; // 未知
+      // let Exam_Data_b_0_m = data_b_0['m']; // 未知
+      // let Exam_Data_b_0_n = data_b_0['n']; // 未知
+      let ExamStudentInfo = data_b_0['o'] ? JSON.parse(data_b_0['o']) : ''; // 考生信息
+      // let Exam_Data_b_0_p = data_b_0['p']; // 未知
+// 未知
       // console.log('试卷编号  ' + ExamPaperNumber);
       // console.log('试卷名称  ' + PaperName);
       // console.log('录入者ID  ' + EditorById);
