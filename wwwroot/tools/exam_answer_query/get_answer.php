@@ -11,6 +11,12 @@ require_once dirname(dirname(__DIR__)) . '/header.php';
 ?>
 <link rel="stylesheet" href="/static/css/exam_answer_query/get_answer.min.css">
 <div class="mt-5 container-fluid">
+  <div class="mb-4 py-4 container rounded border" id="analytics">
+    <div class="mb-1 input-group">
+      <label class="input-group-text" for="analyticsLink">网址</label>
+      <input class="form-control" type="text" id="analyticsLink" placeholder="考试链接" pattern="">
+    </div>
+  </div>
   <div class="mb-3 py-4 container rounded border" id="parameter">
     <div class="mb-3">
       <div class="input-group">
@@ -77,7 +83,8 @@ require_once dirname(dirname(__DIR__)) . '/header.php';
         <a class="nav-link" data-toggle="tab" href="#tabNumber">编号</a>
         <a class="nav-link" data-toggle="tab" href="#tabInternetSite">网址</a>
         <a class="nav-link" data-toggle="tab" href="#tabViewResult">成绩</a>
-        <a class="nav-link small ml-auto text-muted fas fa-plus-square" data-toggle="collapse" href="#collapse" role="button" aria-expanded="true" aria-controls="collapse"></a>
+        <a class="nav-link small ml-auto text-muted fas fa-plus-square" data-toggle="collapse" href="#collapse"
+           role="button" aria-expanded="true" aria-controls="collapse"></a>
       </nav>
     </div>
     <div class="collapse fade show" id="collapse">
@@ -118,7 +125,8 @@ require_once dirname(dirname(__DIR__)) . '/header.php';
     <div class="collapse show" id="help_color_circle">
       <div class="d-flex justify-content-center">
         <div data-toggle="collapse" data-target="#help_color_circle">
-          <table class="text-center table table-sm table-bordered table-info table-striped table-hover table-responsive">
+          <table
+            class="text-center table table-sm table-bordered table-info table-striped table-hover table-responsive">
             <thead>
             <tr>
               <th>图形</th>
