@@ -363,24 +363,24 @@ body > div[id^='Modal_'] {user-select: none;}
 .text-crimson {color: crimson;}
 
 /* 边框颜色 */
-.border-yellowgreen {border: 1px solid yellowgreen;}
-.border-greenyellow {border: 1px solid greenyellow;}
-.border-orangered {border: 1px solid orangered;}
-.border-darkorange {border: 1px solid darkorange;}
-.border-orange {border: 1px solid orange;}
-.border-indianred {border: 1px solid indianred;}
-.border-palevioletred {border: 1px solid palevioletred;}
-.border-lightcoral {border: 1px solid lightcoral;}
-.border-dodgerblue {border: 1px solid dodgerblue;}
-.border-magenta {border: 1px solid magenta;}
-.border-darkmagenta {border: 1px solid darkmagenta;}
-.border-mediumvioletred {border: 1px solid mediumvioletred;}
-.border-mediumslateblue {border: 1px solid mediumslateblue;}
-.border-blueviolet {border: 1px solid blueviolet;}
-.border-slateblue {border: 1px solid slateblue;}
-.border-darkslateblue {border: 1px solid darkslateblue;}
-.border-darkred {border: 1px solid darkred;}
-.border-crimson {border: 1px solid crimson;}
+.border-yellowgreen {border-color: yellowgreen !important;}
+.border-greenyellow {border-color: greenyellow !important;}
+.border-orangered {border-color: orangered !important;}
+.border-darkorange {border-color: darkorange !important;}
+.border-orange {border-color: orange !important;}
+.border-indianred {border-color: indianred !important;}
+.border-palevioletred {border-color: palevioletred !important;}
+.border-lightcoral {border-color: lightcoral !important;}
+.border-dodgerblue {border-color: dodgerblue !important;}
+.border-magenta {border-color: magenta !important;}
+.border-darkmagenta {border-color: darkmagenta !important;}
+.border-mediumvioletred {border-color: mediumvioletred !important;}
+.border-mediumslateblue {border-color: mediumslateblue !important;}
+.border-blueviolet {border-color: blueviolet !important;}
+.border-slateblue {border-color: slateblue !important;}
+.border-darkslateblue {border-color: darkslateblue !important;}
+.border-darkred {border-color: darkred !important;}
+.border-crimson {border-color: crimson !important;}
 
 /* transition动画 */
 .transition_property-all {transition-property: width;}
