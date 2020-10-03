@@ -79,25 +79,17 @@ function create_small_center_text(text, color = '') {
 
 function create_close_btn(fun_name, class_name) {
   let close_button = document.createElement('button');
-  let close_span = document.createElement('span');
 
   close_button.type = 'button';
   close_button.className = class_name ? 'btn-close ' + class_name : 'btn-close';
+  close_button.title = '关闭';
+  close_button.dataset['toggle'] = 'tooltip';
+  close_button.dataset['placement'] = 'bottom';
   close_button.setAttribute('aria-label', 'Close');
+  new bootstrap.Tooltip(close_button);
 
-  close_span.setAttribute('aria-hidden', 'true');
-  close_span.title = '关闭';
-  ('undefined' !== typeof fun_name) ? close_span.addEventListener('click', fun_name) : '';
-  close_span.addEventListener('mouseover', function (e) {
-    let e_target = e.target;
-    e_target.classList.toggle('text-danger');
-  });
-  close_span.addEventListener('mouseleave', function (e) {
-    let e_target = e.target;
-    e_target.classList.toggle('text-danger');
-  });
+  ('undefined' !== typeof fun_name) ? close_button.addEventListener('click', fun_name) : '';
 
-  close_button.appendChild(close_span);
   return close_button;
 }
 
