@@ -82,12 +82,11 @@ function create_close_btn(fun_name, class_name) {
   let close_span = document.createElement('span');
 
   close_button.type = 'button';
-  close_button.className = class_name ? 'close ' + class_name : 'close';
+  close_button.className = class_name ? 'btn-close ' + class_name : 'btn-close';
   close_button.setAttribute('aria-label', 'Close');
 
   close_span.setAttribute('aria-hidden', 'true');
   close_span.title = '关闭';
-  close_span.innerHTML = '&times;';
   ('undefined' !== typeof fun_name) ? close_span.addEventListener('click', fun_name) : '';
   close_span.addEventListener('mouseover', function (e) {
     let e_target = e.target;
