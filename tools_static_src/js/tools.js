@@ -945,7 +945,7 @@ $().ready(function () {
     create_socialGroup_qrcode(qq_url, qq_img, socialGroup_qq);
     create_socialGroup_qrcode(wechat_url, wechat_img, socialGroup_wechat);
   }
-})
+});
 
 function create_url(baseDomain = '', pathname = '', parameters = '') {
   return baseDomain + pathname + parameters;
