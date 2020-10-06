@@ -20,9 +20,9 @@ if (!defined('SITE_HEAD')) die();
     <div class="col mb-3 tools-collapse collapse-enquiry collapse">
       <div class="card h-100 hvr-wobble-bottom">
         <div class="d-flex justify-content-between card-header py-2">
-          <a class="stretched-link text-dark font-weight-bold text-decoration-none" href="/phone_number/"
+          <a class="stretched-link text-dark font-weight-bold text-decoration-none text-truncate" href="/phone_number/"
              title="公共电话本" style="font-size: 95%;"><i class="mr-2 text-success fa-lg fas fa-address-book"></i>公共电话本</a>
-          <div class="category_name text-muted small">[&nbsp;查询&nbsp;]</div>
+          <div class="category_name text-muted text-nowrap small">[&nbsp;查询&nbsp;]</div>
         </div>
         <div class="card-body">
           <p class="card-desc card-text small">公开的电话号码本。</p>
@@ -32,9 +32,9 @@ if (!defined('SITE_HEAD')) die();
     <div class="col mb-3 tools-collapse collapse-conversion collapse">
       <div class="card h-100 hvr-wobble-bottom">
         <div class="d-flex justify-content-between card-header py-2">
-          <a class="stretched-link text-dark font-weight-bold text-decoration-none" href="/flexible_code/"
+          <a class="stretched-link text-dark font-weight-bold text-decoration-none text-truncate" href="/flexible_code/"
              title="照片详情信息" style="font-size: 95%;"><i class="mr-2 text-success fa-lg fas fa-qrcode"></i>灵活码</a>
-          <div class="category_name text-muted small">[&nbsp;转换&nbsp;]</div>
+          <div class="category_name text-muted text-nowrap small">[&nbsp;转换&nbsp;]</div>
         </div>
         <div class="card-body">
           <p class="card-desc card-text small">动态管理二维码结果。</p>
@@ -44,9 +44,9 @@ if (!defined('SITE_HEAD')) die();
     <div class="col mb-3 tools-collapse collapse-enquiry collapse">
       <div class="card h-100 hvr-wobble-bottom">
         <div class="d-flex justify-content-between card-header py-2">
-          <a class="stretched-link text-dark font-weight-bold text-decoration-none" href="/exam_answer_query/"
+          <a class="stretched-link text-dark font-weight-bold text-decoration-none text-truncate" href="/exam_answer_query/"
              title="考试信息参考" style="font-size: 95%;"><i class="mr-2 text-success fa-lg fas fa-check-square"></i>考试信息参考</a>
-          <div class="category_name text-muted small">[&nbsp;查询&nbsp;]</div>
+          <div class="category_name text-muted text-nowrap small">[&nbsp;查询&nbsp;]</div>
         </div>
         <div class="card-body">
           <p class="card-desc card-text small">快速查询参考答案。</p>
@@ -56,9 +56,9 @@ if (!defined('SITE_HEAD')) die();
     <div class="col mb-3 tools-collapse collapse-enquiry collapse">
       <div class="card h-100 hvr-wobble-bottom">
         <div class="d-flex justify-content-between card-header py-2">
-          <a class="stretched-link text-dark font-weight-bold text-decoration-none" href="/yjt/"
+          <a class="stretched-link text-dark font-weight-bold text-decoration-none text-truncate" href="/yjt/"
              title="河北省2020年应急安全知识网络竞赛参考答案" style="font-size: 95%;"><i class="mr-2 text-success fa-lg fas fa-check-square"></i>应急网络竞赛参考</a>
-          <div class="category_name text-muted small">[&nbsp;查询&nbsp;]</div>
+          <div class="category_name text-muted text-nowrap small">[&nbsp;查询&nbsp;]</div>
         </div>
         <div class="card-body">
           <p class="card-desc card-text small">河北省2020年应急安全知识网络竞赛参考答案。</p>
