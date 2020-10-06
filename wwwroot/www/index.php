@@ -16,7 +16,8 @@ if (!defined('SITE_HEAD')) die();
       <div class="card-body small">
         <div>杰格网正在建设中，请先加入页面底部的钉钉群进行主讨论，微信群和QQ群为辅助讨论。</div>
         <div>账号暂未开放，目前无需注册，内容访问不受影响。</div>
-        <div class="mt-2 d-flex justify-content-end">2020.08.17</div>
+        <div>微信号：JZEG-NET</div>
+        <div class="mt-2 d-flex justify-content-end">2020.10.06</div>
       </div>
     </div>
   </div>
