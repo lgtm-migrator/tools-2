@@ -1,4 +1,7 @@
 <?php
+define('title', '');
+define('descriptionContent', '杰格网致力于为冀中股份工人提供垂直的网络工具、生活信息查询和网络娱乐。');
+define('keywordsContent', '');
 require_once dirname(__DIR__) . '/header.php';
 if (!defined('SITE_HEAD')) die();
 ?>
