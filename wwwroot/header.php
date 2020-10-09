@@ -54,4 +54,4 @@ set_session_cookie('logged_in', $_SESSION['logged_in']);
     <?php include_once dirname(__FILE__) . '/header_nav.php'; ?>
     <div class="border-bottom"></div>
   </div>
-  <div id="jt_content" class="min-vh-100">
+  <div id="jt_content">
