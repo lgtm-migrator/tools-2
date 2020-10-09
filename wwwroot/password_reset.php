@@ -7,15 +7,15 @@ if (!defined('SITE_HEAD')) die();
 ?>
 
 <div class="container">
-  <div class="d-flex flex-column-reverse flex-md-row align-items-md-center justify-content-md-between min-vh-100">
-    <div class="mr-md-5 d-flex flex-md-grow-1 justify-content-center align-items-center">
+  <div class="d-flex flex-column flex-md-row align-items-md-center justify-content-md-between min-vh-100">
+    <div class="mb-4 mb-md-0 mr-md-5 d-flex flex-md-grow-1 justify-content-center align-items-center">
       <div class="card bg-transparent border-0">
         <div class="card-body">
           <?php include_once dirname(__FILE__) . '/common/ad/member_sign_ad.php'; ?>
         </div>
       </div>
     </div>
-    <div class="d-flex mb-4 mb-md-0 justify-content-center align-items-center">
+    <div class="d-flex justify-content-center align-items-center">
       <div class="card">
         <div class="card-body">
           <?php include_once dirname(__FILE__) . '/member/account_form/password_reset.php'; ?>
