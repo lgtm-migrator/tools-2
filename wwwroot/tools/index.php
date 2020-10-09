@@ -7,7 +7,7 @@ if (!defined('SITE_HEAD')) die();
 ?>
 <link rel="stylesheet" href="static/css/index.min.css">
 
-<div class="pt-3 pt-md-4 pt-lg-5 container" id="jt_index">
+<div class="pt-3 pt-md-4 pt-lg-5 container min-vh-90" id="jt_index">
   <div class="mb-3 d-flex justify-content-center" id="jt_category">
     <div class="mx-auto w-100 w-sm-75 w-lg-50 btn-group btn-group-sm bg-white">
       <a class="btn border btn-outline-secondary active" id="tools-collapse">所有</a>
