@@ -668,16 +668,16 @@
         },
         {
             "name": "endroid/qr-code",
-            "version": "3.9.1",
+            "version": "3.9.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/endroid/qr-code.git",
-                "reference": "8605e2c958ed568788da4e16bd8a9502e32f375f"
+                "reference": "58d5872ca46b99b5c2e72cd2c8dea09ce2988156"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/endroid/qr-code/zipball/8605e2c958ed568788da4e16bd8a9502e32f375f",
-                "reference": "8605e2c958ed568788da4e16bd8a9502e32f375f",
+                "url": "https://api.github.com/repos/endroid/qr-code/zipball/58d5872ca46b99b5c2e72cd2c8dea09ce2988156",
+                "reference": "58d5872ca46b99b5c2e72cd2c8dea09ce2988156",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -741,7 +741,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2020-07-10T10:16:06+00:00"
+            "time": "2020-10-07T09:42:59+00:00"
         },
         {
             "name": "google/recaptcha",
@@ -5662,16 +5662,16 @@
         },
         {
             "name": "sebastian/type",
-            "version": "2.2.2",
+            "version": "2.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/type.git",
-                "reference": "e494dcaeb89d1458c9ccd8c819745245a1669aea"
+                "reference": "fa592377f3923946cb90bf1f6a71ba2e5f229909"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/type/zipball/e494dcaeb89d1458c9ccd8c819745245a1669aea",
-                "reference": "e494dcaeb89d1458c9ccd8c819745245a1669aea",
+                "url": "https://api.github.com/repos/sebastianbergmann/type/zipball/fa592377f3923946cb90bf1f6a71ba2e5f229909",
+                "reference": "fa592377f3923946cb90bf1f6a71ba2e5f229909",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -5689,7 +5689,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.2-dev"
+                    "dev-master": "2.3-dev"
                 }
             },
             "autoload": {
@@ -5716,7 +5716,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2020-09-28T06:01:38+00:00"
+            "time": "2020-10-06T08:41:03+00:00"
         },
         {
             "name": "sebastian/version",
