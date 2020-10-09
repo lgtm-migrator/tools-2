@@ -178,6 +178,47 @@ body > div[id^='Modal_'] {user-select: none;}
 .min-vh-50 {min-height: 50vh;}
 .min-vh-75 {min-height: 75vh;}
 .min-vh-90 {min-height: 90vh;}
+.min-vh-unset {min-height: unset;}
+@media (min-width: 576px) {
+  .min-sm-vh-25 {min-height: 25vh;}
+  .min-sm-vh-50 {min-height: 50vh;}
+  .min-sm-vh-75 {min-height: 75vh;}
+  .min-sm-vh-90 {min-height: 90vh;}
+  .min-sm-vh-100 {min-height: 100vh;}
+  .min-sm-vh-unset {min-height: unset;}
+}
+@media (min-width: 768px) {
+  .min-md-vh-25 {min-height: 25vh;}
+  .min-md-vh-50 {min-height: 50vh;}
+  .min-md-vh-75 {min-height: 75vh;}
+  .min-md-vh-90 {min-height: 90vh;}
+  .min-md-vh-100 {min-height: 100vh;}
+  .min-md-vh-unset {min-height: unset;}
+}
+@media (min-width: 992px) {
+  .min-lg-vh-25 {min-height: 25vh;}
+  .min-lg-vh-50 {min-height: 50vh;}
+  .min-lg-vh-75 {min-height: 75vh;}
+  .min-lg-vh-90 {min-height: 90vh;}
+  .min-lg-vh-100 {min-height: 100vh;}
+  .min-lg-vh-unset {min-height: unset;}
+}
+@media (min-width: 1200px) {
+  .min-xl-vh-25 {min-height: 25vh;}
+  .min-xl-vh-50 {min-height: 50vh;}
+  .min-xl-vh-75 {min-height: 75vh;}
+  .min-xl-vh-90 {min-height: 90vh;}
+  .min-xl-vh-100 {min-height: 100vh;}
+  .min-xl-vh-unset {min-height: unset;}
+}
+@media (min-width: 1400px) {
+  .min-xxl-vh-25 {min-height: 25vh;}
+  .min-xxl-vh-50 {min-height: 50vh;}
+  .min-xxl-vh-75 {min-height: 75vh;}
+  .min-xxl-vh-90 {min-height: 90vh;}
+  .min-xxl-vh-100 {min-height: 100vh;}
+  .min-xxl-vh-unset {min-height: unset;}
+}
 
 .max-vh-20 {max-height: 20vh;}
 .max-vh-40 {max-height: 40vh;}
