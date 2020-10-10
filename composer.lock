@@ -150,16 +150,16 @@
         },
         {
             "name": "alibabacloud/sdk",
-            "version": "1.8.513",
+            "version": "1.8.516",
             "source": {
                 "type": "git",
                 "url": "https://github.com/aliyun/openapi-sdk-php.git",
-                "reference": "253221a7661ea1ab0d3928cf26623ba19e772338"
+                "reference": "40992c6a4e7b15dc9982139127c8d9eba18339df"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/aliyun/openapi-sdk-php/zipball/253221a7661ea1ab0d3928cf26623ba19e772338",
-                "reference": "253221a7661ea1ab0d3928cf26623ba19e772338",
+                "url": "https://api.github.com/repos/aliyun/openapi-sdk-php/zipball/40992c6a4e7b15dc9982139127c8d9eba18339df",
+                "reference": "40992c6a4e7b15dc9982139127c8d9eba18339df",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -386,7 +386,7 @@
                 "library",
                 "sdk"
             ],
-            "time": "2020-09-29T13:19:04+00:00"
+            "time": "2020-10-09T07:39:57+00:00"
         },
         {
             "name": "bacon/bacon-qr-code",
@@ -925,16 +925,16 @@
         },
         {
             "name": "guzzlehttp/guzzle",
-            "version": "7.1.1",
+            "version": "7.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/guzzle/guzzle.git",
-                "reference": "7427d6f99df41cc01f33cd59832f721c150ffdf3"
+                "reference": "0aa74dfb41ae110835923ef10a9d803a22d50e79"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/guzzle/guzzle/zipball/7427d6f99df41cc01f33cd59832f721c150ffdf3",
-                "reference": "7427d6f99df41cc01f33cd59832f721c150ffdf3",
+                "url": "https://api.github.com/repos/guzzle/guzzle/zipball/0aa74dfb41ae110835923ef10a9d803a22d50e79",
+                "reference": "0aa74dfb41ae110835923ef10a9d803a22d50e79",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -945,9 +945,9 @@
             },
             "require": {
                 "ext-json": "*",
-                "guzzlehttp/promises": "^1.0",
-                "guzzlehttp/psr7": "^1.6.1",
-                "php": "^7.2.5",
+                "guzzlehttp/promises": "^1.4",
+                "guzzlehttp/psr7": "^1.7",
+                "php": "^7.2.5 || ^8.0",
                 "psr/http-client": "^1.0"
             },
             "provide": {
@@ -955,8 +955,8 @@
             },
             "require-dev": {
                 "ext-curl": "*",
-                "php-http/client-integration-tests": "dev-phpunit8",
-                "phpunit/phpunit": "^8.5.5",
+                "php-http/client-integration-tests": "^3.0",
+                "phpunit/phpunit": "^8.5.5 || ^9.3.5",
                 "psr/log": "^1.1"
             },
             "suggest": {
@@ -1025,7 +1025,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2020-09-30T08:51:17+00:00"
+            "time": "2020-10-10T11:47:56+00:00"
         },
         {
             "name": "guzzlehttp/promises",
