@@ -27,7 +27,8 @@
     "ramsey/uuid": "^4.0",
     "lcobucci/jwt": "^3.3",
     "vlucas/phpdotenv": "^5.0",
-    "php-curl-class/php-curl-class": "^8.8"
+    "php-curl-class/php-curl-class": "^8.8",
+    "samdark/sitemap": "^2.2"
   },
   "require-dev": {
     "friendsofphp/php-cs-fixer": "^2.16",
