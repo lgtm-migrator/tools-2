@@ -23,6 +23,6 @@
     </div>
   </div>
   <div class="d-flex justify-content-center">
-    <button class="w-50 rounded-pill btn btn-secondary" type="button" id="signIn_submit">登录</button>
+    <button class="w-50 rounded-lg btn btn-secondary" type="button" id="signIn_submit">登录</button>
   </div>
 </div>

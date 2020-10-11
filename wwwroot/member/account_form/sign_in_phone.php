@@ -26,6 +26,6 @@
   </div>
   <?php include dirname(__FILE__) . "/captcha_form-group.php"; ?>
   <div class="d-flex justify-content-center">
-    <button class="w-50 rounded-pill btn btn-secondary" type="button" id="sign_in_phone_submit" disabled>登录</button>
+    <button class="w-50 rounded-lg btn btn-secondary" type="button" id="sign_in_phone_submit" disabled>登录</button>
   </div>
 </div>
