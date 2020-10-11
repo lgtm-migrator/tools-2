@@ -1,7 +1,7 @@
 <div id="account_sign_in_phone">
-  <div class="mb-3 form-row align-items-center align-items-sm-stretch">
+  <div class="mb-3">
     <label class="d-none d-sm-block col-2 mb-0 mb-sm-1 text-nowrap text-align-last" for="signIn_phone">手机号</label>
-    <div class="col-12 col-sm-10 input-group">
+    <div class="col-sm-10 input-group">
       <div class="input-group-prepend">
         <div class="input-group-text dropdown-toggle" data-toggle="dropdown" id="phone_area">+86</div>
         <div class="dropdown-menu min-w-rem-2 text-center">
