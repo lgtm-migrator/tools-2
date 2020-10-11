@@ -1,16 +1,12 @@
 <div id="account_sign_in">
   <div class="mb-3 form-row align-items-center align-items-sm-stretch">
-    <div class="col-auto col-sm-2">
-      <label class="mb-1 mb-sm-0 pt-0 pt-sm-1 d-inline-block min-w-100 text-align-last" for="signIn_user_name">用户名</label>
-    </div>
+    <label class="d-none d-sm-block col-2 mb-0 mb-sm-1 text-nowrap text-align-last" for="signIn_user_name">用户名</label>
     <div class="col-12 col-sm-10 input-group">
       <input class="form-control" type="text" id="signIn_user_name" placeholder="请输入用户名" minlength="5" maxlength="20" pattern="" autocomplete="off" required>
     </div>
   </div>
   <div class="mb-3 form-row align-items-center align-items-sm-stretch">
-    <div class="col-auto col-sm-2">
-      <label class="mb-1 mb-sm-0 pt-0 pt-sm-1 d-inline-block min-w-100 text-align-last" for="signIn_password">密码</label>
-    </div>
+    <label class="d-none d-sm-block col-2 mb-0 mb-sm-1 text-nowrap text-align-last" for="signIn_password">密码</label>
     <div class="col-12 col-sm-10 input-group">
       <input class="form-control" type="password" id="signIn_password" placeholder="请输入密码" minlength="8" maxlength="16" pattern="" autocomplete="off" required>
       <div class="input-group-text">
