@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "cb69b1e6652aa70e6566d6c549d7d56f",
+    "content-hash": "bb39cdbaee667d7d33a0397e0e7cc1bd",
     "packages": [
         {
             "name": "adbario/php-dot-notation",
@@ -150,16 +150,16 @@
         },
         {
             "name": "alibabacloud/sdk",
-            "version": "1.8.537",
+            "version": "1.8.544",
             "source": {
                 "type": "git",
                 "url": "https://github.com/aliyun/openapi-sdk-php.git",
-                "reference": "06637d1619c760fd8c807d28d1dee397de4047c0"
+                "reference": "34e850141199bc3073df65338a650e3f306c8762"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/aliyun/openapi-sdk-php/zipball/06637d1619c760fd8c807d28d1dee397de4047c0",
-                "reference": "06637d1619c760fd8c807d28d1dee397de4047c0",
+                "url": "https://api.github.com/repos/aliyun/openapi-sdk-php/zipball/34e850141199bc3073df65338a650e3f306c8762",
+                "reference": "34e850141199bc3073df65338a650e3f306c8762",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -386,7 +386,7 @@
                 "library",
                 "sdk"
             ],
-            "time": "2020-10-15T09:07:52+00:00"
+            "time": "2020-10-20T03:39:11+00:00"
         },
         {
             "name": "bacon/bacon-qr-code",
@@ -1656,12 +1656,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/PHPAuth/PHPAuth.git",
-                "reference": "70f684b3b59087b26ceab54f86c95e8193025084"
+                "reference": "493d76a5e26360c17444c8a1f036ae63f8a5eed7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/PHPAuth/PHPAuth/zipball/70f684b3b59087b26ceab54f86c95e8193025084",
-                "reference": "70f684b3b59087b26ceab54f86c95e8193025084",
+                "url": "https://api.github.com/repos/PHPAuth/PHPAuth/zipball/493d76a5e26360c17444c8a1f036ae63f8a5eed7",
+                "reference": "493d76a5e26360c17444c8a1f036ae63f8a5eed7",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -1672,6 +1672,7 @@
             },
             "require": {
                 "bjeavons/zxcvbn-php": "^0.4",
+                "ext-pdo": "*",
                 "google/recaptcha": "^1.2",
                 "php": ">=7.0.0",
                 "phpmailer/phpmailer": "^6.0"
@@ -1696,7 +1697,7 @@
                 "class",
                 "secure"
             ],
-            "time": "2020-10-12T19:32:36+00:00"
+            "time": "2020-10-20T04:22:37+00:00"
         },
         {
             "name": "phpmailer/phpmailer",
@@ -4739,16 +4740,16 @@
         },
         {
             "name": "phpunit/phpunit",
-            "version": "9.4.1",
+            "version": "9.4.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "1f09a12726593737e8a228ebb1c8647305d07c41"
+                "reference": "3866b2eeeed21b1b099c4bc0b7a1690ac6fd5baa"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/1f09a12726593737e8a228ebb1c8647305d07c41",
-                "reference": "1f09a12726593737e8a228ebb1c8647305d07c41",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/3866b2eeeed21b1b099c4bc0b7a1690ac6fd5baa",
+                "reference": "3866b2eeeed21b1b099c4bc0b7a1690ac6fd5baa",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -4840,7 +4841,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2020-10-11T07:41:19+00:00"
+            "time": "2020-10-19T09:23:29+00:00"
         },
         {
             "name": "psr/container",
@@ -6181,7 +6182,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2020-09-18T14:27:32+00:00"
+            "time": "2020-10-07T15:23:00+00:00"
         },
         {
             "name": "symfony/event-dispatcher",
