@@ -1,7 +1,7 @@
 <?php
 define('title', '');
 define('descriptionContent', '杰格网致力于为冀中股份工人提供垂直的网络工具、生活信息查询和网络娱乐。');
-define('keywordsContent', '');
+define('keywordsContent', '冀中股份,冀中能源,东庞矿,葛泉矿,邢台矿,章村矿,显德汪矿,邢东矿,邢煤工人村');
 require_once dirname(__DIR__) . '/header.php';
 if (!defined('SITE_HEAD')) die();
 ?>
