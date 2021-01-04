@@ -42,13 +42,13 @@
     "composer_selfup": "composer self-update --1",
     "install_nrm_use_taobao": "npm -g i nrm --registry=https://registry.npm.taobao.org && nrm use taobao && nrm ls",
     "install_globl_packages": "npm run install_ncu && npm run install_eslint && npm run install_gulp-cli",
-    "install_ncu": "npm -g i npm-check-updates@10.0.0",
-    "install_eslint": "npm -g i eslint@7.13.0",
+    "install_ncu": "npm -g i npm-check-updates@10.2.5",
+    "install_eslint": "npm -g i eslint@7.17.0",
     "install_gulp-cli": "npm -g i gulp-cli@2.3.0"
   },
   "peerDependencies": {},
   "devDependencies": {
-    "autoprefixer": "^10.0.4",
+    "autoprefixer": "^10.1.0",
     "del": "^6.0.0",
     "eslint-config-google": "^0.14.0",
     "gulp": "^4.0.2",
@@ -59,7 +59,7 @@
     "gulp-postcss": "^9.0.0",
     "gulp-rename": "^2.0.0",
     "gulp-terser": "^2.0.0",
-    "postcss": "^8.1.14",
+    "postcss": "^8.2.2",
     "stylelint": "^13.8.0"
   },
   "dependencies": {
@@ -69,13 +69,13 @@
     "blueimp-md5": "^2.18.0",
     "bootstrap": "^5.0.0-alpha2",
     "bootstrap-colorpicker": "^3.2.0",
-    "bootstrap-modal-js": "^2.0.0-alpha2",
-    "bootstrap-table": "^1.18.0",
+    "bootstrap-modal-js": "^2.0.0-beta1",
+    "bootstrap-table": "^1.18.1",
     "bs-custom-file-input": "^1.3.4",
     "cleave.js": "^1.6.0",
     "clipboard": "^2.0.6",
-    "dayjs": "^1.9.6",
-    "flatpickr": "^4.6.6",
+    "dayjs": "^1.10.1",
+    "flatpickr": "^4.6.9",
     "fundebug-javascript": "^2.4.2",
     "hamburgers": "^1.1.3",
     "hover.css": "^2.3.2",
@@ -85,8 +85,8 @@
     "qrcode": "^1.4.4"
   },
   "engines": {
-    "node": "^10.23.0 || ^12.19.0 || 14.15.0 || 15.0.1",
-    "npm": "^6.14.8"
+    "node": "^10.23.0 || ^12.20.0 || 14.15.3 || 15.5.0",
+    "npm": "^6.14.10"
   },
   "os": [],
   "cpu": []
