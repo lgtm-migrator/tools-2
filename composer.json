@@ -30,7 +30,7 @@
     "vlucas/phpdotenv": "^5.2",
     "php-curl-class/php-curl-class": "^8.8",
     "samdark/sitemap": "^2.2",
-    "phpauth/phpauth": "dev-master#33904fe1a6e7b32296273e9edfdc77f96fc51d1d"
+    "phpauth/phpauth": "dev-master#5d00430a0d4555324d4c2bdaf23d9a01a7d44ad4"
   },
   "require-dev": {
     "friendsofphp/php-cs-fixer": "^2.16",
