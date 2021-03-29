@@ -727,9 +727,11 @@ function domain_check() {
   let current_host = document.location.host;
   let hosts = [
     'jzeg.net',
+    'www.jzeg.net',
     'tools.jzeg.net',
     'policies.jzeg.net',
     'jzeg.org',
+    'www.jzeg.org',
     'tools.jzeg.org',
     'policies.jzeg.org',
     'test.jzeg.net',
