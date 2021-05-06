@@ -1,6 +1,6 @@
 {
   "name": "jzeg-net/tools",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "type": "project",
   "license": "AGPL-3.0",
   "authors": [
@@ -33,7 +33,7 @@
     "phpauth/phpauth": "dev-master#8684e965e7c66d7d69354f6b444ddef7bcb80a3a"
   },
   "require-dev": {
-    "friendsofphp/php-cs-fixer": "^2.18",
+    "friendsofphp/php-cs-fixer": "^2.19",
     "php-coveralls/php-coveralls": "^2.4",
     "phpunit/phpunit": "^9.5"
   },
